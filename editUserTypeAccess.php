@@ -15,7 +15,7 @@
       <table>
         <tr>
           <td>          
-            <?
+            <?php
               $ut_id=$_GET['ut_id'];
               $dbh = new DBHandler();
               $result=$dbh->select('TRM_usertypes',"","*");

@@ -1,13 +1,20 @@
 <?php
-
+  include_once('error_reporting.php'); //Sets error level to E_ALL ^ E_NOTICE
   //Handles login/logout. Login is session based. If nothing passed to login.php it shows login form. 
   include_once ("DBHandler.class.php");
   $dbh = new DBHandler();
-  $name=$_REQUEST['name'];
-  $pass=$_REQUEST['pass'];
-  $lang=$_REQUEST['language'];
-  $action=$_REQUEST['action'];
+
+  //Utility function to have array access with default value.
+  function arrayGet($key, $array, $default='') {
+      return array_key_exists($key, $array) ? $array[$key] : $default;
+  }
   
+  $name = arrayGet('name', $_REQUEST);
+  $pass = arrayGet('pass', $_REQUEST);
+  $lang = arrayGet('language', $_REQUEST);
+  $action = arrayGet('action', $_REQUEST);
+  
+  $num = 0;
   if ($name != "" && $pass != ""){
     $result = $dbh->select('TRM_users',"WHERE name='$name' AND password LIKE BINARY '$pass' AND usertype > 2",'*');
     $num=mysql_numrows($result);
@@ -83,7 +90,7 @@
                   <td>Language</td>
                   <td>
                     <select name='language'>
-                      <?
+                      <?php
                         $langresult = $dbh->select('TRM_langlist','','*');
                         $langnum = mysql_num_rows($langresult);
                         for ($u=0;$u<$langnum;$u++){

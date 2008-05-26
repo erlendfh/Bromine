@@ -2,20 +2,21 @@
   
   class DBHandler{
     
-    var $db;
-    var $username;
-    var $database;
-    var $password;
-    var $host;
-    var $lang;
+    public $db;
+    public $username;
+    public $database;
+    public $password;
+    public $host;
+    public $lang;
     
     public $query;
     
     function __construct($l = 'en'){
-    
+      //Enable this if PEAR is installed and you are having problems with TestRunnerRC.php not working.  
+      //require($_SERVER['DOCUMENT_ROOT'].'/path/to/bromine/config.php');
       require('config.php');
-      
-      $this->lang=$l;
+
+      $this->lang = $l;
     	$this->db=mysql_connect($this->host, $this->username, $this->password);
     	mysql_select_db($this->database, $this->db);
     }
@@ -76,9 +77,8 @@
     function getText($text)
     {
       $this->query = "SELECT $this->lang FROM TRM_lang WHERE langKey='$text'";
-      //echo $this->query."<br />";
     	$result = mysql_query($this->query) or die (mysql_error());
-    	$result = mysql_result($result,0,$lang);
+    	$result = mysql_result($result, 0, $this->lang);
     	return $result;
     }
     

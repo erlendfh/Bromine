@@ -163,7 +163,7 @@
           <td><input type='text' size='16' name='newname2' /></td>
           <td><textarea rows='8' cols='90' name='newdescription2' ></textarea></td>
       		<td>
-            <?
+            <?php
               
               echo "<select name='OSnew2'>";
               for($c=0;$c<count($OS);$c++){

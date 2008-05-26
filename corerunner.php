@@ -33,7 +33,7 @@
             <?php echo $lh->GetText('Environment'); ?>
           </td>
           <td>
-            <?
+            <?php
               if($p_id!=''){
                 
                 $result=$dbh->select('TRM_core, TRM_projects, TRM_projectList',
@@ -122,7 +122,7 @@
             <?php echo $lh->GetText('Suite name'); ?>
           </td>
           <td>
-            <?
+            <?php
               if($referer!='' && $browser!='' && $OS!=''){
                 $result=$dbh->select('TRM_core_testsuites, TRM_projects, TRM_projectList',
                 "WHERE TRM_projectList.userId = '".$_SESSION['id']."' AND

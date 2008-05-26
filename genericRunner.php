@@ -72,7 +72,7 @@
                 <?php echo $lh->GetText('Requirement'); ?>
               </td>
               <td>
-                <?
+                <?php
     
                   $outer_result = $dbh->select(" 
                   TRM_requirements, TRM_projectList",
@@ -214,7 +214,7 @@
                 <?php echo $lh->GetText('Test'); ?>
               </td>
               <td>
-                <?
+                <?php
                   $testcaseresult = $dbh->select('TRM_design_manual_test',"WHERE p_id=$p_id","*");
                   while($row = mysql_fetch_array($testcaseresult)){
                     $testcasename=$row['name'];
@@ -342,7 +342,7 @@
                 <?php echo $lh->GetText('Requirement'); ?>
               </td>
               <td>
-                <?
+                <?php
     
                   $outer_result = $dbh->select(" 
                   TRM_requirements, TRM_projectList",

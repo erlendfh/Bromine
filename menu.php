@@ -7,7 +7,7 @@
   <tr>
     <td colspan="4">
       <form method='get' action='' id='p_id_form' style='display: inline;'>
-        <?
+        <?php
           $get=$_GET['get'];
           if($get!='' && $get!='nogo'){
             $get=explode(',',$get);

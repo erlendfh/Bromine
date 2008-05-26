@@ -41,7 +41,8 @@
     <?php
       $url1="statusRC.php?time=$time&user=$user&pass=$pass&u_id=$u_id";
       //$returnTo = "http://". $_SERVER['SERVER_NAME'];
-      $url="$returnTo/RC/Drivers/$type/$test?sitetotest=$sitetotest&browser=$browser&p_id=$p_id&OS=$o_id&b_id=$b_id&o_id=$o_id&host=$nodepath&ss=\\\\$network_drive\\\\$type\\\\$p_name&u_id=$u_id&datafile=$datafile&p_name=$p_name&type=$type&suitename=$suitename&lang=$lang";
+      $url="RC/Drivers/$type/$test?sitetotest=$sitetotest&browser=$browser&p_id=$p_id&OS=$o_id&b_id=$b_id&o_id=$o_id&host=$nodepath&ss=\\\\$network_drive\\\\$type\\\\$p_name&u_id=$u_id&datafile=$datafile&p_name=$p_name&type=$type&suitename=$suitename&lang=$lang";
+
       if ($datafile == ''){
         foreach($tests as $value){
           $url.="&tests[]=$value";

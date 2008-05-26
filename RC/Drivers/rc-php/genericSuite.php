@@ -35,8 +35,10 @@
   }
   
   //Datatest Kneppes motorsavsmasakre!
+  /*
   $datatest = false;
   if(isset($_GET['datafile'])){
+    echo "i think it's a datatest";
     include "TextFileParser.php";
     $file = $_GET['datafile'];
     $tfp = new TextFileParser($file, $_GET['p_name']);
@@ -45,7 +47,7 @@
     $dTest = trim("dataTest".$file);
     $datatest = true;
   }
-  
+  */
   //$autoName = implode(",", $tests);
   /*
     Alt der der sende fra Bromine
@@ -69,7 +71,7 @@
   $countTests = 0;
   $countCommands = 0;
   
-  if($ntest = true){
+  if($ntest == true){
     for ($i = 0;$i<count($tests);$i++){
       if(file_exists("../../$type/$p_name/".$tests[$i].".php")){
       include_once "../../$type/$p_name/".$tests[$i].".php";  
@@ -87,9 +89,10 @@
       }else{echo "File ../../$type/$p_name/$tests[$i].php does not exist!";}
     }
   }
-
+  
+  /*
   // Mere datatest crap
-  if($datatest = true){
+  if($datatest == true){
     for ($x = 0; $x<count($dos);$x++){
       if(file_exists("../../$type/$p_name/".$dTest.".php")){
         include_once "../../$type/$p_name/".$dTest.".php";  
@@ -107,16 +110,10 @@
       }
     }
   }
+  */
   $suite->finalizeSuite($countTests, $countCommands);
 
-  /*
-    Sender test rsultaterne til Bromine
-    'http://dev.testserver.monten.dk/RCparser.php' skal være placeringen af RCparser på den server der skal modtage resultaterne
-  */
-   //$go = http_build_query($suite->getAsArray());
-  //$arr = $suite->do_post_request("$returnTo/RCparser.php",$go);
-  
-  //$suite->sendResult();
+
   
  
   

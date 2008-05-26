@@ -8,7 +8,7 @@
   <body>
     <?php include ('menu.php') ?>
     <?php include('projectsSubMenu.php'); ?>
-    <?
+    <?php
       include_once ('DBHandler.class.php');
       $dbh = new DBHandler();
       $result = $dbh->select('TRM_projects','WHERE TRM_projects.ID!=1','*');

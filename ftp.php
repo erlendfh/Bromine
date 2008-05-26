@@ -406,7 +406,7 @@ function simple_start($td_size){
 ?>
 <meta http-equiv='Content-Type' content='text/html;charset=windows-1254'>
 <meta http-equiv='Content-Type' content='text/html; charset=ISO-8859-9'>
-<title><? echo $content[$lang]["title"]; ?></title>
+<title><?php echo $content[$lang]["title"]; ?></title>
 <style>
 BODY{
 	background:#FEFEFE;
@@ -431,7 +431,7 @@ select{
 }
 
 TD{
-	font-size:<? echo intval($td_size); ?>
+	font-size:<?php echo intval($td_size); ?>
 }
 
 H1{
@@ -448,7 +448,7 @@ A:hover{
 	text-decoration:underline
 }
 </style>
-<?
+<?php
 }
 
 // The "start of the main form" output
@@ -460,8 +460,8 @@ function form_start(){
 <div align=center>
 <table height=100% width=550 cellpadding=0 cellspacing=0>
 <tr valign=middle><td align=center>
-<h1><? echo $content[$lang]["welcome"]; ?></h1><br>
-<?
+<h1><?php echo $content[$lang]["welcome"]; ?></h1><br>
+<?php
 }
 
 // The "simple end" output
@@ -481,10 +481,10 @@ function simple_end(){
 	}
 ?>
 <br><br><br></font><font size=1>
-<? echo $content[$lang]["resolution"]; ?>
+<?php echo $content[$lang]["resolution"]; ?>
 <font size=2><br><br></font><font size=1>
-<? echo $content[$lang]["getSource"]; ?>.
-<font size=2><br><br></font><font size=1><? echo $content[$lang]["copy"]; ?><br><br>
+<?php echo $content[$lang]["getSource"]; ?>.
+<font size=2><br><br></font><font size=1><?php echo $content[$lang]["copy"]; ?><br><br>
 <a href=http://myftp.alishomepage.com target=_blank>http://myftp.alishomepage.com</a><br>
 <a href=http://subs.alishomepage.com target=_blank>http://subs.alishomepage.com</a><br><br>
 <a href=http://contact.ali.tokmen.com target=_blank>http://contact.ali.tokmen.com</a><br>
@@ -500,7 +500,7 @@ function onSelectStart() {
 
 document.onselectstart=onSelectStart
 </script>
-<?
+<?php
 }
 
 // The "login form" output
@@ -508,22 +508,22 @@ function login_form( $str ){
 	global $content,$lang,$host,$user,$pass,$port,$folder,$passive,$mode;
 	form_start();
 ?>
-<? if($str){ echo "<table style='border-right: #cccccc 1px dotted; border-top: #cccccc 1px dotted; border-left: #cccccc 1px dotted; color: #0000ff; padding-top: 2px; border-bottom: #cccccc 1px dotted; background-color: #fefefe' callpadding=8 cellspacing=8><tr valign=middle><td align=center><img src=img/info.gif></td><td align=center>$str</td></tr></table><br><br>"; } ?>
-<? echo $content[$lang]["form"][0]; ?><br><br><br>
-<form action="<? echo scriptName; ?>?lang=<? echo $lang; ?>" method=POST>
+<?php if($str){ echo "<table style='border-right: #cccccc 1px dotted; border-top: #cccccc 1px dotted; border-left: #cccccc 1px dotted; color: #0000ff; padding-top: 2px; border-bottom: #cccccc 1px dotted; background-color: #fefefe' callpadding=8 cellspacing=8><tr valign=middle><td align=center><img src=img/info.gif></td><td align=center>$str</td></tr></table><br><br>"; } ?>
+<?php echo $content[$lang]["form"][0]; ?><br><br><br>
+<form action="<?php echo scriptName; ?>?lang=<?php echo $lang; ?>" method=POST>
 <input type=hidden name=sessID value=connect>
 <table style='border-right: #cccccc 1px dotted; border-top: #cccccc 1px dotted; border-left: #cccccc 1px dotted; color: #110044; padding-top: 2px; border-bottom: #cccccc 1px dotted; background-color: #fafafa' border=0 cellpadding=3 cellspacing=7>
-<tr><td align=right width=47%><? echo $content[$lang]["form"][1]; ?> : </td>
-<td><input size=20 name=host type=text maxlength=128 value="<? echo htmlspecialchars(str_replace(array("\\\"","\\'","\\\\"),array("\"","'","\\"),$host)); ?>"></td></tr>
-<tr><td align=right><? echo $content[$lang]["form"][2]; ?> : </td><td><input size=20 name=user type=text maxlength=128 value="<? echo htmlspecialchars(str_replace(array("\\\"","\\'","\\\\"),array("\"","'","\\"),$user)); ?>"></td></tr>
-<tr><td align=right><? echo $content[$lang]["form"][3]; ?> : </td><td><input size=20 name=pass type=password maxlength=128 value="<? echo htmlspecialchars(str_replace(array("\\\"","\\'","\\\\"),array("\"","'","\\"),$pass)); ?>"></td></tr>
-<tr><td align=right><? echo $content[$lang]["form"][4]; ?> : </td><td><input size=20 name=port type=text maxlength=5 value=<? echo $port; ?>></td></tr>
-<tr><td align=right><? echo $content[$lang]["form"][5]; ?> : </td><td><input size=20 name=curFold type=text maxlength=128 value="<? echo htmlspecialchars(str_replace(array("\\\"","\\'","\\\\"),array("\"","'","\\"),$folder)); ?>"></td></tr>
-<tr><td align=right><? echo $content[$lang]["form"][6]; ?> ? </td><td><select name=usePassive><option <? if(!defined("DontUseActiveFTP") && !intval($passive)){echo "selected ";} ?>value=0><? echo $content[$lang]["form"][7]; ?><option <? if(defined("DontUseActiveFTP") || intval($passive)){echo "selected ";} ?>value=1><? echo $content[$lang]["form"][8]; ?></select></td></tr>
-<tr><td align=right><? echo $content[$lang]["views"][0]; ?> : </td><td><select name=mode><option <? if($mode!="detailed"){echo "selected ";} ?>value=bigIcons><? echo $content[$lang]["views"][1]; ?><option <? if($mode=="detailed"){echo "selected ";} ?>value=detailed><? echo $content[$lang]["views"][2]; ?></select></td></tr></table><br>
-<input type=submit value="<? echo $content[$lang]["form"][9]; ?> !"></form>
-<? echo $content[$lang]["form"][10]; ?>
-<?
+<tr><td align=right width=47%><?php echo $content[$lang]["form"][1]; ?> : </td>
+<td><input size=20 name=host type=text maxlength=128 value="<?php echo htmlspecialchars(str_replace(array("\\\"","\\'","\\\\"),array("\"","'","\\"),$host)); ?>"></td></tr>
+<tr><td align=right><?php echo $content[$lang]["form"][2]; ?> : </td><td><input size=20 name=user type=text maxlength=128 value="<?php echo htmlspecialchars(str_replace(array("\\\"","\\'","\\\\"),array("\"","'","\\"),$user)); ?>"></td></tr>
+<tr><td align=right><?php echo $content[$lang]["form"][3]; ?> : </td><td><input size=20 name=pass type=password maxlength=128 value="<?php echo htmlspecialchars(str_replace(array("\\\"","\\'","\\\\"),array("\"","'","\\"),$pass)); ?>"></td></tr>
+<tr><td align=right><?php echo $content[$lang]["form"][4]; ?> : </td><td><input size=20 name=port type=text maxlength=5 value=<?php echo $port; ?>></td></tr>
+<tr><td align=right><?php echo $content[$lang]["form"][5]; ?> : </td><td><input size=20 name=curFold type=text maxlength=128 value="<?php echo htmlspecialchars(str_replace(array("\\\"","\\'","\\\\"),array("\"","'","\\"),$folder)); ?>"></td></tr>
+<tr><td align=right><?php echo $content[$lang]["form"][6]; ?> ? </td><td><select name=usePassive><option <?php if(!defined("DontUseActiveFTP") && !intval($passive)){echo "selected ";} ?>value=0><?php echo $content[$lang]["form"][7]; ?><option <?php if(defined("DontUseActiveFTP") || intval($passive)){echo "selected ";} ?>value=1><?php echo $content[$lang]["form"][8]; ?></select></td></tr>
+<tr><td align=right><?php echo $content[$lang]["views"][0]; ?> : </td><td><select name=mode><option <?php if($mode!="detailed"){echo "selected ";} ?>value=bigIcons><?php echo $content[$lang]["views"][1]; ?><option <?php if($mode=="detailed"){echo "selected ";} ?>value=detailed><?php echo $content[$lang]["views"][2]; ?></select></td></tr></table><br>
+<input type=submit value="<?php echo $content[$lang]["form"][9]; ?> !"></form>
+<?php echo $content[$lang]["form"][10]; ?>
+<?php
 	simple_end();
 }
 
@@ -840,38 +840,38 @@ simple_start(11);
 <div id=leftFrame style=overflow:hidden;width:250;padding-left:0px;padding-right:0px;padding-top:0px;padding-bottom:0px>
 <img src=img/logo.gif><br>
 <div style=padding-left:10px>
-<font size=3><b><? echo $content[$lang]["title"]; ?></b></font>
+<font size=3><b><?php echo $content[$lang]["title"]; ?></b></font>
 </div>
 <br>
 <table width=250><tr bgcolor=#6699CC height=2><td></td></tr></table>
 <br>
 <div style=padding-left:10px>
-<? echo $content[$lang]["msgs"][2]; ?> <b><? echo filterHTML($hostname); ?></b> <? echo $content[$lang]["msgs"][3]; ?> <b><? echo filterHTML($username); ?></b><br>
-&nbsp; &nbsp; &nbsp; <? echo $content[$lang]["msgs"][4]; ?>
+<?php echo $content[$lang]["msgs"][2]; ?> <b><?php echo filterHTML($hostname); ?></b> <?php echo $content[$lang]["msgs"][3]; ?> <b><?php echo filterHTML($username); ?></b><br>
+&nbsp; &nbsp; &nbsp; <?php echo $content[$lang]["msgs"][4]; ?>
 <br><br>
-<? echo $content[$lang]["msgs"][5]; ?> <b><? echo $foldExplain; ?></b><br>
-&nbsp; &nbsp; &nbsp; <? echo $content[$lang]["msgs"][6]; ?>
+<?php echo $content[$lang]["msgs"][5]; ?> <b><?php echo $foldExplain; ?></b><br>
+&nbsp; &nbsp; &nbsp; <?php echo $content[$lang]["msgs"][6]; ?>
 <br><br></div>
 <center>
-<form action="<? echo scriptName; ?>?lang=<? echo $lang; ?>&mode=<? echo ($mode=="detailed"?"detailed":"bigIcons"); ?>" method=POST enctype=multipart/form-data>
-<? echo $content[$lang]["msgs"][7]; ?><br>
-<input type=hidden name=MAX_FILE_SIZE value=<? echo ulLimit_bytes; ?>>
-<input type=hidden name=sessID value=<? echo $sessID; ?>>
-<input type=hidden name=curFold value="<? echo $curFold; ?>">
+<form action="<?php echo scriptName; ?>?lang=<?php echo $lang; ?>&mode=<?php echo ($mode=="detailed"?"detailed":"bigIcons"); ?>" method=POST enctype=multipart/form-data>
+<?php echo $content[$lang]["msgs"][7]; ?><br>
+<input type=hidden name=MAX_FILE_SIZE value=<?php echo ulLimit_bytes; ?>>
+<input type=hidden name=sessID value=<?php echo $sessID; ?>>
+<input type=hidden name=curFold value="<?php echo $curFold; ?>">
 <input type=hidden name=action value="put">
-<input type=file name=uplFile size=10 style=font-family:verdana,arial,helvetica;font-size:11;color:#000000> <input type=submit value=<? echo $content[$lang]["msgs"][8]; ?> style=font-family:verdana,arial,helvetica;font-size:11;color:#000000><br><br>
-<!--b><a href="<? echo filterHTML(zip2ftp)."?host=".filterHTML($sessInfo["hostname"])."&user=".filterHTML($sessInfo["username"])."&port=".$sessInfo["port"]."&folder=".$curFold."&passive=".$sessInfo["passive"]; ?>" target=_blank onclick="alert('<? echo $content[$lang]["msgs"][9]; ?>')"><? echo $content[$lang]["msgs"][10]; ?></a></b-->
+<input type=file name=uplFile size=10 style=font-family:verdana,arial,helvetica;font-size:11;color:#000000> <input type=submit value=<?php echo $content[$lang]["msgs"][8]; ?> style=font-family:verdana,arial,helvetica;font-size:11;color:#000000><br><br>
+<!--b><a href="<?php echo filterHTML(zip2ftp)."?host=".filterHTML($sessInfo["hostname"])."&user=".filterHTML($sessInfo["username"])."&port=".$sessInfo["port"]."&folder=".$curFold."&passive=".$sessInfo["passive"]; ?>" target=_blank onclick="alert('<?php echo $content[$lang]["msgs"][9]; ?>')"><?php echo $content[$lang]["msgs"][10]; ?></a></b-->
 </form></center>
 <div style=padding-left:10px>
-<div id=description style="background:#FFFFE1;width:220;border-right:#D3D3D3 1px solid;border-left:#D3D3D3 1px solid;border-top:#D3D3D3 1px solid;border-bottom:#D3D3D3 1px solid;padding-left:7px;padding-right:7px;padding-top:7px;padding-bottom:7px"><? echo $content[$lang]["msgs"][11]; ?></div>
+<div id=description style="background:#FFFFE1;width:220;border-right:#D3D3D3 1px solid;border-left:#D3D3D3 1px solid;border-top:#D3D3D3 1px solid;border-bottom:#D3D3D3 1px solid;padding-left:7px;padding-right:7px;padding-top:7px;padding-bottom:7px"><?php echo $content[$lang]["msgs"][11]; ?></div>
 <br><br>
-<a href="javascript:action('setView','<? echo ($mode=="detailed"?"bigIcons":"detailed"); ?>')"><? echo $content[$lang]["views"][$mode=="detailed"?4:3]; ?><br><br>
-<a href="javascript:action('go','..')"><? echo $content[$lang]["msgs"][12]; ?><br><br>
-<a href="javascript:action('go','/')"><? echo $content[$lang]["msgs"][13]; ?><br><br>
-<a href="javascript:action()"><? echo $content[$lang]["msgs"][14]; ?>
-<form action="<? echo scriptName; ?>?lang=<?echo $lang; ?>&mode=<? echo ($mode=="detailed"?"detailed":"bigIcons"); ?>" name=changeThings method=POST>
-<input type=hidden name=sessID value=<? echo $sessID; ?>>
-<input type=hidden name=curFold value="<? echo $curFold; ?>">
+<a href="javascript:action('setView','<?php echo ($mode=="detailed"?"bigIcons":"detailed"); ?>')"><?php echo $content[$lang]["views"][$mode=="detailed"?4:3]; ?><br><br>
+<a href="javascript:action('go','..')"><?php echo $content[$lang]["msgs"][12]; ?><br><br>
+<a href="javascript:action('go','/')"><?php echo $content[$lang]["msgs"][13]; ?><br><br>
+<a href="javascript:action()"><?php echo $content[$lang]["msgs"][14]; ?>
+<form action="<?php echo scriptName; ?>?lang=<?echo $lang; ?>&mode=<?php echo ($mode=="detailed"?"detailed":"bigIcons"); ?>" name=changeThings method=POST>
+<input type=hidden name=sessID value=<?php echo $sessID; ?>>
+<input type=hidden name=curFold value="<?php echo $curFold; ?>">
 <input type=hidden name=action value="">
 <input type=hidden name=param1 value="">
 <input type=hidden name=param2 value="">
@@ -880,24 +880,24 @@ simple_start(11);
 </div>
 </td><td>
 <div id=content style="overflow:auto;padding-left:0px;padding-right:0px;padding-top:0px;padding-bottom:0px">
-<br><br><? echo $content[$lang]["msgs"][15]; ?>...
+<br><br><?php echo $content[$lang]["msgs"][15]; ?>...
 </div>
 </td></tr></table>
 <script>
 function safePrint( str ){
-<?
+<?php
 	if($mode=="bigIcons"){
 ?>
 	if(str.length>18){
 		str = str.substring(0,6)+" (...) "+str.substring(str.length-6,str.length)
 	}
-<?
+<?php
 	}else{
 ?>
 	if(str.length>40){
 		str = str.substring(0,17)+" (...) "+str.substring(str.length-17,str.length)
 	}
-<?
+<?php
 	}
 ?>
 	return str
@@ -949,38 +949,38 @@ function bul(neyi){
 function explain(style,number){
 	var output=""
 	if(style=="file"){
-		output+="<? echo $content[$lang]["msgs"][16]; ?>:<br>&nbsp;"
+		output+="<?php echo $content[$lang]["msgs"][16]; ?>:<br>&nbsp;"
 		output+="<table cellpadding=3 cellspacing=0>"
-		output+="<tr valign=middle height=15 valign=top><td align=right width=60><? echo $content[$lang]["msgs"][17]; ?>:</td><td>"+files[number][2]+"</td></tr>"
-		output+="<tr valign=middle height=15 valign=top><td align=right width=60><? echo $content[$lang]["msgs"][18]; ?>:</td><td>"+files[number][1]+"</td></tr>"
+		output+="<tr valign=middle height=15 valign=top><td align=right width=60><?php echo $content[$lang]["msgs"][17]; ?>:</td><td>"+files[number][2]+"</td></tr>"
+		output+="<tr valign=middle height=15 valign=top><td align=right width=60><?php echo $content[$lang]["msgs"][18]; ?>:</td><td>"+files[number][1]+"</td></tr>"
 		if(files[number][3].length>0){
-			output+="<tr valign=middle height=15 valign=top><td align=right width=60><? echo $content[$lang]["msgs"][19]; ?>:</td><td>"+files[number][3]+"</td></tr>"
+			output+="<tr valign=middle height=15 valign=top><td align=right width=60><?php echo $content[$lang]["msgs"][19]; ?>:</td><td>"+files[number][3]+"</td></tr>"
 		}
-		output+="<tr valign=middle height=15 valign=top><td align=right width=60><? echo $content[$lang]["msgs"][20]; ?>:</td><td>"+files[number][4]+"</td></tr>"
+		output+="<tr valign=middle height=15 valign=top><td align=right width=60><?php echo $content[$lang]["msgs"][20]; ?>:</td><td>"+files[number][4]+"</td></tr>"
 		output+="</table>"
 	}else if(style=="folder"){
 		if(folders[number][0]==".."){
-			output+="<? echo $content[$lang]["msgs"][21]; ?>"
+			output+="<?php echo $content[$lang]["msgs"][21]; ?>"
 		}else{
-			output+="<? echo $content[$lang]["msgs"][22]; ?>:<br>&nbsp;"
+			output+="<?php echo $content[$lang]["msgs"][22]; ?>:<br>&nbsp;"
 			output+="<table cellpadding=3 cellspacing=0>"
-			output+="<tr valign=middle height=15 valign=top><td align=right width=60><? echo $content[$lang]["msgs"][18]; ?>:</td><td>"+folders[number][1]+"</td></tr>"
+			output+="<tr valign=middle height=15 valign=top><td align=right width=60><?php echo $content[$lang]["msgs"][18]; ?>:</td><td>"+folders[number][1]+"</td></tr>"
 			if(folders[number][3].length>0){
-				output+="<tr valign=middle height=15 valign=top><td align=right width=60><? echo $content[$lang]["msgs"][19]; ?>:</td><td>"+folders[number][2]+"</td></tr>"
+				output+="<tr valign=middle height=15 valign=top><td align=right width=60><?php echo $content[$lang]["msgs"][19]; ?>:</td><td>"+folders[number][2]+"</td></tr>"
 			}
-			output+="<tr valign=middle height=15 valign=top><td align=right width=60><? echo $content[$lang]["msgs"][20]; ?>:</td><td>"+folders[number][3]+"</td></tr>"
+			output+="<tr valign=middle height=15 valign=top><td align=right width=60><?php echo $content[$lang]["msgs"][20]; ?>:</td><td>"+folders[number][3]+"</td></tr>"
 			output+="</table>"
 		}
 	}else if(folders.length+files.length==0){
-		output+="<? echo $content[$lang]["msgs"][23]; ?>"
+		output+="<?php echo $content[$lang]["msgs"][23]; ?>"
 	}else{
-		output+="<? echo $content[$lang]["msgs"][24]; ?>"
+		output+="<?php echo $content[$lang]["msgs"][24]; ?>"
 	}
 	explainLayer.innerHTML=output
 }
 
 function refreshContents(){
-<?
+<?php
 	if($mode=="bigIcons"){
 ?>
 	var i
@@ -988,29 +988,29 @@ function refreshContents(){
 	var jump=parseInt((d_w-280)/120)
 	var output="<table cellpadding=5 cellspacing=5><tr valign=top>"
 	for(i=0;i<folders.length;i++){
-		output+="<td width=100 align=center><a onmouseover=explain('folder',"+i+") onmouseout=explain() href=\"javascript:action('go','"+escapeSlashes(folders[i][0])+"','')\"><img src=img/folder.gif border=0><br><br>"+((folders[i][0]=='..')?'<? echo $content[$lang]["msgs"][25]; ?></a>':(safePrint(folders[i][0])+"</a><br><br><a onmouseover=explain('folder',"+i+") onmouseout=explain() href=\"javascript:var tmp=window.prompt('<? echo $content[$lang]["msgs"][26]; ?>','"+escapeSlashes(folders[i][0])+"');if(tmp!=null){action('rn','"+escapeSlashes(folders[i][0])+"',tmp)}\"><? echo $content[$lang]["msgs"][27]; ?></a><br><a onmouseover=explain('folder',"+i+") onmouseout=explain() href=\"javascript:var tmp=window.prompt('<? echo $content[$lang]["msgs"][28]; ?>','"+escapeSlashes(folders[i][3])+"');if(tmp!=null){action('perm','"+escapeSlashes(folders[i][0])+"',tmp)}\"><? echo $content[$lang]["msgs"][29]; ?></a><br><a onmouseover=explain('folder',"+i+") onmouseout=explain() href=\"javascript:if(window.confirm('<? echo $content[$lang]["msgs"][30]; ?> ?')){action('rmdir','"+escapeSlashes(folders[i][0])+"','')}\"><? echo $content[$lang]["msgs"][31]; ?></a>"))+"<br><br>&nbsp;</td>"
+		output+="<td width=100 align=center><a onmouseover=explain('folder',"+i+") onmouseout=explain() href=\"javascript:action('go','"+escapeSlashes(folders[i][0])+"','')\"><img src=img/folder.gif border=0><br><br>"+((folders[i][0]=='..')?'<?php echo $content[$lang]["msgs"][25]; ?></a>':(safePrint(folders[i][0])+"</a><br><br><a onmouseover=explain('folder',"+i+") onmouseout=explain() href=\"javascript:var tmp=window.prompt('<?php echo $content[$lang]["msgs"][26]; ?>','"+escapeSlashes(folders[i][0])+"');if(tmp!=null){action('rn','"+escapeSlashes(folders[i][0])+"',tmp)}\"><?php echo $content[$lang]["msgs"][27]; ?></a><br><a onmouseover=explain('folder',"+i+") onmouseout=explain() href=\"javascript:var tmp=window.prompt('<?php echo $content[$lang]["msgs"][28]; ?>','"+escapeSlashes(folders[i][3])+"');if(tmp!=null){action('perm','"+escapeSlashes(folders[i][0])+"',tmp)}\"><?php echo $content[$lang]["msgs"][29]; ?></a><br><a onmouseover=explain('folder',"+i+") onmouseout=explain() href=\"javascript:if(window.confirm('<?php echo $content[$lang]["msgs"][30]; ?> ?')){action('rmdir','"+escapeSlashes(folders[i][0])+"','')}\"><?php echo $content[$lang]["msgs"][31]; ?></a>"))+"<br><br>&nbsp;</td>"
 		j++
 		if(!(j%jump)){ output+="</tr><tr valign=top>" }
 	}
 	for(i=0;i<files.length;i++){
-		output+="<td width=100 align=center><a onmouseover=explain('file',"+i+") onmouseout=explain() href=\"javascript:action('down','"+escapeSlashes(files[i][0])+"','')\"><img src=img/file.gif border=0><br><br>"+safePrint(files[i][0])+"</a><br><br><a onmouseover=explain('file',"+i+") onmouseout=explain() href=\"javascript:var tmp=window.prompt('<? echo $content[$lang]["msgs"][26]; ?>','"+escapeSlashes(files[i][0])+"');if(tmp!=null){action('rn','"+escapeSlashes(files[i][0])+"',tmp)}\"><? echo $content[$lang]["msgs"][27]; ?></a><br><a onmouseover=explain('file',"+i+") onmouseout=explain() href=\"javascript:var tmp=window.prompt('<? echo $content[$lang]["msgs"][28]; ?>','"+escapeSlashes(files[i][4])+"');if(tmp!=null){action('perm','"+escapeSlashes(files[i][0])+"',tmp)}\"><? echo $content[$lang]["msgs"][29]; ?></a><br><a onmouseover=explain('file',"+i+") onmouseout=explain() href=\"javascript:if(window.confirm('<? echo $content[$lang]["msgs"][32]; ?> ?')){action('rm','"+escapeSlashes(files[i][0])+"','')}\"><? echo $content[$lang]["msgs"][31]; ?></a><br><br>&nbsp;</td>"
+		output+="<td width=100 align=center><a onmouseover=explain('file',"+i+") onmouseout=explain() href=\"javascript:action('down','"+escapeSlashes(files[i][0])+"','')\"><img src=img/file.gif border=0><br><br>"+safePrint(files[i][0])+"</a><br><br><a onmouseover=explain('file',"+i+") onmouseout=explain() href=\"javascript:var tmp=window.prompt('<?php echo $content[$lang]["msgs"][26]; ?>','"+escapeSlashes(files[i][0])+"');if(tmp!=null){action('rn','"+escapeSlashes(files[i][0])+"',tmp)}\"><?php echo $content[$lang]["msgs"][27]; ?></a><br><a onmouseover=explain('file',"+i+") onmouseout=explain() href=\"javascript:var tmp=window.prompt('<?php echo $content[$lang]["msgs"][28]; ?>','"+escapeSlashes(files[i][4])+"');if(tmp!=null){action('perm','"+escapeSlashes(files[i][0])+"',tmp)}\"><?php echo $content[$lang]["msgs"][29]; ?></a><br><a onmouseover=explain('file',"+i+") onmouseout=explain() href=\"javascript:if(window.confirm('<?php echo $content[$lang]["msgs"][32]; ?> ?')){action('rm','"+escapeSlashes(files[i][0])+"','')}\"><?php echo $content[$lang]["msgs"][31]; ?></a><br><br>&nbsp;</td>"
 		j++
 		if(!(j%jump)){ output+="</tr><tr valign=top>" }
 	}
-<?
+<?php
 	}else{
 ?>
 	var i
 	var color="#ffffff"
 	var output="<table cellpadding=10 cellspacing=0 width=100%>"
-	output+="<tr valign=middle><td width=20></td><td><b><? echo $content[$lang]["msgs"][33]; ?></b></td><td align=center width=80><b><? echo $content[$lang]["msgs"][17]; ?></b></td><td align=center width=80><b><? echo $content[$lang]["msgs"][18]; ?></b></td><td align=center width=80><b><? echo $content[$lang]["msgs"][19]; ?></b></td><td align=center width=80><b><? echo $content[$lang]["msgs"][20]; ?></b></td></tr>"
+	output+="<tr valign=middle><td width=20></td><td><b><?php echo $content[$lang]["msgs"][33]; ?></b></td><td align=center width=80><b><?php echo $content[$lang]["msgs"][17]; ?></b></td><td align=center width=80><b><?php echo $content[$lang]["msgs"][18]; ?></b></td><td align=center width=80><b><?php echo $content[$lang]["msgs"][19]; ?></b></td><td align=center width=80><b><?php echo $content[$lang]["msgs"][20]; ?></b></td></tr>"
 	for(i=0;i<folders.length;i++){
 		if(color=="#ffffff"){color="#f1f2f3"}else{color="#ffffff"}
-		output+="<tr valign=middle bgcolor="+color+"><td align=center><img src=img/folder_small.gif></td><td><a onmouseover=explain('folder',"+i+") onmouseout=explain() href=\"javascript:action('go','"+escapeSlashes(folders[i][0])+"','')\"><b>"+((folders[i][0]=='..')?'<? echo $content[$lang]["msgs"][25]; ?></a></td><td></td><td></td><td></td><td></td>':(safePrint(folders[i][0])+"</b></a><br><a onmouseover=explain('folder',"+i+") onmouseout=explain() href=\"javascript:var tmp=window.prompt('<? echo $content[$lang]["msgs"][26]; ?>','"+escapeSlashes(folders[i][0])+"');if(tmp!=null){action('rn','"+escapeSlashes(folders[i][0])+"',tmp)}\"><? echo $content[$lang]["msgs"][27]; ?></a> &nbsp; <a onmouseover=explain('folder',"+i+") onmouseout=explain() href=\"javascript:if(window.confirm('<? echo $content[$lang]["msgs"][30]; ?> ?')){action('rmdir','"+escapeSlashes(folders[i][0])+"','')}\"><? echo $content[$lang]["msgs"][31]; ?></a></td><td></td><td align=center>"+folders[i][1]+"</td><td align=center>"+folders[i][2]+"</td><td align=center><a onmouseover=explain('folder',"+i+") onmouseout=explain() href=\"javascript:var tmp=window.prompt('<? echo $content[$lang]["msgs"][28]; ?>','"+escapeSlashes(folders[i][3])+"');if(tmp!=null){action('perm','"+escapeSlashes(folders[i][0])+"',tmp)}\">"+folders[i][3]+"</a></td>"))+"</tr>"}
+		output+="<tr valign=middle bgcolor="+color+"><td align=center><img src=img/folder_small.gif></td><td><a onmouseover=explain('folder',"+i+") onmouseout=explain() href=\"javascript:action('go','"+escapeSlashes(folders[i][0])+"','')\"><b>"+((folders[i][0]=='..')?'<?php echo $content[$lang]["msgs"][25]; ?></a></td><td></td><td></td><td></td><td></td>':(safePrint(folders[i][0])+"</b></a><br><a onmouseover=explain('folder',"+i+") onmouseout=explain() href=\"javascript:var tmp=window.prompt('<?php echo $content[$lang]["msgs"][26]; ?>','"+escapeSlashes(folders[i][0])+"');if(tmp!=null){action('rn','"+escapeSlashes(folders[i][0])+"',tmp)}\"><?php echo $content[$lang]["msgs"][27]; ?></a> &nbsp; <a onmouseover=explain('folder',"+i+") onmouseout=explain() href=\"javascript:if(window.confirm('<?php echo $content[$lang]["msgs"][30]; ?> ?')){action('rmdir','"+escapeSlashes(folders[i][0])+"','')}\"><?php echo $content[$lang]["msgs"][31]; ?></a></td><td></td><td align=center>"+folders[i][1]+"</td><td align=center>"+folders[i][2]+"</td><td align=center><a onmouseover=explain('folder',"+i+") onmouseout=explain() href=\"javascript:var tmp=window.prompt('<?php echo $content[$lang]["msgs"][28]; ?>','"+escapeSlashes(folders[i][3])+"');if(tmp!=null){action('perm','"+escapeSlashes(folders[i][0])+"',tmp)}\">"+folders[i][3]+"</a></td>"))+"</tr>"}
 	for(i=0;i<files.length;i++){
 		if(color=="#ffffff"){color="#f1f2f3"}else{color="#ffffff"}
-		output+="<tr valign=middle bgcolor="+color+"><td align=center><img src=img/file_small.gif></td><td><a onmouseover=explain('file',"+i+") onmouseout=explain() href=\"javascript:action('down','"+escapeSlashes(files[i][0])+"','')\"><b>"+safePrint(files[i][0])+"</b></a><br><a onmouseover=explain('file',"+i+") onmouseout=explain() href=\"javascript:var tmp=window.prompt('<? echo $content[$lang]["msgs"][26]; ?>','"+escapeSlashes(files[i][0])+"');if(tmp!=null){action('rn','"+escapeSlashes(files[i][0])+"',tmp)}\"><? echo $content[$lang]["msgs"][27]; ?></a> &nbsp; <a onmouseover=explain('file',"+i+") onmouseout=explain() href=\"javascript:if(window.confirm('<? echo $content[$lang]["msgs"][32]; ?> ?')){action('rm','"+escapeSlashes(files[i][0])+"','')}\"><? echo $content[$lang]["msgs"][31]; ?></a></td><td align=center>"+files[i][2]+"</td><td align=center>"+files[i][1]+"</td><td align=center>"+files[i][3]+"</td><td align=center><a onmouseover=explain('file',"+i+") onmouseout=explain() href=\"javascript:var tmp=window.prompt('<? echo $content[$lang]["msgs"][28]; ?>','"+escapeSlashes(files[i][4])+"');if(tmp!=null){action('perm','"+escapeSlashes(files[i][0])+"',tmp)}\">"+files[i][4]+"</a></td></tr>"}
-<?
+		output+="<tr valign=middle bgcolor="+color+"><td align=center><img src=img/file_small.gif></td><td><a onmouseover=explain('file',"+i+") onmouseout=explain() href=\"javascript:action('down','"+escapeSlashes(files[i][0])+"','')\"><b>"+safePrint(files[i][0])+"</b></a><br><a onmouseover=explain('file',"+i+") onmouseout=explain() href=\"javascript:var tmp=window.prompt('<?php echo $content[$lang]["msgs"][26]; ?>','"+escapeSlashes(files[i][0])+"');if(tmp!=null){action('rn','"+escapeSlashes(files[i][0])+"',tmp)}\"><?php echo $content[$lang]["msgs"][27]; ?></a> &nbsp; <a onmouseover=explain('file',"+i+") onmouseout=explain() href=\"javascript:if(window.confirm('<?php echo $content[$lang]["msgs"][32]; ?> ?')){action('rm','"+escapeSlashes(files[i][0])+"','')}\"><?php echo $content[$lang]["msgs"][31]; ?></a></td><td align=center>"+files[i][2]+"</td><td align=center>"+files[i][1]+"</td><td align=center>"+files[i][3]+"</td><td align=center><a onmouseover=explain('file',"+i+") onmouseout=explain() href=\"javascript:var tmp=window.prompt('<?php echo $content[$lang]["msgs"][28]; ?>','"+escapeSlashes(files[i][4])+"');if(tmp!=null){action('perm','"+escapeSlashes(files[i][0])+"',tmp)}\">"+files[i][4]+"</a></td></tr>"}
+<?php
 	}
 ?>
 	output+="</table>"
@@ -1027,7 +1027,7 @@ var mainLayer=bul("content")
 var folders=new Array()
 var files=new Array()
 
-<?
+<?php
 
 	if(strlen($curFold)>1){
 		echo "folders[folders.length]=[\"..\"]\n";
@@ -1068,7 +1068,7 @@ function onSelectStart() {
 
 document.onselectstart=onSelectStart
 </script>
-<?
+<?php
 				}else{
 
 					// Connection to the FTP server has failed

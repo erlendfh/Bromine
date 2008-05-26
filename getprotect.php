@@ -1,11 +1,14 @@
 <?php
+  include_once('error_reporting.php'); //Sets error level to E_ALL ^ E_NOTICE
   //Custom protection similar to protected.php. 
   //The usual protected.php could not be used due
-  //to race conditions which forced this page to wait for start.php
+  //to race conditions
+  include_once('inputHandler.php'); 
+  include_once('DBHandler.class.php');
+  
   $user=$_GET['user'];
   $pass=$_GET['pass'];
   
-  include_once('DBHandler.class.php');
   $dbh = new DBhandler();
   $referer = $_SERVER['HTTP_REFERER'];
   $sitename=substr(strrchr($_SERVER['PHP_SELF'],'/'),1);

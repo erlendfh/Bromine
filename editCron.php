@@ -29,7 +29,7 @@
           <th><?php echo $lh->getText('Task'); ?></th>
           <th><?php echo $lh->getText('Delete'); ?></th>
         </tr>
-        <?
+        <?php
           $months=array('','January','February','March','April','May','June','July','August','September','October','November','December');
           $weekdays=array('','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday');
           

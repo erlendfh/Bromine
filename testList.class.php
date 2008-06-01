@@ -28,7 +28,7 @@ class testList{
         $first = false;
       }
       else{
-        $show .= " OR status = 'failed' ";
+        $show .= " OR status IN ('failed', 'NA') ";
       }
     }
 

@@ -22,7 +22,7 @@ $time = time() - $time;
     numCommandsErrors,
     */
 
-//$dbh->insert('TRM_manual_commands',"'','$status',$cd_id,$t_id","ID,status,cd_id,t_id");
+//$dbh->insert('TRM_manual_commands',"NULL,'$status',$cd_id,$t_id","ID,status,cd_id,t_id");
 /*
 $result = $dbh->sql("SELECT action, reaction FROM TRM_design_manual_commands WHERE id = $c_id");
 

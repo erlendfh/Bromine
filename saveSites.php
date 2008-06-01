@@ -23,7 +23,7 @@
     }
     //CORE INSERTER
     if(strlen($newcore_referer)>0 && strlen($newTestRunnerLocation)>0 && strlen($newtestPath)>0){
-      $newid = $dbh->insert('TRM_core',"'','$newcore_referer','$p_id','$newTestRunnerLocation','$newtestPath'",'ID,referer, p_id, TestRunnerLocation, testPath');
+      $newid = $dbh->insert('TRM_core',"NULL,'$newcore_referer','$p_id','$newTestRunnerLocation','$newtestPath'",'ID,referer, p_id, TestRunnerLocation, testPath');
     }
 
     

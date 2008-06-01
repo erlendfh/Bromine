@@ -103,7 +103,7 @@ if($OSnew!='' && $browsernew!=''){
     if ($newOS != '' && $newBrow != ''){
       $does_exist = mysql_num_rows($dbh->sql("SELECT * FROM TRM_ReqsOSBrows WHERE b_id = $newBrow AND o_id = $newOS AND r_id = $key"));
       if ($does_exist == 0){
-        $dbh->insert('TRM_ReqsOSBrows',"'','$newBrow','$newOS','$key'","ID, b_id, o_id, r_id");
+        $dbh->insert('TRM_ReqsOSBrows',"NULL,'$newBrow','$newOS','$key'","ID, b_id, o_id, r_id");
       }else{
         $error .= $dbh->getText('OS-browser combi already exist');
       }
@@ -118,7 +118,7 @@ if ($newnr2 != '' && $newname2 != '' && $newdescription2 != ''){
   $does_exist = mysql_num_rows($dbh->sql("SELECT * FROM TRM_requirements WHERE nr = '$newnr2' AND p_id=$p_id"));
   if ($does_exist == 0){
     $r_id=$dbh->insert('TRM_requirements',"
-    '',
+    NULL,
     '$newname2',
     '$newdescription2',
     '$p_id',
@@ -127,7 +127,7 @@ if ($newnr2 != '' && $newname2 != '' && $newdescription2 != ''){
     '$priority',
     '$newassigned'
     ","ID, name, description, p_id, nr, author, priority, assigned");
-    $dbh->insert('TRM_ReqsOSBrows',"'','$browsernew2','$OSnew2','$r_id'","ID, b_id, o_id, r_id");
+    $dbh->insert('TRM_ReqsOSBrows',"NULL,'$browsernew2','$OSnew2','$r_id'","ID, b_id, o_id, r_id");
   }else{
     $error .= $dbh->getText('Req with same nr exist');
   }

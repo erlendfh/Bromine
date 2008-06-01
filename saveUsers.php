@@ -44,7 +44,7 @@
       }
       else{
         $newu_id=$dbh->insert('TRM_users',
-        "'',
+        "NULL,
         '$newname',
         '$newfirstname',
         '$newlastname',
@@ -64,7 +64,7 @@
         for($i=0;$i<$num;$i++){
           $p_id = mysql_result($result,$i,"id");
           $dbh->insert('TRM_projectList',
-          "'',
+          "NULL,
           '$newu_id',
           '$p_id',
           '0'",

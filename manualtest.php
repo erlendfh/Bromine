@@ -1,6 +1,6 @@
 <?php include_once('protected.php'); ?>
 <?php 
-//$dbh->insert('TRM_manual_test',"'','$td_id', NOW(), '$u_id'",'ID, td_id, timedate, author');
+//$dbh->insert('TRM_manual_test',"NULL,'$td_id', NOW(), '$u_id'",'ID, td_id, timedate, author');
 $t_id=$_GET['t_id'];
 $td_id=$_GET['td_id'];
 $s_id=$_GET['s_id'];

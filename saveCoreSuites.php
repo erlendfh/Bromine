@@ -11,7 +11,7 @@
   }
   //CORE INSERTER
   if(strlen($newcore_testsuite)>0){
-    $dbh->insert('TRM_core_testsuites',"'','$p_id','$newcore_testsuite'",'id, p_id, testsuite');
+    $dbh->insert('TRM_core_testsuites',"NULL,'$p_id','$newcore_testsuite'",'id, p_id, testsuite');
   }
 
   header ("Location: editCoreSuites.php");

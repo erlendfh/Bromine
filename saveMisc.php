@@ -404,12 +404,12 @@
   }
   //USERTYPE INSERTER
   if(strlen($newutname)>0){
-    $newut_id=$dbh->insert('TRM_usertypes',"'','$newutname'",'ID, name');
+    $newut_id=$dbh->insert('TRM_usertypes',"NULL,'$newutname'",'ID, name');
     $result = $dbh->select('TRM_sites','','*');
     $num=mysql_numrows($result);
     for($i=0;$i<$num;$i++){
     	$ts_id=mysql_result($result,$i,"ID");
-      $dbh->insert('TRM_usertype_access',"'','$newut_id','$ts_id', '0'",'ID, ut_id, s_id, access');
+      $dbh->insert('TRM_usertype_access',"NULL,'$newut_id','$ts_id', '0'",'ID, ut_id, s_id, access');
     }
     
   }
@@ -420,7 +420,7 @@
   }
   //TYPE INSERTER
   if(strlen($newtypename)>0){
-    $dbh->insert('TRM_types',"'','$newtypename'",'ID, typename');
+    $dbh->insert('TRM_types',"NULL,'$newtypename'",'ID, typename');
   }
   
   //BROWSER UPDATER
@@ -429,7 +429,7 @@
   }
   //BROWSER INSERTER
   if(strlen($newbrowsername)>0){
-    $dbh->insert('TRM_browser',"'','$newbrowsername'",'ID, browsername');
+    $dbh->insert('TRM_browser',"NULL,'$newbrowsername'",'ID, browsername');
   }
   
   //OS UPDATER
@@ -438,7 +438,7 @@
   }
   //OS INSERTER
   if(strlen($newOSname)>0){
-    $dbh->insert('TRM_OS',"'','$newOSname'",'ID, OSname');
+    $dbh->insert('TRM_OS',"NULL,'$newOSname'",'ID, OSname');
   }
   
   //GUEST UPDATER
@@ -452,12 +452,12 @@
   }
   //SITE INSERTER
   if(strlen($newsitename)>0){
-    $s_id=$dbh->insert('TRM_sites',"'','$newsitename', '$newdescription'",'ID, sitename, description');
+    $s_id=$dbh->insert('TRM_sites',"NULL,'$newsitename', '$newdescription'",'ID, sitename, description');
     $result = $dbh->select('TRM_usertypes','','*');
     $num=mysql_numrows($result);
     for($i=0;$i<$num;$i++){
     	$ut_id=mysql_result($result,$i,"ID");
-      $dbh->insert('TRM_usertype_access',"'','$ut_id','$s_id', '0'",'ID, ut_id, s_id, access');
+      $dbh->insert('TRM_usertype_access',"NULL,'$ut_id','$s_id', '0'",'ID, ut_id, s_id, access');
     }
   }
 

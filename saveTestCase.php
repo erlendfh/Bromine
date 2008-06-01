@@ -71,13 +71,13 @@
           $current_id = mysql_result($dbh->sql("SELECT id FROM TRM_design_manual_commands WHERE orderby=$i"), 0);
           $dbh->sql("UPDATE TRM_design_manual_commands SET orderby=$i+1 WHERE id=$current_id");
         }
-        $dbh->sql("INSERT INTO TRM_design_manual_commands (id, orderby, action, reaction, td_id) VALUES ('','$neyorderby','$newaction','$newreaction', '$td_id')");
+        $dbh->sql("INSERT INTO TRM_design_manual_commands (id, orderby, action, reaction, td_id) VALUES (NULL,'$neyorderby','$newaction','$newreaction', '$td_id')");
       }
       
     }
     
     if($newaction!='' && $newreaction!='' && $neyorderby !='' && $should_be_neworderby == $neyorderby){
-      $dbh->sql("INSERT INTO TRM_design_manual_commands (id, orderby, action, reaction, td_id) VALUES ('','$neyorderby','$newaction','$newreaction', '$td_id')");
+      $dbh->sql("INSERT INTO TRM_design_manual_commands (id, orderby, action, reaction, td_id) VALUES (NULL,'$neyorderby','$newaction','$newreaction', '$td_id')");
     }
     elseif(($newaction == "" && $newreaction!="") || ($newaction != "" && $newreaction=="")){
       $error1 = $lh->getText("Both action fields must contain text");

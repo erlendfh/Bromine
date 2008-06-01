@@ -14,7 +14,7 @@ if ($sitetotest != '' && $OS != '' && $browser != '' &&  $td_id != '' && $p_id !
   // SKAL OPRETTE SUITE/TES I DB'en
   $s_id=$dbh->insert('TRM_suite',
       "
-      '',  
+      NULL,  
       '$suitename',
       '$sitetotest',
       '$status',
@@ -57,7 +57,7 @@ if ($sitetotest != '' && $OS != '' && $browser != '' &&  $td_id != '' && $p_id !
     $tHelp = 'intet hjælp';
     $t_id=$dbh->insert('TRM_test',
       "
-      '',
+      NULL,
       '$status',
       '$name',  
       '$s_id',

@@ -52,7 +52,7 @@
       <p>".$lh->getText('Name').": $name</p>
       <p>".$lh->getText('Nr').": $nr</p>
       <p>".$lh->getText('Priority').": ";
-      echo "<img src='/img/priority$priority2.gif' alt='lala'/> - $priority</p>
+      echo "<img src='img/priority$priority2.gif' alt='lala'/> - $priority</p>
       <p>".$lh->getText('Author').": $author</p>
       <p>".$lh->getText('Description').": </p>
       <div style='width: 800px;'>$description</div>

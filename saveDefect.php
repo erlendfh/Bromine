@@ -30,7 +30,7 @@
   
   //DEFECT INSERTER
   elseif($name!='' && $type!='' && $status!='' && $description!='' && $d_id=='' && $priority!=''){
-    $d_id=$dbh->insert('TRM_defects',"'','$name', '$type', '$status', '$description', '$user', NOW(), '$p_id', '$user', $t_id, '$priority', '$stt'",'ID, name, type_of_defect, status, description, createdby, created, p_id, updatedby, t_id, priority, stt_id');
+    $d_id=$dbh->insert('TRM_defects',"NULL,'$name', '$type', '$status', '$description', '$user', NOW(), '$p_id', '$user', $t_id, '$priority', '$stt'",'ID, name, type_of_defect, status, description, createdby, created, p_id, updatedby, t_id, priority, stt_id');
   }
   else{
     $error = "&error=".$lh->getText("All fields must be filled out");
@@ -42,7 +42,7 @@
     if($file_size < 10000000){
     $microtime = str_replace('.', '',microtime('U'));  
     $file_name_total = $target_path.$orgname."_".$microtime;
-    $dbh->insert('TRM_defect_has_attachment',"'','$d_id','$file_name_total','$microtime'","id, d_id, attachment_path, microtime");
+    $dbh->insert('TRM_defect_has_attachment',"NULL,'$d_id','$file_name_total','$microtime'","id, d_id, attachment_path, microtime");
   
       if(move_uploaded_file($file_tempname, $file_name_total)) {
           $response = "The file $orgname has been uploaded as $file_name_total";

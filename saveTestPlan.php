@@ -35,7 +35,7 @@ if($test!=''){
 if($newtest!=''){
   foreach($newtest as $k=>$v){
         if($v!=''){
-          $dbh->insert('TRM_ReqsTests',"'','$v','$k'",'ID, t_name, r_id');
+          $dbh->insert('TRM_ReqsTests',"NULL,'$v','$k'",'ID, t_name, r_id');
         }
   }
 }

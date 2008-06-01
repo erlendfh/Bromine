@@ -63,7 +63,7 @@
             echo "</td>";
             echo "<td>";
               $priority2 = str_replace(" ", "_", $r_priority);
-              echo "<img src='/img/priority$priority2.gif' title='".$lh->getText($r_priority)."' alt='".$lh->getText($r_priority)."'/>";
+              echo "<img src='img/priority$priority2.gif' title='".$lh->getText($r_priority)."' alt='".$lh->getText($r_priority)."'/>";
             echo "</td>";
             echo "<td>";
             echo $r_description;

@@ -115,7 +115,7 @@ require_once('../../../DBHandler.class.php');
       $testCreated = $this->dbh->getText('Test started');
       $this->t_id=$this->dbh->insert('TRM_test',
                   "
-                  '',
+                  NULL,
                   '$this->status',
                   '$this->name',  
                   '$this->s_id',
@@ -131,7 +131,7 @@ require_once('../../../DBHandler.class.php');
       $u_id=$_GET['u_id'];
       $this->dbh->insert('TRM_tempcommands',
                   "
-                  '',
+                  NULL,
                   '$u_id',
                   '$testCreated: ',  
                   '$this->name',

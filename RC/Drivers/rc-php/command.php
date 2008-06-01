@@ -86,7 +86,7 @@ class command{
     $this->var2 = mysql_real_escape_string($this->args[1]);
     $dbh->insert('TRM_commands',
             "
-            '',
+            NULL,
             '$this->status',
             '$this->command',
             '$this->var1',
@@ -104,7 +104,7 @@ class command{
     $u_id = $_GET['u_id'];
     $dbh->insert('TRM_tempcommands',
             "
-            '',
+            NULL,
             '$u_id',
             '$this->command',
             '$this->var1',

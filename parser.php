@@ -90,7 +90,7 @@
   
   $s_id=$dbh->insert('TRM_suite',
     "
-    '',  
+    NULL,  
     '$suitename',
     '$environment',
     '$status',
@@ -163,7 +163,7 @@
     
     $t_id=$dbh->insert('TRM_test',
                         "
-                        '',
+                        NULL,
                         '$Tstatus',
                         '$Tname',  
                         '$s_id',
@@ -207,7 +207,7 @@
         
         $dbh->insert('TRM_commands',
                       "
-                      '',
+                      NULL,
                       '$Cstatus',
                       '$action',
                       '$var1',

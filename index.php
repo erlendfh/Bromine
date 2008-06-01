@@ -156,7 +156,7 @@
                   echo "<tr class='status_$r_status'>";
                   $priority2 = str_replace(" ", "_", $r_priority);
                   
-                  echo "<td><img src='/img/priority$priority2.gif' alt='".$lh->getText($r_priority)."' title='".$lh->getText($r_priority)."'/></td>";
+                  echo "<td><img src='img/priority$priority2.gif' alt='".$lh->getText($r_priority)."' title='".$lh->getText($r_priority)."'/></td>";
                   echo "<td>$r_nr</td>";
                   echo "<td>$r_name</td>";
                   echo "<td>$r_description</td>";

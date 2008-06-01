@@ -185,7 +185,7 @@
           $b_id=$browsers[$n_idc][$u];
           $browser_pathc=$browser_path[$n_idc][$b_id];  
           $dbh->insert('TRM_nodes_browsers',
-          "'',
+          "NULL,
           '$b_id',
           '$n_idc',
           '$browser_pathc'",
@@ -201,7 +201,7 @@
     //NODE INSERTER
     if(strlen($newpath)>0){
       $newn_id=$dbh->insert('TRM_nodes',
-      "'',
+      "NULL,
       '$newpath',
       '$newOS',
       '$newdescription',
@@ -215,7 +215,7 @@
     for($i=0;$i<count($newbrowsers);$i++){ //INSERTS THE BROWSERS
         $b_id=$newbrowsers[$i];
         $dbh->insert('TRM_nodes_browsers',
-        "'',
+        "NULL,
         '$b_id',
         '$newn_id',
         ''",

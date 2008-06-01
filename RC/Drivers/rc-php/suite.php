@@ -146,7 +146,7 @@ class suite{
     $this->dbh = new DBHandler();    
     $this->s_id=$this->dbh->insert('TRM_suite',
     "
-    '',  
+    NULL,  
     '$this->name',
     '$this->environment',
     '',

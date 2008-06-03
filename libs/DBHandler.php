@@ -12,21 +12,25 @@
     public $query;
     
     function __construct($l = 'en'){
-      //Enable this if PEAR is installed and you are having problems with TestRunnerRC.php not working.  
-      //echo $_SERVER['DOCUMENT_ROOT'];
-      require($_SERVER['DOCUMENT_ROOT'].'/bromine/config.php');
-      //require('config.php');
+        //Enable this if PEAR is installed and you are having problems with TestRunnerRC.php not working.  
+        //require($_SERVER['DOCUMENT_ROOT'].'/bromine/config.php');
+        require('config.php');
 
-      $this->lang = $l;
-    	$this->db=mysql_connect($this->host, $this->username, $this->password);
-    	mysql_select_db($this->database, $this->db);
+        $this->lang = $l;
+        $this->db=mysql_connect($this->host, $this->username, $this->password);
+        mysql_select_db($this->database, $this->db);
     }
     
+    /**
+     * Queries database with given SQL statement.
+     *
+     * @param string $sql SQL statement
+     * @return Resultset, or inserted ID.
+     */
     function sql($sql)
     {
     	$this->query = $sql;
     	$result = mysql_query($this->query) or die (mysql_error());
-    	//echo $this->query."<br />";
       if(strpos($sql,'REPLACE')!==false || strpos($sql,'INSERT')!==false){
         return mysql_insert_id();
       }else{
@@ -34,32 +38,33 @@
       }
     }
     
+    
+    /**
+    * Thin wrapper around a SELECT statement. 
+    * 
+    * @param string $tableName Tablename in FROM clause.
+    * @param string $condition Full WHERE condition, including the "WHERE" word.
+    * @param string $data List of columns to include in resultset.
+    * @return Resultset
+    * @todo Refrain from die()'ing on database error.
+    */
     function select($tableName, $condition, $data)
     {
     	$this->query = "SELECT $data FROM $tableName $condition";
-    	//echo $this->query."<br /><br />";
     	$result = mysql_query($this->query) or die (mysql_error());
       return $result;
     }
     
     function insert($tableName, $values, $column)
     {
-    	$this->query = "
-        INSERT INTO $tableName ($column) 
-        VALUES ($values)";
-      //echo $this->query."<br />";
+    	$this->query = "INSERT INTO $tableName ($column) VALUES ($values)";
     	$result = mysql_query($this->query) or die (mysql_error());
     	return mysql_insert_id();
     }
     
     function update($tableName, $values, $condition)
     { 
-
-    	$this->query = "
-        UPDATE $tableName
-        SET $values
-        WHERE $condition";
-        //echo $this->query."<br />";
+    	$this->query = "UPDATE $tableName SET $values WHERE $condition";
     	$result = mysql_query($this->query) or die (mysql_error());
     	return $result;
     }
@@ -68,13 +73,20 @@
     {
 
     	$this->query = "
-        DELETE FROM $tableName
-        WHERE $condition";
-        //echo $this->query."<br />";
+        DELETE FROM $tableName WHERE $condition";
+
     	$result = mysql_query($this->query) or die (mysql_error());
       return $result;
     }
     
+    /**
+     * Returns translation of given phrase, in current language.
+     * 
+     * To be used with its own $lh (language handler) database connection.
+     *
+     * @param string $text String to translate from English to target language
+     * @return Translated string
+    */
     function getText($text)
     {
       $this->query = "SELECT $this->lang FROM TRM_lang WHERE langKey='$text'";
@@ -89,6 +101,15 @@
     
     function getdatabase(){
       return $this->database;
+    }
+    
+    /**
+    * Simple accessor, for debugging purposes
+    *
+    * @return string The SQL query statement
+    */
+    public function getQuery() {
+        return $query;
     }
 
   }

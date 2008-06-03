@@ -1,7 +1,7 @@
 <?php
   include_once('error_reporting.php'); //Sets error level to E_ALL ^ E_NOTICE
   //Handles login/logout. Login is session based. If nothing passed to login.php it shows login form. 
-  include_once ("DBHandler.class.php");
+  require_once 'libs/BromineClassLoader.php'; 
   $dbh = new DBHandler();
 
   //Utility function to have array access with default value.

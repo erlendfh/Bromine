@@ -1,5 +1,4 @@
 <?php
-include_once('DBHandler.class.php');
 class commandList{
   public $dbh;
   public $id;

@@ -14,7 +14,7 @@
     ?>
 
       <form action='saveNodes.php' method='post'>
-              <table width='900'>
+              <table>
                 <tr>
                   <th align='left'>  
                   </th>

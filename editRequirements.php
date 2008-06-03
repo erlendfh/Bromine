@@ -12,7 +12,7 @@
      ?>
     
     <form action='saveRequirements.php' method='post'>
-      <table width='1100' border='0'>
+      <table border='0'>
         <tr>
           <th align="left"><?php echo $lh->getText('Nr'); ?></th>
       		<th align="left"><?php echo $lh->getText('Requirement'); ?></th>

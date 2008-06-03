@@ -33,7 +33,7 @@
       ",'*');
       $inner_num_row=mysql_numrows($inner);
       echo "
-        <table class='collapse' width='1000'>
+        <table class='collapse'>
           <tr>
           <th align='left'>".$lh->getText('Created')."</th>
           <th align='left'>".$lh->getText('Created by')."</th>

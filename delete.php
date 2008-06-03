@@ -1,6 +1,5 @@
 <?php include_once('protected.php') ?>
 <?php 
-  include_once('DBHandler.class.php');
   
   $back=$_GET['back'];
   $type=$_GET['type'];

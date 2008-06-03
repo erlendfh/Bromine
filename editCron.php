@@ -18,7 +18,7 @@
     <?php include ('menu.php') ?>
     <?php include('testlabSubMenu.php'); ?>
     <form action='saveCron.php' method='post' id='cronForm'>
-      <table width='1000'>
+      <table>
         <tr>
           <th><?php echo $lh->getText('Disabled'); ?></th>
           <th><?php echo $lh->getText('Minute'); ?></th>

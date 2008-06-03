@@ -38,11 +38,6 @@
     ?>
 <?php
 
-
-include_once('reportHandler.class.php');
-include_once('testList.class.php');
-include_once('DBHandler.class.php');
-
 $db = new DBHandler();
 
 if(isset($_GET['highlight'])){
@@ -89,7 +84,7 @@ echo "</table>";
 $num = $tl->max;
 
 
-echo"<table class='main' style='width:600px;'>";
+echo"<table class='main'>";
 for ($i=0;$i<$num;$i++){ 
   
   if(strlen($tl->manstatus[$i])>0){
@@ -153,5 +148,6 @@ echo "</table>";
 
 </body>
 </html>
+
 
 

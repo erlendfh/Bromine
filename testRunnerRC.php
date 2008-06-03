@@ -17,7 +17,6 @@
 
   $time=time();
   
-  include_once('DBHandler.class.php');
   $dbh = new DBHandler();
   $u_id=str_replace('.','',microtime('U')).rand(0,1000);
   

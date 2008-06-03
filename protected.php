@@ -1,10 +1,9 @@
 <?php
 include_once('error_reporting.php'); //Sets error level to E_ALL ^ E_NOTICE
-include_once('inputHandler.php');  
-include_once('DBHandler.class.php');  
+require_once 'libs/BromineClassLoader.php'; 
 session_name('Bromine');  
 session_start();  
-$dbh = new DBhandler();  
+$dbh = new DBHandler();  
 $lh = new DBHandler($_SESSION['lang']);    
 $ut=$_SESSION['usertype']; 
 $sitename=substr(strrchr($_SERVER['PHP_SELF'],'/'),1);  

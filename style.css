@@ -1,4 +1,4 @@
-body, table, textarea, input, select, button {font-family: Verdana, Arial, sans-serif; font-size: 10px;}
+body, table, textarea, input, select, button {font-family: Verdana, Arial, sans-serif; font-size: 0.9em;}
 
 p {display: inline;}
 
@@ -41,7 +41,7 @@ img {border-style: none;}
 
 .login {background-color: rgb( 30, 144, 255); width: 250px; color: white; }
 .login td {color: white; } 
-.login h2 {font-size: 12px;}
+.login h2 {font-size: 1.1em;}
 
 .border td{border-bottom: 2px solid gray;}
 #highlight td{border: 2px yellow solid;}

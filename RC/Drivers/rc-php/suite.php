@@ -10,8 +10,7 @@ f.eks. testen: dataTestbager.php har datafilen: bager.txt hvor første linje er t
 testresultaterne får navnet dataTest+type, så testcase navnet skal være lig dataTest+type
 */
 require_once("fileManager.php");
-include_once "../../../DBHandler.class.php";
-
+require_once '../../../libs/DBHandler.php'; 
 class suite{
   
   private $name;
@@ -29,7 +28,7 @@ class suite{
   private $b_id;
   private $fm;
   
-  
+
   function __construct($name = "AUTONAME: Test Suite") //, $environment, $browser, $platform, $p_id, $logFile){
   {
     $this->name = $name;
@@ -143,7 +142,7 @@ class suite{
   
   function createSuite(){
     $o_id = $_GET['OS'];
-    $this->dbh = new DBHandler();    
+    $this->dbh = new DBHandler();
     $this->s_id=$this->dbh->insert('TRM_suite',
     "
     NULL,  

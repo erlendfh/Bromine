@@ -1,6 +1,4 @@
 <?php
-include_once('DBHandler.class.php');
-include_once('commandList.class.php');
 class testList{
   var $dbh;
   

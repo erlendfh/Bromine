@@ -39,7 +39,7 @@
     <?php if($ut_id!=''){ ?>
       <form action='saveUserTypeAccess.php' method='post'>
         <?php echo "<div><input type='hidden' name='ut_id' value='$ut_id' /></div>"; ?>
-        <table width='800'>
+        <table>
           <tr>
             <th align='left'><?php echo $lh->GetText('Access'); ?></th>
             <th align='left'><?php echo $lh->GetText('Site'); ?></th>

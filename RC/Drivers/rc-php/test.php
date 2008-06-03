@@ -11,7 +11,7 @@ testresultaterne får navnet dataTest+type, så testcase navnet skal være lig data
 */
 
 require_once('fileManager.php');
-require_once('../../../DBHandler.class.php');
+require_once('../../../libs/DBHandler.php');
   
   class test{
     

@@ -13,8 +13,9 @@
     
     function __construct($l = 'en'){
       //Enable this if PEAR is installed and you are having problems with TestRunnerRC.php not working.  
-      //require($_SERVER['DOCUMENT_ROOT'].'/path/to/bromine/config.php');
-      require('config.php');
+      //echo $_SERVER['DOCUMENT_ROOT'];
+      require($_SERVER['DOCUMENT_ROOT'].'/bromine/config.php');
+      //require('config.php');
 
       $this->lang = $l;
     	$this->db=mysql_connect($this->host, $this->username, $this->password);

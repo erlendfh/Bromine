@@ -1,6 +1,5 @@
 <?php
   //getSummary should be deleted and showreport should generate it
-  include_once('DBHandler.class.php');
   class reportHandler{
     
     var $dbh;

@@ -1,6 +1,6 @@
 <?php
 
-require_once ('../../../DBHandler.class.php');
+require_once ('../../../libs/DBHandler.php');
 class command{
 
   private $command;

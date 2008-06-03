@@ -1,6 +1,5 @@
 <?php
   include_once('getprotect.php');
-  include_once('DBHandler.class.php');
   $dbh = new DBHandler();
   header('Content-Type: text/html; charset=ISO-8859-1');
   

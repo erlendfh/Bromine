@@ -1,6 +1,4 @@
 <?php
-  include_once('DBHandler.class.php');
-  include_once('phpSniff.class.php');
 
   $dbh=new DBHandler();
   

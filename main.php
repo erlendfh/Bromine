@@ -1,4 +1,5 @@
-<?php include ('protected.php'); ?>
+<?php include ('protected.php'); 
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -200,7 +201,7 @@ echo "<p>".$lh->getText('Project').": <b>$projectName</b><br /><br /></p>";
 	echo "</table>";
 	if ($sort != ''){
   
-  echo "<table width='95%'>
+  echo "<table>
           <tr>
             <td><a href='main.php?sort=$sort&amp;limit=$limitMinus'>".$lh->getText('Previous 15')."</a></td>
             <td align='right'><a href='main.php?sort=$sort&amp;limit=$limitPlus'>".$lh->getText('Next 15')."</a></td>
@@ -209,7 +210,7 @@ echo "<p>".$lh->getText('Project').": <b>$projectName</b><br /><br /></p>";
   }
   if ($sort == ''){
   
-  echo "<table width='95%'>
+  echo "<table>
           <tr>
             <td><a href='main.php?limit=$limitMinus'>".$lh->getText('Previous 15')."</a></td>
             <td align='right'><a href='main.php?limit=$limitPlus'>".$lh->getText('Next 15')."</a></td>

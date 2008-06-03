@@ -15,7 +15,7 @@
       $num = mysql_num_rows($result);
       
       echo "<form action='saveProjects.php' method='post'>";
-        echo "<table width='870'>";
+        echo "<table>";
           echo "<tr>";
           echo "<th align='left'>".$lh->GetText('Delete')."</th>";
           echo "<th align='left'>".$lh->GetText('Name')."</th>";
@@ -78,7 +78,7 @@
       <p><?php echo $lh->GetText('Add project') ?></p>
       <div>
         <?php
-            echo "<table width='600'>";
+            echo "<table>";
               echo "<tr>";
               echo "<th align='left'>".$lh->GetText('Name')."</th>";
               echo "<th align='left'>".$lh->GetText('Description')."</th>";

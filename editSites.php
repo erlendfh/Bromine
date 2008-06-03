@@ -18,7 +18,7 @@
       if($p_id!=''){ ?>
       <form action='saveSites.php' method='post'>
         <div><input type='hidden' name='p_id' value='<?php echo $p_id ?>' /></div>
-        <table width='800'>
+        <table>
           <tr>
             <th align='left'>  
               <?php echo $lh->getText('Environment') ?>

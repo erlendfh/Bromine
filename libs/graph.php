@@ -1,5 +1,5 @@
 <?php 
-  include_once('DBHandler.class.php');
+  require_once 'libs/BromineClassLoader.php'; 
   class graph{
   
     var $numPassed;

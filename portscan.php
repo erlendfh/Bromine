@@ -1,5 +1,5 @@
 <?php
-
+require "error_reporting.php";
 function checkJavaServer($host, $port = 4444, $timeout=1){
   $fp = @fsockopen($host,$port,$errno,$errstr,$timeout);
   if($fp){

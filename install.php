@@ -16,7 +16,7 @@
   $this->password = "secret";
   $this->host = "localhost";</pre>
   <p>When that's done, the installer will try to creating all tables, using <a href="sql.sql">this SQL</a>. <strong>NB</strong>: Currently, Bromine supports only MySQL.</p>
-  <hr/>
+  <hr />
 <?php
 $prereqs = array();
 $fulfilledPrereqs = array();
@@ -53,7 +53,7 @@ $host = array_key_exists('host', $_POST) ? $_POST['host'] : 'localhost';
     <form action='' method='post'>
       <table>
         <tr>
-          <td><label for="theUsername">Username:</for></td> 
+          <td><label for="theUsername">Username:</label></td> 
           <td><input id='theUsername' type='text' name='username' value='<?php echo $username ?>'></td>
         </tr>
         <tr>
@@ -125,8 +125,19 @@ if( array_key_exists('action', $_POST) && $_POST['action'] == '1' ) {
 
     multiple_query($query, $db);
 
-    echo "<p>Install complete</p>";    
-}
+    echo "Install complete<br />Now login with the following information:
+    <table>
+      <tr>
+        <td>Username:</td>
+        <td>admin</td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td>admin</td>
+      </tr>
+    </table><br />
+    <a href='finished.php'>Click here to continue</a>";
+}  
 ?>
 </body>
 </html>

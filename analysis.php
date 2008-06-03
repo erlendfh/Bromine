@@ -10,10 +10,7 @@
 <?php include ('menu.php') ?>
 <?php include('TRMSubMenu.php') ?>
 <?php
-error_reporting(0);
-include_once('reportHandler.class.php');
-include_once('graph.class.php');
-include_once('DBHandler.class.php');
+
 include_once('distinctDropDown.php');
 
 $check=$_POST['check'];

@@ -9,8 +9,6 @@
     <?php $prepath=''; include ('menu.php') ?>
     <?php $prepath=''; include('projectsSubMenu.php'); ?>
     <?php
-    include_once('DBHandler.class.php');
-    include_once('projectList.class.php');
     
     $p_id=$_SESSION['p_id'];
     ?>

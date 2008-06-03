@@ -1,6 +1,5 @@
 <?php
   include_once('protected.php');
-  include_once('DBHandler.class.php');
   $dbh= new DBHandler();
   $in =$GLOBALS['_POST'];
   //print_r($in);

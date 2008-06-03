@@ -2,7 +2,6 @@
 <?php
   //print_r($GLOBALS['_POST']);
 
-  include_once('DBHandler.class.php');
 
     $p_id=$_POST['p_id'];
     

@@ -1,4 +1,5 @@
-body, table, textarea, input, select, button {font-family: Verdana, Arial, sans-serif; font-size: 0.85em;}
+body{font-size: 60%;}
+table, textarea, input, select, button {font-family: Verdana, Arial, sans-serif; font-size: 1em;}
 
 p {display: inline;}
 

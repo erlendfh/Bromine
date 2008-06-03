@@ -1,8 +1,8 @@
 <?php 
 
 function createMatrix($o, $b, $dbh){
-  //include "DBHandler.class.php";
-  //$dbh = new DBHandler();
+
+
   $OS = Array();
   $OSID = Array();
   $OSresult = $dbh->select('TRM_OS','','*');
@@ -63,9 +63,7 @@ function createMatrix($o, $b, $dbh){
   echo "</table>";
 }
 function createMatrixAdv($oSuccess, $bSuccess, $oFailed, $bFailed, $oNotDone, $bNotDone,$toPrintSuccess,$toPrintFailed, $dbh){
-  //include "DBHandler.class.php";
-  //$dbh = new DBHandler();
-  
+
   $OS = Array();
   $OSID = Array();
   $OSresult = $dbh->select('TRM_OS','','*');

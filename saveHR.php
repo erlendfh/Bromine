@@ -1,6 +1,6 @@
 <?php include ('protected.php'); ?>
 <?php
-  include_once('DBHandler.class.php');
+
   //print_r($GLOBALS['_POST']);
   
   $p_id=$_POST['p_id'];

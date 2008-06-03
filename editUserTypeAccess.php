@@ -8,9 +8,6 @@
   <body>
     <?php include ('menu.php') ?>
     <?php include('adminSubMenu.php'); ?>
-    <?php
-      include_once('DBHandler.class.php');
-    ?>
     <form method='get' action=''>
       <table>
         <tr>

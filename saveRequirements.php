@@ -1,7 +1,7 @@
 <?php
   include_once('protected.php');
-  include_once('DBHandler.class.php');
-  $dbh= new DBHandler($_SESSION['lang']);
+
+
   $in =$GLOBALS['_POST'];
   //print_r($in);
   /*

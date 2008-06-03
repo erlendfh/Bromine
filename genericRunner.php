@@ -16,7 +16,7 @@
   <body>
     <?php include ('menu.php') ?>
     <?php include('testlabSubMenu.php') ?>
-    <?php include('portscan.php') ?>
+    <?php //include('portscan.php') ?>
     <?php 
     $p_id = $_SESSION['p_id'];
     $p_name=$_SESSION['p_name'];
@@ -60,6 +60,38 @@
       }
 
     ?>
+    <?php
+        $result=$dbh->select('TRM_nodes',"","*");
+        $numreports=mysql_numrows($result);
+        echo "<fieldset style='width: 600px;'>";
+        echo "<legend>Node status</legend>";
+        echo "<table>";
+        echo "<tr  align='center'>";
+        for($i=0;$i<$numreports;$i++){
+            $description=mysql_result($result,$i,"description");
+            echo "<th>$description</th>";
+        }
+        echo "</tr>";
+        echo "<tr  align='center'>";
+        for($i=0;$i<$numreports;$i++){
+            $n_id=mysql_result($result,$i,"ID");
+            $nodepath=mysql_result($result,$i,"nodepath");
+            echo "<td><span id='span$n_id'></span></td>";             
+            echo "
+            <script type='text/javascript'>
+            new Ajax.Updater('span$n_id' ,'portscan.php', {
+            method: 'get',
+            parameters: {host: '$nodepath'}
+            });
+            </script>";
+        }
+        echo "</tr>";
+        echo "</table>";
+        echo "</fieldset>";
+        echo "<br />";
+        
+        
+?>
     <form method='get' action=''>
       <input type='hidden' name='which' value='reqdiv' />
       <fieldset style='width: 600px;'>
@@ -133,14 +165,9 @@
                 
                 $nodepath = mysql_result($noderesult,0,"TRM_nodes.nodepath");
               
-                
-                
                 echo "<option value='$node_id,$browser_id' ";
                 if($_GET['OS_Browser']=="$node_id,$browser_id"){echo " selected='selected'";}
-                if (checkJavaServer($nodepath) != 1){ echo " DISABLED='DISABLED'";}
-                
                 echo ">$OScur ";
-                if (checkJavaServer($nodepath) != 1){ echo "(".checkJavaServer($nodepath).")";}
                 echo "@ $Browsercur</option>";
               }
               echo "</select>";
@@ -255,9 +282,7 @@
                 
                 echo "<option value='$node_id,$browser_id' ";
                 if($_GET['OS_Browser']=="$node_id,$browser_id"){echo " selected='selected'";}
-                if (checkJavaServer($nodepath) != 1){ echo " DISABLED='DISABLED'";}
                 echo ">$node_description";
-                if (checkJavaServer($nodepath) != 1){ echo "(".checkJavaServer($nodepath).")";}
                 echo " @ $Browsercur</option>";
               }
               echo "</select>";

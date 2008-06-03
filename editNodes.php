@@ -8,7 +8,6 @@
   <body>
     <?php include ('menu.php') ?>
     <?php include('adminSubMenu.php'); ?>
-    <?php include('portscan.php'); ?>
     <?php      
       $dbh = new DBHandler();
     ?>
@@ -67,17 +66,19 @@
                     $description=mysql_result($result,$i,"description");
                     $o_idcur=mysql_result($result,$i,"o_id");
                     $network_drive=mysql_result($result,$i,"network_drive");                   
+                    echo "
+                    <script type='text/javascript'>
+                      new Ajax.Updater('div$n_id' ,'portscan.php', {
+                      method: 'get',
+                      parameters: {host: '$nodepath'}
+                      });
+                    </script>";
+                    
+                    
                     echo "<tr valign='top'>";
                     echo "<td>";
-                    $online = CheckJavaServer($nodepath);
-                    if ($online == 1 ){
-                      echo "<img src='img/online.ico' WIDTH='15' HEIGHT='15' alt='online' title='Online'/>";
-                    }
-                    else{
-                      echo "<img src='img/offline.ico' WIDTH='15' HEIGHT='15' alt='offline' title='$online'/>";
-                    }
-                    echo "
-                    </td>
+                    echo "<div id='div$n_id'></div>";
+                    echo "</td>
                     <td id='$n_id'>
                       <input type='hidden' value='$n_id' name='n_id[]' />
                       <input type='text' value='$nodepath' name='nodepath[]' size='20' />

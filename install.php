@@ -15,7 +15,7 @@
   $this->database = "mybrominedatabase";
   $this->password = "secret";
   $this->host = "localhost";</pre>
-  <p>When that's done, the installer will try to creating all tables, using <a href="sql.sql">this SQL</a>. <strong>NB</strong>: Currently, Bromine supports only MySQL.</p>
+  <p>When that's done, the installer will try to create all tables, using <a href="sql.sql">this SQL</a>. <strong>NB</strong>: Currently, Bromine supports only MySQL.</p>
   <hr />
 <?php
 $prereqs = array();

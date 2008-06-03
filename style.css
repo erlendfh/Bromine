@@ -52,3 +52,23 @@ img {border-style: none;}
 .priorityUrgent{background-color: rgb(255,0,0);}
 .matrix {border-width: 1px;	border-style: solid;	border-color: black; width:50px; text-align: center;}
 a.full {display:block; width: 100%; height: 100%;}
+
+
+/* install.php */
+.prereq-needed {
+    color: red;
+}
+.prereq-passed {
+    
+}
+#install-prereqs {
+    width: 600px;
+    list-style-type:none;
+    margin:0;
+    padding:0.3em 1.5em;
+}
+#install-page p {display:block;}
+#install-page h2 {font-size:110%;}
+#install-page .mysql-error {
+    color: gray;
+}

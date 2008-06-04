@@ -132,8 +132,13 @@ for ($i=0;$i<$num;$i++){
       
       //print_r ($output);
       $path = "RC/".$output[5]."/".$output[7]."/ss/".$output[9];
+      
         echo "<tr class='status_".$cl->status[$a]."'>";
+        if(file_exists($path)){
           echo "<td>--".$cl->action[$a]."</td><td><a target='_blank' href='$path'>".$dbh->getText('View Screenshot')."</a></td><td>".str_replace('&nbsp;',' ',$cl->var2[$a])."</td>";
+          }else{
+            echo "<td>--".$cl->action[$a]."</td><td>".str_replace('&nbsp;',' ',$cl->var2[$a])."</td><td></td>";
+          }
         echo "</tr>";
       }
   }

@@ -186,6 +186,7 @@
           </table>
         </div>
       </fieldset>
+      <!--
       <fieldset style='width: 600px;'>
         <legend style='cursor: pointer;' onclick="$('config').toggle()"><?php echo $lh->getText('Config') ?></legend>
         <div id='config' style="display:none;">
@@ -195,6 +196,7 @@
               <th><?php echo $lh->getText('Value'); ?></th>
             </tr>
             <?php
+            /*
               $result = $dbh->select('TRM_config','','*');
               $num=mysql_numrows($result);
               for($i=0;$i<$num;$i++){
@@ -208,11 +210,14 @@
               	echo "</td>";
               	echo "<td><input type='text' name='value[]' value='$value' size='25' /></td>";
               	echo "</tr>";
-              } 
+              	
+              }
+              */
             ?>
           </table>
         </div>
       </fieldset>
+      -->
       <fieldset style='width: 600px;'>
         <legend style='cursor: pointer;' onclick="$('defect_type').toggle()"><?php echo $lh->getText('Type of defect') ?></legend>
         <div id='defect_type' style="display:none;">

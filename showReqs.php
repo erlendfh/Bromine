@@ -53,13 +53,17 @@
             while($row = mysql_fetch_array($OSBrowsAllresult)){
             	$OSBrowsAll[]=$row['OSname']."/".$row['browsername'];            
             }
-          
-            echo "<tr valign='top'>";
+            if ($bgcolor == 'rgb(211,211,211)'){
+                $bgcolor = 'transparent';
+    		}else{
+    			$bgcolor = 'rgb(211,211,211)';
+    		}
+            echo "<tr valign='top' style='background-color: $bgcolor;' id='$r_id'>";
             echo "<td>";
             echo $r_nr;
             echo "</td>";
             echo "<td>";
-            echo $r_name;
+            echo "<b>$r_name</b>";
             echo "</td>";
             echo "<td>";
               $priority2 = str_replace(" ", "_", $r_priority);
@@ -68,7 +72,7 @@
             echo "<td>";
             echo $r_description;
             echo "</td>";
-            echo "<td style='background: white;'>";
+            echo "<td>";
             $test_result = $dbh->select("TRM_ReqsTests","WHERE r_id = '$r_id'","*");
             $test_num_row=mysql_numrows($test_result);
             
@@ -107,23 +111,6 @@
               TRM_suite.platform=TRM_OS.ID AND
               TRM_suite.ID = TRM_maxresults.max_s_id AND
               TRM_suite.browser=TRM_browser.ID GROUP BY TRM_ReqsOSBrows.ID ORDER BY TRM_requirements.priority ASC");
-              
-
-              /*$inner_result = $dbh->select(" 
-              TRM_requirements, TRM_ReqsTests, TRM_ReqsOSBrows, TRM_test, TRM_OS, TRM_browser, TRM_suite",
-              
-              "WHERE TRM_requirements.ID=$r_id AND
-              TRM_ReqsTests.t_name='$t_name' AND
-              TRM_ReqsTests.r_id=TRM_requirements.id AND
-              TRM_ReqsOSBrows.r_id=TRM_requirements.id AND
-              TRM_test.name=TRM_ReqsTests.t_name AND
-              TRM_browser.ID=TRM_ReqsOSBrows.b_id AND
-              TRM_OS.ID=TRM_ReqsOSBrows.o_id AND
-              TRM_suite.ID=TRM_test.s_id AND
-              TRM_suite.platform=TRM_OS.ID AND
-              TRM_suite.browser=TRM_browser.ID GROUP BY TRM_ReqsOSBrows.ID ORDER BY TRM_suite.id DESC",
-              "MAX(TRM_suite.ID), TRM_test.ID, TRM_test.status, TRM_OS.OSname, TRM_browser.browsername, TRM_suite.ID, TRM_test.manstatus");
-              */
               
               $num_inner_result=mysql_numrows($inner_result);
 

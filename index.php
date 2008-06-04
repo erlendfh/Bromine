@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-  <?php include('menu.php');  if ($lite == 1){exit;} ?>
+  <?php include('menu.php'); ?>
     <table>
       <tr>
         <th style='width: 500px;'><?php echo $lh->getText('Reqs overview'); ?></th>  
@@ -20,7 +20,6 @@
       <td>
         <table width='100%'>          
         
-          
           <?php
 
               $p_id = $_SESSION['p_id'];
@@ -29,8 +28,8 @@
               if($p_id!=''){
                 echo "<tr align='left' style='background: #66CC00; color: white;'>
                         <th>".$lh->getText('Priority')."</th>
-                        <th>".$lh->getText('Req num')."</th>
-                        <th>".$lh->getText('Req name')."</th>
+                        <th>".$lh->getText('Nr')."</th>
+                        <th>".$lh->getText('Requirement')."</th>
                         <th>".$lh->getText('Description')."</th>".
                         //<th>".$lh->getText('Assigned to')."</th>
                       "</tr>";
@@ -52,9 +51,7 @@
                   $r_description = mysql_result($outer_result,$i,"TRM_requirements.description");
                   
                   if(strlen($r_description)>70){
-                    $r_description="<a href='showFullReqs.php?reqID=$r_id' target='_blank' title='".$dbh->getText('Show full desc')."'>".substr($r_description,0,70)."...</a>";
-                  } else{
-                    $r_description="<a href='showFullReqs.php?reqID=$r_id' target='_blank' title='".$dbh->getText('Show full desc')."'>".$r_description."...</a>";
+                    $r_description=substr($r_description,0,70);
                   }
                   
                   $OSBrowsAllresult= $dbh->select("TRM_ReqsOSBrows, TRM_OS, TRM_browser","WHERE TRM_ReqsOSBrows.r_id = '$r_id' AND TRM_browser.ID=TRM_ReqsOSBrows.b_id AND TRM_OS.ID=TRM_ReqsOSBrows.o_id","*");
@@ -65,6 +62,7 @@
       
                   $test_result = $dbh->select("TRM_ReqsTests","WHERE r_id = '$r_id'","*");
                   $test_num_row=mysql_numrows($test_result);
+                  $r_status='none';
                   if($test_num_row>0){
                   for ($b=0;$b<$test_num_row;$b++){
                     $t_name = mysql_result($test_result,$b,"t_name");
@@ -143,6 +141,7 @@
                         $status[] = "passed";
                       }
                   }
+
                   if(in_array('failed',$status)){
                     $r_status='failed';
                   }
@@ -158,7 +157,7 @@
                   
                   echo "<td><img src='img/priority$priority2.gif' alt='".$lh->getText($r_priority)."' title='".$lh->getText($r_priority)."'/></td>";
                   echo "<td>$r_nr</td>";
-                  echo "<td>$r_name</td>";
+                  echo "<td><b><a href='showReqs.php#$r_id' >$r_name</a></b></td>";
                   echo "<td>$r_description</td>";
                   /*
                   if ($assignedTo != 0){

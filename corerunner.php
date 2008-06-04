@@ -173,7 +173,7 @@
       if($p_id!='' && $referer!='' && $testsuite!=''){
       
       $referer = $referer ."/";
-      $resultsurl="http://".$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF'];
+      $resultsurl="http://".$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT'].$_SERVER['PHP_SELF'];
       $resultsurl=str_replace('corerunner.php','',$resultsurl);
       $resultsurl.="parser.php";
       

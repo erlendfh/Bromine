@@ -1,6 +1,6 @@
 <?php
 class testList{
-  var $dbh;
+  public $dbh;
   
   public $id;
   public $status;

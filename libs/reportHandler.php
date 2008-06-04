@@ -2,7 +2,7 @@
   //getSummary should be deleted and showreport should generate it
   class reportHandler{
     
-    var $dbh;
+    public $dbh;
     
     public $result;
     public $s_id;

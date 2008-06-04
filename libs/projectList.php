@@ -2,7 +2,7 @@
   include_once('DBHandler.class.php');
   class projectList{
     
-    var $dbh;
+    public $dbh;
     
     public $result;
     public $num; 

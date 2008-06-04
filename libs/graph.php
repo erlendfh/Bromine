@@ -2,18 +2,18 @@
   require_once 'libs/BromineClassLoader.php'; 
   class graph{
   
-    var $numPassed;
-    var $numFailed;
-    var $numErrors;
+    public $numPassed;
+    public $numFailed;
+    public $numErrors;
     
-    var $numPassedPro;
-    var $numFailedPro;
-    var $numErrorsPro;
-    var $numManuallyPassed;
+    public $numPassedPro;
+    public $numFailedPro;
+    public $numErrorsPro;
+    public $numManuallyPassed;
     
-    var $dbh;
-    var $vertical;
-    var $width;
+    public $dbh;
+    public $vertical;
+    public $width;
     
     function __construct($numPassed, $numFailed, $numErrors = 0, $numManuallyPassed = 0, $width = 101, $vertical=true)
       {

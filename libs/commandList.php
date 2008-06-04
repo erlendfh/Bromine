@@ -1,5 +1,5 @@
 <?php
-class commandList{
+class commandList {
   public $dbh;
   public $id;
   public $status;

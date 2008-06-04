@@ -29,7 +29,7 @@
             "WHERE TRM_users.usertype=TRM_usertypes.ID AND
             TRM_users.ID=TRM_projectList.userID AND
             TRM_projectList.projectID='$p_id'
-            ORDER BY TRM_users.usertype",'*');
+            ORDER BY TRM_users.usertype, TRM_users.name",'*');
             $num=mysql_numrows($result);
             for($i=0;$i<$num;$i++){
               $u_id=mysql_result($result,$i,"TRM_users.ID");

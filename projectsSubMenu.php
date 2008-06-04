@@ -1,27 +1,35 @@
+<?php  
+    $pages = array( 'editProjects.php',
+                    'editHR.php',
+                    'editRequirements.php'
+                    );
+    $linktext = array(
+                    'Projects',
+                    'HR',
+                    'Requirements'
+                    );
+                    
+    $file= end(explode('/',$_SERVER['SCRIPT_FILENAME']));
+    
+    $breakCount = 6;
+?>
 <table class='subMenu'>
 <tr>
-  <td>  
-    <div style='background: rgb(176,196,222); font-family: verdana; font-weight: bold; height: 20px; cursor: pointer;'>
-      <a href='editProjects.php' style='color: white;' name='menulink'>
-        <?php echo $lh->getText('Projects'); ?>
-      </a>
-    </div>
-  </td>
-  <td>  
-    <div style='background: rgb(176,196,222); font-family: verdana; font-weight: bold; height: 20px; cursor: pointer;'>
-      <a href='editHR.php' style='color: white;' name='menulink'>
-        <?php echo $lh->getText('HR'); ?>
-      </a>
-    </div>
-  </td>
-  <?php if(!$lite){ ?>
-  <td>  
-    <div style='background: rgb(176,196,222); font-family: verdana; font-weight: bold; height: 20px; cursor: pointer;'>
-      <a href='editRequirements.php' style='color: white;' name='menulink'>
-        <?php echo $lh->getText('Requirements'); ?>
-      </a>
-    </div>
-  </td>
-  <?php } ?>
+
+<?php
+
+foreach ($pages as $key => $page){
+    $count ++;
+    if ($file == $page){$style = 'black';}else{$style='white';}
+    echo "<td>";
+        echo "<div style='background: rgb(176,196,222); font-family: verdana; font-weight: bold; height: 20px; cursor: pointer;'>";
+            echo "<a href='$page' style='color: $style;' name='menulink'>";
+                echo $lh->getText($linktext[$key]);
+            echo "</a>";
+        echo "</div>";
+    echo "</td>";
+    if ($count == $breakCount){echo "</tr><tr>"; $count = 0;}
+}
+?>
 </tr>
 </table>

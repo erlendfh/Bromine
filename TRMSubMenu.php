@@ -1,36 +1,37 @@
+<?php  
+    $pages = array( 'main.php',
+                    'analysis.php',
+                    'showReqs.php',
+                    'showDefects.php'
+                    );
+    $linktext = array(
+                    'Raw data',
+                    'Analysis',
+                    'Show requirements',
+                    'Show defects'
+                    );
+                    
+    $file= end(explode('/',$_SERVER['SCRIPT_FILENAME']));
+    
+    $breakCount = 4;
+?>
 <table class='subMenu'>
 <tr>
-  
-  <td>  
-    <div style='background: #66CC00; font-family: verdana; font-weight: bold; height: 20px; cursor: pointer;'>
-      <a href='main.php' style='color: white;' name='menulink'>
-        <?php echo $lh->getText('Raw data'); ?>
-      </a>
-    </div>
-  </td>
 
-  <?php if(!$lite){ ?>
-  <td>  
-    <div style='background: #66CC00; font-family: verdana; font-weight: bold; height: 20px; cursor: pointer;'>
-      <a href='analysis.php' style='color: white;' name='menulink'>
-        <?php echo $lh->getText('Analysis'); ?>
-      </a>
-    </div>
-  </td>
-  <td>  
-    <div style='background: #66CC00; font-family: verdana; font-weight: bold; height: 20px; cursor: pointer;'>
-      <a href='showReqs.php' style='color: white;' name='menulink'>
-        <?php echo $lh->getText('Show requirements'); ?>
-      </a>
-    </div>
-  </td>
-  <td>  
-    <div style='background: #66CC00; font-family: verdana; font-weight: bold; height: 20px; cursor: pointer;'>
-      <a href='showDefects.php' style='color: white;' name='menulink'>
-        <?php echo $lh->getText('Show defects'); ?>
-      </a>
-    </div>
-  </td>
-  <?php } ?>
+<?php
+
+foreach ($pages as $key => $page){
+    $count ++;
+    if ($file == $page){$style = 'black';}else{$style='white';}
+    echo "<td>";
+        echo "<div style='background: #66CC00; font-family: verdana; font-weight: bold; height: 20px; cursor: pointer;'>";
+            echo "<a href='$page' style='color: $style;' name='menulink'>";
+                echo $lh->getText($linktext[$key]);
+            echo "</a>";
+        echo "</div>";
+    echo "</td>";
+    if ($count == $breakCount){echo "</tr><tr>"; $count = 0;}
+}
+?>
 </tr>
 </table>

@@ -1,39 +1,40 @@
+
+<?php  
+    $pages = array( 'editUsers.php',
+                    'editSites.php',
+                    'editNodes.php',
+                    'editMisc.php',
+                    'editUserTypeAccess.php'
+                    );
+    $linktext = array(
+                    'Edit users',
+                    'Edit core sites',
+                    'Edit nodes',
+                    'Edit misc',
+                    'Edit usertype access'
+                    );
+                    
+    $file= end(explode('/',$_SERVER['SCRIPT_FILENAME']));
+    
+    $breakCount = 6;
+?>
 <table class='subMenu'>
 <tr>
-  <td>  
-    <div style='background: rgb(47,79,79); font-family: verdana; font-weight: bold; height: 20px; cursor: pointer;'>
-      <a href='editUsers.php' style='color: white;' name='menulink'>
-        <?php echo $lh->getText('Edit users'); ?>
-      </a>
-    </div>
-  </td>
-  <td>  
-    <div style='background: rgb(47,79,79); font-family: verdana; font-weight: bold; height: 20px; cursor: pointer;'>
-      <a href='editSites.php' style='color: white;' name='menulink'>
-        <?php echo $lh->getText('Edit core sites'); ?>
-      </a>
-    </div>
-  </td>
-  <td>  
-    <div style='background: rgb(47,79,79); font-family: verdana; font-weight: bold; height: 20px; cursor: pointer;'>
-      <a href='editNodes.php' style='color: white;' name='menulink'>
-        <?php echo $lh->getText('Edit nodes'); ?>
-      </a>
-    </div>
-  </td>
-  <td>  
-    <div style='background: rgb(47,79,79); font-family: verdana; font-weight: bold; height: 20px; cursor: pointer;'>
-      <a href='editMisc.php' style='color: white;' name='menulink'>
-        <?php echo $lh->getText('Edit misc'); ?>
-      </a>
-    </div>
-  </td>
-  <td>  
-    <div style='background: rgb(47,79,79); font-family: verdana; font-weight: bold; height: 20px; cursor: pointer;'>
-      <a href='editUserTypeAccess.php' style='color: white;' name='menulink'>
-        <?php echo $lh->getText('Edit usertype access'); ?>
-      </a>
-    </div>
-  </td>
+
+<?php
+
+foreach ($pages as $key => $page){
+    $count ++;
+    if ($file == $page){$style = 'black';}else{$style='white';}
+    echo "<td>";
+        echo "<div style='background: #999999; font-family: verdana; font-weight: bold; height: 20px; cursor: pointer;'>";
+            echo "<a href='$page' style='color: $style;' name='menulink'>";
+                echo $lh->getText($linktext[$key]);
+            echo "</a>";
+        echo "</div>";
+    echo "</td>";
+    if ($count == $breakCount){echo "</tr><tr>"; $count = 0;}
+}
+?>
 </tr>
 </table>

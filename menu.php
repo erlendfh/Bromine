@@ -1,6 +1,6 @@
 <?php 
   //$basecolors=Array('DodgerBlue','SandyBrown','LightSteelBlue','SeaGreen','#FF9900','#66CC00','FireBrick','DarkSlateGray');
-  $basecolors=Array('rgb(30,144,255)','rgb(176,196,222)','#FF9900','#66CC00','rgb(47,79,79)');
+  $basecolors=Array('rgb(30,144,255)','rgb(176,196,222)','#FF9900','#66CC00','#999999');
 ?>
 <table class='menu'>
   <tr>

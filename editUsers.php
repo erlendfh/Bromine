@@ -27,7 +27,7 @@
           
           $confirm='"'.$lh->getText('confirmDelete').'"';
           
-          $result=$dbh->select('TRM_users',"WHERE ID!=1","*");
+          $result=$dbh->select('TRM_users',"WHERE ID!=1 ORDER BY usertype, name","*");
           
           $num=mysql_numrows($result);
           for($i=0;$i<$num;$i++){
@@ -39,7 +39,7 @@
             $usertype=mysql_result($result,$i,"usertype");
             $email=mysql_result($result,$i,"email");
             echo "<tr>";
-            echo "<td id='$u_id'><input type='hidden' name='u_id[]' value='$u_id' />
+            echo "<td id='$u_id'>" . ($i+1) . ":<input type='hidden' name='u_id[]' value='$u_id' />
                       <input type='text' name='name[]' value='$name' /></td>";
             echo "<td><input type='text' name='firstname[]' value='$firstname' /></td>";
             echo "<td><input type='text' name='lastname[]' value='$lastname' /></td>";

@@ -126,8 +126,8 @@
   	echo "<td>".$lh->getText('Defect').":</td><td><input type='text' name='name' value='$d_name' size='60'/></td>";
   	echo "</tr>";
   	echo "<tr>";
-  	echo "<td>".$lh->getText('Type').":</td><td><img src='$type_imgpath' id='type' />";
-  	echo "<select name='type' id='typeselect' onchange=".'"'."gah=document.getElementById('typeselect'); img=gah.options[gah.selectedIndex].id; document.getElementById('type').src=img".'"'.">";
+  	echo "<td>".$lh->getText('Type').":</td><td><img src='$type_imgpath' id='type' ". ($type_imgpath ? "style='display: inline;'" : "style='display: none;'"). " />";
+  	echo "<select name='type' id='typeselect' onchange=".'"'."gah=document.getElementById('typeselect'); img=gah.options[gah.selectedIndex].id; document.getElementById('type').src=img; document.getElementById('type').style.display='inline'".'"'.">";
     echo "<option value=''>".$lh->getText('Choose')."</option>";
     foreach($type_id_arr as $key => $value){
       echo "<option value='$value' id='$type_imgpaths[$key]' ";
@@ -151,8 +151,8 @@
     echo "</td></tr>"; 
   	
   	echo "<tr>";
-  	echo "<td>".$lh->getText('Status').":</td><td><img src='$status_imgpath' id='status' />";
-    echo "<select name='status' id='statusselect' onchange=".'"'."gah=document.getElementById('statusselect'); img=gah.options[gah.selectedIndex].id; document.getElementById('status').src=img".'"'.">";
+  	echo "<td>".$lh->getText('Status').":</td><td><img src='$status_imgpath' id='status' ". ($status_imgpath ? "style='display: inline;'" : "style='display: none;'"). " />";
+    echo "<select name='status' id='statusselect' onchange=".'"'."gah=document.getElementById('statusselect'); img=gah.options[gah.selectedIndex].id; document.getElementById('status').src=img;  document.getElementById('type').style.display='inline'".'"'.">";
 
     if ($is_empty == 'false'){
         echo "<option value=''>".$lh->getText('Choose')."</option>";  

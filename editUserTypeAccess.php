@@ -18,7 +18,7 @@
               $result=$dbh->select('TRM_usertypes',"","*");
               $num=mysql_numrows($result);
               echo "<select name='ut_id' onchange='this.form.submit()'>";
-              echo "<option value=''>".$lh->GetText('Choose usertype')."</option>";
+              echo "<option value=''>".$lh->getText('Choose usertype')."</option>";
               for($i=0;$i<$num;$i++){
                 echo "<option value='".mysql_result($result,$i,"id")."'";
         
@@ -38,9 +38,9 @@
         <?php echo "<div><input type='hidden' name='ut_id' value='$ut_id' /></div>"; ?>
         <table>
           <tr>
-            <th align='left'><?php echo $lh->GetText('Access'); ?></th>
-            <th align='left'><?php echo $lh->GetText('Site'); ?></th>
-            <th align='left'><?php echo $lh->GetText('Description'); ?></th>
+            <th align='left'><?php echo $lh->getText('Access'); ?></th>
+            <th align='left'><?php echo $lh->getText('Site'); ?></th>
+            <th align='left'><?php echo $lh->getText('Description'); ?></th>
           </tr>
           
           <?php

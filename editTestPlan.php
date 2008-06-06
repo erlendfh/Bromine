@@ -114,7 +114,7 @@
           
         ?>
       </table>
-      <div><input type='submit' value='<?php echo $lh->GetText('Submit'); ?>' /></div>
+      <div><input type='submit' value='<?php echo $lh->getText('Submit'); ?>' /></div>
     </form>
   </body>
 </html>

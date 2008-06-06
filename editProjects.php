@@ -16,11 +16,11 @@
       echo "<form action='saveProjects.php' method='post'>";
         echo "<table>";
           echo "<tr>";
-          echo "<th align='left'>".$lh->GetText('Delete')."</th>";
-          echo "<th align='left'>".$lh->GetText('Name')."</th>";
-          echo "<th align='left'>".$lh->GetText('Description')."</th>";
-          echo "<th align='left'>".$lh->GetText('Assigned to')."</th>";
-          echo "<th align='left'>".$lh->GetText('Sites to test')."</th>";
+          echo "<th align='left'>".$lh->getText('Delete')."</th>";
+          echo "<th align='left'>".$lh->getText('Name')."</th>";
+          echo "<th align='left'>".$lh->getText('Description')."</th>";
+          echo "<th align='left'>".$lh->getText('Assigned to')."</th>";
+          echo "<th align='left'>".$lh->getText('Sites to test')."</th>";
           
           echo "</tr>";
           for($i=0;$i<$num;$i++){
@@ -42,7 +42,7 @@
               echo "<select name=assigned[]>";
               $user_result = $dbh->select('TRM_users','',"*");
               $num_users = mysql_num_rows($user_result);
-              echo "<option value=''>".$lh->GetText('Choose')."</option>";
+              echo "<option value=''>".$lh->getText('Choose')."</option>";
               for($x = 0; $x <$num_users; $x++){
                 $user_id = mysql_result($user_result, $x,'id');
                 $user_name = mysql_result($user_result, $x,'name');
@@ -74,14 +74,14 @@
     
     ?>
       
-      <p><?php echo $lh->GetText('Add project') ?></p>
+      <p><?php echo $lh->getText('Add project') ?></p>
       <div>
         <?php
             echo "<table>";
               echo "<tr>";
-              echo "<th align='left'>".$lh->GetText('Name')."</th>";
-              echo "<th align='left'>".$lh->GetText('Description')."</th>";
-              echo "<th align='left'>".$lh->GetText('Assigned to')."</th>";
+              echo "<th align='left'>".$lh->getText('Name')."</th>";
+              echo "<th align='left'>".$lh->getText('Description')."</th>";
+              echo "<th align='left'>".$lh->getText('Assigned to')."</th>";
               echo "</tr>";
               echo "<tr valign='top'>";
                 echo "
@@ -92,7 +92,7 @@
                 echo "<td align='left'><textarea cols='80' rows='8' name='newdescription'></textarea></td>";
               echo "<td >";
               echo "<select name='newassigned'>";
-              echo "<option value=''>".$lh->GetText('Choose')."</option>";
+              echo "<option value=''>".$lh->getText('Choose')."</option>";
               for($x = 0; $x <$num_users; $x++){
                 $user_id = mysql_result($user_result, $x,'id');
                 $user_name = mysql_result($user_result, $x,'name');

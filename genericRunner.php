@@ -101,7 +101,7 @@
             
             <tr>
               <td>
-                <?php echo $lh->GetText('Requirement'); ?>
+                <?php echo $lh->getText('Requirement'); ?>
               </td>
               <td>
                 <?php
@@ -176,12 +176,12 @@
             </td>
             </tr>
             <tr>
-              <td><?php echo $lh->GetText('Site to be tested'); ?></td>
+              <td><?php echo $lh->getText('Site to be tested'); ?></td>
               <td>
               <?php
                if($test!=''){
                 echo "<select name='sitetotest' onchange='this.form.submit()'>";
-                echo "<option value=''>".$lh->GetText('Choose')."</option>";
+                echo "<option value=''>".$lh->getText('Choose')."</option>";
                 foreach($sitetotests as $key => $site){
                   echo "<option value='$site'";
                   if(urldecode($sitetotest)==$site){echo " selected='selected'";}
@@ -238,7 +238,7 @@
           <table>
             <tr>
               <td>
-                <?php echo $lh->GetText('Test'); ?>
+                <?php echo $lh->getText('Test'); ?>
               </td>
               <td>
                 <?php
@@ -291,12 +291,12 @@
             </td>
             </tr>
             <tr>
-              <td><?php echo $lh->GetText('Site to be tested'); ?></td>
+              <td><?php echo $lh->getText('Site to be tested'); ?></td>
               <td>
               <?php
                if(count($tests)>0 && $OS_Browser!=''){
                 echo "<select name='sitetotest' onchange='this.form.submit()'>";
-                echo "<option value=''>".$lh->GetText('Choose')."</option>";
+                echo "<option value=''>".$lh->getText('Choose')."</option>";
                 foreach($sitetotests as $key => $site){
                   echo "<option value='$site'";
                   if(urldecode($sitetotest)==$site){echo " selected='selected'";}
@@ -309,7 +309,7 @@
               </td>
             </tr>
             <tr>
-              <td><?php echo $lh->GetText('Suite name'); ?></td>
+              <td><?php echo $lh->getText('Suite name'); ?></td>
               <td>
               <?php
                 if(count($tests)>0 && $OS_Browser!='' && $sitetotest!=''){
@@ -364,7 +364,7 @@
             VIRKER IKKE!!!!! Den er ikke lavet før vi er færdige med at flytte genericSuite osv.... VENT SLUT!
             <tr>
               <td>
-                <?php echo $lh->GetText('Requirement'); ?>
+                <?php echo $lh->getText('Requirement'); ?>
               </td>
               <td>
                 <?php
@@ -437,12 +437,12 @@
             </td>
             </tr>
             <tr>
-              <td><?php echo $lh->GetText('Site to be tested'); ?></td>
+              <td><?php echo $lh->getText('Site to be tested'); ?></td>
               <td>
               <?php
                if($test!=''){
                 echo "<select name='sitetotest' onchange='this.form.submit()'>";
-                echo "<option value=''>".$lh->GetText('Choose')."</option>";
+                echo "<option value=''>".$lh->getText('Choose')."</option>";
                 foreach($sitetotests as $key => $site){
                   echo "<option value='$site'";
                   if(urldecode($sitetotest)==$site){echo " selected='selected'";}

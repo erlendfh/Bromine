@@ -33,7 +33,7 @@
           echo "<div id='blink' style='display: inline; color: black; cursor: default;'>".$lh->getText('Choose project').":</div> ";
           echo "<div style='display: inline; color: black; cursor: default;'>";
           echo "<select name='get' onchange='document.forms[".'"'."p_id_form".'"'."].submit()'>";
-          echo "<option value='nogo'>".$lh->GetText('Choose project')."</option>";
+          echo "<option value='nogo'>".$lh->getText('Choose project')."</option>";
           for($i=0;$i<$numreports;$i++){
             $p_id=mysql_result($result,$i,"id");
             $p_name=mysql_result($result,$i,"name");
@@ -69,7 +69,7 @@
     </td>
     <td align='right'>
       <?php
-        if($_SESSION['auth']=="logged"){echo "<button onclick='window.location=".'"'."login.php?action=logout".'"'."' style='background-color: rgb(139,0,0); color: white;'>".$lh->GetText('log out')."</button>";}
+        if($_SESSION['auth']=="logged"){echo "<button onclick='window.location=".'"'."login.php?action=logout".'"'."' style='background-color: rgb(139,0,0); color: white;'>".$lh->getText('log out')."</button>";}
       ?>
     </td>
   </tr>
@@ -77,14 +77,14 @@
     <td> 
       <div style='background-color: <?php echo $basecolors[0]; ?>;'>
         <a class='full' href='index.php' name='menulink'>
-          <?php echo $lh->GetText('Home'); ?>
+          <?php echo $lh->getText('Home'); ?>
         </a>
       </div>
     </td>
     <td>
       <div style='background-color: <?php echo $basecolors[1]; ?>; ;'>
         <a class='full' href='projectsindex.php' name='menulink'>
-          <?php echo $lh->GetText('Projects'); ?>
+          <?php echo $lh->getText('Projects'); ?>
         </a>
         
       </div>
@@ -92,14 +92,14 @@
     <td>
       <div style='background-color: <?php echo $basecolors[2]; ?>;'>
         <a class='full' href='testlabindex.php' name='menulink'>
-          <?php echo $lh->GetText('Test Lab'); ?>
+          <?php echo $lh->getText('Test Lab'); ?>
         </a>
       </div>
     </td>
     <td>  
       <div style='background-color: <?php echo $basecolors[3]; ?>;'>
         <a class='full' href='TRMindex.php' name='menulink'>
-        <?php echo $lh->GetText('Test Result Manager'); ?>
+        <?php echo $lh->getText('Test Result Manager'); ?>
         </a>
       </div>
     </td>

@@ -27,7 +27,7 @@
     $result=$dbh->select('TRM_browser',"","*");
     $numreports=mysql_numrows($result);
     echo "<select name='browser'>";
-    echo "<option value=''>".$lh->GetText('Choose')."</option>";
+    echo "<option value=''>".$lh->getText('Choose')."</option>";
     for($i=0;$i<$numreports;$i++){
       echo "<option value='".mysql_result($result,$i,"ID")."'";
     
@@ -47,7 +47,7 @@
     $result=$dbh->select('TRM_OS',"","*");
     $numreports=mysql_numrows($result);
     echo "<select name='OS'>";
-    echo "<option value=''>".$lh->GetText('Choose')."</option>";
+    echo "<option value=''>".$lh->getText('Choose')."</option>";
     for($i=0;$i<$numreports;$i++){
       echo "<option value='".mysql_result($result,$i,"ID")."'";
     
@@ -65,7 +65,7 @@
     $result= $dbh->sql("SELECT * FROM TRM_design_manual_test WHERE p_id=$p_id");
     $numreports=mysql_numrows($result);
     echo "<select name='td_id'>";
-    echo "<option value=''>".$lh->GetText('Choose')."</option>";
+    echo "<option value=''>".$lh->getText('Choose')."</option>";
     for($i=0;$i<$numreports;$i++){
       echo "<option value='".mysql_result($result,$i,"ID")."'";
     
@@ -86,7 +86,7 @@
       	$sitetotests[]=$row['sitetotest'];
     }
     echo "<select name='sitetotest'>";
-    echo "<option value=''>".$lh->GetText('Choose')."</option>";
+    echo "<option value=''>".$lh->getText('Choose')."</option>";
     foreach($sitetotests as $key => $site){
       echo "<option value='$site'";
       echo ">$site</option>";

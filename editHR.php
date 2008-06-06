@@ -18,10 +18,10 @@
         <div><?php echo "<input type='hidden' name='p_id' value='$p_id' />"; ?></div>
         <table width='400'>
           <tr>
-            <th align='left'><?php echo $lh->GetText('Access'); ?></th>
-            <th align='left'><?php echo $lh->GetText('Username'); ?></th>
-            <th align='left'><?php echo $lh->GetText('Name'); ?></th>
-            <th align='left'><?php echo $lh->GetText('Usertype'); ?></th>
+            <th align='left'><?php echo $lh->getText('Access'); ?></th>
+            <th align='left'><?php echo $lh->getText('Username'); ?></th>
+            <th align='left'><?php echo $lh->getText('Name'); ?></th>
+            <th align='left'><?php echo $lh->getText('Usertype'); ?></th>
           </tr>
           
           <?php

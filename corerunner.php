@@ -30,7 +30,7 @@
         
         <tr>
           <td>
-            <?php echo $lh->GetText('Environment'); ?>
+            <?php echo $lh->getText('Environment'); ?>
           </td>
           <td>
             <?php
@@ -51,7 +51,7 @@
                   echo "<input type='hidden' name='testPath' value='".mysql_result($result,0,"testPath")."' />";
                 }
                 echo "<select name='referer' onchange='this.form.submit()'>";
-                echo "<option value=''>".$lh->GetText('Choose environment')."</option>";
+                echo "<option value=''>".$lh->getText('Choose environment')."</option>";
                 for($i=0;$i<$numreports;$i++){
                   echo "<option value='".mysql_result($result,$i,"referer")."'";
           
@@ -72,7 +72,7 @@
             $client = new phpSniff();
             $browsersuggest = $client->property('long_name')." ".$client->property('version');
             $platformsuggest = $client->property('platform')." ".$client->property('os');
-            echo $lh->GetText('Choose your current browser')." ($browsersuggest)"; ?>
+            echo $lh->getText('Choose your current browser')." ($browsersuggest)"; ?>
           </td>
           <td>
            <?php
@@ -80,7 +80,7 @@
             $result=$dbh->select('TRM_browser',"","*");
             $numreports=mysql_numrows($result);
             echo "<select name='browser' onchange='this.form.submit()'>";
-            echo "<option value=''>".$lh->GetText('Choose')."</option>";
+            echo "<option value=''>".$lh->getText('Choose')."</option>";
             for($i=0;$i<$numreports;$i++){
               echo "<option value='".mysql_result($result,$i,"ID")."'";
       
@@ -96,7 +96,7 @@
         <tr>
           <td>
             <?php 
-            echo $lh->GetText('Choose your current OS')." ($platformsuggest)"; ?>
+            echo $lh->getText('Choose your current OS')." ($platformsuggest)"; ?>
           </td>
           <td>
            <?php
@@ -104,7 +104,7 @@
             $result=$dbh->select('TRM_OS',"","*");
             $numreports=mysql_numrows($result);
             echo "<select name='OS' onchange='this.form.submit()'>";
-            echo "<option value=''>".$lh->GetText('Choose')."</option>";
+            echo "<option value=''>".$lh->getText('Choose')."</option>";
             for($i=0;$i<$numreports;$i++){
               echo "<option value='".mysql_result($result,$i,"ID")."'";
       
@@ -119,7 +119,7 @@
         </tr>
         <tr>
           <td>
-            <?php echo $lh->GetText('Suite name'); ?>
+            <?php echo $lh->getText('Suite name'); ?>
           </td>
           <td>
             <?php
@@ -134,7 +134,7 @@
                 "TRM_core_testsuites.*");
                 $numreports=mysql_numrows($result);
                 echo "<select name='testsuite' onchange='this.form.submit()'>";
-                echo "<option value=''>".$lh->GetText('Choose test')."</option>";
+                echo "<option value=''>".$lh->getText('Choose test')."</option>";
                 for($i=0;$i<$numreports;$i++){
                   echo "<option value='".mysql_result($result,$i,"testsuite")."'";
           
@@ -149,7 +149,7 @@
         </tr>
         <tr>
           <td>
-            <?php echo $lh->GetText('Interval'); ?>
+            <?php echo $lh->getText('Interval'); ?>
           </td>
           <td>
             <?php

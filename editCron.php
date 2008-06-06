@@ -147,7 +147,7 @@
         ?>
 
         <tr>
-          <td colspan='5'><?php echo $lh->GetText('Add scheduled test') ?></td>
+          <td colspan='5'><?php echo $lh->getText('Add scheduled test') ?></td>
         </tr>
         <tr>
           <?php

@@ -133,7 +133,7 @@
               echo "<select name=assigned[]>";
               $user_result = $dbh->select('TRM_users','',"*");
               $num_users = mysql_num_rows($user_result);
-              echo "<option value=''>".$lh->GetText('Choose')."</option>";
+              echo "<option value=''>".$lh->getText('Choose')."</option>";
               for($x = 0; $x <$num_users; $x++){
                 $user_id = mysql_result($user_result, $x,'id');
                 $user_name = mysql_result($user_result, $x,'name');
@@ -195,7 +195,7 @@
               echo "<select name=newassigned>";
               $user_result = $dbh->select('TRM_users','',"*");
               $num_users = mysql_num_rows($user_result);
-              echo "<option value=''>".$lh->GetText('Choose')."</option>";
+              echo "<option value=''>".$lh->getText('Choose')."</option>";
               for($x = 0; $x <$num_users; $x++){
                 $user_id = mysql_result($user_result, $x,'id');
                 $user_name = mysql_result($user_result, $x,'name');
@@ -206,7 +206,7 @@
               ?>
         </tr>
       </table>
-      <div><input type='submit' value='<?php echo $lh->GetText('Submit'); ?>' /></div>
+      <div><input type='submit' value='<?php echo $lh->getText('Submit'); ?>' /></div>
     </form>
   </body>
 </html>

@@ -23,10 +23,10 @@
           $dbh = new DBHandler();
           $barcolor=$_SESSION['barcolor'];
           if($sitename=='editHR.php' || $sitename=='projectsindex.php' || $sitename=='editProjects.php'){
-            $result=$dbh->select('TRM_projects',"","*");
+            $result=$dbh->select('TRM_projects',"ORDER BY name","*");
           }
           else{
-            $result=$dbh->select('TRM_projects, TRM_projectList',"WHERE TRM_projectList.userId = '".$_SESSION['id']."' AND TRM_projectList.access='1' AND TRM_projectList.projectID=TRM_projects.ID","TRM_projects.*");
+            $result=$dbh->select('TRM_projects, TRM_projectList',"WHERE TRM_projectList.userId = '".$_SESSION['id']."' AND TRM_projectList.access='1' AND TRM_projectList.projectID=TRM_projects.ID ORDER BY TRM_projects.name","TRM_projects.*");
           }
           $notset=1;
           $numreports=mysql_numrows($result);

@@ -10,7 +10,7 @@
     <?php include('projectsSubMenu.php'); ?>
     <?php
 
-      $result = $dbh->select('TRM_projects','WHERE TRM_projects.ID!=1','*');
+      $result = $dbh->select('TRM_projects','WHERE TRM_projects.ID!=1 ORDER BY name','*');
       $num = mysql_num_rows($result);
       
       echo "<form action='saveProjects.php' method='post'>";
@@ -40,7 +40,7 @@
               echo "<td align='left'><textarea cols='80' rows='8' name='description[]' >$description</textarea></td>";
               echo "<td>";
               echo "<select name=assigned[]>";
-              $user_result = $dbh->select('TRM_users','',"*");
+              $user_result = $dbh->select('TRM_users','ORDER BY name',"*");
               $num_users = mysql_num_rows($user_result);
               echo "<option value=''>".$lh->getText('Choose')."</option>";
               for($x = 0; $x <$num_users; $x++){
@@ -55,7 +55,7 @@
               }
               echo "</select>";
               echo "</td>";
-              $result2 = $dbh->select('TRM_projects_has_sites',"WHERE TRM_projects_has_sites.p_id=$p_id",'*');
+              $result2 = $dbh->select('TRM_projects_has_sites',"WHERE TRM_projects_has_sites.p_id=$p_id ORDER BY sitetotest",'*');
               $num2 = mysql_num_rows($result2);              
               echo "<td>";
               for($u=0;$u<$num2;$u++){

@@ -84,7 +84,11 @@
             for($i=0;$i<$numreports;$i++){
               echo "<option value='".mysql_result($result,$i,"ID")."'";
       
-              if($browser==mysql_result($result,$i,"ID")){echo ' selected="selected"';}
+              if ($OS==mysql_result($result,$i,"ID") ||
+                  preg_match( "/${browsersuggest}/i", mysql_result($result,$i,"browsername")))
+              {
+                  echo ' selected="selected"';
+              }
               
               echo ">".mysql_result($result,$i,"browsername")."</option>";
             }
@@ -108,7 +112,11 @@
             for($i=0;$i<$numreports;$i++){
               echo "<option value='".mysql_result($result,$i,"ID")."'";
       
-              if($OS==mysql_result($result,$i,"ID")){echo ' selected="selected"';}
+              if ($OS==mysql_result($result,$i,"ID") ||
+                  preg_match( "/${platformsuggest}/i", mysql_result($result,$i,"OSname")))
+              {
+                  echo ' selected="selected"';
+              }
               
               echo ">".mysql_result($result,$i,"OSname")."</option>";
             }

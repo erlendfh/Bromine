@@ -27,12 +27,16 @@
           $p_id = $_SESSION['p_id'];
           $u_id = $_SESSION['id'];
           include "matrix.php";
-          $outer_result = $dbh->select(" 
-          TRM_requirements, TRM_projectList",
-          "WHERE TRM_requirements.p_id = '$p_id' AND
-          TRM_projectList.projectID=TRM_requirements.p_id AND
-          TRM_projectList.userID='$u_id' AND
-          TRM_projectList.access='1'","*");
+          $outer_result = $dbh->select("TRM_requirements, TRM_projectList",
+                                       join( " ",
+                                             array( "WHERE TRM_requirements.p_id = '$p_id'",
+                                                    "AND TRM_projectList.projectID=TRM_requirements.p_id",
+                                                    "AND TRM_projectList.userID='$u_id' ",
+                                                    "AND TRM_projectList.access='1'",
+                                                    "ORDER BY TRM_requirements.nr",
+                                             )
+                                       ),
+                                       "*");
           
           $outer_num_row=mysql_numrows($outer_result);
           for ($i=0;$i<$outer_num_row;$i++){
@@ -48,7 +52,15 @@
               $r_description="<a href='showFullReqs.php?reqID=$r_id' target='_blank' title='".$dbh->getText('Show full desc')."'>".$r_description."...</a>";
             }
             
-            $OSBrowsAllresult= $dbh->select("TRM_ReqsOSBrows, TRM_OS, TRM_browser","WHERE TRM_ReqsOSBrows.r_id = '$r_id' AND TRM_browser.ID=TRM_ReqsOSBrows.b_id AND TRM_OS.ID=TRM_ReqsOSBrows.o_id","*");
+            $OSBrowsAllresult= $dbh->select("TRM_ReqsOSBrows, TRM_OS, TRM_browser, TRM_requirements",
+                                            join( " ",
+                                                  array( "WHERE TRM_ReqsOSBrows.r_id = '$r_id'",
+                                                         "AND TRM_browser.ID=TRM_ReqsOSBrows.b_id",
+                                                         "AND TRM_OS.ID=TRM_ReqsOSBrows.o_id",
+                                                         "ORDER BY TRM_requirements.name"
+                                                  )
+                                            ),
+                                            "*");
             $OSBrowsAll = Array();
             while($row = mysql_fetch_array($OSBrowsAllresult)){
             	$OSBrowsAll[]=$row['OSname']."/".$row['browsername'];            
@@ -73,7 +85,13 @@
             echo $r_description;
             echo "</td>";
             echo "<td>";
-            $test_result = $dbh->select("TRM_ReqsTests","WHERE r_id = '$r_id'","*");
+            $test_result = $dbh->select("TRM_ReqsTests",
+                                        join( " ",
+                                              array( "WHERE r_id = '$r_id'",
+                                                     "ORDER BY t_name"
+                                              )
+                                        ),
+                                        "*");
             $test_num_row=mysql_numrows($test_result);
             
             echo "<table>";
@@ -188,7 +206,7 @@
                 }
                 -->
                 </script>
-                <a title='".$lh->getText('View Matrix')."' class='full' style='cursor: pointer' onclick=".'"'."showmatrix$kk()".'"'.">$t_name</a>
+                <a title='".$lh->getText('View Matrix')."' class='full' style='cursor: pointer' onclick=".'"'."showmatrix$kk()".'"'.">".($b+1).": $t_name</a>
                 </td>";
                 $kk++;
                 echo "<td>";

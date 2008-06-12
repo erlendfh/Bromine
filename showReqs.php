@@ -52,12 +52,11 @@
               $r_description="<a href='showFullReqs.php?reqID=$r_id' target='_blank' title='".$dbh->getText('Show full desc')."'>".$r_description."...</a>";
             }
             
-            $OSBrowsAllresult= $dbh->select("TRM_ReqsOSBrows, TRM_OS, TRM_browser, TRM_requirements",
+            $OSBrowsAllresult= $dbh->select("TRM_ReqsOSBrows, TRM_OS, TRM_browser",
                                             join( " ",
                                                   array( "WHERE TRM_ReqsOSBrows.r_id = '$r_id'",
                                                          "AND TRM_browser.ID=TRM_ReqsOSBrows.b_id",
-                                                         "AND TRM_OS.ID=TRM_ReqsOSBrows.o_id",
-                                                         "ORDER BY TRM_requirements.name"
+                                                         "AND TRM_OS.ID=TRM_ReqsOSBrows.o_id"
                                                   )
                                             ),
                                             "*");

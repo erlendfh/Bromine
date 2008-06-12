@@ -64,9 +64,12 @@
       
       $t_id = mysql_result($inner,$a,"t_id");
       if($t_id!=''){
+        $temp_t_id=$t_id;
         $s_idresult = $dbh->select('TRM_test',"WHERE ID=$t_id",'*');
+        $t_id=NULL;
         while($row2 = mysql_fetch_array($s_idresult)){
         	$s_id=$row2['s_id'];
+        	$t_id=$temp_t_id;
         }
       }
       

@@ -106,6 +106,15 @@
           	$currentstt=$row2['sitetotest'];
           }
         }
+        
+        if($t_id!=''){
+            $t_id_result = $dbh->select('TRM_test',"WHERE ID=$t_id",'*');
+            $showerror=true;
+            while($row3 = mysql_fetch_array($t_id_result)){
+                $showerror=false;
+            }
+        }
+        
       }
 
     }
@@ -117,10 +126,14 @@
   	echo "<td>".$lh->getText('Project')."</td><td>$p_name</td>";
   	echo "</tr>";
   	if($t_id!=''){
-      $s_id = mysql_result($dbh->sql("SELECT s_id FROM TRM_test WHERE id=$t_id"),0);
-    	echo "<tr>";
-    	echo "<td>".$lh->getText('Test')."</td><td><input type='hidden' value='$t_id' name='t_id'/><a href='showReport.php?id=$s_id&highlight=$t_id' target='_blank'>$t_id</a></td>";
-    	echo "</tr>";
+        if($showerror){
+            echo "<td>".$lh->getText('Test')."</td><td>".$lh->getText('Test results deleted')."</td></tr>";
+        }else{
+            $s_id = mysql_result($dbh->sql("SELECT s_id FROM TRM_test WHERE id=$t_id"),0);
+            echo "<tr>";
+            echo "<td>".$lh->getText('Test')."</td><td><input type='hidden' value='$t_id' name='t_id'/><a href='showReport.php?id=$s_id&highlight=$t_id' target='_blank'>$t_id</a></td>";
+            echo "</tr>";
+    	}
   	}
   	echo "<tr>";
   	echo "<td>".$lh->getText('Defect').":</td><td><input type='text' name='name' value='$d_name' size='60'/></td>";

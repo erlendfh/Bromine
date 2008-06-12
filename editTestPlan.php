@@ -24,19 +24,28 @@
           $u_id = $_SESSION['id'];
           
           $testresult = $dbh->select('TRM_test, TRM_suite',
-          "WHERE TRM_test.s_id=TRM_suite.ID AND
-          TRM_suite.p_id='$p_id'",'DISTINCT TRM_test.name');
+                                     join( " ",
+                                           array( "WHERE TRM_test.s_id=TRM_suite.ID ",
+                                                  "AND TRM_suite.p_id='$p_id'",
+                                                  "ORDER BY TRM_suite.suitename, TRM_test.name"
+                                           )
+                                     ),
+                                     'DISTINCT TRM_test.name');
           $tests = Array();
           while($row = mysql_fetch_array($testresult)){
           	$tests[]=$row['name'];
           }
           
-          $outer_result = $dbh->select(" 
-          TRM_requirements, TRM_projectList",
-          "WHERE TRM_requirements.p_id = '$p_id' AND
-          TRM_projectList.projectID=TRM_requirements.p_id AND
-          TRM_projectList.userID='$u_id' AND
-          TRM_projectList.access='1'","*");
+          $outer_result = $dbh->select("TRM_requirements, TRM_projectList",
+                                       join( " ",
+                                             array( "WHERE TRM_requirements.p_id = '$p_id' ",
+                                                    "AND TRM_projectList.projectID=TRM_requirements.p_id",
+                                                    "AND TRM_projectList.userID='$u_id' ",
+                                                    "AND TRM_projectList.access='1'",
+                                                    "ORDER BY TRM_requirements.name",
+                                             )
+                                       ),
+                                       "*");
           
           $outer_num_row=mysql_numrows($outer_result);
           for ($i=0;$i<$outer_num_row;$i++){
@@ -60,26 +69,36 @@
             echo $r_description;
             echo "</td>";
             echo "<td>";
-            $inner_result = $dbh->select(" 
-            TRM_requirements, TRM_ReqsTests",
-            "WHERE TRM_requirements.ID = '$r_id' AND 
-            TRM_ReqsTests.r_id=TRM_requirements.id",
-            "*");
+            $inner_result = $dbh->select("TRM_requirements, TRM_ReqsTests",
+                                         join( " ",
+                                               array( "WHERE TRM_requirements.ID = '$r_id' ",
+                                                      "AND TRM_ReqsTests.r_id=TRM_requirements.id",
+                                                      "ORDER BY TRM_ReqsTests.t_name"
+                                                      )
+                                               ),
+                                         "*");
             
 
             $inner_num_row=mysql_numrows($inner_result);
             for ($a=0;$a<$inner_num_row;$a++){
               $t_name = mysql_result($inner_result,$a,"TRM_ReqsTests.t_name");
               $rt_id = mysql_result($inner_result,$a,"TRM_ReqsTests.ID");
-              /*
-              echo "<select name='test[$rt_id]'>";
-              foreach ($tests as $v){
-                echo "<option value='$v' ";
-                if($t_name==$v){echo "selected='selected'";}
-                echo ">$v</option>";
-              }
-              */
-              $result1 = $dbh->select('TRM_design_manual_test',"WHERE p_id=$p_id",'*');
+
+#              echo "<select name='test[$rt_id]'>";
+#              foreach ($tests as $v){
+#                echo "<option value='$v' ";
+#                if($t_name==$v){echo "selected='selected'";}
+#                echo ">$v</option>";
+#              }
+
+              $result1 = $dbh->select( 'TRM_design_manual_test',
+                                       join( " ",
+                                             array( "WHERE p_id=$p_id",
+                                                    "ORDER BY name"
+                                             )
+                                       ),
+                                       '*');
+              echo ($a+1) . ": ";
               echo "<select name='test[$rt_id]'>";
               echo "<option value=''>".$lh->getText('Choose')."</option>";
               while($row = mysql_fetch_array($result1)){
@@ -94,7 +113,13 @@
             }
 
             echo $lh->getText('Add test to this requirement')."<br />";
-            $result1 = $dbh->select('TRM_design_manual_test',"WHERE p_id=$p_id",'*');
+            $result1 = $dbh->select( 'TRM_design_manual_test',
+                                     join( " ",
+                                           array( "WHERE p_id=$p_id",
+                                                  "ORDER BY name"
+                                           )
+                                     ),
+                                     '*');
             echo "<select name='newtest[$r_id]'>";
             echo "<option value=''>".$lh->getText('Choose')."</option>";
             while($row = mysql_fetch_array($result1)){

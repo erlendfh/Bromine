@@ -19,15 +19,23 @@
     <?php
       if($p_id!=''){ 
         $td_id=$_GET['td_id'];
-        $result1 = $dbh->select('TRM_design_manual_test',"WHERE p_id=$p_id  ORDER BY name",'*');
+        $result1 = $dbh->select( 'TRM_design_manual_test',
+                                 join( " ",
+                                       array( "WHERE p_id=$p_id",
+                                              "ORDER BY name"
+                                       )
+                                 ),
+                                 '*');
         echo "<p>".$lh->getText('Edit')."</p> ";
         echo "<form action='' method='get' style='display: inline;'>";
         echo "<p><select name='td_id' onchange='this.form.submit()'>";
         echo "<option value=''>".$lh->getText('Choose')."</option>";
+        $a = 0;
         while($row = mysql_fetch_array($result1)){
           echo "<option value='".$row['id']."' ";
           if($row['id']==$td_id){echo "selected='selected'";}
-          echo ">".$row['name']."</option>";
+          echo ">".($a+1).": ".$row['name']."</option>";
+          $a++;
         }        
         echo "</select>";
         echo "</p>";
@@ -36,12 +44,34 @@
         echo "<p><button onclick='window.location.href=".'"'."?td_id=new".'"'."'>".$lh->getText('Add new')."</button></p>";
         
         if($td_id!=''){
-          $result = $dbh->select('TRM_design_manual_test as test',"WHERE test.id='$td_id'",'test.name as name, test.Description as Description');
+            $result = $dbh->select('TRM_design_manual_test as test',
+                                   join( " ",
+                                         array( "WHERE test.id='$td_id'",
+                                                "ORDER BY test.name"
+                                         )
+                                   ),
+                                   'test.name as name, test.Description as Description');
           while($row = mysql_fetch_array($result)){
             $t_name=$row['name'];
             $t_description=$row['Description'];
           }
-          $result = $dbh->select('TRM_design_manual_commands as commands, TRM_design_manual_test as test',"WHERE commands.td_id='$td_id' AND test.id='$td_id' AND test.p_id = $p_id ORDER BY orderby ASC",'commands.id as cd_id, commands.action as action, commands.reaction as reaction, commands.id as id, commands.orderby as orderby');
+          $result = $dbh->select('TRM_design_manual_commands as commands, TRM_design_manual_test as test',
+                                 join( " ",
+                                       array( "WHERE commands.td_id='$td_id' ",
+                                              "AND test.id='$td_id' ",
+                                              "AND test.p_id = $p_id ",
+                                              "ORDER BY orderby ASC"
+                                              )
+                                       ),
+                                 join( ", ",
+                                       array( "commands.id as cd_id",
+                                              "commands.action as action",
+                                              "commands.reaction as reaction",
+                                              "commands.id as id",
+                                              "commands.orderby as orderby"
+                                       )
+                                 )
+              );
           while($row = mysql_fetch_array($result)){
             $action[]=$row['action'];
             $reaction[]=$row['reaction'];
@@ -53,12 +83,12 @@
           echo "<h2>".$lh->getText('Test name help')."</h2>";
           echo "<table>";
           echo "<tr>";
-          echo "<td colspan='3'>
-          <input type='hidden' name='td_id' value='$td_id' />
-          ".$lh->getText('Name').": <input type='text' name='tc_name' value='$t_name' size='50'/>
-          </td>";
-          echo "<td><a href='delete.php?type=testCase&amp;id=$td_id&amp;back=editTestCase.php' onclick='return confirm($confirm)' ><img src='img/trashcan.gif' alt='".$lh->getText('Delete')."' /></a></td>";
-          echo "</tr><tr><td>".$lh->getText('Description').":<br /> <textarea name='tc_description' cols='40' rows='8'>$t_description</textarea></td></tr>";
+          echo "<td colspan='3'>\n";
+          echo " <input type='hidden' name='td_id' value='$td_id' />\n";
+          echo $lh->getText('Name').": <input type='text' name='tc_name' value='$t_name' size='50'/>\n";
+          echo "</td>\n";
+          echo "<td><a href='delete.php?type=testCase&amp;id=$td_id&amp;back=editTestCase.php' onclick='return confirm($confirm)' ><img src='img/trashcan.gif' alt='".$lh->getText('Delete')."' /></a></td>\n";
+          echo "</tr><tr><td>".$lh->getText('Description').":<br /> <textarea name='tc_description' cols='65' rows='8'>$t_description</textarea></td></tr>";
           echo "</tr>";
           echo "<tr>";
           echo "</tr>";

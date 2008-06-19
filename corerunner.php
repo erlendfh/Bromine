@@ -191,13 +191,34 @@
       
       $lang=$_SESSION['lang'];
       
-      $url = $referer . $TestRunnerLocation . "?test=".$testPath.$testsuite."&auto=on&resultsUrl=$resultsurl&runInterval=$interval&p_id=$p_id&o_id=$OS&b_id=$browser";
+      $url = $referer . $TestRunnerLocation . "?" .
+          join( "&",
+                array(
+                    "test=".$testPath.$testsuite,
+                    "resultsUrl=$resultsurl",
+                    "runInterval=$interval",
+                    "p_id=$p_id",
+                    "o_id=$OS",
+                    "u_id=$id",
+                    "b_id=$browser",
+                    "auto=on"
+                    )
+                );
       
+      $manual = "${referer}${TestRunnerLocation}?" .
+          join( "&",
+                array(
+                    "test=".$testPath.$testsuite,
+                    "resultsUrl=$resultsurl",
+                    "runInterval=$interval",
+                    )
+                );
+
       echo "<button onclick='window.open(".'"'.$url.'"'.")'>".$lh->getText('Run test')."</button>";
       $url.="&extravars=$username,$pass,$lang";
       echo "<br />";
       
-      echo "<a onclick='changeIt(".'"'."linkcontainer".'"'.",".'"'.$url.'"'.")' style='cursor: pointer;'>".$lh->getText('Generate testlink')."</a>";
+      echo "<a onclick='changeIt(\"linkcontainer\",\"<h3>AUTO:</h3><div>$url</div><h3>MANUAL:</h3> <div>$manual</div>\")' style='cursor: pointer;'>".$lh->getText('Generate testlink')."</a>";
       $newurl=str_replace("&", "--!!--", $url);
       //echo "<br /><a href='editCron.php?newurl=$newurl'>".$lh->getText('Plan test')."</a>";
       }

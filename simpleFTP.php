@@ -124,6 +124,6 @@ if ($gettype != '') {
     </td>
     </tr>
     </table>
-    <div><a href='ftp.php'><?php echo $lh->getText('Advanced FTP functionality'); ?></a></div>
+    <div><a href='advanced_ftp.php'><?php echo $lh->getText('Advanced FTP functionality'); ?></a></div>
   </body>
 </html>

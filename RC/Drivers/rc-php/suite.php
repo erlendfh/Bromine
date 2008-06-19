@@ -5,9 +5,9 @@ datatest howto:
 laver en test der hedder dataTest+type
 laver en datafil med type = type
 
-f.eks. testen: dataTestbager.php har datafilen: bager.txt hvor første linje er type=bager
+f.eks. testen: dataTestbager.php har datafilen: bager.txt hvor fÃ¸rste linje er type=bager
 
-testresultaterne får navnet dataTest+type, så testcase navnet skal være lig dataTest+type
+testresultaterne fÃ¥r navnet dataTest+type, sÃ¥ testcase navnet skal vÃ¦re lig dataTest+type
 */
 require_once("fileManager.php");
 require_once '../../../libs/DBHandler.php'; 

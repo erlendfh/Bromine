@@ -2,8 +2,8 @@
   /*
     TODO liste:
     
-    * Tilføj test til array $tests
-    * Sæt suitenavn i linien:  $suite = new Suite('BagerSuite', $site....
+    * TilfÃ¸j test til array $tests
+    * SÃ¦t suitenavn i linien:  $suite = new Suite('BagerSuite', $site....
   */
 
 
@@ -17,8 +17,8 @@
   echo "</pre>";
   */
   /*
-  Array list af test der skal køres i denne suite!
-  Klasse og fil navn skal være identisk, dvs. BagerTest hedder BagerTest.php og klassen i filen hedder BagerTest
+  Array list af test der skal kÃ¸res i denne suite!
+  Klasse og fil navn skal vÃ¦re identisk, dvs. BagerTest hedder BagerTest.php og klassen i filen hedder BagerTest
   Indtastes UDEN .php endelsen
   HUSK: Case sensitive  
   */
@@ -60,13 +60,13 @@
 
   /*
     Opretter nye objekt af klassen Suite, som kaldes med de parameter som der sendes til denne suite i GET'
-    'BagerSuite' er navnet på denne suite!
+    'BagerSuite' er navnet pÃ¥ denne suite!
   */
   
   $suite = new Suite($suitename);//, $siteToTest, $browser, $OS, $p_id, $logFile);
   $s_id = $suite->createSuite();
   /*
-    Selv udførslen af suiten/testene
+    Selv udfÃ¸rslen af suiten/testene
   */
   $countTests = 0;
   $countCommands = 0;

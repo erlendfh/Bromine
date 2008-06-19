@@ -21,33 +21,29 @@
 $prereqs = array();
 $fulfilledPrereqs = array();
 $isReadyToInstall = true;
-
 if (!is_writable('.')) {
     $prereqs[] = array('Please make the current folder writable', false);
     $isReadyToInstall = false;
 } else {
     $prereqs[] = array('Current folder is writable', true);
 }
-
 if (!$isReadyToInstall) {
     echo '<h2>Checking install readiness...</h2><ul id="install-prereqs">';
-    foreach ($prereqs as $requirement) {
+    foreach($prereqs as $requirement) {
         $class = $requirement[1] ? 'prereq-passed' : 'prereq-needed';
         $symbol = $requirement[1] ? '<span style="color:green;">&#10004;</span>' : '<span style="color:red;">&#10008;</span>';
         echo "<li class='$class'>$symbol {$requirement[0]} </li>";
     }
     echo '</ul>';
 }
-
-if ( !$isReadyToInstall ) {
+if (!$isReadyToInstall) {
     die('<p><strong>Sorry, can not install.</strong> Please fulfil the above requirements to continue installation.</p></body></html>');
 }
-
-// Setting up a few defaults, and remembering what the user wrote 
+// Setting up a few defaults, and remembering what the user wrote
 $username = array_key_exists('username', $_POST) ? $_POST['username'] : '';
 $database = array_key_exists('database', $_POST) ? $_POST['database'] : '';
-$password = array_key_exists('password', $_POST) ? $_POST['password'] : ''; 
-$host = array_key_exists('host', $_POST) ? $_POST['host'] : 'localhost'; 
+$password = array_key_exists('password', $_POST) ? $_POST['password'] : '';
+$host = array_key_exists('host', $_POST) ? $_POST['host'] : 'localhost';
 ?> 
   <p><strong>Ready to install!</strong> <span class="selected">Enter your database information</span> below, and press Install. (All fields are required. Note if the database does not exist the installer will try to create it!)</p>
     <form action='' method='post'>
@@ -78,53 +74,44 @@ $host = array_key_exists('host', $_POST) ? $_POST['host'] : 'localhost';
     </form>
 
 <?php
-function multiple_query($q,$link) {
+function multiple_query($q, $link) {
     $tok = strtok($q, ";");
     while ($tok) {
-        $results = mysql_query("$tok",$link) or die("<p><strong>Sorry, there was a problem with the installation.</strong> Check your Username/Database/Password/Host. <span class='mysql-error'>(".mysql_error().")</span></p></body></html>");
+        $results = mysql_query("$tok", $link) or die("<p><strong>Sorry, there was a problem with the installation.</strong> Check your Username/Database/Password/Host. <span class='mysql-error'>(" . mysql_error() . ")</span></p></body></html>");
         $tok = strtok(";");
     }
     return $results;
 }
-
-if( array_key_exists('action', $_POST) && $_POST['action'] == '1' ) {
-
+if (array_key_exists('action', $_POST) && $_POST['action'] == '1') {
     $username = $_POST['username'];
     $database = $_POST['database'];
     $password = $_POST['password'];
     $host = $_POST['host'];
-
     $query = trim(file_get_contents('sql.sql'));
-
     $myFile = "config.php";
     $fh = fopen($myFile, 'w') or die("<p>Can't create file config.php, check your permissions.</p></body></html>");
-    $stringData = 
-        '$this->username = "'.$username.'";
-    $this->database = "'.$database.'";
-    $this->password = "'.$password.'";
-    $this->host = "'.$host.'";';
-
+    $stringData = '$this->username = "' . $username . '";
+    $this->database = "' . $database . '";
+    $this->password = "' . $password . '";
+    $this->host = "' . $host . '";';
     fputs($fh, "<?php\n");
     fputs($fh, $stringData);
-    fputs($fh, "?".">\n");
+    fputs($fh, "?" . ">\n");
     fclose($fh);
-
     $db = mysql_connect($host, $username, $password);
-    if(!$db){
-        die("<p><strong>Sorry, there was a problem with the installation.</strong> Check your Username/Password/Host. <span class='mysql-error'>(".mysql_error().")</span></p>");
+    if (!$db) {
+        die("<p><strong>Sorry, there was a problem with the installation.</strong> Check your Username/Password/Host. <span class='mysql-error'>(" . mysql_error() . ")</span></p>");
     }
     $status = mysql_select_db($database, $db);
-    if(!$status){
+    if (!$status) {
         $sql = "CREATE DATABASE $database";
         $status = mysql_query($sql, $db);
         $status = mysql_select_db($database, $db);
-        if(!$status){
-            die("<p><strong>Sorry, there was a problem with the installation.</strong>The selected database did not exist and the installer was unable to create it.<span class='mysql-error'>(".mysql_error().")</span><");
+        if (!$status) {
+            die("<p><strong>Sorry, there was a problem with the installation.</strong>The selected database did not exist and the installer was unable to create it.<span class='mysql-error'>(" . mysql_error() . ")</span><");
         }
     }
-
     multiple_query($query, $db);
-
     echo "Install complete<br />Now login with the following information:
     <table>
       <tr>
@@ -137,7 +124,7 @@ if( array_key_exists('action', $_POST) && $_POST['action'] == '1' ) {
       </tr>
     </table><br />
     <a href='finished.php'>Click here to continue</a>";
-}  
+}
 ?>
 </body>
 </html>

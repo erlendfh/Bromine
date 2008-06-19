@@ -2,7 +2,6 @@
 // This is Ali's FTP Interface, PHP sessions edition
 // Script created by Savas Ali Tokmen - http://ali.tokmen.com
 // Date: 15 Nov 2007, version 2007.11.15.01
-
 // STARTUP PARAMETERS
 // You can call Ali's FTP Interface with the following paramaters
 //     [filename].php?host=HOST&user=USER&pass=PASS&port=PORT&folder=FOLDER&passive=PASSIVE&mode=MODE&lang=LANG
@@ -24,7 +23,6 @@
 //
 // You can even directly launch a connection by adding a &sessID=connect after
 // all your parameters.
-
 // USER-SIDE VARIABLES USED BY THE FTP INTERFACE
 //
 // $sessID is SESSION ID
@@ -38,371 +36,166 @@
 // $param1 gives the first parameter for that action
 // $param2 gives the second parameter for that action
 // $_FILES["uplfile"] is uploaded file content
-
 // PHP should only report *big* problems
 error_reporting(E_ERROR);
-
 // Read a php.ini-style value in megabytes
 function return_mbytes($val) {
-	$val = trim($val);
-	$last = strtolower($val{strlen($val)-1});
-	$val = intval($val);
-	switch($last) {
-		case 'g':
-			$val *= 1024;
-		case 'm':
-			break;
-		case 'k':
-			$val /= 1024;
-	}
-
-	return $val;
+    $val = trim($val);
+    $last = strtolower($val{strlen($val) -1});
+    $val = intval($val);
+    switch ($last) {
+        case 'g':
+            $val*= 1024;
+        case 'm':
+        break;
+        case 'k':
+            $val/= 1024;
+    }
+    return $val;
 }
-
 // Finds out the maximal POST upload size, in MB
 function getMaxULSize() {
-	$post = return_mbytes(ini_get('post_max_size'));
-	$memory = return_mbytes(ini_get('memory_limit'));
-
-	if($memory < 1) {
-		return $post;
-	}
-
-	return $memory;
+    $post = return_mbytes(ini_get('post_max_size'));
+    $memory = return_mbytes(ini_get('memory_limit'));
+    if ($memory < 1) {
+        return $post;
+    }
+    return $memory;
 }
-
 // Maximum size of downloads and uploads, in MB
 //
 // If you change ulLimit yourself make sure it's lower than getMaxULSize()
-define("ulLimit",getMaxULSize());
-define("dlLimit",5);
-
+define("ulLimit", getMaxULSize());
+define("dlLimit", 5);
 // You can use the config file to disable active (non-passive) FTP
 // just by creating a config file with define("DontUseActiveFTP",DontUseActiveFTP);
-define("where_to_find_config","config2.php");
-
+define("where_to_find_config", "config2.php");
 // Define here the location of the ZIP2FTP interface
 // This is used when the user wants to upload multiple files
-define("zip2ftp","http://zip2ftp.alishomepage.com/");
-
+define("zip2ftp", "http://zip2ftp.alishomepage.com/");
 // Import external variables
 import_request_variables("gp");
-
 // Language codes that can be used with their names
-$langs=array("en","fr","tr");
-$langExps=array("View this page in english","Voir cette page en français","Bu sayfayı türkçe olarak göster");
-
+$langs = array("en", "fr", "tr");
+$langExps = array("View this page in english", "Voir cette page en franÃ§ais", "Bu sayfayÃ½ tÃ¼rkÃ§e olarak gÃ¶ster");
 // HTML cleaner & inverse
-function filterHTML($what){
-	return str_replace(array("&","<",">","\""),array("&amp;","&lt;","&gt;","&quot;"),$what);
+function filterHTML($what) {
+    return str_replace(array("&", "<", ">", "\""), array("&amp;", "&lt;", "&gt;", "&quot;"), $what);
 }
-function unfilterHTML($what){
-	return str_replace(array("&lt;","&gt;","&quot;","&amp;"),array("<",">","\"","&"),$what);
+function unfilterHTML($what) {
+    return str_replace(array("&lt;", "&gt;", "&quot;", "&amp;"), array("<", ">", "\"", "&"), $what);
 }
-
 // PHP < 4.1.0 didn't have $_* but $HTTP_*_VARS
-if(version_compare(phpversion(),"4.1.0")==-1){
-	$_SERVER = $HTTP_SERVER_VARS;
-	$_SESSION = $HTTP_SESSION_VARS;
-	$_FILES = $HTTP_POST_FILES;
+if (version_compare(phpversion(), "4.1.0") == -1) {
+    $_SERVER = $HTTP_SERVER_VARS;
+    $_SESSION = $HTTP_SESSION_VARS;
+    $_FILES = $HTTP_POST_FILES;
 }
-
 // PHP < 5 didn't have ftp_chmod
-if(!is_callable('ftp_chmod',false)) {
-	function shellfix($s) {
-		return "'". str_replace("'", "'\''", $s)."'";
-	}
-
-	function ftp_chmod($ftp_stream, $mode, $filename) {
-		return ftp_site($ftp_stream, sprintf('CHMOD %o %s', $mode, shellfix($filename)));
-	}
+if (!is_callable('ftp_chmod', false)) {
+    function shellfix($s) {
+        return "'" . str_replace("'", "'\''", $s) . "'";
+    }
+    function ftp_chmod($ftp_stream, $mode, $filename) {
+        return ftp_site($ftp_stream, sprintf('CHMOD %o %s', $mode, shellfix($filename)));
+    }
 }
-
 // PHP < 5 didn't have stripos
-if(!is_callable('stripos',false)) {
-	function stripos($haystack, $needle){
-		return strpos($haystack, stristr( $haystack, $needle ));
-	}
+if (!is_callable('stripos', false)) {
+    function stripos($haystack, $needle) {
+        return strpos($haystack, stristr($haystack, $needle));
+    }
 }
-
 // Script name
-$scriptName=basename($_SERVER["SCRIPT_NAME"]);
-define("scriptName",filterHTML($scriptName));
-
+$scriptName = basename($_SERVER["SCRIPT_NAME"]);
+define("scriptName", filterHTML($scriptName));
 // Download source
-if($do=="getSource"){
-	// Download method depends on the browser
-	$user_agent=strtolower($_SERVER["HTTP_USER_AGENT"]);
-	header("Content-type: application/force-download");
-	if((is_integer(strpos($user_agent,"msie")))&&(is_integer(strpos($user_agent,"win")))){
-		header("Content-Disposition: filename=\"ftp_session.php\"");
-	}else{
-		header("Content-Disposition: attachment; filename=\"ftp_session.php\"");
-	}
-	header("Content-Description: File Transfert");
-
-	// Send file
-	readfile($scriptName);
-
-/*
-	// Send e-mail if needed (for usage statistics)
-	if(strpos($user_agent,"bot")===false && strpos($_SERVER["SERVER_NAME"],"alishomepage.com")===false){
-		mail("opensource@alishomepage.com","FTP Interface (PHP sessions edition): another one downloaded :)","This part will be referred to when the browser sends out no referrer information\n\nServer name: ".$_SERVER["SERVER_NAME"]."\nScript name: ".$_SERVER["SCRIPT_NAME"]."\nTranslated path: ".$_SERVER["PATH_TRANSLATED"]."\n\nDownloader's info (the referrer is most useful, user agent is to detect bots)\n\nUser agent: ".$_SERVER["HTTP_USER_AGENT"]."\nReferrer: ".$_SERVER["HTTP_REFERER"]."\nRequest URL: ".$_SERVER["REQUEST_URI"],"From: \"Ali's Open Source Initiative\" <opensource@alishomepage.com>");
-	}
-	die();
-	*/
+if ($do == "getSource") {
+    // Download method depends on the browser
+    $user_agent = strtolower($_SERVER["HTTP_USER_AGENT"]);
+    header("Content-type: application/force-download");
+    if ((is_integer(strpos($user_agent, "msie"))) && (is_integer(strpos($user_agent, "win")))) {
+        header("Content-Disposition: filename=\"ftp_session.php\"");
+    } else {
+        header("Content-Disposition: attachment; filename=\"ftp_session.php\"");
+    }
+    header("Content-Description: File Transfert");
+    // Send file
+    readfile($scriptName);
+    /*
+    // Send e-mail if needed (for usage statistics)
+    if(strpos($user_agent,"bot")===false && strpos($_SERVER["SERVER_NAME"],"alishomepage.com")===false){
+    mail("opensource@alishomepage.com","FTP Interface (PHP sessions edition): another one downloaded :)","This part will be referred to when the browser sends out no referrer information\n\nServer name: ".$_SERVER["SERVER_NAME"]."\nScript name: ".$_SERVER["SCRIPT_NAME"]."\nTranslated path: ".$_SERVER["PATH_TRANSLATED"]."\n\nDownloader's info (the referrer is most useful, user agent is to detect bots)\n\nUser agent: ".$_SERVER["HTTP_USER_AGENT"]."\nReferrer: ".$_SERVER["HTTP_REFERER"]."\nRequest URL: ".$_SERVER["REQUEST_URI"],"From: \"Ali's Open Source Initiative\" <opensource@alishomepage.com>");
+    }
+    die();
+    */
 }
-
-
 // Multilingual content
-$content["en"]["title"]="Ali's FTP Interface";
-$content["fr"]["title"]="Interface FTP d'Ali";
-$content["tr"]["title"]="Ali'nin FTP Arayüzü";
-$content["en"]["welcome"]="Welcome to Ali's FTP Interface";
-$content["fr"]["welcome"]="Bienvenue à l'Interface FTP d'Ali";
-$content["tr"]["welcome"]="Ali'nin FTP Arayüzü'ne hoş geldiniz";
-$content["en"]["resolution"]="This interface has been optimized for a minimal resolution of 1024*768 pixels";
-$content["fr"]["resolution"]="Cette interface a été optimisée pour une résolution minimale de 1024*768 pixels";
-$content["tr"]["resolution"]="Bu arayüz en düşük 1024*768'lik bir çözünürlük için eniyileştirilmiştir";
-$content["en"]["getSource"]="This is a multilingual, completely free and Open Source (or OpenSource) software / script. Please <a href=\"".scriptName."?do=getSource\">click here</a> to get its source code [written in PHP]";
-$content["fr"]["getSource"]="Ceci est un programme / logiciel / script qui est multi-langues, complètement gratuit et à sources ouvertes (Open Source). Vous pouvez <a href=\"".scriptName."?do=getSource\">cliquez ici</a> pour télécharger le code source, écrit en PHP";
-$content["tr"]["getSource"]="Bu yazılım / program / script çok dilli, tamamen bedava ve açık kaynaklıdır (Open Source). PHP'de yazılmış kaynak kodunu indirmek için lütfen <a href=\"".scriptName."?do=getSource\">buraya tıklayın</a>";
-$content["en"]["copy"]="Ali's HTTP to FTP interface (PHP sessions edition) created by Savas Ali Tokmen";
-$content["fr"]["copy"]="L'interface HTTP vers FTP d'Ali (édition sessions PHP) crée par Savas Ali Tokmen";
-$content["tr"]["copy"]="Ali'nin HTTP üzerinden FTP arayüzü (PHP session sürümü) Savaş Ali Tokmen tarafından yaratılmıştır";
-$content["en"]["form"]=array(
-	"Please enter the server connection details to initiate connection with the FTP server",
-	"Hostname",
-	"Username",
-	"Password",
-	"Port (standard is 21)",
-	"Folder to list (optional)",
-	"Use passive mode FTP",
-	"No",
-	"Yes",
-	"Go",
-	""
-	);
-$content["fr"]["form"]=array(
-	"Veuillez rentrer les détails du serveur pour initier la connexion FTP",
-	"Adresse du serveur",
-	"Nom d'utilisateur",
-	"Mot de passe",
-	"Port (la standard est 21)",
-	"Classeur à lister (optionnel)",
-	"Utiliser le mode FTP passif",
-	"Non",
-	"Oui",
-	"Allons-y",
-	""
-	);
-$content["tr"]["form"]=array(
-	"Bağlantıyı kurmak için lütfen sunucu ile ilgili detayları girin",
-	"Sunucu adresi",
-	"Kullanıcı adı",
-	"Parola",
-	"Port (standart değer 21dir)",
-	"Listelenecek klasör (opsiyonel)",
-	"Bağlantı pasif modda yapılsın mı",
-	"Hayır",
-	"Evet",
-	"Bağlan",
-	""
-	);
-$content["en"]["errorlist"]=array(
-	array("Download failed", "cannot fetch file from FTP server (connection error?)", "cannot create temporary file", "Check that PHP can access"),
-	"Change folder failed",
-	"Change permissions failed",
-	"That permission list is not valid\\n\\nPlease use UNIX format (like drwxrwxrwx)",
-	"Rename failed",
-	"Delete folder failed",
-	"Delete file failed",
-	"Create folder failed",
-	"Upload failed",
-	"Connection to the FTP server has failed",
-	"Security error: Your identifier information doesn't match with your session's",
-	"ERROR: No such session");
-$content["fr"]["errorlist"]=array(
-	array("Le téléchargement a échoué", "impossible de télécharger le fichier depuis le serveur FTP (erreur de connection?)", "impossible de créer un fichier temporaire", "Vérifier que PHP peut accéder à"),
-	"Le changement de classeur a échoué",
-	"Le changement de permissions a échoué",
-	"Cette permission n\\'est pas valide\\n\\nMerci d\\'utiliser le format UNIX (genre drwxrwxrwx)",
-	"Le renommage a échoué",
-	"L\\'effacement du classeur a échoué",
-	"L\\'effacement du fichier a échoué",
-	"La création du classeur a échoué",
-	"L\\'upload a échoué",
-	"La connexion a serveur FTP a échoué",
-	"Erreur de sécurité: votre identifiant ne correspond pas à ceux de votre session",
-	"ERREUR: Session invalide");
-$content["tr"]["errorlist"]=array(
-	array("İndirme başarısız", "FTP sunucudan dosya indirilemiyor (bağlantı hatası?)", "geçici dosya yaratılamıyor", "PHP'nin şuraya erişebildiğinden emin olun"),
-	"Klasör değişimi başarısız",
-	"Hakları değiştirme başarısız",
-	"Bu hak listesi geçerli değil\\n\\nLütfen UNIX formatı kullanın (drwxrwxrwx gibi)",
-	"Yeniden isimlendirme başarısız",
-	"Klasör silme başarısız",
-	"Dosya silme başarısız",
-	"Klasör yaratma başarısız",
-	"Dosya yollama başarısız",
-	"FTP sunucusuna bağlantı başarısız",
-	"Güvenlik hatası: Sizinle ilgili bilgiler session bilgilerinizle uyumsuz",
-	"HATA: Session bulunamadı");
-$content["en"]["msgs"]=array(
-	"You've been logged out successfully",
-	"Logout has failed",
-	"Connected to",
-	"as",
-	"(<a href=\"javascript:action('disconnect')\"><b>click here</b></a> to disconnect)",
-	"Current folder is",
-	"(<a href=\"javascript:var tmp=window.prompt('Enter folder name','New Folder');if(tmp!=null){action('mkdir',tmp)}\"><b>click here</b></a> to create a new folder)",
-	"Send file: (limited to at most ".ulLimit." MB)",
-	"Send",
-	"Note that your FTP password will not be transmitted to the ZIP2FTP interface, you will therefore have to re-enter it",
-	"Click here to upload multiple files",
-	"Explanations will appear here",
-	"<b>Click here</b></a> to go to the parent directory",
-	"<b>Click here</b></a> to go to the root directory",
-	"<b>Click here</b></a> to refresh",
-	"The content will be dynamically generated using JavaScript code and refreshed as things get resized",
-	"About the file <b>\"+files[number][0]+\"</b>",
-	"File size",
-	"Modified",
-	"Owner",
-	"Permissions",
-	"Click to go to the parent directory",
-	"About the folder <b>\"+folders[number][0]+\"</b>",
-	"<b>WARNING</b>: this folder is empty or all its elements are hidden and / or virtual<br><br>You may want to go to the parent or root directory to see some content...",
-	"Point on an item to view its description",
-	"( parent folder )",
-	"Enter new name",
-	"( rename )",
-	"Enter new permissions",
-	"( permissions )",
-	"Are you sure you want to delete folder and all its contents",
-	"( delete )",
-	"Are you sure you want to delete file",
-	"File / folder name");
-$content["fr"]["msgs"]=array(
-	"Vous avez été déconnecté(e) avez succès",
-	"La déconnection a échouée",
-	"Connecté à",
-	"en tant que",
-	"(<a href=\"javascript:action('disconnect')\"><b>cliquez ici</b></a> pour déconnecter)",
-	"Le classeur courant est",
-	"(<a href=\"javascript:var tmp=window.prompt('Entrez le nom de classeur','Nouveau Classeur');if(tmp!=null){action('mkdir',tmp)}\"><b>cliquez ici</b></a> pour créer un nouveau classeur)",
-	"Envoyer un fichier: (limité à au maximum ".ulLimit." MB)",
-	"Envoyer",
-	"Notez que votre mot de passe ne sera pas transmis à l\\'interface ZIP2FTP, vous aurez donc à le re-rentrer",
-	"Cliquez ici pour envoyer plusieurs fichiers",
-	"Les explications apparaitront ici",
-	"<b>Cliquez ici</b></a> pour aller au classeur parent",
-	"<b>Cliquez ici</b></a> pour aller à la racine",
-	"<b>Cliquez ici</b></a> pour rafraichir",
-	"The contenu va être dynamiquement généré en utilisant JavaScript et mis à jour quand les choses sont redimensionnées",
-	"Au sujet de <b>\"+files[number][0]+\"</b>",
-	"Taille",
-	"Modifié",
-	"Propriétaire",
-	"Permissions",
-	"Cliquez pour aller au classeur parent",
-	"Au sujet de <b>\"+folders[number][0]+\"</b>",
-	"<b>ATTENTION</b>: ce classeur est vide ou tous ces éléments sont cachés / virtuels.<br><br>Veuillez aller au parent ou à la racine pour avoir plus de contenu...",
-	"Pointez un élément pour sa description",
-	"( classeur parent )",
-	"Entrer un nouveau nom",
-	"( renommer )",
-	"Entrer de nouvelles permissions",
-	"( permissions )",
-	"Etes-vous sûr de vouloir effacer ce classeur et tout son contenu",
-	"( effacer )",
-	"Etes-vous sûr de vouloir effacer ce fichier",
-	"Nom du fichier / classeur");
-$content["tr"]["msgs"]=array(
-	"Çıkış başarıyla tamamlandı",
-	"Çıkış başarısız",
-	"Sunucu:",
-	", kullanıcı:",
-	"(bağlantıyı kesmek için <a href=\"javascript:action('disconnect')\"><b>buraya tıklayın</b></a>)",
-	"Şu anki klasör",
-	"(<a href=\"javascript:var tmp=window.prompt('Yeni klasör adı girin','Yeni Klasor');if(tmp!=null){action('mkdir',tmp)}\"><b>Yeni bir klasör yarat</b></a>)",
-	"Dosya yolla: (en fazla ".ulLimit." MB)",
-	"Yolla",
-	"Unutmayın ki FTP parolanız ZIP2FTP arayüzüne ulaştırılmayacaktır, dolayısıyla tekrar girmeniz gerekmektedir",
-	"Bir çok dosya yollamak için tıklayın",
-	"Açıklamalar buraya gelecek",
-	"<b>Buraya tıklayarak</b></a> bir üst klasöre gidebilirsiniz",
-	"<b>Buraya tıklayarak</b></a> ana klasöre gidebilirsiniz",
-	"<b>Buraya tıklayarak</b></a> sayfayı güncelleyebilirsiniz",
-	"İçerik JavaScript tarafından dinamik olarak yaratılacak ve cisimler şekil değiştirdikçe otomatik olarak yeniden boyutlandırılacaktır",
-	"<b>\"+files[number][0]+\"</b> hakkında",
-	"Boyut",
-	"Değiştirilme",
-	"Sahip",
-	"Haklar",
-	"Bir üst klasöre gitmek için tıklayın",
-	"<b>\"+folders[number][0]+\"</b> hakkında",
-	"<b>UYARI</b>: bu klasör boş veya tüm elemanları gizli / sanal<br><br>Daha fazla içerik için bir üst veya ana klasöre gitmeniz tavsiye olunur...",
-	"Açıklamasını görmek için bir cismin üzerine gidin",
-	"( bir üst klasör )",
-	"Yeni isim girin",
-	"( yeniden adlandır )",
-	"Yeni haklar girin",
-	"( haklar )",
-	"Bu klasörü ve tüm içeriğini silmek istediğinize emin misiniz",
-	"( sil )",
-	"Bu dosyayı silmek istediğinize emin misiniz",
-	"Dosya / klasör adı");
-$content["en"]["views"]=array(
-	"Viewing style",
-	"Big icons",
-	"Detailed",
-	"<b>Click here</b></a> to switch to the detailed view",
-	"<b>Click here</b></a> to switch to the big icons view");
-$content["fr"]["views"]=array(
-	"Style de vue",
-	"Grandes icones",
-	"Détaillé",
-	"<b>Cliquez ici</b></a> pour passer en vue détaillée",
-	"<b>Cliquez ici</b></a> pour passer en vue grandes icônes");
-$content["tr"]["views"]=array(
-	"Görünüm stili",
-	"Büyük ikonlar",
-	"Detaylı",
-	"<b>Buraya tıklayarak</b></a> detaylı görünüm stiline geçebilirsiniz",
-	"<b>Buraya tıklayarak</b></a> büyük ikonlu görünüm stiline geçebilirsiniz");
-
+$content["en"]["title"] = "Ali's FTP Interface";
+$content["fr"]["title"] = "Interface FTP d'Ali";
+$content["tr"]["title"] = "Ali'nin FTP ArayÃ¼zÃ¼";
+$content["en"]["welcome"] = "Welcome to Ali's FTP Interface";
+$content["fr"]["welcome"] = "Bienvenue Ã  l'Interface FTP d'Ali";
+$content["tr"]["welcome"] = "Ali'nin FTP ArayÃ¼zÃ¼'ne hoÃ¾ geldiniz";
+$content["en"]["resolution"] = "This interface has been optimized for a minimal resolution of 1024*768 pixels";
+$content["fr"]["resolution"] = "Cette interface a Ã©tÃ© optimisÃ©e pour une rÃ©solution minimale de 1024*768 pixels";
+$content["tr"]["resolution"] = "Bu arayÃ¼z en dÃ¼Ã¾Ã¼k 1024*768'lik bir Ã§Ã¶zÃ¼nÃ¼rlÃ¼k iÃ§in eniyileÃ¾tirilmiÃ¾tir";
+$content["en"]["getSource"] = "This is a multilingual, completely free and Open Source (or OpenSource) software / script. Please <a href=\"" . scriptName . "?do=getSource\">click here</a> to get its source code [written in PHP]";
+$content["fr"]["getSource"] = "Ceci est un programme / logiciel / script qui est multi-langues, complÃ¨tement gratuit et Ã  sources ouvertes (Open Source). Vous pouvez <a href=\"" . scriptName . "?do=getSource\">cliquez ici</a> pour tÃ©lÃ©charger le code source, Ã©crit en PHP";
+$content["tr"]["getSource"] = "Bu yazÃ½lÃ½m / program / script Ã§ok dilli, tamamen bedava ve aÃ§Ã½k kaynaklÃ½dÃ½r (Open Source). PHP'de yazÃ½lmÃ½Ã¾ kaynak kodunu indirmek iÃ§in lÃ¼tfen <a href=\"" . scriptName . "?do=getSource\">buraya tÃ½klayÃ½n</a>";
+$content["en"]["copy"] = "Ali's HTTP to FTP interface (PHP sessions edition) created by Savas Ali Tokmen";
+$content["fr"]["copy"] = "L'interface HTTP vers FTP d'Ali (Ã©dition sessions PHP) crÃ©e par Savas Ali Tokmen";
+$content["tr"]["copy"] = "Ali'nin HTTP Ã¼zerinden FTP arayÃ¼zÃ¼ (PHP session sÃ¼rÃ¼mÃ¼) SavaÃ¾ Ali Tokmen tarafÃ½ndan yaratÃ½lmÃ½Ã¾tÃ½r";
+$content["en"]["form"] = array("Please enter the server connection details to initiate connection with the FTP server", "Hostname", "Username", "Password", "Port (standard is 21)", "Folder to list (optional)", "Use passive mode FTP", "No", "Yes", "Go", "");
+$content["fr"]["form"] = array("Veuillez rentrer les dÃ©tails du serveur pour initier la connexion FTP", "Adresse du serveur", "Nom d'utilisateur", "Mot de passe", "Port (la standard est 21)", "Classeur Ã  lister (optionnel)", "Utiliser le mode FTP passif", "Non", "Oui", "Allons-y", "");
+$content["tr"]["form"] = array("BaÃ°lantÃ½yÃ½ kurmak iÃ§in lÃ¼tfen sunucu ile ilgili detaylarÃ½ girin", "Sunucu adresi", "KullanÃ½cÃ½ adÃ½", "Parola", "Port (standart deÃ°er 21dir)", "Listelenecek klasÃ¶r (opsiyonel)", "BaÃ°lantÃ½ pasif modda yapÃ½lsÃ½n mÃ½", "HayÃ½r", "Evet", "BaÃ°lan", "");
+$content["en"]["errorlist"] = array(array("Download failed", "cannot fetch file from FTP server (connection error?)", "cannot create temporary file", "Check that PHP can access"), "Change folder failed", "Change permissions failed", "That permission list is not valid\\n\\nPlease use UNIX format (like drwxrwxrwx)", "Rename failed", "Delete folder failed", "Delete file failed", "Create folder failed", "Upload failed", "Connection to the FTP server has failed", "Security error: Your identifier information doesn't match with your session's", "ERROR: No such session");
+$content["fr"]["errorlist"] = array(array("Le tÃ©lÃ©chargement a Ã©chouÃ©", "impossible de tÃ©lÃ©charger le fichier depuis le serveur FTP (erreur de connection?)", "impossible de crÃ©er un fichier temporaire", "VÃ©rifier que PHP peut accÃ©der Ã "), "Le changement de classeur a Ã©chouÃ©", "Le changement de permissions a Ã©chouÃ©", "Cette permission n\\'est pas valide\\n\\nMerci d\\'utiliser le format UNIX (genre drwxrwxrwx)", "Le renommage a Ã©chouÃ©", "L\\'effacement du classeur a Ã©chouÃ©", "L\\'effacement du fichier a Ã©chouÃ©", "La crÃ©ation du classeur a Ã©chouÃ©", "L\\'upload a Ã©chouÃ©", "La connexion a serveur FTP a Ã©chouÃ©", "Erreur de sÃ©curitÃ©: votre identifiant ne correspond pas Ã  ceux de votre session", "ERREUR: Session invalide");
+$content["tr"]["errorlist"] = array(array("Ãndirme baÃ¾arÃ½sÃ½z", "FTP sunucudan dosya indirilemiyor (baÃ°lantÃ½ hatasÃ½?)", "geÃ§ici dosya yaratÃ½lamÃ½yor", "PHP'nin Ã¾uraya eriÃ¾ebildiÃ°inden emin olun"), "KlasÃ¶r deÃ°iÃ¾imi baÃ¾arÃ½sÃ½z", "HaklarÃ½ deÃ°iÃ¾tirme baÃ¾arÃ½sÃ½z", "Bu hak listesi geÃ§erli deÃ°il\\n\\nLÃ¼tfen UNIX formatÃ½ kullanÃ½n (drwxrwxrwx gibi)", "Yeniden isimlendirme baÃ¾arÃ½sÃ½z", "KlasÃ¶r silme baÃ¾arÃ½sÃ½z", "Dosya silme baÃ¾arÃ½sÃ½z", "KlasÃ¶r yaratma baÃ¾arÃ½sÃ½z", "Dosya yollama baÃ¾arÃ½sÃ½z", "FTP sunucusuna baÃ°lantÃ½ baÃ¾arÃ½sÃ½z", "GÃ¼venlik hatasÃ½: Sizinle ilgili bilgiler session bilgilerinizle uyumsuz", "HATA: Session bulunamadÃ½");
+$content["en"]["msgs"] = array("You've been logged out successfully", "Logout has failed", "Connected to", "as", "(<a href=\"javascript:action('disconnect')\"><b>click here</b></a> to disconnect)", "Current folder is", "(<a href=\"javascript:var tmp=window.prompt('Enter folder name','New Folder');if(tmp!=null){action('mkdir',tmp)}\"><b>click here</b></a> to create a new folder)", "Send file: (limited to at most " . ulLimit . " MB)", "Send", "Note that your FTP password will not be transmitted to the ZIP2FTP interface, you will therefore have to re-enter it", "Click here to upload multiple files", "Explanations will appear here", "<b>Click here</b></a> to go to the parent directory", "<b>Click here</b></a> to go to the root directory", "<b>Click here</b></a> to refresh", "The content will be dynamically generated using JavaScript code and refreshed as things get resized", "About the file <b>\"+files[number][0]+\"</b>", "File size", "Modified", "Owner", "Permissions", "Click to go to the parent directory", "About the folder <b>\"+folders[number][0]+\"</b>", "<b>WARNING</b>: this folder is empty or all its elements are hidden and / or virtual<br><br>You may want to go to the parent or root directory to see some content...", "Point on an item to view its description", "( parent folder )", "Enter new name", "( rename )", "Enter new permissions", "( permissions )", "Are you sure you want to delete folder and all its contents", "( delete )", "Are you sure you want to delete file", "File / folder name");
+$content["fr"]["msgs"] = array("Vous avez Ã©tÃ© dÃ©connectÃ©(e) avez succÃ¨s", "La dÃ©connection a Ã©chouÃ©e", "ConnectÃ© Ã ", "en tant que", "(<a href=\"javascript:action('disconnect')\"><b>cliquez ici</b></a> pour dÃ©connecter)", "Le classeur courant est", "(<a href=\"javascript:var tmp=window.prompt('Entrez le nom de classeur','Nouveau Classeur');if(tmp!=null){action('mkdir',tmp)}\"><b>cliquez ici</b></a> pour crÃ©er un nouveau classeur)", "Envoyer un fichier: (limitÃ© Ã  au maximum " . ulLimit . " MB)", "Envoyer", "Notez que votre mot de passe ne sera pas transmis Ã  l\\'interface ZIP2FTP, vous aurez donc Ã  le re-rentrer", "Cliquez ici pour envoyer plusieurs fichiers", "Les explications apparaitront ici", "<b>Cliquez ici</b></a> pour aller au classeur parent", "<b>Cliquez ici</b></a> pour aller Ã  la racine", "<b>Cliquez ici</b></a> pour rafraichir", "The contenu va Ãªtre dynamiquement gÃ©nÃ©rÃ© en utilisant JavaScript et mis Ã  jour quand les choses sont redimensionnÃ©es", "Au sujet de <b>\"+files[number][0]+\"</b>", "Taille", "ModifiÃ©", "PropriÃ©taire", "Permissions", "Cliquez pour aller au classeur parent", "Au sujet de <b>\"+folders[number][0]+\"</b>", "<b>ATTENTION</b>: ce classeur est vide ou tous ces Ã©lÃ©ments sont cachÃ©s / virtuels.<br><br>Veuillez aller au parent ou Ã  la racine pour avoir plus de contenu...", "Pointez un Ã©lÃ©ment pour sa description", "( classeur parent )", "Entrer un nouveau nom", "( renommer )", "Entrer de nouvelles permissions", "( permissions )", "Etes-vous sÃ»r de vouloir effacer ce classeur et tout son contenu", "( effacer )", "Etes-vous sÃ»r de vouloir effacer ce fichier", "Nom du fichier / classeur");
+$content["tr"]["msgs"] = array("Ã‡Ã½kÃ½Ã¾ baÃ¾arÃ½yla tamamlandÃ½", "Ã‡Ã½kÃ½Ã¾ baÃ¾arÃ½sÃ½z", "Sunucu:", ", kullanÃ½cÃ½:", "(baÃ°lantÃ½yÃ½ kesmek iÃ§in <a href=\"javascript:action('disconnect')\"><b>buraya tÃ½klayÃ½n</b></a>)", "Ãu anki klasÃ¶r", "(<a href=\"javascript:var tmp=window.prompt('Yeni klasÃ¶r adÃ½ girin','Yeni Klasor');if(tmp!=null){action('mkdir',tmp)}\"><b>Yeni bir klasÃ¶r yarat</b></a>)", "Dosya yolla: (en fazla " . ulLimit . " MB)", "Yolla", "UnutmayÃ½n ki FTP parolanÃ½z ZIP2FTP arayÃ¼zÃ¼ne ulaÃ¾tÃ½rÃ½lmayacaktÃ½r, dolayÃ½sÃ½yla tekrar girmeniz gerekmektedir", "Bir Ã§ok dosya yollamak iÃ§in tÃ½klayÃ½n", "AÃ§Ã½klamalar buraya gelecek", "<b>Buraya tÃ½klayarak</b></a> bir Ã¼st klasÃ¶re gidebilirsiniz", "<b>Buraya tÃ½klayarak</b></a> ana klasÃ¶re gidebilirsiniz", "<b>Buraya tÃ½klayarak</b></a> sayfayÃ½ gÃ¼ncelleyebilirsiniz", "ÃÃ§erik JavaScript tarafÃ½ndan dinamik olarak yaratÃ½lacak ve cisimler Ã¾ekil deÃ°iÃ¾tirdikÃ§e otomatik olarak yeniden boyutlandÃ½rÃ½lacaktÃ½r", "<b>\"+files[number][0]+\"</b> hakkÃ½nda", "Boyut", "DeÃ°iÃ¾tirilme", "Sahip", "Haklar", "Bir Ã¼st klasÃ¶re gitmek iÃ§in tÃ½klayÃ½n", "<b>\"+folders[number][0]+\"</b> hakkÃ½nda", "<b>UYARI</b>: bu klasÃ¶r boÃ¾ veya tÃ¼m elemanlarÃ½ gizli / sanal<br><br>Daha fazla iÃ§erik iÃ§in bir Ã¼st veya ana klasÃ¶re gitmeniz tavsiye olunur...", "AÃ§Ã½klamasÃ½nÃ½ gÃ¶rmek iÃ§in bir cismin Ã¼zerine gidin", "( bir Ã¼st klasÃ¶r )", "Yeni isim girin", "( yeniden adlandÃ½r )", "Yeni haklar girin", "( haklar )", "Bu klasÃ¶rÃ¼ ve tÃ¼m iÃ§eriÃ°ini silmek istediÃ°inize emin misiniz", "( sil )", "Bu dosyayÃ½ silmek istediÃ°inize emin misiniz", "Dosya / klasÃ¶r adÃ½");
+$content["en"]["views"] = array("Viewing style", "Big icons", "Detailed", "<b>Click here</b></a> to switch to the detailed view", "<b>Click here</b></a> to switch to the big icons view");
+$content["fr"]["views"] = array("Style de vue", "Grandes icones", "DÃ©taillÃ©", "<b>Cliquez ici</b></a> pour passer en vue dÃ©taillÃ©e", "<b>Cliquez ici</b></a> pour passer en vue grandes icÃ´nes");
+$content["tr"]["views"] = array("GÃ¶rÃ¼nÃ¼m stili", "BÃ¼yÃ¼k ikonlar", "DetaylÃ½", "<b>Buraya tÃ½klayarak</b></a> detaylÃ½ gÃ¶rÃ¼nÃ¼m stiline geÃ§ebilirsiniz", "<b>Buraya tÃ½klayarak</b></a> bÃ¼yÃ¼k ikonlu gÃ¶rÃ¼nÃ¼m stiline geÃ§ebilirsiniz");
 // Include the config if required
-if(file_exists(where_to_find_config)){
-	include(where_to_find_config);
+if (file_exists(where_to_find_config)) {
+    include (where_to_find_config);
 }
-
 // HTTP needs to know about ulLimit in bytes
-define("ulLimit_bytes",ulLimit*1024*1024);
-
+define("ulLimit_bytes", ulLimit*1024*1024);
 // Clean variables
-$port=intval($port);
-if($param1){$param1=stripslashes($param1);}
-if($param2){$param2=stripslashes($param2);}
-if(!$port || $port<1 || $port>65535){$port=21;}
-if($sessID){$sessID=addslashes(stripslashes($sessID));}
-if($curFold){$curFold=str_replace(array("\\\"","\'","\\\\"),array("\"","'","\\"),$curFold);}
-
-// Choose default language if needed
-if(!in_array($lang,$langs)){$lang=$langs[0];}
-
-// Lowercase letters & replace certain characters, for sorting
-function arraytolowercase_standard($array){
-	$return=array();
-	for($i=0;$i<sizeof($array);$i++){
-		$return[$i]=strtolower(strtr($array[$i],"ÉÈÊÀÁÂÇĞİÖŞÜéèêàáâçğıöşü","eeeaaacgiosueeeaaacgiosu"));
-	}
-	return $return;
+$port = intval($port);
+if ($param1) {
+    $param1 = stripslashes($param1);
 }
-
+if ($param2) {
+    $param2 = stripslashes($param2);
+}
+if (!$port || $port < 1 || $port > 65535) {
+    $port = 21;
+}
+if ($sessID) {
+    $sessID = addslashes(stripslashes($sessID));
+}
+if ($curFold) {
+    $curFold = str_replace(array("\\\"", "\'", "\\\\"), array("\"", "'", "\\"), $curFold);
+}
+// Choose default language if needed
+if (!in_array($lang, $langs)) {
+    $lang = $langs[0];
+}
+// Lowercase letters & replace certain characters, for sorting
+function arraytolowercase_standard($array) {
+    $return = array();
+    for ($i = 0;$i < sizeof($array);$i++) {
+        $return[$i] = strtolower(strtr($array[$i], "Ã‰ÃˆÃŠÃ€ÃÃ‚Ã‡ÃÃÃ–ÃÃœÃ©Ã¨ÃªÃ Ã¡Ã¢Ã§Ã°Ã½Ã¶Ã¾Ã¼", "eeeaaacgiosueeeaaacgiosu"));
+    }
+    return $return;
+}
 // The "simple start" output
-function simple_start($td_size){
-	global $content,$lang;
+function simple_start($td_size) {
+    global $content, $lang;
 ?>
 <meta http-equiv='Content-Type' content='text/html;charset=windows-1254'>
 <meta http-equiv='Content-Type' content='text/html; charset=ISO-8859-9'>
@@ -450,11 +243,10 @@ A:hover{
 </style>
 <?php
 }
-
 // The "start of the main form" output
-function form_start(){
-	global $content,$lang;
-	simple_start(13);
+function form_start() {
+    global $content, $lang;
+    simple_start(13);
 ?>
 <body topmargin=0 leftmargin=0 marginwidth=0 marginheight=0>
 <div align=center>
@@ -463,22 +255,20 @@ function form_start(){
 <h1><?php echo $content[$lang]["welcome"]; ?></h1><br>
 <?php
 }
-
 // The "simple end" output
-function simple_end(){
-	global $content,$langs,$langExps,$lang,$mode;
-	echo "<br><br><br>";
-	$howto1=scriptName."?lang=";
-	$howto2="&mode=$mode";
-
-	echo "<font size=2>";
-	$separ="";
-	for($i=0;$i<sizeof($langs);$i++){
-		if($langs[$i]!=$lang){
-			echo "$separ<b><a href=\"".$howto1.$langs[$i].$howto2."\">".$langExps[$i]."</a></b>";
-			$separ=" | ";
-		}
-	}
+function simple_end() {
+    global $content, $langs, $langExps, $lang, $mode;
+    echo "<br><br><br>";
+    $howto1 = scriptName . "?lang=";
+    $howto2 = "&mode=$mode";
+    echo "<font size=2>";
+    $separ = "";
+    for ($i = 0;$i < sizeof($langs);$i++) {
+        if ($langs[$i] != $lang) {
+            echo "$separ<b><a href=\"" . $howto1 . $langs[$i] . $howto2 . "\">" . $langExps[$i] . "</a></b>";
+            $separ = " | ";
+        }
+    }
 ?>
 <br><br><br></font><font size=1>
 <?php echo $content[$lang]["resolution"]; ?>
@@ -502,337 +292,320 @@ document.onselectstart=onSelectStart
 </script>
 <?php
 }
-
 // The "login form" output
-function login_form( $str ){
-	global $content,$lang,$host,$user,$pass,$port,$folder,$passive,$mode;
-	form_start();
+function login_form($str) {
+    global $content, $lang, $host, $user, $pass, $port, $folder, $passive, $mode;
+    form_start();
 ?>
-<?php if($str){ echo "<table style='border-right: #cccccc 1px dotted; border-top: #cccccc 1px dotted; border-left: #cccccc 1px dotted; color: #0000ff; padding-top: 2px; border-bottom: #cccccc 1px dotted; background-color: #fefefe' callpadding=8 cellspacing=8><tr valign=middle><td align=center><img src=img/info.gif></td><td align=center>$str</td></tr></table><br><br>"; } ?>
+<?php if ($str) {
+        echo "<table style='border-right: #cccccc 1px dotted; border-top: #cccccc 1px dotted; border-left: #cccccc 1px dotted; color: #0000ff; padding-top: 2px; border-bottom: #cccccc 1px dotted; background-color: #fefefe' callpadding=8 cellspacing=8><tr valign=middle><td align=center><img src=img/info.gif></td><td align=center>$str</td></tr></table><br><br>";
+    } ?>
 <?php echo $content[$lang]["form"][0]; ?><br><br><br>
 <form action="<?php echo scriptName; ?>?lang=<?php echo $lang; ?>" method=POST>
 <input type=hidden name=sessID value=connect>
 <table style='border-right: #cccccc 1px dotted; border-top: #cccccc 1px dotted; border-left: #cccccc 1px dotted; color: #110044; padding-top: 2px; border-bottom: #cccccc 1px dotted; background-color: #fafafa' border=0 cellpadding=3 cellspacing=7>
 <tr><td align=right width=47%><?php echo $content[$lang]["form"][1]; ?> : </td>
-<td><input size=20 name=host type=text maxlength=128 value="<?php echo htmlspecialchars(str_replace(array("\\\"","\\'","\\\\"),array("\"","'","\\"),$host)); ?>"></td></tr>
-<tr><td align=right><?php echo $content[$lang]["form"][2]; ?> : </td><td><input size=20 name=user type=text maxlength=128 value="<?php echo htmlspecialchars(str_replace(array("\\\"","\\'","\\\\"),array("\"","'","\\"),$user)); ?>"></td></tr>
-<tr><td align=right><?php echo $content[$lang]["form"][3]; ?> : </td><td><input size=20 name=pass type=password maxlength=128 value="<?php echo htmlspecialchars(str_replace(array("\\\"","\\'","\\\\"),array("\"","'","\\"),$pass)); ?>"></td></tr>
+<td><input size=20 name=host type=text maxlength=128 value="<?php echo htmlspecialchars(str_replace(array("\\\"", "\\'", "\\\\"), array("\"", "'", "\\"), $host)); ?>"></td></tr>
+<tr><td align=right><?php echo $content[$lang]["form"][2]; ?> : </td><td><input size=20 name=user type=text maxlength=128 value="<?php echo htmlspecialchars(str_replace(array("\\\"", "\\'", "\\\\"), array("\"", "'", "\\"), $user)); ?>"></td></tr>
+<tr><td align=right><?php echo $content[$lang]["form"][3]; ?> : </td><td><input size=20 name=pass type=password maxlength=128 value="<?php echo htmlspecialchars(str_replace(array("\\\"", "\\'", "\\\\"), array("\"", "'", "\\"), $pass)); ?>"></td></tr>
 <tr><td align=right><?php echo $content[$lang]["form"][4]; ?> : </td><td><input size=20 name=port type=text maxlength=5 value=<?php echo $port; ?>></td></tr>
-<tr><td align=right><?php echo $content[$lang]["form"][5]; ?> : </td><td><input size=20 name=curFold type=text maxlength=128 value="<?php echo htmlspecialchars(str_replace(array("\\\"","\\'","\\\\"),array("\"","'","\\"),$folder)); ?>"></td></tr>
-<tr><td align=right><?php echo $content[$lang]["form"][6]; ?> ? </td><td><select name=usePassive><option <?php if(!defined("DontUseActiveFTP") && !intval($passive)){echo "selected ";} ?>value=0><?php echo $content[$lang]["form"][7]; ?><option <?php if(defined("DontUseActiveFTP") || intval($passive)){echo "selected ";} ?>value=1><?php echo $content[$lang]["form"][8]; ?></select></td></tr>
-<tr><td align=right><?php echo $content[$lang]["views"][0]; ?> : </td><td><select name=mode><option <?php if($mode!="detailed"){echo "selected ";} ?>value=bigIcons><?php echo $content[$lang]["views"][1]; ?><option <?php if($mode=="detailed"){echo "selected ";} ?>value=detailed><?php echo $content[$lang]["views"][2]; ?></select></td></tr></table><br>
+<tr><td align=right><?php echo $content[$lang]["form"][5]; ?> : </td><td><input size=20 name=curFold type=text maxlength=128 value="<?php echo htmlspecialchars(str_replace(array("\\\"", "\\'", "\\\\"), array("\"", "'", "\\"), $folder)); ?>"></td></tr>
+<tr><td align=right><?php echo $content[$lang]["form"][6]; ?> ? </td><td><select name=usePassive><option <?php if (!defined("DontUseActiveFTP") && !intval($passive)) {
+        echo "selected ";
+    } ?>value=0><?php echo $content[$lang]["form"][7]; ?><option <?php if (defined("DontUseActiveFTP") || intval($passive)) {
+        echo "selected ";
+    } ?>value=1><?php echo $content[$lang]["form"][8]; ?></select></td></tr>
+<tr><td align=right><?php echo $content[$lang]["views"][0]; ?> : </td><td><select name=mode><option <?php if ($mode != "detailed") {
+        echo "selected ";
+    } ?>value=bigIcons><?php echo $content[$lang]["views"][1]; ?><option <?php if ($mode == "detailed") {
+        echo "selected ";
+    } ?>value=detailed><?php echo $content[$lang]["views"][2]; ?></select></td></tr></table><br>
 <input type=submit value="<?php echo $content[$lang]["form"][9]; ?> !"></form>
 <?php echo $content[$lang]["form"][10]; ?>
 <?php
-	simple_end();
+    simple_end();
 }
-
 // PHP versions < 4.2.0 didn't have "timeout" in the ftp_connect method
-if(version_compare(phpversion(),"4.2.0")==-1){
-	function start_ftp_connection($host,$port){
-		return ftp_connect($host,$port);
-	}
-}else{
-	function start_ftp_connection($host,$port){
-		return ftp_connect($host,$port,30);
-	}
+if (version_compare(phpversion(), "4.2.0") == -1) {
+    function start_ftp_connection($host, $port) {
+        return ftp_connect($host, $port);
+    }
+} else {
+    function start_ftp_connection($host, $port) {
+        return ftp_connect($host, $port, 30);
+    }
 }
-
 // File download, same notes as for GetSource
-if($action=="down" && strlen($param1)>0){
-	session_name("sessID");
-	session_id($sessID);
-	session_start();
-	$sessInfo=array(
-		"ip"		=>	$_SESSION["ip"],
-		"hostname"	=>	$_SESSION["hostname"],
-		"username"	=>	$_SESSION["username"],
-		"password"	=>	$_SESSION["password"],
-		"port"		=>	$_SESSION["port"],
-		"passive"	=>	$_SESSION["passive"]);
-	session_write_close();
-
-	// Verify that it is the good person
-	if($sessInfo["ip"]==$_SERVER["REMOTE_ADDR"]){
-		$tempName=tempnam("", "ftp_session");
-		$hostname=$sessInfo["hostname"];
-		$username=$sessInfo["username"];
-		$password=$sessInfo["password"];
-		$port=$sessInfo["port"];
-		$usePassive=$sessInfo["passive"];
-		if($usePassive==1 || defined("DontUseActiveFTP")){$usePassive=true;}else{$usePassive=false;}
-		$conn_id=start_ftp_connection($hostname,$port);
-		if($conn_id && ftp_login($conn_id,$username,$password) && ftp_chdir($conn_id,$curFold) && ftp_size($conn_id,$param1)<dlLimit*1048576 && ftp_pasv($conn_id,$usePassive) && ftp_get($conn_id,$tempName,$param1,FTP_BINARY) && ftp_quit($conn_id)){
-			$user_agent=strtolower($_SERVER["HTTP_USER_AGENT"]);
-			header("Content-type: application/force-download");
-			if((is_integer(strpos($user_agent,"msie")))&&(is_integer(strpos($user_agent,"win")))){
-				header("Content-Disposition: filename=\"$param1\"");
-			}else{
-				header("Content-Disposition: attachment; filename=\"$param1\"");
-			}
-			header("Content-Description: File Transfert");
-			readfile($tempName);
-			unlink($tempName);
-			die();
-		}
-	}
-	unlink($tempName);
-	echo "<script>alert(\"".$content[$lang]["errorlist"][0][0].": ";
-	if($tempName != ""){
-		echo $content[$lang]["errorlist"][0][1];
-	}else{
-		echo $content[$lang]["errorlist"][0][2];
-		$tempName = sys_get_temp_dir();
-	}
-	echo "\\n\\n".$content[$lang]["errorlist"][0][3].": ".str_replace(array("\\","\"","\n","\r"), array("\\\\","\\\"","",""), $tempName)."\");window.opener=self;window.close()</script>";
-	die();
+if ($action == "down" && strlen($param1) > 0) {
+    session_name("sessID");
+    session_id($sessID);
+    session_start();
+    $sessInfo = array("ip" => $_SESSION["ip"], "hostname" => $_SESSION["hostname"], "username" => $_SESSION["username"], "password" => $_SESSION["password"], "port" => $_SESSION["port"], "passive" => $_SESSION["passive"]);
+    session_write_close();
+    // Verify that it is the good person
+    if ($sessInfo["ip"] == $_SERVER["REMOTE_ADDR"]) {
+        $tempName = tempnam("", "ftp_session");
+        $hostname = $sessInfo["hostname"];
+        $username = $sessInfo["username"];
+        $password = $sessInfo["password"];
+        $port = $sessInfo["port"];
+        $usePassive = $sessInfo["passive"];
+        if ($usePassive == 1 || defined("DontUseActiveFTP")) {
+            $usePassive = true;
+        } else {
+            $usePassive = false;
+        }
+        $conn_id = start_ftp_connection($hostname, $port);
+        if ($conn_id && ftp_login($conn_id, $username, $password) && ftp_chdir($conn_id, $curFold) && ftp_size($conn_id, $param1) < dlLimit*1048576 && ftp_pasv($conn_id, $usePassive) && ftp_get($conn_id, $tempName, $param1, FTP_BINARY) && ftp_quit($conn_id)) {
+            $user_agent = strtolower($_SERVER["HTTP_USER_AGENT"]);
+            header("Content-type: application/force-download");
+            if ((is_integer(strpos($user_agent, "msie"))) && (is_integer(strpos($user_agent, "win")))) {
+                header("Content-Disposition: filename=\"$param1\"");
+            } else {
+                header("Content-Disposition: attachment; filename=\"$param1\"");
+            }
+            header("Content-Description: File Transfert");
+            readfile($tempName);
+            unlink($tempName);
+            die();
+        }
+    }
+    unlink($tempName);
+    echo "<script>alert(\"" . $content[$lang]["errorlist"][0][0] . ": ";
+    if ($tempName != "") {
+        echo $content[$lang]["errorlist"][0][1];
+    } else {
+        echo $content[$lang]["errorlist"][0][2];
+        $tempName = sys_get_temp_dir();
+    }
+    echo "\\n\\n" . $content[$lang]["errorlist"][0][3] . ": " . str_replace(array("\\", "\"", "\n", "\r"), array("\\\\", "\\\"", "", ""), $tempName) . "\");window.opener=self;window.close()</script>";
+    die();
 }
-
 // Function to transform "        a" into "a"
-function cutLeadingSpaces($str){
-	while(substr($str,0,1)==" "){$str=substr($str,1);}
-	return $str;
+function cutLeadingSpaces($str) {
+    while (substr($str, 0, 1) == " ") {
+        $str = substr($str, 1);
+    }
+    return $str;
 }
-
 // Recursive directory remover
-function ftp_rec_rmdir($conn_id,$folder){
-	ftp_chdir($conn_id,$folder);
-	$folders=array();
-	$files=array();
-	$list=ftp_rawlist($conn_id,"");
-	for($i=0;$i<sizeof($list);$i++){
-		list($permissions,$next)=split(" ",$list[$i],2);
-		list($num,$next)=split(" ",cutLeadingSpaces($next),2);
-		list($owner,$next)=split(" ",cutLeadingSpaces($next),2);
-		list($group,$next)=split(" ",cutLeadingSpaces($next),2);
-		list($size,$next)=split(" ",cutLeadingSpaces($next),2);
-		list($month,$next)=split(" ",cutLeadingSpaces($next),2);
-		list($day,$next)=split(" ",cutLeadingSpaces($next),2);
-		list($year_time,$filename)=split(" ",cutLeadingSpaces($next),2);
-		if(strlen($filename)>0 && $filename!="." && $filename!=".."){
-			if(substr($permissions,0,1)=="d"){
-				$folders[]=$filename;
-			} else {
-				$files[]=$filename;
-			}
-		}
-	}
-	for($i=0;$i<sizeof($folders);$i++){
-		ftp_rec_rmdir($conn_id,$folders[$i]);
-	}
-	for($i=0;$i<sizeof($files);$i++){
-		ftp_delete($conn_id,$files[$i]);
-	}
-	ftp_cdup($conn_id);
-	return ftp_rmdir($conn_id,$folder);
+function ftp_rec_rmdir($conn_id, $folder) {
+    ftp_chdir($conn_id, $folder);
+    $folders = array();
+    $files = array();
+    $list = ftp_rawlist($conn_id, "");
+    for ($i = 0;$i < sizeof($list);$i++) {
+        list($permissions, $next) = split(" ", $list[$i], 2);
+        list($num, $next) = split(" ", cutLeadingSpaces($next), 2);
+        list($owner, $next) = split(" ", cutLeadingSpaces($next), 2);
+        list($group, $next) = split(" ", cutLeadingSpaces($next), 2);
+        list($size, $next) = split(" ", cutLeadingSpaces($next), 2);
+        list($month, $next) = split(" ", cutLeadingSpaces($next), 2);
+        list($day, $next) = split(" ", cutLeadingSpaces($next), 2);
+        list($year_time, $filename) = split(" ", cutLeadingSpaces($next), 2);
+        if (strlen($filename) > 0 && $filename != "." && $filename != "..") {
+            if (substr($permissions, 0, 1) == "d") {
+                $folders[] = $filename;
+            } else {
+                $files[] = $filename;
+            }
+        }
+    }
+    for ($i = 0;$i < sizeof($folders);$i++) {
+        ftp_rec_rmdir($conn_id, $folders[$i]);
+    }
+    for ($i = 0;$i < sizeof($files);$i++) {
+        ftp_delete($conn_id, $files[$i]);
+    }
+    ftp_cdup($conn_id);
+    return ftp_rmdir($conn_id, $folder);
 }
-
 // Compressed output (faster transmission)
 ob_implicit_flush(0);
 ob_start();
-define('ZIP_IT', extension_loaded('zlib') && strstr($_SERVER["HTTP_ACCEPT_ENCODING"],'gzip'));
-
-if(($sessID && $sessID!="connect") || ($sessID=="connect" && $host && $user)){
-	// There's a session ID, so user is / will be logged in
-	if($action=="disconnect"){
-		// Disconnection = destroy session
-		session_name("sessID");
-		session_id($sessID);
-		session_start();
-		session_unset();
-		session_write_close();
-		session_start();
-		session_destroy();
-		
-		if(setcookie(session_name(),"",0,"/")){
-			login_form($content[$lang]["msgs"][0]);
-		}else{
-			login_form($content[$lang]["msgs"][1]);
-		}
-	}else{
-		// Not disconnecting...
-		if($sessID=="connect"){
-			// Connecting: create new ID and store it
-//			session_name("sessID");
-//			session_start();
-//			session_regenerate_id();
-			session_start();
-			$sessID=session_id();
-			function antiXSS($what){
-				return str_replace(array("&slash;","&amp;"),array("\\","&"),stripslashes(str_replace(array("&","\\\\"),array("&amp;","&slash;"),$what)));
-			}
-			$_SESSION["ip"]=$_SERVER["REMOTE_ADDR"];
-			$_SESSION["hostname"]=antiXSS($host);
-			$_SESSION["username"]=antiXSS($user);
-			$_SESSION["password"]=antiXSS($pass);
-			$_SESSION["port"]=$port;
-			$_SESSION["passive"]=intval($usePassive);
-			session_write_close();
-		}
-		session_name("sessID");
-//		session_id($sessID);
-		session_start();
-		$sessInfo=array(
-			"ip"		=>	$_SESSION["ip"],
-			"hostname"	=>	$_SESSION["hostname"],
-			"username"	=>	$_SESSION["username"],
-			"password"	=>	$_SESSION["password"],
-			"port"		=>	$_SESSION["port"],
-			"passive"	=>	$_SESSION["passive"]);
-		session_write_close();
-
-		// Check that it is the supposed user
-		if($sessInfo["ip"]==$_SERVER["REMOTE_ADDR"]){
-			$hostname=$sessInfo["hostname"];
-			$username=$sessInfo["username"];
-			$password=$sessInfo["password"];
-			$port=$sessInfo["port"];
-			$usePassive=$sessInfo["passive"];
-			if($usePassive==1){$usePassive=true;}else{$usePassive=false;}
-			$conn_id=start_ftp_connection($hostname,$port);
-
-			// At this point, connection should be extablished
-			if($conn_id && ftp_login($conn_id,$username,$password)){
-				// Change folder, rename, delete, create folder, upload, ...
-				if($curFold){
-					if(!ftp_chdir($conn_id,$curFold)){
-						echo "<script>alert('".$content[$lang]["errorlist"][1]."')</script>";
-					}
-				}
-
-				$curFold=filterHTML(str_replace("\"\"", "\"", ftp_pwd($conn_id)));
-
-				if($action=="go"){
-					if($param1==".."){
-						$result=ftp_cdup($conn_id);
-					}else{
-						$result=ftp_chdir($conn_id,$param1);
-					}
-					if($result){
-						$curFold=filterHTML(str_replace("\"\"", "\"", ftp_pwd($conn_id)));
-					}
-				}
-
-				if($action=="perm"){
-					if(strlen($param2)==10){
-						$possPerms="rwx";
-						$cPerms=0;
-						for($i=3;$i>0;$i--){
-							$current=substr($param2,strlen($param2)-3);
-							for($j=0;$j<3;$j++){
-								if(false!==stripos($current,$possPerms[$j])){
-									$cPerms+=pow(2,$j)*pow(10,abs($i-3));
-								}
-							}
-							$param2=substr($param2,0,strlen($param2)-3);
-						}
-						if(!ftp_chmod($conn_id,$cPerms,$param1)) {
-							echo "<script>alert('".$content[$lang]["errorlist"][2]."')</script>";
-						}
-					}else{
-						echo "<script>alert('".$content[$lang]["errorlist"][3]."')</script>";
-					}
-				}
-
-				if($action=="rn"){
-					if(!ftp_rename($conn_id,$param1,$param2)){
-						echo "<script>alert('".$content[$lang]["errorlist"][4]."')</script>";
-					}
-				}
-
-				if($action=="rmdir"){
-					if(!ftp_rec_rmdir($conn_id,$param1)){
-						echo "<script>alert('".$content[$lang]["errorlist"][5]."')</script>";
-					}
-				}
-
-				if($action=="rm"){
-					if(!ftp_delete($conn_id,$param1)){
-						echo "<script>alert('".$content[$lang]["errorlist"][6]."')</script>";
-					}
-				}
-
-				if($action=="mkdir"){
-					if(!ftp_mkdir($conn_id,$param1)){
-						echo "<script>alert('".$content[$lang]["errorlist"][7]."')</script>";
-					}
-				}
-
-				ftp_pasv($conn_id,$usePassive);
-
-				if($action=="put"){
-					if(!($_FILES["uplFile"] && $_FILES["uplFile"]["size"]<=ulLimit_bytes && ftp_put($conn_id,$_FILES["uplFile"]["name"],$_FILES["uplFile"]["tmp_name"],FTP_BINARY))){
-						echo "<script>alert('".$content[$lang]["errorlist"][8]."')</script>";
-					}
-				}
-
-				$list=ftp_rawlist($conn_id,"");
-				ftp_quit($conn_id);
-
-				// Finished doing requested operations and getting file list, now create output
-				$list=str_replace("&","&amp;",$list);
-				$foldPerm=array();
-				$filePerm=array();
-				$folders=array();
-				$files=array();
-				$fileSizes=array();
-				$fileOwner=array();
-				$foldOwner=array();
-				$fileLastMod=array();
-				$foldLastMod=array();
-				for($i=0;$i<sizeof($list);$i++){
-					list($permissions,$next)=split(" ",$list[$i],2);
-					list($num,$next)=split(" ",cutLeadingSpaces($next),2);
-					list($owner,$next)=split(" ",cutLeadingSpaces($next),2);
-					list($group,$next)=split(" ",cutLeadingSpaces($next),2);
-					list($size,$next)=split(" ",cutLeadingSpaces($next),2);
-					list($month,$next)=split(" ",cutLeadingSpaces($next),2);
-					list($day,$next)=split(" ",cutLeadingSpaces($next),2);
-					list($year_time,$filename)=split(" ",cutLeadingSpaces($next),2);
-					if(strlen($filename)>0 && $filename!="." && $filename!=".."){
-						if(substr($permissions,0,1)=="d"){
-							$foldPerm[]=$permissions;		// was "permisions" ... thank you, Tomas Kmieliauskas :)
-							$folders[]=$filename;
-							$foldOwner[]=$owner;
-							$foldLastMod[]=$day." ".$month." ".$year_time;
-						} else {
-							$filePerm[]=$permissions;
-							$files[]=$filename;
-							$fileOwner[]=$owner;
-							$fileLastMod[]=$day." ".$month." ".$year_time;
-							$fileSizes[]=$size;
-						}
-					}
-				}
-				$arrangerFold=arraytolowercase_standard($folders);
-				$arrangerFile=arraytolowercase_standard($files);
-				array_multisort($arrangerFold,$folders,$foldOwner,$foldLastMod);
-				array_multisort($arrangerFile,$files,$fileSizes,$fileOwner,$fileLastMod);
-
-				// Finished arranging the content, now print it out
-				if($curFold==""){
-					$foldExplain="/";
-				}else{
-					$foldExplain=unfilterHTML($curFold);
-					if(strlen($foldExplain)<22){
-						$foldExplain=filterHTML($foldExplain);
-					}else{
-						$foldExplain=filterHTML(substr($foldExplain,0,7)." (...) ".substr($foldExplain,strlen($foldExplain)-13));
-					}
-				}
-
-if($action=="setView"){
-	if($param1=="detailed"){
-		$mode="detailed";
-	}else{
-		$mode="bigIcons";
-	}
-}
-
-if( $mode!="detailed" && $mode!="bigIcons" ){  $mode="bigIcons";  }
-
-simple_start(11);
-
+define('ZIP_IT', extension_loaded('zlib') && strstr($_SERVER["HTTP_ACCEPT_ENCODING"], 'gzip'));
+if (($sessID && $sessID != "connect") || ($sessID == "connect" && $host && $user)) {
+    // There's a session ID, so user is / will be logged in
+    if ($action == "disconnect") {
+        // Disconnection = destroy session
+        session_name("sessID");
+        session_id($sessID);
+        session_start();
+        session_unset();
+        session_write_close();
+        session_start();
+        session_destroy();
+        if (setcookie(session_name(), "", 0, "/")) {
+            login_form($content[$lang]["msgs"][0]);
+        } else {
+            login_form($content[$lang]["msgs"][1]);
+        }
+    } else {
+        // Not disconnecting...
+        if ($sessID == "connect") {
+            // Connecting: create new ID and store it
+            //			session_name("sessID");
+            //			session_start();
+            //			session_regenerate_id();
+            session_start();
+            $sessID = session_id();
+            function antiXSS($what) {
+                return str_replace(array("&slash;", "&amp;"), array("\\", "&"), stripslashes(str_replace(array("&", "\\\\"), array("&amp;", "&slash;"), $what)));
+            }
+            $_SESSION["ip"] = $_SERVER["REMOTE_ADDR"];
+            $_SESSION["hostname"] = antiXSS($host);
+            $_SESSION["username"] = antiXSS($user);
+            $_SESSION["password"] = antiXSS($pass);
+            $_SESSION["port"] = $port;
+            $_SESSION["passive"] = intval($usePassive);
+            session_write_close();
+        }
+        session_name("sessID");
+        //		session_id($sessID);
+        session_start();
+        $sessInfo = array("ip" => $_SESSION["ip"], "hostname" => $_SESSION["hostname"], "username" => $_SESSION["username"], "password" => $_SESSION["password"], "port" => $_SESSION["port"], "passive" => $_SESSION["passive"]);
+        session_write_close();
+        // Check that it is the supposed user
+        if ($sessInfo["ip"] == $_SERVER["REMOTE_ADDR"]) {
+            $hostname = $sessInfo["hostname"];
+            $username = $sessInfo["username"];
+            $password = $sessInfo["password"];
+            $port = $sessInfo["port"];
+            $usePassive = $sessInfo["passive"];
+            if ($usePassive == 1) {
+                $usePassive = true;
+            } else {
+                $usePassive = false;
+            }
+            $conn_id = start_ftp_connection($hostname, $port);
+            // At this point, connection should be extablished
+            if ($conn_id && ftp_login($conn_id, $username, $password)) {
+                // Change folder, rename, delete, create folder, upload, ...
+                if ($curFold) {
+                    if (!ftp_chdir($conn_id, $curFold)) {
+                        echo "<script>alert('" . $content[$lang]["errorlist"][1] . "')</script>";
+                    }
+                }
+                $curFold = filterHTML(str_replace("\"\"", "\"", ftp_pwd($conn_id)));
+                if ($action == "go") {
+                    if ($param1 == "..") {
+                        $result = ftp_cdup($conn_id);
+                    } else {
+                        $result = ftp_chdir($conn_id, $param1);
+                    }
+                    if ($result) {
+                        $curFold = filterHTML(str_replace("\"\"", "\"", ftp_pwd($conn_id)));
+                    }
+                }
+                if ($action == "perm") {
+                    if (strlen($param2) == 10) {
+                        $possPerms = "rwx";
+                        $cPerms = 0;
+                        for ($i = 3;$i > 0;$i--) {
+                            $current = substr($param2, strlen($param2) -3);
+                            for ($j = 0;$j < 3;$j++) {
+                                if (false !== stripos($current, $possPerms[$j])) {
+                                    $cPerms+= pow(2, $j) *pow(10, abs($i-3));
+                                }
+                            }
+                            $param2 = substr($param2, 0, strlen($param2) -3);
+                        }
+                        if (!ftp_chmod($conn_id, $cPerms, $param1)) {
+                            echo "<script>alert('" . $content[$lang]["errorlist"][2] . "')</script>";
+                        }
+                    } else {
+                        echo "<script>alert('" . $content[$lang]["errorlist"][3] . "')</script>";
+                    }
+                }
+                if ($action == "rn") {
+                    if (!ftp_rename($conn_id, $param1, $param2)) {
+                        echo "<script>alert('" . $content[$lang]["errorlist"][4] . "')</script>";
+                    }
+                }
+                if ($action == "rmdir") {
+                    if (!ftp_rec_rmdir($conn_id, $param1)) {
+                        echo "<script>alert('" . $content[$lang]["errorlist"][5] . "')</script>";
+                    }
+                }
+                if ($action == "rm") {
+                    if (!ftp_delete($conn_id, $param1)) {
+                        echo "<script>alert('" . $content[$lang]["errorlist"][6] . "')</script>";
+                    }
+                }
+                if ($action == "mkdir") {
+                    if (!ftp_mkdir($conn_id, $param1)) {
+                        echo "<script>alert('" . $content[$lang]["errorlist"][7] . "')</script>";
+                    }
+                }
+                ftp_pasv($conn_id, $usePassive);
+                if ($action == "put") {
+                    if (!($_FILES["uplFile"] && $_FILES["uplFile"]["size"] <= ulLimit_bytes && ftp_put($conn_id, $_FILES["uplFile"]["name"], $_FILES["uplFile"]["tmp_name"], FTP_BINARY))) {
+                        echo "<script>alert('" . $content[$lang]["errorlist"][8] . "')</script>";
+                    }
+                }
+                $list = ftp_rawlist($conn_id, "");
+                ftp_quit($conn_id);
+                // Finished doing requested operations and getting file list, now create output
+                $list = str_replace("&", "&amp;", $list);
+                $foldPerm = array();
+                $filePerm = array();
+                $folders = array();
+                $files = array();
+                $fileSizes = array();
+                $fileOwner = array();
+                $foldOwner = array();
+                $fileLastMod = array();
+                $foldLastMod = array();
+                for ($i = 0;$i < sizeof($list);$i++) {
+                    list($permissions, $next) = split(" ", $list[$i], 2);
+                    list($num, $next) = split(" ", cutLeadingSpaces($next), 2);
+                    list($owner, $next) = split(" ", cutLeadingSpaces($next), 2);
+                    list($group, $next) = split(" ", cutLeadingSpaces($next), 2);
+                    list($size, $next) = split(" ", cutLeadingSpaces($next), 2);
+                    list($month, $next) = split(" ", cutLeadingSpaces($next), 2);
+                    list($day, $next) = split(" ", cutLeadingSpaces($next), 2);
+                    list($year_time, $filename) = split(" ", cutLeadingSpaces($next), 2);
+                    if (strlen($filename) > 0 && $filename != "." && $filename != "..") {
+                        if (substr($permissions, 0, 1) == "d") {
+                            $foldPerm[] = $permissions; // was "permisions" ... thank you, Tomas Kmieliauskas :)
+                            $folders[] = $filename;
+                            $foldOwner[] = $owner;
+                            $foldLastMod[] = $day . " " . $month . " " . $year_time;
+                        } else {
+                            $filePerm[] = $permissions;
+                            $files[] = $filename;
+                            $fileOwner[] = $owner;
+                            $fileLastMod[] = $day . " " . $month . " " . $year_time;
+                            $fileSizes[] = $size;
+                        }
+                    }
+                }
+                $arrangerFold = arraytolowercase_standard($folders);
+                $arrangerFile = arraytolowercase_standard($files);
+                array_multisort($arrangerFold, $folders, $foldOwner, $foldLastMod);
+                array_multisort($arrangerFile, $files, $fileSizes, $fileOwner, $fileLastMod);
+                // Finished arranging the content, now print it out
+                if ($curFold == "") {
+                    $foldExplain = "/";
+                } else {
+                    $foldExplain = unfilterHTML($curFold);
+                    if (strlen($foldExplain) < 22) {
+                        $foldExplain = filterHTML($foldExplain);
+                    } else {
+                        $foldExplain = filterHTML(substr($foldExplain, 0, 7) . " (...) " . substr($foldExplain, strlen($foldExplain) -13));
+                    }
+                }
+                if ($action == "setView") {
+                    if ($param1 == "detailed") {
+                        $mode = "detailed";
+                    } else {
+                        $mode = "bigIcons";
+                    }
+                }
+                if ($mode != "detailed" && $mode != "bigIcons") {
+                    $mode = "bigIcons";
+                }
+                simple_start(11);
 ?>
 <body topmargin=0 leftmargin=0 marginwidth=0 marginheight=0 scroll=no>
 <table height=100% width=100% cellpadding=0 cellspacing=0>
@@ -853,23 +626,23 @@ simple_start(11);
 &nbsp; &nbsp; &nbsp; <?php echo $content[$lang]["msgs"][6]; ?>
 <br><br></div>
 <center>
-<form action="<?php echo scriptName; ?>?lang=<?php echo $lang; ?>&mode=<?php echo ($mode=="detailed"?"detailed":"bigIcons"); ?>" method=POST enctype=multipart/form-data>
+<form action="<?php echo scriptName; ?>?lang=<?php echo $lang; ?>&mode=<?php echo ($mode == "detailed" ? "detailed" : "bigIcons"); ?>" method=POST enctype=multipart/form-data>
 <?php echo $content[$lang]["msgs"][7]; ?><br>
 <input type=hidden name=MAX_FILE_SIZE value=<?php echo ulLimit_bytes; ?>>
 <input type=hidden name=sessID value=<?php echo $sessID; ?>>
 <input type=hidden name=curFold value="<?php echo $curFold; ?>">
 <input type=hidden name=action value="put">
 <input type=file name=uplFile size=10 style=font-family:verdana,arial,helvetica;font-size:11;color:#000000> <input type=submit value=<?php echo $content[$lang]["msgs"][8]; ?> style=font-family:verdana,arial,helvetica;font-size:11;color:#000000><br><br>
-<!--b><a href="<?php echo filterHTML(zip2ftp)."?host=".filterHTML($sessInfo["hostname"])."&user=".filterHTML($sessInfo["username"])."&port=".$sessInfo["port"]."&folder=".$curFold."&passive=".$sessInfo["passive"]; ?>" target=_blank onclick="alert('<?php echo $content[$lang]["msgs"][9]; ?>')"><?php echo $content[$lang]["msgs"][10]; ?></a></b-->
+<!--b><a href="<?php echo filterHTML(zip2ftp) . "?host=" . filterHTML($sessInfo["hostname"]) . "&user=" . filterHTML($sessInfo["username"]) . "&port=" . $sessInfo["port"] . "&folder=" . $curFold . "&passive=" . $sessInfo["passive"]; ?>" target=_blank onclick="alert('<?php echo $content[$lang]["msgs"][9]; ?>')"><?php echo $content[$lang]["msgs"][10]; ?></a></b-->
 </form></center>
 <div style=padding-left:10px>
 <div id=description style="background:#FFFFE1;width:220;border-right:#D3D3D3 1px solid;border-left:#D3D3D3 1px solid;border-top:#D3D3D3 1px solid;border-bottom:#D3D3D3 1px solid;padding-left:7px;padding-right:7px;padding-top:7px;padding-bottom:7px"><?php echo $content[$lang]["msgs"][11]; ?></div>
 <br><br>
-<a href="javascript:action('setView','<?php echo ($mode=="detailed"?"bigIcons":"detailed"); ?>')"><?php echo $content[$lang]["views"][$mode=="detailed"?4:3]; ?><br><br>
+<a href="javascript:action('setView','<?php echo ($mode == "detailed" ? "bigIcons" : "detailed"); ?>')"><?php echo $content[$lang]["views"][$mode == "detailed" ? 4 : 3]; ?><br><br>
 <a href="javascript:action('go','..')"><?php echo $content[$lang]["msgs"][12]; ?><br><br>
 <a href="javascript:action('go','/')"><?php echo $content[$lang]["msgs"][13]; ?><br><br>
 <a href="javascript:action()"><?php echo $content[$lang]["msgs"][14]; ?>
-<form action="<?php echo scriptName; ?>?lang=<?echo $lang; ?>&mode=<?php echo ($mode=="detailed"?"detailed":"bigIcons"); ?>" name=changeThings method=POST>
+<form action="<?php echo scriptName; ?>?lang=<? echo $lang; ?>&mode=<?php echo ($mode == "detailed" ? "detailed" : "bigIcons"); ?>" name=changeThings method=POST>
 <input type=hidden name=sessID value=<?php echo $sessID; ?>>
 <input type=hidden name=curFold value="<?php echo $curFold; ?>">
 <input type=hidden name=action value="">
@@ -886,19 +659,19 @@ simple_start(11);
 <script>
 function safePrint( str ){
 <?php
-	if($mode=="bigIcons"){
+                if ($mode == "bigIcons") {
 ?>
 	if(str.length>18){
 		str = str.substring(0,6)+" (...) "+str.substring(str.length-6,str.length)
 	}
 <?php
-	}else{
+                } else {
 ?>
 	if(str.length>40){
 		str = str.substring(0,17)+" (...) "+str.substring(str.length-17,str.length)
 	}
 <?php
-	}
+                }
 ?>
 	return str
 }
@@ -981,7 +754,7 @@ function explain(style,number){
 
 function refreshContents(){
 <?php
-	if($mode=="bigIcons"){
+                if ($mode == "bigIcons") {
 ?>
 	var i
 	var j=0
@@ -998,7 +771,7 @@ function refreshContents(){
 		if(!(j%jump)){ output+="</tr><tr valign=top>" }
 	}
 <?php
-	}else{
+                } else {
 ?>
 	var i
 	var color="#ffffff"
@@ -1011,7 +784,7 @@ function refreshContents(){
 		if(color=="#ffffff"){color="#f1f2f3"}else{color="#ffffff"}
 		output+="<tr valign=middle bgcolor="+color+"><td align=center><img src=img/file_small.gif></td><td><a onmouseover=explain('file',"+i+") onmouseout=explain() href=\"javascript:action('down','"+escapeSlashes(files[i][0])+"','')\"><b>"+safePrint(files[i][0])+"</b></a><br><a onmouseover=explain('file',"+i+") onmouseout=explain() href=\"javascript:var tmp=window.prompt('<?php echo $content[$lang]["msgs"][26]; ?>','"+escapeSlashes(files[i][0])+"');if(tmp!=null){action('rn','"+escapeSlashes(files[i][0])+"',tmp)}\"><?php echo $content[$lang]["msgs"][27]; ?></a> &nbsp; <a onmouseover=explain('file',"+i+") onmouseout=explain() href=\"javascript:if(window.confirm('<?php echo $content[$lang]["msgs"][32]; ?> ?')){action('rm','"+escapeSlashes(files[i][0])+"','')}\"><?php echo $content[$lang]["msgs"][31]; ?></a></td><td align=center>"+files[i][2]+"</td><td align=center>"+files[i][1]+"</td><td align=center>"+files[i][3]+"</td><td align=center><a onmouseover=explain('file',"+i+") onmouseout=explain() href=\"javascript:var tmp=window.prompt('<?php echo $content[$lang]["msgs"][28]; ?>','"+escapeSlashes(files[i][4])+"');if(tmp!=null){action('perm','"+escapeSlashes(files[i][0])+"',tmp)}\">"+files[i][4]+"</a></td></tr>"}
 <?php
-	}
+                }
 ?>
 	output+="</table>"
 	mainLayer.innerHTML=output
@@ -1028,28 +801,25 @@ var folders=new Array()
 var files=new Array()
 
 <?php
-
-	if(strlen($curFold)>1){
-		echo "folders[folders.length]=[\"..\"]\n";
-	}
-
-	for($i=0;$i<sizeof($folders);$i++){
-		echo "folders[folders.length]=[\"".addslashes(filterHTML($folders[$i]))."\",\"".addslashes(filterHTML($foldLastMod[$i]))."\",\"".addslashes(filterHTML($foldOwner[$i]))."\",\"".addslashes(filterHTML($foldPerm[$i]))."\"]\n";
-	}
-	for($i=0;$i<sizeof($files);$i++){
-		$currentFileSize=$fileSizes[$i]/1048576;
-		if($currentFileSize<1){
-			$currentFileSize*=1024;
-			$currentFileSize=substr("$currentFileSize",0,strpos("$currentFileSize",".")+3)." KB";
-		}elseif($currentFileSize>1024){
-			$currentFileSize/=1024;
-			$currentFileSize=substr("$currentFileSize",0,strpos("$currentFileSize",".")+3)." GB";
-		}else{
-			$currentFileSize=substr("$currentFileSize",0,strpos("$currentFileSize",".")+3)." MB";
-		}
-		echo "files[files.length]=[\"".addslashes(filterHTML($files[$i]))."\",\"".addslashes(filterHTML($fileLastMod[$i]))."\",\"$currentFileSize\",\"".addslashes(filterHTML($fileOwner[$i]))."\",\"".addslashes(filterHTML($filePerm[$i]))."\"]\n";
-	}
-
+                if (strlen($curFold) > 1) {
+                    echo "folders[folders.length]=[\"..\"]\n";
+                }
+                for ($i = 0;$i < sizeof($folders);$i++) {
+                    echo "folders[folders.length]=[\"" . addslashes(filterHTML($folders[$i])) . "\",\"" . addslashes(filterHTML($foldLastMod[$i])) . "\",\"" . addslashes(filterHTML($foldOwner[$i])) . "\",\"" . addslashes(filterHTML($foldPerm[$i])) . "\"]\n";
+                }
+                for ($i = 0;$i < sizeof($files);$i++) {
+                    $currentFileSize = $fileSizes[$i]/1048576;
+                    if ($currentFileSize < 1) {
+                        $currentFileSize*= 1024;
+                        $currentFileSize = substr("$currentFileSize", 0, strpos("$currentFileSize", ".") +3) . " KB";
+                    } elseif ($currentFileSize > 1024) {
+                        $currentFileSize/= 1024;
+                        $currentFileSize = substr("$currentFileSize", 0, strpos("$currentFileSize", ".") +3) . " GB";
+                    } else {
+                        $currentFileSize = substr("$currentFileSize", 0, strpos("$currentFileSize", ".") +3) . " MB";
+                    }
+                    echo "files[files.length]=[\"" . addslashes(filterHTML($files[$i])) . "\",\"" . addslashes(filterHTML($fileLastMod[$i])) . "\",\"$currentFileSize\",\"" . addslashes(filterHTML($fileOwner[$i])) . "\",\"" . addslashes(filterHTML($filePerm[$i])) . "\"]\n";
+                }
 ?>
 
 if(explainLayer && mainLayer && leftLayer){
@@ -1069,62 +839,56 @@ function onSelectStart() {
 document.onselectstart=onSelectStart
 </script>
 <?php
-				}else{
-
-					// Connection to the FTP server has failed
-					ftp_quit($conn_id);
-					session_name("sessID");
-					session_id($sessID);
-					session_start();
-					session_unset();
-					session_write_close();
-					session_start();
-					session_destroy();
-					setcookie(session_name(),"",0,"/");
-					login_form($content[$lang]["errorlist"][9]);
-				}
-		}else{
-			// IP mismatch... Session needs to be destroyed...
-			if($sessID){
-				session_name("sessID");
-				session_id($sessID);
-				session_start();
-				session_unset();
-				session_write_close();
-				session_start();
-				session_destroy();
-				setcookie(session_name(),"",0,"/");
-			}
-			if(strlen($sessInfo["ip"])>0){
-				login_form($content[$lang]["errorlist"][10]);
-			}else{
-				login_form($content[$lang]["errorlist"][11]);
-			}
-		}
-	}
-}else{
-	// The user didn't have any session ID, so is trying to log in
-	login_form();
+            } else {
+                // Connection to the FTP server has failed
+                ftp_quit($conn_id);
+                session_name("sessID");
+                session_id($sessID);
+                session_start();
+                session_unset();
+                session_write_close();
+                session_start();
+                session_destroy();
+                setcookie(session_name(), "", 0, "/");
+                login_form($content[$lang]["errorlist"][9]);
+            }
+        } else {
+            // IP mismatch... Session needs to be destroyed...
+            if ($sessID) {
+                session_name("sessID");
+                session_id($sessID);
+                session_start();
+                session_unset();
+                session_write_close();
+                session_start();
+                session_destroy();
+                setcookie(session_name(), "", 0, "/");
+            }
+            if (strlen($sessInfo["ip"]) > 0) {
+                login_form($content[$lang]["errorlist"][10]);
+            } else {
+                login_form($content[$lang]["errorlist"][11]);
+            }
+        }
+    }
+} else {
+    // The user didn't have any session ID, so is trying to log in
+    login_form();
 }
-
 // Compress output and send it
-if(ZIP_IT && !headers_sent()){
-	header('Content-Encoding: gzip');
-	$gzip_contents=ob_get_contents();
-	ob_end_clean();
-
-	$gzip_size=strlen($gzip_contents);
-	$gzip_crc=crc32($gzip_contents);
-
-	$gzip_contents=gzcompress($gzip_contents,9);
-	$gzip_contents=substr($gzip_contents,0,strlen($gzip_contents)-4);
-
-	echo "\x1f\x8b\x08\x00\x00\x00\x00\x00";
-	echo $gzip_contents;
-	echo pack('V',$gzip_crc);
-	echo pack('V',$gzip_size);
-}else{
-	ob_end_flush();
+if (ZIP_IT && !headers_sent()) {
+    header('Content-Encoding: gzip');
+    $gzip_contents = ob_get_contents();
+    ob_end_clean();
+    $gzip_size = strlen($gzip_contents);
+    $gzip_crc = crc32($gzip_contents);
+    $gzip_contents = gzcompress($gzip_contents, 9);
+    $gzip_contents = substr($gzip_contents, 0, strlen($gzip_contents) -4);
+    echo "\x1f\x8b\x08\x00\x00\x00\x00\x00";
+    echo $gzip_contents;
+    echo pack('V', $gzip_crc);
+    echo pack('V', $gzip_size);
+} else {
+    ob_end_flush();
 }
-
 ?>

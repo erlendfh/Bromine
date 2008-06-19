@@ -218,8 +218,7 @@ if ($sort == ''){
 if(!$lite){
 	echo "<div><input type='submit' value='".$lh->getText('Send to analysis')."' /></div>";
 }
-
+echo "</form>";
 ?>
-</form>
 </body>
 </html>

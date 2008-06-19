@@ -9,7 +9,7 @@
   $user=$_GET['user'];
   $pass=$_GET['pass'];
   
-  $dbh = new DBhandler();
+  $dbh = new DBHandler();
   $referer = $_SERVER['HTTP_REFERER'];
   $sitename=substr(strrchr($_SERVER['PHP_SELF'],'/'),1);
   $referersite=substr(strrchr($_SERVER['HTTP_REFERER'],'/'),1);

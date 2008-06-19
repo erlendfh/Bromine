@@ -1,8 +1,15 @@
-<?php  
+<?php
+	
+	if (mysql_result($dbh->select('TRM_defect_management',"WHERE `key` = 'useoutside'",'*'),0,"value") == 0){
+		$defectpage = 'showDefects.php';
+	} else {
+		$defectpage = mysql_result($dbh->select('TRM_defect_management',"WHERE `key` = 'viewurl'",'*'),0,"value");
+	}
+	
     $pages = array( 'main.php',
                     'analysis.php',
                     'showReqs.php',
-                    'showDefects.php'
+                    $defectpage
                     );
     $linktext = array(
                     'Raw data',

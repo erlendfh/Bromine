@@ -48,15 +48,15 @@ $highlight=$_SESSION['highlight'];
 $report = new reportHandler($id);
 $analysis = $report->get('analysis');
 $tl = new testList($id,$tShowPassed,$tShowFailed);
-echo "<table>";
-echo "<tr valign='top'>";
-echo "<td>";
-echo $report->getSummary();
-echo "</td>";
-echo "<td>";
 ?>
+<table>
+<tr valign='top'>
+<td>
+<?php echo $report->getSummary(); ?>
+</td>
+<td>
 
-<?php echo "<form method='post' action='?id=$id'>"; ?>
+<form method='post' action='?id= <?php echo $id ?>'>
   <fieldset style='border: none;'>
     <input type='hidden' name='notfirst' value='1' />
     <input type='checkbox' name='tShowPassed' value='1' <?php if($tShowPassed){echo "checked='checked'";}?>/>
@@ -153,6 +153,7 @@ echo "</table>";
 
 </body>
 </html>
+
 
 
 

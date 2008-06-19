@@ -219,6 +219,45 @@
       </fieldset>
       -->
       <fieldset style='width: 600px;'>
+        <legend style='cursor: pointer;' onclick="$('defect_management').toggle()"><?php echo $lh->getText('Defect management') ?></legend>
+        <div id='defect_management' style="display:none;">
+          <table>
+            <?php
+              $result = $dbh->select('TRM_defect_management',"WHERE `key` = 'useoutside'",'*');
+              $dms_key=mysql_result($result,0,"key");
+              $value=mysql_result($result,0,"value");
+              echo "<tr>";
+                echo "<td>";
+                echo "<input type='hidden' value='$dms_key' name='dms_useoutside' />";
+                echo $lh->getText('use outside defect system');
+              echo "</td>";
+              echo "<td><input type='text' name='dms_useoutside' value='$value' size='25' /></td>";
+              echo "</tr>";
+              $result = $dbh->select('TRM_defect_management',"WHERE `key` = 'viewurl'",'*');
+              $dms_key=mysql_result($result,0,"key");
+              $value=mysql_result($result,0,"value");
+              echo "<tr>";
+                echo "<td>";
+                echo "<input type='hidden' value='$dms_key' name='dms_viewurl' />";
+                echo $lh->getText('show defects url');
+              echo "</td>";
+              echo "<td><input type='text' name='dms_viewurl' value='$value' size='25' /></td>";
+              echo "</tr>";
+              $result = $dbh->select('TRM_defect_management',"WHERE `key` = 'addurl'",'*');
+              $dms_key=mysql_result($result,0,"key");
+              $value=mysql_result($result,0,"value");
+              echo "<tr>";
+                echo "<td>";
+                echo "<input type='hidden' value='$dms_key' name='dms_addurl' />";
+                echo $lh->getText('add defect url');
+              echo "</td>";
+              echo "<td><input type='text' name='dms_addurl' value='$value' size='25' /></td>";
+              echo "</tr>";
+            ?>
+          </table>
+        </div>
+      </fieldset>
+      <fieldset style='width: 600px;'>
         <legend style='cursor: pointer;' onclick="$('defect_type').toggle()"><?php echo $lh->getText('Type of defect') ?></legend>
         <div id='defect_type' style="display:none;">
           <table>

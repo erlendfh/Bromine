@@ -24,7 +24,8 @@
 
               $p_id = $_SESSION['p_id'];
               $u_id = $_SESSION['id'];
-              $p_name = $_SESSION['p_name'];              
+              $p_name = $_SESSION['p_name'];
+              $useoutsidedefects = mysql_result($dbh->select('TRM_defect_management',"WHERE `key` = 'useoutside'",'*'),0,"value");          
               if($p_id!=''){
                 echo "<tr align='left' style='background: #66CC00; color: white;'>
                         <th>".$lh->getText('Priority')."</th>
@@ -186,7 +187,7 @@
         <td style='background: rgb(211,211,211); width: 2px;'></td>
         <td>
       <?php
-  
+      if ($useoutsidedefects == 0){
       $inner = $lh->select('TRM_defects, TRM_type_of_defects, TRM_type_of_defect_status',"
       WHERE 
       TRM_type_of_defect_status.id = TRM_defects.status AND
@@ -207,9 +208,8 @@
           </tr>
       ";
       
-      
-      
       for ($a = 0; $a < $inner_num_row; $a++){
+      
       
       $status_short_description = mysql_result($inner,$a,"TRM_type_of_defect_status.name");
       $status_imgpath = mysql_result($inner,$a,"TRM_type_of_defect_status.imgpath");
@@ -287,7 +287,9 @@
           echo "</td>";
         echo "</tr>";
       
-      
+      }
+      } else {
+      	echo "<br /><center><a class='full' href='".mysql_result($dbh->select('TRM_defect_management',"WHERE `key` = 'viewurl'",'*'),0,"value")."' name='menulink'> ".$lh->getText('Show defects')." </a></center>";
       }
       echo "</table>";
 

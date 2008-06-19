@@ -9,20 +9,22 @@
     <?php include ('menu.php') ?>
     <?php include('projectsSubMenu.php'); ?>
     <?php
-
       $result = $dbh->select('TRM_projects','WHERE TRM_projects.ID!=1 ORDER BY name','*');
       $num = mysql_num_rows($result);
+    ?>
       
-      echo "<form action='saveProjects.php' method='post'>";
-        echo "<table>";
-          echo "<tr>";
-          echo "<th align='left'>".$lh->getText('Delete')."</th>";
-          echo "<th align='left'>".$lh->getText('Name')."</th>";
-          echo "<th align='left'>".$lh->getText('Description')."</th>";
-          echo "<th align='left'>".$lh->getText('Assigned to')."</th>";
-          echo "<th align='left'>".$lh->getText('Sites to test')."</th>";
-          
-          echo "</tr>";
+    <form action='saveProjects.php' method='post'>
+      <table>
+        <tr>
+        <th align='left'> <?php $lh->getText('Delete') ?></th>
+        <th align='left'> <?php $lh->getText('Name') ?></th>
+        <th align='left'> <?php $lh->getText('Description') ?> </th>
+        <th align='left'> <?php $lh->getText('Assigned to') ?> </th>
+        <th align='left'> <?php $lh->getText('Sites to test') ?> </th>
+        
+        </tr>
+        
+    	<?php
           for($i=0;$i<$num;$i++){
             $p_id         = mysql_result($result,$i,"id");
             $name         = mysql_result($result,$i,"name");
@@ -76,34 +78,34 @@
       
       <p><?php echo $lh->getText('Add project') ?></p>
       <div>
-        <?php
-            echo "<table>";
-              echo "<tr>";
+		<table>
+          <tr>
+              <?php 
               echo "<th align='left'>".$lh->getText('Name')."</th>";
               echo "<th align='left'>".$lh->getText('Description')."</th>";
               echo "<th align='left'>".$lh->getText('Assigned to')."</th>";
-              echo "</tr>";
-              echo "<tr valign='top'>";
-                echo "
-                <td align='left'>
-                  <input type='hidden' name='newp_id' />
-                  <input type='text' name='newname' />
-                </td>";
-                echo "<td align='left'><textarea cols='80' rows='8' name='newdescription'></textarea></td>";
-              echo "<td >";
-              echo "<select name='newassigned'>";
+              ?>
+          </tr>
+          <tr valign='top'>
+            <td align='left'>
+              <input type='hidden' name='newp_id' />
+              <input type='text' name='newname' />
+            </td>
+            <td align='left'><textarea cols='80' rows='8' name='newdescription'></textarea></td>
+              <td >
+                <select name='newassigned'>
+              <?php 
               echo "<option value=''>".$lh->getText('Choose')."</option>";
               for($x = 0; $x <$num_users; $x++){
                 $user_id = mysql_result($user_result, $x,'id');
                 $user_name = mysql_result($user_result, $x,'name');
                 echo "<option value='$user_id'>$user_name</option>";
-              }
-              echo "</select>";
-              echo "</td>";
+              } ?>
+              </select>
+              </td>
                 
-              echo "</tr>";
-            echo "</table>";
-        ?>
+              </tr>
+            </table>
       </div>
       <div><input type='submit' value='<?php echo $lh->getText('Submit'); ?>' /></div>
     </form>

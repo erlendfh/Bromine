@@ -227,7 +227,7 @@
   </form>
   
   <?php $url2='' ?>
-  <br><br>
+  <br /><br />
   
   
   <form method='get' action=''>
@@ -352,8 +352,8 @@
       </div>
     </fieldset>
   </form>
-  <br>
-  <br>
+  <br />
+  <br />
   
       <!--form method='get' action=''>
       <input type='hidden' name='which' value='reqdiv' />

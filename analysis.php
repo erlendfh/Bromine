@@ -214,8 +214,8 @@ echo "<p>".$lh->getText('Project').": <b>$projectName</b><br /><br /></p>";
   
 
 	echo "<div><input type='submit' value='".$lh->getText('Send to raw data')."' /></div>";
-
+	echo "</form>";
+	
 ?>
-</form>
 </body>
 </html>

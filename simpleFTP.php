@@ -78,7 +78,7 @@
         </table>
       </form>
       <?php if($getname!='' && $gettype!=''){ ?>
-        <form enctype="multipart/form-data" action='uploader.php' method='POST'>
+        <form enctype="multipart/form-data" action='uploader.php' method=post>
           <table>
           <tr>
             <td><?php echo $lh->getText('Choose a file to upload');?>:</td>
@@ -112,6 +112,6 @@
     </td>
     </tr>
     </table>
-    <div><a href='ftp.php'><?php echo $lh->getText('Advanced FTP functionality');?></a></div>
+    <div><a href='advanced_ftp.php'><?php echo $lh->getText('Advanced FTP functionality');?></a></div>
   </body>
 </html>

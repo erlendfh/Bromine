@@ -53,7 +53,14 @@
         </tr>
       </table>";
       echo "<div>";
-      echo "<button onclick=".'"'."window.open('editDefectPopup.php?t_id=$t_id','mitvindue2','height=750,width=620,resizable=no,scrolling=yes');return false;".'"'.">".$lh->getText('Add defect')."</button>";
+      
+      if (mysql_result($dbh->select('TRM_defect_management',"WHERE `key` = 'useoutside'",'*'),0,"value") == 0){
+        $adddefectpage = "editDefectPopup.php?t_id=$t_id";
+	  } else {
+	    $adddefectpage = mysql_result($dbh->select('TRM_defect_management',"WHERE `key` = 'addurl'",'*'),0,"value");
+	  }
+	  
+      echo "<button onclick=".'"'."window.open('$adddefectpage','mitvindue2','height=750,width=620,resizable=no,scrolling=yes');return false;".'"'.">".$lh->getText('Add defect')."</button>";
       if($t_status_org=='failed'){
         echo "<button onclick=".'"'."window.location='?t_id=$t_id&amp;action=passman&amp;status=$t_manstatus'".'"'.">";
         if($t_manstatus=='passed'){

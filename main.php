@@ -120,7 +120,7 @@ if (isset($_SESSION['timeDate1']) && $_SESSION['timeDate1'] != "$tdtxt") {
 if (isset($_SESSION['timeDate2']) && $_SESSION['timeDate2'] != "$tdtxt") {
     $select.= " AND timeDate <= '" . $_SESSION['timeDate2'] . "'";
 }
-$iddbh = new DBhandler();
+$iddbh = new DBHandler();
 //echo ">>$select<<<br />";
 $result = $iddbh->select('TRM_suite', "$select ORDER by $sortkey $sortdirection LIMIT $limit , $move", 'ID');
 //echo $iddbh->query;

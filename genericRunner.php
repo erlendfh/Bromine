@@ -468,10 +468,9 @@ if ($p_id != '') {
   </div>
   
   <?php
-    $which = $_GET['which'];
-    echo "<script type='text/javascript'>
-        $('$which').toggle();
-        </script>";
+    if (array_key_exists('which', $_GET)) {
+        echo "<script type='text/javascript'>$('{$_GET['which']}').toggle();</script>";
+    }
 }
 ?> 
   </body>

@@ -1,15 +1,15 @@
 <?php
 class DBHandler {
-    public $db;
+    private $db;
+    private $lang;
+    private $query;
     public $username;
     public $database;
     public $password;
     public $host;
-    public $lang;
-    public $query;
-    function __construct($l = 'en') {
+    function __construct($language='en') {
         require (dirname(dirname(__FILE__)) . '/config.php');
-        $this->lang = $l;
+        $this->lang = $language;
         $this->db = mysql_connect($this->host, $this->username, $this->password);
         mysql_select_db($this->database, $this->db);
     }
@@ -69,12 +69,18 @@ class DBHandler {
         $this->query = "SELECT $this->lang FROM TRM_lang WHERE langKey='$text'";
         $result = mysql_query($this->query) or die(mysql_error());
         $result = mysql_result($result, 0, $this->lang);
+        if ($result === FALSE) {
+            error_log('Bromine was unable to find translation for [' . $text. ']');
+            $result = $text;
+        }
         return $result;
     }
     function disconnect() {
         mysql_close($this->db) or die(mysql_error());
     }
-    function getdatabase() {
+
+    /** Accessor for debugging */
+    public function getDatabase() {
         return $this->database;
     }
     /**

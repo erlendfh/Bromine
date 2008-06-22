@@ -123,6 +123,10 @@ if (array_key_exists('action', $_POST) && $_POST['action'] == '1') {
         <td>admin</td>
       </tr>
     </table><br />
+    <p>User forums can be found here: <a href='http://clearspace.openqa.org/community/bromine'>http://clearspace.openqa.org/community/bromine</a></p>
+    <br />
+    <p>Documentation can be found here: <a href='http://wiki.openqa.org/display/BR/Home'>http://wiki.openqa.org/display/BR/Home</a></p>
+    <br />
     <a href='finished.php'>Click here to continue</a>";
 }
 ?>

@@ -40,7 +40,7 @@ if ($access) {
     header("Location: login.php");
     exit;
 }
-if (file_exists('install.php') || file_exists('sql.sql')) {
+if ((file_exists('install.php') || file_exists('sql.sql')) && !file_exists('im.dev')) {
     header("Location: login.php?errormsg=Please delete install.php and sql.sql");
     exit;
 }

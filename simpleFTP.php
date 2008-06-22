@@ -7,7 +7,10 @@
   </head>
   <body>
     <?php include 'menu.php';
-include 'testlabSubMenu.php'; ?>
+    $submenu = new BromineSubmenu();
+    $submenu->testLab();
+    $submenu->display();
+?>
     <p><?php echo $_GET['response']; ?></p>
     <?php
 $p_id = $_SESSION['p_id'];

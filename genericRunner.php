@@ -14,12 +14,12 @@
     </script>
   </head>
   <body>
-    <?php include ('menu.php') ?>
-    <?php include ('testlabSubMenu.php') ?>
-    <?php //include('portscan.php')
+    <?php 
+include ('menu.php');
+    $submenu = new BromineSubmenu();
+    $submenu->testLab();
+    $submenu->display();
 
-?>
-    <?php
 $p_id = $_SESSION['p_id'];
 $p_name = $_SESSION['p_name'];
 $user = $_SESSION['user'];
@@ -71,7 +71,7 @@ if ($p_id != '') {
     for ($i = 0;$i < $numreports;$i++) {
         $n_id = mysql_result($result, $i, "ID");
         $nodepath = mysql_result($result, $i, "nodepath");
-        echo "<td><span id='span$n_id'></span></td>";
+        echo "<td><span id='span$n_id'></span>";
         echo "
             <script type='text/javascript'>
             new Ajax.Updater('span$n_id' ,'portscan.php', {
@@ -80,6 +80,7 @@ if ($p_id != '') {
             });
             </script>";
     }
+    echo "</td>";
     echo "</tr>";
     echo "</table>";
     echo "</fieldset>";
@@ -131,7 +132,7 @@ if ($p_id != '') {
               </td>
             </tr>
             <tr>
-            <td>Vælg OS/Browser
+            <td><?php echo $lh->getText('choose os and browser'); ?>
             </td>
             <td>
             <?php
@@ -140,7 +141,7 @@ if ($p_id != '') {
               TRM_browser.ID = TRM_ReqsOSBrows.b_id", "*");
     $rnum_row = mysql_numrows($rresult);
     echo "<select name='OS_Browser' onchange='this.form.submit()'>";
-    echo "<option value=''>Vælg</option>";
+    echo "<option value=''>".$lh->getText('Choose')."</option>";
     for ($b = 0;$b < $rnum_row;$b++) {
         $OScur = mysql_result($rresult, $b, "OSname");
         $Browsercur = mysql_result($rresult, $b, "browsername");
@@ -231,7 +232,7 @@ if ($p_id != '') {
         echo "<input type='checkbox' name='tests[]' value='$testcasename' ";
         if (!file_exists("RC/rc-php/$p_name/$testcasename.php")) {
             echo "disabled='disabled' ";
-        } //HARDCODED!!!!!!!
+        } //TODO: HARDCODED!!!!!!!
         if (in_array($testcasename, $tests)) {
             echo "checked='checked'";
         }
@@ -245,7 +246,7 @@ if ($p_id != '') {
               </td>
             </tr>
             <tr>
-            <td>Vælg OS/Browser
+            <td><?php echo $lh->getText('choose os and browser'); ?>
             </td>
             <td>
             <?php
@@ -255,7 +256,7 @@ if ($p_id != '') {
               TRM_OS.id=TRM_nodes.o_id", "*");
         $rnum_row = mysql_numrows($rresult);
         echo "<select name='OS_Browser' onchange='this.form.submit()'>";
-        echo "<option value=''>Vælg</option>";
+        echo "<option value=''>".$lh->getText('Choose')."</option>";
         for ($b = 0;$b < $rnum_row;$b++) {
             $OScur = mysql_result($rresult, $b, "OSname");
             $Browsercur = mysql_result($rresult, $b, "browsername");
@@ -346,7 +347,7 @@ if ($p_id != '') {
         <legend onclick="$('datatestdiv').toggle()" style='cursor: pointer'>Data test</legend>
         <div id='datatestdiv' style="display:none;">
           <table>
-            VIRKER IKKE!!!!! Den er ikke lavet før vi er færdige med at flytte genericSuite osv.... VENT SLUT!
+            This is a major todo.
             <tr>
               <td>
                 <?php echo $lh->getText('Requirement'); ?>
@@ -386,7 +387,7 @@ if ($p_id != '') {
               </td>
             </tr>
             <tr>
-            <td>Vælg OS/Browser
+            <td><?php echo $lh->getText('choose os and browser'); ?>
             </td>
             <td>
             <?php
@@ -395,7 +396,7 @@ if ($p_id != '') {
               TRM_browser.ID = TRM_ReqsOSBrows.b_id", "*");
     $rnum_row = mysql_numrows($rresult);
     echo "<select name='OS_Browser' onchange='this.form.submit()'>";
-    echo "<option value=''>Vælg</option>";
+    echo "<option value=''>".$lh->getText('Choose')."</option>";
     for ($b = 0;$b < $rnum_row;$b++) {
         $OScur = mysql_result($rresult, $b, "OSname");
         $Browsercur = mysql_result($rresult, $b, "browsername");
@@ -475,25 +476,3 @@ if ($p_id != '') {
 ?> 
   </body>
 </html>
-<?php
-/*
-if($ready){
-echo "<br />";
-
-$result = $dbh->select('TRM_users','WHERE ID=1','*');
-$username=mysql_result($result,0,"name");
-$pass=mysql_result($result,0,"password");
-
-$lang=$_SESSION['lang'];
-
-$url=$_SERVER['SERVER_NAME'].'/'.$url;
-
-echo "<br />";
-echo "<br />";
-
-echo "<a onclick='changeIt(".'"'."linkcontainer".'"'.",".'"'.$url.'"'.")' style='cursor: pointer;'>".$lh->getText('Generate testlink')."</a>";
-$newurl=str_replace("&", "--!!--", $url);
-echo "<br /><a href='editCron.php?newurl=$newurl'>".$lh->getText('Plan test')."</a>";
-}
-*/
-?>

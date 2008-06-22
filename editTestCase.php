@@ -6,9 +6,11 @@
   	<link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <?php include ('menu.php') ?>
-    <?php
-include ('testlabSubMenu.php');
+    <?php 
+include ('menu.php');
+    $submenu = new BromineSubmenu();
+    $submenu->testLab();
+    $submenu->display();
 $p_id = $_SESSION['p_id'];
 $td_id = $_GET['td_id'];
 if ($td_id == '') {

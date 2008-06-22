@@ -6,9 +6,10 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <?php include ('menu.php') ?>
-    <?php
-include ('projectsSubMenu.php');
+    <?php include ('menu.php');
+    $submenu = new BromineSubmenu();
+    $submenu->projects();
+    $submenu->display();
 ?>
     
     <form action='saveRequirements.php' method='post'>

@@ -15,10 +15,13 @@
     </script>
   </head>
   <body>
-    <?php include ('menu.php') ?>
-    <?php $prepath = "";
-include ('testlabSubMenu.php') ?>
-    <?php
+    <?php 
+include ('menu.php');
+    
+    $submenu = new BromineSubmenu();
+    $submenu->testLab();
+    $submenu->display();
+
 $p_id = $_SESSION['p_id'];
 $referer = $_GET['referer'];
 $testsuite = $_GET['testsuite'];

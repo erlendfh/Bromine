@@ -30,7 +30,7 @@ class BromineUtilities {
             return htmlspecialchars($value, ENT_QUOTES);
         }
     }
-    public static function checkJavaServer($host, $port = 4444, $timeout = 10) {
+    public static function checkJavaServer($host, $port=4444, $timeout=1) {
         $fp = @fsockopen($host, $port, $errno, $errstr, $timeout);
         if ($fp) {
             fclose($fp);

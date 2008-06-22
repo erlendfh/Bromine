@@ -6,13 +6,15 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <?php $prepath = '';
+    <?php 
 include ('menu.php') ?>
-    <?php $prepath = '';
-include ('projectsSubMenu.php'); ?>
-    <?php
-$p_id = $_SESSION['p_id'];
-?>
+    <?php 
+        $submenu = new BromineSubmenu();
+        $submenu->projects();
+        $submenu->display();
+    
+        $p_id = $_SESSION['p_id'];
+    ?>
     
     <?php if ($p_id != '') { ?>
       <form action='saveHR.php' method='post'>

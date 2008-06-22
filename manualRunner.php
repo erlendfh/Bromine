@@ -7,9 +7,12 @@
   </head>
   <body>
   
-  <?php include ('menu.php') ?>
-  <?php include ('testlabSubMenu.php') ?>
-  <?php
+  <?php 
+include ('menu.php');
+    $submenu = new BromineSubmenu();
+    $submenu->testLab();
+    $submenu->display();
+
 $p_id = $_SESSION['p_id'];
 if ($p_id != '') {
     include_once ('phpSniff.class.php');
@@ -96,7 +99,7 @@ if ($p_id != '') {
     echo "</table>";
     echo "</form>";
 } else {
-    echo 'Vælg projekt!';
+    echo $lh->getText('Choose project');
 }
 ?>
   </body>

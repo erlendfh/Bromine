@@ -15,8 +15,11 @@
   	</script>
   </head>
   <body>
-    <?php include ('menu.php') ?>
-    <?php include ('testlabSubMenu.php'); ?>
+    <?php 
+include ('menu.php');
+$submenu = new BromineSubmenuTestlab();
+$submenu->display();
+?>
     <form action='saveCron.php' method='post' id='cronForm'>
       <table>
         <tr>

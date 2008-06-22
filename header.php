@@ -3,34 +3,23 @@
 //print_r($_SESSION);
 if (isset($_GET['errormsg'])) {
     $errormsg = $_GET['errormsg'];
-    echo "<SCRIPT type='text/javascript'>
-            alert('$errormsg')
-          </SCRIPT>
+    echo "
+    <script type='text/javascript'>
+        alert('$errormsg');
+    </script>
     ";
 }
-$lite_result = $dbh->select('TRM_config', 'WHERE var="lite_version"', 'value');
-if (mysql_result($lite_result, 0, 'value') == "1") {
-    $lite = 1;
-}
 ?>
-  <script type="text/javascript" src="js/curPage.js"></script>
   <script type="text/javascript" src="js/prototype.js"></script>
   <script type="text/javascript">
-    //window.onload=setTimeout("highLightCurPage()",100);
-  </script>
-  <script type="text/javascript">
-  <!--
     function validate(){
-      val_links="<div style='margin-top: 10px;'><div id='xhtml' style='display: inline'><a href='http://validator.w3.org/check/referer' title='Check the validity of this site&#8217;s XHTML'>xhtml</a></div>&nbsp;<div id='css' style='display: inline'><a href='http://jigsaw.w3.org/css-validator/check/referer' title='Check the validity of this site&#8217;s CSS'>css</a></div></div>";
-      document.body.innerHTML=document.body.innerHTML+val_links;
-      <?php if (!$w3) { ?>
+      var val_links="<div style='margin-top: 10px;'><div id='xhtml' style='display: inline'><a href='http://validator.w3.org/check/referer' title='Check the validity of this site&#8217;s XHTML'>xhtml</a></div>&nbsp;<div id='css' style='display: inline'><a href='http://jigsaw.w3.org/css-validator/check/referer' title='Check the validity of this site&#8217;s CSS'>css</a></div></div>";
+      document.body.innerHTML = document.body.innerHTML + val_links;
+      <?php if (isset($w3) && !$w3): ?>
         new Ajax.Updater('xhtml', 'validate.php?type=xhtml', { method: 'get' })
         new Ajax.Updater('css', 'validate.php?type=css', { method: 'get' })
-      <?php
-} ?>
+      <?php endif; ?>
     }
-    //window.onload=setTimeout("validate()",400);
-    -->
   </script>
   
   <?php
@@ -54,9 +43,6 @@ echo "<!--
   You should have received a copy of the GNU General Public License
   along with Bromine.  If not, see <http://www.gnu.org/licenses/>.
    -->";
-if (isset($_GET['error'])) {
-    echo "<h2 style='color: red;'>" . $_GET['error'] . "</h2>";
-}
 ?>
 <link rel="icon" href="img/logo.png" type="image/x-icon" />
 <link rel="shortcut icon" href="img/logo.png" type="image/x-icon" />

@@ -7,10 +7,12 @@
 <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
+<?php 
+include ('menu.php');
+    $submenu = new BromineSubmenu();
+    $submenu->testResultManager();
+    $submenu->display();
 
-<?php include ('menu.php') ?>
-<?php include ('TRMSubMenu.php') ?>
-<?php
 include_once ('distinctDropDown.php');
 $check = $_POST['check'];
 if ($check != '') {

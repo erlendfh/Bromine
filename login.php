@@ -80,18 +80,16 @@ if ($num > 0) {
                   <td>
                     <select name='language'>
                       <?php
-    $langresult = $dbh->select('TRM_langlist', '', '*');
-    $langnum = mysql_num_rows($langresult);
-    for ($u = 0;$u < $langnum;$u++) {
-        $abbrv = mysql_result($langresult, $u, 'abbrv');
-        $full = mysql_result($langresult, $u, 'full');
-        echo "<option value='$abbrv'";
-        if ($abbrv == 'en') {
-            echo " selected='selected'";
-        }
-        echo ">$full</option>";
-    }
-?>
+                            $langresult = $dbh->select('TRM_langlist', '', '*'); $langnum = mysql_num_rows($langresult); for ($u = 0;$u < $langnum;$u++) {
+                            $abbrv = mysql_result($langresult, $u, 'abbrv');
+                            $full = mysql_result($langresult, $u, 'full');
+                            echo "<option value='$abbrv'";
+                            if ($abbrv == 'en') {
+                                echo " selected='selected'";
+                            }
+                            echo ">$full</option>";
+                        }
+                    ?>
                     </select>
                   </td>
                 </tr>

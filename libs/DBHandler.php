@@ -68,8 +68,10 @@ class DBHandler {
     function getText($text) {
         $this->query = "SELECT $this->lang FROM TRM_lang WHERE langKey='$text'";
         $result = mysql_query($this->query) or die(mysql_error());
-        $result = mysql_result($result, 0, $this->lang);
-        if ($result === FALSE) {
+        $num = mysql_numrows($result);
+        if($num>0){
+            $result = mysql_result($result, 0, $this->lang);
+        }else{
             error_log('Bromine was unable to find translation for [' . $text. ']');
             $result = $text;
         }

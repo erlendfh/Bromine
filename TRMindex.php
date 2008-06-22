@@ -6,7 +6,11 @@
 	<link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <?php include ('menu.php') ?>
-    <?php include ('TRMSubMenu.php') ?>
+    <?php 
+include ('menu.php');
+    $submenu = new BromineSubmenu();
+    $submenu->testResultManager();
+    $submenu->display();
+?>
   </body>
 </html>

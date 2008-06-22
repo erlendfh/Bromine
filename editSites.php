@@ -7,9 +7,11 @@
     <script type="JavaScript" src="js/collapse_expand_single_item.js"></script>
   </head>
   <body>
-    <?php include ('menu.php') ?>
-    <?php
-include ('adminSubMenu.php');
+    <?php include ('menu.php');
+    $submenu = new BromineSubmenu();
+    $submenu->admin();
+    $submenu->display();    
+    
 $p_id = $_SESSION['p_id'];
 ?>
     

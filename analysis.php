@@ -7,9 +7,10 @@
 </head>
 <body>
 
-<?php include ('menu.php') ?>
-<?php include ('TRMSubMenu.php') ?>
-<?php
+<?php include ('menu.php');
+    $submenu = new BromineSubmenu();
+    $submenu->testResultManager();
+    $submenu->display();
 include_once ('distinctDropDown.php');
 $check = $_POST['check'];
 if ($check != '') {

@@ -6,10 +6,12 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     </head>
     <body>
-    <?php include ('menu.php') ?>
-    <?php include ('TRMSubMenu.php') ?>
+    <?php 
+include ('menu.php');
+    $submenu = new BromineSubmenu();
+    $submenu->testResultManager();
+    $submenu->display();
     
-    <?php
 if ($_POST['notfirst'] != '1') {
     $tShowPassed = 1;
     $tShowFailed = 1;
@@ -157,6 +159,7 @@ echo "</table>";
 
 </body>
 </html>
+
 
 
 

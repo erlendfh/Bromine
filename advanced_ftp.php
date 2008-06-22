@@ -6,7 +6,12 @@
   	<link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <?php include 'menu.php'; include 'testlabSubMenu.php';?>
+    <?php 
+    include 'menu.php'; 
+    $submenu = new BromineSubmenu();
+    $submenu->testLab();
+    $submenu->display();
+?>
     <iframe src='ftp.php' style='width: 1000px; height: 400px; border: none;'></iframe>
   </body>
 </html>

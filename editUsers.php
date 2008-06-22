@@ -6,8 +6,12 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <?php include ('menu.php') ?>
-    <?php include ('adminSubMenu.php'); ?>
+    <?php include ('menu.php');
+    $submenu = new BromineSubmenu();
+    $submenu->admin();
+    $submenu->display();   
+
+?>
     <form action='saveUsers.php' method='post'>
       <table>
         <tr valign='top'>

@@ -6,10 +6,9 @@
   	<link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <?php include 'menu.php';
-    $submenu = new BromineSubmenu();
-    $submenu->testLab();
-    $submenu->display();
+<?php 
+require 'menu.php';
+BromineSubmenu::renderTestLabSubmenu();
 ?>
     <p><?php echo $_GET['response']; ?></p>
     <?php

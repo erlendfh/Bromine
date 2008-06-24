@@ -7,10 +7,8 @@
   </head>
   <body>
     <?php 
-include ('menu.php');
-    $submenu = new BromineSubmenu();
-    $submenu->testLab();
-    $submenu->display();
+require 'menu.php';
+BromineSubmenu::renderTestLabSubmenu();
 $p_id = $_SESSION['p_id'];
 $td_id = $_GET['td_id'];
 if ($td_id == '') {

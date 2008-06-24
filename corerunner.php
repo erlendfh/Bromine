@@ -15,13 +15,9 @@
     </script>
   </head>
   <body>
-    <?php 
-include ('menu.php');
-    
-    $submenu = new BromineSubmenu();
-    $submenu->testLab();
-    $submenu->display();
-
+<?php 
+include 'menu.php';
+BromineSubmenu::renderTestLabSubmenu();
 $p_id = $_SESSION['p_id'];
 $referer = $_GET['referer'];
 $testsuite = $_GET['testsuite'];

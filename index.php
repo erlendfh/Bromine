@@ -12,7 +12,7 @@ include ('protected.php');
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-  <?php include ('menu.php'); ?>
+  <?php require 'menu.php'; ?>
     <table>
       <tr>
         <th style='width: 500px;'><?php echo $lh->getText('Reqs overview'); ?></th>  

@@ -7,11 +7,10 @@ class BromineSubmenu {
     private $pages;
     private $itemsPerRow;
     
-    
-    function __construct() {
-        global $lh;
-        $this->lh = $lh;
-        $this->itemsPerRow = 6;
+    function __construct($id, array $pages, $itemsPerRow=6) {
+        $this->pages = $pages;
+        $this->id = $id;
+        $this->itemsPerRow = $itemsPerRow;
     }
     
     public function display() {
@@ -39,56 +38,63 @@ class BromineSubmenu {
         }
     }
     
-    public function displayHeader() {
+    protected function displayHeader() {
         echo "<table class='subMenu'><tr>";
     }
-    public function displayFooter() {
+    
+    protected function displayFooter() {
         echo "</tr></table>";
     }
-    
-    public function projects(){
-        $this->pages = array(
-            'edit-projects' => array('editProjects.php', $this->lh->getText("Projects")), 
-            'edit-hr' => array('editHR.php', $this->lh->getText("HR")), 
-            'edit-requirements' => array('editRequirements.php', $this->lh->getText("Requirements"))
+
+    public static function renderProjectsSubmenu() {
+        global $lh;
+        $pages = array(
+            'edit-projects' => array('editProjects.php', $lh->getText("Projects")), 
+            'edit-hr' => array('editHR.php', $lh->getText("HR")), 
+            'edit-requirements' => array('editRequirements.php', $lh->getText("Requirements"))
         );
-        $this->id = 'projects';
+        $submenu = new BromineSubmenu('projects', $pages);
+        $submenu->display();
     }
     
-    public function testLab(){
-        $this->pages = array(
-            'testlab-testcases' => array('editTestCase.php', $this->lh->getText("Testcases")),
-            'testlab-testplan' => array('editTestPlan.php', $this->lh->getText("Test Plan") ),
-            'testlab-ftp' => array('simpleFTP.php', $this->lh->getText("Edit node tests")),
-            'testlab-core-suites' => array('editCoreSuites.php', $this->lh->getText("Edit core suites")),
-            'testlab-runner' => array('corerunner.php', $this->lh->getText("Testrunner core") ),
-            'testlab-nodes' => array('genericRunner.php', $this->lh->getText("Testrunner nodes")),
-            'testlab-manual-runner' => array('manualRunner.php', $this->lh->getText("Manual runner")),
+    public static function renderTestLabSubmenu() {
+        global $lh;
+        $pages = array(
+            'testlab-testcases' => array('editTestCase.php', $lh->getText("Testcases")),
+            'testlab-testplan' => array('editTestPlan.php', $lh->getText("Test Plan") ),
+            'testlab-ftp' => array('simpleFTP.php', $lh->getText("Edit node tests")),
+            'testlab-core-suites' => array('editCoreSuites.php', $lh->getText("Edit core suites")),
+            'testlab-runner' => array('corerunner.php', $lh->getText("Testrunner core") ),
+            'testlab-nodes' => array('genericRunner.php', $lh->getText("Testrunner nodes")),
+            'testlab-manual-runner' => array('manualRunner.php', $lh->getText("Manual runner")),
             //'testlab-cron' => array('editCron.php', $lh->getText('Schedule tests')),
         );
-        $this->id = 'testLab';
-        $this->itemsPerRow = 4;
+        $submenu = new BromineSubmenu('testLab', $pages, 4);
+        $submenu->display();
     }
     
-    public function testResultManager(){
-        $this->pages = array(
-            'trm-raw' => array('main.php', $this->lh->getText("Raw data")), 
-            'trm-analysis' => array('analysis.php', $this->lh->getText("Analysis")), 
-            'trm-reqs' => array('showReqs.php', $this->lh->getText("Show requirements")), 
-            'trm-defects' => array('showDefects.php', $this->lh->getText("Show defects")),
+    public static function renderTestResultManagerSubmenu() {
+        global $lh;
+        $pages = array(
+            'trm-raw' => array('main.php', $lh->getText("Raw data")), 
+            'trm-analysis' => array('analysis.php', $lh->getText("Analysis")), 
+            'trm-reqs' => array('showReqs.php', $lh->getText("Show requirements")), 
+            'trm-defects' => array('showDefects.php', $lh->getText("Show defects")),
         );
-        $this->id = 'testResultManager';
+        $submenu = new BromineSubmenu('testResultManager', $pages);
+        $submenu->display();
     }
     
-    public function admin(){
-        $this->pages = array(
-            'admin-users' => array('editUsers.php', $this->lh->getText("Edit users")), 
-            'admin-core-sites' => array('editSites.php', $this->lh->getText("Edit core sites")), 
-            'admin-nodes' => array('editNodes.php', $this->lh->getText("Edit nodes")), 
-            'admin-misc' => array('editMisc.php', $this->lh->getText("Edit misc")),
-            'admin-usertype-access' => array('editUserTypeAccess.php', $this->lh->getText("Edit usertype access"))
+    public static function renderAdminSubmenu() {
+        global $lh;
+        $pages = array(
+            'admin-users' => array('editUsers.php', $lh->getText("Edit users")), 
+            'admin-core-sites' => array('editSites.php', $lh->getText("Edit core sites")), 
+            'admin-nodes' => array('editNodes.php', $lh->getText("Edit nodes")), 
+            'admin-misc' => array('editMisc.php', $lh->getText("Edit misc")),
+            'admin-usertype-access' => array('editUserTypeAccess.php', $lh->getText("Edit usertype access"))
         );
-        $this->id = 'admin';
+        $submenu = new BromineSubmenu('admin', $pages);
+        $submenu->display();
     }
-
 }

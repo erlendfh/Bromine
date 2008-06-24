@@ -15,10 +15,8 @@
   </head>
   <body>
     <?php 
-include ('menu.php');
-    $submenu = new BromineSubmenu();
-    $submenu->testLab();
-    $submenu->display();
+require 'menu.php';
+BromineSubmenu::renderTestLabSubmenu();
 
 $p_id = $_SESSION['p_id'];
 $p_name = $_SESSION['p_name'];

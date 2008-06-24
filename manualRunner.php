@@ -8,11 +8,8 @@
   <body>
   
   <?php 
-include ('menu.php');
-    $submenu = new BromineSubmenu();
-    $submenu->testLab();
-    $submenu->display();
-
+require 'menu.php';
+BromineSubmenu::renderTestLabSubmenu();
 $p_id = $_SESSION['p_id'];
 if ($p_id != '') {
     include_once ('phpSniff.class.php');

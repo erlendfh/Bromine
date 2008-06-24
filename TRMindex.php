@@ -7,10 +7,8 @@
   </head>
   <body>
     <?php 
-include ('menu.php');
-    $submenu = new BromineSubmenu();
-    $submenu->testResultManager();
-    $submenu->display();
+require 'menu.php';
+BromineSubmenu::renderTestResultManagerSubmenu();
 ?>
   </body>
 </html>

@@ -7,10 +7,8 @@
     </head>
     <body>
     <?php 
-include ('menu.php');
-    $submenu = new BromineSubmenu();
-    $submenu->testResultManager();
-    $submenu->display();
+require 'menu.php';
+BromineSubmenu::renderTestResultManagerSubmenu();
     
 if ($_POST['notfirst'] != '1') {
     $tShowPassed = 1;
@@ -159,6 +157,7 @@ echo "</table>";
 
 </body>
 </html>
+
 
 
 

@@ -7,13 +7,10 @@
     <script type="text/javaScript" src="js/popup.js"></script>
   </head>
   <body>
-    <?php include ('menu.php');
-    $submenu = new BromineSubmenu();
-    $submenu->testResultManager();
-    $submenu->display();
-
+<?php 
+require 'menu.php';
+BromineSubmenu::renderTestResultManagerSubmenu();
 ?>
-
     <div id="object1" style="position:absolute; background-color: #FFFFDD; color:black; border-color:black; border-width:1px; visibility:visible; left:25px; top:-100px; z-index:1" onmouseover="Popup.over()" onmouseout="Popup.out()">
       pop up description layer
     </div>

@@ -7,14 +7,11 @@
   </head>
   <body>
     <?php 
-include ('menu.php') ?>
-    <?php 
-        $submenu = new BromineSubmenu();
-        $submenu->projects();
-        $submenu->display();
+require 'menu.php';
+BromineSubmenu::renderProjectsSubmenu();
     
-        $p_id = $_SESSION['p_id'];
-    ?>
+$p_id = $_SESSION['p_id'];
+?>
     
     <?php if ($p_id != '') { ?>
       <form action='saveHR.php' method='post'>

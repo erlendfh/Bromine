@@ -7,10 +7,8 @@
   </head>
   <body>
     <?php 
-include ('menu.php');
-    $submenu = new BromineSubmenu();
-    $submenu->testLab();
-    $submenu->display();
+require 'menu.php';
+BromineSubmenu::renderTestLabSubmenu();
 ?>
     <form action='saveTestPlan.php' method='post'>
       <table>

@@ -7,10 +7,8 @@
   </head>
   <body>
 <?php 
-include ('menu.php');
-    $submenu = new BromineSubmenu();
-    $submenu->admin();
-    $submenu->display();    
+require 'menu.php';
+BromineSubmenu::renderAdminSubmenu();
     
 $confirm = '"' . $lh->getText('confirmDelete') . '"';
 $dbh = new DBHandler();

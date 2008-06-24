@@ -6,10 +6,9 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <?php include ('menu.php');
-    $submenu = new BromineSubmenu();
-    $submenu->projects();
-    $submenu->display();
+<?php
+require 'menu.php';
+BromineSubmenu::renderProjectsSubmenu();
 ?>
     
     <form action='saveRequirements.php' method='post'>

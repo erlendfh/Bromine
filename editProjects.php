@@ -6,15 +6,13 @@
         <link rel="stylesheet" type="text/css" href="style.css" />
     </head>
     <body>
-        <?php 
-            include ('menu.php');
-            $submenu = new BromineSubmenu();
-            $submenu->projects();
-            $submenu->display();
+<?php 
+require 'menu.php';
+BromineSubmenu::renderProjectsSubmenu();
                 
-            $result = $dbh->select('TRM_projects', 'WHERE TRM_projects.ID!=1 ORDER BY name', '*');
-            $num = mysql_num_rows($result);
-        ?> 
+$result = $dbh->select('TRM_projects', 'WHERE TRM_projects.ID!=1 ORDER BY name', '*');
+$num = mysql_num_rows($result);
+?> 
         <form action='saveProjects.php' method='post'>
             <table>
                 <tr>

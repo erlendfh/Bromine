@@ -74,12 +74,20 @@ class BromineSubmenu {
     }
     
     public static function renderTestResultManagerSubmenu() {
+        global $dbh;
         global $lh;
+        $p_id = $_SESSION['p_id'];
+        if (mysql_result($dbh->select('TRM_projects', "WHERE ID='$p_id'", '*'), 0, "outsidedefects") == 0) {
+            $defectpage = 'showDefects.php';
+        } else {
+            $defectpage = mysql_result($dbh->select('TRM_projects', "WHERE ID='$p_id'", '*'), 0, "viewdefectsurl");
+        }
+        
         $pages = array(
             'trm-raw' => array('main.php', $lh->getText("Raw data")), 
             'trm-analysis' => array('analysis.php', $lh->getText("Analysis")), 
             'trm-reqs' => array('showReqs.php', $lh->getText("Show requirements")), 
-            'trm-defects' => array('showDefects.php', $lh->getText("Show defects")),
+            'trm-defects' => array("$defectpage", $lh->getText("Show defects")),
         );
         $submenu = new BromineSubmenu('testResultManager', $pages);
         $submenu->display();

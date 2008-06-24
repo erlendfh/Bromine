@@ -30,7 +30,7 @@ include ('protected.php');
 $p_id = $_SESSION['p_id'];
 $u_id = $_SESSION['id'];
 $p_name = $_SESSION['p_name'];
-$useoutsidedefects = mysql_result($dbh->select('TRM_defect_management', "WHERE `key` = 'useoutside'", '*'), 0, "value");
+$useoutsidedefects = @mysql_result($dbh->select('TRM_projects', "WHERE `id` = '$p_id'", '*'), 0, "outsidedefects");
 if ($p_id != '') {
     echo "<tr align='left' style='background: #66CC00; color: white;'>
                         <th>" . $lh->getText('Priority') . "</th>
@@ -264,7 +264,7 @@ if ($p_id != '') {
             echo "</tr>";
         }
     } else {
-        echo "<br /><center><a class='full' href='" . mysql_result($dbh->select('TRM_defect_management', "WHERE `key` = 'viewurl'", '*'), 0, "value") . "' name='menulink'> " . $lh->getText('Show defects') . " </a></center>";
+        echo "<br /><center><a class='full' href='" . mysql_result($dbh->select('TRM_projects', "WHERE `id` = '$p_id'", '*'), 0, "viewdefectsurl") . "' name='menulink'> " . $lh->getText('Show defects') . " </a></center>";
     }
     echo "</table>";
 ?>

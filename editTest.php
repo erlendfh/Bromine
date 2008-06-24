@@ -8,6 +8,7 @@
   <body>
   <?php
 $t_id = $_GET['t_id'];
+$p_id = $_SESSION['p_id'];
 if ($_GET['action'] == 'passman') {
     $t_manstatuscur = $_GET['status'];
     if ($t_manstatuscur == '') {
@@ -53,10 +54,10 @@ while ($row = mysql_fetch_array($result)) {
         </tr>
       </table>";
     echo "<div>";
-    if (mysql_result($dbh->select('TRM_defect_management', "WHERE `key` = 'useoutside'", '*'), 0, "value") == 0) {
+    if (mysql_result($dbh->select('TRM_projects', "WHERE `id` = '$p_id'", '*'), 0, "outsidedefects") == 0) {
         $adddefectpage = "editDefectPopup.php?t_id=$t_id";
     } else {
-        $adddefectpage = mysql_result($dbh->select('TRM_defect_management', "WHERE `key` = 'addurl'", '*'), 0, "value");
+        $adddefectpage = mysql_result($dbh->select('TRM_projects', "WHERE `id` = '$p_id'", '*'), 0, "adddefecturl");
     }
     echo "<button onclick=" . '"' . "window.open('$adddefectpage','mitvindue2','height=750,width=620,resizable=no,scrolling=yes');return false;" . '"' . ">" . $lh->getText('Add defect') . "</button>";
     if ($t_status_org == 'failed') {

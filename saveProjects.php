@@ -3,24 +3,33 @@
 $dbh = new DBHandler($_SESSION['lang']);
 $p_id = $_POST['p_id'];
 $name = $_POST['name'];
+$which = $_POST['which'];
 $description = $_POST['description'];
 $assigned = $_POST['assigned'];
 $newname = $_POST['newname'];
 if (strpbrk($newname, '\\/:?"*<>|') != false) {
     $error = $lh->getText("Name contains illegal characters");
-    header("Location: editProjects.php?error=$error#error");
-    break;
+    header("Location: editProjects.php?error=$error&which=$which#error");
+    exit;
 }
 $newdescription = $_POST['newdescription'];
 $newassigned = $_POST['newassigned'];
 $sitetotest = $_POST['sitetotest'];
 $sitetotestnew = $_POST['sitetotestnew'];
+$outsidedefects = $_POST['outsidedefects'];
+$viewdefectsurl = $_POST['viewdefectsurl'];
+$adddefecturl = $_POST['adddefecturl'];
 $num = count($p_id);
 for ($i = 0;$i < $num;$i++) {
     $oldname = mysql_result($dbh->select('TRM_projects', "WHERE ID='$p_id[$i]'", 'name'), 0, 'name');
     $dbh->update('TRM_projects', "name='$name[$i]',
     description='$description[$i]',
-    assigned='$assigned[$i]'", "ID='$p_id[$i]'");
+    assigned='$assigned[$i]',
+    adddefecturl='$adddefecturl[$i]',
+    viewdefectsurl='$viewdefectsurl[$i]'", "ID='$p_id[$i]'");
+    if (is_numeric($outsidedefects[$i])) {
+        $dbh->update('TRM_projects', "outsidedefects='$outsidedefects[$i]'", "ID='$p_id[$i]'");
+    }
     if ($oldname != $name[$i]) {
         $typeresult = $dbh->select('TRM_types', '', 'typename');
         $typenum = mysql_num_rows($typeresult);
@@ -73,9 +82,12 @@ if (strlen($newname) > 0 && strlen($newdescription) == 0) {
         $dbh->insert('TRM_projectList', "NULL,'$id','$np_id','0'", 'id, userID, projectID, access');
     }
 }
+if($newname){
+    $which=$newname;
+}
 if (isset($error)) {
-    header("Location: editProjects.php?error=$error#error");
+    header("Location: editProjects.php?error=$error&which=$which#$which");
 } else {
-    header("Location: editProjects.php#$np_id");
+    header("Location: editProjects.php?which=$which#fs$which");
 }
 ?>

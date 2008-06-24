@@ -371,9 +371,6 @@ $type_imgpath = $_POST['type_imgpath'];
 $tods_id = $_POST['tods_id'];
 $status_priority = $_POST['status_priority'];
 $status_imgpath = $_POST['status_imgpath'];
-$dms_useoutside = $_POST['dms_useoutside'];
-$dms_viewurl = $_POST['dms_viewurl'];
-$dms_addurl = $_POST['dms_addurl'];
 //defect type updater
 for ($i = 0;$i < count($tod_id);$i++) {
     $dbh->update('TRM_type_of_defects', "priority = '$type_priority[$i]', imgpath='$type_imgpath[$i]'", "ID = '$tod_id[$i]'");
@@ -442,11 +439,5 @@ if (strlen($newsitename) > 0) {
         $dbh->insert('TRM_usertype_access', "NULL,'$ut_id','$s_id', '0'", 'ID, ut_id, s_id, access');
     }
 }
-//DEFECT MANAGEMENT SYSTEM INFO
-if (is_numeric($dms_useoutside)) {
-    $dbh->update('TRM_defect_management', "`value`='$dms_useoutside'", "`key` = 'useoutside'");
-}
-$dbh->update('TRM_defect_management', "`value`='$dms_viewurl'", "`key` = 'viewurl'");
-$dbh->update('TRM_defect_management', "`value`='$dms_addurl'", "`key` = 'addurl'");
 header("Location: editMisc.php");
 ?>

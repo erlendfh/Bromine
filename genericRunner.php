@@ -75,7 +75,7 @@ if ($p_id != '') {
     for ($i = 0;$i < $numreports;$i++) {
         $n_id = mysql_result($result, $i, "ID");
         $nodepath = mysql_result($result, $i, "nodepath");
-        echo "<td><span id='span$n_id'></span>";
+        echo "<td><span id='span$n_id'><img src='img/none.png' width='15' height='15' /></span>";
         echo "
             <script type='text/javascript'>
             new Ajax.Updater('span$n_id' ,'portscan.php', {

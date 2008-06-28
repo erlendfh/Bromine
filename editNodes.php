@@ -72,7 +72,7 @@ for ($i = 0;$i < $numreports;$i++) {
                     </script>";
     echo "<tr valign='top'>";
     echo "<td>";
-    echo "<div id='div$n_id'></div>";
+    echo "<div id='div$n_id'><img src='img/none.png' width='15' height='15' /></div>";
     echo "</td>
                     <td id='$n_id'>
                       <input type='hidden' value='$n_id' name='n_id[]' />

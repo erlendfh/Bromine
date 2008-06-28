@@ -29,6 +29,22 @@ class DBHandler {
         }
     }
     /**
+     * Queries database with given SQL statement.
+     * Used to update the database as it should not die like the normal sql function
+     *
+     * @param string $sql SQL statement
+     * @return Resultset, or inserted ID.
+     */                        
+    function updateDB($sql) {
+        $this->query = $sql;
+        $result = mysql_query($this->query);
+        if (strpos($sql, 'REPLACE') !== false || strpos($sql, 'INSERT') !== false) {
+            return mysql_insert_id();
+        } else {
+            return $result;
+        }
+    }
+    /**
      * Thin wrapper around a SELECT statement.
      *
      * @param string $tableName Tablename in FROM clause.

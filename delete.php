@@ -3,6 +3,7 @@
 $back = $_GET['back'];
 $type = $_GET['type'];
 $id = $_GET['id'];
+
 function deletetestCase($id) {
     global $dbh;
     $dbh->delete("TRM_ReqsTests USING TRM_design_manual_test, TRM_ReqsTests", "
@@ -124,11 +125,22 @@ function deleteOSBrows($id) {
     global $dbh;
     $dbh->delete("TRM_ReqsOSBrows", "ID=$id");
 }
-$code = "delete$type($id);";
+function deleteDatafile($id){
+    $id = str_replace("..", "", $id);
+    unlink("$id");
+}
+
+$code = "delete$type('$id');";
 $error = true;
 switch ($type) {
     case 'attachment':
         if ($_SESSION['usertype'] == 3) {
+            eval($code);
+            $error = false;
+        }
+    break;
+    case 'Datafile':
+        if ($_SESSION['usertype'] == 3 || $_SESSION['usertype'] == 6 || $_SESSION['usertype'] == 5) {
             eval($code);
             $error = false;
         }

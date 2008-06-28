@@ -21,6 +21,8 @@
                 $dbh->update('TRM_users', "password='$pass'", "id='$id'");
             }
         }
+        //Revision 67
+        $dbh->sql("INSERT INTO trm_lang VALUES ('','Filename must not be empty', 'Filename must not be empty','','Filnavn må ikke være blankt','')");
         echo "Patching completed succesfully";
         
     }catch(Exception $error){

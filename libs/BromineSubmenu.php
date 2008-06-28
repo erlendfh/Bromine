@@ -79,10 +79,15 @@ class BromineSubmenu {
         global $dbh;
         global $lh;
         $p_id = $_SESSION['p_id'];
-        if (mysql_result($dbh->select('TRM_projects', "WHERE ID='$p_id'", '*'), 0, "outsidedefects") == 0) {
+        
+        if($p_id!=''){
+            if (mysql_result($dbh->select('TRM_projects', "WHERE ID='$p_id'", '*'), 0, "outsidedefects") == 0) {
+                $defectpage = 'showDefects.php';
+            } else {
+                $defectpage = mysql_result($dbh->select('TRM_projects', "WHERE ID='$p_id'", '*'), 0, "viewdefectsurl");
+            }
+        }else{
             $defectpage = 'showDefects.php';
-        } else {
-            $defectpage = mysql_result($dbh->select('TRM_projects', "WHERE ID='$p_id'", '*'), 0, "viewdefectsurl");
         }
         
         $pages = array(

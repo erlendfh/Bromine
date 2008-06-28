@@ -26,7 +26,7 @@
                 echo "<span>" . $lh->getText('Choose project') . ":</span> ";
                 echo "<span>";
                 echo "<select name='get' onchange='document.forms[" . '"' . "p_id_form" . '"' . "].submit()'>";
-                echo "<option value='nogo' disabled='disabled'>" . $lh->getText('Choose project') . "</option>";
+                echo "<option value='nogo'>" . $lh->getText('Choose project') . "</option>";
                 for ($i = 0;$i < $numreports;$i++) {
                     $p_id = mysql_result($result, $i, "id");
                     $p_name = mysql_result($result, $i, "name");

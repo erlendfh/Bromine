@@ -64,9 +64,11 @@ class BromineSubmenu {
             'testlab-testplan' => array('editTestPlan.php', $lh->getText("Test Plan") ),
             'testlab-ftp' => array('simpleFTP.php', $lh->getText("Edit node tests")),
             'testlab-core-suites' => array('editCoreSuites.php', $lh->getText("Edit core suites")),
+            'testlab-manage-data' => array('editData.php', $lh->getText("Manage data")),
             'testlab-runner' => array('corerunner.php', $lh->getText("Testrunner core") ),
             'testlab-nodes' => array('genericRunner.php', $lh->getText("Testrunner nodes")),
             'testlab-manual-runner' => array('manualRunner.php', $lh->getText("Manual runner")),
+            
             //'testlab-cron' => array('editCron.php', $lh->getText('Schedule tests')),
         );
         $submenu = new BromineSubmenu('testLab', $pages, 4);

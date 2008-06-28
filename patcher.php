@@ -3,12 +3,28 @@
     require('libs/DBHandler.php');
     $dbh = new DBHandler();
     
-    //Revision 61
-    $dbh->sql("
-    ALTER TABLE `trm_projects` ADD `outsidedefects` TINYINT( 1 ) NOT NULL ,
-    ADD `viewdefectsurl` VARCHAR( 256 ) NOT NULL ,
-    ADD `adddefecturl` VARCHAR( 256 ) NOT NULL ;"
-    );
+    try{
+        //Revision 61
+        $dbh->sql("
+        ALTER TABLE `trm_projects` ADD `outsidedefects` TINYINT( 1 ) NOT NULL ,
+        ADD `viewdefectsurl` VARCHAR( 256 ) NOT NULL ,
+        ADD `adddefecturl` VARCHAR( 256 ) NOT NULL ;"
+        );
+        
+        //Revision 64 - Updates your user passwords to md5 hashes.
+        $user_pass_result = $dbh->select('TRM_users', "", "*");
+        while ($row = mysql_fetch_array($user_pass_result)) {
+            $pass = $row['password'];
+            $id = $row['id'];
+            if(strlen($pass)!=32){ //Probably not md5
+                $pass=md5($pass);
+                $dbh->update('TRM_users', "password='$pass'", "id='$id'");
+            }
+        }
+        echo "Patching completed succesfully";
+        
+    }catch(Exception $error){
+        echo "Error: $error";
+    }
     
-    echo "If there was no errors above. It worked";
 ?>

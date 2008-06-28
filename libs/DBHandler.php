@@ -93,4 +93,30 @@ class DBHandler {
     public function getQuery() {
         return $query;
     }
+   /* Not working, for future implementation of AES encryption
+    private function getPassword($user){
+        return mysql_query("SELECT 'name', AES_DECRYPT(password,'1234567890') AS 'pwd' FROM trm_users WHERE name = '$user'");
+    }
+    
+    function verifyUser($name, $pass){
+        $result = $this->select('TRM_users',"WHERE name='$name' AND usertype > 2",'*');
+        if(mysql_num_rows($result) == 0){
+        	return false;
+        }
+        else{
+        	$gPassword = $this->getPassword($user);
+        	while($row = mysql_fetch_array($result)){
+            	echo $row['name']. " - ". $row['password'];
+            	echo "<br />";
+            }
+        	$gPassword = mysql_result($gPassword,0, 'pwd');
+        	echo "PWD = ".$gPassword;
+        	if($pass == $gPassword){
+        		return $result;
+        	}
+        	else{
+        		return false;
+        	}
+        }
+    }*/
 }

@@ -1,45 +1,53 @@
 <?php
-include_once ('error_reporting.php'); //Sets error level to E_ALL ^ E_NOTICE
-//Handles login/logout. Login is session based. If nothing passed to login.php it shows login form.
-require_once 'libs/BromineClassLoader.php';
-$dbh = new DBHandler();
-//Utility function to have array access with default value.
-function arrayGet($key, $array, $default = '') {
-    return array_key_exists($key, $array) ? $array[$key] : $default;
-}
-$name = arrayGet('name', $_REQUEST);
-$pass = arrayGet('pass', $_REQUEST);
-$lang = arrayGet('language', $_REQUEST);
-$action = arrayGet('action', $_REQUEST);
-$num = 0;
-if ($name != "" && $pass != "") {
-    $result = $dbh->select('TRM_users', "WHERE name='$name' AND password LIKE BINARY '$pass' AND usertype > 2", '*');
-    $num = mysql_numrows($result);
-    if ($num > 0) {
-        $id = mysql_result($result, 0, 'id');
-        $usertype = mysql_result($result, 0, 'usertype');
-        $lastLogin = mysql_result($result, 0, 'lastLogin');
-        session_name('Bromine');
-        session_start();
-        $_SESSION['auth'] = "logged";
-        $_SESSION['user'] = $name;
-        $_SESSION['id'] = $id;
-        $_SESSION['usertype'] = $usertype;
-        $_SESSION['lang'] = $lang;
-        $_SESSION['lastLogin'] = $lastLogin;
-        $_SESSION['pass'] = md5($pass);
-        $_SESSION['usertypename'] = mysql_result($dbh->select('TRM_usertypes', "WHERE ID='$usertype'", 'name'), 0, 'name');
-        $dbh->update('TRM_users', "lastLogin = NOW()", "ID=$id");
-        if (isset($_REQUEST['directgo'])) {
-            $directgo = $_REQUEST['directgo'];
-            header("Location: $directgo");
-        } else {
-            header("Location: index.php");
-        }
-        exit;
-    } else {
-        echo $dbh->getText('no login');
+  include_once('error_reporting.php'); //Sets error level to E_ALL ^ E_NOTICE
+  //Handles login/logout. Login is session based. If nothing passed to login.php it shows login form. 
+  require_once 'libs/BromineClassLoader.php'; 
+  $dbh = new DBHandler();
+
+  //Utility function to have array access with default value.
+  function arrayGet($key, $array, $default='') {
+      return array_key_exists($key, $array) ? $array[$key] : $default;
+  }
+  
+  $name = arrayGet('name', $_REQUEST);
+  $pass = arrayGet('pass', $_REQUEST);
+  $lang = arrayGet('language', $_REQUEST);
+  $action = arrayGet('action', $_REQUEST);
+  
+  $num = 0;
+  if ($name != "" && $pass != ""){
+    $pass = md5($pass);
+    $result = $dbh->select('TRM_users',"WHERE name='$name' AND password = '$pass' AND usertype > 2",'*');
+    $num=mysql_numrows($result);
+    if ($num != 0){
+      $id = mysql_result($result, 0, 'id');
+  	  $usertype = mysql_result($result, 0, 'usertype');
+  	  $lastLogin = mysql_result($result, 0, 'lastLogin');
+  	  session_name('Bromine');
+  	  session_start();
+      $_SESSION['auth']="logged";
+      $_SESSION['user']=$name;
+      $_SESSION['id']=$id;
+      $_SESSION['usertype']=$usertype;
+      $_SESSION['lang']=$lang;
+      $_SESSION['lastLogin']=$lastLogin;
+      $_SESSION['pass']=md5($pass);
+      $_SESSION['usertypename']=mysql_result($dbh->select('TRM_usertypes',"WHERE ID='$usertype'",'name'), 0, 'name');	
+      
+      $dbh->update('TRM_users',"lastLogin = NOW()","ID=$id");
+      
+      if(isset($_REQUEST['directgo'])){
+        $directgo=$_REQUEST['directgo'];
+        header("Location: $directgo");
+      }
+      else{
+        header("Location: index.php");
+      }
+      exit;
+    }else{
+        echo $dbh->getText('Wrong login');
     }
+    
 }
 if ($action == "logout") {
     session_name('Bromine');

@@ -41,7 +41,7 @@ for ($i = 0;$i < $num;$i++) {
                       <input type='text' name='name[]' value='$name' /></td>";
     echo "<td><input type='text' name='firstname[]' value='$firstname' /></td>";
     echo "<td><input type='text' name='lastname[]' value='$lastname' /></td>";
-    echo "<td><input type='text' name='password[]' value='$password' /></td>";
+    echo "<td><input type='text' name='password[]' size='45' value='$password' /></td>";
     echo "<td>";
     echo "<select name='ut_id[]'>";
     for ($u = 0;$u < $usertypenum;$u++) {
@@ -67,7 +67,7 @@ for ($i = 0;$i < $num;$i++) {
           <td><input type='text' name='newname' /></td>
           <td><input type='text' name='newfirstname' /></td>
           <td><input type='text' name='newlastname' /></td>
-          <td><input type='text' name='newpassword' /></td>
+          <td><input type='text' size="45" name='newpassword' /></td>
           <td>
             <select name='newut_id'>
               <?php

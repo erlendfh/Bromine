@@ -1,4 +1,5 @@
 <?php
+require('libs/DBHandler.php');
 $dbh = new DBHandler();
 function between($beg, $end, $str, $multiple = true) {
     $a = explode($beg, substr($str, strpos($str, $beg) +strlen($beg)));

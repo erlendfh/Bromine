@@ -31,15 +31,15 @@ for ($i = 0;$i < $num;$i++) {
         $dbh->update('TRM_projects', "outsidedefects='$outsidedefects[$i]'", "ID='$p_id[$i]'");
     }
     if ($oldname != $name[$i]) {
-        if($oldname==$_SESSION['p_name']){
-            $_SESSION['p_id']='';
-            $_SESSION['p_name']='';
-        }
         $typeresult = $dbh->select('TRM_types', '', 'typename');
         $typenum = mysql_num_rows($typeresult);
         for ($a = 0;$a < $typenum;$a++) {
             $typename = mysql_result($typeresult, $a, 'typename');
             rename("RC/$typename/$oldname", "RC/$typename/$name[$i]");
+        }
+        
+        if($oldname==$_SESSION['p_name']){
+            $_SESSION['p_name']=$name[$i];
         }
     }
 }

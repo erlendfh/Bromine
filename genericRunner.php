@@ -137,6 +137,7 @@ if ($p_id != '') {
             </tr>
             <tr>
             <td><?php echo $lh->getText('choose os and browser'); ?>
+            Probably needs work. Should be like 'run tests'
             </td>
             <td>
             <?php
@@ -266,8 +267,7 @@ if ($p_id != '') {
             $Browsercur = mysql_result($rresult, $b, "browsername");
             $browser_id = mysql_result($rresult, $b, "TRM_browser.ID");
             $os_id = mysql_result($rresult, $b, "TRM_OS.ID");
-            $noderesult = $dbh->select('TRM_nodes', "WHERE o_id = $os_id", 'ID');
-            $node_id = mysql_result($noderesult, 0, "ID");
+            $node_id = mysql_result($rresult, $b, "TRM_nodes.ID");
             $node_description = mysql_result($rresult, $b, "TRM_nodes.description");
             $nodepath = mysql_result($rresult, $b, "TRM_nodes.nodepath");
             echo "<option value='$node_id,$browser_id' ";
@@ -380,6 +380,7 @@ if ($p_id != '') {
                         echo "onclick='this.form.submit()'/> $testcasename";
                         if (in_array($testcasename, $tests)) {
                             echo "<select name='getdatafile[$testcasename]' onchange='this.form.submit()'>";
+                            echo "<option>".$lh->getText('Choose')."</option>";
                             foreach($datafiles as $datafile){
                                 echo "<option value='$datafile' ";
                                 if($getdatafile[$testcasename]==$datafile){

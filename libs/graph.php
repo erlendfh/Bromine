@@ -41,10 +41,12 @@ class graph {
     }
     function doMath() { // BEGIN function doMath
         $totalNum = $this->numPassed+$this->numManuallyPassed+($this->numFailed) +$this->numErrors;
-        $this->numPassedPro = round($this->numPassed/$totalNum*100);
-        $this->numFailedPro = round($this->numFailed/$totalNum*100);
-        $this->numErrorsPro = round($this->numErrors/$totalNum*100);
-        $this->numManPassedPro = round($this->numManuallyPassed/$totalNum*100);
+        try{
+            $this->numPassedPro = round($this->numPassed/$totalNum*100);
+            $this->numFailedPro = round($this->numFailed/$totalNum*100);
+            $this->numErrorsPro = round($this->numErrors/$totalNum*100);
+            $this->numManPassedPro = round($this->numManuallyPassed/$totalNum*100);
+        }catch(Exception $e){}
     } // END function doMath
     
 }

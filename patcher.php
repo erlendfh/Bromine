@@ -11,7 +11,7 @@
     try{
         //Revision 61
         $dbh->updateDB("
-        ALTER TABLE `trm_projects` ADD `outsidedefects` TINYINT( 1 ) NOT NULL ,
+        ALTER TABLE `TRM_projects` ADD `outsidedefects` TINYINT( 1 ) NOT NULL ,
         ADD `viewdefectsurl` VARCHAR( 256 ) NOT NULL ,
         ADD `adddefecturl` VARCHAR( 256 ) NOT NULL ;"
         );
@@ -36,7 +36,7 @@
     
     try{
         //Revision 67
-        $dbh->updateDB("INSERT INTO trm_lang VALUES ('','Filename must not be empty', 'Filename must not be empty','','Filnavn må ikke være blankt','')");
+        $dbh->updateDB("INSERT INTO TRM_lang VALUES ('','Filename must not be empty', 'Filename must not be empty','','Filnavn må ikke være blankt','')");
         echo "Patching completed succesfully";       
     }catch(Exception $error){
         echo "Error: $error";

@@ -198,7 +198,8 @@ if ($p_id != '') {
         $url = "testRunnerRC.php?test=genericSuite.php&type=$type&n_id=$n_id&b_id=$b_id&datafile=$datafile&user=$user&pass=$pass&p_id=$p_id&p_name=$p_name&sitetotest=$sitetotest&suitename=$suitename&lang=$lang";
         for ($i = 0;$i < count($test);$i++) {
             $url2.= "&tests[]=$test[$i]";
-        }
+        }       
+        
         //$url2 = $url2;
         $url.= $url2;
         echo "<button id='runReq' onclick='window.open(" . '"' . $url . '"' . "); alert(" . '"' . $noclosemsg . '"' . ")'>" . $lh->getText('Run test') . "</button>";
@@ -218,7 +219,7 @@ if ($p_id != '') {
   <?php $url2 = '' ?>
   <br /><br />
   
-  
+ 
   <form method='get' action=''>
   <input type='hidden' name='which' value='multitest' />
     <fieldset style='width: 600px;'> 
@@ -231,8 +232,9 @@ if ($p_id != '') {
               </td>
               <td>
                 <?php
-    $testcaseresult = $dbh->select('TRM_design_manual_test', "WHERE p_id=$p_id", "*");
+    $testcaseresult = $dbh->select('TRM_design_manual_test', "WHERE p_id=$p_id ORDER BY name", "*"); echo $dbh->getQuery();
     while ($row = mysql_fetch_array($testcaseresult)) {
+    $b++;
         $testcasename = $row['name'];
         echo "<input type='checkbox' name='tests[]' value='$testcasename' ";
         if (!file_exists("RC/rc-php/$p_name/$testcasename.php")) {
@@ -241,7 +243,7 @@ if ($p_id != '') {
         if (in_array($testcasename, $tests)) {
             echo "checked='checked'";
         }
-        echo "onclick='this.form.submit()'/> $testcasename<br />";
+        echo "onclick='this.form.submit()'/>$b:  $testcasename<br />";
     }
     $num_tests = mysql_num_rows($testcaseresult);
     if ($num_tests == 0) {
@@ -306,11 +308,13 @@ if ($p_id != '') {
               <td>
               <?php
     if (count($tests) > 0 && $OS_Browser != '' && $sitetotest != '') {
-        $suitename = 'multitest';
+        //$suitename = 'multitest';
+        $suitename = implode(' - ', $tests);
+        
         if (isset($_GET['suitename'])) {
             $suitename = $_GET['suitename'];
         }
-        echo "<input type='text' name='suitename' value='$suitename' onblur='this.form.submit()'/>";
+        echo "<input type='text' size='9' name='suitename' value='$suitename' onblur='this.form.submit()'/>";
     }
 ?>
               </td>
@@ -327,10 +331,11 @@ if ($p_id != '') {
         $lala = explode(',', $OS_Browser);
         $n_id = $lala[0];
         $b_id = $lala[1];
-        $url = "testRunnerRC.php?test=genericSuite.php&type=$type&n_id=$n_id&b_id=$b_id&datafile=$datafile&user=$user&pass=$pass&p_id=$p_id&p_name=$p_name&sitetotest=$sitetotest&suitename=$suitename&lang=$lang";
+        $url = "testRunnerRC.php?test=genericSuite.php&type=$type&n_id=$n_id&b_id=$b_id&user=$user&pass=$pass&p_id=$p_id&p_name=$p_name&sitetotest=$sitetotest&suitename=$suitename&lang=$lang";
         for ($i = 0;$i < count($tests);$i++) {
             $url2.= "&tests[]=$tests[$i]";
         }
+        
         //$url2 = urlencode($url2);
         $url.= $url2;
         echo "<button id='runMultiple' onclick='window.open(" . '"' . $url . '"' . "); alert(" . '"' . $noclosemsg . '"' . ")'>" . $lh->getText('Run test') . "</button>";
@@ -367,7 +372,7 @@ if ($p_id != '') {
                         }
                         closedir($handle);
                     }
-                    $testcaseresult = $dbh->select('TRM_design_manual_test', "WHERE p_id=$p_id", "*");
+                    $testcaseresult = $dbh->select('TRM_design_manual_test', "WHERE p_id=$p_id ORDER By name", "*");
                     while ($row = mysql_fetch_array($testcaseresult)) {
                         $testcasename = $row['name'];
                         echo "<input type='checkbox' name='tests[]' value='$testcasename' ";
@@ -377,7 +382,8 @@ if ($p_id != '') {
                         if (in_array($testcasename, $tests)) {
                             echo "checked='checked'";
                         }
-                        echo "onclick='this.form.submit()'/> $testcasename";
+                        $x++;
+                        echo "onclick='this.form.submit()'/>$x: $testcasename";
                         if (in_array($testcasename, $tests)) {
                             echo "<select name='getdatafile[$testcasename]' onchange='this.form.submit()'>";
                             echo "<option>".$lh->getText('Choose')."</option>";
@@ -477,10 +483,14 @@ if ($p_id != '') {
         $lala = explode(',', $OS_Browser);
         $n_id = $lala[0];
         $b_id = $lala[1];
-        $url = "testRunnerRC.php?test=genericSuite.php&type=$type&n_id=$n_id&b_id=$b_id&datafile=$datafile&user=$user&pass=$pass&p_id=$p_id&p_name=$p_name&sitetotest=$sitetotest&suitename=$suitename&lang=$lang";
+        $url = "testRunnerRC.php?test=genericSuite.php&type=$type&n_id=$n_id&b_id=$b_id&user=$user&pass=$pass&p_id=$p_id&p_name=$p_name&sitetotest=$sitetotest&suitename=$suitename&lang=$lang";
         for ($i = 0;$i < count($tests);$i++) {
             $url2.= "&tests[]=$tests[$i]";
         }
+        foreach ($getdatafile as $value){
+            $url2.= "&datafile[]=$value";
+        }
+ 
         //$url2 = urlencode($url2);
         $url.= $url2;
         echo "<button id='runMultiple' onclick='window.open(" . '"' . $url . '"' . "); alert(" . '"' . $noclosemsg . '"' . ")'>" . $lh->getText('Run test') . "</button>";

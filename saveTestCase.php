@@ -30,6 +30,7 @@ Array
 )
 */
 $p_id = $_SESSION['p_id'];
+$p_name = $_SESSION['p_name'];
 $td_id = $in['td_id'];
 $tc_description = $in['tc_description'];
 if ($td_id == 'new') {
@@ -54,7 +55,29 @@ if (is_array($orderby)) {
     }
 }
 if ($tc_name != '' && $p_id != '') {
+    $oldNameResult = $dbh->select('TRM_design_manual_test', "WHERE ID='$td_id'", '*');
+    while ($row = mysql_fetch_array($oldNameResult)) {
+        $oldName = $row['name'];
+    }
     $td_id = $dbh->sql("REPLACE INTO TRM_design_manual_test VALUES('$td_id','$tc_name','$p_id','$tc_description')");
+    $typeresult = $dbh->select('TRM_types', '', '*');
+    while ($row = mysql_fetch_array($typeresult)) {
+        $types[] = $row['typename'];
+    }
+    foreach($types as $type){
+        //HARDCODED!!
+        if($oldName!='' && file_exists("RC/$type/$p_name/$oldName.php")){
+            rename("RC/$type/$p_name/$oldName.php","RC/$type/$p_name/$tc_name.php");
+            
+            $file_name_total = "RC/$type/$p_name/$tc_name.php";
+            
+            $content = file_get_contents($file_name_total);
+            $content2 = str_replace("class $oldName", "class $tc_name", $content);
+            $handle = fopen($file_name_total, 'w') or die("can't open file");
+            fwrite($handle, $content2);
+            fclose($handle);
+        }
+    }
 } else {
     $error = $lh->getText('Test name') . " " . $lh->getText('is missing');
 }

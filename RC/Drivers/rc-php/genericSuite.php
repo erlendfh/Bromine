@@ -22,7 +22,6 @@
   Indtastes UDEN .php endelsen
   HUSK: Case sensitive  
   */
-  print_r($_GET['tests']);
   $ntest = false;
   if(isset($_GET['tests'])){
     if (is_array($_GET['tests'])){

@@ -22,7 +22,7 @@
   Indtastes UDEN .php endelsen
   HUSK: Case sensitive  
   */
-  
+  print_r($_GET['tests']);
   $ntest = false;
   if(isset($_GET['tests'])){
     if (is_array($_GET['tests'])){
@@ -35,7 +35,18 @@
   }
   
   //Datatest Kneppes motorsavsmasakre!
-  /*
+  $datatest = false;
+  if(isset($_GET['datafile'])){
+    if (is_array($_GET['datafile'])){
+      $datafile = $_GET['datafile']; 
+      //print_r($datafile);
+    }
+    else{
+      $datafile = array($_GET['datafile']);
+    }
+    $datatest = true;
+  }
+  /* Using old textparser
   $datatest = false;
   if(isset($_GET['datafile'])){
     echo "i think it's a datatest";
@@ -71,7 +82,8 @@
   $countTests = 0;
   $countCommands = 0;
   
-  if($ntest == true){
+  if($ntest == true && $datatest == false){
+
     for ($i = 0;$i<count($tests);$i++){
       if(file_exists("../../$type/$p_name/".$tests[$i].".php")){
       include_once "../../$type/$p_name/".$tests[$i].".php";  
@@ -86,11 +98,32 @@
         $countTests++;
       }
       catch(Exception $e){}
-      }else{echo "File ../../$type/$p_name/$tests[$i].php does not exist!";}
+      }
+      else{echo "File ../../$type/$p_name/$tests[$i].php does not exist!";}
     }
   }
+
+  if($ntest == true && $datatest == true){
+    for ($i = 0;$i<count($tests);$i++){
+      if(file_exists("../../$type/$p_name/".$tests[$i].".php")){
+      include_once "../../$type/$p_name/".$tests[$i].".php";  
+      try{
+        $dt[$i] = new $tests[$i]();
+        $dt[$i]->setUp($s_id, "../../$type/$p_name/data/".$datafile[$i]);
+        $dt[$i]->testMyTestCase();
+        $result = $dt[$i]->tearDown();
+        $test = $result->getTest();
+        $countCommands += $test->countCommands();
+        $suite->addTest($test);
+        $countTests++;
+      }
+      catch(Exception $e){echo "Most likely some of your tests aren't datatests.";}
+    }
+  }
+  }
+
   
-  /*
+  /* Using old textfileparser
   // Mere datatest crap
   if($datatest == true){
     for ($x = 0; $x<count($dos);$x++){

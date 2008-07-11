@@ -314,7 +314,7 @@ if ($p_id != '') {
         if (isset($_GET['suitename'])) {
             $suitename = $_GET['suitename'];
         }
-        echo "<input type='text' size='9' name='suitename' value='$suitename' onblur='this.form.submit()'/>";
+        echo "<input type='text' size='20' name='suitename' value='$suitename' onblur='this.form.submit()'/>";
     }
 ?>
               </td>
@@ -462,11 +462,12 @@ if ($p_id != '') {
               <td>
               <?php
     if (count($tests) > 0 && $OS_Browser != '' && $sitetotest != '') {
-        $suitename = 'multitest';
+        //$suitename = 'multitest';
+        $suitename = implode(' - ', $tests);
         if (isset($_GET['suitename'])) {
             $suitename = $_GET['suitename'];
         }
-        echo "<input type='text' name='suitename' value='$suitename' onblur='this.form.submit()'/>";
+        echo "<input type='text' size='20' name='suitename' value='$suitename' onblur='this.form.submit()'/>";
     }
 ?>
               </td>

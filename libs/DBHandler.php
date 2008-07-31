@@ -37,7 +37,7 @@ class DBHandler {
      */                        
     function updateDB($sql) {
         $this->query = $sql;
-        $result = mysql_query($this->query);
+        $result = mysql_query($this->query) or die(mysql_error());
         if (strpos($sql, 'REPLACE') !== false || strpos($sql, 'INSERT') !== false) {
             return mysql_insert_id();
         } else {

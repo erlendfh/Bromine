@@ -1626,6 +1626,12 @@ class Testing_Selenium
     {
         return $this->getBoolean("isVisible", array($locator));
     }
+    
+    public function silentIsVisible($locator)
+    {
+        return $this->getBoolean("isVisible", array($locator), 'done', false);
+    }
+    
 
 
     /**
@@ -2252,7 +2258,7 @@ class Testing_Selenium
       return $str;
     }
 
-    protected function doCommand($verb, $args = array()){
+    protected function doCommand($verb, $args = array(), $forceStatus=false, $forceScreenshot=null){
         $url = sprintf('http://%s:%s/selenium-server/driver/?cmd=%s', $this->host, $this->port, $this->deencodeURL(urlencode($verb)));
 
         for ($i = 0; $i < count($args); $i++) {
@@ -2293,9 +2299,11 @@ class Testing_Selenium
         else{
           $status = "done";
         }
+        if($forceStatus){
+            $status=$forceStatus;
+        }
         
-    
-        
+
         if (!preg_match('/^OK/', $response) ) {
           if (count($args) == 1){
             $args[] = $response;
@@ -2306,7 +2314,7 @@ class Testing_Selenium
           
           $c = new Command($this->t_id,$verb, $args, $response, 'failed');
           $this->test->addResult($c);
-          if(strpos($verb,'captureScreenshot')===FALSE){
+          if(strpos($verb,'captureScreenshot')===FALSE || $forceScreenshot===true){
             $this->captureScreenshot();
           }
           throw new Exception('The Response of the Selenium RC is ERROR: ' . $response);
@@ -2314,16 +2322,26 @@ class Testing_Selenium
         
         $c = new Command($this->t_id, $verb, $args, $resp, $status);
         $this->test->addResult($c);
-        if($status=='failed'){
+        if(($status=='failed' && ($forceScreenshot!==false || $forceScreenshot===null)) || $forceScreenshot===true){
           $this->captureScreenshot();
         }
         return $response;
     }
 
-    private function getString($verb, $args = array())
+    private function getString($verb, $args = array(), $forceStatus=false, $forceScreenshot=null)
     {
-        $result = $this->doCommand($verb, $args);
+        $result = $this->doCommand($verb, $args, $forceStatus, $forceScreenshot);
         return substr($result, 3);
+    }
+    
+    private function getNumber($verb, $args = array())
+    {
+        $result = $this->getString($verb, $args);
+
+        if (!is_numeric($result)) {
+            throw new Testing_Selenium_Exception('result is not numeric.');
+        }
+        return $result;
     }
 
     private function getStringArray($verb, $args = array())
@@ -2353,9 +2371,9 @@ class Testing_Selenium
         return $tokens;
     }
 
-    private function getBoolean($verb, $args = array())
+    private function getBoolean($verb, $args = array(), $forceStatus=false, $forceScreenshot=null)
     {
-        $result = $this->getString($verb, $args);
+        $result = $this->getString($verb, $args, $forceStatus, $forceScreenshot);
         switch ($result) {
         case 'true':
             return true;

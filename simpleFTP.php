@@ -71,14 +71,23 @@ if ($p_id != '') { ?>
             echo "<option value='$name' ";
             //if(is_array($files)){if(in_array($name,$files)){echo "disabled='disabled'";}}
             if ($getname == $name) {
-                echo "selected='selected'";
+                echo "selected='selected' ";
             }
-            echo ">$name ";
+            $in=false;
             if (is_array($files)) {
+                
                 if (in_array($name, $files)) {
-                    echo "(" . $lh->getText('Already uploaded') . ")";
+                    $in=true;
+                    echo "class='status_passed'";
+                }else{
+                    echo "class='status_failed'";
                 }
             }
+            echo ">$name ";
+            if($in){
+                echo " (".getText('Already uploaded').")";
+            }
+            
             echo "</option>";
         }
 ?>

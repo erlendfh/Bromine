@@ -4,14 +4,6 @@
   <head>
     <?php include ('header.php'); ?>
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <script type="text/javascript">
-    <!--
-      function changeIt(id,change){
-        elm = document.getElementById(id);
-        elm.innerHTML = "<br />"+change;
-      }
-    -->
-    </script>
   </head>
   <body>
     <?php 
@@ -135,37 +127,38 @@ if ($p_id != '') {
 ?>
               </td>
             </tr>
+            
             <tr>
             <td><?php echo $lh->getText('choose os and browser'); ?>
-            Probably needs work. Should be like 'run tests'
             </td>
             <td>
             <?php
-    $rresult = $dbh->select("TRM_ReqsOSBrows, TRM_OS, TRM_browser", "WHERE TRM_ReqsOSBrows.r_id = '$req' AND 
-              TRM_OS.ID = TRM_ReqsOSBrows.o_id AND
-              TRM_browser.ID = TRM_ReqsOSBrows.b_id", "*");
-    $rnum_row = mysql_numrows($rresult);
-    echo "<select name='OS_Browser' onchange='this.form.submit()'>";
-    echo "<option value=''>".$lh->getText('Choose')."</option>";
-    for ($b = 0;$b < $rnum_row;$b++) {
-        $OScur = mysql_result($rresult, $b, "OSname");
-        $Browsercur = mysql_result($rresult, $b, "browsername");
-        $browser_id = mysql_result($rresult, $b, "TRM_browser.ID");
-        $os_id = mysql_result($rresult, $b, "TRM_OS.ID");
-        $noderesult = $dbh->select('TRM_nodes', "WHERE o_id = $os_id", '*');
-        $node_id = mysql_result($noderesult, 0, "ID");
-        $nodepath = mysql_result($noderesult, 0, "TRM_nodes.nodepath");
-        echo "<option value='$node_id,$browser_id' ";
-        if ($_GET['OS_Browser'] == "$node_id,$browser_id") {
-            echo " selected='selected'";
+    $rresult = $dbh->select("TRM_OS, TRM_browser, TRM_nodes_browsers, TRM_nodes", "WHERE TRM_nodes_browsers.n_id=TRM_nodes.id AND 
+              TRM_nodes_browsers.b_id=TRM_browser.id AND
+              TRM_OS.id=TRM_nodes.o_id", "*");
+        $rnum_row = mysql_numrows($rresult);
+        echo "<select name='OS_Browser' onchange='this.form.submit()'>";
+        echo "<option value=''>".$lh->getText('Choose')."</option>";
+        for ($b = 0;$b < $rnum_row;$b++) {
+            $OScur = mysql_result($rresult, $b, "OSname");
+            $Browsercur = mysql_result($rresult, $b, "browsername");
+            $browser_id = mysql_result($rresult, $b, "TRM_browser.ID");
+            $os_id = mysql_result($rresult, $b, "TRM_OS.ID");
+            $node_id = mysql_result($rresult, $b, "TRM_nodes.ID");
+            $node_description = mysql_result($rresult, $b, "TRM_nodes.description");
+            $nodepath = mysql_result($rresult, $b, "TRM_nodes.nodepath");
+            echo "<option value='$node_id,$browser_id' ";
+            if ($_GET['OS_Browser'] == "$node_id,$browser_id") {
+                echo " selected='selected'";
+            }
+            echo ">$node_description";
+            echo " @ $Browsercur</option>";
         }
-        echo ">$OScur ";
-        echo "@ $Browsercur</option>";
-    }
-    echo "</select>";
+        echo "</select>";
 ?>
             </td>
             </tr>
+            
             <tr>
               <td><?php echo $lh->getText('Site to be tested'); ?></td>
               <td>
@@ -233,6 +226,7 @@ if ($p_id != '') {
               <td>
                 <?php
     $testcaseresult = $dbh->select('TRM_design_manual_test', "WHERE p_id=$p_id ORDER BY name", "*"); echo $dbh->getQuery();
+    $b=0;
     while ($row = mysql_fetch_array($testcaseresult)) {
     $b++;
         $testcasename = $row['name'];

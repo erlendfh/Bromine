@@ -35,7 +35,18 @@
       $_SESSION['usertypename']=mysql_result($dbh->select('TRM_usertypes',"WHERE ID='$usertype'",'name'), 0, 'name');	
       
       $dbh->update('TRM_users',"lastLogin = NOW()","ID=$id");
+      $domain = $_SERVER['SERVER_NAME'];
       
+      $registration = $dbh->select('TRM_config',"WHERE var = 'registration' AND value = '1'",'*');
+      
+      if (mysql_num_rows($registration) == 0)
+      {
+      try{
+        fopen("http://master.testserver.monten.dk/registration.php?domain=$domain", 'r');
+        $dbh->insert('TRM_config',"NULL,'registration','1'",'id,var,value');
+      }
+      catch(Exception $e){}
+      }
       if(isset($_REQUEST['directgo'])){
         $directgo=$_REQUEST['directgo'];
         header("Location: $directgo");

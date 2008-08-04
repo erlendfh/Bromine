@@ -101,7 +101,7 @@ if($r_id==''){
 
     }
 
-  $result = $dbh->select('TRM_reqsosbrows, TRM_nodes, TRM_nodes_browsers, TRM_reqstests, TRM_requirements', "
+  $result = $dbh->select('TRM_ReqsOSBrows, TRM_nodes, TRM_nodes_browsers, TRM_reqstests, TRM_requirements', "
   WHERE 
   TRM_reqsosbrows.r_id = $r_id AND
   TRM_reqsosbrows.o_id = TRM_nodes.o_id AND

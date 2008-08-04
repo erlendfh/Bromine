@@ -107,7 +107,7 @@ class DBHandler {
      * @return string The SQL query statement
      */
     public function getQuery() {
-        return $query;
+        return $this->query;
     }
    /* Not working, for future implementation of AES encryption
     private function getPassword($user){

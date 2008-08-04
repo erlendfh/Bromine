@@ -127,7 +127,7 @@ if ($p_id != '') {
 ?>
               </td>
             </tr>
-            
+            <!--
             <tr>
             <td><?php echo $lh->getText('choose os and browser'); ?>
             </td>
@@ -158,12 +158,12 @@ if ($p_id != '') {
 ?>
             </td>
             </tr>
-            
+            -->
             <tr>
               <td><?php echo $lh->getText('Site to be tested'); ?></td>
               <td>
               <?php
-    if ($test != '') {
+    if ($req != '') {
         echo "<select name='sitetotest' onchange='this.form.submit()'>";
         echo "<option value=''>" . $lh->getText('Choose') . "</option>";
         foreach($sitetotests as $key => $site) {
@@ -179,16 +179,13 @@ if ($p_id != '') {
               </td>
             </tr>
             <?php
-    if (count($tests) > 0 && $sitetotest != '' && $OS_Browser != '') {
+    if ($req!='' && $sitetotest != '') {
         echo "<tr>";
         echo "<td>";
         $noclosemsg = $lh->getText('noclosemsg');
         // HARDCODED!!!!!!!! //
         $type = 'rc-php';
-        $lala = explode(',', $OS_Browser);
-        $n_id = $lala[0];
-        $b_id = $lala[1];
-        $url = "testRunnerRC.php?test=genericSuite.php&type=$type&n_id=$n_id&b_id=$b_id&datafile=$datafile&user=$user&pass=$pass&p_id=$p_id&p_name=$p_name&sitetotest=$sitetotest&suitename=$suitename&lang=$lang";
+        $url = "testRunnerRC.php?test=genericSuite.php&type=$type&r_id=$req&user=$user&pass=$pass&p_id=$p_id&p_name=$p_name&sitetotest=$sitetotest&lang=$lang";
         for ($i = 0;$i < count($test);$i++) {
             $url2.= "&tests[]=$test[$i]";
         }       

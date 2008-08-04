@@ -222,7 +222,7 @@ if ($p_id != '') {
               </td>
               <td>
                 <?php
-    $testcaseresult = $dbh->select('TRM_design_manual_test', "WHERE p_id=$p_id ORDER BY name", "*"); echo $dbh->getQuery();
+    $testcaseresult = $dbh->select('TRM_design_manual_test', "WHERE p_id=$p_id ORDER BY name", "*");
     $b=0;
     while ($row = mysql_fetch_array($testcaseresult)) {
     $b++;

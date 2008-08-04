@@ -75,20 +75,20 @@ for ($i = 0;$i < $num;$i++) {
         <div id='OS' style="display:none;">
           <table>
             <?php
-$result = $dbh->select('TRM_OS', '', '*');
-$num = mysql_numrows($result);
-for ($i = 0;$i < $num;$i++) {
-    $o_id = mysql_result($result, $i, "ID");
-    $OSname = mysql_result($result, $i, "OSname");
-    echo "<tr>";
-    echo "<td>";
-    echo "<input type='hidden' value='$o_id' name='o_id[]' />";
-    echo "<input type='text' name='OSname[]' value='$OSname' size='20' />";
-    echo "</td>";
-    echo "<td><a href='delete.php?type=OS&amp;id=$o_id&amp;back=editMisc.php' onclick='return confirm($confirm)' ><img src='img/trashcan.gif' alt='" . $lh->getText('Delete') . "'/></a></td>";
-    echo "</tr>";
-}
-?>
+              $result = $dbh->select('TRM_OS', '', '*');
+              $num = mysql_numrows($result);
+              for ($i = 0;$i < $num;$i++) {
+                  $o_id = mysql_result($result, $i, "ID");
+                  $OSname = mysql_result($result, $i, "OSname");
+                  echo "<tr>";
+                  echo "<td>";
+                  echo "<input type='hidden' value='$o_id' name='o_id[]' />";
+                  echo "<input type='text' name='OSname[]' value='$OSname' size='20' />";
+                  echo "</td>";
+                  echo "<td><a href='delete.php?type=OS&amp;id=$o_id&amp;back=editMisc.php' onclick='return confirm($confirm)' ><img src='img/trashcan.gif' alt='" . $lh->getText('Delete') . "'/></a></td>";
+                  echo "</tr>";
+              }
+            ?>
             <tr>
               <td><?php echo $lh->getText('Add OS'); ?></td>
             </tr>

@@ -16,7 +16,10 @@
             $gettype = str_replace(array('/','..'),'',$_GET['gettype']);
             $getfile = str_replace(array('/','..'),'',$_GET['getfile']);
             $new = $_GET['new'];
-            
+            $upload = $_GET['upload'];
+            if($_FILES['file']['name'] != ''){
+                uploadFile();
+            }            
         ?>
         <table>
             <tr>
@@ -68,6 +71,7 @@
                         if($gettype != ''){
                             echo "<td>";
                             echo "<p><button onclick='window.location.href=" . '"' . "?gettype=$gettype&new=1" . '"' . "'>" . $lh->getText('Add new') . "</button></p>";
+                            echo "<p><button onclick='window.location.href=" . '"' . "?gettype=$gettype&upload=1" . '"' . "'>" . $lh->getText('Upload file') . "</button></p>";
                         }                                                  
                     ?>
                     </td>
@@ -102,6 +106,40 @@
                     echo "<br />";
                     echo "<input type='submit' value='".$lh->getText('Submit')."'>";
                     echo "</form>";
+                }
+                elseif($gettype !='' && $upload == 1){
+                    echo "<form enctype='multipart/form-data' action='editData.php?gettype=$gettype' method='POST'>
+                    <table>
+                        <tr>
+                            <td>".$lh->getText('Choose a file to upload').":</td>
+                            <td>
+                                <input type='hidden' name='type' value='$gettype' />
+                                <input name='file' type='file' />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type='submit' value='Upload File' />
+                            </td>
+                        </tr>
+                    </table>
+                    </form>";                                   
+                }
+              function uploadFile(){
+                  $file_name = $_FILES['file']['name'];
+                  $type = $_POST['type'];
+                  $p_name = $_SESSION['p_name'];
+                  $target_path = "RC/$type/$p_name/data/";
+                  $file_size = $_FILES["file"]["size"];
+                  $file_tempname = $_FILES['file']['tmp_name'];                  
+                  if (file_exists($target_path . $file_name))
+                      {
+                      echo $file_name . " already exists. ";
+                      }
+                  else{
+                      move_uploaded_file($file_tempname, $target_path . $file_name);
+                      echo "Stored in: $target_path"."$file_name ($file_size kb)";
+                  }
                 }
             ?>
                     </td>

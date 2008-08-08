@@ -36,8 +36,14 @@
     
     try{
         //Revision 67
-        $dbh->updateDB("INSERT INTO TRM_lang VALUES ('','Filename must not be empty', 'Filename must not be empty','','Filnavn må ikke være blankt','')");
-        echo "Patching completed succesfully";       
+        $dbh->updateDB("INSERT INTO TRM_lang VALUES ('','Filename must not be empty', 'Filename must not be empty','','Filnavn må ikke være blankt','')");     
+    }catch(Exception $error){
+        echo "Error: $error";
+    }
+    
+    try{
+        $dbh->updateDB("INSERT INTO TRM_lang VALUES ('', 'Upload file', 'Upload file', '', 'Upload fil', '')";
+        echo "Patching completed succesfully";  
     }catch(Exception $error){
         echo "Error: $error";
     }

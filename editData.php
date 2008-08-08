@@ -18,8 +18,21 @@
             $new = $_GET['new'];
             $upload = $_GET['upload'];
             if($_FILES['file']['name'] != ''){
-                uploadFile();
-            }            
+                $file_name = $_FILES['file']['name'];
+                $type = $_POST['type'];
+                $p_name = $_SESSION['p_name'];
+                $target_path = "RC/$type/$p_name/data/";
+                $file_size = $_FILES["file"]["size"];
+                $file_tempname = $_FILES['file']['tmp_name'];                  
+                if (file_exists($target_path . $file_name))
+                    {
+                    echo $file_name." ".$lh->getText('Already uploaded');
+                    }
+                else{
+                    move_uploaded_file($file_tempname, $target_path . $file_name);
+                    echo $lh->getText('Stored in').": $target_path"."$file_name ($file_size kb)";
+                }
+            }
         ?>
         <table>
             <tr>
@@ -124,22 +137,6 @@
                         </tr>
                     </table>
                     </form>";                                   
-                }
-              function uploadFile(){
-                  $file_name = $_FILES['file']['name'];
-                  $type = $_POST['type'];
-                  $p_name = $_SESSION['p_name'];
-                  $target_path = "RC/$type/$p_name/data/";
-                  $file_size = $_FILES["file"]["size"];
-                  $file_tempname = $_FILES['file']['tmp_name'];                  
-                  if (file_exists($target_path . $file_name))
-                      {
-                      echo $file_name . " " .$lh->getText("Already uploaded");
-                      }
-                  else{
-                      move_uploaded_file($file_tempname, $target_path . $file_name);
-                      echo $lh->getText("Stored in") . ": $target_path"."$file_name ($file_size kb)";
-                  }
                 }
             ?>
                     </td>

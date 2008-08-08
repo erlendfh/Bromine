@@ -43,6 +43,13 @@
     
     try{
         $dbh->updateDB("INSERT INTO TRM_lang VALUES ('', 'Upload file', 'Upload file', '', 'Upload fil', '')";
+    }catch(Exception $error){
+        echo "Error: $error";
+    }
+    
+    try{
+        //Revision 105
+        $dbh->updateDB("INSERT INTO TRM_lang VALUES (, 'Stored in', 'Stored in', '', 'Gemt i','')";
         echo "Patching completed succesfully";  
     }catch(Exception $error){
         echo "Error: $error";

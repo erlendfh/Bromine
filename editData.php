@@ -119,7 +119,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type='submit' value='Upload File' />
+                                <input type='submit' value='".$lh->getText('Upload file')." />
                             </td>
                         </tr>
                     </table>
@@ -134,11 +134,11 @@
                   $file_tempname = $_FILES['file']['tmp_name'];                  
                   if (file_exists($target_path . $file_name))
                       {
-                      echo $file_name . " already exists. ";
+                      echo $file_name . " " .$lh->getText("Already uploaded");
                       }
                   else{
                       move_uploaded_file($file_tempname, $target_path . $file_name);
-                      echo "Stored in: $target_path"."$file_name ($file_size kb)";
+                      echo $lh->getText("Stored in") . ": $target_path"."$file_name ($file_size kb)";
                   }
                 }
             ?>

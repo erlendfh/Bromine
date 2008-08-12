@@ -1,5 +1,6 @@
 <?php
     try{
+    error_reporting(E_ERROR);
     include('../../Bromine/libs/DBHandler.php');
     
     $dbh = new DBHandler();
@@ -73,13 +74,8 @@
         $fp = fopen('log.txt','a');
         fwrite($fp,'kk\n');
         $e2 = print_r($e,true);
-        fwrite($fp,$e2);
-        
+        fwrite($fp,"$e2");
         fclose($fp);
     }
     
-    
-    
-
-
 ?>

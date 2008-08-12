@@ -45,7 +45,7 @@
     }
     
     try{
-        $dbh->updateDB("INSERT INTO TRM_lang VALUES (NULL, 'Upload file', 'Upload file', '', 'Upload fil', '')";
+        $dbh->updateDB("INSERT INTO TRM_lang VALUES (NULL, 'Upload file', 'Upload file', '', 'Upload fil', '')");
         echo "Patching to revision 67 completed succesfully (2 of 2)<br />";   
     }catch(Exception $error){
         echo "Error: $error";
@@ -53,7 +53,7 @@
     
     try{
         //Revision 105
-        $dbh->updateDB("INSERT INTO TRM_lang VALUES (NULL, 'Stored in', 'Stored in', '', 'Gemt i','')";
+        $dbh->updateDB("INSERT INTO TRM_lang VALUES (NULL, 'Stored in', 'Stored in', '', 'Gemt i','')");
         echo "Patching to revision 105 completed succesfully<br />"; 
     }catch(Exception $error){
         echo "Error: $error";
@@ -61,7 +61,7 @@
     
     try{
         //Revision fucking awesome universal runner
-        $dbh->updateDB("CREATE TABLE IF NOT EXISTS `trm_selenium_server_vars` ( `sessionId` varchar(255) NOT NULL, `nodepath` varchar(255) NOT NULL, `u_id` varchar(255) NOT NULL, `t_id` int(11) NOT NULL, PRIMARY KEY  (`sessionId`) )";
+        $dbh->updateDB("CREATE TABLE IF NOT EXISTS `trm_selenium_server_vars` ( `sessionId` varchar(255) NOT NULL, `nodepath` varchar(255) NOT NULL, `u_id` varchar(255) NOT NULL, `t_id` int(11) NOT NULL, PRIMARY KEY  (`sessionId`) )");
         $dbh->updateDB("DROP TABLE IF EXISTS `trm_types`");
         $dbh->updateDB("CREATE TABLE IF NOT EXISTS `trm_types` (
         `ID` int(11) NOT NULL auto_increment,
@@ -75,7 +75,18 @@
         (1, 'rc-php', 'php', ' ', 'php'),
         (4, 'rc-java', 'java -jar', ' ', 'jar'),
         (10, 'rc-ruby', 'ruby', ' ', 'rb')");
-
+        $id = $dbh->updateDB("INSERT INTO `trm_projects` (`id`, `name`, `description`, `assigned`, `outsidedefects`, `viewdefectsurl`, `adddefecturl`) VALUES
+        (NULL, 'sample', 'A sample project', 0, 0, '', '');
+        ");
+        $dbh->updateDB("INSERT INTO `trm_design_manual_test` (`id`, `name`, `p_id`, `Description`) VALUES
+        (NULL, 'trille', $id, '');");
+        $dbh->updateDB("INSERT INTO `trm_projectlist` (`id`, `userID`, `projectID`, `access`) VALUES
+        (NULL, 1, $id, 0),
+        (NULL, 72, $id, 0),
+        (NULL, 104, $id, 1),
+        (NULL, 112, $id, 0),
+        (NULL, 113, $id, 0),
+        (NULL, 114, $id, 0);");
         echo "Patching to awesome universal runner completed succesfully<br />";  
     }catch(Exception $error){
         echo "Error: $error";

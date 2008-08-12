@@ -1,22 +1,27 @@
 <?php include_once ('getprotect.php'); ?>
 <?php
-$test = $_GET['test'];
-$type = $_GET['type'];
-$sitetotest = $_GET['sitetotest'];
-$b_id = $_GET['b_id'];
-$n_id = $_GET['n_id'];
-$r_id = $_GET['r_id'];
-$datafile = $_GET['datafile'];
-$p_id = $_GET['p_id'];
-$p_name = $_GET['p_name'];
-$user = $_GET['user'];
-$pass = $_GET['pass'];
-$tests = $_GET['tests'];
-$suitename = $_GET['suitename'];
-$lang = $_GET['lang'];
-$time = time();
-$dbh = new DBHandler();
-$u_id = str_replace('.', '', microtime('U')) . rand(0, 1000);
+    /*
+    echo "<pre>";
+    print_r($_REQUEST);
+    echo "</pre>";
+    */
+    $test = $_GET['test'];
+    $type = $_GET['type'];
+    $sitetotest = $_GET['sitetotest'];
+    $b_id = $_GET['b_id'];
+    $n_id = $_GET['n_id'];
+    $r_id = $_GET['r_id'];
+    $datafile = $_GET['datafile'];
+    $p_id = $_GET['p_id'];
+    $p_name = $_GET['p_name'];
+    $user = $_GET['user'];
+    $pass = $_GET['pass'];
+    $tests = $_GET['tests'];
+    $suitename = $_GET['suitename'];
+    $lang = $_GET['lang'];
+    $time = time();
+    $dbh = new DBHandler();
+    $u_id = str_replace('.', '', microtime('U')) . rand(0, 1000);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
   <html xmlns="http://www.w3.org/1999/xhtml">
@@ -26,41 +31,31 @@ $u_id = str_replace('.', '', microtime('U')) . rand(0, 1000);
     </head>
     <body>
     <div id='progress'></div>
-      <div id='state'></div>
+    <div id='state'></div>
 <?php
+    
 
-if($r_id==''){
-  $noderesult = $dbh->select('TRM_nodes', "WHERE ID=$n_id", "*");
-  while ($row = mysql_fetch_array($noderesult)) {
-      $o_id = $row['o_id'];
-      $network_drive = $row['network_drive'];
-      $nodepath = $row['nodepath'];
-  }
-  $browsresult = $dbh->select('TRM_nodes_browsers', "WHERE b_id=$b_id AND n_id=$n_id", "*");
-  while ($row = mysql_fetch_array($browsresult)) {
-      $browser = $row['browser_path'];
-  }
-  ?>
-  
-      <?php
-  $url1 = "statusRC.php?time=$time&user=$user&pass=$pass&u_id=$u_id";
-  //$returnTo = "http://". $_SERVER['SERVER_NAME'];
-  $url = "RC/Drivers/$type/$test?sitetotest=$sitetotest&browser=$browser&p_id=$p_id&OS=$o_id&b_id=$b_id&o_id=$o_id&host=$nodepath&ss=\\\\$network_drive\\\\$type\\\\$p_name&u_id=$u_id&p_name=$p_name&type=$type&suitename=$suitename&lang=$lang";
-  if($datafile != ''){
-      $tests = array_unique($tests);
-      foreach($tests as $value) {
-          $url.= "&tests[]=$value";
-      }
-      foreach($datafile as $value){
-          $url.= "&datafile[]=$value";
-      }
-  }
-  else {
-      foreach($tests as $value) {
-          $url.= "&tests[]=$value";
-      }
-  }
-  ?>
+    $url1 = "statusRC.php?time=$time&user=$user&pass=$pass&u_id=$u_id";
+    $url = "genericSuite.php?";
+    foreach($_REQUEST as $key => $value){
+        if(is_array($value)){
+            foreach($value as $value2){
+                $url .= "$key"."[]=$value2&";
+            }
+        }else{
+            $url .= "$key=$value&";
+        }
+    }
+    $url .= "u_id=$u_id";
+
+    if($datafile != ''){
+        $tests = array_unique($tests);
+        foreach($datafile as $value){
+            $url.= "&datafile[]=$value";
+        }
+    }
+    
+?>
       
       
       <script type='text/javascript'>
@@ -84,7 +79,42 @@ if($r_id==''){
       
     </body>
   </html>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <?php
+  /*
 }else{
     $noderesult = $dbh->select('TRM_nodes', "", "*");
     while ($row = mysql_fetch_array($noderesult)) {
@@ -134,7 +164,7 @@ if($r_id==''){
           /*echo "Did run:<br />";
           echo $t_name ." @ '$description' in '$browser'";
           echo "<br />";
-          */
+          *
           $img = "<img src='img/ajax-loader.gif' style='height: 20px; width: 20px;'/>";
           echo "<script type='text/javascript'>";
           echo 'document.getElementById("progress").innerHTML+="<b>started running: '. $t_name ." @ '$description' in '$browser'</b>".' Status: <div style='."'".'margin-left: 40px;'."'".' id='."'".$u_id."'>".$img.' Running...</div><br /><br />\n";';
@@ -149,4 +179,5 @@ if($r_id==''){
       }
   }
 }
+*/
 ?>

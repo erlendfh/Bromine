@@ -17,10 +17,12 @@ $pass = $_SESSION['pass'];
 $lang = $_SESSION['lang'];
 if ($p_id != '') {
     $typeresult = $dbh->select('TRM_types', '', '*');
+    /*
     while ($row = mysql_fetch_array($typeresult)) {
         $types[] = $row['typename'];
         $typesid[] = $row['ID'];
     }
+    */
     $noderesult = $dbh->select('TRM_nodes', "", "*");
     while ($row = mysql_fetch_array($noderesult)) {
         $nodes[] = $row['description'];
@@ -224,17 +226,22 @@ if ($p_id != '') {
                 <?php
     $testcaseresult = $dbh->select('TRM_design_manual_test', "WHERE p_id=$p_id ORDER BY name", "*");
     $b=0;
-    while ($row = mysql_fetch_array($testcaseresult)) {
-    $b++;
-        $testcasename = $row['name'];
-        echo "<input type='checkbox' name='tests[]' value='$testcasename' ";
-        if (!file_exists("RC/rc-php/$p_name/$testcasename.php")) {
-            echo "disabled='disabled' ";
-        } //TODO: HARDCODED!!!!!!!
-        if (in_array($testcasename, $tests)) {
-            echo "checked='checked'";
+    while ($row = mysql_fetch_array($testcaseresult)){ 
+        while ($row2 = mysql_fetch_array($typeresult)){
+            $b++;
+            $typeid = $row2['ID'];
+            $typename = $row2['typename'];
+            $extension = $row2['extension'];
+            $testcasename = $row['name'];
+            echo "<input type='checkbox' name='tests[]' value='$testcasename,$typeid' ";
+            if (!file_exists("RC/$typename/$p_name/$testcasename.$extension")) {
+                echo "disabled='disabled' ";
+            } //TODO: HARDCODED!!!!!!!
+            if (in_array("$testcasename,$typeid", $tests)) {
+                echo "checked='checked'";
+            }
+            echo "onclick='this.form.submit()'/>$b:  $testcasename @ $typename<br />";
         }
-        echo "onclick='this.form.submit()'/>$b:  $testcasename<br />";
     }
     $num_tests = mysql_num_rows($testcaseresult);
     if ($num_tests == 0) {
@@ -317,12 +324,10 @@ if ($p_id != '') {
         echo "<tr>";
         echo "<td>";
         $noclosemsg = $lh->getText('noclosemsg');
-        // HARDKODED!!!!!!!! //
-        $type = 'rc-php';
         $lala = explode(',', $OS_Browser);
         $n_id = $lala[0];
         $b_id = $lala[1];
-        $url = "testRunnerRC.php?test=genericSuite.php&type=$type&n_id=$n_id&b_id=$b_id&user=$user&pass=$pass&p_id=$p_id&p_name=$p_name&sitetotest=$sitetotest&suitename=$suitename&lang=$lang";
+        $url = "testRunnerRC.php?test=genericSuite.php&n_id=$n_id&b_id=$b_id&user=$user&pass=$pass&p_id=$p_id&p_name=$p_name&sitetotest=$sitetotest&suitename=$suitename&lang=$lang";
         for ($i = 0;$i < count($tests);$i++) {
             $url2.= "&tests[]=$tests[$i]";
         }

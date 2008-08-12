@@ -19,25 +19,53 @@ $dbh = new DBHandler();
         <div id='types' style="display:none;">
           <table>
             <?php
-$result = $dbh->select('TRM_types', '', '*');
-$num = mysql_numrows($result);
-for ($i = 0;$i < $num;$i++) {
-    $t_id = mysql_result($result, $i, "ID");
-    $typename = mysql_result($result, $i, "typename");
-    echo "<tr>";
-    echo "<td>";
-    echo "<input type='hidden' value='$t_id' name='t_id[]' />";
-    echo "<input type='text' name='typename[]' value='$typename' size='20' />";
-    echo "</td>";
-    echo "<td><a href='delete.php?type=type&amp;id=$t_id&amp;back=editMisc.php' onclick='return confirm($confirm)' ><img src='img/trashcan.gif' alt='" . $lh->getText('Delete') . "'/></a></td>";
-    echo "</tr>";
-}
-?>
+                $result = $dbh->select('TRM_types', '', '*');
+                echo "<tr>";
+                echo "<th>";
+                echo $lh->getText('Type name');
+                echo "</th>";
+                echo "<th>";
+                echo $lh->getText('Command');
+                echo "</th>";
+                echo "<th>";
+                echo $lh->getText('Spacer');
+                echo "</th>";
+                echo "<th>";
+                echo $lh->getText('Extension');
+                echo "</th>";
+                echo "</tr>";
+                while ($row = mysql_fetch_array($result)) {
+                    $t_id = $row["ID"];
+                    $typename = $row["typename"];
+                    $command = $row["command"];
+                    $spacer = $row["spacer"];
+                    $extension = $row["extension"];
+                    echo "<tr>";
+                    echo "<td>";
+                    echo "<input type='hidden' value='$t_id' name='t_id[]' />";
+                    echo "<input type='text' name='typename[]' value='$typename' size='20' />";
+                    echo "</td>";
+                    echo "<td>";
+                    echo "<input type='text' name='command[]' value='$command' size='10' />";
+                    echo "</td>";
+                    echo "<td>";
+                    echo "<input type='text' name='spacer[]' value='$spacer' size='10' />";
+                    echo "</td>";
+                    echo "<td>";
+                    echo "<input type='text' name='extension[]' value='$extension' size='10' />";
+                    echo "</td>";
+                    echo "<td><a href='delete.php?type=type&amp;id=$t_id&amp;back=editMisc.php' onclick='return confirm($confirm)' ><img src='img/trashcan.gif' alt='" . $lh->getText('Delete') . "'/></a></td>";
+                    echo "</tr>";
+                }
+            ?>
             <tr>
               <td><?php echo $lh->getText('Add type'); ?></td>
             </tr>
             <tr>
               <td><input type='text' name='newtypename' size='20' /></td>
+              <td><input type='text' name='newcommand' size='10' /></td>
+              <td><input type='text' name='newspacer' size='10' /></td>
+              <td><input type='text' name='newextension' size='10' /></td>
             </tr>
           </table>
         </div>

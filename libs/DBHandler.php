@@ -21,6 +21,7 @@ class DBHandler {
      */
     function sql($sql) {
         $this->query = $sql;
+        //echo $this->query."<br />";
         $result = mysql_query($this->query) or die(mysql_error());
         if (strpos($sql, 'REPLACE') !== false || strpos($sql, 'INSERT') !== false) {
             return mysql_insert_id();
@@ -55,21 +56,25 @@ class DBHandler {
      */
     function select($tableName, $condition, $data) {
         $this->query = "SELECT $data FROM $tableName $condition";
+        //echo $this->query."<br />";
         $result = mysql_query($this->query) or die(mysql_error());
         return $result;
     }
     function insert($tableName, $values, $column) {
         $this->query = "INSERT INTO $tableName ($column) VALUES ($values)";
+        //echo $this->query."<br />";
         $result = mysql_query($this->query) or die(mysql_error());
         return mysql_insert_id();
     }
     function update($tableName, $values, $condition) {
         $this->query = "UPDATE $tableName SET $values WHERE $condition";
+        //echo $this->query."<br />";
         $result = mysql_query($this->query) or die(mysql_error());
         return $result;
     }
     function delete($tableName, $condition) {
         $this->query = "DELETE FROM $tableName WHERE $condition";
+        //echo $this->query."<br />";
         $result = mysql_query($this->query) or die(mysql_error());
         return $result;
     }

@@ -346,7 +346,15 @@ Array
 */
 $t_id = $_POST['t_id'];
 $typename = $_POST['typename'];
+$command = $_POST['command'];
+$spacer = $_POST['spacer'];
+
+$extension = $_POST['extension'];
 $newtypename = $_POST['newtypename'];
+$newcommand = $_POST['newcommand'];
+$newspacer1 = $_POST['newspacer1'];
+$newspacer2 = $_POST['newspacer2'];
+$newextension = $_POST['newextension'];
 $b_id = $_POST['b_id'];
 $browsername = $_POST['browsername'];
 $newbrowsername = $_POST['newbrowsername'];
@@ -399,11 +407,15 @@ if (strlen($newutname) > 0) {
 }
 //TYPE UPDATER
 for ($i = 0;$i < count($t_id);$i++) {
-    $dbh->update('TRM_types', "typename = '$typename[$i]'", "ID = '$t_id[$i]'");
+    if(!file_exists("RC/$typename[$i]")){
+        @mkdir("RC/$typename[$i]");
+    }
+    $dbh->update('TRM_types', "typename = '$typename[$i]', command = '$command[$i]', spacer = '$spacer[$i]', extension = '$extension[$i]'", "ID = '$t_id[$i]'");
 }
 //TYPE INSERTER
 if (strlen($newtypename) > 0) {
-    $dbh->insert('TRM_types', "NULL,'$newtypename'", 'ID, typename');
+    @mkdir("RC/$newtypename");
+    $dbh->insert('TRM_types', "NULL,'$newtypename', '$newcommand', '$newspacer', '$newextension'", 'ID, typename, command, spacer, extension');
 }
 //BROWSER UPDATER
 for ($i = 0;$i < count($b_id);$i++) {

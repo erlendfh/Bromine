@@ -29,7 +29,7 @@ $file_name_total = $target_path . $file_name . "." . $ext;
 if (file_exists($file_name_total)) {
     $overwrite = true;
 }
-if (($ext == 'php' || $ext == 'rb') && $file_size < 250000) {
+if ($ext!='' && $file_size < 250000) {
     if (move_uploaded_file($file_tempname, $file_name_total)) {
         $response = "The file $orgname has been uploaded as $file_name_total";
         chmod($file_name_total, 0777);
@@ -45,7 +45,7 @@ if (($ext == 'php' || $ext == 'rb') && $file_size < 250000) {
         $response = "There was an error uploading the file, please try again!<br />Return Code: " . $_FILES["uploadedfile"]["error"] . "<br />";
     }
 } else {
-    $response = "Det skal være en PHP/RB fil og den skal være mindre end 250 kb!";
+    $response = "The file has to have an extension and be less than 250 kb!";
 }
 header("location: simpleFTP.php?response=$response&gettype=$type")
 ?>

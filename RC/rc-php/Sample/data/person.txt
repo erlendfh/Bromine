@@ -1,5 +1,0 @@
-type=PERSON
-description=Person test
-hans Erik Jensen, 24845592
-24845592
-25330165

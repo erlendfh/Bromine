@@ -1,5 +1,6 @@
 <?php
-    require_once 'libs/DBHandler.php'; 
+    require_once 'libs/DBHandler.php';
+    require_once('error_reporting.php'); 
     class Suite{
       
         function __construct($name = "AUTONAME: Test Suite"){

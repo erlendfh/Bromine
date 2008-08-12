@@ -1,6 +1,7 @@
 <?php
 
     require_once('libs/DBHandler.php');
+    require_once('error_reporting.php');
     
     class Test{
             

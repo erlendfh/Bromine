@@ -7,7 +7,7 @@
     
     require('libs/DBHandler.php');
     $dbh = new DBHandler();
-    
+    /*
     try{
         //Revision 61
         $dbh->updateDB("
@@ -91,6 +91,7 @@
     }catch(Exception $error){
         echo "Error: $error";
     }
-    echo "Done patching.";
+    */
+    echo "No patching needed.";
     
 ?>

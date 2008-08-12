@@ -1,5 +1,5 @@
 <?php
-
+    require_once('error_reporting.php');
     include "suite.php";
     include "test.php";
     include_once "libs/DBHandler.php";

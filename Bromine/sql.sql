@@ -1,19 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 2.11.7
+-- version 2.11.4
 -- http://www.phpmyadmin.net
 --
 -- Vært: localhost
--- Genereringstid: 26. 07 2008 kl. 16:57:33
+-- Genereringstid: 12. 08 2008 kl. 21:49:29
 -- Serverversion: 5.0.51
--- PHP-version: 5.2.6
+-- PHP-version: 5.2.5
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `bromine`
@@ -60,14 +54,100 @@ CREATE TABLE IF NOT EXISTS `trm_commands` (
   `var2` longtext character set latin1 collate latin1_danish_ci,
   `t_id` int(10) NOT NULL default '0',
   PRIMARY KEY  (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=92 ;
 
 --
 -- Data dump for tabellen `trm_commands`
 --
 
 INSERT INTO `trm_commands` (`ID`, `status`, `action`, `var1`, `var2`, `t_id`) VALUES
-(1, 'passed', 'Do this.', 'Expect that.', '', 3);
+(40, 'done', 'click', 'btnG', '', 10),
+(3, 'failed', 'open', '/', '', 0),
+(4, 'failed', 'testComplete', '', '', 0),
+(38, 'done', 'open', '/', '', 10),
+(39, 'done', 'type', 'q', 'bromine openqa', 10),
+(6, 'failed', 'open', '/', '', 0),
+(7, 'failed', 'testComplete', '', '', 0),
+(37, 'done', 'getNewBrowserSession', '*chrome', 'http://www.google.com', 10),
+(9, 'failed', 'testComplete', '', '', 0),
+(10, 'done', 'getNewBrowserSession', '*chrome', 'http://www.google.com', 7),
+(11, 'done', 'open', '/', '', 7),
+(12, 'done', 'type', 'q', 'bromine openqa', 7),
+(13, 'done', 'click', 'btnG', '', 7),
+(14, 'done', 'waitForPageToLoad', '30000', '', 7),
+(15, 'done', 'click', 'link=exact:OpenQA: Bromine Blog: Bromine arrives at OpenQA', '', 7),
+(16, 'failed', 'waitForPageToLoad', '30000', '', 7),
+(17, 'done', 'testComplete', '', '', 7),
+(18, 'done', 'getNewBrowserSession', '*chrome', 'http://www.google.com', 8),
+(19, 'done', 'open', '/', '', 8),
+(20, 'done', 'type', 'q', 'bromine', 8),
+(21, 'done', 'click', 'btnG', '', 8),
+(22, 'done', 'waitForPageToLoad', '30000', '', 8),
+(23, 'done', 'click', 'link=Bromine - Wikipedia, the free encyclopedia', '', 8),
+(24, 'done', 'waitForPageToLoad', '30000', '', 8),
+(25, 'passed', 'isTextPresent', 'Bromine', '', 8),
+(26, 'done', 'testComplete', '', '', 8),
+(27, 'done', 'getNewBrowserSession', '*chrome', 'http://www.google.com', 9),
+(28, 'done', 'setContext', 'test_new', '', 9),
+(29, 'done', 'open', '/', '', 9),
+(30, 'done', 'type', 'q', 'bromine', 9),
+(31, 'done', 'click', 'btnG', '', 9),
+(32, 'done', 'waitForPageToLoad', '30000', '', 9),
+(33, 'done', 'click', 'link=Bromine - Wikipedia, the free encyclopedia', '', 9),
+(34, 'done', 'waitForPageToLoad', '30000', '', 9),
+(35, 'passed', 'isTextPresent', 'Bromine', '', 9),
+(36, 'done', 'testComplete', '', '', 9),
+(41, 'done', 'waitForPageToLoad', '30000', '', 10),
+(42, 'done', 'click', 'link=exact:OpenQA: Bromine Blog: Bromine arrives at OpenQA', '', 10),
+(43, 'failed', 'waitForPageToLoad', '30000', '', 10),
+(44, 'done', 'testComplete', '', '', 10),
+(45, 'done', 'getNewBrowserSession', '*chrome', 'http://www.google.com', 11),
+(46, 'done', 'open', '/', '', 11),
+(47, 'done', 'type', 'q', 'bromine', 11),
+(48, 'done', 'click', 'btnG', '', 11),
+(49, 'done', 'waitForPageToLoad', '30000', '', 11),
+(50, 'done', 'click', 'link=Bromine - Wikipedia, the free encyclopedia', '', 11),
+(51, 'done', 'waitForPageToLoad', '30000', '', 11),
+(52, 'passed', 'isTextPresent', 'Bromine', '', 11),
+(53, 'done', 'testComplete', '', '', 11),
+(54, 'done', 'getNewBrowserSession', '*chrome', 'http://www.google.com', 12),
+(55, 'done', 'setContext', 'test_new', '', 12),
+(56, 'done', 'open', '/', '', 12),
+(57, 'done', 'type', 'q', 'bromine', 12),
+(58, 'done', 'click', 'btnG', '', 12),
+(59, 'done', 'waitForPageToLoad', '30000', '', 12),
+(60, 'done', 'click', 'link=Bromine - Wikipedia, the free encyclopedia', '', 12),
+(61, 'done', 'waitForPageToLoad', '30000', '', 12),
+(62, 'passed', 'isTextPresent', 'Bromine', '', 12),
+(63, 'done', 'testComplete', '', '', 12),
+(64, 'done', 'getNewBrowserSession', '*chrome', 'http://www.google.com', 13),
+(65, 'done', 'open', '/', '', 13),
+(66, 'done', 'type', 'q', 'bromine openqa', 13),
+(67, 'done', 'click', 'btnG', '', 13),
+(68, 'done', 'waitForPageToLoad', '30000', '', 13),
+(69, 'done', 'click', 'link=exact:OpenQA: Bromine Blog: Bromine arrives at OpenQA', '', 13),
+(70, 'done', 'waitForPageToLoad', '30000', '', 13),
+(71, 'passed', 'isTextPresent', 'Bromine', '', 13),
+(72, 'done', 'testComplete', '', '', 13),
+(73, 'done', 'getNewBrowserSession', '*chrome', 'http://www.google.com', 14),
+(74, 'done', 'open', '/', '', 14),
+(75, 'done', 'type', 'q', 'bromine', 14),
+(76, 'done', 'click', 'btnG', '', 14),
+(77, 'done', 'waitForPageToLoad', '30000', '', 14),
+(78, 'done', 'click', 'link=Bromine - Wikipedia, the free encyclopedia', '', 14),
+(79, 'done', 'waitForPageToLoad', '30000', '', 14),
+(80, 'passed', 'isTextPresent', 'Bromine', '', 14),
+(81, 'done', 'testComplete', '', '', 14),
+(82, 'done', 'getNewBrowserSession', '*chrome', 'http://www.google.com', 15),
+(83, 'done', 'setContext', 'test_new', '', 15),
+(84, 'done', 'open', '/', '', 15),
+(85, 'done', 'type', 'q', 'bromine', 15),
+(86, 'done', 'click', 'btnG', '', 15),
+(87, 'done', 'waitForPageToLoad', '30000', '', 15),
+(88, 'done', 'click', 'link=Bromine - Wikipedia, the free encyclopedia', '', 15),
+(89, 'done', 'waitForPageToLoad', '30000', '', 15),
+(90, 'passed', 'isTextPresent', 'Bromine', '', 15),
+(91, 'done', 'testComplete', '', '', 15);
 
 -- --------------------------------------------------------
 
@@ -103,14 +183,15 @@ CREATE TABLE IF NOT EXISTS `trm_config` (
   `value` varchar(255) collate utf8_bin NOT NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `var` (`var`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
 
 --
 -- Data dump for tabellen `trm_config`
 --
 
 INSERT INTO `trm_config` (`id`, `var`, `value`) VALUES
-(1, 'lite_version', '0');
+(1, 'lite_version', '0'),
+(2, 'registration', '1');
 
 -- --------------------------------------------------------
 
@@ -248,12 +329,14 @@ CREATE TABLE IF NOT EXISTS `trm_design_manual_test` (
   `p_id` int(11) NOT NULL,
   `Description` longtext collate utf8_bin NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
 
 --
 -- Data dump for tabellen `trm_design_manual_test`
 --
 
+INSERT INTO `trm_design_manual_test` (`id`, `name`, `p_id`, `Description`) VALUES
+(1, 0x7472696c6c65, 123, '');
 
 -- --------------------------------------------------------
 
@@ -270,7 +353,7 @@ CREATE TABLE IF NOT EXISTS `trm_lang` (
   `de` varchar(255) collate utf8_bin NOT NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `langKey` (`langKey`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=289 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=291 ;
 
 --
 -- Data dump for tabellen `trm_lang`
@@ -556,7 +639,9 @@ INSERT INTO `trm_lang` (`id`, `langKey`, `en`, `es`, `dk`, `de`) VALUES
 (285, 'Test started', 'Test started', '', 'Test startet', ''),
 (286, 'No tests', 'No tests available', '', 'Ingen test tilgængelige', ''),
 (287, 'Assigned to', 'Assigned to', '', 'Tildelt til', ''),
-(288, 'Filename must not be empty', 'Filename must not be empty', '', 'Filnavn må ikke være blankt', '');
+(288, 'Filename must not be empty', 'Filename must not be empty', '', 'Filnavn må ikke være blankt', ''),
+(289, 'Upload file', 'Upload file', '', 'Upload fil', ''),
+(290, 'Stored in', 'Stored in', '', 'Gemt i', '');
 
 -- --------------------------------------------------------
 
@@ -600,7 +685,7 @@ CREATE TABLE IF NOT EXISTS `trm_nodes` (
 --
 
 INSERT INTO `trm_nodes` (`ID`, `nodepath`, `o_id`, `description`, `network_drive`) VALUES
-(15, '10.0.0.1', 1, 0x5669737461206e6f6465, 'server/prod/');
+(15, 'localhost', 12, 0x6c6f63616c686f7374, '');
 
 -- --------------------------------------------------------
 
@@ -614,16 +699,17 @@ CREATE TABLE IF NOT EXISTS `trm_nodes_browsers` (
   `n_id` int(11) NOT NULL,
   `browser_path` varchar(255) collate utf8_bin NOT NULL,
   PRIMARY KEY  (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5 ;
 
 --
 -- Data dump for tabellen `trm_nodes_browsers`
 --
 
 INSERT INTO `trm_nodes_browsers` (`ID`, `b_id`, `n_id`, `browser_path`) VALUES
-(1, 3, 15, '*firefox'),
-(2, 10, 15, '*chrome'),
-(3, 11, 15, '*iehta');
+(1, 1, 15, '*iexplore'),
+(2, 3, 15, '*firefox'),
+(3, 10, 15, '*chrome'),
+(4, 11, 15, '*iehta');
 
 -- --------------------------------------------------------
 
@@ -663,7 +749,7 @@ CREATE TABLE IF NOT EXISTS `trm_projectlist` (
   `projectID` int(11) NOT NULL default '0',
   `access` int(1) NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1328 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1334 ;
 
 --
 -- Data dump for tabellen `trm_projectlist`
@@ -673,15 +759,15 @@ INSERT INTO `trm_projectlist` (`id`, `userID`, `projectID`, `access`) VALUES
 (644, 72, 1, 1),
 (690, 1, 1, 1),
 (966, 104, 1, 1),
-(1327, 114, 122, 0),
-(1326, 113, 122, 0),
-(1325, 112, 122, 0),
 (1239, 113, 1, 0),
 (1233, 112, 1, 0),
-(1324, 104, 122, 1),
-(1323, 72, 122, 0),
 (1245, 114, 1, 0),
-(1322, 1, 122, 0);
+(1328, 1, 123, 0),
+(1329, 72, 123, 0),
+(1330, 104, 123, 1),
+(1331, 112, 123, 0),
+(1332, 113, 123, 0),
+(1333, 114, 123, 0);
 
 -- --------------------------------------------------------
 
@@ -698,7 +784,7 @@ CREATE TABLE IF NOT EXISTS `trm_projects` (
   `viewdefectsurl` varchar(256) collate utf8_bin NOT NULL,
   `adddefecturl` varchar(256) collate utf8_bin NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=123 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=124 ;
 
 --
 -- Data dump for tabellen `trm_projects`
@@ -706,7 +792,7 @@ CREATE TABLE IF NOT EXISTS `trm_projects` (
 
 INSERT INTO `trm_projects` (`id`, `name`, `description`, `assigned`, `outsidedefects`, `viewdefectsurl`, `adddefecturl`) VALUES
 (1, 'No project', '', 0, 0, '', ''),
-(122, 'Sample', 'A sample project.', 0, 0, '', '');
+(123, 'sample', 'A sample project', 0, 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -719,14 +805,15 @@ CREATE TABLE IF NOT EXISTS `trm_projects_has_sites` (
   `p_id` int(11) NOT NULL,
   `sitetotest` longtext collate utf8_bin NOT NULL,
   PRIMARY KEY  (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=37 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=38 ;
 
 --
 -- Data dump for tabellen `trm_projects_has_sites`
 --
 
 INSERT INTO `trm_projects_has_sites` (`ID`, `p_id`, `sitetotest`) VALUES
-(36, 122, 0x687474703a2f2f7777772e6b72616b2e646b);
+(36, 122, 0x687474703a2f2f7777772e6b72616b2e646b),
+(37, 123, 0x687474703a2f2f7777772e676f6f676c652e636f6d);
 
 -- --------------------------------------------------------
 
@@ -747,8 +834,6 @@ CREATE TABLE IF NOT EXISTS `trm_reqsosbrows` (
 -- Data dump for tabellen `trm_reqsosbrows`
 --
 
-INSERT INTO `trm_reqsosbrows` (`ID`, `b_id`, `o_id`, `r_id`) VALUES
-(150, 1, 1, 327);
 
 -- --------------------------------------------------------
 
@@ -767,8 +852,6 @@ CREATE TABLE IF NOT EXISTS `trm_reqstests` (
 -- Data dump for tabellen `trm_reqstests`
 --
 
-INSERT INTO `trm_reqstests` (`ID`, `t_name`, `r_id`) VALUES
-(86, 'trille', 327);
 
 -- --------------------------------------------------------
 
@@ -793,8 +876,38 @@ CREATE TABLE IF NOT EXISTS `trm_requirements` (
 -- Data dump for tabellen `trm_requirements`
 --
 
-INSERT INTO `trm_requirements` (`ID`, `name`, `description`, `p_id`, `nr`, `author`, `priority`, `assigned`) VALUES
-(327, 'Search', 0x41206465736372697074696f6e, 122, '01', 'admin', 'Urgent', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur-dump for tabellen `trm_selenium_server_vars`
+--
+
+CREATE TABLE IF NOT EXISTS `trm_selenium_server_vars` (
+  `sessionId` varchar(255) NOT NULL,
+  `nodepath` varchar(255) NOT NULL,
+  `u_id` varchar(255) NOT NULL,
+  `t_id` int(11) NOT NULL,
+  PRIMARY KEY  (`sessionId`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Data dump for tabellen `trm_selenium_server_vars`
+--
+
+INSERT INTO `trm_selenium_server_vars` (`sessionId`, `nodepath`, `u_id`, `t_id`) VALUES
+('5f94960a08814ec6a8c7630cf83588d6', 'localhost', '121856928614365', 4),
+('e6f58b47a57743eba8bb3ff1ade318a2', 'localhost', '121856928614365', 5),
+('c2a68bcb64094f54a327a0c258bcb9cd', 'localhost', '121856928614365', 6),
+('f07301424c9b434e93a159f21b465d57', 'localhost', '12185696412490', 7),
+('542850f1e150444ab0908d49e03e360a', 'localhost', '12185696412490', 8),
+('78b27d4b67314fba9ab517fd8838b1eb', 'localhost', '12185696412490', 9),
+('ed97dabeab3f42738e379642dffb9774', 'localhost', '121856974128361', 10),
+('25377d958e314052af5a1e608437ca7b', 'localhost', '121856974128361', 11),
+('0893bee113d543a48978bbaaf5e0618e', 'localhost', '121856974128361', 12),
+('173a61e1c08d49d59ae20e71a72f6564', 'localhost', '121857039772884', 13),
+('581703747c17462a8c4fb935bf253490', 'localhost', '121857039772884', 14),
+('46f0e65fd0714eb0bc659a7a36bfbc00', 'localhost', '121857039772884', 15);
 
 -- --------------------------------------------------------
 
@@ -899,14 +1012,16 @@ CREATE TABLE IF NOT EXISTS `trm_suite` (
   `p_id` int(11) NOT NULL default '0',
   `analysis` tinyint(1) NOT NULL,
   PRIMARY KEY  (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=8 ;
 
 --
 -- Data dump for tabellen `trm_suite`
 --
 
 INSERT INTO `trm_suite` (`ID`, `suitename`, `environment`, `status`, `timeDate`, `timeTaken`, `browser`, `platform`, `selenium_version`, `selenium_revision`, `numTestPassed`, `numTestFailed`, `numCommandsPassed`, `numCommandsFailed`, `numCommandsErrors`, `p_id`, `analysis`) VALUES
-(3, 'trille', 'http://www.krak.dk', '', '2008-04-30 18:20:43', 4, '1', '1', 'Manual Test', '', 1, 0, 1, 0, 0, 122, 1);
+(6, 'trille,1 - trille,4 - trille,10', 'http://www.google.com', 'failed', '2008-08-12 21:35:41', 58, '10', '12', 'RC', '', 2, 1, 2, 1, 0, 123, 0),
+(5, 'trille,1 - trille,4 - trille,10', 'http://www.google.com', 'failed', '2008-08-12 21:34:01', 58, '10', '12', 'RC', '', 2, 1, 2, 1, 0, 123, 0),
+(7, 'trille,1 - trille,4 - trille,10', 'http://www.google.com', 'passed', '2008-08-12 21:46:38', 43, '10', '12', 'RC', '', 3, 0, 3, 0, 0, 123, 0);
 
 -- --------------------------------------------------------
 
@@ -922,7 +1037,7 @@ CREATE TABLE IF NOT EXISTS `trm_tempcommands` (
   `var2` text collate utf8_bin NOT NULL,
   `status` varchar(255) collate utf8_bin NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=32 ;
 
 --
 -- Data dump for tabellen `trm_tempcommands`
@@ -944,14 +1059,22 @@ CREATE TABLE IF NOT EXISTS `trm_test` (
   `manstatus` varchar(255) character set latin1 NOT NULL,
   `author` int(11) default NULL,
   PRIMARY KEY  (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=16 ;
 
 --
 -- Data dump for tabellen `trm_test`
 --
 
 INSERT INTO `trm_test` (`ID`, `status`, `name`, `s_id`, `Thelp`, `manstatus`, `author`) VALUES
-(3, 'passed', 'trille', 3, 'intet hjÃ¦lp', '', NULL);
+(12, 'passed', 'trille', 6, 'rc-ruby', '', NULL),
+(11, 'passed', 'trille', 6, 'rc-java', '', NULL),
+(10, 'failed', 'trille', 6, 'rc-php', '', NULL),
+(7, 'failed', 'trille', 5, 'rc-php', '', NULL),
+(8, 'passed', 'trille', 5, 'rc-java', '', NULL),
+(9, 'passed', 'trille', 5, 'rc-ruby', '', NULL),
+(13, 'passed', 'trille', 7, 'rc-php', '', NULL),
+(14, 'passed', 'trille', 7, 'rc-java', '', NULL),
+(15, 'passed', 'trille', 7, 'rc-ruby', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -962,15 +1085,20 @@ INSERT INTO `trm_test` (`ID`, `status`, `name`, `s_id`, `Thelp`, `manstatus`, `a
 CREATE TABLE IF NOT EXISTS `trm_types` (
   `ID` int(11) NOT NULL auto_increment,
   `typename` varchar(255) collate utf8_bin NOT NULL,
+  `command` varchar(255) collate utf8_bin NOT NULL,
+  `spacer` varchar(255) collate utf8_bin NOT NULL,
+  `extension` varchar(255) collate utf8_bin NOT NULL,
   PRIMARY KEY  (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=11 ;
 
 --
 -- Data dump for tabellen `trm_types`
 --
 
-INSERT INTO `trm_types` (`ID`, `typename`) VALUES
-(1, 'rc-php');
+INSERT INTO `trm_types` (`ID`, `typename`, `command`, `spacer`, `extension`) VALUES
+(1, 'rc-php', 'php', ' ', 'php'),
+(4, 'rc-java', 'java -jar', ' ', 'jar'),
+(10, 'rc-ruby', 'ruby', ' ', 'rb');
 
 -- --------------------------------------------------------
 
@@ -1047,7 +1175,7 @@ CREATE TABLE IF NOT EXISTS `trm_users` (
 INSERT INTO `trm_users` (`id`, `firstname`, `lastname`, `name`, `password`, `usertype`, `email`, `lastLogin`) VALUES
 (72, '12', '12', 'selftester', '81dc9bdb52d04dc20036dbd8313ed055', 3, '', '2008-04-29 12:50:59'),
 (1, 'guest', 'guest', 'guest', '084e0343a0486ff05530df6c705c8bb4', 7, '', '0000-00-00 00:00:00'),
-(104, 'admin', 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', 3, '', '2008-07-26 16:42:58'),
+(104, 'admin', 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', 3, '', '2008-08-12 19:57:24'),
 (113, '', '', 'service', '81dc9bdb52d04dc20036dbd8313ed055', 9, '', '2008-04-17 09:55:18'),
 (112, '', '', 'tester', '81dc9bdb52d04dc20036dbd8313ed055', 5, '', '2008-04-17 09:48:40'),
 (114, '', '', 'manager', '81dc9bdb52d04dc20036dbd8313ed055', 4, '', '2008-04-16 17:25:58');

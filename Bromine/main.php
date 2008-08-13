@@ -15,7 +15,7 @@ include_once ('distinctDropDown.php');
 $check = $_POST['check'];
 if ($check != '') {
     foreach($check as $v) {
-        $dbh->update('TRM_suite', "analysis=1", "ID=$v");
+        $dbh->update('trm_suite', "analysis=1", "ID=$v");
     }
 }
 $move = 15;
@@ -122,7 +122,7 @@ if (isset($_SESSION['timeDate2']) && $_SESSION['timeDate2'] != "$tdtxt") {
 }
 $iddbh = new DBHandler();
 //echo ">>$select<<<br />";
-$result = $iddbh->select('TRM_suite', "$select ORDER by $sortkey $sortdirection LIMIT $limit , $move", 'ID');
+$result = $iddbh->select('trm_suite', "$select ORDER by $sortkey $sortdirection LIMIT $limit , $move", 'ID');
 //echo $iddbh->query;
 $numreports = mysql_numrows($result);
 if ($numreports > 0) {

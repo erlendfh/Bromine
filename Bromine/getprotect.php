@@ -12,7 +12,7 @@ $referer = $_SERVER['HTTP_REFERER'];
 $sitename = substr(strrchr($_SERVER['PHP_SELF'], '/'), 1);
 $referersite = substr(strrchr($_SERVER['HTTP_REFERER'], '/'), 1);
 $access = false;
-$preresult = $dbh->select('TRM_users', "WHERE name='$user'", '*');
+$preresult = $dbh->select('trm_users', "WHERE name='$user'", '*');
 $num = mysql_numrows($preresult);
 for ($i = 0;$i < $num;$i++) {
     $dbpass = mysql_result($preresult, $i, "password");
@@ -22,8 +22,8 @@ for ($i = 0;$i < $num;$i++) {
     }
 }
 if ($access) {
-    $result = $dbh->select('TRM_usertype_access, TRM_sites', "WHERE TRM_usertype_access.ut_id='$ut' AND TRM_sites.sitename='$sitename' AND TRM_usertype_access.s_id=TRM_sites.ID AND TRM_usertype_access.access=1", '*');
-    $refererresult = $dbh->select('TRM_usertype_access, TRM_sites', "WHERE TRM_usertype_access.ut_id='$ut' AND TRM_sites.sitename='$referersite' AND TRM_usertype_access.s_id=TRM_sites.ID AND TRM_usertype_access.access=1", '*');
+    $result = $dbh->select('trm_usertype_access, trm_sites', "WHERE trm_usertype_access.ut_id='$ut' AND trm_sites.sitename='$sitename' AND trm_usertype_access.s_id=trm_sites.ID AND trm_usertype_access.access=1", '*');
+    $refererresult = $dbh->select('trm_usertype_access, trm_sites', "WHERE trm_usertype_access.ut_id='$ut' AND trm_sites.sitename='$referersite' AND trm_usertype_access.s_id=trm_sites.ID AND trm_usertype_access.access=1", '*');
     if (!mysql_num_rows($result) > 0) {
         if (mysql_num_rows($refererresult) > 0) {
             if (strpos($referer, '?') !== FALSE) {

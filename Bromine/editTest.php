@@ -12,15 +12,15 @@ $p_id = $_SESSION['p_id'];
 if ($_GET['action'] == 'passman') {
     $t_manstatuscur = $_GET['status'];
     if ($t_manstatuscur == '') {
-        $dbh->update('TRM_test', "manstatus = 'passed'", "ID = $t_id");
+        $dbh->update('trm_test', "manstatus = 'passed'", "ID = $t_id");
     } else {
-        $dbh->update('TRM_test', "manstatus = ''", "ID = $t_id");
+        $dbh->update('trm_test', "manstatus = ''", "ID = $t_id");
     }
 }
-$result = $dbh->select('TRM_suite, TRM_test, TRM_OS, TRM_browser', "WHERE TRM_suite.ID=TRM_test.s_id AND 
-    TRM_test.ID=$t_id AND
-    TRM_suite.browser=TRM_browser.ID AND
-    TRM_suite.platform=TRM_OS.ID", "TRM_test.name as name, TRM_test.status as status, manstatus, Thelp, OSname, browsername, timeDate");
+$result = $dbh->select('trm_suite, trm_test, trm_os, trm_browser', "WHERE trm_suite.ID=trm_test.s_id AND 
+    trm_test.ID=$t_id AND
+    trm_suite.browser=trm_browser.ID AND
+    trm_suite.platform=trm_os.ID", "trm_test.name as name, trm_test.status as status, manstatus, Thelp, OSname, browsername, timeDate");
 while ($row = mysql_fetch_array($result)) {
     $t_name = $row['name'];
     $t_status = $row['status'];
@@ -54,10 +54,10 @@ while ($row = mysql_fetch_array($result)) {
         </tr>
       </table>";
     echo "<div>";
-    if (mysql_result($dbh->select('TRM_projects', "WHERE `id` = '$p_id'", '*'), 0, "outsidedefects") == 0) {
+    if (mysql_result($dbh->select('trm_projects', "WHERE `id` = '$p_id'", '*'), 0, "outsidedefects") == 0) {
         $adddefectpage = "editDefectPopup.php?t_id=$t_id";
     } else {
-        $adddefectpage = mysql_result($dbh->select('TRM_projects', "WHERE `id` = '$p_id'", '*'), 0, "adddefecturl");
+        $adddefectpage = mysql_result($dbh->select('trm_projects', "WHERE `id` = '$p_id'", '*'), 0, "adddefecturl");
     }
     echo "<button onclick=" . '"' . "window.open('$adddefectpage','mitvindue2','height=750,width=620,resizable=no,scrolling=yes');return false;" . '"' . ">" . $lh->getText('Add defect') . "</button>";
     if ($t_status_org == 'failed') {
@@ -71,14 +71,14 @@ while ($row = mysql_fetch_array($result)) {
     }
     echo "</div>";
 }
-echo "<div><button onclick=" . '"' . "window.open('addComment.php?table=TRM_test&amp;id=" . $t_id . "','mitvindue2','height=250,width=180,resizable=no,scrolling=no');return false;" . '"' . " style='cursor: pointer;'>" . $lh->getText('Add comment') . "</button></div>";
+echo "<div><button onclick=" . '"' . "window.open('addComment.php?table=trm_test&amp;id=" . $t_id . "','mitvindue2','height=250,width=180,resizable=no,scrolling=no');return false;" . '"' . " style='cursor: pointer;'>" . $lh->getText('Add comment') . "</button></div>";
 echo "<div style='width: 600px; height: 300px; overflow: auto;'>";
-$commentresult = $dbh->select('TRM_comments, TRM_users', "WHERE TRM_comments.table_name='TRM_test' AND
-     TRM_comments.table_id='$t_id' AND
-     TRM_comments.author=TRM_users.ID ORDER BY TRM_comments.ID ASC", 'TRM_comments.timedate as timedate,
-      TRM_comments.headline as headline,
-      TRM_comments.comment as comment,
-      TRM_users.name as author
+$commentresult = $dbh->select('trm_comments, trm_users', "WHERE trm_comments.table_name='trm_test' AND
+     trm_comments.table_id='$t_id' AND
+     trm_comments.author=trm_users.ID ORDER BY trm_comments.ID ASC", 'trm_comments.timedate as timedate,
+      trm_comments.headline as headline,
+      trm_comments.comment as comment,
+      trm_users.name as author
      ');
 while ($row2 = mysql_fetch_array($commentresult)) {
     $timedate = $row2['timedate'];

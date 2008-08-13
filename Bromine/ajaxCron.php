@@ -6,13 +6,13 @@
   </head>
   <body>
     <?php
-$result = $dbh->select('TRM_cronjobs', "WHERE runtime<NOW() AND run=0", "*");
+$result = $dbh->select('trm_cronjobs', "WHERE runtime<NOW() AND run=0", "*");
 while ($row = mysql_fetch_array($result)) {
     $id = $row['id'];
     $job = $row['job'];
     fopen($job, 'r');
     echo "$job opened @ " . date('d-m-y h:i:s');
-    $dbh->update('TRM_cronjobs', 'run=1', "id=$id");
+    $dbh->update('trm_cronjobs', 'run=1', "id=$id");
 }
 ?>
     <div id='progress'></div>

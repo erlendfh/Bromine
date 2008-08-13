@@ -7,9 +7,9 @@ $td_id = $_GET['td_id'];
 $p_id = $_SESSION['p_id'];
 if ($sitetotest != '' && $OS != '' && $browser != '' && $td_id != '' && $p_id != '') {
     $_SESSION['startTimeMan'] = time();
-    $suitename = mysql_result($dbh->sql("SELECT name FROM TRM_design_manual_test WHERE id=$td_id"), 0);
+    $suitename = mysql_result($dbh->sql("SELECT name FROM trm_design_manual_test WHERE id=$td_id"), 0);
     // SKAL OPRETTE SUITE/TES I DB'en
-    $s_id = $dbh->insert('TRM_suite', "
+    $s_id = $dbh->insert('trm_suite', "
       NULL,  
       '$suitename',
       '$sitetotest',
@@ -46,7 +46,7 @@ if ($sitetotest != '' && $OS != '' && $browser != '' && $td_id != '' && $p_id !=
     $name = $suitename;
     $status = "failed";
     $tHelp = 'intet hjælp';
-    $t_id = $dbh->insert('TRM_test', "
+    $t_id = $dbh->insert('trm_test', "
       NULL,
       '$status',
       '$name',  

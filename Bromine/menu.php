@@ -17,9 +17,9 @@
                 }
                 $dbh = new DBHandler();
                 if ($sitename == 'editHR.php' || $sitename == 'projectsindex.php' || $sitename == 'editProjects.php') {
-                    $result = $dbh->select('TRM_projects', "ORDER BY name", "*");
+                    $result = $dbh->select('trm_projects', "ORDER BY name", "*");
                 } else {
-                    $result = $dbh->select('TRM_projects, TRM_projectList', "WHERE TRM_projectList.userId = '" . $_SESSION['id'] . "' AND TRM_projectList.access='1' AND TRM_projectList.projectID=TRM_projects.ID ORDER BY TRM_projects.name", "TRM_projects.*");
+                    $result = $dbh->select('trm_projects, trm_projectlist', "WHERE trm_projectlist.userId = '" . $_SESSION['id'] . "' AND trm_projectlist.access='1' AND trm_projectlist.projectID=trm_projects.ID ORDER BY trm_projects.name", "trm_projects.*");
                 }
                 $notset = 1;
                 $numreports = mysql_numrows($result);
@@ -58,7 +58,7 @@
                 'home' => array('index.php', 'Home'),
                 'projects' => array('projectsindex.php', 'Projects'), 
                 'testLab' => array('testlabindex.php', 'Test Lab'),
-                'testResultManager' => array('TRMindex.php', 'Test Result Manager'),
+                'testResultManager' => array('trmindex.php', 'Test Result Manager'),
                 'admin' => array('adminindex.php', 'Link to admin-site'),
             );
             

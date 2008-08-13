@@ -87,7 +87,7 @@ class DBHandler {
      * @return Translated string
      */
     function getText($text) {
-        $this->query = "SELECT $this->lang FROM TRM_lang WHERE langKey='$text'";
+        $this->query = "SELECT $this->lang FROM trm_lang WHERE langKey='$text'";
         $result = mysql_query($this->query) or die(mysql_error());
         $num = mysql_numrows($result);
         if($num>0){
@@ -120,7 +120,7 @@ class DBHandler {
     }
     
     function verifyUser($name, $pass){
-        $result = $this->select('TRM_users',"WHERE name='$name' AND usertype > 2",'*');
+        $result = $this->select('trm_users',"WHERE name='$name' AND usertype > 2",'*');
         if(mysql_num_rows($result) == 0){
         	return false;
         }

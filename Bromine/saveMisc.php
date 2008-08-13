@@ -154,7 +154,7 @@ Array
 
 [sitename] => Array
 (
-[0] => TRMindex.php
+[0] => trmindex.php
 [1] => addComment.php
 [2] => adminSubMenu.php
 [3] => adminindex.php
@@ -216,7 +216,7 @@ Array
 
 [description] => Array
 (
-[0] => TRM index page
+[0] => trm index page
 [1] => Add a comment to anything
 [2] => Admin submenu
 [3] => Admin index page
@@ -381,28 +381,28 @@ $status_priority = $_POST['status_priority'];
 $status_imgpath = $_POST['status_imgpath'];
 //defect type updater
 for ($i = 0;$i < count($tod_id);$i++) {
-    $dbh->update('TRM_type_of_defects', "priority = '$type_priority[$i]', imgpath='$type_imgpath[$i]'", "ID = '$tod_id[$i]'");
+    $dbh->update('trm_type_of_defects', "priority = '$type_priority[$i]', imgpath='$type_imgpath[$i]'", "ID = '$tod_id[$i]'");
 }
 //defect status updater
 for ($i = 0;$i < count($tods_id);$i++) {
-    $dbh->update('TRM_type_of_defect_status', "priority = '$status_priority[$i]', imgpath='$status_imgpath[$i]'", "ID = '$tods_id[$i]'");
+    $dbh->update('trm_type_of_defect_status', "priority = '$status_priority[$i]', imgpath='$status_imgpath[$i]'", "ID = '$tods_id[$i]'");
 }
 //CONFIG UPDATER
 for ($i = 0;$i < count($v_id);$i++) {
-    $dbh->update('TRM_config', "value = '$value[$i]'", "ID = '$v_id[$i]'");
+    $dbh->update('trm_config', "value = '$value[$i]'", "ID = '$v_id[$i]'");
 }
 //USERTYPE UPDATER
 for ($i = 0;$i < count($ut_id);$i++) {
-    $dbh->update('TRM_usertypes', "name = '$utname[$i]'", "ID = '$ut_id[$i]'");
+    $dbh->update('trm_usertypes', "name = '$utname[$i]'", "ID = '$ut_id[$i]'");
 }
 //USERTYPE INSERTER
 if (strlen($newutname) > 0) {
-    $newut_id = $dbh->insert('TRM_usertypes', "NULL,'$newutname'", 'ID, name');
-    $result = $dbh->select('TRM_sites', '', '*');
+    $newut_id = $dbh->insert('trm_usertypes', "NULL,'$newutname'", 'ID, name');
+    $result = $dbh->select('trm_sites', '', '*');
     $num = mysql_numrows($result);
     for ($i = 0;$i < $num;$i++) {
         $ts_id = mysql_result($result, $i, "ID");
-        $dbh->insert('TRM_usertype_access', "NULL,'$newut_id','$ts_id', '0'", 'ID, ut_id, s_id, access');
+        $dbh->insert('trm_usertype_access', "NULL,'$newut_id','$ts_id', '0'", 'ID, ut_id, s_id, access');
     }
 }
 //TYPE UPDATER
@@ -410,45 +410,45 @@ for ($i = 0;$i < count($t_id);$i++) {
     if(!file_exists("RC/$typename[$i]")){
         @mkdir("RC/$typename[$i]");
     }
-    $dbh->update('TRM_types', "typename = '$typename[$i]', command = '$command[$i]', spacer = '$spacer[$i]', extension = '$extension[$i]'", "ID = '$t_id[$i]'");
+    $dbh->update('trm_types', "typename = '$typename[$i]', command = '$command[$i]', spacer = '$spacer[$i]', extension = '$extension[$i]'", "ID = '$t_id[$i]'");
 }
 //TYPE INSERTER
 if (strlen($newtypename) > 0) {
     @mkdir("RC/$newtypename");
-    $dbh->insert('TRM_types', "NULL,'$newtypename', '$newcommand', '$newspacer', '$newextension'", 'ID, typename, command, spacer, extension');
+    $dbh->insert('trm_types', "NULL,'$newtypename', '$newcommand', '$newspacer', '$newextension'", 'ID, typename, command, spacer, extension');
 }
 //BROWSER UPDATER
 for ($i = 0;$i < count($b_id);$i++) {
-    $dbh->update('TRM_browser', "browsername = '$browsername[$i]'", "ID = '$b_id[$i]'");
+    $dbh->update('trm_browser', "browsername = '$browsername[$i]'", "ID = '$b_id[$i]'");
 }
 //BROWSER INSERTER
 if (strlen($newbrowsername) > 0) {
-    $dbh->insert('TRM_browser', "NULL,'$newbrowsername'", 'ID, browsername');
+    $dbh->insert('trm_browser', "NULL,'$newbrowsername'", 'ID, browsername');
 }
 //OS UPDATER
 for ($i = 0;$i < count($o_id);$i++) {
-    $dbh->update('TRM_OS', "OSname = '$OSname[$i]'", "ID = '$o_id[$i]'");
+    $dbh->update('trm_os', "OSname = '$OSname[$i]'", "ID = '$o_id[$i]'");
 }
 //OS INSERTER
 if (strlen($newOSname) > 0) {
-    $dbh->insert('TRM_OS', "NULL,'$newOSname'", 'ID, OSname');
+    $dbh->insert('trm_os', "NULL,'$newOSname'", 'ID, OSname');
 }
 //GUEST UPDATER
 if (strlen($guestname) > 0 && strlen($guestpass) > 0) {
-    $dbh->update('TRM_users', "name = '$guestname', password='$guestpass'", "ID = 1");
+    $dbh->update('trm_users', "name = '$guestname', password='$guestpass'", "ID = 1");
 }
 //SITE UPDATER
 for ($i = 0;$i < count($s_id);$i++) {
-    $dbh->update('TRM_sites', "sitename = '$sitename[$i]', description = '$description[$i]'", "ID = '$s_id[$i]'");
+    $dbh->update('trm_sites', "sitename = '$sitename[$i]', description = '$description[$i]'", "ID = '$s_id[$i]'");
 }
 //SITE INSERTER
 if (strlen($newsitename) > 0) {
-    $s_id = $dbh->insert('TRM_sites', "NULL,'$newsitename', '$newdescription'", 'ID, sitename, description');
-    $result = $dbh->select('TRM_usertypes', '', '*');
+    $s_id = $dbh->insert('trm_sites', "NULL,'$newsitename', '$newdescription'", 'ID, sitename, description');
+    $result = $dbh->select('trm_usertypes', '', '*');
     $num = mysql_numrows($result);
     for ($i = 0;$i < $num;$i++) {
         $ut_id = mysql_result($result, $i, "ID");
-        $dbh->insert('TRM_usertype_access', "NULL,'$ut_id','$s_id', '0'", 'ID, ut_id, s_id, access');
+        $dbh->insert('trm_usertype_access', "NULL,'$ut_id','$s_id', '0'", 'ID, ut_id, s_id, access');
     }
 }
 header("Location: editMisc.php");

@@ -30,7 +30,7 @@ include ('protected.php');
 $p_id = $_SESSION['p_id'];
 $u_id = $_SESSION['id'];
 $p_name = $_SESSION['p_name'];
-$useoutsidedefects = @mysql_result($dbh->select('TRM_projects', "WHERE `id` = '$p_id'", '*'), 0, "outsidedefects");
+$useoutsidedefects = @mysql_result($dbh->select('trm_projects', "WHERE `id` = '$p_id'", '*'), 0, "outsidedefects");
 if ($p_id != '') {
     echo "<tr align='left' style='background: #66CC00; color: white;'>
                         <th>" . $lh->getText('Priority') . "</th>
@@ -40,72 +40,72 @@ if ($p_id != '') {
     //<th>".$lh->getText('Assigned to')."</th>
     "</tr>";
     $outer_result = $dbh->select(" 
-                TRM_requirements, TRM_projectList", "WHERE 
-                TRM_requirements.p_id=$p_id AND
-                TRM_projectList.projectID=TRM_requirements.p_id AND
-                TRM_projectList.userID='$u_id' AND
-                TRM_projectList.access='1' ORDER BY TRM_requirements.priority", "*");
+                trm_requirements, trm_projectlist", "WHERE 
+                trm_requirements.p_id=$p_id AND
+                trm_projectlist.projectID=trm_requirements.p_id AND
+                trm_projectlist.userID='$u_id' AND
+                trm_projectlist.access='1' ORDER BY trm_requirements.priority", "*");
     $outer_num_row = mysql_numrows($outer_result);
     for ($i = 0;$i < $outer_num_row;$i++) {
-        $r_id = mysql_result($outer_result, $i, "TRM_requirements.ID");
-        $r_nr = mysql_result($outer_result, $i, "TRM_requirements.nr");
-        $r_name = mysql_result($outer_result, $i, "TRM_requirements.name");
-        $r_priority = mysql_result($outer_result, $i, "TRM_requirements.priority");
-        $r_description = mysql_result($outer_result, $i, "TRM_requirements.description");
+        $r_id = mysql_result($outer_result, $i, "trm_requirements.ID");
+        $r_nr = mysql_result($outer_result, $i, "trm_requirements.nr");
+        $r_name = mysql_result($outer_result, $i, "trm_requirements.name");
+        $r_priority = mysql_result($outer_result, $i, "trm_requirements.priority");
+        $r_description = mysql_result($outer_result, $i, "trm_requirements.description");
         if (strlen($r_description) > 70) {
             $r_description = substr($r_description, 0, 70);
         }
-        $OSBrowsAllresult = $dbh->select("TRM_ReqsOSBrows, TRM_OS, TRM_browser", "WHERE TRM_ReqsOSBrows.r_id = '$r_id' AND TRM_browser.ID=TRM_ReqsOSBrows.b_id AND TRM_OS.ID=TRM_ReqsOSBrows.o_id", "*");
+        $OSBrowsAllresult = $dbh->select("trm_regsosbrows, trm_os, trm_browser", "WHERE trm_regsosbrows.r_id = '$r_id' AND trm_browser.ID=trm_regsosbrows.b_id AND trm_os.ID=trm_regsosbrows.o_id", "*");
         $OSBrowsAll = Array();
         while ($row = mysql_fetch_array($OSBrowsAllresult)) {
             $OSBrowsAll[] = $row['OSname'] . "/" . $row['browsername'];
         }
-        $test_result = $dbh->select("TRM_ReqsTests", "WHERE r_id = '$r_id'", "*");
+        $test_result = $dbh->select("trm_regstests", "WHERE r_id = '$r_id'", "*");
         $test_num_row = mysql_numrows($test_result);
         $r_status = 'none';
         if ($test_num_row > 0) {
             for ($b = 0;$b < $test_num_row;$b++) {
                 $t_name = mysql_result($test_result, $b, "t_name");
                 $inner_result = $dbh->sql("
-                    SELECT * FROM TRM_requirements, TRM_ReqsTests, TRM_ReqsOSBrows, TRM_test, TRM_OS, TRM_browser, TRM_suite,
+                    SELECT * FROM trm_requirements, trm_regstests, trm_regsosbrows, trm_test, trm_os, trm_browser, trm_suite,
                     
-                      (SELECT MAX(TRM_suite.ID) as max_s_id FROM
-                      TRM_requirements, TRM_ReqsTests, TRM_ReqsOSBrows, TRM_test, TRM_OS, TRM_browser, TRM_suite
-                      WHERE TRM_requirements.ID=$r_id AND
-                      TRM_ReqsTests.t_name='$t_name' AND
-                      TRM_ReqsTests.r_id=TRM_requirements.id AND
-                      TRM_ReqsOSBrows.r_id=TRM_requirements.id AND
-                      TRM_test.name=TRM_ReqsTests.t_name AND
-                      TRM_browser.ID=TRM_ReqsOSBrows.b_id AND
-                      TRM_OS.ID=TRM_ReqsOSBrows.o_id AND
-                      TRM_suite.ID=TRM_test.s_id AND
-                      TRM_suite.analysis=1 AND
-                      TRM_suite.platform=TRM_OS.ID AND
-                      TRM_suite.browser=TRM_browser.ID GROUP BY TRM_ReqsOSBrows.ID) TRM_maxresults
+                      (SELECT MAX(trm_suite.ID) as max_s_id FROM
+                      trm_requirements, trm_regstests, trm_regsosbrows, trm_test, trm_os, trm_browser, trm_suite
+                      WHERE trm_requirements.ID=$r_id AND
+                      trm_regstests.t_name='$t_name' AND
+                      trm_regstests.r_id=trm_requirements.id AND
+                      trm_regsosbrows.r_id=trm_requirements.id AND
+                      trm_test.name=trm_regstests.t_name AND
+                      trm_browser.ID=trm_regsosbrows.b_id AND
+                      trm_os.ID=trm_regsosbrows.o_id AND
+                      trm_suite.ID=trm_test.s_id AND
+                      trm_suite.analysis=1 AND
+                      trm_suite.platform=trm_os.ID AND
+                      trm_suite.browser=trm_browser.ID GROUP BY trm_regsosbrows.ID) trm_maxresults
                       
-                    WHERE TRM_requirements.ID=$r_id AND
-                    TRM_ReqsTests.t_name='$t_name' AND
-                    TRM_ReqsTests.r_id=TRM_requirements.id AND
-                    TRM_ReqsOSBrows.r_id=TRM_requirements.id AND
-                    TRM_test.name=TRM_ReqsTests.t_name AND
-                    TRM_browser.ID=TRM_ReqsOSBrows.b_id AND
-                    TRM_OS.ID=TRM_ReqsOSBrows.o_id AND
-                    TRM_suite.ID=TRM_test.s_id AND
-                    TRM_suite.platform=TRM_OS.ID AND
-                    TRM_suite.ID = TRM_maxresults.max_s_id AND
-                    TRM_suite.browser=TRM_browser.ID GROUP BY TRM_ReqsOSBrows.ID");
+                    WHERE trm_requirements.ID=$r_id AND
+                    trm_regstests.t_name='$t_name' AND
+                    trm_regstests.r_id=trm_requirements.id AND
+                    trm_regsosbrows.r_id=trm_requirements.id AND
+                    trm_test.name=trm_regstests.t_name AND
+                    trm_browser.ID=trm_regsosbrows.b_id AND
+                    trm_os.ID=trm_regsosbrows.o_id AND
+                    trm_suite.ID=trm_test.s_id AND
+                    trm_suite.platform=trm_os.ID AND
+                    trm_suite.ID = trm_maxresults.max_s_id AND
+                    trm_suite.browser=trm_browser.ID GROUP BY trm_regsosbrows.ID");
                 $num_inner_result = mysql_numrows($inner_result);
                 $taken = array();
                 $toPrint = array();
                 for ($a = 0;$a < $num_inner_result;$a++) {
                     $inner_num_row = mysql_numrows($inner_result);
-                    $t_id = mysql_result($inner_result, $a, "TRM_test.ID");
-                    $assignedTo = mysql_result($inner_result, $a, "TRM_requirements.assigned");
+                    $t_id = mysql_result($inner_result, $a, "trm_test.ID");
+                    $assignedTo = mysql_result($inner_result, $a, "trm_requirements.assigned");
                     $s_id = mysql_result($inner_result, $a, "max_s_id");
-                    $t_status = mysql_result($inner_result, $a, "TRM_test.status");
-                    $t_manstatus = mysql_result($inner_result, $a, "TRM_test.manstatus");
-                    $OS = mysql_result($inner_result, $a, "TRM_OS.OSname");
-                    $browser = mysql_result($inner_result, $a, "TRM_browser.browsername");
+                    $t_status = mysql_result($inner_result, $a, "trm_test.status");
+                    $t_manstatus = mysql_result($inner_result, $a, "trm_test.manstatus");
+                    $OS = mysql_result($inner_result, $a, "trm_os.OSname");
+                    $browser = mysql_result($inner_result, $a, "trm_browser.browsername");
                     if ($t_manstatus != '') {
                         $t_status = $t_manstatus;
                     }
@@ -149,7 +149,7 @@ if ($p_id != '') {
         echo "<td>$r_description</td>";
         /*
         if ($assignedTo != 0){
-        $assigned = mysql_result($dbh->sql("SELECT name FROM TRM_users WHERE id=$assignedTo"), 0, 'name');
+        $assigned = mysql_result($dbh->sql("SELECT name FROM trm_users WHERE id=$assignedTo"), 0, 'name');
         echo "<td>$assigned</td>";
         }
         else{
@@ -172,13 +172,13 @@ if ($p_id != '') {
         <td>
       <?php
     if ($useoutsidedefects == 0) {
-        $inner = $lh->select('TRM_defects, TRM_type_of_defects, TRM_type_of_defect_status', "
+        $inner = $lh->select('trm_defects, trm_type_of_defects, trm_type_of_defect_status', "
       WHERE 
-      TRM_type_of_defect_status.id = TRM_defects.status AND
-      TRM_defects.p_id = $p_id AND
-      TRM_type_of_defects.id = TRM_defects.type_of_defect AND
-      TRM_type_of_defect_status.priority < 3
-      ORDER BY TRM_type_of_defect_status.priority ASC, TRM_defects.priority ASC, TRM_type_of_defects.priority ASC, TRM_defects.created DESC
+      trm_type_of_defect_status.id = trm_defects.status AND
+      trm_defects.p_id = $p_id AND
+      trm_type_of_defects.id = trm_defects.type_of_defect AND
+      trm_type_of_defect_status.priority < 3
+      ORDER BY trm_type_of_defect_status.priority ASC, trm_defects.priority ASC, trm_type_of_defects.priority ASC, trm_defects.created DESC
       ", '*');
         $inner_num_row = mysql_numrows($inner);
         echo "
@@ -192,45 +192,45 @@ if ($p_id != '') {
           </tr>
       ";
         for ($a = 0;$a < $inner_num_row;$a++) {
-            $status_short_description = mysql_result($inner, $a, "TRM_type_of_defect_status.name");
-            $status_imgpath = mysql_result($inner, $a, "TRM_type_of_defect_status.imgpath");
-            $d_id = mysql_result($inner, $a, "TRM_defects.id");
-            $created = mysql_result($inner, $a, "TRM_defects.created");
-            $createdby = mysql_result($inner, $a, "TRM_defects.createdby");
-            $updated = mysql_result($inner, $a, "TRM_defects.updated");
-            $updatedby = mysql_result($inner, $a, "TRM_defects.updatedby");
-            $priority = str_replace(" ", "_", mysql_result($inner, $a, "TRM_defects.priority"));
+            $status_short_description = mysql_result($inner, $a, "trm_type_of_defect_status.name");
+            $status_imgpath = mysql_result($inner, $a, "trm_type_of_defect_status.imgpath");
+            $d_id = mysql_result($inner, $a, "trm_defects.id");
+            $created = mysql_result($inner, $a, "trm_defects.created");
+            $createdby = mysql_result($inner, $a, "trm_defects.createdby");
+            $updated = mysql_result($inner, $a, "trm_defects.updated");
+            $updatedby = mysql_result($inner, $a, "trm_defects.updatedby");
+            $priority = str_replace(" ", "_", mysql_result($inner, $a, "trm_defects.priority"));
             $t_id = mysql_result($inner, $a, "t_id");
             if ($t_id == NULL) {
                 $t_id = 'N/A';
             } else {
                 $inner2 = $lh->select('
-        TRM_test, TRM_suite, TRM_ReqsTests, TRM_requirements', "WHERE 
-        TRM_test.id = $t_id AND 
-        TRM_test.s_id = TRM_suite.id AND
-        TRM_suite.analysis = '1'  AND
-        TRM_test.name = TRM_ReqsTests.t_name AND
-        TRM_ReqsTests.r_id = TRM_requirements.id AND
-        TRM_requirements.p_id = $p_id
+        trm_test, trm_suite, trm_regstests, trm_requirements', "WHERE 
+        trm_test.id = $t_id AND 
+        trm_test.s_id = trm_suite.id AND
+        trm_suite.analysis = '1'  AND
+        trm_test.name = trm_regstests.t_name AND
+        trm_regstests.r_id = trm_requirements.id AND
+        trm_requirements.p_id = $p_id
         ", '*');
                 $inner2_num_row = mysql_numrows($inner2);
                 //implode(string glue, array pieces)
                 for ($b = 0;$b < $inner2_num_row;$b++) {
-                    $r_id = mysql_result($inner2, $b, "TRM_requirements.id");
-                    $r_name = mysql_result($inner2, $b, "TRM_requirements.name");
+                    $r_id = mysql_result($inner2, $b, "trm_requirements.id");
+                    $r_name = mysql_result($inner2, $b, "trm_requirements.name");
                     $r_id_array[$r_id] = $r_name;
                 }
             }
             /*
-            $sql = $lh->select('TRM_test, TRM_requirements',"
+            $sql = $lh->select('trm_test, trm_requirements',"
             WHERE
             
             ",'*');
             */
-            $type_name = mysql_result($inner, $a, "TRM_type_of_defects.name");
-            $type_imgpath = mysql_result($inner, $a, "TRM_type_of_defects.imgpath");
+            $type_name = mysql_result($inner, $a, "trm_type_of_defects.name");
+            $type_imgpath = mysql_result($inner, $a, "trm_type_of_defects.imgpath");
             $type_of_defect = mysql_result($inner, $a, "type_of_defect");
-            $defectname = mysql_result($inner, $a, "TRM_defects.name");
+            $defectname = mysql_result($inner, $a, "trm_defects.name");
             $description_of_defect = mysql_result($inner, $a, "description");
             //$defect_long_description = mysql_result($inner,$a,"defect_description");
             $p_id2 = mysql_result($inner, $a, "p_id");
@@ -264,7 +264,7 @@ if ($p_id != '') {
             echo "</tr>";
         }
     } else {
-        echo "<br /><center><a class='full' href='" . mysql_result($dbh->select('TRM_projects', "WHERE `id` = '$p_id'", '*'), 0, "viewdefectsurl") . "' name='menulink'> " . $lh->getText('Show defects') . " </a></center>";
+        echo "<br /><center><a class='full' href='" . mysql_result($dbh->select('trm_projects', "WHERE `id` = '$p_id'", '*'), 0, "viewdefectsurl") . "' name='menulink'> " . $lh->getText('Show defects') . " </a></center>";
     }
     echo "</table>";
 ?>
@@ -277,7 +277,7 @@ if ($p_id != '') {
       <td>
       <?php
     /*
-    $proResult = $dbh->sql("SELECT * FROM TRM_projects  WHERE TRM_projects.assigned = $u_id");
+    $proResult = $dbh->sql("SELECT * FROM trm_projects  WHERE trm_projects.assigned = $u_id");
     
     echo "<h3>".$dbh->getText("Projects")."</h3>";
     echo "<table class='collapse' width='100%'>
@@ -290,9 +290,9 @@ if ($p_id != '') {
     //implode(string glue, array pieces)
     for ($b = 0; $b<$numproResult; $b++){
     echo "<tr><td>";
-    echo mysql_result($proResult,$b,"TRM_projects.name");
+    echo mysql_result($proResult,$b,"trm_projects.name");
     echo "</td><td>";
-    echo mysql_result($proResult,$b,"TRM_projects.description");
+    echo mysql_result($proResult,$b,"trm_projects.description");
     echo "</td></tr>";
     }
     

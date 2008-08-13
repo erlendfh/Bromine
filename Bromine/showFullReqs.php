@@ -18,18 +18,18 @@ $u_id = $_SESSION['id'];
 $user = $_SESSION['user'];
 //$OSs
 $showThisID = $_GET['reqID'];
-$result = $dbh->select("TRM_requirements, TRM_projectList", "WHERE TRM_projectList.projectID=TRM_requirements.p_id AND TRM_projectList.userID='$u_id' AND TRM_projectList.access='1' AND TRM_requirements.id = '$showThisID' ORDER BY TRM_requirements.priority", "TRM_requirements.*");
+$result = $dbh->select("trm_requirements, trm_projectlist", "WHERE trm_projectlist.projectID=trm_requirements.p_id AND trm_projectlist.userID='$u_id' AND trm_projectlist.access='1' AND trm_requirements.id = '$showThisID' ORDER BY trm_requirements.priority", "trm_requirements.*");
 $num_row = mysql_numrows($result);
 if ($num_row > 0) {
-    $r_id = mysql_result($result, 0, "TRM_requirements.id");
+    $r_id = mysql_result($result, 0, "trm_requirements.id");
     $name = mysql_result($result, 0, "name");
     $nr = mysql_result($result, 0, "nr");
     $author = mysql_result($result, 0, "author");
     $description = nl2br(mysql_result($result, 0, "description"));
     $priority = mysql_result($result, 0, "priority");
-    $rresult = $dbh->select("TRM_ReqsOSBrows, TRM_OS, TRM_browser", "WHERE TRM_ReqsOSBrows.r_id = '$r_id' AND 
-      TRM_OS.ID = TRM_ReqsOSBrows.o_id AND
-      TRM_browser.ID = TRM_ReqsOSBrows.b_id", "*");
+    $rresult = $dbh->select("trm_regsosbrows, trm_os, trm_browser", "WHERE trm_regsosbrows.r_id = '$r_id' AND 
+      trm_os.ID = trm_regsosbrows.o_id AND
+      trm_browser.ID = trm_regsosbrows.b_id", "*");
     $rnum_row = mysql_numrows($rresult);
     for ($b = 0;$b < $rnum_row;$b++) {
         $OScur = mysql_result($rresult, $b, "OSname");

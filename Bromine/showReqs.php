@@ -27,20 +27,20 @@ BromineSubmenu::renderTestResultManagerSubmenu();
 $p_id = $_SESSION['p_id'];
 $u_id = $_SESSION['id'];
 include "matrix.php";
-$outer_result = $dbh->select("TRM_requirements, TRM_projectList", join(" ", array("WHERE TRM_requirements.p_id = '$p_id'", "AND TRM_projectList.projectID=TRM_requirements.p_id", "AND TRM_projectList.userID='$u_id' ", "AND TRM_projectList.access='1'", "ORDER BY TRM_requirements.nr",)), "*");
+$outer_result = $dbh->select("trm_requirements, trm_projectlist", join(" ", array("WHERE trm_requirements.p_id = '$p_id'", "AND trm_projectlist.projectID=trm_requirements.p_id", "AND trm_projectlist.userID='$u_id' ", "AND trm_projectlist.access='1'", "ORDER BY trm_requirements.nr",)), "*");
 $outer_num_row = mysql_numrows($outer_result);
 for ($i = 0;$i < $outer_num_row;$i++) {
-    $r_id = mysql_result($outer_result, $i, "TRM_requirements.ID");
-    $r_nr = mysql_result($outer_result, $i, "TRM_requirements.nr");
-    $r_name = mysql_result($outer_result, $i, "TRM_requirements.name");
-    $r_priority = mysql_result($outer_result, $i, "TRM_requirements.priority");
-    $r_description = mysql_result($outer_result, $i, "TRM_requirements.description");
+    $r_id = mysql_result($outer_result, $i, "trm_requirements.ID");
+    $r_nr = mysql_result($outer_result, $i, "trm_requirements.nr");
+    $r_name = mysql_result($outer_result, $i, "trm_requirements.name");
+    $r_priority = mysql_result($outer_result, $i, "trm_requirements.priority");
+    $r_description = mysql_result($outer_result, $i, "trm_requirements.description");
     if (strlen($r_description) > 70) {
         $r_description = "<a href='showFullReqs.php?reqID=$r_id' target='_blank' title='" . $dbh->getText('Show full desc') . "'>" . substr($r_description, 0, 70) . "...</a>";
     } else {
         $r_description = "<a href='showFullReqs.php?reqID=$r_id' target='_blank' title='" . $dbh->getText('Show full desc') . "'>" . $r_description . "...</a>";
     }
-    $OSBrowsAllresult = $dbh->select("TRM_ReqsOSBrows, TRM_OS, TRM_browser", join(" ", array("WHERE TRM_ReqsOSBrows.r_id = '$r_id'", "AND TRM_browser.ID=TRM_ReqsOSBrows.b_id", "AND TRM_OS.ID=TRM_ReqsOSBrows.o_id")), "*");
+    $OSBrowsAllresult = $dbh->select("trm_regsosbrows, trm_os, trm_browser", join(" ", array("WHERE trm_regsosbrows.r_id = '$r_id'", "AND trm_browser.ID=trm_regsosbrows.b_id", "AND trm_os.ID=trm_regsosbrows.o_id")), "*");
     $OSBrowsAll = Array();
     while ($row = mysql_fetch_array($OSBrowsAllresult)) {
         $OSBrowsAll[] = $row['OSname'] . "/" . $row['browsername'];
@@ -65,51 +65,51 @@ for ($i = 0;$i < $outer_num_row;$i++) {
     echo $r_description;
     echo "</td>";
     echo "<td>";
-    $test_result = $dbh->select("TRM_ReqsTests", join(" ", array("WHERE r_id = '$r_id'", "ORDER BY t_name")), "*");
+    $test_result = $dbh->select("trm_regstests", join(" ", array("WHERE r_id = '$r_id'", "ORDER BY t_name")), "*");
     $test_num_row = mysql_numrows($test_result);
     echo "<table>";
     for ($b = 0;$b < $test_num_row;$b++) {
         echo "<tr>";
         $t_name = mysql_result($test_result, $b, "t_name");
         $inner_result = $dbh->sql("
-              SELECT * FROM TRM_requirements, TRM_ReqsTests, TRM_ReqsOSBrows, TRM_test, TRM_OS, TRM_browser, TRM_suite,
+              SELECT * FROM trm_requirements, trm_regstests, trm_regsosbrows, trm_test, trm_os, trm_browser, trm_suite,
               
-                (SELECT MAX(TRM_suite.ID) as max_s_id FROM
-                TRM_requirements, TRM_ReqsTests, TRM_ReqsOSBrows, TRM_test, TRM_OS, TRM_browser, TRM_suite
-                WHERE TRM_requirements.ID=$r_id AND
-                TRM_ReqsTests.t_name='$t_name' AND
-                TRM_ReqsTests.r_id=TRM_requirements.id AND
-                TRM_ReqsOSBrows.r_id=TRM_requirements.id AND
-                TRM_test.name=TRM_ReqsTests.t_name AND
-                TRM_browser.ID=TRM_ReqsOSBrows.b_id AND
-                TRM_OS.ID=TRM_ReqsOSBrows.o_id AND
-                TRM_suite.ID=TRM_test.s_id AND
-                TRM_suite.platform=TRM_OS.ID AND
-                TRM_suite.analysis=1 AND
-                TRM_suite.browser=TRM_browser.ID GROUP BY TRM_ReqsOSBrows.ID) TRM_maxresults
+                (SELECT MAX(trm_suite.ID) as max_s_id FROM
+                trm_requirements, trm_regstests, trm_regsosbrows, trm_test, trm_os, trm_browser, trm_suite
+                WHERE trm_requirements.ID=$r_id AND
+                trm_regstests.t_name='$t_name' AND
+                trm_regstests.r_id=trm_requirements.id AND
+                trm_regsosbrows.r_id=trm_requirements.id AND
+                trm_test.name=trm_regstests.t_name AND
+                trm_browser.ID=trm_regsosbrows.b_id AND
+                trm_os.ID=trm_regsosbrows.o_id AND
+                trm_suite.ID=trm_test.s_id AND
+                trm_suite.platform=trm_os.ID AND
+                trm_suite.analysis=1 AND
+                trm_suite.browser=trm_browser.ID GROUP BY trm_regsosbrows.ID) trm_maxresults
                 
-              WHERE TRM_requirements.ID=$r_id AND
-              TRM_ReqsTests.t_name='$t_name' AND
-              TRM_ReqsTests.r_id=TRM_requirements.id AND
-              TRM_ReqsOSBrows.r_id=TRM_requirements.id AND
-              TRM_test.name=TRM_ReqsTests.t_name AND
-              TRM_browser.ID=TRM_ReqsOSBrows.b_id AND
-              TRM_OS.ID=TRM_ReqsOSBrows.o_id AND
-              TRM_suite.ID=TRM_test.s_id AND
-              TRM_suite.platform=TRM_OS.ID AND
-              TRM_suite.ID = TRM_maxresults.max_s_id AND
-              TRM_suite.browser=TRM_browser.ID GROUP BY TRM_ReqsOSBrows.ID ORDER BY TRM_requirements.priority ASC");
+              WHERE trm_requirements.ID=$r_id AND
+              trm_regstests.t_name='$t_name' AND
+              trm_regstests.r_id=trm_requirements.id AND
+              trm_regsosbrows.r_id=trm_requirements.id AND
+              trm_test.name=trm_regstests.t_name AND
+              trm_browser.ID=trm_regsosbrows.b_id AND
+              trm_os.ID=trm_regsosbrows.o_id AND
+              trm_suite.ID=trm_test.s_id AND
+              trm_suite.platform=trm_os.ID AND
+              trm_suite.ID = trm_maxresults.max_s_id AND
+              trm_suite.browser=trm_browser.ID GROUP BY trm_regsosbrows.ID ORDER BY trm_requirements.priority ASC");
         $num_inner_result = mysql_numrows($inner_result);
         $taken = array();
         $toPrint = array();
         for ($a = 0;$a < $num_inner_result;$a++) {
             $inner_num_row = mysql_numrows($inner_result);
-            $t_id = mysql_result($inner_result, $a, "TRM_test.ID");
+            $t_id = mysql_result($inner_result, $a, "trm_test.ID");
             $s_id = mysql_result($inner_result, $a, "max_s_id");
-            $t_status = mysql_result($inner_result, $a, "TRM_test.status");
-            $t_manstatus = mysql_result($inner_result, $a, "TRM_test.manstatus");
-            $OS = mysql_result($inner_result, $a, "TRM_OS.OSname");
-            $browser = mysql_result($inner_result, $a, "TRM_browser.browsername");
+            $t_status = mysql_result($inner_result, $a, "trm_test.status");
+            $t_manstatus = mysql_result($inner_result, $a, "trm_test.manstatus");
+            $OS = mysql_result($inner_result, $a, "trm_os.OSname");
+            $browser = mysql_result($inner_result, $a, "trm_browser.browsername");
             if ($t_manstatus != '') {
                 $t_status = $t_manstatus;
             }

@@ -26,7 +26,7 @@ class reportHandler {
     public $showDone = true;
     function __construct($id) {
         $this->dbh = new DBHandler($_SESSION['lang']);
-        $result = $this->dbh->select('TRM_suite, TRM_browser, TRM_OS', "WHERE TRM_suite.ID='$id' AND TRM_suite.browser=TRM_browser.ID AND TRM_suite.platform=TRM_OS.ID", '*');
+        $result = $this->dbh->select('trm_suite, trm_browser, trm_os', "WHERE trm_suite.ID='$id' AND trm_suite.browser=trm_browser.ID AND trm_suite.platform=trm_os.ID", '*');
         $this->s_id = mysql_result($result, 0, "ID");
         //echo $this->s_id;
         $this->suitename = mysql_result($result, 0, "suitename");
@@ -44,7 +44,7 @@ class reportHandler {
         $this->numCommandsFailed = mysql_result($result, 0, "numCommandsFailed");
         $this->numCommandsErrors = mysql_result($result, 0, "numCommandsErrors");
         $this->analysis = mysql_result($result, 0, "analysis");
-        $result2 = $this->dbh->select('TRM_test', "WHERE s_id='$id' AND manstatus='passed'", '*');
+        $result2 = $this->dbh->select('trm_test', "WHERE s_id='$id' AND manstatus='passed'", '*');
         $this->numPassedMan = mysql_numrows($result2);
     }
     function getSummary() {

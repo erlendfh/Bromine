@@ -55,12 +55,12 @@ if (is_array($orderby)) {
     }
 }
 if ($tc_name != '' && $p_id != '') {
-    $oldNameResult = $dbh->select('TRM_design_manual_test', "WHERE ID='$td_id'", '*');
+    $oldNameResult = $dbh->select('trm_design_manual_test', "WHERE ID='$td_id'", '*');
     while ($row = mysql_fetch_array($oldNameResult)) {
         $oldName = $row['name'];
     }
-    $td_id = $dbh->sql("REPLACE INTO TRM_design_manual_test VALUES('$td_id','$tc_name','$p_id','$tc_description')");
-    $typeresult = $dbh->select('TRM_types', '', '*');
+    $td_id = $dbh->sql("REPLACE INTO trm_design_manual_test VALUES('$td_id','$tc_name','$p_id','$tc_description')");
+    $typeresult = $dbh->select('trm_types', '', '*');
     while ($row = mysql_fetch_array($typeresult)) {
         $types[] = $row['typename'];
     }
@@ -84,18 +84,18 @@ if ($tc_name != '' && $p_id != '') {
 if ($action != '' && $reaction != '' && $error2 == '') {
     if ($should_be_neworderby == $neyorderby) {
         foreach($action as $key => $value) {
-            $dbh->update('TRM_design_manual_commands', "orderby='$orderby[$key]', action='$value', reaction='$reaction[$key]', td_id=$td_id", "ID='$key'");
+            $dbh->update('trm_design_manual_commands', "orderby='$orderby[$key]', action='$value', reaction='$reaction[$key]', td_id=$td_id", "ID='$key'");
         }
     } else {
         for ($i = $neyorderby;$i < $should_be_neworderby;$i++) {
-            $current_id = mysql_result($dbh->sql("SELECT id FROM TRM_design_manual_commands WHERE orderby=$i"), 0);
-            $dbh->sql("UPDATE TRM_design_manual_commands SET orderby=$i+1 WHERE id=$current_id");
+            $current_id = mysql_result($dbh->sql("SELECT id FROM trm_design_manual_commands WHERE orderby=$i"), 0);
+            $dbh->sql("UPDATE trm_design_manual_commands SET orderby=$i+1 WHERE id=$current_id");
         }
-        $dbh->sql("INSERT INTO TRM_design_manual_commands (id, orderby, action, reaction, td_id) VALUES (NULL,'$neyorderby','$newaction','$newreaction', '$td_id')");
+        $dbh->sql("INSERT INTO trm_design_manual_commands (id, orderby, action, reaction, td_id) VALUES (NULL,'$neyorderby','$newaction','$newreaction', '$td_id')");
     }
 }
 if ($newaction != '' && $newreaction != '' && $neyorderby != '' && $should_be_neworderby == $neyorderby) {
-    $dbh->sql("INSERT INTO TRM_design_manual_commands (id, orderby, action, reaction, td_id) VALUES (NULL,'$neyorderby','$newaction','$newreaction', '$td_id')");
+    $dbh->sql("INSERT INTO trm_design_manual_commands (id, orderby, action, reaction, td_id) VALUES (NULL,'$neyorderby','$newaction','$newreaction', '$td_id')");
 } elseif (($newaction == "" && $newreaction != "") || ($newaction != "" && $newreaction == "")) {
     $error1 = $lh->getText("Both action fields must contain text");
 }

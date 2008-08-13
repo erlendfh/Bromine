@@ -22,7 +22,7 @@ if ($p_id != '') {
     echo "<td>" . $lh->GetText('Choose your current browser') . ":</td>";
     echo "<td>";
     $browser = $_GET['browser'];
-    $result = $dbh->select('TRM_browser', "ORDER BY browsername", "*");
+    $result = $dbh->select('trm_browser', "ORDER BY browsername", "*");
     $numreports = mysql_numrows($result);
     echo "<select name='browser'>";
     echo "<option value=''>" . $lh->getText('Choose') . "</option>";
@@ -40,7 +40,7 @@ if ($p_id != '') {
     echo "<td>" . $lh->GetText('Choose your current OS') . ":</td>";
     echo "<td>";
     $OS = $_GET['OS'];
-    $result = $dbh->select('TRM_OS', "ORDER BY OSname", "*");
+    $result = $dbh->select('trm_os', "ORDER BY OSname", "*");
     $numreports = mysql_numrows($result);
     echo "<select name='OS'>";
     echo "<option value=''>" . $lh->getText('Choose') . "</option>";
@@ -57,7 +57,7 @@ if ($p_id != '') {
     echo "<tr>";
     echo "<td>" . $lh->GetText('Choose test') . ":</td>";
     echo "<td>";
-    $result = $dbh->sql("SELECT * FROM TRM_design_manual_test WHERE p_id=$p_id ORDER BY name");
+    $result = $dbh->sql("SELECT * FROM trm_design_manual_test WHERE p_id=$p_id ORDER BY name");
     $numreports = mysql_numrows($result);
     echo "<select name='td_id'>";
     echo "<option value=''>" . $lh->getText('Choose') . "</option>";
@@ -74,7 +74,7 @@ if ($p_id != '') {
     echo "<tr>";
     echo "<td>" . $lh->GetText('Choose environment') . ":</td>";
     echo "<td>";
-    $siteresult = $dbh->select('TRM_projects_has_sites', "WHERE p_id=$p_id ORDER BY sitetotest", "*");
+    $siteresult = $dbh->select('trm_projects_has_sites', "WHERE p_id=$p_id ORDER BY sitetotest", "*");
     while ($row = mysql_fetch_array($siteresult)) {
         $sitetotests[] = $row['sitetotest'];
     }

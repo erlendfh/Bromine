@@ -19,7 +19,7 @@ if ($td_id == '') {
     <?php
 if ($p_id != '') {
     $td_id = $_GET['td_id'];
-    $result1 = $dbh->select('TRM_design_manual_test', join(" ", array("WHERE p_id=$p_id", "ORDER BY name")), '*');
+    $result1 = $dbh->select('trm_design_manual_test', join(" ", array("WHERE p_id=$p_id", "ORDER BY name")), '*');
     echo "<p>" . $lh->getText('Edit') . "</p> ";
     echo "<form action='' method='get' style='display: inline;'>";
     echo "<p><select name='td_id' onchange='this.form.submit()'>";
@@ -39,12 +39,12 @@ if ($p_id != '') {
     echo "<p>" . $lh->getText('or') . "</p> ";
     echo "<p><button onclick='window.location.href=" . '"' . "?td_id=new" . '"' . "'>" . $lh->getText('Add new') . "</button></p>";
     if ($td_id != '') {
-        $result = $dbh->select('TRM_design_manual_test as test', join(" ", array("WHERE test.id='$td_id'", "ORDER BY test.name")), 'test.name as name, test.Description as Description');
+        $result = $dbh->select('trm_design_manual_test as test', join(" ", array("WHERE test.id='$td_id'", "ORDER BY test.name")), 'test.name as name, test.Description as Description');
         while ($row = mysql_fetch_array($result)) {
             $t_name = $row['name'];
             $t_description = $row['Description'];
         }
-        $result = $dbh->select('TRM_design_manual_commands as commands, TRM_design_manual_test as test', join(" ", array("WHERE commands.td_id='$td_id' ", "AND test.id='$td_id' ", "AND test.p_id = $p_id ", "ORDER BY orderby ASC")), join(", ", array("commands.id as cd_id", "commands.action as action", "commands.reaction as reaction", "commands.id as id", "commands.orderby as orderby")));
+        $result = $dbh->select('trm_design_manual_commands as commands, trm_design_manual_test as test', join(" ", array("WHERE commands.td_id='$td_id' ", "AND test.id='$td_id' ", "AND test.p_id = $p_id ", "ORDER BY orderby ASC")), join(", ", array("commands.id as cd_id", "commands.action as action", "commands.reaction as reaction", "commands.id as id", "commands.orderby as orderby")));
         while ($row = mysql_fetch_array($result)) {
             $action[] = $row['action'];
             $reaction[] = $row['reaction'];

@@ -25,7 +25,7 @@ $w3=true;
 }
 */
 if ($protection) {
-    $result = $dbh->select('TRM_usertype_access, TRM_sites', "WHERE TRM_usertype_access.ut_id='$ut' AND TRM_sites.sitename='$sitename' AND TRM_usertype_access.s_id=TRM_sites.ID AND TRM_usertype_access.access=1", '*');
+    $result = $dbh->select('trm_usertype_access, trm_sites', "WHERE trm_usertype_access.ut_id='$ut' AND trm_sites.sitename='$sitename' AND trm_usertype_access.s_id=trm_sites.ID AND trm_usertype_access.access=1", '*');
     if (!mysql_num_rows($result) > 0) {
         if (strlen($lastgood) > 0) {
             header("Location: $lastgood?errormsg=Your usertype does not have access to this");

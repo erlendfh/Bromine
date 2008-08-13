@@ -29,7 +29,7 @@ if ($p_id != '') { ?>
             
             <?php
     echo "<option value=''>" . $lh->getText('Choose') . "</option>";
-    $sql = 'SELECT * FROM TRM_types';
+    $sql = 'SELECT * FROM trm_types';
     $result = $dbh->sql($sql);
     for ($i = 0;$i < mysql_num_rows($result);$i++) {
         $type = mysql_result($result, $i, 'typename');
@@ -62,7 +62,7 @@ if ($p_id != '') { ?>
             <select name='getname' onchange='this.form.submit()'>
               <?php
         echo "<option value=''>" . $lh->getText('Choose') . "</option>";
-        $sql = "SELECT name FROM TRM_design_manual_test WHERE p_id=$p_id";
+        $sql = "SELECT name FROM trm_design_manual_test WHERE p_id=$p_id";
         $nameresult = $dbh->sql("$sql");
         while ($row = mysql_fetch_array($nameresult)) {
             $names[] = $row['name'];

@@ -28,25 +28,25 @@ $p_id = $_SESSION['p_id'];
 $u_id = $_SESSION['id'];
 $user = $_SESSION['user'];
 $confirm = '"' . $lh->getText('confirmDelete') . '"';
-$OSresult = $dbh->select('TRM_OS', '', '*');
+$OSresult = $dbh->select('trm_os', '', '*');
 $OS = Array();
 $OSID = Array();
 while ($row = mysql_fetch_array($OSresult)) {
     array_push($OS, $row['OSname']);
     array_push($OSID, $row['ID']);
 }
-$browserresult = $dbh->select('TRM_browser', '', '*');
+$browserresult = $dbh->select('trm_browser', '', '*');
 $Browser = Array();
 $BrowserID = Array();
 while ($row = mysql_fetch_array($browserresult)) {
     array_push($Browser, $row['browsername']);
     array_push($BrowserID, $row['ID']);
 }
-$result = $dbh->select("TRM_requirements, TRM_projectList", "WHERE TRM_requirements.p_id = '$p_id' AND TRM_projectList.projectID=TRM_requirements.p_id AND TRM_projectList.userID='$u_id' AND TRM_projectList.access='1' ORDER BY TRM_requirements.priority", "TRM_requirements.*");
+$result = $dbh->select("trm_requirements, trm_projectlist", "WHERE trm_requirements.p_id = '$p_id' AND trm_projectlist.projectID=trm_requirements.p_id AND trm_projectlist.userID='$u_id' AND trm_projectlist.access='1' ORDER BY trm_requirements.priority", "trm_requirements.*");
 $num_row = mysql_numrows($result);
 if ($num_row > 0) {
     for ($a = 0;$a < $num_row;$a++) {
-        $r_id = mysql_result($result, $a, "TRM_requirements.id");
+        $r_id = mysql_result($result, $a, "trm_requirements.id");
         $name = mysql_result($result, $a, "name");
         $nr = mysql_result($result, $a, "nr");
         $author = mysql_result($result, $a, "author");
@@ -59,15 +59,15 @@ if ($num_row > 0) {
         echo "<td><input type='text' value='$name' size='16' name='name[]' /></td>";
         echo "<td><textarea rows='8' cols='90' name='description[]' >$description</textarea></td>";
         echo "<td>";
-        $rresult = $dbh->select("TRM_ReqsOSBrows, TRM_OS, TRM_browser", "WHERE TRM_ReqsOSBrows.r_id = '$r_id' AND 
-              TRM_OS.ID = TRM_ReqsOSBrows.o_id AND
-              TRM_browser.ID = TRM_ReqsOSBrows.b_id", "*");
+        $rresult = $dbh->select("trm_regsosbrows, trm_os, trm_browser", "WHERE trm_regsosbrows.r_id = '$r_id' AND 
+              trm_os.ID = trm_regsosbrows.o_id AND
+              trm_browser.ID = trm_regsosbrows.b_id", "*");
         $rnum_row = mysql_numrows($rresult);
         for ($b = 0;$b < $rnum_row;$b++) {
             $OScur = mysql_result($rresult, $b, "OSname");
             $Browsercur = mysql_result($rresult, $b, "browsername");
             $ID = mysql_result($rresult, $b, "ID");
-            echo "<input type='hidden' value='$ID' name='ReqsOSBrows[]'/>";
+            echo "<input type='hidden' value='$ID' name='regsosbrows[]'/>";
             echo "<select name='OS[$r_id][]'>";
             for ($c = 0;$c < count($OS);$c++) {
                 echo "<option value='$OSID[$c]'";
@@ -123,7 +123,7 @@ if ($num_row > 0) {
         echo "</select>
               </td><td>";
         echo "<select name=assigned[]>";
-        $user_result = $dbh->select('TRM_users', '', "*");
+        $user_result = $dbh->select('trm_users', '', "*");
         $num_users = mysql_num_rows($user_result);
         echo "<option value=''>" . $lh->getText('Choose') . "</option>";
         for ($x = 0;$x < $num_users;$x++) {
@@ -181,7 +181,7 @@ echo "</select>";
           </td>
           <td><?php
 echo "<select name=newassigned>";
-$user_result = $dbh->select('TRM_users', '', "*");
+$user_result = $dbh->select('trm_users', '', "*");
 $num_users = mysql_num_rows($user_result);
 echo "<option value=''>" . $lh->getText('Choose') . "</option>";
 for ($x = 0;$x < $num_users;$x++) {

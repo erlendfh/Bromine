@@ -44,7 +44,7 @@ class commandList {
             $show = "AND id='slamløsning'";
         }
         $this->dbh = new DBHandler();
-        $result = $this->dbh->select('TRM_commands', "WHERE t_id='$id' $show ORDER BY ID ASC", '*');
+        $result = $this->dbh->select('trm_commands', "WHERE t_id='$id' $show ORDER BY ID ASC", '*');
         $num = mysql_numrows($result);
         for ($i = 0;$i < $num;$i++) {
             $this->id[$i] = mysql_result($result, $i, "ID");

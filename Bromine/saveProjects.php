@@ -21,17 +21,17 @@ $viewdefectsurl = $_POST['viewdefectsurl'];
 $adddefecturl = $_POST['adddefecturl'];
 $num = count($p_id);
 for ($i = 0;$i < $num;$i++) {
-    $oldname = mysql_result($dbh->select('TRM_projects', "WHERE ID='$p_id[$i]'", 'name'), 0, 'name');
-    $dbh->update('TRM_projects', "name='$name[$i]',
+    $oldname = mysql_result($dbh->select('trm_projects', "WHERE ID='$p_id[$i]'", 'name'), 0, 'name');
+    $dbh->update('trm_projects', "name='$name[$i]',
     description='$description[$i]',
     assigned='$assigned[$i]',
     adddefecturl='$adddefecturl[$i]',
     viewdefectsurl='$viewdefectsurl[$i]'", "ID='$p_id[$i]'");
     if (is_numeric($outsidedefects[$i])) {
-        $dbh->update('TRM_projects', "outsidedefects='$outsidedefects[$i]'", "ID='$p_id[$i]'");
+        $dbh->update('trm_projects', "outsidedefects='$outsidedefects[$i]'", "ID='$p_id[$i]'");
     }
     if ($oldname != $name[$i]) {
-        $typeresult = $dbh->select('TRM_types', '', 'typename');
+        $typeresult = $dbh->select('trm_types', '', 'typename');
         $typenum = mysql_num_rows($typeresult);
         for ($a = 0;$a < $typenum;$a++) {
             $typename = mysql_result($typeresult, $a, 'typename');
@@ -47,14 +47,14 @@ if (!is_array($sitetotest)) {
     $sitetotest = array($sitetotest);
 }
 foreach($sitetotest as $key => $value) {
-    $dbh->update('TRM_projects_has_sites', "sitetotest='$value'", "ID=$key");
+    $dbh->update('trm_projects_has_sites', "sitetotest='$value'", "ID=$key");
 }
 if (!is_array($sitetotestnew)) {
     $sitetotestnew = array($sitetotestnew);
 }
 foreach($sitetotestnew as $key => $value) {
     if ($value != '') {
-        $dbh->insert('TRM_projects_has_sites', "NULL,'$key', '$value'", 'ID, p_id, sitetotest');
+        $dbh->insert('trm_projects_has_sites', "NULL,'$key', '$value'", 'ID, p_id, sitetotest');
     }
 }
 if (strlen($newname) > 0 && strlen($newdescription) == 0) {
@@ -62,10 +62,10 @@ if (strlen($newname) > 0 && strlen($newdescription) == 0) {
 } elseif (strlen($newname) == 0 && $newdescription > 0) {
     $error = $dbh->getText('Name') . " " . $dbh->getText('is missing');
 } elseif (strlen($newname) > 0 && strlen($newdescription) > 0) {
-    $doesexist = mysql_num_rows($dbh->select('TRM_projects', "WHERE name = '$newname'", 'name'));
+    $doesexist = mysql_num_rows($dbh->select('trm_projects', "WHERE name = '$newname'", 'name'));
     if ($doesexist == 0) {
-        $np_id = $dbh->insert('TRM_projects', "NULL,'$newname', '$newdescription', '$newassigned'", 'ID, name, description, assigned');
-        $typeresult = $dbh->select('TRM_types', '', 'typename');
+        $np_id = $dbh->insert('trm_projects', "NULL,'$newname', '$newdescription', '$newassigned'", 'ID, name, description, assigned');
+        $typeresult = $dbh->select('trm_types', '', 'typename');
         $typenum = mysql_num_rows($typeresult);
         for ($i = 0;$i < $typenum;$i++) {
             $typename = mysql_result($typeresult, $i, 'typename');
@@ -79,11 +79,11 @@ if (strlen($newname) > 0 && strlen($newdescription) == 0) {
     } else {
         $error = $lh->getText('Same project name error');
     }
-    $result = $dbh->select('TRM_users', '', 'ID');
+    $result = $dbh->select('trm_users', '', 'ID');
     $num = mysql_num_rows($result);
     for ($i = 0;$i < $num;$i++) {
         $id = mysql_result($result, $i, 'ID');
-        $dbh->insert('TRM_projectList', "NULL,'$id','$np_id','0'", 'id, userID, projectID, access');
+        $dbh->insert('trm_projectlist', "NULL,'$id','$np_id','0'", 'id, userID, projectID, access');
     }
 }
 if($newname){

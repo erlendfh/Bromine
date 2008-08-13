@@ -17,7 +17,7 @@ BromineSubmenu::renderAdminSubmenu();
             <?php
 $ut_id = $_GET['ut_id'];
 $dbh = new DBHandler();
-$result = $dbh->select('TRM_usertypes', "", "*");
+$result = $dbh->select('trm_usertypes', "", "*");
 $num = mysql_numrows($result);
 echo "<select name='ut_id' onchange='this.form.submit()'>";
 echo "<option value=''>" . $lh->getText('Choose usertype') . "</option>";
@@ -46,12 +46,12 @@ $confirm = '"' . $lh->getText('confirmDelete') . '"';
           </tr>
           
           <?php
-    $result = $dbh->select('TRM_usertypes, TRM_usertype_access, TRM_sites', "WHERE TRM_usertypes.ID='$ut_id' AND
-            TRM_usertypes.ID=TRM_usertype_access.ut_id AND
-            TRM_usertype_access.s_id=TRM_sites.ID ORDER BY TRM_sites.sitename", '*');
+    $result = $dbh->select('trm_usertypes, trm_usertype_access, trm_sites', "WHERE trm_usertypes.ID='$ut_id' AND
+            trm_usertypes.ID=trm_usertype_access.ut_id AND
+            trm_usertype_access.s_id=trm_sites.ID ORDER BY trm_sites.sitename", '*');
     $num = mysql_numrows($result);
     for ($i = 0;$i < $num;$i++) {
-        $uta_id = mysql_result($result, $i, "TRM_usertype_access.ID");
+        $uta_id = mysql_result($result, $i, "trm_usertype_access.ID");
         $access = mysql_result($result, $i, "access");
         $sitename = mysql_result($result, $i, "sitename");
         $description = mysql_result($result, $i, "description");

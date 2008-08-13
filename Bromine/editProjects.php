@@ -10,7 +10,7 @@
             require 'menu.php';
             BromineSubmenu::renderProjectsSubmenu();
                             
-            $result = $dbh->select('TRM_projects', 'WHERE TRM_projects.ID!=1 ORDER BY name', '*');
+            $result = $dbh->select('trm_projects', 'WHERE trm_projects.ID!=1 ORDER BY name', '*');
             $num = mysql_num_rows($result);
             if (array_key_exists('which', $_GET)) {
                 $which=$_GET['which'];
@@ -50,7 +50,7 @@
                     echo "<td>".$lh->getText('Assigned to')."</td>";
                     echo "<td>";
                     echo "<select name=assigned[]>";
-                    $user_result = $dbh->select('TRM_users', 'ORDER BY name', "*");
+                    $user_result = $dbh->select('trm_users', 'ORDER BY name', "*");
                     $num_users = mysql_num_rows($user_result);
                     echo "<option value=''>" . $lh->getText('Choose') . "</option>";
                     for ($x = 0;$x < $num_users;$x++) {
@@ -67,7 +67,7 @@
                     echo "</tr>";
                     echo "<tr>";
                     echo "<td>".$lh->getText('Sites to test')."</td>";
-                    $result2 = $dbh->select('TRM_projects_has_sites', "WHERE TRM_projects_has_sites.p_id=$p_id ORDER BY sitetotest", '*');
+                    $result2 = $dbh->select('trm_projects_has_sites', "WHERE trm_projects_has_sites.p_id=$p_id ORDER BY sitetotest", '*');
                     $num2 = mysql_num_rows($result2);
                     echo "<td>";
                     for ($u = 0;$u < $num2;$u++) {

@@ -2,12 +2,12 @@
 function createMatrix($o, $b, $dbh) {
     $OS = Array();
     $OSID = Array();
-    $OSresult = $dbh->select('TRM_OS', '', '*');
+    $OSresult = $dbh->select('trm_os', '', '*');
     while ($row = mysql_fetch_array($OSresult)) {
         array_push($OS, $row['OSname']);
         array_push($OSID, $row['ID']);
     }
-    $browserresult = $dbh->select('TRM_browser', '', '*');
+    $browserresult = $dbh->select('trm_browser', '', '*');
     $Browser = Array();
     $BrowserID = Array();
     while ($row = mysql_fetch_array($browserresult)) {
@@ -57,12 +57,12 @@ function createMatrix($o, $b, $dbh) {
 function createMatrixAdv($oSuccess, $bSuccess, $oFailed, $bFailed, $oNotDone, $bNotDone, $toPrintSuccess, $toPrintFailed, $dbh) {
     $OS = Array();
     $OSID = Array();
-    $OSresult = $dbh->select('TRM_OS', '', '*');
+    $OSresult = $dbh->select('trm_os', '', '*');
     while ($row = mysql_fetch_array($OSresult)) {
         array_push($OS, $row['OSname']);
         array_push($OSID, $row['ID']);
     }
-    $browserresult = $dbh->select('TRM_browser', '', '*');
+    $browserresult = $dbh->select('trm_browser', '', '*');
     $Browser = Array();
     $BrowserID = Array();
     while ($row = mysql_fetch_array($browserresult)) {

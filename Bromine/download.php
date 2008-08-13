@@ -1,7 +1,7 @@
 <?php
 include ('protected.php');
 $id = $_GET['id'];
-$attachmentresult = $dbh->select('TRM_defect_has_attachment', "WHERE id='$id'", '*');
+$attachmentresult = $dbh->select('trm_defect_has_attachment', "WHERE id='$id'", '*');
 while ($row = mysql_fetch_array($attachmentresult)) {
     $attachment_path[] = $row['attachment_path'];
     $microtime[] = $row['microtime'];

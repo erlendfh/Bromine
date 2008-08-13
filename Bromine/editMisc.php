@@ -19,7 +19,7 @@ $dbh = new DBHandler();
         <div id='types' style="display:none;">
           <table>
             <?php
-                $result = $dbh->select('TRM_types', '', '*');
+                $result = $dbh->select('trm_types', '', '*');
                 echo "<tr>";
                 echo "<th>";
                 echo $lh->getText('Type name');
@@ -75,7 +75,7 @@ $dbh = new DBHandler();
         <div id='browsers' style="display:none;">
         <table>
           <?php
-$result = $dbh->select('TRM_browser', '', '*');
+$result = $dbh->select('trm_browser', '', '*');
 $num = mysql_numrows($result);
 for ($i = 0;$i < $num;$i++) {
     $b_id = mysql_result($result, $i, "ID");
@@ -103,7 +103,7 @@ for ($i = 0;$i < $num;$i++) {
         <div id='OS' style="display:none;">
           <table>
             <?php
-              $result = $dbh->select('TRM_OS', '', '*');
+              $result = $dbh->select('trm_os', '', '*');
               $num = mysql_numrows($result);
               for ($i = 0;$i < $num;$i++) {
                   $o_id = mysql_result($result, $i, "ID");
@@ -135,7 +135,7 @@ for ($i = 0;$i < $num;$i++) {
           <th><?php echo $lh->getText('Guest password'); ?></th>
           </tr>
             <?php
-$result = $dbh->select('TRM_users', 'WHERE ID=1', '*');
+$result = $dbh->select('trm_users', 'WHERE ID=1', '*');
 $name = mysql_result($result, 0, "name");
 $password = mysql_result($result, 0, "password");
 echo "<tr>";
@@ -154,7 +154,7 @@ echo "</tr>";
               <th colspan='3'><?php echo $lh->getText('Usertype'); ?></th>
             </tr>
             <?php
-$result = $dbh->select('TRM_usertypes', '', '*');
+$result = $dbh->select('trm_usertypes', '', '*');
 $num = mysql_numrows($result);
 for ($i = 0;$i < $num;$i++) {
     $ut_id = mysql_result($result, $i, "ID");
@@ -186,7 +186,7 @@ for ($i = 0;$i < $num;$i++) {
               <th><?php echo $lh->getText('Description'); ?></th>
             </tr>
             <?php
-$result = $dbh->select('TRM_sites', 'ORDER BY sitename ASC', '*');
+$result = $dbh->select('trm_sites', 'ORDER BY sitename ASC', '*');
 $num = mysql_numrows($result);
 for ($i = 0;$i < $num;$i++) {
     $s_id = mysql_result($result, $i, "ID");
@@ -227,7 +227,7 @@ for ($i = 0;$i < $num;$i++) {
             </tr>
             <?php
 /*
-$result = $dbh->select('TRM_config','','*');
+$result = $dbh->select('trm_config','','*');
 $num=mysql_numrows($result);
 for($i=0;$i<$num;$i++){
 $v_id=mysql_result($result,$i,"ID");
@@ -258,7 +258,7 @@ echo "</tr>";
               <th><?php echo $lh->getText('Image path'); ?></th>
             </tr>
             <?php
-$result = $dbh->select('TRM_type_of_defects', '', '*');
+$result = $dbh->select('trm_type_of_defects', '', '*');
 $num = mysql_numrows($result);
 for ($i = 0;$i < $num;$i++) {
     $tod_id = mysql_result($result, $i, "ID");
@@ -288,7 +288,7 @@ for ($i = 0;$i < $num;$i++) {
               <th><?php echo $lh->getText('Image path'); ?></th>
             </tr>
             <?php
-$result = $dbh->select('TRM_type_of_defect_status', '', '*');
+$result = $dbh->select('trm_type_of_defect_status', '', '*');
 $num = mysql_numrows($result);
 for ($i = 0;$i < $num;$i++) {
     $tods_id = mysql_result($result, $i, "ID");

@@ -36,7 +36,7 @@
         <th>var2</th>
       </tr>
     <?php
-        $tempcommands = $dbh->select('TRM_tempcommands', "WHERE u_id='$u_id' ORDER BY id DESC LIMIT 0,200", "*");
+        $tempcommands = $dbh->select('trm_tempcommands', "WHERE u_id='$u_id' ORDER BY id DESC LIMIT 0,200", "*");
         while ($row = mysql_fetch_array($tempcommands)) {
             $action = $row['action'];
             $var1 = $row['var1'];
@@ -48,7 +48,7 @@
         }
         if ($_GET['del'] == '1') {
             sleep(3);
-            $dbh->delete("TRM_tempcommands", "u_id=$u_id");
+            $dbh->delete("trm_tempcommands", "u_id=$u_id");
         }
     ?>
     </table>

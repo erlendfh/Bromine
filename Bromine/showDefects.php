@@ -17,18 +17,18 @@ BromineSubmenu::renderTestResultManagerSubmenu();
     <?php
 function getNameFromID($id) {
     global $lh;
-    $result = $lh->select('TRM_users', "WHERE id=$id", 'name');
+    $result = $lh->select('trm_users', "WHERE id=$id", 'name');
     return mysql_result($result, 0, "name");
 }
 $p_id = $_SESSION['p_id'];
 if ($p_id != '') {
     echo "<div><button onclick=" . '"' . "window.open('editDefectPopup.php','mitvindue','height=750,width=620,resizable=no,scrolling=yes');return false;" . '"' . ">" . $lh->getText('Add defect') . "</button></div>";
-    $inner = $lh->select('TRM_defects, TRM_type_of_defects, TRM_type_of_defect_status', "
+    $inner = $lh->select('trm_defects, trm_type_of_defects, trm_type_of_defect_status', "
       WHERE 
-      TRM_type_of_defect_status.id = TRM_defects.status AND
-      TRM_defects.p_id = $p_id AND
-      TRM_type_of_defects.id = TRM_defects.type_of_defect
-      ORDER BY TRM_type_of_defect_status.priority ASC, TRM_defects.priority, TRM_type_of_defects.priority ASC, TRM_defects.created DESC
+      trm_type_of_defect_status.id = trm_defects.status AND
+      trm_defects.p_id = $p_id AND
+      trm_type_of_defects.id = trm_defects.type_of_defect
+      ORDER BY trm_type_of_defect_status.priority ASC, trm_defects.priority, trm_type_of_defects.priority ASC, trm_defects.created DESC
       ", '*');
     $inner_num_row = mysql_numrows($inner);
     echo "
@@ -48,18 +48,18 @@ if ($p_id != '') {
           </tr>
       ";
     for ($a = 0;$a < $inner_num_row;$a++) {
-        $status_short_description = mysql_result($inner, $a, "TRM_type_of_defect_status.name");
-        $status_imgpath = mysql_result($inner, $a, "TRM_type_of_defect_status.imgpath");
-        $d_id = mysql_result($inner, $a, "TRM_defects.id");
-        $created = mysql_result($inner, $a, "TRM_defects.created");
-        $createdby = mysql_result($inner, $a, "TRM_defects.createdby");
-        $updated = mysql_result($inner, $a, "TRM_defects.updated");
-        $updatedby = mysql_result($inner, $a, "TRM_defects.updatedby");
-        $priority = str_replace(" ", "_", mysql_result($inner, $a, "TRM_defects.priority"));
+        $status_short_description = mysql_result($inner, $a, "trm_type_of_defect_status.name");
+        $status_imgpath = mysql_result($inner, $a, "trm_type_of_defect_status.imgpath");
+        $d_id = mysql_result($inner, $a, "trm_defects.id");
+        $created = mysql_result($inner, $a, "trm_defects.created");
+        $createdby = mysql_result($inner, $a, "trm_defects.createdby");
+        $updated = mysql_result($inner, $a, "trm_defects.updated");
+        $updatedby = mysql_result($inner, $a, "trm_defects.updatedby");
+        $priority = str_replace(" ", "_", mysql_result($inner, $a, "trm_defects.priority"));
         $t_id = mysql_result($inner, $a, "t_id");
         if ($t_id != '') {
             $temp_t_id = $t_id;
-            $s_idresult = $dbh->select('TRM_test', "WHERE ID=$t_id", '*');
+            $s_idresult = $dbh->select('trm_test', "WHERE ID=$t_id", '*');
             $t_id = NULL;
             while ($row2 = mysql_fetch_array($s_idresult)) {
                 $s_id = $row2['s_id'];
@@ -71,23 +71,23 @@ if ($p_id != '') {
             $t_id = 'N/A';
         } else {
             $inner2 = $lh->select('
-        TRM_test, TRM_suite, TRM_ReqsTests, TRM_requirements', "WHERE 
-        TRM_test.id = $t_id AND 
-        TRM_test.s_id = TRM_suite.id AND
-        TRM_suite.analysis = '1'  AND
-        TRM_test.name = TRM_ReqsTests.t_name AND
-        TRM_ReqsTests.r_id = TRM_requirements.id AND
-        TRM_requirements.p_id = $p_id
+        trm_test, trm_suite, trm_regstests, trm_requirements', "WHERE 
+        trm_test.id = $t_id AND 
+        trm_test.s_id = trm_suite.id AND
+        trm_suite.analysis = '1'  AND
+        trm_test.name = trm_regstests.t_name AND
+        trm_regstests.r_id = trm_requirements.id AND
+        trm_requirements.p_id = $p_id
         ", '*');
             $inner2_num_row = mysql_numrows($inner2);
             for ($b = 0;$b < $inner2_num_row;$b++) {
-                $r_id = mysql_result($inner2, $b, "TRM_requirements.id");
-                $r_name = mysql_result($inner2, $b, "TRM_requirements.name");
+                $r_id = mysql_result($inner2, $b, "trm_requirements.id");
+                $r_name = mysql_result($inner2, $b, "trm_requirements.name");
                 $r_id_array[$r_id] = $r_name;
             }
         }
-        $defect_short_description = mysql_result($inner, $a, "TRM_type_of_defects.name");
-        $type_imgpath = mysql_result($inner, $a, "TRM_type_of_defects.imgpath");
+        $defect_short_description = mysql_result($inner, $a, "trm_type_of_defects.name");
+        $type_imgpath = mysql_result($inner, $a, "trm_type_of_defects.imgpath");
         $type_of_defect = mysql_result($inner, $a, "type_of_defect");
         $defectname = mysql_result($inner, $a, "name");
         $description_of_defect = mysql_result($inner, $a, "description");

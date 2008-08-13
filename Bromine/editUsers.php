@@ -23,14 +23,14 @@ BromineSubmenu::renderAdminSubmenu();
         </tr>
         <?php
 $dbh = new DBHandler();
-$usertypelistresult = $dbh->select('TRM_usertypes', "WHERE ID!=7", "DISTINCT name, ID");
+$usertypelistresult = $dbh->select('trm_usertypes', "WHERE ID!=7", "DISTINCT name, ID");
 $usertypenum = mysql_numrows($usertypelistresult);
 $confirm = '"' . $lh->getText('confirmDelete') . '"';
-$result = $dbh->select('TRM_users', "WHERE ID!=1 ORDER BY usertype, name", "*");
+$result = $dbh->select('trm_users', "WHERE ID!=1 ORDER BY usertype, name", "*");
 $num = mysql_numrows($result);
 for ($i = 0;$i < $num;$i++) {
     $u_id = mysql_result($result, $i, "ID");
-    $name = mysql_result($result, $i, "TRM_users.name");
+    $name = mysql_result($result, $i, "trm_users.name");
     $firstname = mysql_result($result, $i, "firstname");
     $lastname = mysql_result($result, $i, "lastname");
     $password = mysql_result($result, $i, "password");

@@ -69,7 +69,7 @@ $p_id = 1;
 $p_id = $params['p_id'];
 $platform = $params['o_id'];
 $browser = $params['b_id'];
-$s_id = $dbh->insert('TRM_suite', "
+$s_id = $dbh->insert('trm_suite', "
     NULL,  
     '$suitename',
     '$environment',
@@ -128,7 +128,7 @@ for ($i = 1;strlen($in["testTable_$i"]) > 0;$i++) {
     $betw_tbody = implode(between('<tbody>', '</tbody>', $curTable, true));
     $Thelp = between('<!--', '-->', $betw_tbody, false);
     $betw_tr = between('<tr', '</tr>', $betw_tbody, true);
-    $t_id = $dbh->insert('TRM_test', "
+    $t_id = $dbh->insert('trm_test', "
                         NULL,
                         '$Tstatus',
                         '$Tname',  
@@ -165,7 +165,7 @@ for ($i = 1;strlen($in["testTable_$i"]) > 0;$i++) {
             $var1 = $comm_arr[1];
             $var2 = $comm_arr[2];
             $var2 = str_replace('&nbsp;', ' ', $var2);
-            $dbh->insert('TRM_commands', "
+            $dbh->insert('trm_commands', "
                       NULL,
                       '$Cstatus',
                       '$action',
@@ -183,7 +183,7 @@ for ($i = 1;strlen($in["testTable_$i"]) > 0;$i++) {
         }
     }
 }
-$dbh->update('TRM_suite', "
+$dbh->update('trm_suite', "
   
   numTestPassed='$numTestPassed',
   numTestFailed='$numTestFailed',

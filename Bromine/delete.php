@@ -6,25 +6,25 @@ $id = $_GET['id'];
 
 function deletetestCase($id) {
     global $dbh;
-    $dbh->delete("TRM_ReqsTests USING TRM_design_manual_test, TRM_ReqsTests", "
-    TRM_design_manual_test.id=$id AND
-    TRM_design_manual_test.name=TRM_ReqsTests.t_name");
-    $dbh->delete("TRM_design_manual_test", "ID=$id");
-    $dbh->delete("TRM_design_manual_commands", "td_id=$id");
+    $dbh->delete("trm_regstests USING trm_design_manual_test, trm_regstests", "
+    trm_design_manual_test.id=$id AND
+    trm_design_manual_test.name=trm_regstests.t_name");
+    $dbh->delete("trm_design_manual_test", "ID=$id");
+    $dbh->delete("trm_design_manual_commands", "td_id=$id");
 }
 function deleteattachment($id) {
     global $dbh;
     $attachment = $_GET['attachment'];
-    $dbh->delete("TRM_defect_has_attachment", "id=$id");
+    $dbh->delete("trm_defect_has_attachment", "id=$id");
     unlink($attachment);
 }
 function deletetestCaseStep($id) {
     global $dbh;
-    $dbh->delete("TRM_design_manual_commands", "ID=$id");
+    $dbh->delete("trm_design_manual_commands", "ID=$id");
 }
 function deleteprojects_has_sites($id) {
     global $dbh;
-    $dbh->delete("TRM_projects_has_sites", "ID=$id");
+    $dbh->delete("trm_projects_has_sites", "ID=$id");
 }
 function deletedefect($id) {
     global $dbh, $back, $returnTo;
@@ -32,98 +32,98 @@ function deletedefect($id) {
     $t_id = $b[0];
     $s_id = $b[1];
     $back = "editComments.php?id=$t_id&s_id=$s_id";
-    $dbh->update("TRM_defects", "is_deleted=1", "ID=$id");
+    $dbh->update("trm_defects", "is_deleted=1", "ID=$id");
 }
 function deletesuite($id) {
     global $dbh;
-    $dbh->delete("TRM_commands
+    $dbh->delete("trm_commands
                   USING
-                  TRM_test,
-                  TRM_commands", "TRM_test.s_id=$id AND 
-                   TRM_commands.t_id=TRM_test.ID
+                  trm_test,
+                  trm_commands", "trm_test.s_id=$id AND 
+                   trm_commands.t_id=trm_test.ID
                   ");
-    $dbh->delete("TRM_test", "s_id=$id");
-    $dbh->delete("TRM_suite", "ID=$id");
+    $dbh->delete("trm_test", "s_id=$id");
+    $dbh->delete("trm_suite", "ID=$id");
 }
 function deleteproject($id) {
     global $dbh;
-    $result = $dbh->select('TRM_suite', "WHERE p_id=$id", 'ID');
+    $result = $dbh->select('trm_suite', "WHERE p_id=$id", 'ID');
     $num = mysql_num_rows($result);
     for ($u = 0;$u < $num;$u++) {
         $sid = mysql_result($result, $u, 'ID');
         deletesuite($sid);
     }
-    $result = $dbh->select('TRM_requirements', "WHERE p_id=$id", 'ID');
+    $result = $dbh->select('trm_requirements', "WHERE p_id=$id", 'ID');
     $num = mysql_num_rows($result);
     for ($u = 0;$u < $num;$u++) {
         $rid = mysql_result($result, $u, 'ID');
         deleterequirement($rid);
     }
-    $dbh->delete("TRM_projects", "ID=$id");
-    $dbh->delete("TRM_core", "p_id=$id");
-    $dbh->delete("TRM_core_testsuites", "p_id=$id");
-    //$dbh->delete("TRM_nodes_testsuites","p_id=$id");
-    $dbh->delete("TRM_projectList", "projectID=$id");
+    $dbh->delete("trm_projects", "ID=$id");
+    $dbh->delete("trm_core", "p_id=$id");
+    $dbh->delete("trm_core_testsuites", "p_id=$id");
+    //$dbh->delete("trm_nodes_testsuites","p_id=$id");
+    $dbh->delete("trm_projectlist", "projectID=$id");
 }
 function deleteuser($id) {
     global $dbh;
-    $dbh->delete("TRM_users", "ID=$id");
-    $dbh->delete("TRM_projectList", "userID=$id");
+    $dbh->delete("trm_users", "ID=$id");
+    $dbh->delete("trm_projectlist", "userID=$id");
 }
 function deletenodetest($id) {
     global $dbh;
-    $dbh->delete("TRM_nodes_testsuites", "ID=$id");
+    $dbh->delete("trm_nodes_testsuites", "ID=$id");
 }
 function deletecoretest($id) {
     global $dbh;
-    $dbh->delete("TRM_core_testsuites", "ID=$id");
+    $dbh->delete("trm_core_testsuites", "ID=$id");
 }
 function deleterequirement($id) {
     global $dbh;
-    $dbh->delete("TRM_requirements", "ID=$id");
-    $dbh->delete("TRM_ReqsTests", "r_id=$id");
-    $dbh->delete("TRM_ReqsOSBrows", "r_id=$id");
+    $dbh->delete("trm_requirements", "ID=$id");
+    $dbh->delete("trm_regstests", "r_id=$id");
+    $dbh->delete("trm_regsosbrows", "r_id=$id");
 }
 function deletecore($id) {
     global $dbh;
-    $dbh->delete("TRM_core", "ID=$id");
+    $dbh->delete("trm_core", "ID=$id");
 }
 function deletenode($id) {
     global $dbh;
-    $dbh->delete("TRM_nodes", "ID=$id");
-    $dbh->delete("TRM_nodes_browsers", "n_id=$id");
-    //$dbh->delete("TRM_nodes_testsuites","n_id=$id");
+    $dbh->delete("trm_nodes", "ID=$id");
+    $dbh->delete("trm_nodes_browsers", "n_id=$id");
+    //$dbh->delete("trm_nodes_testsuites","n_id=$id");
     
 }
 function deletetype($id) {
     global $dbh;
-    $dbh->delete("TRM_types", "ID=$id");
+    $dbh->delete("trm_types", "ID=$id");
 }
 function deletebrowser($id) {
     global $dbh;
-    $dbh->delete("TRM_browser", "ID=$id");
+    $dbh->delete("trm_browser", "ID=$id");
 }
 function deleteOS($id) {
     global $dbh;
-    $dbh->delete("TRM_OS", "ID=$id");
+    $dbh->delete("trm_os", "ID=$id");
 }
 function deletesite($id) {
     global $dbh;
-    $dbh->delete("TRM_sites", "ID=$id");
-    $dbh->delete("TRM_usertype_access", "s_id=$id");
+    $dbh->delete("trm_sites", "ID=$id");
+    $dbh->delete("trm_usertype_access", "s_id=$id");
 }
 function deleteusertype($id) {
     global $dbh;
-    $dbh->delete("TRM_usertypes", "ID=$id");
-    $dbh->delete("TRM_usertype_access", "ut_id=$id");
+    $dbh->delete("trm_usertypes", "ID=$id");
+    $dbh->delete("trm_usertype_access", "ut_id=$id");
 }
 function deleteReqsTest($id) {
     global $dbh;
-    $dbh->delete("TRM_ReqsTests", "ID=$id");
+    $dbh->delete("trm_regstests", "ID=$id");
 }
 function deleteOSBrows($id) {
     global $dbh;
-    $dbh->delete("TRM_ReqsOSBrows", "ID=$id");
+    $dbh->delete("trm_regsosbrows", "ID=$id");
 }
 function deleteDatafile($id){
     $id = str_replace("..", "", $id);

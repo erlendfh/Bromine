@@ -116,7 +116,7 @@
   <?php
   /*
 }else{
-    $noderesult = $dbh->select('TRM_nodes', "", "*");
+    $noderesult = $dbh->select('trm_nodes', "", "*");
     while ($row = mysql_fetch_array($noderesult)) {
         $nodeid = $row['ID'];
         $nodepath = $row['nodepath'];
@@ -134,16 +134,16 @@
 
     }
 
-  $result = $dbh->select('TRM_ReqsOSBrows, TRM_nodes, TRM_nodes_browsers, TRM_ReqsTests, TRM_requirements', "
+  $result = $dbh->select('trm_regsosbrows, trm_nodes, trm_nodes_browsers, trm_regstests, trm_requirements', "
   WHERE 
-  TRM_ReqsOSBrows.r_id = $r_id AND
-  TRM_ReqsOSBrows.o_id = TRM_nodes.o_id AND
-  TRM_ReqsOSBrows.b_id = TRM_nodes_browsers.b_id AND
-  TRM_nodes.ID = TRM_nodes_browsers.n_id AND
-  TRM_ReqsTests.r_id = $r_id AND
-  TRM_requirements.id = $r_id 
-  GROUP BY TRM_nodes.o_id,TRM_nodes_browsers.b_id,t_name
-  ", "TRM_nodes_browsers.n_id,TRM_nodes.o_id,TRM_nodes_browsers.b_id,network_drive,TRM_nodes.description as description,nodepath,t_name, TRM_requirements.name as r_name, TRM_nodes_browsers.browser_path as browser");
+  trm_regsosbrows.r_id = $r_id AND
+  trm_regsosbrows.o_id = trm_nodes.o_id AND
+  trm_regsosbrows.b_id = trm_nodes_browsers.b_id AND
+  trm_nodes.ID = trm_nodes_browsers.n_id AND
+  trm_regstests.r_id = $r_id AND
+  trm_requirements.id = $r_id 
+  GROUP BY trm_nodes.o_id,trm_nodes_browsers.b_id,t_name
+  ", "trm_nodes_browsers.n_id,trm_nodes.o_id,trm_nodes_browsers.b_id,network_drive,trm_nodes.description as description,nodepath,t_name, trm_requirements.name as r_name, trm_nodes_browsers.browser_path as browser");
   //echo $dbh->getQuery();
   $kk = rand(0, 10000);
   while ($row = mysql_fetch_array($result)) {

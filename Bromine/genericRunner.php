@@ -16,20 +16,20 @@ $user = $_SESSION['user'];
 $pass = $_SESSION['pass'];
 $lang = $_SESSION['lang'];
 if ($p_id != '') {
-    $typeresult = $dbh->select('TRM_types', '', '*');
+    $typeresult = $dbh->select('trm_types', '', '*');
     /*
     while ($row = mysql_fetch_array($typeresult)) {
         $types[] = $row['typename'];
         $typesid[] = $row['ID'];
     }
     */
-    $noderesult = $dbh->select('TRM_nodes', "", "*");
+    $noderesult = $dbh->select('trm_nodes', "", "*");
     while ($row = mysql_fetch_array($noderesult)) {
         $nodes[] = $row['description'];
         $nodesid[] = $row['ID'];
         $nodepath[] = $row['nodepath'];
     }
-    $siteresult = $dbh->select('TRM_projects_has_sites', "WHERE p_id=$p_id", "*");
+    $siteresult = $dbh->select('trm_projects_has_sites', "WHERE p_id=$p_id", "*");
     while ($row = mysql_fetch_array($siteresult)) {
         $sitetotests[] = $row['sitetotest'];
     }
@@ -54,7 +54,7 @@ if ($p_id != '') {
     
 ?>
     <?php
-    $result = $dbh->select('TRM_nodes', "", "*");
+    $result = $dbh->select('trm_nodes', "", "*");
     $numreports = mysql_numrows($result);
     echo "<fieldset style='width: 600px;'>";
     echo "<legend>Node status</legend>";
@@ -98,18 +98,18 @@ if ($p_id != '') {
               <td>
                 <?php
     $outer_result = $dbh->select(" 
-                  TRM_requirements, TRM_projectList", "WHERE TRM_requirements.p_id = '$p_id' AND
-                  TRM_projectList.projectID=TRM_requirements.p_id AND
-                  TRM_projectList.userID='$u_id' AND
-                  TRM_projectList.access='1'", "*");
+                  trm_requirements, trm_projectlist", "WHERE trm_requirements.p_id = '$p_id' AND
+                  trm_projectlist.projectID=trm_requirements.p_id AND
+                  trm_projectlist.userID='$u_id' AND
+                  trm_projectlist.access='1'", "*");
     $outer_num_row = mysql_numrows($outer_result);
     echo "<select name='req' onchange='this.form.submit()' ";
     echo ">";
     echo "<option value=''>" . $lh->getText('Choose') . "</option>";
     for ($i = 0;$i < $outer_num_row;$i++) {
-        $r_id = mysql_result($outer_result, $i, "TRM_requirements.ID");
-        $r_nr = mysql_result($outer_result, $i, "TRM_requirements.nr");
-        $r_name = mysql_result($outer_result, $i, "TRM_requirements.name");
+        $r_id = mysql_result($outer_result, $i, "trm_requirements.ID");
+        $r_nr = mysql_result($outer_result, $i, "trm_requirements.nr");
+        $r_name = mysql_result($outer_result, $i, "trm_requirements.name");
         echo "<option value='$r_id' ";
         if ($req == $r_id) {
             echo " selected='selected'";
@@ -118,14 +118,14 @@ if ($p_id != '') {
     }
     echo "</select>";
     $inner_result = $dbh->select(" 
-                          TRM_requirements, TRM_ReqsTests", "WHERE TRM_requirements.ID = '$req' AND 
-                          TRM_ReqsTests.r_id=TRM_requirements.id", "*");
+                          trm_requirements, trm_regstests", "WHERE trm_requirements.ID = '$req' AND 
+                          trm_regstests.r_id=trm_requirements.id", "*");
     $inner_num_row = mysql_numrows($inner_result);
     for ($i = 0;$i < $inner_num_row;$i++) {
         $t_name = mysql_result($inner_result, $i, "t_name");
         echo "<input type='hidden' value='$t_name' name=tests[] />";
     }
-    $suitename = "Requirement: " . @mysql_result($inner_result, 0, "TRM_requirements.name");
+    $suitename = "Requirement: " . @mysql_result($inner_result, 0, "trm_requirements.name");
 ?>
               </td>
             </tr>
@@ -135,20 +135,20 @@ if ($p_id != '') {
             </td>
             <td>
             <?php
-    $rresult = $dbh->select("TRM_OS, TRM_browser, TRM_nodes_browsers, TRM_nodes", "WHERE TRM_nodes_browsers.n_id=TRM_nodes.id AND 
-              TRM_nodes_browsers.b_id=TRM_browser.id AND
-              TRM_OS.id=TRM_nodes.o_id", "*");
+    $rresult = $dbh->select("trm_os, trm_browser, trm_nodes_browsers, trm_nodes", "WHERE trm_nodes_browsers.n_id=trm_nodes.id AND 
+              trm_nodes_browsers.b_id=trm_browser.id AND
+              trm_os.id=trm_nodes.o_id", "*");
         $rnum_row = mysql_numrows($rresult);
         echo "<select name='OS_Browser' onchange='this.form.submit()'>";
         echo "<option value=''>".$lh->getText('Choose')."</option>";
         for ($b = 0;$b < $rnum_row;$b++) {
             $OScur = mysql_result($rresult, $b, "OSname");
             $Browsercur = mysql_result($rresult, $b, "browsername");
-            $browser_id = mysql_result($rresult, $b, "TRM_browser.ID");
-            $os_id = mysql_result($rresult, $b, "TRM_OS.ID");
-            $node_id = mysql_result($rresult, $b, "TRM_nodes.ID");
-            $node_description = mysql_result($rresult, $b, "TRM_nodes.description");
-            $nodepath = mysql_result($rresult, $b, "TRM_nodes.nodepath");
+            $browser_id = mysql_result($rresult, $b, "trm_browser.ID");
+            $os_id = mysql_result($rresult, $b, "trm_os.ID");
+            $node_id = mysql_result($rresult, $b, "trm_nodes.ID");
+            $node_description = mysql_result($rresult, $b, "trm_nodes.description");
+            $nodepath = mysql_result($rresult, $b, "trm_nodes.nodepath");
             echo "<option value='$node_id,$browser_id' ";
             if ($_GET['OS_Browser'] == "$node_id,$browser_id") {
                 echo " selected='selected'";
@@ -224,7 +224,7 @@ if ($p_id != '') {
               </td>
               <td>
                 <?php
-    $testcaseresult = $dbh->select('TRM_design_manual_test', "WHERE p_id=$p_id ORDER BY name", "*");
+    $testcaseresult = $dbh->select('trm_design_manual_test', "WHERE p_id=$p_id ORDER BY name", "*");
     $b=0;
     while ($row = mysql_fetch_array($testcaseresult)){ 
         while ($row2 = mysql_fetch_array($typeresult)){
@@ -256,20 +256,20 @@ if ($p_id != '') {
             <td>
             <?php
     if (count($tests) > 0) {
-        $rresult = $dbh->select("TRM_OS, TRM_browser, TRM_nodes_browsers, TRM_nodes", "WHERE TRM_nodes_browsers.n_id=TRM_nodes.id AND 
-              TRM_nodes_browsers.b_id=TRM_browser.id AND
-              TRM_OS.id=TRM_nodes.o_id", "*");
+        $rresult = $dbh->select("trm_os, trm_browser, trm_nodes_browsers, trm_nodes", "WHERE trm_nodes_browsers.n_id=trm_nodes.id AND 
+              trm_nodes_browsers.b_id=trm_browser.id AND
+              trm_os.id=trm_nodes.o_id", "*");
         $rnum_row = mysql_numrows($rresult);
         echo "<select name='OS_Browser' onchange='this.form.submit()'>";
         echo "<option value=''>".$lh->getText('Choose')."</option>";
         for ($b = 0;$b < $rnum_row;$b++) {
             $OScur = mysql_result($rresult, $b, "OSname");
             $Browsercur = mysql_result($rresult, $b, "browsername");
-            $browser_id = mysql_result($rresult, $b, "TRM_browser.ID");
-            $os_id = mysql_result($rresult, $b, "TRM_OS.ID");
-            $node_id = mysql_result($rresult, $b, "TRM_nodes.ID");
-            $node_description = mysql_result($rresult, $b, "TRM_nodes.description");
-            $nodepath = mysql_result($rresult, $b, "TRM_nodes.nodepath");
+            $browser_id = mysql_result($rresult, $b, "trm_browser.ID");
+            $os_id = mysql_result($rresult, $b, "trm_os.ID");
+            $node_id = mysql_result($rresult, $b, "trm_nodes.ID");
+            $node_description = mysql_result($rresult, $b, "trm_nodes.description");
+            $nodepath = mysql_result($rresult, $b, "trm_nodes.nodepath");
             echo "<option value='$node_id,$browser_id' ";
             if ($_GET['OS_Browser'] == "$node_id,$browser_id") {
                 echo " selected='selected'";
@@ -368,7 +368,7 @@ if ($p_id != '') {
                         }
                         closedir($handle);
                     }
-                    $testcaseresult = $dbh->select('TRM_design_manual_test', "WHERE p_id=$p_id ORDER By name", "*");
+                    $testcaseresult = $dbh->select('trm_design_manual_test', "WHERE p_id=$p_id ORDER By name", "*");
                     while ($row = mysql_fetch_array($testcaseresult)) {
                         $testcasename = $row['name'];
                         echo "<input type='checkbox' name='tests[]' value='$testcasename' ";
@@ -407,21 +407,21 @@ if ($p_id != '') {
             <td>
             <?php
     if (count($tests) > 0) {
-        $rresult = $dbh->select("TRM_OS, TRM_browser, TRM_nodes_browsers, TRM_nodes", "WHERE TRM_nodes_browsers.n_id=TRM_nodes.id AND 
-              TRM_nodes_browsers.b_id=TRM_browser.id AND
-              TRM_OS.id=TRM_nodes.o_id", "*");
+        $rresult = $dbh->select("trm_os, trm_browser, trm_nodes_browsers, trm_nodes", "WHERE trm_nodes_browsers.n_id=trm_nodes.id AND 
+              trm_nodes_browsers.b_id=trm_browser.id AND
+              trm_os.id=trm_nodes.o_id", "*");
         $rnum_row = mysql_numrows($rresult);
         echo "<select name='OS_Browser' onchange='this.form.submit()'>";
         echo "<option value=''>".$lh->getText('Choose')."</option>";
         for ($b = 0;$b < $rnum_row;$b++) {
             $OScur = mysql_result($rresult, $b, "OSname");
             $Browsercur = mysql_result($rresult, $b, "browsername");
-            $browser_id = mysql_result($rresult, $b, "TRM_browser.ID");
-            $os_id = mysql_result($rresult, $b, "TRM_OS.ID");
-            $noderesult = $dbh->select('TRM_nodes', "WHERE o_id = $os_id", 'ID');
+            $browser_id = mysql_result($rresult, $b, "trm_browser.ID");
+            $os_id = mysql_result($rresult, $b, "trm_os.ID");
+            $noderesult = $dbh->select('trm_nodes', "WHERE o_id = $os_id", 'ID');
             $node_id = mysql_result($noderesult, 0, "ID");
-            $node_description = mysql_result($rresult, $b, "TRM_nodes.description");
-            $nodepath = mysql_result($rresult, $b, "TRM_nodes.nodepath");
+            $node_description = mysql_result($rresult, $b, "trm_nodes.description");
+            $nodepath = mysql_result($rresult, $b, "trm_nodes.nodepath");
             echo "<option value='$node_id,$browser_id' ";
             if ($_GET['OS_Browser'] == "$node_id,$browser_id") {
                 echo " selected='selected'";

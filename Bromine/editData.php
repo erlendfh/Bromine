@@ -41,7 +41,7 @@
                         <select name='gettype' onchange='this.form.submit()'>
                             <?php
                                 echo "<option value=''>" . $lh->getText('Choose') . "</option>";
-                                $sql = 'SELECT * FROM TRM_types';
+                                $sql = 'SELECT * FROM trm_types';
                                 $result = $dbh->sql($sql);
                                 for ($i = 0;$i < mysql_num_rows($result);$i++) {
                                     $type = mysql_result($result, $i, 'typename');

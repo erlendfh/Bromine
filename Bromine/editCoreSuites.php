@@ -23,12 +23,12 @@ BromineSubmenu::renderTestLabSubmenu();
       <?php
 $p_id = $_SESSION['p_id'];
 $confirm = '"' . $lh->getText('confirmDelete') . '"';
-$result = $dbh->select('TRM_core_testsuites, TRM_projects, TRM_projectList', "WHERE TRM_projectList.userId = '" . $_SESSION['id'] . "' AND 
-        TRM_projectList.access='1' AND
-        TRM_projects.ID=$p_id AND 
-        TRM_projectList.projectID=TRM_projects.ID AND 
-        TRM_projects.ID!=1 AND
-        TRM_core_testsuites.p_id = TRM_projects.ID", "TRM_core_testsuites.*");
+$result = $dbh->select('trm_core_testsuites, trm_projects, trm_projectlist', "WHERE trm_projectlist.userId = '" . $_SESSION['id'] . "' AND 
+        trm_projectlist.access='1' AND
+        trm_projects.ID=$p_id AND 
+        trm_projectlist.projectID=trm_projects.ID AND 
+        trm_projects.ID!=1 AND
+        trm_core_testsuites.p_id = trm_projects.ID", "trm_core_testsuites.*");
 $numreports = mysql_numrows($result);
 for ($i = 0;$i < $numreports;$i++) {
     echo "<tr>";

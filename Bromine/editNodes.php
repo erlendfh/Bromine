@@ -48,14 +48,14 @@ $dbh = new DBHandler();
                   </th>
                 </tr>
                 <?php
-$browserlistresult = $dbh->select('TRM_browser', "ORDER BY ID", "DISTINCT browsername, ID");
+$browserlistresult = $dbh->select('trm_browser', "ORDER BY ID", "DISTINCT browsername, ID");
 $browsernum = mysql_numrows($browserlistresult);
-$OSlistresult = $dbh->select('TRM_OS', "ORDER BY ID", "DISTINCT OSname, ID");
+$OSlistresult = $dbh->select('trm_os', "ORDER BY ID", "DISTINCT OSname, ID");
 $OSnum = mysql_numrows($OSlistresult);
-$typelistresult = $dbh->select('TRM_types', "ORDER BY ID", 'DISTINCT typename, ID');
+$typelistresult = $dbh->select('trm_types', "ORDER BY ID", 'DISTINCT typename, ID');
 $typenum = mysql_numrows($typelistresult);
-$result = $dbh->select('TRM_nodes, TRM_OS', "
-                      WHERE TRM_nodes.o_id=TRM_OS.ID", "*");
+$result = $dbh->select('trm_nodes, trm_os', "
+                      WHERE trm_nodes.o_id=trm_os.ID", "*");
 $numreports = mysql_numrows($result);
 for ($i = 0;$i < $numreports;$i++) {
     $n_id = mysql_result($result, $i, "ID");
@@ -100,7 +100,7 @@ for ($i = 0;$i < $numreports;$i++) {
                     </td>
                     <td>";
     echo "<select name='browsers[$n_id][]' multiple='multiple'>";
-    $browscurresult = $dbh->select('TRM_nodes_browsers', "WHERE n_id='$n_id' ORDER BY b_id", "*");
+    $browscurresult = $dbh->select('trm_nodes_browsers', "WHERE n_id='$n_id' ORDER BY b_id", "*");
     $browserscur = Array();
     while ($row = mysql_fetch_array($browscurresult)) {
         $browserscur['n_id'][] = $row['n_id'];
@@ -130,7 +130,7 @@ for ($i = 0;$i < $numreports;$i++) {
     }
     echo "</td>";
     /*
-    $typecurresult = $dbh->select('TRM_nodes_types',"WHERE n_id='$n_id' ORDER BY t_id",'*');
+    $typecurresult = $dbh->select('trm_nodes_types',"WHERE n_id='$n_id' ORDER BY t_id",'*');
     $typescur=Array();
     while($row = mysql_fetch_array($typecurresult)){
     $typescur['n_id'][]=$row['n_id'];

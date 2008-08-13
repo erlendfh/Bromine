@@ -25,19 +25,19 @@ $p_id = $_SESSION['p_id'];
           </tr>
           
           <?php
-    $result = $dbh->select('TRM_users, TRM_usertypes, TRM_projectList', "WHERE TRM_users.usertype=TRM_usertypes.ID AND
-            TRM_users.ID=TRM_projectList.userID AND
-            TRM_projectList.projectID='$p_id'
-            ORDER BY TRM_users.usertype, TRM_users.name", '*');
+    $result = $dbh->select('trm_users, trm_usertypes, trm_projectlist', "WHERE trm_users.usertype=trm_usertypes.ID AND
+            trm_users.ID=trm_projectlist.userID AND
+            trm_projectlist.projectID='$p_id'
+            ORDER BY trm_users.usertype, trm_users.name", '*');
     $num = mysql_numrows($result);
     for ($i = 0;$i < $num;$i++) {
-        $u_id = mysql_result($result, $i, "TRM_users.ID");
-        $username = mysql_result($result, $i, "TRM_users.name");
+        $u_id = mysql_result($result, $i, "trm_users.ID");
+        $username = mysql_result($result, $i, "trm_users.name");
         $firstname = mysql_result($result, $i, "firstname");
         $lastname = mysql_result($result, $i, "lastname");
         $access = mysql_result($result, $i, "access");
         $name = "$firstname $lastname";
-        $usertype = mysql_result($result, $i, "TRM_usertypes.name");
+        $usertype = mysql_result($result, $i, "trm_usertypes.name");
         echo "<tr>";
         echo "<td><input type='checkbox' name='u_id[]' value='$u_id' ";
         if ($access == 1) {

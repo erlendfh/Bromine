@@ -160,20 +160,20 @@ $newbrowsers = $_POST['newbrowsers'];
 $newnetworkdrive = $_POST['newnetwork_drive'];
 //NODES UPDATER
 for ($i = 0;$i < count($n_id);$i++) {
-    $dbh->update('TRM_nodes', "nodepath = '$nodepath[$i]',
+    $dbh->update('trm_nodes', "nodepath = '$nodepath[$i]',
       o_id = '$OS[$i]',
       description = '$description[$i]',
       network_drive = '$network_drive[$i]'", "ID = '$n_id[$i]'");
 }
 //BROWSERS UPDATER (Deletes everything and reinserts new definitions)
 if ($n_id != '') {
-    mysql_query("TRUNCATE TABLE TRM_nodes_browsers");
+    mysql_query("TRUNCATE TABLE trm_nodes_browsers");
     for ($i = 0;$i < count($n_id);$i++) {
         $n_idc = $n_id[$i];
         for ($u = 0;$u < count($browsers[$n_idc]);$u++) {
             $b_id = $browsers[$n_idc][$u];
             $browser_pathc = $browser_path[$n_idc][$b_id];
-            $dbh->insert('TRM_nodes_browsers', "NULL,
+            $dbh->insert('trm_nodes_browsers', "NULL,
           '$b_id',
           '$n_idc',
           '$browser_pathc'", 'ID,
@@ -185,7 +185,7 @@ if ($n_id != '') {
 }
 //NODE INSERTER
 if (strlen($newpath) > 0) {
-    $newn_id = $dbh->insert('TRM_nodes', "NULL,
+    $newn_id = $dbh->insert('trm_nodes', "NULL,
       '$newpath',
       '$newOS',
       '$newdescription',
@@ -196,7 +196,7 @@ if (strlen($newpath) > 0) {
        network_drive');
     for ($i = 0;$i < count($newbrowsers);$i++) { //INSERTS THE BROWSERS
         $b_id = $newbrowsers[$i];
-        $dbh->insert('TRM_nodes_browsers', "NULL,
+        $dbh->insert('trm_nodes_browsers', "NULL,
         '$b_id',
         '$newn_id',
         ''", 'ID,

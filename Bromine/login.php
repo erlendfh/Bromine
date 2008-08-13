@@ -17,7 +17,7 @@
   $num = 0;
   if ($name != "" && $pass != ""){
     $pass = md5($pass);
-    $result = $dbh->select('TRM_users',"WHERE name='$name' AND password = '$pass' AND usertype > 2",'*');
+    $result = $dbh->select('trm_users',"WHERE name='$name' AND password = '$pass' AND usertype > 2",'*');
     $num=mysql_numrows($result);
     if ($num != 0){
       $id = mysql_result($result, 0, 'id');
@@ -32,17 +32,17 @@
       $_SESSION['lang']=$lang;
       $_SESSION['lastLogin']=$lastLogin;
       $_SESSION['pass']=md5($pass);
-      $_SESSION['usertypename']=mysql_result($dbh->select('TRM_usertypes',"WHERE ID='$usertype'",'name'), 0, 'name');	
+      $_SESSION['usertypename']=mysql_result($dbh->select('trm_usertypes',"WHERE ID='$usertype'",'name'), 0, 'name');	
       
-      $dbh->update('TRM_users',"lastLogin = NOW()","ID=$id");
+      $dbh->update('trm_users',"lastLogin = NOW()","ID=$id");
       
-      $registration = $dbh->select('TRM_config',"WHERE var = 'registration' AND value = '1'",'*');
+      $registration = $dbh->select('trm_config',"WHERE var = 'registration' AND value = '1'",'*');
       
       if (mysql_num_rows($registration) == 0)
       {
       try{
         fopen("http://master.testserver.monten.dk/registration.php", 'r');
-        $dbh->insert('TRM_config',"NULL,'registration','1'",'id,var,value');
+        $dbh->insert('trm_config',"NULL,'registration','1'",'id,var,value');
       }
       catch(Exception $e){}
       }
@@ -98,7 +98,7 @@ if ($num > 0) {
                   <td>
                     <select name='language'>
                       <?php
-                            $langresult = $dbh->select('TRM_langlist', '', '*'); $langnum = mysql_num_rows($langresult); for ($u = 0;$u < $langnum;$u++) {
+                            $langresult = $dbh->select('trm_langlist', '', '*'); $langnum = mysql_num_rows($langresult); for ($u = 0;$u < $langnum;$u++) {
                             $abbrv = mysql_result($langresult, $u, 'abbrv');
                             $full = mysql_result($langresult, $u, 'full');
                             echo "<option value='$abbrv'";

@@ -35,12 +35,12 @@ if ($p_id != '') { ?>
             </th>
           </tr>
         <?php
-    $result = $dbh->select('TRM_core, TRM_projects, TRM_projectList', "WHERE TRM_projectList.userId = '" . $_SESSION['id'] . "' AND 
-            TRM_projectList.access = '1' AND
-            TRM_projects.ID='$p_id' AND 
-            TRM_projectList.projectID = TRM_projects.ID AND 
-            TRM_projects.ID != 1 AND
-            TRM_core.p_id = TRM_projects.ID", "TRM_core.*");
+    $result = $dbh->select('trm_core, trm_projects, trm_projectlist', "WHERE trm_projectlist.userId = '" . $_SESSION['id'] . "' AND 
+            trm_projectlist.access = '1' AND
+            trm_projects.ID='$p_id' AND 
+            trm_projectlist.projectID = trm_projects.ID AND 
+            trm_projects.ID != 1 AND
+            trm_core.p_id = trm_projects.ID", "trm_core.*");
     $numreports = mysql_numrows($result);
     for ($i = 0;$i < $numreports;$i++) {
         echo "<tr>";

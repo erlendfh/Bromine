@@ -11,7 +11,7 @@
     try{
         //Revision 61
         $dbh->updateDB("
-        ALTER TABLE `TRM_projects` ADD `outsidedefects` TINYINT( 1 ) NOT NULL ,
+        ALTER TABLE `trm_projects` ADD `outsidedefects` TINYINT( 1 ) NOT NULL ,
         ADD `viewdefectsurl` VARCHAR( 256 ) NOT NULL ,
         ADD `adddefecturl` VARCHAR( 256 ) NOT NULL ;"
         );
@@ -22,13 +22,13 @@
     
     try{    
         //Revision 64 - Updates your user passwords to md5 hashes.
-        $user_pass_result = $dbh->select('TRM_users', "", "*");
+        $user_pass_result = $dbh->select('trm_users', "", "*");
         while ($row = mysql_fetch_array($user_pass_result)) {
             $pass = $row['password'];
             $id = $row['id'];
             if(strlen($pass)!=32){ //Probably not md5
                 $pass=md5($pass);
-                $dbh->update('TRM_users', "password='$pass'", "id='$id'");
+                $dbh->update('trm_users', "password='$pass'", "id='$id'");
             }
         }
         echo "Patching to revision 64 (Updates your user passwords to md5 hashes) completed succesfully<br />";   
@@ -38,14 +38,14 @@
     
     try{
         //Revision 67
-        $dbh->updateDB("INSERT INTO TRM_lang VALUES (NULL,'Filename must not be empty', 'Filename must not be empty','','Filnavn må ikke være blankt','')");
+        $dbh->updateDB("INSERT INTO trm_lang VALUES (NULL,'Filename must not be empty', 'Filename must not be empty','','Filnavn må ikke være blankt','')");
           echo "Patching to revision 67 completed succesfully (1 of 2)<br />";   
     }catch(Exception $error){
         echo "Error: $error";
     }
     
     try{
-        $dbh->updateDB("INSERT INTO TRM_lang VALUES (NULL, 'Upload file', 'Upload file', '', 'Upload fil', '')");
+        $dbh->updateDB("INSERT INTO trm_lang VALUES (NULL, 'Upload file', 'Upload file', '', 'Upload fil', '')");
         echo "Patching to revision 67 completed succesfully (2 of 2)<br />";   
     }catch(Exception $error){
         echo "Error: $error";
@@ -53,7 +53,7 @@
     
     try{
         //Revision 105
-        $dbh->updateDB("INSERT INTO TRM_lang VALUES (NULL, 'Stored in', 'Stored in', '', 'Gemt i','')");
+        $dbh->updateDB("INSERT INTO trm_lang VALUES (NULL, 'Stored in', 'Stored in', '', 'Gemt i','')");
         echo "Patching to revision 105 completed succesfully<br />"; 
     }catch(Exception $error){
         echo "Error: $error";

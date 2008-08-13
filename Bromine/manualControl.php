@@ -27,7 +27,7 @@ $i = $_GET['i'];
 if ($i < 0 || !isset($_GET['i'])) {
     $i = 0;
 }
-$result = $dbh->select('TRM_design_manual_commands as commands, TRM_design_manual_test as test', "WHERE commands.td_id=$td_id AND test.id=$td_id ORDER BY commands.id ASC", 'commands.id as cd_id, commands.action as action, commands.reaction as reaction, test.name as name');
+$result = $dbh->select('trm_design_manual_commands as commands, trm_design_manual_test as test', "WHERE commands.td_id=$td_id AND test.id=$td_id ORDER BY commands.id ASC", 'commands.id as cd_id, commands.action as action, commands.reaction as reaction, test.name as name');
 $num = mysql_num_rows($result);
 if ($i == $num) {
     $i = $num-1;
@@ -39,7 +39,7 @@ while ($row = mysql_fetch_array($result)) {
     $action[] = $row['action'];
     $reaction[] = $row['reaction'];
 }
-$statusResult = $dbh->select('TRM_commands', "WHERE t_id=$t_id ORDER BY id ASC", 'id');
+$statusResult = $dbh->select('trm_commands', "WHERE t_id=$t_id ORDER BY id ASC", 'id');
 if (mysql_num_rows($statusResult) > 0) {
     $c_id = @mysql_result($statusResult, $i, 'id');
 }
@@ -65,7 +65,7 @@ echo "<th align='left' valign='top'>Skip<br /><a accesskey='E' href='saveManStat
 echo "<!--th align='left' valign='top'><img src='img/statusOpen.gif' style='height: 15px;'/></th-->";
 echo "</tr>";
 echo "</table>";
-$result = $lh->select('TRM_commands', "WHERE t_id=$t_id ORDER BY id ASC", '*');
+$result = $lh->select('trm_commands', "WHERE t_id=$t_id ORDER BY id ASC", '*');
 $num = mysql_num_rows($result);
 echo "<br /><table border='0' width='100%' cellspacing='0' cellpadding='0' height='36'>";
 echo "<tr>";

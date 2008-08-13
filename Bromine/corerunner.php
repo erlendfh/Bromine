@@ -35,12 +35,12 @@ $testPath = $_GET['testPath'];
           <td>
             <?php
 if ($p_id != '') {
-    $result = $dbh->select('TRM_core, TRM_projects, TRM_projectList', "WHERE TRM_projectList.userId = '" . $_SESSION['id'] . "' AND 
-                TRM_projects.ID='$p_id' AND
-                TRM_projectList.access='1' AND 
-                TRM_projectList.projectID=TRM_projects.ID AND 
-                TRM_projects.ID!=1 AND 
-                TRM_core.p_id=TRM_projects.ID ", "TRM_core.*");
+    $result = $dbh->select('trm_core, trm_projects, trm_projectlist', "WHERE trm_projectlist.userId = '" . $_SESSION['id'] . "' AND 
+                trm_projects.ID='$p_id' AND
+                trm_projectlist.access='1' AND 
+                trm_projectlist.projectID=trm_projects.ID AND 
+                trm_projects.ID!=1 AND 
+                trm_core.p_id=trm_projects.ID ", "trm_core.*");
     $numreports = mysql_numrows($result);
     if ($numreports > 0) {
         echo "<input type='hidden' name='TestRunnerLocation' value='" . mysql_result($result, 0, "TestRunnerLocation") . "' />";
@@ -72,7 +72,7 @@ echo $lh->getText('Choose your current browser') . " ($browsersuggest)"; ?>
           <td>
            <?php
 $browser = $_GET['browser'];
-$result = $dbh->select('TRM_browser', "", "*");
+$result = $dbh->select('trm_browser', "", "*");
 $numreports = mysql_numrows($result);
 echo "<select name='browser' onchange='this.form.submit()'>";
 echo "<option value=''>" . $lh->getText('Choose') . "</option>";
@@ -95,7 +95,7 @@ echo $lh->getText('Choose your current OS') . " ($platformsuggest)"; ?>
           <td>
            <?php
 $OS = $_GET['OS'];
-$result = $dbh->select('TRM_OS', "", "*");
+$result = $dbh->select('trm_os', "", "*");
 $numreports = mysql_numrows($result);
 echo "<select name='OS' onchange='this.form.submit()'>";
 echo "<option value=''>" . $lh->getText('Choose') . "</option>";
@@ -117,12 +117,12 @@ echo "</select>";
           <td>
             <?php
 if ($referer != '' && $browser != '' && $OS != '') {
-    $result = $dbh->select('TRM_core_testsuites, TRM_projects, TRM_projectList', "WHERE TRM_projectList.userId = '" . $_SESSION['id'] . "' AND
-                TRM_projects.ID='$p_id' AND 
-                TRM_projectList.access='1' AND 
-                TRM_projectList.projectID=TRM_projects.ID AND 
-                TRM_projects.ID!=1 AND 
-                TRM_core_testsuites.p_id=TRM_projects.ID ", "TRM_core_testsuites.*");
+    $result = $dbh->select('trm_core_testsuites, trm_projects, trm_projectlist', "WHERE trm_projectlist.userId = '" . $_SESSION['id'] . "' AND
+                trm_projects.ID='$p_id' AND 
+                trm_projectlist.access='1' AND 
+                trm_projectlist.projectID=trm_projects.ID AND 
+                trm_projects.ID!=1 AND 
+                trm_core_testsuites.p_id=trm_projects.ID ", "trm_core_testsuites.*");
     $numreports = mysql_numrows($result);
     echo "<select name='testsuite' onchange='this.form.submit()'>";
     echo "<option value=''>" . $lh->getText('Choose test') . "</option>";
@@ -167,7 +167,7 @@ if ($p_id != '' && $referer != '' && $testsuite != '') {
     $resultsurl = "http://" . $_SERVER['SERVER_NAME'] . ":" . $_SERVER['SERVER_PORT'] . $_SERVER['PHP_SELF'];
     $resultsurl = str_replace('corerunner.php', '', $resultsurl);
     $resultsurl.= "parser.php";
-    $result = $dbh->select('TRM_users', 'WHERE ID=1', '*');
+    $result = $dbh->select('trm_users', 'WHERE ID=1', '*');
     $username = mysql_result($result, 0, "name");
     $pass = mysql_result($result, 0, "password");
     $lang = $_SESSION['lang'];

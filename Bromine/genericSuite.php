@@ -52,13 +52,13 @@
         $datatest = true;
     }
     
-    $noderesult = $dbh->select('TRM_nodes', "WHERE ID=$n_id", "*");
+    $noderesult = $dbh->select('trm_nodes', "WHERE ID=$n_id", "*");
     while ($row = mysql_fetch_array($noderesult)) {
       $o_id = $row['o_id'];
       $network_drive = $row['network_drive'];
       $nodepath = $row['nodepath'];
     }
-    $typeresult = $dbh->select('TRM_types', "", "*");
+    $typeresult = $dbh->select('trm_types', "", "*");
     while ($row = mysql_fetch_array($typeresult)){
       $id = $row['ID'];
       $types[$id]['typename'] = $row['typename'];
@@ -66,7 +66,7 @@
       $types[$id]['spacer'] = $row['spacer'];
       $types[$id]['extension'] = $row['extension'];
     }
-    $browsresult = $dbh->select('TRM_nodes_browsers', "WHERE b_id=$b_id AND n_id=$n_id", "*");
+    $browsresult = $dbh->select('trm_nodes_browsers', "WHERE b_id=$b_id AND n_id=$n_id", "*");
     while ($row = mysql_fetch_array($browsresult)) {
       $browser = $row['browser_path'];
     }

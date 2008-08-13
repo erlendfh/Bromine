@@ -25,7 +25,7 @@
     
         function createSuite($suitename, $sitetotest, $browser, $platform, $type, $p_id){
             global $dbh;
-            $this->s_id=$dbh->insert('TRM_suite',
+            $this->s_id=$dbh->insert('trm_suite',
             "
             NULL,  
             '$suitename',
@@ -67,12 +67,12 @@
         }
       
         function finalizeSuite(){
-            $t_passed=mysql_num_rows($this->dbh->sql("SELECT * FROM TRM_test WHERE s_id='$this->s_id' AND status='passed'"));
-            $t_failed=mysql_num_rows($this->dbh->sql("SELECT * FROM TRM_test WHERE s_id='$this->s_id' AND status='failed'"));
+            $t_passed=mysql_num_rows($this->dbh->sql("SELECT * FROM trm_test WHERE s_id='$this->s_id' AND status='passed'"));
+            $t_failed=mysql_num_rows($this->dbh->sql("SELECT * FROM trm_test WHERE s_id='$this->s_id' AND status='failed'"));
                         
-            $passed=mysql_num_rows($this->dbh->sql("SELECT * FROM TRM_test, TRM_commands WHERE TRM_commands.t_id=TRM_test.ID AND TRM_test.s_id='$this->s_id' AND TRM_commands.status='passed'"));
-            $failed=mysql_num_rows($this->dbh->sql("SELECT * FROM TRM_test, TRM_commands WHERE TRM_commands.t_id=TRM_test.ID AND TRM_test.s_id='$this->s_id' AND TRM_commands.status='failed'"));
-            $done=mysql_num_rows($this->dbh->sql("SELECT * FROM TRM_test, TRM_commands WHERE TRM_commands.t_id=TRM_test.ID AND TRM_test.s_id='$this->s_id' AND TRM_commands.status='done'"));
+            $passed=mysql_num_rows($this->dbh->sql("SELECT * FROM trm_test, trm_commands WHERE trm_commands.t_id=trm_test.ID AND trm_test.s_id='$this->s_id' AND trm_commands.status='passed'"));
+            $failed=mysql_num_rows($this->dbh->sql("SELECT * FROM trm_test, trm_commands WHERE trm_commands.t_id=trm_test.ID AND trm_test.s_id='$this->s_id' AND trm_commands.status='failed'"));
+            $done=mysql_num_rows($this->dbh->sql("SELECT * FROM trm_test, trm_commands WHERE trm_commands.t_id=trm_test.ID AND trm_test.s_id='$this->s_id' AND trm_commands.status='done'"));
             
             $status='passed';
             if($failed>0){
@@ -81,7 +81,7 @@
             
             $time = $this->getTime();
 
-            $this->dbh->update('TRM_suite',"
+            $this->dbh->update('trm_suite',"
             timeTaken = '$time',
             status = '$status',
             numTestPassed = '$t_passed',

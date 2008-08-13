@@ -90,7 +90,7 @@
             numCommandsFailed = '$failed',
             numCommandsErrors = 0", "id = '$this->s_id'");
 
-            return "Suite ".$this->name." ".$this->dbh->getText('Finalized')."<br />";
+            return "Suite ".$this->name." ".$this->dbh->getText('Finished')."<br />";
         }
     }
 ?>

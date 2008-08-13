@@ -7,7 +7,9 @@ class DBHandler {
     public $database;
     public $password;
     public $host;
-    function __construct($language='en') {
+    public $debug;
+    
+    function __construct($language='en', $debug=false) {
         require (dirname(dirname(__FILE__)) . '/config.php');
         $this->lang = $language;
         $this->db = mysql_connect($this->host, $this->username, $this->password);
@@ -21,8 +23,10 @@ class DBHandler {
      */
     function sql($sql) {
         $this->query = $sql;
-        //echo $this->query."<br />";
-        $result = mysql_query($this->query) or die(mysql_error());
+        if($this->debug){
+            echo $this->query."<br />";
+        }
+        if(!$result = mysql_query($this->query)){throw new Exception(mysql_error());}
         if (strpos($sql, 'REPLACE') !== false || strpos($sql, 'INSERT') !== false) {
             return mysql_insert_id();
         } else {
@@ -38,7 +42,10 @@ class DBHandler {
      */                        
     function updateDB($sql) {
         $this->query = $sql;
-        $result = mysql_query($this->query);
+        if($this->debug){
+            echo $this->query."<br />";
+        }
+        if(!$result = mysql_query($this->query)){throw new Exception(mysql_error());}
         if (strpos($sql, 'REPLACE') !== false || strpos($sql, 'INSERT') !== false) {
             return mysql_insert_id();
         } else {
@@ -56,26 +63,34 @@ class DBHandler {
      */
     function select($tableName, $condition, $data) {
         $this->query = "SELECT $data FROM $tableName $condition";
-        //echo $this->query."<br />";
-        $result = mysql_query($this->query) or die(mysql_error());
+        if($this->debug){
+            echo $this->query."<br />";
+        }
+        if(!$result = mysql_query($this->query)){throw new Exception(mysql_error());}
         return $result;
     }
     function insert($tableName, $values, $column) {
         $this->query = "INSERT INTO $tableName ($column) VALUES ($values)";
-        //echo $this->query."<br />";
-        $result = mysql_query($this->query) or die(mysql_error());
+        if($this->debug){
+            echo $this->query."<br />";
+        }
+        if(!$result = mysql_query($this->query)){throw new Exception(mysql_error());}
         return mysql_insert_id();
     }
     function update($tableName, $values, $condition) {
         $this->query = "UPDATE $tableName SET $values WHERE $condition";
-        //echo $this->query."<br />";
-        $result = mysql_query($this->query) or die(mysql_error());
+        if($this->debug){
+            echo $this->query."<br />";
+        }
+        if(!$result = mysql_query($this->query)){throw new Exception(mysql_error());}
         return $result;
     }
     function delete($tableName, $condition) {
         $this->query = "DELETE FROM $tableName WHERE $condition";
-        //echo $this->query."<br />";
-        $result = mysql_query($this->query) or die(mysql_error());
+        if($this->debug){
+            echo $this->query."<br />";
+        }
+        if(!$result = mysql_query($this->query)){throw new Exception(mysql_error());}
         return $result;
     }
     /**
@@ -88,7 +103,10 @@ class DBHandler {
      */
     function getText($text) {
         $this->query = "SELECT $this->lang FROM trm_lang WHERE langKey='$text'";
-        $result = mysql_query($this->query) or die(mysql_error());
+        if($this->debug){
+            echo $this->query."<br />";
+        }
+        if(!$result = mysql_query($this->query)){throw new Exception(mysql_error());}
         $num = mysql_numrows($result);
         if($num>0){
             $result = mysql_result($result, 0, $this->lang);
@@ -99,7 +117,7 @@ class DBHandler {
         return $result;
     }
     function disconnect() {
-        mysql_close($this->db) or die(mysql_error());
+        if(!mysql_close($this->db)){throw new Exception(mysql_error());}
     }
 
     /** Accessor for debugging */

@@ -3,6 +3,12 @@
     include "suite.php";
     include "test.php";
     include_once "libs/DBHandler.php";
+
+    if(ini_get("max_execution_time")<60000){
+        if(ini_set("max_execution_time", "60000")===false){
+            echo "<p style='background-color: lightred;'> You need to manually set your max_execution_time in php.ini to a number higher than 60000 </p>";
+        }
+    }
     
     /*
     echo "<pre>";
@@ -73,7 +79,7 @@
     
     $suite = new Suite($suitename);
     $s_id = $suite->createSuite($suitename, $sitetotest, $b_id, $o_id, '', $p_id);
-    
+    echo "<br />";
     if($ntest == true && $datatest == false){
         foreach($tests as $value) {
             $kk = split(',',$value);
@@ -103,14 +109,15 @@
                     $u_id.
                 $spacer.
                     $t_id;
-            
-            exec("$exec"); //Does the actual running
-            
+            echo "<p style='background-color: lightgrey;'>The response of $testname ($typename) was: </p><br />";
+            passthru("$exec"); //Does the actual running
+            echo "<br /><br />";
             $test->finalizeTest();
         
         }
     }
-    
-    echo $suite->finalizeSuite();
+    echo "<br />";
+    echo "<br />";
+    echo "<p style='background-color: lightgreen;'>".$suite->finalizeSuite()."</p>";
 
 ?>

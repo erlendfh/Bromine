@@ -58,7 +58,7 @@
                 'home' => array('index.php', 'Home'),
                 'projects' => array('projectsindex.php', 'Projects'), 
                 'testLab' => array('testlabindex.php', 'Test Lab'),
-                'testResultManager' => array('trmindex.php', 'Test Result Manager'),
+                'testResultManager' => array('TRMindex.php', 'Test Result Manager'),
                 'admin' => array('adminindex.php', 'Link to admin-site'),
             );
             

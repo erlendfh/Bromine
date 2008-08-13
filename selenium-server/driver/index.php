@@ -17,7 +17,7 @@
         $u_id = $arr[2];
         $t_id = $arr[3];
     }else{
-        $result = $dbh->sql("SELECT * FROM TRM_selenium_server_vars WHERE sessionId = '$sessionId'");
+        $result = $dbh->sql("SELECT * FROM trm_selenium_server_vars WHERE sessionId = '$sessionId'");
         while ($row = mysql_fetch_array($result)) {
             $nodepath = $row['nodepath'];
             $u_id = $row['u_id'];
@@ -38,7 +38,7 @@
     if ($cmd == 'getNewBrowserSession')
     {
         $sessionId = end(split(',',$response));
-        $dbh->sql("INSERT INTO TRM_selenium_server_vars (sessionId, nodepath, u_id, t_id) VALUES ('$sessionId','$nodepath','$u_id','$t_id')");
+        $dbh->sql("INSERT INTO trm_selenium_server_vars (sessionId, nodepath, u_id, t_id) VALUES ('$sessionId','$nodepath','$u_id','$t_id')");
     }
     
     function getStatus($response){ //Figures out the status of the command
@@ -62,8 +62,8 @@
     
     function createCommand($status, $cmd, $var1, $var2, $t_id, $u_id){
         global $dbh;
-        $dbh->sql("INSERT INTO TRM_commands (ID,status,action,var1,var2,t_id) VALUES (NULL,'$status','$cmd','$var1','$var2','$t_id')");
-        $dbh->insert('TRM_tempcommands', "NULL, '$u_id', '$cmd', '$var1', '$var2', '$status' ", " ID, u_id, action, var1, var2, status ");    
+        $dbh->sql("INSERT INTO trm_commands (ID,status,action,var1,var2,t_id) VALUES (NULL,'$status','$cmd','$var1','$var2','$t_id')");
+        $dbh->insert('trm_tempcommands', "NULL, '$u_id', '$cmd', '$var1', '$var2', '$status' ", " ID, u_id, action, var1, var2, status ");    
     }
     
     $status = getStatus($response);

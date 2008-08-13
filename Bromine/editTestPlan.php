@@ -49,11 +49,11 @@ for ($i = 0;$i < $outer_num_row;$i++) {
     echo $r_description;
     echo "</td>";
     echo "<td>";
-    $inner_result = $dbh->select("trm_requirements, trm_regstests", join(" ", array("WHERE trm_requirements.ID = '$r_id' ", "AND trm_regstests.r_id=trm_requirements.id", "ORDER BY trm_regstests.t_name")), "*");
+    $inner_result = $dbh->select("trm_requirements, trm_reqstests", join(" ", array("WHERE trm_requirements.ID = '$r_id' ", "AND trm_reqstests.r_id=trm_requirements.id", "ORDER BY trm_reqstests.t_name")), "*");
     $inner_num_row = mysql_numrows($inner_result);
     for ($a = 0;$a < $inner_num_row;$a++) {
-        $t_name = mysql_result($inner_result, $a, "trm_regstests.t_name");
-        $rt_id = mysql_result($inner_result, $a, "trm_regstests.ID");
+        $t_name = mysql_result($inner_result, $a, "trm_reqstests.t_name");
+        $rt_id = mysql_result($inner_result, $a, "trm_reqstests.ID");
         #              echo "<select name='test[$rt_id]'>";
         #              foreach ($tests as $v){
         #                echo "<option value='$v' ";

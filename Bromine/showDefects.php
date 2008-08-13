@@ -71,12 +71,12 @@ if ($p_id != '') {
             $t_id = 'N/A';
         } else {
             $inner2 = $lh->select('
-        trm_test, trm_suite, trm_regstests, trm_requirements', "WHERE 
+        trm_test, trm_suite, trm_reqstests, trm_requirements', "WHERE 
         trm_test.id = $t_id AND 
         trm_test.s_id = trm_suite.id AND
         trm_suite.analysis = '1'  AND
-        trm_test.name = trm_regstests.t_name AND
-        trm_regstests.r_id = trm_requirements.id AND
+        trm_test.name = trm_reqstests.t_name AND
+        trm_reqstests.r_id = trm_requirements.id AND
         trm_requirements.p_id = $p_id
         ", '*');
             $inner2_num_row = mysql_numrows($inner2);

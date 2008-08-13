@@ -6,9 +6,9 @@ $id = $_GET['id'];
 
 function deletetestCase($id) {
     global $dbh;
-    $dbh->delete("trm_regstests USING trm_design_manual_test, trm_regstests", "
+    $dbh->delete("trm_reqstests USING trm_design_manual_test, trm_reqstests", "
     trm_design_manual_test.id=$id AND
-    trm_design_manual_test.name=trm_regstests.t_name");
+    trm_design_manual_test.name=trm_reqstests.t_name");
     $dbh->delete("trm_design_manual_test", "ID=$id");
     $dbh->delete("trm_design_manual_commands", "td_id=$id");
 }
@@ -81,7 +81,7 @@ function deletecoretest($id) {
 function deleterequirement($id) {
     global $dbh;
     $dbh->delete("trm_requirements", "ID=$id");
-    $dbh->delete("trm_regstests", "r_id=$id");
+    $dbh->delete("trm_reqstests", "r_id=$id");
     $dbh->delete("trm_regsosbrows", "r_id=$id");
 }
 function deletecore($id) {
@@ -119,7 +119,7 @@ function deleteusertype($id) {
 }
 function deleteReqsTest($id) {
     global $dbh;
-    $dbh->delete("trm_regstests", "ID=$id");
+    $dbh->delete("trm_reqstests", "ID=$id");
 }
 function deleteOSBrows($id) {
     global $dbh;

@@ -25,13 +25,13 @@ $test = $in['test'];
 $newtest = $in['newtest'];
 if ($test != '') {
     foreach($test as $k => $v) {
-        $dbh->update('trm_regstests', "t_name = '$v'", "ID = '$k'");
+        $dbh->update('trm_reqstests', "t_name = '$v'", "ID = '$k'");
     }
 }
 if ($newtest != '') {
     foreach($newtest as $k => $v) {
         if ($v != '') {
-            $dbh->insert('trm_regstests', "NULL,'$v','$k'", 'ID, t_name, r_id');
+            $dbh->insert('trm_reqstests', "NULL,'$v','$k'", 'ID, t_name, r_id');
         }
     }
 }

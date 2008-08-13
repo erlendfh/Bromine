@@ -60,22 +60,22 @@ if ($p_id != '') {
         while ($row = mysql_fetch_array($OSBrowsAllresult)) {
             $OSBrowsAll[] = $row['OSname'] . "/" . $row['browsername'];
         }
-        $test_result = $dbh->select("trm_regstests", "WHERE r_id = '$r_id'", "*");
+        $test_result = $dbh->select("trm_reqstests", "WHERE r_id = '$r_id'", "*");
         $test_num_row = mysql_numrows($test_result);
         $r_status = 'none';
         if ($test_num_row > 0) {
             for ($b = 0;$b < $test_num_row;$b++) {
                 $t_name = mysql_result($test_result, $b, "t_name");
                 $inner_result = $dbh->sql("
-                    SELECT * FROM trm_requirements, trm_regstests, trm_regsosbrows, trm_test, trm_os, trm_browser, trm_suite,
+                    SELECT * FROM trm_requirements, trm_reqstests, trm_regsosbrows, trm_test, trm_os, trm_browser, trm_suite,
                     
                       (SELECT MAX(trm_suite.ID) as max_s_id FROM
-                      trm_requirements, trm_regstests, trm_regsosbrows, trm_test, trm_os, trm_browser, trm_suite
+                      trm_requirements, trm_reqstests, trm_regsosbrows, trm_test, trm_os, trm_browser, trm_suite
                       WHERE trm_requirements.ID=$r_id AND
-                      trm_regstests.t_name='$t_name' AND
-                      trm_regstests.r_id=trm_requirements.id AND
+                      trm_reqstests.t_name='$t_name' AND
+                      trm_reqstests.r_id=trm_requirements.id AND
                       trm_regsosbrows.r_id=trm_requirements.id AND
-                      trm_test.name=trm_regstests.t_name AND
+                      trm_test.name=trm_reqstests.t_name AND
                       trm_browser.ID=trm_regsosbrows.b_id AND
                       trm_os.ID=trm_regsosbrows.o_id AND
                       trm_suite.ID=trm_test.s_id AND
@@ -84,10 +84,10 @@ if ($p_id != '') {
                       trm_suite.browser=trm_browser.ID GROUP BY trm_regsosbrows.ID) trm_maxresults
                       
                     WHERE trm_requirements.ID=$r_id AND
-                    trm_regstests.t_name='$t_name' AND
-                    trm_regstests.r_id=trm_requirements.id AND
+                    trm_reqstests.t_name='$t_name' AND
+                    trm_reqstests.r_id=trm_requirements.id AND
                     trm_regsosbrows.r_id=trm_requirements.id AND
-                    trm_test.name=trm_regstests.t_name AND
+                    trm_test.name=trm_reqstests.t_name AND
                     trm_browser.ID=trm_regsosbrows.b_id AND
                     trm_os.ID=trm_regsosbrows.o_id AND
                     trm_suite.ID=trm_test.s_id AND
@@ -205,12 +205,12 @@ if ($p_id != '') {
                 $t_id = 'N/A';
             } else {
                 $inner2 = $lh->select('
-        trm_test, trm_suite, trm_regstests, trm_requirements', "WHERE 
+        trm_test, trm_suite, trm_reqstests, trm_requirements', "WHERE 
         trm_test.id = $t_id AND 
         trm_test.s_id = trm_suite.id AND
         trm_suite.analysis = '1'  AND
-        trm_test.name = trm_regstests.t_name AND
-        trm_regstests.r_id = trm_requirements.id AND
+        trm_test.name = trm_reqstests.t_name AND
+        trm_reqstests.r_id = trm_requirements.id AND
         trm_requirements.p_id = $p_id
         ", '*');
                 $inner2_num_row = mysql_numrows($inner2);

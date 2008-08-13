@@ -118,8 +118,8 @@ if ($p_id != '') {
     }
     echo "</select>";
     $inner_result = $dbh->select(" 
-                          trm_requirements, trm_regstests", "WHERE trm_requirements.ID = '$req' AND 
-                          trm_regstests.r_id=trm_requirements.id", "*");
+                          trm_requirements, trm_reqstests", "WHERE trm_requirements.ID = '$req' AND 
+                          trm_reqstests.r_id=trm_requirements.id", "*");
     $inner_num_row = mysql_numrows($inner_result);
     for ($i = 0;$i < $inner_num_row;$i++) {
         $t_name = mysql_result($inner_result, $i, "t_name");

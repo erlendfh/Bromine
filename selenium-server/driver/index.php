@@ -34,7 +34,6 @@
     
         echo $response;
         
-        
         if ($cmd == 'getNewBrowserSession')
         {
             $sessionId = end(split(',',$response));
@@ -42,9 +41,6 @@
         }
         
         function getStatus($response){ //Figures out the status of the command
-            if (!preg_match('/^OK/', $response) ) {
-                return "failed";
-            }
             $r=split(",",$response);
             if(count($r) > 1){
               $status = $r[1];
@@ -66,7 +62,12 @@
             $dbh->insert('trm_tempcommands', "NULL, '$u_id', '$cmd', '$var1', '$var2', '$status' ", " ID, u_id, action, var1, var2, status ");    
         }
         
-        $status = getStatus($response);
+        if (preg_match('/^OK/', $response) ) {
+            $status = getStatus($response);
+        }else{
+            $status = 'failed';
+            $two = $response;
+        }
         
         createCommand($status, $cmd, $one, $two, $t_id, $u_id);
 

@@ -224,23 +224,27 @@ if ($p_id != '') {
               </td>
               <td>
                 <?php
+				/**
+					Run tests section - Normal tests
+				*/
     $testcaseresult = $dbh->select('trm_design_manual_test', "WHERE p_id=$p_id ORDER BY name", "*");
     $b=0;
     while ($row = mysql_fetch_array($testcaseresult)){ 
-        while ($row2 = mysql_fetch_array($typeresult)){
-            $b++;
+		$extCount = $dbh->sql("SELECT * FROM `trm_types");
+        while ($row2 = mysql_fetch_array($extCount)){            
             $typeid = $row2['ID'];
             $typename = $row2['typename'];
             $extension = $row2['extension'];
             $testcasename = $row['name'];
-            echo "<input type='checkbox' name='tests[]' value='$testcasename,$typeid' ";
-            if (!file_exists("RC/$typename/$p_name/$testcasename.$extension")) {
-                echo "disabled='disabled' ";
-            } //TODO: HARDCODED!!!!!!!
-            if (in_array("$testcasename,$typeid", $tests)) {
-                echo "checked='checked'";
-            }
-            echo "onclick='this.form.submit()'/>$b:  $testcasename @ $typename<br />";
+            if (file_exists("RC/$typename/$p_name/$testcasename.$extension")) {
+				$b++;
+                echo "<input type='checkbox' name='tests[]' value='$testcasename,$typeid' ";            
+				 //TODO: HARDCODED!!!!!!!
+				if (in_array("$testcasename,$typeid", $tests)) {
+					echo "checked='checked'";
+				}
+				echo "onclick='this.form.submit()'/>$b:  $testcasename @ $typename<br />";
+			}
         }
     }
     $num_tests = mysql_num_rows($testcaseresult);

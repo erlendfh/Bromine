@@ -1,6 +1,5 @@
 <?php
 include ('protected.php');
-include ('RC/Drivers/rc-php/fileManager.php');
 //print_r($_FILES);
 /*
 Array

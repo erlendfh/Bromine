@@ -23,15 +23,27 @@ class GoogleTest
   {	
 		$this->selenium->open("/");
 		$this->selenium->type("q", "bromine openqa");
-		$this->customCommand("My very own custom command" ,"passed", "true", "true");
+		//$this->customCommand("My very own custom command" ,"passed", "true", "true");
 		$this->selenium->click("btnG");
 		$this->selenium->waitForPageToLoad("30000");
 		$this->selenium->click("link=exact:OpenQA: Bromine Blog: Bromine arrives at OpenQA");
 		$this->selenium->waitForPageToLoad("30000");
 		$this->selenium->isTextPresent("Bromine");
-		$this->customCommand("Assert this" ,"failed", "Value 1", "value 2");
+		//$this->customCommand("Assert this" ,"failed", "Value 1", "value 2");
   }
   
+  /**
+  	The usage of this customcommand function depends on the following PEAR packge "HTTP/Request".
+	Out commented so the test will run without the package installed.
+	How to:
+	By calling this function:
+	$this->customCommand("Assert this" ,"failed", "Value 1", "value 2");
+	you can add anything you want to the test.
+	The first parameter is the command name, you can name it anything you like.
+	The second parameter is whether the test failed or passed, you can either input "failed" or "passed" in this field.
+	The last two parameters are the values you. eg. tried to assert. Anything can be inputted here. 
+  */
+  /*
   function customCommand($cmdName, $status, $var1, $var2){
   		require_once "HTTP/Request.php";
         $url = "http://".$this->host."/selenium-server/driver/index.php";
@@ -45,6 +57,7 @@ class GoogleTest
 		$r->sendRequest();
 		echo $r->getResponseBody()."<br />";
   }
+  */
 }
 
     $host = $argv[1];

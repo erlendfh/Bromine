@@ -62,15 +62,11 @@ class GoogleTest
 
     $host = $argv[1];
     $port = $argv[2];
-    $brows = $argv[3];
+    $browser = $argv[3];
     $sitetotest = $argv[4];
-    $nodepath = $argv[5];
-    $u_id = $argv[6];
-    $t_id = $argv[7];
-    $brows2 = $brows.','.$nodepath.','.$u_id.','.$t_id;
     
     $t = new GoogleTest();
-    $t->setUp($host, $port, $brows2, $sitetotest, $u_id, $t_id);
+    $t->setUp($host, $port, $browser, $sitetotest, $u_id, $t_id);
     $t->testMyTestCase();
     $t->tearDown();
 ?>

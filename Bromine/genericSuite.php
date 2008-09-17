@@ -100,15 +100,12 @@
                 $spacer.
                     "80".
                 $spacer.
-                    $browser.
+                    $browser.",".$u_id.
                 $spacer.
-                    $sitetotest.
-                $spacer.
-                    $nodepath.
-                $spacer.
-                    $u_id.
-                $spacer.
-                    $t_id;
+                    $sitetotest;
+            
+            $dbh->sql("REPLACE trm_selenium_server_vars (sessionId, nodepath, u_id, t_id) VALUES ('','$nodepath','$u_id','$t_id')");
+
             echo "<p style='background-color: lightgrey;'>The response of $testname ($typename) was: </p><br />";
             passthru("$exec"); //Does the actual running
             echo "<br /><br />";

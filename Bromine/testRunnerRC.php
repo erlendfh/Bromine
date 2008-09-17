@@ -1,5 +1,6 @@
 <?php include_once ('getprotect.php'); ?>
 <?php
+    
     /*
     echo "<pre>";
     print_r($_REQUEST);
@@ -33,7 +34,12 @@
     <div id='progress'></div>
     <div id='state'></div>
 <?php
-    
+    if(get_magic_quotes_gpc()){
+        echo $lh->getText("Error: magic_qoutes_gpc is on. Please disable magic_qoutes_gpc.");
+        echo "<br />";
+        echo $lh->getText("Read more")."<a href='http://dk2.php.net/manual/en/security.magicquotes.disabling.php'>here</a>";
+        exit;
+    }
 
     $url1 = "statusRC.php?time=$time&user=$user&pass=$pass&u_id=$u_id";
     $url = "genericSuite.php?";

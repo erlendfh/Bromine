@@ -100,9 +100,13 @@
                 $spacer.
                     "80".
                 $spacer.
-                    $browser.",".$u_id.
+                    $browser.
                 $spacer.
-                    $sitetotest;
+                    $sitetotest.
+                $spacer.
+                    $u_id;
+                $spacer.
+                    $t_id;
             
             $dbh->sql("REPLACE trm_selenium_server_vars (sessionId, nodepath, u_id, t_id) VALUES ('','$nodepath','$u_id','$t_id')");
 

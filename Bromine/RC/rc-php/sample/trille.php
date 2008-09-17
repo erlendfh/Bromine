@@ -7,7 +7,6 @@ class GoogleTest
 {
   function setUp($host, $port, $browser, $sitetotest, $u_id, $t_id)
   {
-  	$this->host = $host;
     $this->u_id = $u_id;
     $this->t_id = $t_id;
     $this->selenium = new Testing_Selenium($browser, $sitetotest, $host ,$port);
@@ -20,53 +19,41 @@ class GoogleTest
   }
   
   function testMyTestCase()
-  {	
-		$this->selenium->open("/");
-		$this->selenium->type("q", "bromine openqa");
-		//$this->customCommand("My very own custom command" ,"passed", "true", "true");
-		$this->selenium->click("btnG");
-		$this->selenium->waitForPageToLoad("30000");
-		$this->selenium->click("link=exact:OpenQA: Bromine Blog: Bromine arrives at OpenQA");
-		$this->selenium->waitForPageToLoad("30000");
-		$this->selenium->isTextPresent("Bromine");
-		//$this->customCommand("Assert this" ,"failed", "Value 1", "value 2");
+  {
+    try{
+         $this->selenium->open("/");
+         $this->customCommand("This Custom Command1" ,"passed", "true", "true");
+         $this->selenium->type("q", "bromine openqa");
+         $this->selenium->click("btnG");
+         $this->selenium->waitForPageToLoad("30000");
+         $this->selenium->click("link=exact:OpenQA: Bromine Blog: Bromine arrives at OpenQA");
+         $this->selenium->waitForPageToLoad("30000");
+         $this->selenium->isTextPresent("Bromine");
+         $this->customCommand("This Custom Command2" ,"passed", "true", "true");
+         $this->customCommand("This Custom Command3" ,"failed", "true", "true");
+         $this->customCommand("This Custom Command4" ,"done", "true", "true");
+    }catch(Exception $e){}
   }
   
-  /**
-  	The usage of this customcommand function depends on the following PEAR packge "HTTP/Request".
-	Out commented so the test will run without the package installed.
-	How to:
-	By calling this function:
-	$this->customCommand("Assert this" ,"failed", "Value 1", "value 2");
-	you can add anything you want to the test.
-	The first parameter is the command name, you can name it anything you like.
-	The second parameter is whether the test failed or passed, you can either input "failed" or "passed" in this field.
-	The last two parameters are the values you. eg. tried to assert. Anything can be inputted here. 
-  */
-  /*
   function customCommand($cmdName, $status, $var1, $var2){
-  		require_once "HTTP/Request.php";
-        $url = "http://".$this->host."/selenium-server/driver/index.php";
-		$r = new Http_Request($url);
-		$cmdName = urlencode($cmdName);
-		$status = urlencode($status);
-		$var1 = urlencode($var1);
-		$var2 = urlencode($var2);
-		$q ="cmd=customCommand&cmdName=$cmdName&status=$status&var1=$var1&var2=$var2&t_id=$this->t_id&u_id=$this->u_id";
-		$r->addRawQueryString($q);
-		$r->sendRequest();
-		echo $r->getResponseBody()."<br />";
+        $url = "http://127.0.0.1/selenium-server/driver/index.php?cmd=customCommand&cmdName=$cmdName&status=$status&var1=$var1&var2=$var2&t_id=$this->t_id&u_id=$this->u_id";
+        $url=str_replace(' ','%20',$url);
+        if($h = fopen($url, "r")){
+            fclose($h);
+        }
   }
-  */
 }
 
     $host = $argv[1];
     $port = $argv[2];
     $browser = $argv[3];
     $sitetotest = $argv[4];
+    $u_id = $argv[5];
+    $t_id = $argv[6];
+    $brows2 = $browser.','.$u_id;
     
     $t = new GoogleTest();
-    $t->setUp($host, $port, $browser, $sitetotest, $u_id, $t_id);
+    $t->setUp($host, $port, $brows2, $sitetotest, $u_id, $t_id);
     $t->testMyTestCase();
     $t->tearDown();
 ?>

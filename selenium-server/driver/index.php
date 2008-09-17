@@ -1,5 +1,6 @@
 <?php
-    error_reporting(E_ALL & ~E_NOTICE);
+    //error_reporting(E_ALL & ~E_NOTICE);
+    set_error_handler(create_function('$x, $y', 'throw new Exception($y, $x);'), E_ALL & ~E_NOTICE);
     try{
         include('../../Bromine/libs/DBHandler.php');
         
@@ -20,9 +21,8 @@
         if ($cmd == 'getNewBrowserSession'){
             $arr = split(',',$one);
             $one = $arr[0];
-            $nodepath = $arr[1];
-            $u_id = $arr[2];
-            $t_id = $arr[3];
+            $u_id = $arr[1];
+            $result = $dbh->sql("SELECT * FROM trm_selenium_server_vars WHERE u_id = '$u_id'");
         }
         elseif($cmd == 'customCommand'){
             $custom = true;
@@ -36,28 +36,28 @@
         }
         else{
             $result = $dbh->sql("SELECT * FROM trm_selenium_server_vars WHERE sessionId = '$sessionId'");
-            while ($row = mysql_fetch_array($result)) {
-                $nodepath = $row['nodepath'];
-                $u_id = $row['u_id'];
-                $t_id = $row['t_id'];
-            }
         }
         
-        if($custom == false){
-            $url = "http://$nodepath:4444/selenium-server/driver/?cmd=$cmd&1=$one&2=$two&sessionId=$sessionId";
-            
-            $handle = fopen($url, 'r');
-            stream_set_blocking($handle, false);
-            $response = stream_get_contents($handle);
-            fclose($handle);
+        while ($row = mysql_fetch_array($result)) {
+            $nodepath = $row['nodepath'];
+            $u_id = $row['u_id'];
+            $t_id = $row['t_id'];
+        }
         
-            echo $response;
-            
-            if ($cmd == 'getNewBrowserSession')
-            {
-                $sessionId = end(split(',',$response));
-                $dbh->sql("INSERT INTO trm_selenium_server_vars (sessionId, nodepath, u_id, t_id) VALUES ('$sessionId','$nodepath','$u_id','$t_id')");
-            }
+        $url = "http://$nodepath:4444/selenium-server/driver/?cmd=$cmd&1=$one&2=$two&sessionId=$sessionId";
+        
+        $handle = fopen($url, 'r');
+        stream_set_blocking($handle, false);
+        $response = stream_get_contents($handle);
+        fclose($handle);
+    
+        echo $response;
+        
+        
+        if ($cmd == 'getNewBrowserSession')
+        {
+            $sessionId = end(split(',',$response));
+            $dbh->sql("UPDATE trm_selenium_server_vars SET sessionId='$sessionId' WHERE u_id='$u_id'");
         }
         
         function getStatus($response){ //Figures out the status of the command
@@ -76,23 +76,29 @@
             return "done";
         }
         
-        if($custom == false){
-            if (preg_match('/^OK/', $response) ) {
-                $status = getStatus($response);
-            }else{
-                $status = 'failed';
-                $two = $response;
-            }
-            
-            createCommand($status, $cmd, $one, $two, $t_id, $u_id);
+        if (preg_match('/^OK/', $response) ) {
+            $status = getStatus($response);
+        }else{
+            $status = 'failed';
+            $two = $response;
+        }
+        
+        function createCommand($status, $cmd, $var1, $var2, $t_id, $u_id){
+            global $dbh;
+            $dbh->sql("INSERT INTO trm_commands (ID,status,action,var1,var2,t_id) VALUES (NULL,'$status','$cmd','$var1','$var2','$t_id')");
+            $dbh->insert('trm_tempcommands', "NULL, '$u_id', '$cmd', '$var1', '$var2', '$status' ", " ID, u_id, action, var1, var2, status ");    
         }
 
     }catch(Exception $e){
+        
         $fp = fopen('log.txt','a');
         $req = print_r($_REQUEST, true);
         $msg = "Called with: $req \n Sent: $url \n Got response: $response \n Error: $e \n\n";
         fwrite($fp,$msg);
         fclose($fp);
+        createCommand('failed', $cmd, $one, $two."ERROR: index.php suffered an error. Check the log for details.", $t_id, $u_id);
+        echo "ERROR: index.php suffered an error. Check the log for details.";
     }
+    restore_error_handler();
     
 ?>

@@ -21,7 +21,7 @@
     $suitename = $_GET['suitename'];
     $lang = $_GET['lang'];
     $time = time();
-    $dbh = new DBHandler();
+    $dbh = new DBHandler($lang);
     $u_id = str_replace('.', '', microtime('U')) . rand(0, 1000);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -35,9 +35,9 @@
     <div id='state'></div>
 <?php
     if(get_magic_quotes_gpc()){
-        echo $lh->getText("Error: magic_qoutes_gpc is on. Please disable magic_qoutes_gpc.");
+        echo $dbh->getText("Error: magic_qoutes_gpc is on. Please disable magic_qoutes_gpc.");
         echo "<br />";
-        echo $lh->getText("Read more")."<a href='http://dk2.php.net/manual/en/security.magicquotes.disabling.php'>here</a>";
+        echo $dbh->getText("Read more")."<a href='http://dk2.php.net/manual/en/security.magicquotes.disabling.php'>here</a>";
         exit;
     }
 
@@ -85,39 +85,7 @@
       
     </body>
   </html>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
   
   <?php
   /*

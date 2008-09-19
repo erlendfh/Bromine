@@ -37,7 +37,7 @@
     if(get_magic_quotes_gpc()){
         echo $dbh->getText("Error: magic_qoutes_gpc is on. Please disable magic_qoutes_gpc.");
         echo "<br />";
-        echo $dbh->getText("Read more")."<a href='http://dk2.php.net/manual/en/security.magicquotes.disabling.php'>here</a>";
+        echo $dbh->getText("Read more")." <a href='http://dk2.php.net/manual/en/security.magicquotes.disabling.php'>here</a>";
         exit;
     }
 

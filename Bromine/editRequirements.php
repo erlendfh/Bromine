@@ -59,15 +59,15 @@ if ($num_row > 0) {
         echo "<td><input type='text' value='$name' size='16' name='name[]' /></td>";
         echo "<td><textarea rows='8' cols='90' name='description[]' >$description</textarea></td>";
         echo "<td>";
-        $rresult = $dbh->select("trm_regsosbrows, trm_os, trm_browser", "WHERE trm_regsosbrows.r_id = '$r_id' AND 
-              trm_os.ID = trm_regsosbrows.o_id AND
-              trm_browser.ID = trm_regsosbrows.b_id", "*");
+        $rresult = $dbh->select("trm_reqsosbrows, trm_os, trm_browser", "WHERE trm_reqsosbrows.r_id = '$r_id' AND 
+              trm_os.ID = trm_reqsosbrows.o_id AND
+              trm_browser.ID = trm_reqsosbrows.b_id", "*");
         $rnum_row = mysql_numrows($rresult);
         for ($b = 0;$b < $rnum_row;$b++) {
             $OScur = mysql_result($rresult, $b, "OSname");
             $Browsercur = mysql_result($rresult, $b, "browsername");
             $ID = mysql_result($rresult, $b, "ID");
-            echo "<input type='hidden' value='$ID' name='regsosbrows[]'/>";
+            echo "<input type='hidden' value='$ID' name='reqsosbrows[]'/>";
             echo "<select name='OS[$r_id][]'>";
             for ($c = 0;$c < count($OS);$c++) {
                 echo "<option value='$OSID[$c]'";

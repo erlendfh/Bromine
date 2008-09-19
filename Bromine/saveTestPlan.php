@@ -1,6 +1,5 @@
 <?php
 include_once ('protected.php');
-$dbh = new DBHandler();
 $in = $GLOBALS['_POST'];
 //print_r($in);
 /*
@@ -31,7 +30,9 @@ if ($test != '') {
 if ($newtest != '') {
     foreach($newtest as $k => $v) {
         if ($v != '') {
-            $dbh->insert('trm_reqstests', "NULL,'$v','$k'", 'ID, t_name, r_id');
+            if(mysql_num_rows($dbh->sql("SELECT * FROM trm_reqstests WHERE t_name='$v' AND r_id='$k'"))==0){
+                $dbh->insert('trm_reqstests', "NULL,'$v','$k'", 'ID, t_name, r_id');
+            }
         }
     }
 }

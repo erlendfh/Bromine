@@ -68,7 +68,7 @@ $newassigned = $in['newassigned'];
 $p_id = $in['p_id'];
 $author = $in['author'];
 $priority = $in['priority2'];
-$regsosbrows = $in['regsosbrows'];
+$reqsosbrows = $in['reqsosbrows'];
 $changePriority = $in['changePriority'];
 for ($i = 0;$i < count($id);$i++) {
     $dbh->update('trm_requirements', "name = '$name[$i]',
@@ -82,7 +82,7 @@ $a = 0;
 if (count($id) > 0) {
     foreach($id as $key => $value) {
         for ($i = 0;$i < count($OS[$value]);$i++) {
-            $dbh->update('trm_regsosbrows', "b_id = " . $browser[$value][$i] . ", o_id = " . $OS[$value][$i], "ID = " . $regsosbrows[$a]);
+            $dbh->update('trm_reqsosbrows', "b_id = " . $browser[$value][$i] . ", o_id = " . $OS[$value][$i], "ID = " . $reqsosbrows[$a]);
             $a++;
         }
     }
@@ -93,9 +93,9 @@ if ($OSnew != '' && $browsernew != '') {
         $newOS = $value;
         $newBrow = $browsernew[$key];
         if ($newOS != '' && $newBrow != '') {
-            $does_exist = mysql_num_rows($dbh->sql("SELECT * FROM trm_regsosbrows WHERE b_id = $newBrow AND o_id = $newOS AND r_id = $key"));
+            $does_exist = mysql_num_rows($dbh->sql("SELECT * FROM trm_reqsosbrows WHERE b_id = $newBrow AND o_id = $newOS AND r_id = $key"));
             if ($does_exist == 0) {
-                $dbh->insert('trm_regsosbrows', "NULL,'$newBrow','$newOS','$key'", "ID, b_id, o_id, r_id");
+                $dbh->insert('trm_reqsosbrows', "NULL,'$newBrow','$newOS','$key'", "ID, b_id, o_id, r_id");
             } else {
                 $error.= $dbh->getText('OS-browser combi already exist');
             }
@@ -124,7 +124,7 @@ if ($newnr2 != '' && $newname2 != '' && $newdescription2 != '') {
     '$priority',
     '$newassigned'
     ", "ID, name, description, p_id, nr, author, priority, assigned");
-        $dbh->insert('trm_regsosbrows', "NULL,'$browsernew2','$OSnew2','$r_id'", "ID, b_id, o_id, r_id");
+        $dbh->insert('trm_reqsosbrows', "NULL,'$browsernew2','$OSnew2','$r_id'", "ID, b_id, o_id, r_id");
     } else {
         $error.= $dbh->getText('Req with same nr exist');
     }

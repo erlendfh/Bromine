@@ -82,7 +82,7 @@ function deleterequirement($id) {
     global $dbh;
     $dbh->delete("trm_requirements", "ID=$id");
     $dbh->delete("trm_reqstests", "r_id=$id");
-    $dbh->delete("trm_regsosbrows", "r_id=$id");
+    $dbh->delete("trm_reqsosbrows", "r_id=$id");
 }
 function deletecore($id) {
     global $dbh;
@@ -123,7 +123,7 @@ function deleteReqsTest($id) {
 }
 function deleteOSBrows($id) {
     global $dbh;
-    $dbh->delete("trm_regsosbrows", "ID=$id");
+    $dbh->delete("trm_reqsosbrows", "ID=$id");
 }
 function deleteDatafile($id){
     $id = str_replace("..", "", $id);

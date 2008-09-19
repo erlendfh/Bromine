@@ -16,19 +16,19 @@ if ($p_id != '') {
     $client = new phpSniff();
     $browsersuggest = $client->property('long_name') . " " . $client->property('version');
     $platformsuggest = $client->property('platform') . " " . $client->property('os');
-    echo "<form method='get' action='createManSuite.php' target='blank'>";
+    echo "<form method='get' action='createManSuite.php' target='_blank'>";
     echo "<table>";
     echo "<tr>";
     echo "<td>" . $lh->GetText('Choose your current browser') . ":</td>";
     echo "<td>";
-    $browser = $_GET['browser'];
+
     $result = $dbh->select('trm_browser', "ORDER BY browsername", "*");
     $numreports = mysql_numrows($result);
     echo "<select name='browser'>";
     echo "<option value=''>" . $lh->getText('Choose') . "</option>";
     for ($i = 0;$i < $numreports;$i++) {
         echo "<option value='" . mysql_result($result, $i, "ID") . "'";
-        if ($OS == mysql_result($result, $i, "ID") || preg_match("/${browsersuggest}/i", mysql_result($result, $i, "browsername"))) {
+        if (preg_match("/${browsersuggest}/i", mysql_result($result, $i, "browsername"))) {
             echo ' selected="selected"';
         }
         echo ">" . mysql_result($result, $i, "browsername") . "</option>";
@@ -39,14 +39,14 @@ if ($p_id != '') {
     echo "<tr>";
     echo "<td>" . $lh->GetText('Choose your current OS') . ":</td>";
     echo "<td>";
-    $OS = $_GET['OS'];
+
     $result = $dbh->select('trm_os', "ORDER BY OSname", "*");
     $numreports = mysql_numrows($result);
     echo "<select name='OS'>";
     echo "<option value=''>" . $lh->getText('Choose') . "</option>";
     for ($i = 0;$i < $numreports;$i++) {
         echo "<option value='" . mysql_result($result, $i, "ID") . "'";
-        if ($OS == mysql_result($result, $i, "ID") || preg_match("/${platformsuggest}/i", mysql_result($result, $i, "OSname"))) {
+        if (preg_match("/${platformsuggest}/i", mysql_result($result, $i, "OSname"))) {
             echo ' selected="selected"';
         }
         echo ">" . mysql_result($result, $i, "OSname") . "</option>";
@@ -63,9 +63,6 @@ if ($p_id != '') {
     echo "<option value=''>" . $lh->getText('Choose') . "</option>";
     for ($i = 0;$i < $numreports;$i++) {
         echo "<option value='" . mysql_result($result, $i, "ID") . "'";
-        if ($OS == mysql_result($result, $i, "id")) {
-            echo ' selected="selected"';
-        }
         echo ">" . mysql_result($result, $i, "name") . "</option>";
     }
     echo "</select><br />";

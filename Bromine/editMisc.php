@@ -130,23 +130,6 @@ for ($i = 0;$i < $num;$i++) {
         <legend style='cursor: pointer;' onclick="$('usertypes').toggle()"><?php echo $lh->getText('Usertypes') ?></legend>
         <div id='usertypes' style="display:none;">
         <table>
-          <tr>
-          <th><?php echo $lh->getText('Guest name'); ?></th>
-          <th><?php echo $lh->getText('Guest password'); ?></th>
-          </tr>
-            <?php
-$result = $dbh->select('trm_users', 'WHERE ID=1', '*');
-$name = mysql_result($result, 0, "name");
-$password = mysql_result($result, 0, "password");
-echo "<tr>";
-echo "<td>";
-echo "<input type='text' name='guestname' value='$name' size='7' />";
-echo "</td>";
-echo "<td>";
-echo "<input type='text' name='guestpass' value='$password' size='7' />";
-echo "</td>";
-echo "</tr>";
-?>
             <tr>
               <th colspan='3' style='background: rgb(211, 211, 211);'></th>
             </tr>

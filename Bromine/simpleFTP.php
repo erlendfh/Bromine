@@ -12,11 +12,11 @@ BromineSubmenu::renderTestLabSubmenu();
 ?>
     <p><?php echo $_GET['response']; ?></p>
     <?php
-$p_id = $_SESSION['p_id'];
-$p_name = $_SESSION['p_name'];
-$gettype = $_GET['gettype'];
-$getname = $_GET['getname'];
-if ($p_id != '') { ?>
+        $p_id = $_SESSION['p_id'];
+        $p_name = $_SESSION['p_name'];
+        $gettype = $_GET['gettype'];
+        $getname = $_GET['getname'];
+        if ($p_id != '') { ?>
     <table>
       <tr valign='top'>
         <td>

@@ -51,7 +51,7 @@ $should_be_neworderby = $in['should_be_neworderby'];
 if (is_array($orderby)) {
     $result = array_unique($orderby);
     if (count($result) != count($orderby)) {
-        $error2 = 'Det er nogo at have to af de samme orderby!';
+        $error2 = $lh->getText('Det er nogo at have to af de samme orderby!');
     }
 }
 if ($tc_name != '' && $p_id != '') {
@@ -60,22 +60,19 @@ if ($tc_name != '' && $p_id != '') {
         $oldName = $row['name'];
     }
     $td_id = $dbh->sql("REPLACE INTO trm_design_manual_test VALUES('$td_id','$tc_name','$p_id','$tc_description')");
+    $dbh->sql("UPDATE trm_reqstests SET t_name='$tc_name' WHERE t_name='$oldName'"); //Hmmmm.... Not the best solution
     $typeresult = $dbh->select('trm_types', '', '*');
     while ($row = mysql_fetch_array($typeresult)) {
-        $types[] = $row['typename'];
+        $id = $row['ID']; 
+        $types_id[] = $id;
+        $types[$id] = $row['typename'];
+        $exts[$id] = $row['extension'];
     }
-    foreach($types as $type){
-        //HARDCODED!!
-        if($oldName!='' && file_exists("RC/$type/$p_name/$oldName.php")){
-            rename("RC/$type/$p_name/$oldName.php","RC/$type/$p_name/$tc_name.php");
-            
-            $file_name_total = "RC/$type/$p_name/$tc_name.php";
-            
-            $content = file_get_contents($file_name_total);
-            $content2 = str_replace("class $oldName", "class $tc_name", $content);
-            $handle = fopen($file_name_total, 'w') or die("can't open file");
-            fwrite($handle, $content2);
-            fclose($handle);
+    foreach($types_id as $id){  
+        $type=$types[$id];
+        $ext=$exts[$id];
+        if($oldName!='' && file_exists("RC/$type/$p_name/$oldName.$ext")){
+            rename("RC/$type/$p_name/$oldName.$ext","RC/$type/$p_name/$tc_name.$ext");   
         }
     }
 } else {

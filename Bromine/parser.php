@@ -50,7 +50,7 @@ $timeTaken = $in['totalTime'];
 $selenium_version = $in['selenium_version'];
 $selenium_revision = $in['selenium_revision'];
 $environment = $fromURL;
-$client = new phpSniff();
+//$client = new phpSniff();
 //$browser = $client->property('long_name')." ".$client->property('version');
 //$platform = $client->property('platform')." ".$client->property('os');
 function explode_assoc($glue1, $glue2, $array) {
@@ -190,12 +190,9 @@ $dbh->update('trm_suite', "
   numCommandsPassed='$numCommandsPassed',
   numCommandsFailed='$numCommandsFailed',
   numCommandsErrors='$numCommandsErrors'", "ID = '$s_id'");
-$extravars = explode(',', $params['extravars']);
-if (count($extravars) == 3) {
-    echo "Test done. <a href='login.php?name=$extravars[0]&pass=$extravars[1]&language=$extravars[2]&directgo=showReport.php?id=$s_id' target='_parent'>Click here to see results</a>";
-} else {
-    echo "Test done";
-}
+
+echo "Test done";
+
 echo "<br>
   <b> numTestPassed </b> Received: $numTestPasses Inserted: $numTestPassed <br />
   <b> numTestFailed </b> Received: $numTestFailures Inserted: $numTestFailed <br />

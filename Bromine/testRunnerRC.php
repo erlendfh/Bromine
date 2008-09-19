@@ -108,11 +108,11 @@
 
     }
 
-  $result = $dbh->select('trm_regsosbrows, trm_nodes, trm_nodes_browsers, trm_reqstests, trm_requirements', "
+  $result = $dbh->select('trm_reqsosbrows, trm_nodes, trm_nodes_browsers, trm_reqstests, trm_requirements', "
   WHERE 
-  trm_regsosbrows.r_id = $r_id AND
-  trm_regsosbrows.o_id = trm_nodes.o_id AND
-  trm_regsosbrows.b_id = trm_nodes_browsers.b_id AND
+  trm_reqsosbrows.r_id = $r_id AND
+  trm_reqsosbrows.o_id = trm_nodes.o_id AND
+  trm_reqsosbrows.b_id = trm_nodes_browsers.b_id AND
   trm_nodes.ID = trm_nodes_browsers.n_id AND
   trm_reqstests.r_id = $r_id AND
   trm_requirements.id = $r_id 

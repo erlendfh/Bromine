@@ -12,6 +12,7 @@ class DBHandler {
     function __construct($language='en', $debug=false) {
         require (dirname(dirname(__FILE__)) . '/config.php');
         $this->lang = $language;
+        $this->debug = $debug;
         $this->db = mysql_connect($this->host, $this->username, $this->password);
         mysql_select_db($this->database, $this->db);
     }

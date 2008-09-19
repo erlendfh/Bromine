@@ -15,6 +15,10 @@
             $p_name = $_SESSION['p_name'];
             $gettype = str_replace(array('/','..'),'',$_GET['gettype']);
             $getfile = str_replace(array('/','..'),'',$_GET['getfile']);
+
+            if(!file_exists("RC/$gettype/$p_name/data/$getfile")){
+                $getfile='';
+            }
             $new = $_GET['new'];
             $upload = $_GET['upload'];
             if($_FILES['file']['name'] != ''){
@@ -38,7 +42,7 @@
             <tr>
                 <td>
                     <form action='' method='get'>
-                        <select name='gettype' onchange='this.form.submit()'>
+                        <select name='gettype' onchange="this.form.submit()">
                             <?php
                                 echo "<option value=''>" . $lh->getText('Choose') . "</option>";
                                 $sql = 'SELECT * FROM trm_types';

@@ -78,7 +78,7 @@ echo "<select name='browser' onchange='this.form.submit()'>";
 echo "<option value=''>" . $lh->getText('Choose') . "</option>";
 for ($i = 0;$i < $numreports;$i++) {
     echo "<option value='" . mysql_result($result, $i, "ID") . "'";
-    if ($OS == mysql_result($result, $i, "ID") || preg_match("/${browsersuggest}/i", mysql_result($result, $i, "browsername"))) {
+    if ($browser == mysql_result($result, $i, "ID") || preg_match("/${browsersuggest}/i", mysql_result($result, $i, "browsername"))) {
         echo ' selected="selected"';
     }
     echo ">" . mysql_result($result, $i, "browsername") . "</option>";
@@ -174,10 +174,9 @@ if ($p_id != '' && $referer != '' && $testsuite != '') {
     $url = $referer . $TestRunnerLocation . "?" . join("&", array("test=" . $testPath . $testsuite, "resultsUrl=$resultsurl", "runInterval=$interval", "p_id=$p_id", "o_id=$OS", "u_id=$id", "b_id=$browser", "auto=on"));
     $manual = "${referer}${TestRunnerLocation}?" . join("&", array("test=" . $testPath . $testsuite, "resultsUrl=$resultsurl", "runInterval=$interval",));
     echo "<button onclick='window.open(" . '"' . $url . '"' . ")'>" . $lh->getText('Run test') . "</button>";
-    $url.= "&extravars=$username,$pass,$lang";
     echo "<br />";
     echo "<a onclick='changeIt(\"linkcontainer\",\"<h3>AUTO:</h3><div>$url</div><h3>MANUAL:</h3> <div>$manual</div>\")' style='cursor: pointer;'>" . $lh->getText('Generate testlink') . "</a>";
-    $newurl = str_replace("&", "--!!--", $url);
+    //$newurl = str_replace("&", "--!!--", $url);
     //echo "<br /><a href='editCron.php?newurl=$newurl'>".$lh->getText('Plan test')."</a>";
     
 }

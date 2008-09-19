@@ -32,11 +32,6 @@ if ($ext!='' && $file_size < 250000) {
     if (move_uploaded_file($file_tempname, $file_name_total)) {
         $response = "The file $orgname has been uploaded as $file_name_total";
         chmod($file_name_total, 0777);
-        $content = file_get_contents($file_name_total);
-        $content2 = str_replace('class Example', "class $file_name", $content);
-        $handle = fopen($file_name_total, 'w') or die("can't open file");
-        fwrite($handle, $content2);
-        fclose($handle);
         if ($overwrite) {
             $response.= ' and has replaced the older version';
         }

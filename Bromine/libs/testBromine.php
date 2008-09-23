@@ -114,6 +114,7 @@ class testBromineInstallation
     
     function showTestResult()
     {
+        $i = 0;
         foreach ($this->log as $line)
         {
             

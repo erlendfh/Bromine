@@ -116,7 +116,10 @@ if (array_key_exists('action', $_POST) && $_POST['action'] == '1') {
         }
     }
     multiple_query($query, $db);
-    echo "Install complete<br />Now login with the following information:
+    
+    include ('libs/testBromine.php');
+    
+    echo "<br><br>Install complete<br />Now login with the following information:
     <table>
       <tr>
         <td>Username:</td>

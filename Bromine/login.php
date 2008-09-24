@@ -13,6 +13,12 @@
   $pass = arrayGet('pass', $_REQUEST);
   $lang = arrayGet('language', $_REQUEST);
   $action = arrayGet('action', $_REQUEST);
+  $finishinstall = arrayGet('finishinstall', $_REQUEST);
+  
+    if($finishinstall=='1' && !file_exists('im.dev')){
+        @unlink("install.php");
+        @unlink("sql.sql");
+    }
   
   $num = 0;
   if ($name != "" && $pass != ""){

@@ -1,26 +1,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <?php
-//print_r($_SESSION);
-if (isset($_GET['errormsg'])) {
-    $errormsg = $_GET['errormsg'];
-    echo "
-    <script type='text/javascript'>
-        alert('$errormsg');
-    </script>
-    ";
-}
+    //print_r($_SESSION);
+    if (isset($_GET['errormsg'])) {
+        $errormsg = $_GET['errormsg'];
+        echo "
+        <script type='text/javascript'>
+            alert('$errormsg');
+        </script>
+        ";
+    }
+
 ?>
   <script type="text/javascript" src="js/prototype.js"></script>
-  <script type="text/javascript">
-    function validate(){
-      var val_links="<div style='margin-top: 10px;'><div id='xhtml' style='display: inline'><a href='http://validator.w3.org/check/referer' title='Check the validity of this site&#8217;s XHTML'>xhtml</a></div>&nbsp;<div id='css' style='display: inline'><a href='http://jigsaw.w3.org/css-validator/check/referer' title='Check the validity of this site&#8217;s CSS'>css</a></div></div>";
-      document.body.innerHTML = document.body.innerHTML + val_links;
-      <?php if (isset($w3) && !$w3): ?>
-        new Ajax.Updater('xhtml', 'validate.php?type=xhtml', { method: 'get' })
-        new Ajax.Updater('css', 'validate.php?type=css', { method: 'get' })
-      <?php endif; ?>
-    }
-  </script>
   
   <?php
 echo "<title>Bromine v. 1.9 Beta</title>";

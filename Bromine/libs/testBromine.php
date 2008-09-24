@@ -111,7 +111,9 @@ class testBromineInstallation
     
     function testPermission($dir)
     {
-    $dir=realpath($dir);
+        if(realpath($dir)){
+            $dir=realpath($dir);
+        }
         $this->log['test'][] = "Testing permissions for $dir";
         if (is_writeable($dir) || @chmod($dir, 0777))
         {

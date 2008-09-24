@@ -32,7 +32,8 @@ class testBromineInstallation
         }
         else
         {
-            $this->log['result'][] = "<span class='status_notdone'>Warning: You need to add the java executable to your environment path, <a href='http://www.jibble.org/settingupjava.php'>See http://www.jibble.org/settingupjava.php</a> if you want to run java tests</span>";
+            $this->log['result'][] = "<span class='status_failed'>Warning: You need to add the java executable to your environment path, <a href='http://www.jibble.org/settingupjava.php'>See http://www.jibble.org/settingupjava.php</a> if you want to run java tests</span>";
+            $this->failed = true;
         }
     }
     

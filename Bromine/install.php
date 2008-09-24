@@ -8,6 +8,20 @@
     <h2> Testing your setup... </h2>
     <br />
         <?php
+            
+            // Setting up a few defaults, and remembering what the user wrote
+            $xampp = array_key_exists('xampp', $_GET) ? $_GET['xampp'] : '';
+            if($xampp){
+                $_POST['username']='root';
+                $_POST['database']='bromine';
+                $_POST['password']='';
+                $_POST['host']='localhost';
+            }
+            $username = array_key_exists('username', $_POST) ? $_POST['username'] : '';
+            $database = array_key_exists('database', $_POST) ? $_POST['database'] : '';
+            $password = array_key_exists('password', $_POST) ? $_POST['password'] : '';
+            $host = array_key_exists('host', $_POST) ? $_POST['host'] : 'localhost';
+            
             include ('libs/testBromine.php');
             $test = new testBromineInstallation();
             $results = $test->getResults();
@@ -23,13 +37,9 @@
             }
             echo "</table>";
             
-            // Setting up a few defaults, and remembering what the user wrote
-            $username = array_key_exists('username', $_POST) ? $_POST['username'] : '';
-            $database = array_key_exists('database', $_POST) ? $_POST['database'] : '';
-            $password = array_key_exists('password', $_POST) ? $_POST['password'] : '';
-            $host = array_key_exists('host', $_POST) ? $_POST['host'] : 'localhost';
+            
             if($results['failed']){
-                echo "<h2>Setup will not continue untill the conditions above have been met</h2>";
+                echo "<h2>Setup will not continue untill the errors above have been corrected</h2>";
                 exit;            
             }
         ?>
@@ -44,8 +54,13 @@
         $this->host = "localhost";
         </pre>
         <p>When that's done, the installer will try to create all tables, using <a href="sql.sql" target="_blank">this SQL</a>. <strong>NB</strong>: Currently, Bromine supports only MySQL.</p>
-        
-        <p><span class="selected">Enter your database information</span> below, and press Install. (All fields are required. Note if the database does not exist the installer will try to create it!)</p>
+        <?php 
+            if($xampp){
+                echo "<span class='status_passed'>You are using the one-click installer. The form below you is filled in correctly. Just press install</span>";    
+            }else{
+                echo "<p><span class='selected'>Enter your database information</span> below, and press Install. (All fields are required. Note if the database does not exist the installer will try to create it!)</p>";
+            }
+         ?>
         <form action='' method='post'>
           <table>
             <tr>

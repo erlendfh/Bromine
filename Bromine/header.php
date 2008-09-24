@@ -17,7 +17,7 @@
 echo "<title>Bromine v. 1.9 Beta</title>";
 echo "<!-- 
   Copyright 2008 Rasmus Berg Palm, Peter Visti Kløft, Jeppe Poss Pedersen & Christian Nørlyng 
-  http://www.assembla.com/wiki/show/Bromine
+  http://bromine.openqa.org
   
   This file is part of Bromine.
 

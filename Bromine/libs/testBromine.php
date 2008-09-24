@@ -32,8 +32,7 @@ class testBromineInstallation
         }
         else
         {
-            $this->log['result'][] = "<span class='status_failed'>Java not installed correctly! You need to add the java executable to your environment path, <a href='http://www.jibble.org/settingupjava.php'>See http://www.jibble.org/settingupjava.php</a></span>";
-            $this->failed = true;
+            $this->log['result'][] = "<span class='status_notdone'>Warning: You need to add the java executable to your environment path, <a href='http://www.jibble.org/settingupjava.php'>See http://www.jibble.org/settingupjava.php</a> if you want to run java tests</span>";
         }
     }
     
@@ -48,8 +47,7 @@ class testBromineInstallation
         }
         else
         {
-            $this->log['result'][] = "<span class='status_failed'>Ruby not installed correct! You need to add the ruby executable to your environment path, <a href='http://www.math.umd.edu/~dcarrera/ruby/0.3/install.html'>See http://www.math.umd.edu/~dcarrera/ruby/0.3/install.html</a></span>";
-            $this->failed = true;
+            $this->log['result'][] = "<span class='status_notdone'>Warning: You need to add the ruby executable to your environment path, <a href='http://www.math.umd.edu/~dcarrera/ruby/0.3/install.html'>See http://www.math.umd.edu/~dcarrera/ruby/0.3/install.html</a> if you want to run ruby tests</span> ";
         }
     }
     
@@ -66,8 +64,7 @@ class testBromineInstallation
         }
         else
         {
-            $this->log['result'][] = "<span class='status_failed'>PHP not installed correctly! You need to add the php executable to your environment path</span>";
-            $this->failed = true;
+            $this->log['result'][] = "<span class='status_notdone'>Warning: You need to add the php executable to your environment path if you want to run php tests</span>";
         }
     
     }
@@ -82,7 +79,7 @@ class testBromineInstallation
         else
         
         {
-            $this->log['result'][] = "<span class='status_failed'>You need to manually set your max_execution_time in php.ini to a number higher than 60000</span>";
+            $this->log['result'][] = "<span class='status_failed'>Error: You need to manually set your max_execution_time in php.ini to a number higher than 60000</span>";
             $this->failed = true;
         }
     }
@@ -92,7 +89,7 @@ class testBromineInstallation
         $this->log['test'][] =  "Testing for magic quotes";
         if(get_magic_quotes_gpc())
         {
-        	$this->log['result'][] =  "<span class='status_failed'>Magic quotes are enabled. You need to manually set magic_quotes_gpc = Off in php.ini</span>";
+        	$this->log['result'][] =  "<span class='status_failed'>Error: Magic quotes are enabled. You need to manually set magic_quotes_gpc = Off in php.ini</span>";
         	$this->failed = true;
         }
         else
@@ -121,7 +118,7 @@ class testBromineInstallation
         }
         else
         {
-            $this->log['result'][] = "<span class='status_failed'>Write permissions needed for '$dir'</span>";
+            $this->log['result'][] = "<span class='status_failed'>Error: Write permissions needed for '$dir'</span>";
             $this->failed = true;
         
         }

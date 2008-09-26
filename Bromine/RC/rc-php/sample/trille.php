@@ -31,13 +31,16 @@ class GoogleTest
          $this->selenium->isTextPresent("Bromine");
          $this->customCommand("This Custom Command2" ,"passed", "true", "true");
          $this->customCommand("This Custom Command3" ,"failed", "true", "true");
-         $this->customCommand("This Custom Command4" ,"done", "true", "true");
+         $this->customCommand("This Custom &/ \ Command4" ,"done", "true", "true");
     }catch(Exception $e){}
   }
   
   function customCommand($cmdName, $status, $var1, $var2){
+        $cmdName = urlencode($cmdName);
+        $status = urlencode($status);
+        $var1 = urlencode($var1);
+        $var2 = urlencode($var2);
         $url = "http://127.0.0.1/selenium-server/driver/index.php?cmd=customCommand&cmdName=$cmdName&status=$status&var1=$var1&var2=$var2&t_id=$this->t_id&u_id=$this->u_id";
-        $url=str_replace(' ','%20',$url);
         if($h = fopen($url, "r")){
             fclose($h);
         }

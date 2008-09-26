@@ -11,7 +11,7 @@
   
   $name = arrayGet('name', $_REQUEST);
   $pass = arrayGet('pass', $_REQUEST);
-  $lang = arrayGet('language', $_REQUEST);
+  $lang = 'en';
   $action = arrayGet('action', $_REQUEST);
   $finishinstall = arrayGet('finishinstall', $_REQUEST);
   
@@ -99,7 +99,7 @@ if ($num > 0) {
                   <td>Password</td>
                   <td><input type="password" name="pass" /></td>
                 </tr>
-                <tr>
+                <!--tr>
                   <td>Language</td>
                   <td>
                     <select name='language'>
@@ -116,7 +116,7 @@ if ($num > 0) {
                     ?>
                     </select>
                   </td>
-                </tr>
+                </tr-->
               </table>
               <div><input type="submit" value="<?php echo $dbh->getText('Log in'); ?>" /></div>
               </form>

@@ -91,7 +91,7 @@ class reportHandler {
         $html = $html . "<td>" . $this->dbh->getText('Commands not done') . ":</td><td style='background-color: yellow'>" . $this->numCommandsErrors . "</td>";
         $html = $html . "</tr>";
         $html = $html . "<tr>";
-        $commandErrorPro = round($this->numCommandsErrors/($this->numCommandsErrors+$this->numCommandsFailed+$this->numCommandsPassed) *100, 2);
+        $commandErrorPro = round($this->numCommandsFailed/($this->numCommandsErrors+$this->numCommandsFailed+$this->numCommandsPassed) *100, 2);
         $html = $html . "<td>" . $this->dbh->getText('Command Failures %') . ":</td><td style='background-color: #ffcccc'>" . $commandErrorPro . "%</td>";
         $html = $html . "</tr>";
         $html = $html . "</table>";

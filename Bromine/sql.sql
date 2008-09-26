@@ -1,13 +1,19 @@
 -- phpMyAdmin SQL Dump
--- version 2.11.4
+-- version 2.11.7
 -- http://www.phpmyadmin.net
 --
--- Vært: localhost
--- Genereringstid: 12. 08 2008 kl. 21:49:29
--- Serverversion: 5.0.51
--- PHP-version: 5.2.5
+-- Host: localhost
+-- Generation Time: Sep 26, 2008 at 03:02 PM
+-- Server version: 5.0.51
+-- PHP Version: 5.2.6
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `bromine`
@@ -16,7 +22,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_browser`
+-- Table structure for table `trm_browser`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_browser` (
@@ -27,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `trm_browser` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=16 ;
 
 --
--- Data dump for tabellen `trm_browser`
+-- Dumping data for table `trm_browser`
 --
 
 INSERT INTO `trm_browser` (`ID`, `browsername`) VALUES
@@ -43,7 +49,7 @@ INSERT INTO `trm_browser` (`ID`, `browsername`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_commands`
+-- Table structure for table `trm_commands`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_commands` (
@@ -54,105 +60,57 @@ CREATE TABLE IF NOT EXISTS `trm_commands` (
   `var2` longtext character set latin1 collate latin1_danish_ci,
   `t_id` int(10) NOT NULL default '0',
   PRIMARY KEY  (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=92 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=273 ;
 
 --
--- Data dump for tabellen `trm_commands`
+-- Dumping data for table `trm_commands`
 --
 
 INSERT INTO `trm_commands` (`ID`, `status`, `action`, `var1`, `var2`, `t_id`) VALUES
-(40, 'done', 'click', 'btnG', '', 10),
 (3, 'failed', 'open', '/', '', 0),
 (4, 'failed', 'testComplete', '', '', 0),
-(38, 'done', 'open', '/', '', 10),
-(39, 'done', 'type', 'q', 'bromine openqa', 10),
 (6, 'failed', 'open', '/', '', 0),
 (7, 'failed', 'testComplete', '', '', 0),
-(37, 'done', 'getNewBrowserSession', '*chrome', 'http://www.google.com', 10),
 (9, 'failed', 'testComplete', '', '', 0),
-(10, 'done', 'getNewBrowserSession', '*chrome', 'http://www.google.com', 7),
-(11, 'done', 'open', '/', '', 7),
-(12, 'done', 'type', 'q', 'bromine openqa', 7),
-(13, 'done', 'click', 'btnG', '', 7),
-(14, 'done', 'waitForPageToLoad', '30000', '', 7),
-(15, 'done', 'click', 'link=exact:OpenQA: Bromine Blog: Bromine arrives at OpenQA', '', 7),
-(16, 'failed', 'waitForPageToLoad', '30000', '', 7),
-(17, 'done', 'testComplete', '', '', 7),
-(18, 'done', 'getNewBrowserSession', '*chrome', 'http://www.google.com', 8),
-(19, 'done', 'open', '/', '', 8),
-(20, 'done', 'type', 'q', 'bromine', 8),
-(21, 'done', 'click', 'btnG', '', 8),
-(22, 'done', 'waitForPageToLoad', '30000', '', 8),
-(23, 'done', 'click', 'link=Bromine - Wikipedia, the free encyclopedia', '', 8),
-(24, 'done', 'waitForPageToLoad', '30000', '', 8),
-(25, 'passed', 'isTextPresent', 'Bromine', '', 8),
-(26, 'done', 'testComplete', '', '', 8),
-(27, 'done', 'getNewBrowserSession', '*chrome', 'http://www.google.com', 9),
-(28, 'done', 'setContext', 'test_new', '', 9),
-(29, 'done', 'open', '/', '', 9),
-(30, 'done', 'type', 'q', 'bromine', 9),
-(31, 'done', 'click', 'btnG', '', 9),
-(32, 'done', 'waitForPageToLoad', '30000', '', 9),
-(33, 'done', 'click', 'link=Bromine - Wikipedia, the free encyclopedia', '', 9),
-(34, 'done', 'waitForPageToLoad', '30000', '', 9),
-(35, 'passed', 'isTextPresent', 'Bromine', '', 9),
-(36, 'done', 'testComplete', '', '', 9),
-(41, 'done', 'waitForPageToLoad', '30000', '', 10),
-(42, 'done', 'click', 'link=exact:OpenQA: Bromine Blog: Bromine arrives at OpenQA', '', 10),
-(43, 'failed', 'waitForPageToLoad', '30000', '', 10),
-(44, 'done', 'testComplete', '', '', 10),
-(45, 'done', 'getNewBrowserSession', '*chrome', 'http://www.google.com', 11),
-(46, 'done', 'open', '/', '', 11),
-(47, 'done', 'type', 'q', 'bromine', 11),
-(48, 'done', 'click', 'btnG', '', 11),
-(49, 'done', 'waitForPageToLoad', '30000', '', 11),
-(50, 'done', 'click', 'link=Bromine - Wikipedia, the free encyclopedia', '', 11),
-(51, 'done', 'waitForPageToLoad', '30000', '', 11),
-(52, 'passed', 'isTextPresent', 'Bromine', '', 11),
-(53, 'done', 'testComplete', '', '', 11),
-(54, 'done', 'getNewBrowserSession', '*chrome', 'http://www.google.com', 12),
-(55, 'done', 'setContext', 'test_new', '', 12),
-(56, 'done', 'open', '/', '', 12),
-(57, 'done', 'type', 'q', 'bromine', 12),
-(58, 'done', 'click', 'btnG', '', 12),
-(59, 'done', 'waitForPageToLoad', '30000', '', 12),
-(60, 'done', 'click', 'link=Bromine - Wikipedia, the free encyclopedia', '', 12),
-(61, 'done', 'waitForPageToLoad', '30000', '', 12),
-(62, 'passed', 'isTextPresent', 'Bromine', '', 12),
-(63, 'done', 'testComplete', '', '', 12),
-(64, 'done', 'getNewBrowserSession', '*chrome', 'http://www.google.com', 13),
-(65, 'done', 'open', '/', '', 13),
-(66, 'done', 'type', 'q', 'bromine openqa', 13),
-(67, 'done', 'click', 'btnG', '', 13),
-(68, 'done', 'waitForPageToLoad', '30000', '', 13),
-(69, 'done', 'click', 'link=exact:OpenQA: Bromine Blog: Bromine arrives at OpenQA', '', 13),
-(70, 'done', 'waitForPageToLoad', '30000', '', 13),
-(71, 'passed', 'isTextPresent', 'Bromine', '', 13),
-(72, 'done', 'testComplete', '', '', 13),
-(73, 'done', 'getNewBrowserSession', '*chrome', 'http://www.google.com', 14),
-(74, 'done', 'open', '/', '', 14),
-(75, 'done', 'type', 'q', 'bromine', 14),
-(76, 'done', 'click', 'btnG', '', 14),
-(77, 'done', 'waitForPageToLoad', '30000', '', 14),
-(78, 'done', 'click', 'link=Bromine - Wikipedia, the free encyclopedia', '', 14),
-(79, 'done', 'waitForPageToLoad', '30000', '', 14),
-(80, 'passed', 'isTextPresent', 'Bromine', '', 14),
-(81, 'done', 'testComplete', '', '', 14),
-(82, 'done', 'getNewBrowserSession', '*chrome', 'http://www.google.com', 15),
-(83, 'done', 'setContext', 'test_new', '', 15),
-(84, 'done', 'open', '/', '', 15),
-(85, 'done', 'type', 'q', 'bromine', 15),
-(86, 'done', 'click', 'btnG', '', 15),
-(87, 'done', 'waitForPageToLoad', '30000', '', 15),
-(88, 'done', 'click', 'link=Bromine - Wikipedia, the free encyclopedia', '', 15),
-(89, 'done', 'waitForPageToLoad', '30000', '', 15),
-(90, 'passed', 'isTextPresent', 'Bromine', '', 15),
-(91, 'done', 'testComplete', '', '', 15);
+(227, 'done', 'getNewBrowserSession', '*chrome', 'http://www.google.com', 34),
+(228, 'done', 'open', '/', '', 34),
+(229, 'passed', 'This Custom Command1', 'true', 'true', 34),
+(230, 'done', 'type', 'q', 'bromine openqa', 34),
+(231, 'done', 'click', 'btnG', '', 34),
+(232, 'done', 'waitForPageToLoad', '30000', '', 34),
+(233, 'done', 'click', 'link=exact:OpenQA: Bromine Blog: Bromine arrives at OpenQA', '', 34),
+(234, 'done', 'waitForPageToLoad', '30000', '', 34),
+(235, 'done', 'isTextPresent', 'Bromine', '', 34),
+(236, 'passed', 'This Custom Command2', 'true', 'true', 34),
+(237, 'done', 'This Custom Command4', 'true', 'true', 34),
+(238, 'done', 'testComplete', '', '', 34),
+(239, 'done', 'getNewBrowserSession', '*iehta', 'http://www.google.com', 35),
+(240, 'done', 'open', '/', '', 35),
+(241, 'done', 'type', 'q', 'bromine openqa', 35),
+(242, 'done', 'click', 'btnG', '', 35),
+(243, 'done', 'waitForPageToLoad', '30000', '', 35),
+(244, 'done', 'click', 'link=exact:OpenQA: Bromine Blog: Bromine arrives at OpenQA', '', 35),
+(245, 'done', 'waitForPageToLoad', '30000', '', 35),
+(246, 'done', 'isTextPresent', 'Brom1ine1', '', 35),
+(247, 'failed', 'customCommand', 'var1', 'var2', 35),
+(248, 'done', 'testComplete', '', '', 35),
+(249, 'done', 'getNewBrowserSession', '*iehta', 'http://www.google.com', 36),
+(250, 'done', 'open', '/', '', 36),
+(251, 'passed', 'This Custom Command1', 'true', 'true', 36),
+(252, 'done', 'type', 'q', 'bromine openqa', 36),
+(253, 'done', 'click', 'btnG', '', 36),
+(254, 'done', 'waitForPageToLoad', '30000', '', 36),
+(255, 'done', 'click', 'link=exact:OpenQA: Bromine Blog: Bromine arrives at OpenQA', '', 36),
+(256, 'done', 'waitForPageToLoad', '30000', '', 36),
+(257, 'done', 'isTextPresent', 'Bromine', '', 36),
+(258, 'passed', 'This Custom Command2', 'true', 'true', 36),
+(259, 'done', 'This Custom Command4', 'true', 'true', 36),
+(260, 'done', 'testComplete', '', '', 36);
 
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_comments`
+-- Table structure for table `trm_comments`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_comments` (
@@ -164,17 +122,20 @@ CREATE TABLE IF NOT EXISTS `trm_comments` (
   `table_name` varchar(255) collate utf8_bin NOT NULL,
   `table_id` int(11) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
 
 --
--- Data dump for tabellen `trm_comments`
+-- Dumping data for table `trm_comments`
 --
 
+INSERT INTO `trm_comments` (`id`, `timedate`, `author`, `headline`, `comment`, `table_name`, `table_id`) VALUES
+(1, '2008-09-26 14:39:59', 104, 'Headline', 0x436f6d6d656e74206f6e20746865206572726f722f646566656374, 'trm_defects', 1),
+(2, '2008-09-26 14:52:23', 104, 'Headline', 0x436f6d6d656e74206f6e207468697320746573742c2077687920697420646964206661696c206f7220616e797468696e672e2e2e, 'trm_test', 35);
 
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_config`
+-- Table structure for table `trm_config`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_config` (
@@ -186,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `trm_config` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
 
 --
--- Data dump for tabellen `trm_config`
+-- Dumping data for table `trm_config`
 --
 
 INSERT INTO `trm_config` (`id`, `var`, `value`) VALUES
@@ -196,7 +157,7 @@ INSERT INTO `trm_config` (`id`, `var`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_core`
+-- Table structure for table `trm_core`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_core` (
@@ -209,14 +170,14 @@ CREATE TABLE IF NOT EXISTS `trm_core` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=94 ;
 
 --
--- Data dump for tabellen `trm_core`
+-- Dumping data for table `trm_core`
 --
 
 
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_core_testsuites`
+-- Table structure for table `trm_core_testsuites`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_core_testsuites` (
@@ -227,14 +188,14 @@ CREATE TABLE IF NOT EXISTS `trm_core_testsuites` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=108 ;
 
 --
--- Data dump for tabellen `trm_core_testsuites`
+-- Dumping data for table `trm_core_testsuites`
 --
 
 
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_cronjobs`
+-- Table structure for table `trm_cronjobs`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_cronjobs` (
@@ -246,14 +207,14 @@ CREATE TABLE IF NOT EXISTS `trm_cronjobs` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
 
 --
--- Data dump for tabellen `trm_cronjobs`
+-- Dumping data for table `trm_cronjobs`
 --
 
 
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_defects`
+-- Table structure for table `trm_defects`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_defects` (
@@ -271,17 +232,20 @@ CREATE TABLE IF NOT EXISTS `trm_defects` (
   `priority` enum('Urgent','Very high','High','Medium','Low') collate utf8_bin NOT NULL,
   `stt_id` varchar(11) collate utf8_bin NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
 
 --
--- Data dump for tabellen `trm_defects`
+-- Dumping data for table `trm_defects`
 --
 
+INSERT INTO `trm_defects` (`id`, `createdby`, `description`, `type_of_defect`, `created`, `updated`, `status`, `p_id`, `t_id`, `updatedby`, `name`, `priority`, `stt_id`) VALUES
+(1, 104, 0x446573637269706520796f7572206572726f722f64656665637420686572652e2e2e20596f752063616e20616c736f2061646420616e206174746163686d656e7420286120646f632c20616e20696d616765206f7220616e792066696c65292e0d0a596f752063616e20636f6d6d656e74206f6e2074686973206572726f722f64656665637420627920636c69636b696e67206f6e207468652061646420636f6d6d656e74206c696e6b2062656c6c6f772e, 2, '2008-09-26 14:39:16', '2008-09-26 14:41:21', 1, 123, 35, 104, 'Trille test failed due to -something-', 'Very high', '37'),
+(2, 104, 0x6a75737420616e6f74686572206465666563742e2e2e, 6, '2008-09-26 14:43:21', '2008-09-26 14:43:21', 1, 123, NULL, 104, 'Trille test is obsolete', 'Urgent', '37');
 
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_defect_has_attachment`
+-- Table structure for table `trm_defect_has_attachment`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_defect_has_attachment` (
@@ -293,14 +257,14 @@ CREATE TABLE IF NOT EXISTS `trm_defect_has_attachment` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 --
--- Data dump for tabellen `trm_defect_has_attachment`
+-- Dumping data for table `trm_defect_has_attachment`
 --
 
 
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_design_manual_commands`
+-- Table structure for table `trm_design_manual_commands`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_design_manual_commands` (
@@ -310,17 +274,26 @@ CREATE TABLE IF NOT EXISTS `trm_design_manual_commands` (
   `reaction` text collate utf8_bin NOT NULL,
   `td_id` int(11) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=9 ;
 
 --
--- Data dump for tabellen `trm_design_manual_commands`
+-- Dumping data for table `trm_design_manual_commands`
 --
 
+INSERT INTO `trm_design_manual_commands` (`id`, `orderby`, `action`, `reaction`, `td_id`) VALUES
+(1, 1, 0x4f70656e20687474703a2f2f7777772e6d79736974652e636f6d, 0x53697465206f70656e73, 1),
+(2, 2, 0x547970652068656c6c6f20776f726c6420696e20746865207365617263682074657874206669656c6420616e6420636c69636b20736561726368, 0x54686520736974652073686f77732074686520726573756c742070616765, 1),
+(3, 3, 0x467572746865722073746570, 0x467572746865722e2e2e2e2e2e, 1),
+(4, 4, 0x416e64, 0x736f, 1),
+(5, 5, 0x6f6e, 0x616e64, 1),
+(6, 6, 0x736f, 0x6f6e, 1),
+(7, 1, 0x537465702031, 0x537465702031, 2),
+(8, 2, 0x537465702032, 0x537465702032, 2);
 
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_design_manual_test`
+-- Table structure for table `trm_design_manual_test`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_design_manual_test` (
@@ -329,19 +302,20 @@ CREATE TABLE IF NOT EXISTS `trm_design_manual_test` (
   `p_id` int(11) NOT NULL,
   `Description` longtext collate utf8_bin NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
 
 --
--- Data dump for tabellen `trm_design_manual_test`
+-- Dumping data for table `trm_design_manual_test`
 --
 
 INSERT INTO `trm_design_manual_test` (`id`, `name`, `p_id`, `Description`) VALUES
-(1, 0x7472696c6c65, 123, '');
+(1, 0x7472696c6c65, 123, 0x5468697320697320616e206578616d706c65206f66206120746573742063617365210d0a537461727420627920616464696e672061206e657720746573742063617365207573696e672074686520627574746f6e2061626f76652e0d0a5768656e207479706520696e2061206e616d6520666f722061742074686520746573742063617365207573696e67207468652074657374206669656c642061626f76652e0d0a0d0a41646420737465707320746f20746865207465737420636173652062656c6c6f773a),
+(2, 0x7472696c6c6532, 123, 0x54686973206973206a75737420616e6f7468657220746573742063617365);
 
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_lang`
+-- Table structure for table `trm_lang`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_lang` (
@@ -356,7 +330,7 @@ CREATE TABLE IF NOT EXISTS `trm_lang` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=291 ;
 
 --
--- Data dump for tabellen `trm_lang`
+-- Dumping data for table `trm_lang`
 --
 
 INSERT INTO `trm_lang` (`id`, `langKey`, `en`, `es`, `dk`, `de`) VALUES
@@ -370,23 +344,23 @@ INSERT INTO `trm_lang` (`id`, `langKey`, `en`, `es`, `dk`, `de`) VALUES
 (8, 'Test fail.', 'Test fail.', '', 'T Fejlet', '...'),
 (9, 'Cmd. suc.', 'Cmd. suc.', '', 'K lykkedes', '...'),
 (10, 'Cmd. failed', 'Cmd. failed', '', 'K fejlet', '...'),
-(11, 'Cmd. not done', 'Cmd. not done', '', 'K ikke udført', '...'),
+(11, 'Cmd. not done', 'Cmd. not done', '', 'K ikke udfÃ¸rt', '...'),
 (12, 'T graph', 'T graph', '', 'T graf', '...'),
 (13, 'Cmd. graph', 'Cmd. graph', '', 'K graf', '...'),
 (14, 'To', 'To', '', 'Til', '...'),
 (15, 'From', 'From', '', 'Fra', '...'),
 (16, 'Show', 'Show', '', 'Vis', '...'),
 (17, 'Difference', 'Difference', '', 'Forskel', '...'),
-(18, 'Add user', 'Add user', '', 'Tilføj bruger', '...'),
+(18, 'Add user', 'Add user', '', 'TilfÃ¸j bruger', '...'),
 (19, 'See old reports', 'See old reports', '', 'Se gamle rapporter', '...'),
 (20, 'Users', 'Users', '', 'Brugere', '...'),
 (21, 'All', 'All', '', 'Alle', '...'),
 (22, 'Test succeded', 'Test succeded', '', 'Test lykkedes', '...'),
-(23, 'Help text', 'Help text', '', 'Hjælpe tekst', '...'),
+(23, 'Help text', 'Help text', '', 'HjÃ¦lpe tekst', '...'),
 (24, 'Commands succeded', 'Commands succeded', '', 'Kommandoer lykkedes', '...'),
 (25, 'Commands failed', 'Commands failed', '', 'Kommandoer fejlet', '...'),
-(26, 'Commands done', 'Commands done', '', 'Kommandoer gennemført', '...'),
-(27, 'Commands not done', 'Commands not done', '', 'Kommandoer ikke gennemført', '...'),
+(26, 'Commands done', 'Commands done', '', 'Kommandoer gennemfÃ¸rt', '...'),
+(27, 'Commands not done', 'Commands not done', '', 'Kommandoer ikke gennemfÃ¸rt', '...'),
 (28, 'min.', 'min.', '', 'min.', '...'),
 (29, 'sec.', 'sec.', '', 'sek.', '...'),
 (30, 'Client', 'Client', '', 'Klient', '...'),
@@ -395,11 +369,11 @@ INSERT INTO `trm_lang` (`id`, `langKey`, `en`, `es`, `dk`, `de`) VALUES
 (33, 'Selenium revision', 'Selenium revision', '', 'Selenium revision', '...'),
 (34, 'Time', 'Time', '', 'Tid', '...'),
 (35, 'Command Failures %', 'Command Failures %', '', 'Kommando fejl %', '...'),
-(36, 'Commands errors', 'Commands errors', '', 'Kommandoer ikke gennemført', '...'),
+(36, 'Commands errors', 'Commands errors', '', 'Kommandoer ikke gennemfÃ¸rt', '...'),
 (38, 'Test failed', 'Test failed', '', 'Test fejlet', '...'),
 (39, 'Test', 'Test', '', 'Test', '...'),
 (40, 'Commands', 'Commands', '', 'Kommandoer', '...'),
-(41, 'Comparison by', 'Comparison by', '', 'Sammenlign på', '...'),
+(41, 'Comparison by', 'Comparison by', '', 'Sammenlign pÃ¥', '...'),
 (42, 'Project', 'Project', '', 'Projekt', '...'),
 (43, 'Description', 'Description', '', 'Beskrivelse', '...'),
 (44, 'Username', 'Username', '', 'Brugernavn', '...'),
@@ -414,24 +388,24 @@ INSERT INTO `trm_lang` (`id`, `langKey`, `en`, `es`, `dk`, `de`) VALUES
 (53, 'no login', 'Your username or password is not correct', '', 'Mit brugernavn eller adgangskode er forkert ', '...'),
 (54, 'no projects', 'You don''t have access to any projects', '', 'Du har ikke adgang til noget projekter', '...'),
 (56, 'Diff', 'Diff', '', 'Diff', '...'),
-(57, 'environment', 'Environment', '', 'Miljø', '...'),
+(57, 'environment', 'Environment', '', 'MiljÃ¸', '...'),
 (58, 'Failed', 'Failed', '', 'Fejl', '...'),
 (59, 'Passed', 'Passed', '', 'Godkendt', '...'),
-(60, 'Error', 'Error', '', 'Ikke gennemført', '...'),
-(61, 'manPassed', 'Manually Passed', '', 'Manuelt gennemført', '...'),
+(60, 'Error', 'Error', '', 'Ikke gennemfÃ¸rt', '...'),
+(61, 'manPassed', 'Manually Passed', '', 'Manuelt gennemfÃ¸rt', '...'),
 (62, 'Language', 'Language', '', 'Sprog', '...'),
 (63, 'Welcome to Bromine', 'Welcome to Bromine', '', 'Velkommen til Bromine', '...'),
 (64, 'WelcomeMsg', 'Internal news and stuff goes here', '', 'Interne nyheder og andre ting her', '...'),
 (65, 'log out', 'log out', '', 'log ud', '...'),
 (66, 'Test Lab', 'Test Lab', '', 'Test Lab', '...'),
 (67, 'Test Result Manager', 'Test Result Manager', '', 'Test Result Manager', '...'),
-(69, 'Choose project', 'Choose project', '', 'Vælg projekt', '...'),
-(70, 'No test attached', 'No test attached', '', 'Ingen test tilføjet', '...'),
-(71, 'Environment', 'Environment', '', 'Miljø', '...'),
-(72, 'Choose environment', 'Choose environment', '', 'Vælg miljø', '...'),
-(73, 'Admin WARNING!', 'WARNING!!! - THINK before you change anything!!', '', 'PAS PÅ!! Hvad du ændrer...!!', '...'),
-(74, 'Choose test', 'Choose test', '', 'Vælg test', '...'),
-(75, 'No environment attached', 'No environment attached', '', 'Intet miljø tilknyttet', '...'),
+(69, 'Choose project', 'Choose project', '', 'VÃ¦lg projekt', '...'),
+(70, 'No test attached', 'No test attached', '', 'Ingen test tilfÃ¸jet', '...'),
+(71, 'Environment', 'Environment', '', 'MiljÃ¸', '...'),
+(72, 'Choose environment', 'Choose environment', '', 'VÃ¦lg miljÃ¸', '...'),
+(73, 'Admin WARNING!', 'WARNING!!! - THINK before you change anything!!', '', 'PAS PÃ…!! Hvad du Ã¦ndrer...!!', '...'),
+(74, 'Choose test', 'Choose test', '', 'VÃ¦lg test', '...'),
+(75, 'No environment attached', 'No environment attached', '', 'Intet miljÃ¸ tilknyttet', '...'),
 (76, 'Edit users', 'Edit users', '', 'Rediger brugere', '...'),
 (77, 'Edit projects', 'Edit projects', '', 'Rediger projekter', '...'),
 (78, 'Edit tests', 'Edit tests', '', 'Rediger tests', '...'),
@@ -440,9 +414,9 @@ INSERT INTO `trm_lang` (`id`, `langKey`, `en`, `es`, `dk`, `de`) VALUES
 (81, 'Usertype', 'Usertype', '', 'Brugertype', '...'),
 (82, 'Email', 'Email', '', 'Email', '...'),
 (83, 'Previous 15', 'Previous 15', '', 'Forrige 15', '...'),
-(84, 'Next 15', 'Next 15', '', 'Næste 15', '...'),
+(84, 'Next 15', 'Next 15', '', 'NÃ¦ste 15', '...'),
 (85, 'Pass man.', 'Pass man.', '', 'Godkend man.', '...'),
-(87, 'Add', 'Add', '', 'Tilføj', '...'),
+(87, 'Add', 'Add', '', 'TilfÃ¸j', '...'),
 (88, 'Back to admin site', 'Back to admin site', '', 'Tilbage til admin siden', '...'),
 (89, 'Save', 'Save', '', 'Gem', '...'),
 (90, 'Pass', 'Pass', '', 'Godkend', '...'),
@@ -455,13 +429,13 @@ INSERT INTO `trm_lang` (`id`, `langKey`, `en`, `es`, `dk`, `de`) VALUES
 (97, 'TR location', 'TestRunner.html location', '', 'TestRunner.html placering', '...'),
 (98, 'No project sites attached', 'No project sites attached', '', 'Ingen projekt sider tilknyttet', '...'),
 (99, 'Add site to this project', 'Add site to this project', '', 'Tilknyt side til dette projekt', '...'),
-(100, 'Add project', 'Add project', '', 'Tilføj projekt', '...'),
+(100, 'Add project', 'Add project', '', 'TilfÃ¸j projekt', '...'),
 (101, 'Delete', 'Delete', '', 'Slet', '...'),
-(102, 'confirmDelete', 'Are you sure you want to delete this?', '', 'Er du sikker på du vil slette dette?', '...'),
-(103, 'Add test to this project', 'Add test to this project', '', 'Tilføj test til dette projekt', '...'),
+(102, 'confirmDelete', 'Are you sure you want to delete this?', '', 'Er du sikker pÃ¥ du vil slette dette?', '...'),
+(103, 'Add test to this project', 'Add test to this project', '', 'TilfÃ¸j test til dette projekt', '...'),
 (104, 'No project description', 'Collects all testsuites that does not have a project specified', '', 'Opsamler alle testsuiter der ikke har et projekt tilknyttet', '...'),
-(105, 'You have to choose 2 suites', 'You have to choose 2 suites', '', 'Du skal vælge 2 suiter', '...'),
-(106, 'Run test', 'Run test', '', 'Kør test', '...'),
+(105, 'You have to choose 2 suites', 'You have to choose 2 suites', '', 'Du skal vÃ¦lge 2 suiter', '...'),
+(106, 'Run test', 'Run test', '', 'KÃ¸r test', '...'),
 (108, 'Generate testlink', 'Generate direct link to this test', '', 'Generer direkte link til denne test', '...'),
 (109, 'Direct link warning', 'Warning! Your username and password is readable in the direct link', '', 'Advarsel! Dit brugernavn og kode er synligt i det direkte link', '...'),
 (110, 'First name', 'First name', '', 'Fornavn', '...'),
@@ -470,20 +444,20 @@ INSERT INTO `trm_lang` (`id`, `langKey`, `en`, `es`, `dk`, `de`) VALUES
 (113, 'Requirement', 'Requirement', '', 'Krav', '...'),
 (114, 'Nr', 'Nr', '', 'Nr', '...'),
 (115, 'OS/Browser requirements', 'OS/Browser requirements', '', 'OS/Browser krav', '...'),
-(116, 'No access', 'You dont have access to do this', '', 'Du har ikke adgang til at udføre denne operation', '...'),
+(116, 'No access', 'You dont have access to do this', '', 'Du har ikke adgang til at udfÃ¸re denne operation', '...'),
 (117, 'Author', 'Author', '', 'Forfatter', '...'),
 (118, 'Edit requirements', 'Edit requirements', '', 'Rediger krav', '...'),
-(119, 'Site to be tested', 'Site to be tested', '', 'Side der skal testes på', '...'),
+(119, 'Site to be tested', 'Site to be tested', '', 'Side der skal testes pÃ¥', '...'),
 (120, 'Node location', 'Node location', '', 'Node placering', '...'),
 (121, 'Type', 'Type', '', 'Type', '...'),
-(122, 'Choose type', 'Choose type', '', 'Vælg type', '...'),
-(123, 'Choose', 'Choose', '', 'Vælg', '...'),
+(122, 'Choose type', 'Choose type', '', 'VÃ¦lg type', '...'),
+(123, 'Choose', 'Choose', '', 'VÃ¦lg', '...'),
 (124, 'Requirements', 'Requirements', '', 'Krav', '...'),
 (125, 'HR', 'Human resources', '', 'Menneskelige resourcer', '...'),
 (126, 'Projects', 'Projects', '', 'Projekter', '...'),
 (127, 'Submit', 'Submit', '', 'Submit', '...'),
 (128, 'Testplan', 'Testplan', '', 'Testplan', '...'),
-(129, 'Testrunner', 'Test runner', '', 'Test kører', '...'),
+(129, 'Testrunner', 'Test runner', '', 'Test kÃ¸rer', '...'),
 (130, 'Testrunner nodes', 'Testrunner nodes', '', 'Testrunner noder', '...'),
 (131, 'Testrunner core', 'Testrunner core', '', 'Testrunner core', '...'),
 (132, 'Core tests', 'Core tests', '', 'Core tests', '...'),
@@ -496,53 +470,53 @@ INSERT INTO `trm_lang` (`id`, `langKey`, `en`, `es`, `dk`, `de`) VALUES
 (139, 'Types', 'Types', '', 'Typer', '...'),
 (140, 'Edit nodes', 'Edit nodes', '', 'Rediger noder', '...'),
 (141, 'Type path', 'Type path', '', 'Type sti', '...'),
-(142, 'Add node', 'Add node', '', 'Tilføj node', '...'),
+(142, 'Add node', 'Add node', '', 'TilfÃ¸j node', '...'),
 (143, 'Edit misc', 'Edit misc', '', 'Rediger div.', '...'),
 (144, 'Typename', 'Type name', '', 'Type navn', '...'),
-(145, 'Add type', 'Add type', '', 'Tilføj type', '...'),
-(146, 'Add browser', 'Add browser', '', 'Tilføj browser', '...'),
-(147, 'Add OS', 'Add OS', '', 'Tilføj OS', '...'),
+(145, 'Add type', 'Add type', '', 'TilfÃ¸j type', '...'),
+(146, 'Add browser', 'Add browser', '', 'TilfÃ¸j browser', '...'),
+(147, 'Add OS', 'Add OS', '', 'TilfÃ¸j OS', '...'),
 (148, 'Access', 'Access', '', 'Adgang', '...'),
 (149, 'Node', 'Node', '', 'Node', '...'),
 (150, 'FTP access', 'FTP access', '', 'FTP access', '...'),
-(151, 'Choose node', 'Choose node', '', 'Vælg node', '...'),
-(152, 'Guest account', 'Guest account', '', 'Gæste konto', '...'),
-(153, 'Guest name', 'Guest name', '', 'Gæste navn', '...'),
-(154, 'Guest password', 'Guest password', '', 'Gæste kodeord', '...'),
+(151, 'Choose node', 'Choose node', '', 'VÃ¦lg node', '...'),
+(152, 'Guest account', 'Guest account', '', 'GÃ¦ste konto', '...'),
+(153, 'Guest name', 'Guest name', '', 'GÃ¦ste navn', '...'),
+(154, 'Guest password', 'Guest password', '', 'GÃ¦ste kodeord', '...'),
 (155, 'Edit usertype access', 'Edit usertype access', '', 'Rediger brugertype adgang', '...'),
-(156, 'Choose usertype', 'Choose usertype', '', 'Vælg brugertype', '...'),
+(156, 'Choose usertype', 'Choose usertype', '', 'VÃ¦lg brugertype', '...'),
 (157, 'Sites', 'Sites', '', 'Sider', '...'),
-(158, 'Add site', 'Add site', '', 'Tilføj side', '...'),
-(159, 'noclosemsg', 'Testsuite running. Do not close window untill it finishes loading', '', 'Test kører. Luk ikke vinduet før siden er færdig med at indlæse', '...'),
+(158, 'Add site', 'Add site', '', 'TilfÃ¸j side', '...'),
+(159, 'noclosemsg', 'Testsuite running. Do not close window untill it finishes loading', '', 'Test kÃ¸rer. Luk ikke vinduet fÃ¸r siden er fÃ¦rdig med at indlÃ¦se', '...'),
 (161, 'Testing', 'Testing', '', 'Tester', '...'),
 (162, 'Usertypes', 'Usertypes', '', 'Brugertyper', '...'),
-(163, 'Add usertype', 'Add usertype', '', 'Tilføj brugertype', '...'),
-(164, 'Schedule tests', 'Schedule tests', '', 'Planlæg test', '...'),
-(165, 'Add scheduled test', 'Add scheduled test', '', 'Tilføj planlagt test', '...'),
+(163, 'Add usertype', 'Add usertype', '', 'TilfÃ¸j brugertype', '...'),
+(164, 'Schedule tests', 'Schedule tests', '', 'PlanlÃ¦g test', '...'),
+(165, 'Add scheduled test', 'Add scheduled test', '', 'TilfÃ¸j planlagt test', '...'),
 (166, 'All minutes', 'All minutes', '', 'Alle minutter', '...'),
 (167, 'All hours', 'All hours', '', 'Alle timer', '...'),
 (168, 'All days', 'All days', '', 'Alle dage', '...'),
-(169, 'All months', 'All months', '', 'Alle måneder', '...'),
+(169, 'All months', 'All months', '', 'Alle mÃ¥neder', '...'),
 (170, 'All weekdays', 'All weekdays', '', 'Alle ugedage', '...'),
 (171, 'Minute', 'Minute', '', 'Minut', '...'),
 (172, 'Hour', 'Hour', '', 'Time', '...'),
 (173, 'Day', 'Day', '', 'Dage', '...'),
-(174, 'Month', 'Month', '', 'Måned', '...'),
+(174, 'Month', 'Month', '', 'MÃ¥ned', '...'),
 (175, 'Weekday', 'Weekday', '', 'Ugedag', '...'),
 (176, 'Task', 'Task', '', 'Opgave', '...'),
 (177, 'Start', 'Start', '', 'Start', '...'),
 (178, 'Home', 'Home', '', 'Hjem', '...'),
-(179, 'Choose datafile', 'Choose datafile', '', 'Vælg datafil', '...'),
+(179, 'Choose datafile', 'Choose datafile', '', 'VÃ¦lg datafil', '...'),
 (180, 'There is no difference', 'There is no difference', '', 'De er ens', '...'),
-(181, 'You have to choose 2 runs of the same testsuite', 'You have to choose 2 runs of the same testsuite', '', 'Du skal vælge 2 rapporter fra den samme test suite', '...'),
+(181, 'You have to choose 2 runs of the same testsuite', 'You have to choose 2 runs of the same testsuite', '', 'Du skal vÃ¦lge 2 rapporter fra den samme test suite', '...'),
 (204, 'Show comments', 'Show comments', '', 'Vis kommentarer', '...'),
 (183, 'Show requirements', 'Show requirements', '', 'Vis kravstatus', '...'),
-(184, 'Choose your current browser', 'Choose your current browser', '', 'Vælg din nuværende browser', '...'),
-(185, 'Choose your current OS', 'Choose your current OS', '', 'Vælg dit nuværende styresystem', '...'),
-(186, 'Add new OS/browser to this requirements', 'Add new OS/browser to this requirements', '', 'Tilføj nyOS/browser til dette krav', '...'),
-(187, 'Add new', 'Add new', '', 'Tilføj ny', '...'),
+(184, 'Choose your current browser', 'Choose your current browser', '', 'VÃ¦lg din nuvÃ¦rende browser', '...'),
+(185, 'Choose your current OS', 'Choose your current OS', '', 'VÃ¦lg dit nuvÃ¦rende styresystem', '...'),
+(186, 'Add new OS/browser to this requirements', 'Add new OS/browser to this requirements', '', 'TilfÃ¸j nyOS/browser til dette krav', '...'),
+(187, 'Add new', 'Add new', '', 'TilfÃ¸j ny', '...'),
 (188, 'Test Plan', 'Test Plan', '', 'Test Plan', '...'),
-(189, 'Add test to this requirement', 'Add test to this requirement', '', 'Tilføj test til dette krav', '...'),
+(189, 'Add test to this requirement', 'Add test to this requirement', '', 'TilfÃ¸j test til dette krav', '...'),
 (190, 'Priority', 'Priority', '', 'Prioritet', '...'),
 (191, 'Urgent', 'Urgent', '', 'Yderst vigtigt', '...'),
 (192, 'Very high', 'Very high', '', 'Meget vigtig', '...'),
@@ -555,19 +529,19 @@ INSERT INTO `trm_lang` (`id`, `langKey`, `en`, `es`, `dk`, `de`) VALUES
 (199, 'View Matrix', 'View Matrix', '', 'Vis Matrice', '...'),
 (200, 'close', 'Close', '', 'Luk', '...'),
 (201, 'Show full desc', 'Show full description', '', 'Vis hele beskrivelsen', '...'),
-(202, 'Network_drive', 'Network drive', '', 'Netværksdrev', '...'),
+(202, 'Network_drive', 'Network drive', '', 'NetvÃ¦rksdrev', '...'),
 (203, 'Write comment', 'Write comment to this test', '', 'Skriv kommentar til denne test', '...'),
 (205, 'Headline', 'Headline', '', 'Overskrift', '...'),
 (206, 'Comment', 'Comment', '', 'Kommentar', '...'),
-(207, 'View Screenshot', 'View screenshot of this error', '', 'Vis skærmbillede af fejlen', '...'),
+(207, 'View Screenshot', 'View screenshot of this error', '', 'Vis skÃ¦rmbillede af fejlen', '...'),
 (208, 'Date time', 'Date time', '', 'Dato tid', '...'),
 (209, 'Send to analysis', 'Send to analysis', '', 'Send til analyse', '...'),
 (210, 'Analysis', 'Analysis', '', 'Analyse', '...'),
-(211, 'Send to raw data', 'Send to raw data', '', 'Send til rå data', '...'),
-(212, 'Raw data', 'Raw data', '', 'Rå data', '...'),
+(211, 'Send to raw data', 'Send to raw data', '', 'Send til rÃ¥ data', '...'),
+(212, 'Raw data', 'Raw data', '', 'RÃ¥ data', '...'),
 (213, 'Sites to test', 'Sites to test', '', 'Sider der skal testes', '...'),
 (214, 'Show defects', 'Show defects', '', 'Vis defekter', '...'),
-(215, 'Add defect', 'Add defect', '', 'Tilføj defekt', '...'),
+(215, 'Add defect', 'Add defect', '', 'TilfÃ¸j defekt', '...'),
 (216, 'Pass manually', 'Pass manually', '', 'Godkend manuelt', '...'),
 (217, 'Manually passed', 'Manually passed', '', 'Manuelt godkendt', '...'),
 (218, 'Remove manual pass', 'Remove manual pass', '', 'Fjern manuel godkendelse', '...'),
@@ -577,39 +551,39 @@ INSERT INTO `trm_lang` (`id`, `langKey`, `en`, `es`, `dk`, `de`) VALUES
 (222, 'Created by', 'Created by', '', 'Oprettet af', '...'),
 (223, 'Last updated', 'Last updated', '', 'Sidst updateret', '...'),
 (224, 'Updated by', 'Updated by', '', 'Opdateret af', '...'),
-(225, 'Affected Reqs', 'Affected Requirements', '', 'Påvirkede krav', '...'),
+(225, 'Affected Reqs', 'Affected Requirements', '', 'PÃ¥virkede krav', '...'),
 (226, 'Defect', 'Defect', '', 'Defekt', '...'),
 (227, 'Decription', 'Decription', '', 'Beskrivelse', '...'),
 (228, 'Comments', 'Comments', '', 'Kommentarer', '...'),
-(229, 'Add comment', 'Add comment', '', 'Tilføj kommentar', '...'),
+(229, 'Add comment', 'Add comment', '', 'TilfÃ¸j kommentar', '...'),
 (230, 'Reqs overview', 'Requirement overview', '', 'Krav overblik', '...'),
 (231, 'Defects', 'Defects', '', 'Defekter', '...'),
 (232, 'Properties', 'Properties', '', 'Egenskaber', '...'),
 (233, 'Error in test', 'Error in test', '', 'Fejl i testen', '...'),
-(235, 'Open', 'Open', '', 'Åben', '...'),
-(236, 'In Progress', 'In Progress', '', 'Igangværende', '...'),
-(237, 'Resolved', 'Resolved', '', 'Problem løst', '...'),
+(235, 'Open', 'Open', '', 'Ã…ben', '...'),
+(236, 'In Progress', 'In Progress', '', 'IgangvÃ¦rende', '...'),
+(237, 'Resolved', 'Resolved', '', 'Problem lÃ¸st', '...'),
 (238, 'Rejected', 'Rejected', '', 'Afvist', '...'),
-(239, 'Plan test', 'Plan this test', '', 'Planlæg test', '...'),
+(239, 'Plan test', 'Plan this test', '', 'PlanlÃ¦g test', '...'),
 (240, 'Test name', 'Test name', '', 'Test navn', '...'),
-(241, 'Help', 'Help', '', 'Hjælp', '...'),
+(241, 'Help', 'Help', '', 'HjÃ¦lp', '...'),
 (242, 'Time date', 'Time date', '', 'Tid Dato', '...'),
-(243, 'Manual runner', 'Manual runner', '', 'Manuel testkørsel', '...'),
+(243, 'Manual runner', 'Manual runner', '', 'Manuel testkÃ¸rsel', '...'),
 (244, 'Testcases', 'Testcases', '', 'Testcases', '...'),
 (245, 'Edit', 'Edit', '', 'Rediger', '...'),
 (246, 'or', 'or', '', 'eller', '...'),
-(247, 'Test name help', 'Test name cannot contain any spaces or special characters', '', 'Test navn må ikke indeholde nogle mellemrum eller specielle tegn(bl.a. æ, ø og å)', '...'),
+(247, 'Test name help', 'Test name cannot contain any spaces or special characters', '', 'Test navn mÃ¥ ikke indeholde nogle mellemrum eller specielle tegn(bl.a. Ã¦, Ã¸ og Ã¥)', '...'),
 (248, 'Reaction', 'Reaction', '', 'Systemet svarer', '...'),
-(249, 'Action', 'Action', '', 'Du gør', '...'),
-(250, 'testcase equals test', 'Choose the testcase the test equals', '', 'Vælg den testcase som test passer med', '...'),
-(251, 'Choose a file to upload', 'Choose a file to upload', '', 'Vælg fil som skal uploades', '...'),
+(249, 'Action', 'Action', '', 'Du gÃ¸r', '...'),
+(250, 'testcase equals test', 'Choose the testcase the test equals', '', 'VÃ¦lg den testcase som test passer med', '...'),
+(251, 'Choose a file to upload', 'Choose a file to upload', '', 'VÃ¦lg fil som skal uploades', '...'),
 (252, 'Advanced FTP functionality', 'Advanced FTP functionality', '', 'Advanceret FTP', '...'),
 (253, 'Already uploaded tests', 'Already uploaded tests', '', 'Allerede uploadede test', '...'),
 (254, 'Config', 'Config', '', 'Konfigurering', ''),
 (255, 'Type of defect', 'Type of defect', '', 'Defekt type', ''),
 (256, 'Type of defect status', 'Type of defect status', '', 'Defekt status type ', ''),
 (257, 'Variable', 'Variable', '', 'Variabel', ''),
-(258, 'Value', 'Value', '', 'Værdi', ''),
+(258, 'Value', 'Value', '', 'VÃ¦rdi', ''),
 (259, 'Edit core suites', 'Edit core suites', '', 'Rediger core suites', ''),
 (260, 'Already uploaded', 'Already uploaded', '', 'Allerede uploadet', ''),
 (261, 'Edit node tests', 'Edit node tests', '', 'Rediger node tests', ''),
@@ -620,33 +594,33 @@ INSERT INTO `trm_lang` (`id`, `langKey`, `en`, `es`, `dk`, `de`) VALUES
 (266, 'Data', 'Data', '', 'Data', ''),
 (267, 'Ready for test', 'Ready for test', '', 'Klar til test', ''),
 (268, 'Image path', 'Image path', '', 'Billedsti', ''),
-(269, 'Comment added', 'Comment added', '', 'Kommentar tilføjet', ''),
+(269, 'Comment added', 'Comment added', '', 'Kommentar tilfÃ¸jet', ''),
 (270, 'Already exist', 'already exist', '', 'eksisterer allerede', ''),
 (271, 'is missing', 'is missing', '', 'mangler', ''),
 (272, 'OS-browser combi already exist', 'That OS/Browser combination already exist', '', 'Den OS/Browser kombination eksisterer allerede', ''),
 (273, 'Req with same nr exist', 'A requirement with same unique nr already exist', '', 'Der findes allerede et krav, med det unikke nr', ''),
 (274, 'Both action fields must contain text', 'Both action fields must contain text', '', 'Begge handlingsfelter skal udfyldes', ''),
-(275, 'must not be empty', 'must not be empty', '', 'må ikke være blanke', ''),
+(275, 'must not be empty', 'must not be empty', '', 'mÃ¥ ikke vÃ¦re blanke', ''),
 (276, 'and', 'and', '', 'og', ''),
 (277, 'Same project name error', 'You cannot have 2 projects with the same name', '', '2 projekter med samme navn er ikke tilladt', ''),
 (278, 'Name contains illegal characters', 'Name contains illegal characters', '', 'Navn indeholder ugyldige karakter', ''),
-(279, 'All fields must be filled out', 'All fields must be filled out', '', 'Alle felter skal være udfyldt', ''),
-(280, 'Attachment', 'Attachment', '', 'Vedhæftet fil', ''),
-(281, 'Succesfully inserted', 'Succesfully inserted', '', 'Succesfuld indsætning af', ''),
+(279, 'All fields must be filled out', 'All fields must be filled out', '', 'Alle felter skal vÃ¦re udfyldt', ''),
+(280, 'Attachment', 'Attachment', '', 'VedhÃ¦ftet fil', ''),
+(281, 'Succesfully inserted', 'Succesfully inserted', '', 'Succesfuld indsÃ¦tning af', ''),
 (282, 'out of', 'out of', '', 'ud af', ''),
 (283, 'tests', 'tests', '', 'tests', ''),
 (284, 'commands', 'commands', '', 'kommandoer', ''),
 (285, 'Test started', 'Test started', '', 'Test startet', ''),
-(286, 'No tests', 'No tests available', '', 'Ingen test tilgængelige', ''),
+(286, 'No tests', 'No tests available', '', 'Ingen test tilgÃ¦ngelige', ''),
 (287, 'Assigned to', 'Assigned to', '', 'Tildelt til', ''),
-(288, 'Filename must not be empty', 'Filename must not be empty', '', 'Filnavn må ikke være blankt', ''),
+(288, 'Filename must not be empty', 'Filename must not be empty', '', 'Filnavn mÃ¥ ikke vÃ¦re blankt', ''),
 (289, 'Upload file', 'Upload file', '', 'Upload fil', ''),
 (290, 'Stored in', 'Stored in', '', 'Gemt i', '');
 
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_langlist`
+-- Table structure for table `trm_langlist`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_langlist` (
@@ -657,7 +631,7 @@ CREATE TABLE IF NOT EXISTS `trm_langlist` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=7 ;
 
 --
--- Data dump for tabellen `trm_langlist`
+-- Dumping data for table `trm_langlist`
 --
 
 INSERT INTO `trm_langlist` (`ID`, `abbrv`, `full`) VALUES
@@ -668,7 +642,7 @@ INSERT INTO `trm_langlist` (`ID`, `abbrv`, `full`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_nodes`
+-- Table structure for table `trm_nodes`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_nodes` (
@@ -681,16 +655,16 @@ CREATE TABLE IF NOT EXISTS `trm_nodes` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=23 ;
 
 --
--- Data dump for tabellen `trm_nodes`
+-- Dumping data for table `trm_nodes`
 --
 
 INSERT INTO `trm_nodes` (`ID`, `nodepath`, `o_id`, `description`, `network_drive`) VALUES
-(15, 'localhost', 12, 0x6c6f63616c686f7374, '');
+(15, 'localhost', 1, 0x6c6f63616c686f7374, '');
 
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_nodes_browsers`
+-- Table structure for table `trm_nodes_browsers`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_nodes_browsers` (
@@ -702,7 +676,7 @@ CREATE TABLE IF NOT EXISTS `trm_nodes_browsers` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5 ;
 
 --
--- Data dump for tabellen `trm_nodes_browsers`
+-- Dumping data for table `trm_nodes_browsers`
 --
 
 INSERT INTO `trm_nodes_browsers` (`ID`, `b_id`, `n_id`, `browser_path`) VALUES
@@ -714,7 +688,7 @@ INSERT INTO `trm_nodes_browsers` (`ID`, `b_id`, `n_id`, `browser_path`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_os`
+-- Table structure for table `trm_os`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_os` (
@@ -725,7 +699,7 @@ CREATE TABLE IF NOT EXISTS `trm_os` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=13 ;
 
 --
--- Data dump for tabellen `trm_os`
+-- Dumping data for table `trm_os`
 --
 
 INSERT INTO `trm_os` (`ID`, `OSname`) VALUES
@@ -740,7 +714,7 @@ INSERT INTO `trm_os` (`ID`, `OSname`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_projectlist`
+-- Table structure for table `trm_projectlist`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_projectlist` (
@@ -752,7 +726,7 @@ CREATE TABLE IF NOT EXISTS `trm_projectlist` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1334 ;
 
 --
--- Data dump for tabellen `trm_projectlist`
+-- Dumping data for table `trm_projectlist`
 --
 
 INSERT INTO `trm_projectlist` (`id`, `userID`, `projectID`, `access`) VALUES
@@ -772,7 +746,7 @@ INSERT INTO `trm_projectlist` (`id`, `userID`, `projectID`, `access`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_projects`
+-- Table structure for table `trm_projects`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_projects` (
@@ -787,7 +761,7 @@ CREATE TABLE IF NOT EXISTS `trm_projects` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=124 ;
 
 --
--- Data dump for tabellen `trm_projects`
+-- Dumping data for table `trm_projects`
 --
 
 INSERT INTO `trm_projects` (`id`, `name`, `description`, `assigned`, `outsidedefects`, `viewdefectsurl`, `adddefecturl`) VALUES
@@ -797,7 +771,7 @@ INSERT INTO `trm_projects` (`id`, `name`, `description`, `assigned`, `outsidedef
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_projects_has_sites`
+-- Table structure for table `trm_projects_has_sites`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_projects_has_sites` (
@@ -808,7 +782,7 @@ CREATE TABLE IF NOT EXISTS `trm_projects_has_sites` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=38 ;
 
 --
--- Data dump for tabellen `trm_projects_has_sites`
+-- Dumping data for table `trm_projects_has_sites`
 --
 
 INSERT INTO `trm_projects_has_sites` (`ID`, `p_id`, `sitetotest`) VALUES
@@ -818,7 +792,7 @@ INSERT INTO `trm_projects_has_sites` (`ID`, `p_id`, `sitetotest`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_reqsosbrows`
+-- Table structure for table `trm_reqsosbrows`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_reqsosbrows` (
@@ -828,17 +802,23 @@ CREATE TABLE IF NOT EXISTS `trm_reqsosbrows` (
   `r_id` int(11) NOT NULL,
   PRIMARY KEY  (`ID`),
   UNIQUE KEY `b_id` (`b_id`,`o_id`,`r_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=151 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=157 ;
 
 --
--- Data dump for tabellen `trm_reqsosbrows`
+-- Dumping data for table `trm_reqsosbrows`
 --
 
+INSERT INTO `trm_reqsosbrows` (`ID`, `b_id`, `o_id`, `r_id`) VALUES
+(154, 11, 1, 330),
+(152, 10, 1, 328),
+(153, 11, 1, 329),
+(155, 10, 1, 330),
+(156, 13, 4, 328);
 
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_reqstests`
+-- Table structure for table `trm_reqstests`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_reqstests` (
@@ -846,17 +826,22 @@ CREATE TABLE IF NOT EXISTS `trm_reqstests` (
   `t_name` varchar(255) collate utf8_bin NOT NULL,
   `r_id` int(11) NOT NULL,
   PRIMARY KEY  (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=87 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=91 ;
 
 --
--- Data dump for tabellen `trm_reqstests`
+-- Dumping data for table `trm_reqstests`
 --
 
+INSERT INTO `trm_reqstests` (`ID`, `t_name`, `r_id`) VALUES
+(87, 'trille', 328),
+(88, 'trille2', 329),
+(89, 'trille', 330),
+(90, 'trille2', 330);
 
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_requirements`
+-- Table structure for table `trm_requirements`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_requirements` (
@@ -870,17 +855,21 @@ CREATE TABLE IF NOT EXISTS `trm_requirements` (
   `assigned` int(255) NOT NULL,
   PRIMARY KEY  (`ID`),
   UNIQUE KEY `p_id` (`p_id`,`nr`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=328 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=331 ;
 
 --
--- Data dump for tabellen `trm_requirements`
+-- Dumping data for table `trm_requirements`
 --
 
+INSERT INTO `trm_requirements` (`ID`, `name`, `description`, `p_id`, `nr`, `author`, `priority`, `assigned`) VALUES
+(328, 'trille', 0x5468697320697320616e206578616d706c65206f66206120726571756972656d656e742e20577269746520796f7572206465736372697074696f6e2068657265210d0a3c2d2d2057726974652061206e7220616e642061206e616d6520746f20746865206c6566740d0a43686f6f73652062726f7773657220616e64204f5320636f6d62696e6174696f6e2c207072696f7269747920616e642061737369676e656520746f20746865207269676874202d2d3e, 123, '1', 'admin', 'Urgent', 0),
+(329, 'trille2', 0x5468697320697320616e6f7468657220726571756972656d656e74, 123, '2', 'admin', 'Medium', 0),
+(330, 'trille_trille2', 0x59657420616e6f7468657220726571756972656d656e740d0a0d0a596f752063616e206c696e6b20612074657374206361736520746f206120726571756972656d656e7420756e6465722054657374204c6162202d3e205465737420706c616e0d0a496e2074686973206578616d706c653a200d0a726571756972656d656e74202d7472696c6c652d206973206c696e6b656420746f202d7472696c6c652d207465737420636173650d0a726571756972656d656e74202d7472696c6c65322d206973206c696e6b656420746f202d7472696c6c65322d207465737420636173650d0a726571756972656d656e74202d7472696c6c655f7472696c6c65322d206973206c696e6b656420746f20626f7468202d7472696c6c652d20414e44202d7472696c6c65322d2074657374206361736573, 123, '3', 'admin', 'High', 0);
 
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_selenium_server_vars`
+-- Table structure for table `trm_selenium_server_vars`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_selenium_server_vars` (
@@ -888,31 +877,28 @@ CREATE TABLE IF NOT EXISTS `trm_selenium_server_vars` (
   `nodepath` varchar(255) NOT NULL,
   `u_id` varchar(255) NOT NULL,
   `t_id` int(11) NOT NULL,
-  PRIMARY KEY  (`sessionId`)
+  PRIMARY KEY  (`u_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Data dump for tabellen `trm_selenium_server_vars`
+-- Dumping data for table `trm_selenium_server_vars`
 --
 
 INSERT INTO `trm_selenium_server_vars` (`sessionId`, `nodepath`, `u_id`, `t_id`) VALUES
-('5f94960a08814ec6a8c7630cf83588d6', 'localhost', '121856928614365', 4),
-('e6f58b47a57743eba8bb3ff1ade318a2', 'localhost', '121856928614365', 5),
-('c2a68bcb64094f54a327a0c258bcb9cd', 'localhost', '121856928614365', 6),
-('f07301424c9b434e93a159f21b465d57', 'localhost', '12185696412490', 7),
-('542850f1e150444ab0908d49e03e360a', 'localhost', '12185696412490', 8),
-('78b27d4b67314fba9ab517fd8838b1eb', 'localhost', '12185696412490', 9),
-('ed97dabeab3f42738e379642dffb9774', 'localhost', '121856974128361', 10),
-('25377d958e314052af5a1e608437ca7b', 'localhost', '121856974128361', 11),
-('0893bee113d543a48978bbaaf5e0618e', 'localhost', '121856974128361', 12),
-('173a61e1c08d49d59ae20e71a72f6564', 'localhost', '121857039772884', 13),
-('581703747c17462a8c4fb935bf253490', 'localhost', '121857039772884', 14),
-('46f0e65fd0714eb0bc659a7a36bfbc00', 'localhost', '121857039772884', 15);
+('390b3205b35148c388c06c7a7b4b08da', 'localhost', '122243041827819', 25),
+('8fdaef03f73a4a2f90619e5f222cec0f', 'localhost', '122243161302869', 27),
+('252422434ce9430c91f000289673e6c6', 'localhost', '122243169558310', 29),
+('262c765a5bbb468fb2dd00882068919d', 'localhost', '122243202122134', 31),
+('2b0327ec8f214caba10148c87e216181', 'localhost', '122243222966804', 33),
+('a4608a722af4426d95f0bbfc6d7e2d37', 'localhost', '122243238307516', 34),
+('4ae16f7143e848f2bb1dd6c7a328059e', 'localhost', '122243243142383', 35),
+('9a1ec64b11c04867b6a8d40fd77aa858', 'localhost', '122243249842618', 36),
+('94bf390cde134fb391ce3dff28b4398f', 'localhost', '12224335971228', 37);
 
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_sites`
+-- Table structure for table `trm_sites`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_sites` (
@@ -924,7 +910,7 @@ CREATE TABLE IF NOT EXISTS `trm_sites` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=99 ;
 
 --
--- Data dump for tabellen `trm_sites`
+-- Dumping data for table `trm_sites`
 --
 
 INSERT INTO `trm_sites` (`ID`, `sitename`, `description`) VALUES
@@ -990,7 +976,7 @@ INSERT INTO `trm_sites` (`ID`, `sitename`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_suite`
+-- Table structure for table `trm_suite`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_suite` (
@@ -1012,21 +998,21 @@ CREATE TABLE IF NOT EXISTS `trm_suite` (
   `p_id` int(11) NOT NULL default '0',
   `analysis` tinyint(1) NOT NULL,
   PRIMARY KEY  (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=23 ;
 
 --
--- Data dump for tabellen `trm_suite`
+-- Dumping data for table `trm_suite`
 --
 
 INSERT INTO `trm_suite` (`ID`, `suitename`, `environment`, `status`, `timeDate`, `timeTaken`, `browser`, `platform`, `selenium_version`, `selenium_revision`, `numTestPassed`, `numTestFailed`, `numCommandsPassed`, `numCommandsFailed`, `numCommandsErrors`, `p_id`, `analysis`) VALUES
-(6, 'trille,1 - trille,4 - trille,10', 'http://www.google.com', 'failed', '2008-08-12 21:35:41', 58, '10', '12', 'RC', '', 2, 1, 2, 1, 0, 123, 0),
-(5, 'trille,1 - trille,4 - trille,10', 'http://www.google.com', 'failed', '2008-08-12 21:34:01', 58, '10', '12', 'RC', '', 2, 1, 2, 1, 0, 123, 0),
-(7, 'trille,1 - trille,4 - trille,10', 'http://www.google.com', 'passed', '2008-08-12 21:46:38', 43, '10', '12', 'RC', '', 3, 0, 3, 0, 0, 123, 0);
+(19, 'trille,1', 'http://www.google.com', 'passed', '2008-09-26 14:33:03', 29, '10', '1', 'RC', '', 1, 0, 2, 0, 0, 123, 1),
+(20, 'trille,1', 'http://www.google.com', 'failed', '2008-09-26 14:33:51', 23, '11', '1', 'RC', '', 0, 1, 0, 1, 0, 123, 1),
+(21, 'trille,1', 'http://www.google.com', 'passed', '2008-09-26 14:34:58', 23, '11', '1', 'RC', '', 1, 0, 2, 0, 0, 123, 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_tempcommands`
+-- Table structure for table `trm_tempcommands`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_tempcommands` (
@@ -1037,17 +1023,17 @@ CREATE TABLE IF NOT EXISTS `trm_tempcommands` (
   `var2` text collate utf8_bin NOT NULL,
   `status` varchar(255) collate utf8_bin NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=32 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=235 ;
 
 --
--- Data dump for tabellen `trm_tempcommands`
+-- Dumping data for table `trm_tempcommands`
 --
 
 
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_test`
+-- Table structure for table `trm_test`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_test` (
@@ -1059,27 +1045,21 @@ CREATE TABLE IF NOT EXISTS `trm_test` (
   `manstatus` varchar(255) character set latin1 NOT NULL,
   `author` int(11) default NULL,
   PRIMARY KEY  (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=16 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=38 ;
 
 --
--- Data dump for tabellen `trm_test`
+-- Dumping data for table `trm_test`
 --
 
 INSERT INTO `trm_test` (`ID`, `status`, `name`, `s_id`, `Thelp`, `manstatus`, `author`) VALUES
-(12, 'passed', 'trille', 6, 'rc-ruby', '', NULL),
-(11, 'passed', 'trille', 6, 'rc-java', '', NULL),
-(10, 'failed', 'trille', 6, 'rc-php', '', NULL),
-(7, 'failed', 'trille', 5, 'rc-php', '', NULL),
-(8, 'passed', 'trille', 5, 'rc-java', '', NULL),
-(9, 'passed', 'trille', 5, 'rc-ruby', '', NULL),
-(13, 'passed', 'trille', 7, 'rc-php', '', NULL),
-(14, 'passed', 'trille', 7, 'rc-java', '', NULL),
-(15, 'passed', 'trille', 7, 'rc-ruby', '', NULL);
+(34, 'passed', 'trille', 19, 'rc-php', '', NULL),
+(35, 'failed', 'trille2', 20, 'rc-php', '', NULL),
+(36, 'passed', 'trille', 21, 'rc-php', '', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_types`
+-- Table structure for table `trm_types`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_types` (
@@ -1092,7 +1072,7 @@ CREATE TABLE IF NOT EXISTS `trm_types` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=11 ;
 
 --
--- Data dump for tabellen `trm_types`
+-- Dumping data for table `trm_types`
 --
 
 INSERT INTO `trm_types` (`ID`, `typename`, `command`, `spacer`, `extension`) VALUES
@@ -1103,7 +1083,7 @@ INSERT INTO `trm_types` (`ID`, `typename`, `command`, `spacer`, `extension`) VAL
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_type_of_defects`
+-- Table structure for table `trm_type_of_defects`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_type_of_defects` (
@@ -1115,7 +1095,7 @@ CREATE TABLE IF NOT EXISTS `trm_type_of_defects` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=8 ;
 
 --
--- Data dump for tabellen `trm_type_of_defects`
+-- Dumping data for table `trm_type_of_defects`
 --
 
 INSERT INTO `trm_type_of_defects` (`id`, `priority`, `name`, `imgpath`) VALUES
@@ -1128,7 +1108,7 @@ INSERT INTO `trm_type_of_defects` (`id`, `priority`, `name`, `imgpath`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_type_of_defect_status`
+-- Table structure for table `trm_type_of_defect_status`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_type_of_defect_status` (
@@ -1140,7 +1120,7 @@ CREATE TABLE IF NOT EXISTS `trm_type_of_defect_status` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=43 ;
 
 --
--- Data dump for tabellen `trm_type_of_defect_status`
+-- Dumping data for table `trm_type_of_defect_status`
 --
 
 INSERT INTO `trm_type_of_defect_status` (`id`, `name`, `imgpath`, `priority`) VALUES
@@ -1153,7 +1133,7 @@ INSERT INTO `trm_type_of_defect_status` (`id`, `name`, `imgpath`, `priority`) VA
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_users`
+-- Table structure for table `trm_users`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_users` (
@@ -1169,13 +1149,13 @@ CREATE TABLE IF NOT EXISTS `trm_users` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci AUTO_INCREMENT=116 ;
 
 --
--- Data dump for tabellen `trm_users`
+-- Dumping data for table `trm_users`
 --
 
 INSERT INTO `trm_users` (`id`, `firstname`, `lastname`, `name`, `password`, `usertype`, `email`, `lastLogin`) VALUES
 (72, '12', '12', 'selftester', '81dc9bdb52d04dc20036dbd8313ed055', 3, '', '2008-04-29 12:50:59'),
 (1, 'guest', 'guest', 'guest', '084e0343a0486ff05530df6c705c8bb4', 7, '', '0000-00-00 00:00:00'),
-(104, 'admin', 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', 3, '', '2008-08-12 19:57:24'),
+(104, 'admin', 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', 3, '', '2008-09-26 12:05:46'),
 (113, '', '', 'service', '81dc9bdb52d04dc20036dbd8313ed055', 9, '', '2008-04-17 09:55:18'),
 (112, '', '', 'tester', '81dc9bdb52d04dc20036dbd8313ed055', 5, '', '2008-04-17 09:48:40'),
 (114, '', '', 'manager', '81dc9bdb52d04dc20036dbd8313ed055', 4, '', '2008-04-16 17:25:58');
@@ -1183,7 +1163,7 @@ INSERT INTO `trm_users` (`id`, `firstname`, `lastname`, `name`, `password`, `use
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_usertypes`
+-- Table structure for table `trm_usertypes`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_usertypes` (
@@ -1193,7 +1173,7 @@ CREATE TABLE IF NOT EXISTS `trm_usertypes` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=10 ;
 
 --
--- Data dump for tabellen `trm_usertypes`
+-- Dumping data for table `trm_usertypes`
 --
 
 INSERT INTO `trm_usertypes` (`ID`, `name`) VALUES
@@ -1207,7 +1187,7 @@ INSERT INTO `trm_usertypes` (`ID`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `trm_usertype_access`
+-- Table structure for table `trm_usertype_access`
 --
 
 CREATE TABLE IF NOT EXISTS `trm_usertype_access` (
@@ -1219,7 +1199,7 @@ CREATE TABLE IF NOT EXISTS `trm_usertype_access` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=895 ;
 
 --
--- Data dump for tabellen `trm_usertype_access`
+-- Dumping data for table `trm_usertype_access`
 --
 
 INSERT INTO `trm_usertype_access` (`ID`, `ut_id`, `s_id`, `access`) VALUES

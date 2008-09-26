@@ -51,12 +51,12 @@
         
         //If custom command, just insert in the DB and be done with it.
         if($cmd == 'customCommand'){ 
-            $cmdName = $_GET['cmdName'];
-            $status = $_GET['status'];
-            $t_id = $_GET['t_id'];
-            $u_id = $_GET['u_id'];
-            $var1 = $_GET['var1'];
-            $var2 = $_GET['var2'];          
+            $cmdName = $_REQUEST['cmdName'];
+            $status = $_REQUEST['status'];
+            $t_id = $_REQUEST['t_id'];
+            $u_id = $_REQUEST['u_id'];
+            $var1 = $_REQUEST['var1'];
+            $var2 = $_REQUEST['var2'];          
             insertCommand($status, $cmdName, $var1, $var2, $t_id, $u_id);
             echo "OK";
             exit;      

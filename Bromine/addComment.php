@@ -12,7 +12,11 @@ $id = $_GET['id'];
 ?>
     <form action='saveComment.php' method='post'>
     <fieldset style='border: none;'>
+        <?php echo $lh->getText("Headline"); ?>
+        <br />
       <input type='text' name='headline' size ='20' />
+      <br />
+      <?php echo $lh->getText("Comment"); ?>
       <br />
       <textarea cols='20' rows='10' name='comment'></textarea>
       <br />

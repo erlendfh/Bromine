@@ -90,8 +90,10 @@
         
         $dbh->sql("REPLACE trm_selenium_server_vars (sessionId, nodepath, u_id, t_id) VALUES ('','$nodepath','$u_id','$t_id')");
 
-        echo "<p style='background-color: lightgrey;'>The response of $testname ($typename) was: </p><br />";
-        passthru("$exec"); //Does the actual running
+        echo "<b>Executing: </b>'$exec'<br />";
+        exec("$exec",$output,$var); //Does the actual running
+        $output=implode("\n", $output);
+        echo "<b>Got response: </b>$output<br /><br />";
         $test->finalizeTest();
     
     }

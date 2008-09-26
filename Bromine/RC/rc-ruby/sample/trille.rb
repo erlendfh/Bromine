@@ -10,7 +10,7 @@ $browser = ARGV[2];
 $sitetotest = ARGV[3];
 $u_id = ARGV[4];
 $t_id = ARGV[5];
-#$datafile = ARGV[6];
+$datafile = ARGV[6];
 
 class NewTest < Test::Unit::TestCase
   def setup

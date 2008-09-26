@@ -23,10 +23,10 @@
         function getStatus($response){ //Figures out the status of the command
             $status = "done";
 
-            if(preg_match('/^true/', $response) ){
+            if(preg_match('/true/', $response) ){
                 $status = "passed";
             }
-            if(preg_match('/^false/', $response) ){
+            if(preg_match('/false/', $response) ){
                 $status = "failed";
             }
             return $status;

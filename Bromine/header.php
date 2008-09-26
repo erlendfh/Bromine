@@ -14,7 +14,7 @@
   <script type="text/javascript" src="js/prototype.js"></script>
   
   <?php
-echo "<title>Bromine v. 1.9 Beta</title>";
+echo "<title>Bromine 2</title>";
 echo "<!-- 
   Copyright 2008 Rasmus Berg Palm, Peter Visti Kløft, Jeppe Poss Pedersen & Christian Nørlyng 
   http://bromine.openqa.org

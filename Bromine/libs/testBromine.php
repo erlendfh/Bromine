@@ -10,6 +10,7 @@ class testBromineInstallation
         $this->testForJava();
         $this->testForRuby();
         $this->testForPHP();
+        $this->testForPEAR();
         $this->testForMaxExecutionTime();
         $this->testForMagicQoutes();
         $this->testForPermissions();
@@ -66,6 +67,24 @@ class testBromineInstallation
         else
         {
             $this->log['result'][] = "<span class='status_notdone'>Warning: You need to add the php executable to your environment path if you want to run php tests</span>";
+        }
+    
+    }
+    
+    function testForPEAR()
+    {
+    
+        $this->log['test'][] = "Testing for PEAR";
+        
+        exec('pear', $output, $return);
+        
+        if ($return == 0)
+        {
+            $this->log['result'][] = "<span class='status_passed'>PEAR installed correctly</span>";
+        }
+        else
+        {
+            $this->log['result'][] = "<span class='status_notdone'>Warning: You need to install PEAR if you want to run php tests (run go-pear.bat in xampplite\php\ )</span>";
         }
     
     }

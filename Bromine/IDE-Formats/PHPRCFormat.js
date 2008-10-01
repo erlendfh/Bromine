@@ -148,20 +148,22 @@ this.options = {
     header: 
         '<?php\n' +
         '\n' +
-        'require_once "Selenium.php";\n' +
+        'set_include_path(get_include_path() . PATH_SEPARATOR . "RC/Drivers/rc-php");\n' +
+        'require_once "Testing/Selenium.php";\n' +
         '\n' +
-        'class Example \n' +
+        'class BromineTest\n' +
         '{\n' +
-        '  function setUp($s_id)\n' +
+        '  function setUp($host, $port, $browser, $sitetotest, $u_id, $t_id)\n' +
         '  {\n' +
-        '    $this->selenium = new Testing_Selenium($s_id, $_GET["browser"], $_GET["sitetotest"], get_class($this), $_GET["host"]);\n' +
+        '    $this->u_id = $u_id;\n' +
+        '    $this->t_id = $t_id;\n' +
+        '    $this->selenium = new Testing_Selenium($browser, $sitetotest, $host ,$port);\n' +
         '    $result = $this->selenium->start();\n' +
         '  }\n' +
         '\n' +
         '  function tearDown()\n' +
         '  {\n' +
         '    $this->selenium->stop();\n' +
-        '    return $this->selenium;\n' +
         '  }\n' +
         '  function testMyTestCase()\n' +
         '  {\n' +
@@ -171,7 +173,28 @@ this.options = {
         '    }\n' +
         '    catch(Exception $e){}\n' +
         '  }\n' +
-        '}\n' +
+        '  function customCommand($cmdName, $status, $var1, $var2) \n' +
+        '  {\n' + 
+        '    $url =  "http://127.0.0.1/selenium-server/driver/index.php?cmd=customCommand&cmdName=$cmdName&status=$status&var1=$var1&var2=$var2&t_id=$this->t_id&u_id=$this->u_id";\n' +
+        '    $url=str_replace(" ","%20",$url);\n' +
+        '    if($h = fopen($url, "r")){\n'+
+        '      fclose($h);\n' + 
+        '    }\n' + 
+        '  }\n' + 
+        '}\n\n\n' +
+    '$host = $argv[1];\n'+
+    '$port = $argv[2];\n'+
+    '$browser = $argv[3];\n'+
+    '$sitetotest = $argv[4];\n'+
+    '$u_id = $argv[5];\n'+
+    '$t_id = $argv[6];\n'+
+    '$brows2 = $browser.",".$u_id;\n'+
+    '$datafile = $argv[7];\n'+
+    
+    '$t = new BromineTest();\n'+
+    '$t->setUp($host, $port, $brows2, $sitetotest, $u_id, $t_id);\n'+
+    '$t->testMyTestCase();\n'+
+    '$t->tearDown();\n'+
         "?>",
     indent: "3",
     initialIndents: '3'

@@ -8,7 +8,7 @@ class Coresetting extends AppModel {
 			'Site' => array('className' => 'Site',
 								'foreignKey' => 'site_id',
 								'conditions' => '',
-								'fields' => '',
+								'fields' => 'name',
 								'order' => ''
 			),
 			'Project' => array('className' => 'Project',

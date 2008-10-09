@@ -10,6 +10,7 @@ class ProjectsController extends AppController {
 	}
 
 	function view($id = null) {
+	$this->Project->recursive = 2;
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid Project.', true));
 			$this->redirect(array('action'=>'index'));

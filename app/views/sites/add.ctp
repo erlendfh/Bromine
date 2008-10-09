@@ -3,7 +3,7 @@
 	<fieldset>
  		<legend><?php __('Add Site');?></legend>
 	<?php
-		echo $form->input('site');
+		echo $form->input('name');
 	?>
 	</fieldset>
 <?php echo $form->end('Submit');?>

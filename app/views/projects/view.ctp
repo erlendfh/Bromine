@@ -66,8 +66,8 @@
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php __('Id'); ?></th>
-		<th><?php __('Site Id'); ?></th>
-		<th><?php __('Project Id'); ?></th>
+		<th><?php __('Site'); ?></th>
+		<th><?php __('Project'); ?></th>
 		<th><?php __('Location'); ?></th>
 		<th><?php __('Testpath'); ?></th>
 		<th class="actions"><?php __('Actions');?></th>
@@ -82,8 +82,8 @@
 		?>
 		<tr<?php echo $class;?>>
 			<td><?php echo $coresetting['id'];?></td>
-			<td><?php echo $coresetting['site_id'];?></td>
-			<td><?php echo $coresetting['project_id'];?></td>
+			<td><?php echo $coresetting['Site']['name']; ?></td>
+			<td><?php echo $coresetting['Project']['name']; ?></td>
 			<td><?php echo $coresetting['location'];?></td>
 			<td><?php echo $coresetting['testpath'];?></td>
 			<td class="actions">
@@ -251,7 +251,7 @@
 	<tr>
 		<th><?php __('Id'); ?></th>
 		<th><?php __('Name'); ?></th>
-		<th><?php __('Site Id'); ?></th>
+		<th><?php __('Site'); ?></th>
 		<th><?php __('Status'); ?></th>
 		<th><?php __('Timedate'); ?></th>
 		<th><?php __('Timetaken'); ?></th>

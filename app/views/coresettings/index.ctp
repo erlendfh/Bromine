@@ -28,7 +28,7 @@ foreach ($coresettings as $coresetting):
 			<?php echo $coresetting['Coresetting']['id']; ?>
 		</td>
 		<td>
-			<?php echo $html->link($coresetting['Site']['name'], array('controller'=> 'sites', 'action'=>'view', $coresetting['Site']['id'])); ?>
+			<?php echo $html->link($coresetting['Site']['name'], array('controller'=> 'sites', 'action'=>'view', $coresetting['Coresetting']['site_id'])); ?>
 		</td>
 		<td>
 			<?php echo $html->link($coresetting['Project']['name'], array('controller'=> 'projects', 'action'=>'view', $coresetting['Project']['id'])); ?>

@@ -8,7 +8,7 @@
 		echo $form->input('lastname');
 		echo $form->input('name');
 		echo $form->input('password');
-		echo $form->input('usertype');
+		echo $form->input('group_id');
 		echo $form->input('email');
 		echo $form->input('lastLogin');
 	?>

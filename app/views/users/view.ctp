@@ -26,9 +26,9 @@
 			<?php echo $user['User']['password']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Usertype'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Group id'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $user['User']['usertype']; ?>
+			<?php echo $user['User']['group_id']; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Email'); ?></dt>

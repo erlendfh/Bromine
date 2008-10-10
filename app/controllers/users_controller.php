@@ -3,6 +3,21 @@ class UsersController extends AppController {
 
 	var $name = 'Users';
 	var $helpers = array('Html', 'Form');
+	
+	function beforeFilter() {
+        parent::beforeFilter(); 
+        $this->Auth->allowedActions = array('*');
+    }
+
+	
+	function login() {
+    //Auth Magic
+    }
+     
+    function logout() {
+        //Leave empty for now.
+    }
+
 
 	function index() {
 		$this->User->recursive = 0;
@@ -27,6 +42,8 @@ class UsersController extends AppController {
 				$this->Session->setFlash(__('The User could not be saved. Please, try again.', true));
 			}
 		}
+		$groups = $this->User->Group->find('list');
+		$this->set(compact('groups'));
 	}
 
 	function edit($id = null) {
@@ -44,6 +61,8 @@ class UsersController extends AppController {
 		}
 		if (empty($this->data)) {
 			$this->data = $this->User->read(null, $id);
+			$groups = $this->User->Group->find('list');
+		    $this->set(compact('groups'));
 		}
 	}
 

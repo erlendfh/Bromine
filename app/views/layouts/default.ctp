@@ -29,7 +29,6 @@
 <head>
 	<?php echo $html->charset(); ?>
 	<title>
-	lalalala
 		<?php __('CakePHP: the rapid development php framework:'); ?>
 		<?php echo $title_for_layout; ?>
 	</title>
@@ -44,6 +43,11 @@
 <body>
 	<div id="container">
 		<div id="header">
+    		<?php $session->flash('auth'); ?>
+            <?php //echo "<pre>";var_dump($authob);echo "</pre>"; ?>
+            <?php 
+                echo $html->link('Log out',array('controller'=> 'users', 'action'=>'logout'));
+            ?>
 		</div>
 		<div id="content">
 

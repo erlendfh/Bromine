@@ -4,18 +4,15 @@ class UsersController extends AppController {
 	var $name = 'Users';
 	var $helpers = array('Html', 'Form');
 	
-	function beforeFilter() {
-        parent::beforeFilter(); 
-        $this->Auth->allowedActions = array('*');
-    }
 
 	
 	function login() {
-    //Auth Magic
+        //Auth Magic
     }
      
     function logout() {
-        //Leave empty for now.
+        $this->Session->setFlash('Good-Bye');
+        $this->redirect($this->Auth->logout());
     }
 
 

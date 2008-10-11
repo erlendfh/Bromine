@@ -44,12 +44,20 @@ class AppController extends Controller {
     function beforeFilter() {
         //Configure AuthComponent
         //$this->buildAcl();
-        $this->Auth->actionPath = 'controllers/';
+        
+        $this->Auth->fields  = array(
+            'username'=>'name',
+            'password' =>'password'
+        );
         $this->Auth->authorize = 'actions';
+        
         $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
         $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
-        $this->Auth->loginRedirect = array('controller' => 'posts', 'action' => 'add');
+        $this->Auth->loginRedirect = array('controller' => 'projects', 'action' => 'index');
+        
+        $this->set('authob',$this->Auth);
     }
+    
     
     /**
      * Rebuild the Acl based on the current controllers in the application

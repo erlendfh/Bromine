@@ -4,8 +4,6 @@ class UsersController extends AppController {
 	var $name = 'Users';
 	var $helpers = array('Html', 'Form');
 	
-
-	
 	function login() {
         //Auth Magic
     }
@@ -44,6 +42,7 @@ class UsersController extends AppController {
 	}
 
 	function edit($id = null) {
+
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid User', true));
 			$this->redirect(array('action'=>'index'));

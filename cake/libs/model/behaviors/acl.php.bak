@@ -86,33 +86,6 @@ class AclBehavior extends ModelBehavior {
  * @return void
  * @access public
  */
-    //Hack by Rasmus to update ARO's when updating users. GDamnit this took a long time.
-    function afterSave(&$model, $created) {
-        $type = $this->__typeMaps[strtolower($this->settings[$model->name]['type'])];
-        $parent = $model->parentNode();
-        if (!empty($parent)) {
-            $parent = $this->node($model, $parent);
-        } else {
-            $parent = null;
-        }
-        $data = array(
-            'parent_id'  => Set::extract($parent, "0.{$type}.id"),
-            'alias'  => $model->data['User']['name'],
-            'model'   => $model->name,
-            'foreign_key'   => $model->id
-        );
-        //print_r($parent);
-        //print_r($type);
-        //print_r($model);
-
-        if ($created) {
-            $model->{$type}->create();
-        } else {
-            $data = am($data, array('id' => Set::extract($this->node($model), "0.{$type}.id")));
-        }
-        $model->{$type}->save($data);
-    }
-    /*
 	function afterSave(&$model, $created) {
 		if ($created) {
 			$type = $this->__typeMaps[strtolower($this->settings[$model->name]['type'])];
@@ -131,7 +104,6 @@ class AclBehavior extends ModelBehavior {
 			));
 		}
 	}
-	*/
 /**
  * Destroys the ARO/ACO node bound to the deleted record
  *

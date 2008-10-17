@@ -1,6 +1,11 @@
 <?php
 
 class AclAppController extends AppController {
+
+    function beforeFilter() {
+        parent::beforeFilter(); 
+        $this->Auth->allowedActions = array('*');
+    }
 	
 	function success() {
 		header("HTTP/1.0 200 Success", null, 200);

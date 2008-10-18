@@ -98,3 +98,6 @@
 2008-10-17 14:57:06 Debug: Notice (8): Undefined property: UsersController::$__typeMaps in [CORE\cake\libs\model\behaviors\acl.php, line 91]
 2008-10-17 15:31:56 Debug: Notice (8): Undefined variable: data in [CORE\cake\libs\model\behaviors\acl.php, line 100]
 2008-10-17 15:32:13 Debug: Notice (8): Undefined property: AclBehavior::$data in [CORE\cake\libs\model\behaviors\acl.php, line 100]
+2008-10-18 16:34:36 Debug: Notice (8): Undefined index:  mosConfig_sitename in [APP\views\layouts\default.ctp, line 58]
+2008-10-18 16:35:16 Debug: Notice (8): Undefined index:  mosConfig_sitename in [APP\views\layouts\default.ctp, line 58]
+2008-10-18 16:36:45 Debug: Notice (8): Undefined index:  mosConfig_sitename in [APP\views\layouts\default.ctp, line 59]

@@ -38,8 +38,8 @@
  * @subpackage	cake.cake.libs.controller
  */
 class AppController extends Controller {
-    
-    var $components = array('Auth', 'Acl');
+
+    var $components = array('Auth', 'Acl', 'StdFuncs');
      
     function beforeFilter() {
         //Configure AuthComponent
@@ -50,12 +50,10 @@ class AppController extends Controller {
             'password' =>'password'
         );
         $this->Auth->authorize = 'actions';
-        
         $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
         $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
         $this->Auth->loginRedirect = array('controller' => 'projects', 'action' => 'index');
-        
-        $this->set('authob',$this->Auth);
+
     }
     
     
@@ -124,6 +122,8 @@ class AppController extends Controller {
         }
         debug($log);
     }
+    
+    
 
 }
 ?>

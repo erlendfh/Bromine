@@ -202,3 +202,33 @@ Aco: /admin_index in [CORE\cake\libs\controller\components\acl.php, line 283]
 2008-10-18 16:35:16 Warning: Warning (2): include() [<a href='http://php.net/function.include'>function.include</a>]: Failed opening 'menu.php' for inclusion (include_path='C:\xampp\htdocs;C:\xampp\htdocs\app\;.;C:\xampp\php\pear\') in [APP\views\layouts\default.ctp, line 50]
 2008-10-18 16:40:58 Warning: Warning (2): include(templates.php) [<a href='http://php.net/function.include'>function.include</a>]: failed to open stream: No such file or directory in [APP\views\layouts\default.ctp, line 97]
 2008-10-18 16:40:58 Warning: Warning (2): include() [<a href='http://php.net/function.include'>function.include</a>]: Failed opening 'templates.php' for inclusion (include_path='C:\xampp\htdocs;C:\xampp\htdocs\app\;.;C:\xampp\php\pear\') in [APP\views\layouts\default.ctp, line 97]
+2008-10-18 22:04:31 Warning: Warning (2): Missing argument 1 for AclAcosController::children(), called in C:\xampp\htdocs\cake\libs\object.php on line 114 and defined in [APP\plugins\acl\controllers\acl_acos_controller.php, line 29]
+2008-10-18 22:04:50 Warning: Warning (2): print_r() expects at most 2 parameters, 3 given in [APP\plugins\acl\controllers\acl_acos_controller.php, line 7]
+2008-10-18 22:05:42 Warning: Warning (2): Missing argument 1 for AclAcosController::children(), called in C:\xampp\htdocs\cake\libs\object.php on line 114 and defined in [APP\plugins\acl\controllers\acl_acos_controller.php, line 29]
+2008-10-19 11:57:14 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\projects\index.ctp, line 22]
+2008-10-19 11:58:22 Warning: Warning (4096): Object of class StdFuncsComponent could not be converted to string in [APP\controllers\components\std_funcs.php, line 12]
+2008-10-19 12:07:18 Warning: Warning (4096): Object of class StdFuncsComponent could not be converted to string in [APP\controllers\components\std_funcs.php, line 12]
+2008-10-19 12:07:47 Warning: Warning (4096): Object of class StdFuncsComponent could not be converted to string in [APP\controllers\components\std_funcs.php, line 12]
+2008-10-19 12:07:58 Warning: Warning (4096): Object of class StdFuncsComponent could not be converted to string in [APP\controllers\components\std_funcs.php, line 12]
+2008-10-19 12:15:56 Warning: Warning (4096): Object of class stdClass could not be converted to string in [APP\controllers\components\std_funcs.php, line 30]
+2008-10-19 12:16:06 Warning: Warning (4096): Object of class ProjectsController could not be converted to string in [APP\controllers\components\std_funcs.php, line 30]
+2008-10-19 12:44:54 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\controllers\components\std_funcs.php, line 47]
+2008-10-19 12:48:33 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\projects\index.ctp, line 22]
+2008-10-19 13:16:04 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 4
+            [firstname] => 
+            [lastname] => 
+            [name] => admin
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-10 12:52:00
+        )
+
+)
+
+Aco: Projects/buildAcl in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-10-19 13:16:04 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]

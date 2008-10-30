@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<element>
+    <objectname>I_feel_lucky_button</objectname>
+    <name>btnI</name>
+    <type>input</type>
+    <value-en>Jeg pr&#248;ver lykken</value-en>
+    <value-dk>Google s&#248;gning</value-dk>
+    <xpath>/html/body/center/form/table/tbody/tr</xpath>
+</element>

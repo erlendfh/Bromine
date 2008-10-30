@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<element>
+    <objectname>Search_button</objectname>
+    <name>btnG</name>
+    <type>input</type>
+    <value-en>Google-search</value-en>
+    <value-dk>Google-s&#248;gning</value-dk>
+    <xpath>/html/body/center/form/table/tbody/tr/dfg[4][4]</xpath>
+</element>
+

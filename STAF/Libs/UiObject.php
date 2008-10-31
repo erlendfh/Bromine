@@ -53,17 +53,10 @@ class UiObject
 		return $id;
 
 	}
-
+	
 	function getXpathWithVars($vars)
 	{
 		return $this->sprintf3($this->parameters['xpath'], $vars);
-	}
-
-	function getLink($index)
-	{
-		$id = $this->getIdentifier();
-		$id .= "[$index]".$this->parameters['link'];
-		return $id;
 	}
 
 	function getAttribute($attribute)

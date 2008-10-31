@@ -1,30 +1,46 @@
 <?php
-//Get the menu from the database
+/*
+TODO:
+1) Create view/controllers for menuProject, menuTestLab, menuTestPlan and so on
+2) Controllers for above should set session current_main_menu_id
+3) Fix submenu part
+*/
 class MenuComponent extends Component{
-    function fetchData(){
-        //Dynamically Loading the model of the menu, because it's not necessary to have it on every controller.
+    public $components = array('Acl', 'Auth');
+    function __construct(){
         App::import('Model', 'Menu');
         $this->Menu = new Menu();
-        $mainmenu = $this->Menu->find('all', array( 'conditions' => array('p_id' => 0)));
+    }
+
+    function createMainMenu(){
+        $mainMenu = $this->Menu->find('all', array('conditions' => array('p_id' => 0), 'order' => array('odr')));
+        if(is_array($mainMenu = $this->checkAcl($mainMenu))){
+            return $mainMenu;
+        }
+    }
+    
+    function createSubMenu(){ //Not working yet
         
-        $absolute_url  = Router::url("", false);
-        foreach ($mainmenu as $menu)
-        {
-            if ($menu['Menu']['link'] == $absolute_url)
-            {
-                $p_id = $menu['Menu']['id'];
+        return $this->Menu->find('all', array( 'conditions' => array('p_id' => $this->session['current_main_menu_id'])));
+    }
+    
+    private function beautifyMenuArray($menuArray){
+        foreach($menuArray as $menuArrayItem){ //Making the array prettier
+            $prettyArray[]=$menuArrayItem['Menu'];
+        }
+        return $prettyArray;
+    }
+    
+    private function checkAcl($array){
+        $aro = $this->Auth->user();
+        $acos = $this->beautifyMenuArray($array);
+        $menu=array();
+        foreach($acos as $aco){
+            if(@$this->Acl->check($aro['User']['name'],"controllers".$aco['link'])){
+                $menu[] = $aco;
             }
         }
-        
-        // Add submenu, if there is one in the DB
-        if (isset($p_id))
-        {
-            $submenu = $this->Menu->find('all', array( 'conditions' => array('p_id' => $p_id)));
-            $mainmenu = am($mainmenu,$submenu);
-        }
-
-        
-        return $mainmenu;
+        return $menu;
     }
 }
 ?>

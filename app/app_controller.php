@@ -39,12 +39,9 @@
  */
 class AppController extends Controller {
 
-    var $components = array('Auth', 'Acl', 'StdFuncs');
-     
+    var $components = array('Auth', 'Acl', 'StdFuncs', 'Menu');
+    
     function beforeFilter() {
-        //Configure AuthComponent
-        //$this->buildAcl();
-        
         $this->Auth->fields  = array(
             'username'=>'name',
             'password' =>'password'
@@ -53,15 +50,19 @@ class AppController extends Controller {
         $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
         $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
         $this->Auth->loginRedirect = array('controller' => 'projects', 'action' => 'index');
-
+        
+                
+        $mainMenu=$this->Menu->createMainMenu();
+        $this->set('mainMenu',$mainMenu);
     }
-    
-    
+  
     /**
      * Rebuild the Acl based on the current controllers in the application
      *
      * @return void
      */
+    
+    /*
     function buildAcl() {
         $log = array();
  
@@ -122,7 +123,7 @@ class AppController extends Controller {
         }
         debug($log);
     }
-    
+    */
     
 
 }

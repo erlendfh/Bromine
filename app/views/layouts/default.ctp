@@ -32,7 +32,7 @@
             <?php //__('CakePHP: the rapid development php framework:'); ?>
             <?php echo $title_for_layout; ?>
         </title>
-<?php
+        <?php
     		echo $html->meta('icon');
     		echo $html->css('template_css');
     		echo $html->css('content');
@@ -54,11 +54,9 @@
                                                     <td class="menu_m">
                                                         <div id="topnavi">
                                                             <ul>
-                                                                <li><a href='/'><span>Home</span></a></li>
-                                                                <li><a href='/'><span>Home</span></a></li>
-                                                                <li><a href='/'><span>Home</span></a></li>
-                                                                <li><a href='/'><span>Home</span></a></li>
-                                                                <li><a href='/'><span>Home</span></a></li>
+                                                                <?php foreach($mainMenu as $mainMenuItem): ?>
+                                                                <li><a href='<?php echo $mainMenuItem['link'] ?>'><span><?php echo $mainMenuItem['title'] ?></span></a></li>    
+                                                                <?php endforeach; ?>
                                                             </ul>
                                                         </div>
                                                     </td>
@@ -88,11 +86,26 @@
                                             <div>
                                                 <h3>Sub Menu</h3>
                                                 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                                    <tr align="left"><td><a href="http://www.joomlademo.de/index.php?option=com_content&amp;task=view&amp;id=14&amp;Itemid=26" class="mainlevel" >Impressum</a></td></tr>
-                                                    <tr align="left"><td><a href="http://www.joomlademo.de/index.php?option=com_content&amp;task=view&amp;id=14&amp;Itemid=26" class="mainlevel" >Impressum</a></td></tr>
-                                                    <tr align="left"><td><a href="http://www.joomlademo.de/index.php?option=com_content&amp;task=view&amp;id=14&amp;Itemid=26" class="mainlevel" >Impressum</a></td></tr>
-                                                    <tr align="left"><td><a href="http://www.joomlademo.de/index.php?option=com_content&amp;task=view&amp;id=14&amp;Itemid=26" class="mainlevel" >Impressum</a></td></tr>
-                                                    <tr align="left"><td><a href="http://www.joomlademo.de/index.php?option=com_content&amp;task=view&amp;id=14&amp;Itemid=26" class="mainlevel" >Impressum</a></td></tr>
+                                                      
+                                                            
+                                                    <?php 
+                                                        /*
+                                                        $current_controller = $this->params['controller'];
+                                                        foreach($menu as $crap){
+                                                            if($crap['id']==$current_controller){
+                                                                foreach($crap['children'] as $menuitem){
+                                                                    echo "<tr align='left'><td>";
+                                                                    $title = $menuitem['title'];
+                                                                    $action = $menuitem['url']['action'];
+                                                                    echo $html->link(__($title,true), array('action'=>$action),array('class'=>"mainlevel"));
+                                                                    echo "</td></tr>";
+                                                                }
+                                                                break;
+                                                            }
+                                                        }
+                                                        */
+                                                    ?>
+                                                        
                                                 </table>
                                             </div>
                                         </div>
@@ -160,5 +173,8 @@
         </div> 
         </div>
         </div>
+        <!--pre>
+        <?php //print_r($mainMenu); ?>
+        </pre-->
     </body>
 </html>

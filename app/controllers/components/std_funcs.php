@@ -1,5 +1,5 @@
 <?php
-class StdFuncsComponent extends Object {
+class StdFuncsComponent{
 
     function startup(&$controller) {
         $this->controller = $controller;

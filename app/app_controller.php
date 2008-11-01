@@ -39,7 +39,7 @@
  */
 class AppController extends Controller {
 
-    var $components = array('Auth', 'Acl', 'StdFuncs', 'Menu');
+    var $components = array('Auth', 'Acl', 'StdFuncs','Menu');
     
     function beforeFilter() {
         $this->Auth->fields  = array(
@@ -50,10 +50,11 @@ class AppController extends Controller {
         $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
         $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
         $this->Auth->loginRedirect = array('controller' => 'projects', 'action' => 'index');
-        
+        //$this->Auth->allow();
                 
-        $mainMenu=$this->Menu->createMainMenu();
-        $this->set('mainMenu',$mainMenu);
+        
+        $this->set('mainMenu',$this->Menu->createMenu());
+        $this->set('subMenu',$this->Menu->createMenu($this->Session->read('current_main_menu_id')));
     }
   
     /**

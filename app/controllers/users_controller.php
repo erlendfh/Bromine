@@ -5,6 +5,7 @@ class UsersController extends AppController {
 	var $helpers = array('Html', 'Form');
 	
 	function login() {
+	    $this->layout = 'select';
         //Auth Magic
     }
      

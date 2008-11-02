@@ -3,10 +3,11 @@
 	<fieldset>
  		<legend><?php __('Edit Project');?></legend>
 	<?php
+	   
 		echo $form->input('id');
 		echo $form->input('name');
 		echo $form->input('description');
-		echo $form->input('user_id');
+		echo $form->input('User');
 		echo $form->input('outsidedefects');
 		echo $form->input('viewdefectsurl');
 		echo $form->input('adddefecturl');

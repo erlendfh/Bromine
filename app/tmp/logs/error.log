@@ -232,3 +232,678 @@ Aro: Array
 
 Aco: Projects/buildAcl in [CORE\cake\libs\controller\components\acl.php, line 283]
 2008-10-19 13:16:04 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 15:56:25 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\layouts\default.ctp, line 57]
+2008-11-01 15:57:42 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\layouts\default.ctp, line 57]
+2008-11-01 15:57:59 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\layouts\default.ctp, line 57]
+2008-11-01 18:15:44 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Tabs/projects in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 18:15:44 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 18:16:50 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Types/buildacl in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 18:16:50 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 18:17:25 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Types/buildacl in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 18:17:25 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 18:19:22 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Types/buildacl in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 18:19:22 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 18:33:43 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\controllers\components\menu.php, line 37]
+2008-11-01 18:40:45 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/add in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 18:40:45 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 18:40:59 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/add in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 18:40:59 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 18:41:33 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/add in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 18:41:33 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 18:41:34 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\controllers\components\menu.php, line 32]
+2008-11-01 18:41:34 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 18:41:45 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\controllers\components\menu.php, line 32]
+2008-11-01 18:41:45 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 18:41:48 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\controllers\components\menu.php, line 32]
+2008-11-01 18:41:48 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 18:50:12 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\controllers\components\menu.php, line 32]
+2008-11-01 18:50:12 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 18:55:18 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\controllers\components\menu.php, line 32]
+2008-11-01 18:55:18 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 18:55:19 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\controllers\components\menu.php, line 32]
+2008-11-01 18:55:19 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 18:55:20 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\controllers\components\menu.php, line 32]
+2008-11-01 18:55:20 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 18:55:20 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\controllers\components\menu.php, line 32]
+2008-11-01 18:55:20 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 18:55:20 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\controllers\components\menu.php, line 32]
+2008-11-01 18:55:20 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 18:55:21 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\controllers\components\menu.php, line 32]
+2008-11-01 18:55:21 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 18:56:00 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/index in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 18:56:00 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 18:56:18 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/index in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 18:56:18 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 18:56:21 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/index in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 18:56:21 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 18:56:27 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/index in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 18:56:27 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 18:56:32 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/index in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 18:56:32 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 18:59:26 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/index in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 18:59:26 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 19:06:35 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/add in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 19:06:35 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 19:09:20 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/add in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 19:09:20 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 19:14:47 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/add in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 19:14:47 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 19:14:50 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/index in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 19:14:50 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 19:15:35 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/index in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 19:15:35 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 19:15:49 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/index in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 19:15:49 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 19:17:53 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/index in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 19:17:53 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 19:18:15 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/index in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 19:18:15 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 19:19:04 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/index in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 19:19:04 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 19:19:15 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/add in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 19:19:15 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 19:19:31 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/add in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 19:19:31 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 19:20:32 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/index in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 19:20:32 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 19:22:24 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/projects in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 19:29:50 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/projects in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 19:31:49 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/projects in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 19:32:43 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/index in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 19:32:43 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 19:42:44 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Tabs/tabs in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 19:42:44 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 19:42:48 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Tabs/tabs in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 19:42:48 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 19:46:47 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Tabs/result in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 19:46:47 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 19:46:56 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/index in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 19:46:56 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-01 19:48:46 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/projects in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 20:29:07 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers// in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 20:56:52 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/Nodex/index in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 20:56:53 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/operationsystems/index in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 20:56:53 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/admin/acl in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 20:56:53 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/typesofdefects/index in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 20:57:24 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/operationsystems/index in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 20:57:24 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/admin/acl in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 20:57:24 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/typesofdefects/index in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 20:57:39 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/operationsystems/index in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 20:57:40 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/admin/acl in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 20:57:40 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/typesofdefects/index in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 20:59:05 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/admin/acl in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-01 20:59:35 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/config/index in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-02 12:00:35 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1062: Duplicate entry '0' for key 1</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-11-02 12:00:35 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-02 12:20:20 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Array
+(
+    [User] => Array
+        (
+            [id] => 16
+            [firstname] => 
+            [lastname] => 
+            [name] => Ralle
+            [group_id] => 1
+            [email] => 
+            [lastLogin] => 2008-10-31 12:30:00
+        )
+
+)
+
+Aco: Projects/select in [CORE\cake\libs\controller\components\acl.php, line 283]
+2008-11-02 12:20:20 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-02 12:20:32 Warning: Warning (2): in_array() [<a href='http://php.net/function.in-array'>function.in-array</a>]: Wrong datatype for second argument in [APP\controllers\projects_controller.php, line 29]
+2008-11-02 12:37:55 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\app\controllers\projects_controller.php:30) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-02 12:38:06 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\app\controllers\projects_controller.php:31) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-02 12:38:14 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\app\controllers\projects_controller.php:31) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-02 16:30:14 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'project_id' in 'where clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-11-02 16:30:42 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'project_id' in 'where clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-11-02 16:40:22 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\controllers\projects_controller.php, line 37]
+2008-11-02 16:40:52 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\controllers\projects_controller.php, line 38]
+2008-11-02 16:41:03 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\controllers\projects_controller.php, line 38]
+2008-11-02 16:43:07 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\app\controllers\projects_controller.php:39) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-02 16:43:55 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\controllers\projects_controller.php, line 34]
+2008-11-02 16:43:55 Warning: Warning (2): in_array() [<a href='http://php.net/function.in-array'>function.in-array</a>]: Wrong datatype for second argument in [APP\controllers\projects_controller.php, line 38]
+2008-11-02 16:59:13 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'ProjectsUsers.user_id' in 'where clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-11-02 16:59:35 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'ProjectsUsers.user_id' in 'where clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-11-02 17:02:06 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'ProjectsUsers.user_id' in 'where clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-11-02 17:04:54 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Project.user_id' in 'field list'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-11-02 17:04:54 Warning: Warning (2): Invalid argument supplied for foreach() in [CORE\cake\libs\model\datasources\dbo_source.php, line 906]
+2008-11-02 17:07:01 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1052: Column 'id' in where clause is ambiguous</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-11-02 18:17:35 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1052: Column 'id' in where clause is ambiguous</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-11-02 23:45:02 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\app\controllers\projects_controller.php:28) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-02 23:46:34 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\projects\select.ctp, line 10]
+2008-11-02 23:46:47 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\projects\select.ctp, line 10]
+2008-11-02 23:48:14 Warning: Warning (2): Missing argument 1 for ProjectsController::select(), called in C:\xampp\htdocs\cake\libs\object.php on line 114 and defined in [APP\controllers\projects_controller.php, line 27]
+2008-11-03 00:23:47 Warning: Warning (2): Missing argument 1 for AclAcosController::children(), called in C:\xampp\htdocs\cake\libs\object.php on line 114 and defined in [APP\plugins\acl\controllers\acl_acos_controller.php, line 29]
+2008-11-03 00:24:06 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1048: Column 'aro_id' cannot be null</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-11-03 00:24:06 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [APP\plugins\acl\acl_app_controller.php, line 16]
+2008-11-03 00:25:37 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1048: Column 'aro_id' cannot be null</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-11-03 00:25:37 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [APP\plugins\acl\acl_app_controller.php, line 16]
+2008-11-03 00:25:42 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1048: Column 'aro_id' cannot be null</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-11-03 00:25:42 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [APP\plugins\acl\acl_app_controller.php, line 16]
+2008-11-03 00:25:44 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1048: Column 'aro_id' cannot be null</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-11-03 00:25:44 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [APP\plugins\acl\acl_app_controller.php, line 16]
+2008-11-03 00:25:45 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1048: Column 'aro_id' cannot be null</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-11-03 00:25:45 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [APP\plugins\acl\acl_app_controller.php, line 16]
+2008-11-03 00:29:10 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Operatingsystem.operatingsystem_id' in 'on clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-11-03 00:29:10 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\nodes\index.ctp, line 20]
+2008-11-03 00:31:49 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\app\app_controller.php:59) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-03 00:31:55 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\app\app_controller.php:59) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-03 00:33:10 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\app\app_controller.php:59) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-03 00:33:51 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\app\app_controller.php:59) in [CORE\cake\libs\controller\controller.php, line 587]

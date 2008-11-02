@@ -45,18 +45,6 @@ class User extends AppModel {
 								'finderQuery' => '',
 								'counterQuery' => ''
 			),
-			'Project' => array('className' => 'Project',
-								'foreignKey' => 'user_id',
-								'dependent' => false,
-								'conditions' => '',
-								'fields' => '',
-								'order' => '',
-								'limit' => '',
-								'offset' => '',
-								'exclusive' => '',
-								'finderQuery' => '',
-								'counterQuery' => ''
-			),
 			'Requirement' => array('className' => 'Requirement',
 								'foreignKey' => 'user_id',
 								'dependent' => false,
@@ -68,6 +56,23 @@ class User extends AppModel {
 								'exclusive' => '',
 								'finderQuery' => '',
 								'counterQuery' => ''
+			)
+	);
+	
+	var $hasAndBelongsToMany = array(
+			'Project' => array('className' => 'Project',
+						'joinTable' => 'projects_users',
+						'foreignKey' => 'user_id',
+						'associationForeignKey' => 'project_id',
+						'unique' => true,
+						'conditions' => '',
+						'fields' => '',
+						'order' => '',
+						'limit' => '',
+						'offset' => '',
+						'finderQuery' => '',
+						'deleteQuery' => '',
+						'insertQuery' => ''
 			)
 	);
 	

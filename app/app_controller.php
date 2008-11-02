@@ -49,12 +49,13 @@ class AppController extends Controller {
         $this->Auth->authorize = 'actions';
         $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
         $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
-        $this->Auth->loginRedirect = array('controller' => 'projects', 'action' => 'index');
+        $this->Auth->loginRedirect = array('controller' => 'projects', 'action' => 'select');
         //$this->Auth->allow();
                 
         
         $this->set('mainMenu',$this->Menu->createMenu());
         $this->set('subMenu',$this->Menu->createMenu($this->Session->read('current_main_menu_id')));
+
     }
   
     /**

@@ -4,12 +4,21 @@ class Project extends AppModel {
 	var $name = 'Project';
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
-	var $belongsTo = array(
+	
+	var $hasAndBelongsToMany = array(
 			'User' => array('className' => 'User',
-								'foreignKey' => 'user_id',
-								'conditions' => '',
-								'fields' => '',
-								'order' => ''
+						'joinTable' => 'projects_users',
+						'foreignKey' => 'project_id',
+						'associationForeignKey' => 'user_id',
+						'unique' => true,
+						'conditions' => '',
+						'fields' => '',
+						'order' => '',
+						'limit' => '',
+						'offset' => '',
+						'finderQuery' => '',
+						'deleteQuery' => '',
+						'insertQuery' => ''
 			)
 	);
 

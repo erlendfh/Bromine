@@ -5,7 +5,7 @@
 	<?php
 		echo $form->input('name');
 		echo $form->input('description');
-		echo $form->input('user_id');
+		echo $form->input('User');
 		echo $form->input('outsidedefects');
 		echo $form->input('viewdefectsurl');
 		echo $form->input('adddefecturl');

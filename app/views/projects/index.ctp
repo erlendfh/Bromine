@@ -11,7 +11,6 @@ echo $paginator->counter(array(
 	<th><?php echo $paginator->sort('id');?></th>
 	<th><?php echo $paginator->sort('name');?></th>
 	<th><?php echo $paginator->sort('description');?></th>
-	<th><?php echo $paginator->sort('user_id');?></th>
 	<th><?php echo $paginator->sort('outsidedefects');?></th>
 	<th><?php echo $paginator->sort('viewdefectsurl');?></th>
 	<th><?php echo $paginator->sort('adddefecturl');?></th>
@@ -34,9 +33,6 @@ foreach ($projects as $project):
 		</td>
 		<td>
 			<?php echo $project['Project']['description']; ?>
-		</td>
-		<td>
-			<?php echo $html->link($project['User']['name'], array('controller'=> 'users', 'action'=>'view', $project['User']['id'])); ?>
 		</td>
 		<td>
 			<?php echo $project['Project']['outsidedefects']; ?>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<element>
+    <objectname>searchField</objectname>
+    <name>keywords</name>
+    <objecttype>input</objecttype>
+</element>

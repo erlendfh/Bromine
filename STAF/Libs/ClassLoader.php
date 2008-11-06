@@ -23,7 +23,7 @@ class ClassLoader {
 			if (is_file('../../'.$dir . $className . '.php')) {
 				//echo $dir;
 				// Graph lives in libs/Graph.php
-				require $dir . $className . '.php';
+				require '../../' . $dir . $className . '.php';
 			}
 		}
 

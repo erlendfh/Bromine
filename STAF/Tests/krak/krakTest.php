@@ -1,6 +1,6 @@
 <?php
-require_once 'Selenium/Selenium.php';
-require_once 'Libs/ElementLoader.php';
+require_once '../../Selenium/Selenium.php';
+require_once '../../Libs/ElementLoader.php';
 class BromineTest extends ElementLoader
 {
 	function setUp()
@@ -28,13 +28,13 @@ class BromineTest extends ElementLoader
 			$this->selenium->waitForPageToLoad($this->TIMEOUT);
 			for ($i = 1; $i < 26;$i++)
 			{
-				echo "$i. ".$this->selenium->getText($this->companyResultList->getXpathWithVars(array('number' => $i, '1' => 2)));
+				echo "$i. ".$this->selenium->getText($this->companyResultList->getXpathWithVars(array('number' => $i)));
 				echo "\n\r";
 			}
 
 		}
-		catch(Testing_Selenium_Exception $e){echo $e->errorMessage();}
-		catch(Exception $e){echo $e->errorMessage();}
+		catch(Testing_Selenium_Exception $e){echo $e->getMessage();}
+		catch(Exception $e){echo $e->getMessage();}
 	}
 	function customCommand($cmdName, $status, $var1, $var2)
 	{

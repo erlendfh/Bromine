@@ -2,7 +2,7 @@
 <element>
     <objectname>companySearchField</objectname>
     <name>search_word</name>
-    <type>input</type>
+    <objecttype>input</objecttype>
     <id>search_word</id>
     <value></value>
 </element>

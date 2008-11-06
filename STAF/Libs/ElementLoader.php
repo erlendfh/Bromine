@@ -1,6 +1,6 @@
 <?php
 // Include the class loader that automatic load class to be used!
-include 'Libs/ClassLoader.php';
+include 'ClassLoader.php';
 
 /*
  * Class ElementLoader loads html-elements in XML formats into the framework!

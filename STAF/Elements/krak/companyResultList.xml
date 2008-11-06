@@ -2,6 +2,6 @@
 <element>
     <objectname>companyResultList</objectname>
     <type>div</type>
-    <xpath>//div[@class='company-company-hit'][%number%]/div/div/div[%1%]/h2/a</xpath>
+    <xpath>//div[@class='company-company-hit'][%number%]/div/div/div[2]/h2/a</xpath>
 </element>
 

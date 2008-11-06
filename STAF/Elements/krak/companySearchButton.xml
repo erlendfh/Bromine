@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <element>
     <objectname>companySearchButton</objectname>
-    <type>input</type>
+    <objecttype>input</objecttype>
     <id>submit</id>
     <xpath></xpath>
 </element>

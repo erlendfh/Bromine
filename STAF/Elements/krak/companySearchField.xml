@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<element>
-    <objectname>companySearchField</objectname>
-    <name>search_word</name>
-    <type>input</type>
-    <id>search_word</id>
-    <value></value>
-</element>
-

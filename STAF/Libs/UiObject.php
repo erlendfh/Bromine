@@ -46,12 +46,18 @@ class UiObject
 	function getId()
 	{
 		$id = "//".$this->parameters['objecttype']."[";
+		
 		foreach ($this->identifiers as $identifier)
-		{
+		{ 
+		    //echo $this->parameters[$identifier];
 			if ($this->parameters[$identifier] != '')
 			{
 				$foundID = true;
-				if ($firstID == true){$id .= " and ";}else{$firstID = true;}
+				if ($firstID == true){
+                    $id .= " and ";
+                }else{
+                    $firstID = true;
+                }
 				$id .= "@$identifier='".$this->parameters[$identifier]."'";
 			}
 			elseif ($this->parameters[$identifier.'-'.$this->language] != '')
@@ -63,8 +69,6 @@ class UiObject
 		}
 
 		$id .= "]";
-		//echo "$identifier.'-'.$this->language\n\r";
-		//echo "$foundID - $id\n\r";
 		if ($foundID == false)
 		{
 			$id = $this->parameters['xpath'];

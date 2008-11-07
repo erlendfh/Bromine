@@ -2,7 +2,7 @@
 <element>
     <objectname>searchButton</objectname>
     <id>searchsubmit</id>
-    <type>input</type>
+    <objecttype>input</objecttype>
     <value-en>Web Search</value-en>
     <value-dk>Web</value-dk>
     <xpath>lalal</xpath>

@@ -3,6 +3,6 @@
     <objectname>companySearchButton</objectname>
     <objecttype>input</objecttype>
     <id>submit</id>
-    <xpath></xpath>
+    <value>S&#248;g</value>
+    <tabindex>3</tabindex>
 </element>
-

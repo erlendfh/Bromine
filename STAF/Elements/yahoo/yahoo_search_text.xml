@@ -2,9 +2,8 @@
 <element>
     <objectname>searchlabel</objectname>
     <id>searchlabel</id>
-    <type>label</type>
-    <value-en>Sea1rch:</value-en>
+    <objecttype>label</objecttype>
+    <value-en>Search:</value-en>
     <value-dk>S&#248;gning:</value-dk>
     <xpath>lalal</xpath>
 </element>
-

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- Loaded from: http://www.krak.dk -->
+<element>
+    <objecttype>input</objecttype>
+    <type>text</type>
+    <tabindex>2</tabindex>
+    <value></value>
+    <name>geo_area</name>
+    <id>where</id>
+    <objectname>geo_area</objectname>
+</element>

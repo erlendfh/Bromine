@@ -1,6 +1,6 @@
 <?php
-require_once 'Selenium/Selenium.php';
-require_once 'Libs/ElementLoader.php';
+require_once '../../Selenium/Selenium.php';
+require_once '../../Libs/ElementLoader.php';
 class BromineTest extends ElementLoader
 {
 	function setUp()
@@ -23,13 +23,14 @@ class BromineTest extends ElementLoader
 
 		try{
 			$this->selenium->open("/");
+			$this->selenium->isElementPresent($this->searchlabel->getId());
 			$this->selenium->type($this->searchField->getId(), "hej hej");
 			$this->selenium->click($this->searchButton->getId());
 			$this->selenium->waitForPageToLoad($this->TIMEOUT);
 
 		}
-		catch(Testing_Selenium_Exception $e){echo $e->errorMessage();}
-		catch(Exception $e){echo $e->errorMessage();}
+		catch(Testing_Selenium_Exception $e){echo $e->getMessage();}
+		catch(Exception $e){echo $e->getMessage();}
 	}
 	function customCommand($cmdName, $status, $var1, $var2)
 	{

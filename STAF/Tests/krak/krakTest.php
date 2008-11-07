@@ -20,21 +20,32 @@ class BromineTest extends ElementLoader
 	}
 	function testMyTestCase()
 	{
+	   //$this->companySearchButton->getId()."\n";
 
 		try{
 			$this->selenium->open("/");
 			$this->selenium->type($this->companySearchField->getId(), "vvs");
 			$this->selenium->click($this->companySearchButton->getId());
 			$this->selenium->waitForPageToLoad($this->TIMEOUT);
-			for ($i = 1; $i < 26;$i++)
-			{
-				echo "$i. ".$this->selenium->getText($this->companyResultList->getXpathWithVars(array('number' => $i)));
-				echo "\n\r";
-			}
+			//for ($page = 1;$page < 100; $page++)
+			//{
+            /*
+				if ($page != 1)
+				{
+					$this->selenium->click($this->companySearchPageLinks->getXpathWithVars(array('number' => $page)));
+					$this->selenium->waitForPageToLoad($this->TIMEOUT);
+				}*/
+				for ($i = 1; $i < 26;$i++)
+				{
+					echo "$i. ".$this->selenium->getText($this->companyResultList->getXpathWithVars(array('number' => $i)));
+					echo "\n\r";
+				}
+			//}
 
 		}
 		catch(Testing_Selenium_Exception $e){echo $e->getMessage();}
 		catch(Exception $e){echo $e->getMessage();}
+		
 	}
 	function customCommand($cmdName, $status, $var1, $var2)
 	{

@@ -8,7 +8,7 @@ include 'ClassLoader.php';
 class ElementLoader
 {
 	// Define all vars to be used in the test!
-	var $TIMEOUT = 15000;
+	var $TIMEOUT = 30000;
 	
 	/*
 	 * function loadElements load html-element from a specific path and in a language. This requires the correct setup 
@@ -55,7 +55,9 @@ class ElementLoader
 				$arr = $arr['element'];
 				
 				//Create new UiObject with the array from the XML file and the language you use
-				$this->{$name} = new UiObject($arr,$language);
+               
+                
+                $this->{$name} = new UiObject($arr,$language);
 				
 				$i++;
 
@@ -67,10 +69,14 @@ class ElementLoader
 		if ($i == 0){throw new ZeroElementsLoadedException();}
 		//closing the directory
 		closedir($dir_handle);
-
+/*
+				foreach ($arr as $key=>$value) {
+    	           $arr[$key] = urldecode($value);
+                }
+*/
 	}
 	
-	//I don't really know how it works, found it on the internet! Thanks to some one! :) 
+	//I don't really know how it works, found it on the internet! Thanks to someone! :) 
 	function parseXml($xml) {
 		$assoc = null;
 		while($xml->read()){

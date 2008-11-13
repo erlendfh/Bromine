@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- Loaded from: http://www.krak.dk.test.eniro.net/query?what=cs_adv&customer_type= -->
+<element>
+    <objecttype>input</objecttype>
+    <type>text</type>
+    <class>shorter</class>
+    <value></value>
+    <id>geo</id>
+    <name>geo_area</name>
+    <objectname>company_adv_search_geo_area</objectname>
+</element>

@@ -24,10 +24,16 @@ class BromineTest extends ElementLoader
 
 		try{
 			$this->selenium->open("/");
-			$this->selenium->type($this->company_search_word->getId(), "vvs");
-			$this->selenium->click($this->company_submit->getId());
+			$this->selenium->click($this->company_advanced_search->getId());
 			$this->selenium->waitForPageToLoad($this->TIMEOUT);
-			for ($page = 1;$page < 10; $page++)
+			$this->selenium->type($this->company_adv_search_adv_search_word->getId(), "");
+			$this->selenium->type($this->company_adv_search_company_name->getId(), "Sanistål");
+            $this->selenium->type($this->company_adv_search_post_area->getId(), "Odense");
+            
+            $this->selenium->click($this->company_adv_search_submit->getId());
+			$this->selenium->waitForPageToLoad($this->TIMEOUT);
+			/*
+            for ($page = 1;$page < 10; $page++)
 			{
             
 				if ($page != 1)
@@ -35,21 +41,23 @@ class BromineTest extends ElementLoader
 					$this->selenium->click($this->companySearchPageLinks->getXpathWithVars(array('number' => $page)));
 					$this->selenium->waitForPageToLoad($this->TIMEOUT);
 				}
-				
+				*/
 				for ($i = 1; $i < 26;$i++)
 				{
-					echo "$i. \n\r";
-                    echo "name: " . $this->selenium->getText($this->companyResultListName->getXpathWithVars(array('number' => $i)));
-					echo "\n\r";
-					echo "Address: ".$this->selenium->getText($this->companyResultListAddress->getXpathWithVars(array('number' => $i)));
-					echo "\n\r";
-					echo "ZipCode: ".$this->selenium->getText($this->companyResultListZipCode->getXpathWithVars(array('number' => $i)));
-					echo "\n\r";
-					echo "City: ".$this->selenium->getText($this->companyResultListCity->getXpathWithVars(array('number' => $i)));
-					echo "\n\r";
+				    if ($this->selenium->isElementPresent($this->companyResultListName->getXpathWithVars(array('number' => $i))) == true){
+    					echo "\n\r $i. ";
+                        $name = $this->selenium->getText($this->companyResultListName->getXpathWithVars(array('number' => $i)));
+                        
+                        if (strpos($name, 'Sanistål') !== false){echo " MATCH!";} else{echo " NOT A MATCH!";}
+    					echo " Address: ".$this->selenium->getText($this->companyResultListAddress->getXpathWithVars(array('number' => $i)));
+    
+    					echo " ZipCode: ".$this->selenium->getText($this->companyResultListZipCode->getXpathWithVars(array('number' => $i)));
+    
+    					echo " City: ".$this->selenium->getText($this->companyResultListCity->getXpathWithVars(array('number' => $i)));
+                    }
 				}
 				
-			}
+			//}
 
 		}
 		catch(Testing_Selenium_Exception $e){echo $e->getMessage();}
@@ -71,5 +79,5 @@ class BromineTest extends ElementLoader
 $t = new BromineTest();
 $t->setUp();
 $t->testMyTestCase();
-$t->tearDown();
+//$t->tearDown();
 ?>

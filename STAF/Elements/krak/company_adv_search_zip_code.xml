@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- Loaded from: http://www.krak.dk.test.eniro.net/query?what=cs_adv&customer_type= -->
+<element>
+    <objecttype>input</objecttype>
+    <class>postal</class>
+    <type>text</type>
+    <name>zip_code</name>
+    <id>zip_code</id>
+    <value></value>
+    <objectname>company_adv_search_zip_code</objectname>
+</element>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!-- Loaded from: http://www.krak.dk.test.eniro.net/ -->
+<element>
+    <objecttype>a</objecttype>
+    <class>advanced-search</class>
+    <href>/query?what=cs_adv</href>
+    <title>Her kan du specificere din s&amp;oslash;gning i detaljer</title>
+    <tabindex>4</tabindex>
+    <objectname>company_advanced_search</objectname>
+</element>

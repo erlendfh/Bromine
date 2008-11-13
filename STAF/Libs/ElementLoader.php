@@ -35,7 +35,7 @@ class ElementLoader
 		while ($file = readdir($dir_handle))
 		{
 			//Checks if != '.' || '..' && that it ends with '.xml', so it only load xml files
-			if($file!="." && $file!=".."  && ( substr( $file, strlen( $file ) - strlen( '.xml') ) === '.xml' ))
+			if($file != "." && $file != ".."  && ( substr( $file, strlen( $file ) - strlen( '.xml') ) === '.xml' ))
 			{
 				//Create PHP XMLReader
 				$reader = new XMLReader();
@@ -55,8 +55,6 @@ class ElementLoader
 				$arr = $arr['element'];
 				
 				//Create new UiObject with the array from the XML file and the language you use
-               
-                
                 $this->{$name} = new UiObject($arr,$language);
 				
 				$i++;

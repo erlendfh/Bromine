@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<!-- Loaded from: http://krak.dk.test.eniro.net/ -->
+<!-- Loaded from: http://www.krakteknik.dk.test.eniro.net/ -->
 <element>
     <objecttype>input</objecttype>
     <type>submit</type>
     <id>submit</id>
     <value>S&amp;oslash;g</value>
     <tabindex>3</tabindex>
-    <objectname>submit</objectname>
+    <objectname>krakteknik_submit</objectname>
 </element>

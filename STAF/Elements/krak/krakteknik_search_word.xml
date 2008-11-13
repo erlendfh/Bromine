@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!-- Loaded from: http://krak.dk.test.eniro.net/ -->
+<!-- Loaded from: http://www.krakteknik.dk.test.eniro.net/ -->
 <element>
     <objecttype>input</objecttype>
     <type>text</type>
@@ -7,6 +7,5 @@
     <value></value>
     <name>search_word</name>
     <id>search_word</id>
-    <autocomplete>off</autocomplete>
-    <objectname>search_word</objectname>
+    <objectname>krakteknik_search_word</objectname>
 </element>

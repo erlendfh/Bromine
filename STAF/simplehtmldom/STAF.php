@@ -8,8 +8,10 @@ $var = $_POST['var'];
 $path = $_POST['path'];
 $value = $_POST['value'];
 $name = $_POST['name'];
+$prefix = $_POST['prefix'];
+echo $prefix;
 
-function lookup($url, $type , $path ,$var = "",$value = "", $name = "")
+function lookup($url, $type , $path , $prefix, $var = "",$value = "", $name = "")
 {
     $html = file_get_html($url);
     
@@ -40,7 +42,7 @@ function lookup($url, $type , $path ,$var = "",$value = "", $name = "")
             $foundName=true;
         }
         
-        $file = getcwd(). "/$path/". $type . $i .'.xml';
+        $file = getcwd(). "/$path/". $prefix . $type . $i .'.xml';
         //echo $file;
         $h = fopen($file, 'w');
         
@@ -58,12 +60,14 @@ function lookup($url, $type , $path ,$var = "",$value = "", $name = "")
         if ($name == ''){
             $name = $findtype . $i;
         }
-        fwrite($h, "    <objectname>$name</objectname>\n");
+        fwrite($h, "    <objectname>$prefix$name</objectname>\n");
         fwrite($h, "</element>\n");
         fclose($h);
         if ($foundName == true){
-            rename("$path/$type$i.xml","$path/$name.xml");
+            rename("$path/$prefix$type$i.xml","$path/$prefix"."$name.xml");
+            //echo "rename $path/$prefix$type$i.xml to $path/$prefix"."$name.xml";
         }
+        
         $name = '';
         $foundName = false;
     
@@ -78,6 +82,6 @@ $var = $argv[2];
 $value = $argv[3];
 $objectname = $argv[4];
 */
-lookup($url, $type , $path ,$var,$value, $name);
-header('location: form.html');
+lookup($url, $type , $path , $prefix ,$var,$value, $name);
+//header('location: form.html');
 ?>

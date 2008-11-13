@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!-- Loaded from: http://www.krak.dk.test.eniro.net/query?what=cs_adv&customer_type= -->
+<element>
+    <objecttype>input</objecttype>
+    <type>hidden</type>
+    <value>1</value>
+    <name>newSearch</name>
+    <objectname>company_adv_search_newSearch</objectname>
+</element>

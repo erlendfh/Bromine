@@ -1,0 +1,85 @@
+1225781142: getId returned: //td[@class='pageHeading'] 1225781143: getId returned: //td[@class='pageHeading'] h: Array
+(
+    [number] => 2
+)
+ 1225781143: getXpathWithVars called with: Array
+(
+    [number] => 3
+)
+ 1225781143: getXpathWithVars called with: Array
+(
+    [number] => 3
+)
+ 1225781143: getXpathWithVars called with: Array
+(
+    [number] => 4
+)
+ 1225781143: getXpathWithVars called with: Array
+(
+    [number] => 5
+)
+ 1225781143: getXpathWithVars called with: Array
+(
+    [number] => 6
+)
+ 1225781143: getXpathWithVars called with: Array
+(
+    [number] => 7
+)
+ 1225781143: getXpathWithVars called with: Array
+(
+    [number] => 8
+)
+ 1225781143: getXpathWithVars called with: Array
+(
+    [number] => 9
+)
+ 1225781143: getXpathWithVars called with: Array
+(
+    [number] => 10
+)
+ 1225781143: getXpathWithVars called with: Array
+(
+    [number] => 11
+)
+ 1225781143: getXpathWithVars called with: Array
+(
+    [number] => 12
+)
+ 1225781143: getXpathWithVars called with: Array
+(
+    [number] => 13
+)
+ 1225781143: getXpathWithVars called with: Array
+(
+    [number] => 14
+)
+ 1225781143: getXpathWithVars called with: Array
+(
+    [number] => 15
+)
+ 1225781143: getXpathWithVars called with: Array
+(
+    [number] => 16
+)
+ 1225781143: getXpathWithVars called with: Array
+(
+    [number] => 17
+)
+ 1225781143: getXpathWithVars called with: Array
+(
+    [number] => 18
+)
+ 1225781143: getXpathWithVars called with: Array
+(
+    [number] => 19
+)
+ 1225781143: getXpathWithVars called with: Array
+(
+    [number] => 20
+)
+ 1225781143: getXpathWithVars called with: Array
+(
+    [number] => 21
+)
+ 

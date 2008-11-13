@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!-- Loaded from: http://krak.dk.test.eniro.net/ -->
+<element>
+    <objecttype>input</objecttype>
+    <type>hidden</type>
+    <name>what</name>
+    <value>cs</value>
+    <objectname>company_what</objectname>
+</element>

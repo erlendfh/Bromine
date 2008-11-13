@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!-- Loaded from: http://www.krak.dk.test.eniro.net/query?what=cs_adv&customer_type= -->
+<element>
+    <objecttype>input</objecttype>
+    <type>text</type>
+    <value></value>
+    <id>phone</id>
+    <name>phone_number</name>
+    <objectname>company_adv_search_phone_number</objectname>
+</element>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- Loaded from: http://www.krakteknik.dk.test.eniro.net/ -->
+<element>
+    <objecttype>input</objecttype>
+    <type>text</type>
+    <tabindex>2</tabindex>
+    <value></value>
+    <name>geo_area</name>
+    <id>where</id>
+    <objectname>krakteknik_geo_area</objectname>
+</element>

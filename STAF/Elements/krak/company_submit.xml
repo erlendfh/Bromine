@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!-- Loaded from: http://krak.dk.test.eniro.net/ -->
+<element>
+    <objecttype>input</objecttype>
+    <type>submit</type>
+    <id>submit</id>
+    <value>S&#248;g</value>
+    <tabindex>3</tabindex>
+    <objectname>company_submit</objectname>
+</element>

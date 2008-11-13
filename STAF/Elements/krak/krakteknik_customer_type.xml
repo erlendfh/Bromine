@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<!-- Loaded from: http://www.krakteknik.dk.test.eniro.net/ -->
-<element>
-    <objecttype>input</objecttype>
-    <type>hidden</type>
-    <name>customer_type</name>
-    <value>krakteknik</value>
-    <objectname>krakteknik_customer_type</objectname>
-</element>

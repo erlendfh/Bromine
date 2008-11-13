@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<element>
-    <objectname>companyResultListName</objectname>
-    <type>div</type>
-    <xpath>//div[@class='company-company-hit'][%number%]/div/div/div[2]/h2/a</xpath>
-</element>
-

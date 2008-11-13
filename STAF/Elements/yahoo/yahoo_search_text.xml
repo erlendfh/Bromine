@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<element>
-    <objectname>searchlabel</objectname>
-    <id>searchlabel</id>
-    <objecttype>label</objecttype>
-    <value-en>Search:</value-en>
-    <value-dk>S&#248;gning:</value-dk>
-    <xpath>lalal</xpath>
-</element>

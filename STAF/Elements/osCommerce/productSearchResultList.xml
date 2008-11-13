@@ -1,5 +1,0 @@
-<?xml version="1.0"?>
-<element>
-    <objectname>productSearchResultListProductName</objectname>
-    <xpath>//table[@class='productListing']//tbody//tr[%number%]//td[2]//a</xpath>
-</element>

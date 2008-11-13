@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<element>
-    <objectname>searchButton</objectname>
-    <objecttype>input</objecttype>
-    <xpath>//input[@type='image']</xpath>
-
-</element>

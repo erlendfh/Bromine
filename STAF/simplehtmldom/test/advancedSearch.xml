@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<element>
-    <objecttype>a</objecttype>
-    <class>advanced-search</class>
-    <href>/query?what=cs_adv&amp;amp;customer_type=</href>
-    <title>Her kan du specificere din s&amp;oslash;gning i detaljer</title>
-    <tabindex>4</tabindex>
-    <objectname>advancedSearch</objectname>
-</element>

@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<element>
-    <objectname>companyResultListCity</objectname>
-    <type>div</type>
-    <xpath>//div[@class='company-company-hit'][%number%]/div/div/div[2]/ul/li/a/span[@class='locality']</xpath>
-</element>
-

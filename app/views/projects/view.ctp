@@ -100,7 +100,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $html->link(__('New Defect', true), array('controller'=> 'defects', 'action'=>'add'));?> </li>
+			<li><?php echo $html->link(__('New User', true), array('controller'=> 'users', 'action'=>'add'));?> </li>
 		</ul>
 	</div>
 </div>

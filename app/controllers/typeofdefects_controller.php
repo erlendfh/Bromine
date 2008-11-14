@@ -3,6 +3,7 @@ class TypeofdefectsController extends AppController {
 
 	var $name = 'Typeofdefects';
 	var $helpers = array('Html', 'Form');
+	var $layout = "admin";
 
 	function index() {
 		$this->Typeofdefect->recursive = 0;

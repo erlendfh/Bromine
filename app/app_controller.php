@@ -50,11 +50,13 @@ class AppController extends Controller {
         $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
         $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
         $this->Auth->loginRedirect = array('controller' => 'projects', 'action' => 'select');
-        //$this->Auth->allow();
                 
-        
-        $this->set('mainMenu',$this->Menu->createMenu());
+        $this->username = $this->Auth->user('name');
+        $this->set('mainMenu',$this->Menu->createMenu(-1));
         $this->set('subMenu',$this->Menu->createMenu($this->Session->read('current_main_menu_id')));
+        
+        $this->set('adminMainMenu',$this->Menu->createMenu(-2));
+        $this->set('adminSubMenu',$this->Menu->createMenu($this->Session->read('current_admin_main_menu_id')));
 
     }
   
@@ -65,66 +67,7 @@ class AppController extends Controller {
      */
     
     /*
-    function buildAcl() {
-        $log = array();
- 
-        $aco =& $this->Acl->Aco;
-        $root = $aco->node('controllers');
-        if (!$root) {
-            $aco->create(array('parent_id' => null, 'model' => null, 'alias' => 'controllers'));
-            $root = $aco->save();
-            $root['Aco']['id'] = $aco->id; 
-            $log[] = 'Created Aco node for controllers';
-        } else {
-            $root = $root[0];
-        }   
- 
-        App::import('Core', 'File');
-        $Controllers = Configure::listObjects('controller');
-        $appIndex = array_search('App', $Controllers);
-        if ($appIndex !== false ) {
-            unset($Controllers[$appIndex]);
-        }
-        $baseMethods = get_class_methods('Controller');
-        $baseMethods[] = 'buildAcl';
- 
-        // look at each controller in app/controllers
-        foreach ($Controllers as $ctrlName) {
-            App::import('Controller', $ctrlName);
-            $ctrlclass = $ctrlName . 'Controller';
-            $methods = get_class_methods($ctrlclass);
- 
-            // find / make controller node
-            $controllerNode = $aco->node('controllers/'.$ctrlName);
-            if (!$controllerNode) {
-                $aco->create(array('parent_id' => $root['Aco']['id'], 'model' => null, 'alias' => $ctrlName));
-                $controllerNode = $aco->save();
-                $controllerNode['Aco']['id'] = $aco->id;
-                $log[] = 'Created Aco node for '.$ctrlName;
-            } else {
-                $controllerNode = $controllerNode[0];
-            }
- 
-            //clean the methods. to remove those in Controller and private actions.
-            foreach ($methods as $k => $method) {
-                if (strpos($method, '_', 0) === 0) {
-                    unset($methods[$k]);
-                    continue;
-                }
-                if (in_array($method, $baseMethods)) {
-                    unset($methods[$k]);
-                    continue;
-                }
-                $methodNode = $aco->node('controllers/'.$ctrlName.'/'.$method);
-                if (!$methodNode) {
-                    $aco->create(array('parent_id' => $controllerNode['Aco']['id'], 'model' => null, 'alias' => $method));
-                    $methodNode = $aco->save();
-                    $log[] = 'Created Aco node for '. $method;
-                }
-            }
-        }
-        debug($log);
-    }
+    
     */
     
 

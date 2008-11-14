@@ -21,11 +21,11 @@ class MenuComponent{
     }
     
     private function checkAcl($array=array()){
-        $aro = $this->Auth->user();
+        $aro = $this->Auth->user('name');
         $acos = $this->beautifyMenuArray($array);
         $menu=array();
         foreach($acos as $aco){
-            if($this->Acl->check($aro['User']['name'],'controllers'.'/'.$aco['controller'].'/'.$aco['action'])){
+            if($this->Acl->check($aro,'controllers'.'/'.$aco['controller'].'/'.$aco['action'])){
                 $menu[] = $aco;
             }
         }

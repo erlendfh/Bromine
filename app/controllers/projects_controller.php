@@ -3,6 +3,7 @@ class ProjectsController extends AppController {
 
 	var $name = 'Projects';
 	var $helpers = array('Html', 'Form');
+	var $layout = 'admin';
 	
 	function index(){
         $this->StdFuncs->index();
@@ -25,7 +26,7 @@ class ProjectsController extends AppController {
 	}
 	
 	function select(){
-        $this->layout = 'select';
+        $this->layout = "select";
         $id = $this->data['Project']['project_id'];
         if($id){
             $project=$this->Project->find('all', array('conditions' => array('id' => $id)));
@@ -46,26 +47,28 @@ class ProjectsController extends AppController {
         				$this->Session->setFlash(__('The project session could not be set. Please, try again.', true));
         			}
                 }else{
-                    $this->Session->setFlash(__('You do not have access to this project1.', true));
+                    $this->Session->setFlash(__('You do not have access to this project.', true));
                 }
             }else{
-                $this->Session->setFlash(__('You do not have access to this project2.', true)); //Unambigious error message for protection
+                $this->Session->setFlash(__('You do not have access to this project.', true)); //Unambigious error message for security
             }
 		}
 		
 	    if(!empty($this->data)){
             $this->Session->setFlash(__('No project selected. Please, try again.', true));
         }
-        $user=$this->Auth->user();
-        $user=$user['User']['id'];
-        $user=$this->Project->User->find('all', array('conditions' => array('user.id' => $user)));
-        if(!empty($user[0]['Project'])){
-            $this->data = $user[0]['Project'];
+        $user=$this->Auth->user('id');
+        $usersprojects=$this->Project->User->find('all', array('conditions' => array('user.id' => $user)));
+        if(!empty($usersprojects[0]['Project'])){
+            $this->set('usersprojects',$usersprojects[0]['Project']);
         }else{
             $this->Session->setFlash(__('You do not have access to any projects.', true));
             $this->redirect(array('controller'=>'users', 'action'=>'login'));
         } 
         
+        if($this->Acl->check($this->username,'controllers/Projects')){
+            $this->set('manageProjectsLink',true);    
+        }
     }
 
 }

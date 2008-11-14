@@ -4,6 +4,7 @@
  		<legend><?php __('Add Site');?></legend>
 	<?php
 		echo $form->input('name');
+		echo $form->input('project_id');
 	?>
 	</fieldset>
 <?php echo $form->end('Submit');?>

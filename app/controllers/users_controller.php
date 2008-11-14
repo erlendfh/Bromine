@@ -3,6 +3,8 @@ class UsersController extends AppController {
 
 	var $name = 'Users';
 	var $helpers = array('Html', 'Form');
+	var $layout = "admin";
+	
 	
 	function login() {
 	    $this->layout = 'select';

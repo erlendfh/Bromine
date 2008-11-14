@@ -27,6 +27,8 @@ class SitesController extends AppController {
 				$this->Session->setFlash(__('The Site could not be saved. Please, try again.', true));
 			}
 		}
+		$projects = $this->Site->Project->find('list');
+		$this->set(compact('projects'));
 	}
 
 	function edit($id = null) {
@@ -45,6 +47,8 @@ class SitesController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Site->read(null, $id);
 		}
+		$projects = $this->Site->Project->find('list');
+		$this->set(compact('projects'));
 	}
 
 	function delete($id = null) {

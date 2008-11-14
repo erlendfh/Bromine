@@ -11,6 +11,11 @@
 			<?php echo $site['Site']['name']; ?>
 			&nbsp;
 		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Project Id'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $site['Site']['project_id']; ?>
+			&nbsp;
+		</dd>
 	</dl>
 </div>
 <div class="actions">

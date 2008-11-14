@@ -10,9 +10,10 @@ class TabsController extends AppController {
 	}
 
 	function menuprojects() {
-	   $this->Session->write('current_main_menu_id', 1);
-	   $this->set('subMenu',$this->Menu->createMenu(1));
+	   $this->Session->write('current_main_menu_id', 36);
+	   $this->set('subMenu',$this->Menu->createMenu(36));
 	}
+	
 	
 	function testplan() {
 	   $this->Session->write('current_main_menu_id', 3);
@@ -29,9 +30,23 @@ class TabsController extends AppController {
 	   $this->set('subMenu',$this->Menu->createMenu(5));
 	}
 	
+	//Admin stuff
+	function adminprojects() {
+	   $this->layout = "admin";
+	   $this->Session->write('current_admin_main_menu_id', 1);
+	   $this->set('adminSubMenu',$this->Menu->createMenu(1));
+	}
+	
 	function config() {
-	   $this->Session->write('current_main_menu_id', 6);
-	   $this->set('subMenu',$this->Menu->createMenu(6));
+	   $this->layout = "admin";
+	   $this->Session->write('current_admin_main_menu_id', 6);
+	   $this->set('adminSubMenu',$this->Menu->createMenu(6));
+	}
+	
+	function menuusers() {
+	   $this->layout = "admin";
+	   $this->Session->write('current_admin_main_menu_id', 34);
+	   $this->set('adminSubMenu',$this->Menu->createMenu(34));
 	}
 
 }

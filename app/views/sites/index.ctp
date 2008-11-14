@@ -10,6 +10,7 @@ echo $paginator->counter(array(
 <tr>
 	<th><?php echo $paginator->sort('id');?></th>
 	<th><?php echo $paginator->sort('name');?></th>
+	<th><?php echo $paginator->sort('project_id');?></th>
 	<th class="actions"><?php __('Actions');?></th>
 </tr>
 <?php
@@ -26,6 +27,9 @@ foreach ($sites as $site):
 		</td>
 		<td>
 			<?php echo $site['Site']['name']; ?>
+		</td>
+		<td>
+			<?php echo $site['Site']['project_id']; ?>
 		</td>
 		<td class="actions">
 			<?php echo $html->link(__('View', true), array('action'=>'view', $site['Site']['id'])); ?>

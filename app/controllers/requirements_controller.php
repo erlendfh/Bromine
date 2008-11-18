@@ -3,6 +3,7 @@ class RequirementsController extends AppController {
 
 	var $name = 'Requirements';
 	var $helpers = array('Html', 'Form');
+	var $needsproject = true;
 
 	function index() {
 		$this->Requirement->recursive = 0;

@@ -7,9 +7,9 @@ foreach($usersprojects as $project){
 }
 echo $form->input('project_id',array('options' => $options));
 echo $form->end('Select');
-if($manageProjectsLink){
+if($controlPanelLink){
     echo "<br />";
-    echo "Or ";
-    echo $html->link("manage projects",array('controller'=>'Projects', 'action' => 'index'));
+    echo "Or go to the ";
+    echo $html->link("Control Panel",array('controller'=>'Tabs', 'action' => 'admin'));
 }
 ?>

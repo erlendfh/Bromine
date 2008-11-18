@@ -28,6 +28,8 @@ class ProjectsController extends AppController {
 	function select(){
         $this->layout = "select";
         $id = $this->data['Project']['project_id'];
+        $project = $this->Project->find(array('id'=>$id),array('name'),null,0);
+        $project_name = $project['Project']['name'];
         if($id){
             $project=$this->Project->find('all', array('conditions' => array('id' => $id)));
             if(!empty($project)){
@@ -41,7 +43,7 @@ class ProjectsController extends AppController {
                 $hasAccess = in_array($user,$userlist,true);
     
                 if($hasAccess){
-        			if ($this->Session->write('project_id',$id)) {
+        			if ($this->Session->write('project_id',$id) && $this->Session->write('project_name',$project_name)) {
         				$this->redirect(array('controller'=>'tabs', 'action'=>'home'));
         			} else {
         				$this->Session->setFlash(__('The project session could not be set. Please, try again.', true));
@@ -65,10 +67,11 @@ class ProjectsController extends AppController {
             $this->Session->setFlash(__('You do not have access to any projects.', true));
             $this->redirect(array('controller'=>'users', 'action'=>'login'));
         } 
-        
-        if($this->Acl->check($this->username,'controllers/Projects')){
-            $this->set('manageProjectsLink',true);    
+
+        if($this->Acl->check($this->username,"controllers/tabs/admin")){
+            $this->set('controlPanelLink',true);  
         }
+
     }
 
 }

@@ -2,6 +2,7 @@
 class TabsController extends AppController {
     var $uses = null;
 	var $name = 'Tabs';
+	var $needsproject = array('home','menuprojects','testplan','testlab','results');
 	//var $helpers = array('Html', 'Form');
 	
 	function home() {
@@ -31,6 +32,10 @@ class TabsController extends AppController {
 	}
 	
 	//Admin stuff
+	function admin() {
+	   $this->layout = "admin";
+	}
+	
 	function adminprojects() {
 	   $this->layout = "admin";
 	   $this->Session->write('current_admin_main_menu_id', 1);

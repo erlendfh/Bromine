@@ -46,11 +46,14 @@ class AppController extends Controller {
             'username'=>'name',
             'password' =>'password'
         );
-        $this->Auth->authorize = 'actions';
+        
+        
         $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
         $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
         $this->Auth->loginRedirect = array('controller' => 'projects', 'action' => 'select');
-                
+        
+        $this->Auth->authorize = 'controller';
+        
         $this->username = $this->Auth->user('name');
         $this->set('mainMenu',$this->Menu->createMenu(-1));
         $this->set('subMenu',$this->Menu->createMenu($this->Session->read('current_main_menu_id')));
@@ -58,6 +61,25 @@ class AppController extends Controller {
         $this->set('adminMainMenu',$this->Menu->createMenu(-2));
         $this->set('adminSubMenu',$this->Menu->createMenu($this->Session->read('current_admin_main_menu_id')));
 
+    }
+    
+    function isAuthorized(){
+        if(isset($this->needsproject)){ //If the controller needs a project
+            if((is_array($this->needsproject) && in_array($this->action, $this->needsproject)) || $this->needsproject===true){
+                if($this->Session->check('project_id')){ //If project_id is set in the session
+                    return true; //Maybe we should check here if the user has access to the project...
+                }   
+            }else{
+                return true;
+            }
+        }else{ //If the controller don't need a project
+            return true;
+        }
+        //If not returned yet, redirect to the select project screen:
+        //$this->Session->setFlash('This location requires you have selected a project');
+        $this->Session->setFlash('This location requires you have selected a project');
+        $this->redirect(array('controller' => 'projects', 'action' => 'select'));
+        return false;
     }
   
     /**

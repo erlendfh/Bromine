@@ -64,8 +64,14 @@ class AppController extends Controller {
     }
     
     function isAuthorized(){
-        if(isset($this->needsproject)){ //If the controller needs a project
-            if((is_array($this->needsproject) && in_array($this->action, $this->needsproject)) || $this->needsproject===true){
+        if(isset($this->needsproject)){
+            if((is_array($this->needsproject) && in_array($this->action, $this->needsproject)) || $this->needsproject===true){ //If the controller/action needs a project
+                if(!empty($this->modelNames)){ //If it needs a project and has a model, set model to use before find/save stuff
+                    $model = $this->modelNames[0];
+                    $this->$model->needsproject = true;
+                    $this->$model->project_id = $this->Session->read('project_id');
+                }
+                
                 if($this->Session->check('project_id')){ //If project_id is set in the session
                     return true; //Maybe we should check here if the user has access to the project...
                 }   
@@ -82,16 +88,6 @@ class AppController extends Controller {
         return false;
     }
   
-    /**
-     * Rebuild the Acl based on the current controllers in the application
-     *
-     * @return void
-     */
-    
-    /*
-    
-    */
-    
 
 }
 ?>

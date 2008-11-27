@@ -5,9 +5,29 @@ class CommandsController extends AppController {
 	var $helpers = array('Html', 'Form');
 
 	function index() {
+        pr($this->belongsToProject($this->Command));
 		$this->Command->recursive = 0;
 		$this->set('commands', $this->paginate());
 	}
+	
+	function belongsToProject($path,$i=0){
+	   //pr($path->belongsTo);
+        if(array_key_exists('Project', $path->belongsTo)){
+            echo "1";
+            return $path;
+        }
+        elseif($i>15){
+            echo "2";
+            return "Recursion!!";
+        }else{
+            echo "3";
+            foreach($path->belongsTo as $step){
+                //pr($step);
+                return $this->belongsToProject($path->$step['className'],$i++);
+            }
+        }
+        //return false;
+    }
 
 	function view($id = null) {
 		if (!$id) {

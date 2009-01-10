@@ -29,7 +29,7 @@ foreach ($sites as $site):
 			<?php echo $site['Site']['name']; ?>
 		</td>
 		<td>
-			<?php echo $site['Site']['project_id']; ?>
+			<?php echo $html->link($site['Project']['name'], array('controller'=> 'projects', 'action'=>'view', $site['Project']['id'])); ?>
 		</td>
 		<td class="actions">
 			<?php echo $html->link(__('View', true), array('action'=>'view', $site['Site']['id'])); ?>
@@ -48,5 +48,9 @@ foreach ($sites as $site):
 <div class="actions">
 	<ul>
 		<li><?php echo $html->link(__('New Site', true), array('action'=>'add')); ?></li>
+		<li><?php echo $html->link(__('List Projects', true), array('controller'=> 'projects', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->link(__('New Project', true), array('controller'=> 'projects', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->link(__('List Suites', true), array('controller'=> 'suites', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->link(__('New Suite', true), array('controller'=> 'suites', 'action'=>'add')); ?> </li>
 	</ul>
 </div>

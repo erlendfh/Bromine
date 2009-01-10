@@ -32,14 +32,14 @@
 		<li><?php echo $html->link(__('List Projects', true), array('controller'=> 'projects', 'action'=>'index')); ?> </li>
 		<li><?php echo $html->link(__('New Project', true), array('controller'=> 'projects', 'action'=>'add')); ?> </li>
 		<li><?php echo $html->link(__('List Testcasesteps', true), array('controller'=> 'testcasesteps', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Testcase Step', true), array('controller'=> 'testcasesteps', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->link(__('New Testcasestep', true), array('controller'=> 'testcasesteps', 'action'=>'add')); ?> </li>
 		<li><?php echo $html->link(__('List Requirements', true), array('controller'=> 'requirements', 'action'=>'index')); ?> </li>
 		<li><?php echo $html->link(__('New Requirement', true), array('controller'=> 'requirements', 'action'=>'add')); ?> </li>
 	</ul>
 </div>
 <div class="related">
 	<h3><?php __('Related Testcasesteps');?></h3>
-	<?php if (!empty($testcase['TestcaseStep'])):?>
+	<?php if (!empty($testcase['Testcasestep'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php __('Id'); ?></th>
@@ -51,22 +51,22 @@
 	</tr>
 	<?php
 		$i = 0;
-		foreach ($testcase['TestcaseStep'] as $testcaseStep):
+		foreach ($testcase['Testcasestep'] as $testcasestep):
 			$class = null;
 			if ($i++ % 2 == 0) {
 				$class = ' class="altrow"';
 			}
 		?>
 		<tr<?php echo $class;?>>
-			<td><?php echo $testcaseStep['id'];?></td>
-			<td><?php echo $testcaseStep['orderby'];?></td>
-			<td><?php echo $testcaseStep['action'];?></td>
-			<td><?php echo $testcaseStep['reaction'];?></td>
-			<td><?php echo $testcaseStep['testcase_id'];?></td>
+			<td><?php echo $testcasestep['id'];?></td>
+			<td><?php echo $testcasestep['orderby'];?></td>
+			<td><?php echo $testcasestep['action'];?></td>
+			<td><?php echo $testcasestep['reaction'];?></td>
+			<td><?php echo $testcasestep['testcase_id'];?></td>
 			<td class="actions">
-				<?php echo $html->link(__('View', true), array('controller'=> 'testcasesteps', 'action'=>'view', $testcaseStep['id'])); ?>
-				<?php echo $html->link(__('Edit', true), array('controller'=> 'testcasesteps', 'action'=>'edit', $testcaseStep['id'])); ?>
-				<?php echo $html->link(__('Delete', true), array('controller'=> 'testcasesteps', 'action'=>'delete', $testcaseStep['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $testcaseStep['id'])); ?>
+				<?php echo $html->link(__('View', true), array('controller'=> 'testcasesteps', 'action'=>'view', $testcasestep['id'])); ?>
+				<?php echo $html->link(__('Edit', true), array('controller'=> 'testcasesteps', 'action'=>'edit', $testcasestep['id'])); ?>
+				<?php echo $html->link(__('Delete', true), array('controller'=> 'testcasesteps', 'action'=>'delete', $testcasestep['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $testcasestep['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -75,7 +75,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $html->link(__('New Testcase Step', true), array('controller'=> 'testcasesteps', 'action'=>'add'));?> </li>
+			<li><?php echo $html->link(__('New Testcasestep', true), array('controller'=> 'testcasesteps', 'action'=>'add'));?> </li>
 		</ul>
 	</div>
 </div>
@@ -89,7 +89,6 @@
 		<th><?php __('Description'); ?></th>
 		<th><?php __('Project Id'); ?></th>
 		<th><?php __('Nr'); ?></th>
-		<th><?php __('User Id'); ?></th>
 		<th><?php __('Priority'); ?></th>
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
@@ -107,7 +106,6 @@
 			<td><?php echo $requirement['description'];?></td>
 			<td><?php echo $requirement['project_id'];?></td>
 			<td><?php echo $requirement['nr'];?></td>
-			<td><?php echo $requirement['user_id'];?></td>
 			<td><?php echo $requirement['priority'];?></td>
 			<td class="actions">
 				<?php echo $html->link(__('View', true), array('controller'=> 'requirements', 'action'=>'view', $requirement['id'])); ?>

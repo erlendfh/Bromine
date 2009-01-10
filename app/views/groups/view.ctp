@@ -43,10 +43,9 @@
 		<th><?php __('Lastname'); ?></th>
 		<th><?php __('Name'); ?></th>
 		<th><?php __('Password'); ?></th>
-		<th><?php __('Usertype'); ?></th>
+		<th><?php __('Group Id'); ?></th>
 		<th><?php __('Email'); ?></th>
 		<th><?php __('LastLogin'); ?></th>
-		<th><?php __('Group Id'); ?></th>
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -63,10 +62,9 @@
 			<td><?php echo $user['lastname'];?></td>
 			<td><?php echo $user['name'];?></td>
 			<td><?php echo $user['password'];?></td>
-			<td><?php echo $user['usertype'];?></td>
+			<td><?php echo $user['group_id'];?></td>
 			<td><?php echo $user['email'];?></td>
 			<td><?php echo $user['lastLogin'];?></td>
-			<td><?php echo $user['group_id'];?></td>
 			<td class="actions">
 				<?php echo $html->link(__('View', true), array('controller'=> 'users', 'action'=>'view', $user['id'])); ?>
 				<?php echo $html->link(__('Edit', true), array('controller'=> 'users', 'action'=>'edit', $user['id'])); ?>

@@ -38,7 +38,7 @@ foreach ($suites as $suite):
 			<?php echo $suite['Suite']['name']; ?>
 		</td>
 		<td>
-			<?php echo $suite['Suite']['site_id']; ?>
+			<?php echo $html->link($suite['Site']['name'], array('controller'=> 'sites', 'action'=>'view', $suite['Site']['id'])); ?>
 		</td>
 		<td>
 			<?php echo $suite['Suite']['status']; ?>
@@ -50,10 +50,10 @@ foreach ($suites as $suite):
 			<?php echo $suite['Suite']['timetaken']; ?>
 		</td>
 		<td>
-			<?php echo $suite['Suite']['browser_id']; ?>
+			<?php echo $html->link($suite['Browser']['id'], array('controller'=> 'browsers', 'action'=>'view', $suite['Browser']['id'])); ?>
 		</td>
 		<td>
-			<?php echo $suite['Suite']['operating_system_id']; ?>
+			<?php echo $html->link($suite['OperatingSystem']['name'], array('controller'=> 'operating_systems', 'action'=>'view', $suite['OperatingSystem']['id'])); ?>
 		</td>
 		<td>
 			<?php echo $suite['Suite']['selenium_version']; ?>
@@ -84,6 +84,12 @@ foreach ($suites as $suite):
 <div class="actions">
 	<ul>
 		<li><?php echo $html->link(__('New Suite', true), array('action'=>'add')); ?></li>
+		<li><?php echo $html->link(__('List Sites', true), array('controller'=> 'sites', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->link(__('New Site', true), array('controller'=> 'sites', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->link(__('List Browsers', true), array('controller'=> 'browsers', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->link(__('New Browser', true), array('controller'=> 'browsers', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->link(__('List Operating Systems', true), array('controller'=> 'operating_systems', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->link(__('New Operating System', true), array('controller'=> 'operating_systems', 'action'=>'add')); ?> </li>
 		<li><?php echo $html->link(__('List Projects', true), array('controller'=> 'projects', 'action'=>'index')); ?> </li>
 		<li><?php echo $html->link(__('New Project', true), array('controller'=> 'projects', 'action'=>'add')); ?> </li>
 		<li><?php echo $html->link(__('List Tests', true), array('controller'=> 'tests', 'action'=>'index')); ?> </li>

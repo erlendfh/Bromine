@@ -7,7 +7,6 @@
 		echo $form->input('description');
 		echo $form->input('project_id');
 		echo $form->input('nr');
-		echo $form->input('user_id');
 		echo $form->input('priority');
 		echo $form->input('Testcase');
 	?>
@@ -19,8 +18,6 @@
 		<li><?php echo $html->link(__('List Requirements', true), array('action'=>'index'));?></li>
 		<li><?php echo $html->link(__('List Projects', true), array('controller'=> 'projects', 'action'=>'index')); ?> </li>
 		<li><?php echo $html->link(__('New Project', true), array('controller'=> 'projects', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Users', true), array('controller'=> 'users', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New User', true), array('controller'=> 'users', 'action'=>'add')); ?> </li>
 		<li><?php echo $html->link(__('List Testcases', true), array('controller'=> 'testcases', 'action'=>'index')); ?> </li>
 		<li><?php echo $html->link(__('New Testcase', true), array('controller'=> 'testcases', 'action'=>'add')); ?> </li>
 	</ul>

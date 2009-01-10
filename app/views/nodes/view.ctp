@@ -11,9 +11,9 @@
 			<?php echo $node['Node']['nodepath']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Operating System Id'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Operating System'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $node['Node']['operating_system_id']; ?>
+			<?php echo $html->link($node['OperatingSystem']['name'], array('controller'=> 'operating_systems', 'action'=>'view', $node['OperatingSystem']['id'])); ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Description'); ?></dt>
@@ -34,33 +34,13 @@
 		<li><?php echo $html->link(__('Delete Node', true), array('action'=>'delete', $node['Node']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $node['Node']['id'])); ?> </li>
 		<li><?php echo $html->link(__('List Nodes', true), array('action'=>'index')); ?> </li>
 		<li><?php echo $html->link(__('New Node', true), array('action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Operatingsystems', true), array('controller'=> 'operatingsystems', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Operatingsystem', true), array('controller'=> 'operatingsystems', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->link(__('List Operating Systems', true), array('controller'=> 'operating_systems', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->link(__('New Operating System', true), array('controller'=> 'operating_systems', 'action'=>'add')); ?> </li>
 		<li><?php echo $html->link(__('List Browsers', true), array('controller'=> 'browsers', 'action'=>'index')); ?> </li>
 		<li><?php echo $html->link(__('New Browser', true), array('controller'=> 'browsers', 'action'=>'add')); ?> </li>
 	</ul>
 </div>
-	<div class="related">
-		<h3><?php  __('Related Operatingsystems');?></h3>
-	<?php if (!empty($node['Operatingsystem'])):?>
-		<dl>	<?php $i = 0; $class = ' class="altrow"';?>
-			<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id');?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-	<?php echo $node['Operatingsystem']['id'];?>
-&nbsp;</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Name');?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-	<?php echo $node['Operatingsystem']['name'];?>
-&nbsp;</dd>
-		</dl>
-	<?php endif; ?>
-		<div class="actions">
-			<ul>
-				<li><?php echo $html->link(__('Edit Operatingsystem', true), array('controller'=> 'operatingsystems', 'action'=>'edit', $node['Operatingsystem']['id'])); ?></li>
-			</ul>
-		</div>
-	</div>
-	<div class="related">
+<div class="related">
 	<h3><?php __('Related Browsers');?></h3>
 	<?php if (!empty($node['Browser'])):?>
 	<table cellpadding = "0" cellspacing = "0">

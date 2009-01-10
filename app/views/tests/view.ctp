@@ -48,11 +48,75 @@
 		<li><?php echo $html->link(__('New Suite', true), array('controller'=> 'suites', 'action'=>'add')); ?> </li>
 		<li><?php echo $html->link(__('List Commands', true), array('controller'=> 'commands', 'action'=>'index')); ?> </li>
 		<li><?php echo $html->link(__('New Command', true), array('controller'=> 'commands', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Defects', true), array('controller'=> 'defects', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Defect', true), array('controller'=> 'defects', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->link(__('List Seleniumservervars', true), array('controller'=> 'seleniumservervars', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->link(__('New Seleniumservervar', true), array('controller'=> 'seleniumservervars', 'action'=>'add')); ?> </li>
 	</ul>
 </div>
-<div class="related">
+	<div class="related">
+		<h3><?php  __('Related Commands');?></h3>
+	<?php if (!empty($test['Command'])):?>
+		<dl>	<?php $i = 0; $class = ' class="altrow"';?>
+			<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id');?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+	<?php echo $test['Command']['id'];?>
+&nbsp;</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Status');?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+	<?php echo $test['Command']['status'];?>
+&nbsp;</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Action');?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+	<?php echo $test['Command']['action'];?>
+&nbsp;</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Var1');?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+	<?php echo $test['Command']['var1'];?>
+&nbsp;</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Var2');?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+	<?php echo $test['Command']['var2'];?>
+&nbsp;</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Test Id');?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+	<?php echo $test['Command']['test_id'];?>
+&nbsp;</dd>
+		</dl>
+	<?php endif; ?>
+		<div class="actions">
+			<ul>
+				<li><?php echo $html->link(__('Edit Command', true), array('controller'=> 'commands', 'action'=>'edit', $test['Command']['id'])); ?></li>
+			</ul>
+		</div>
+	</div>
+		<div class="related">
+		<h3><?php  __('Related Seleniumservervars');?></h3>
+	<?php if (!empty($test['Seleniumservervar'])):?>
+		<dl>	<?php $i = 0; $class = ' class="altrow"';?>
+			<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Session');?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+	<?php echo $test['Seleniumservervar']['session'];?>
+&nbsp;</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Nodepath');?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+	<?php echo $test['Seleniumservervar']['nodepath'];?>
+&nbsp;</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Uid');?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+	<?php echo $test['Seleniumservervar']['uid'];?>
+&nbsp;</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Test Id');?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+	<?php echo $test['Seleniumservervar']['test_id'];?>
+&nbsp;</dd>
+		</dl>
+	<?php endif; ?>
+		<div class="actions">
+			<ul>
+				<li><?php echo $html->link(__('Edit Seleniumservervar', true), array('controller'=> 'seleniumservervars', 'action'=>'edit', $test['Seleniumservervar']['id'])); ?></li>
+			</ul>
+		</div>
+	</div>
+	<div class="related">
 	<h3><?php __('Related Commands');?></h3>
 	<?php if (!empty($test['Command'])):?>
 	<table cellpadding = "0" cellspacing = "0">
@@ -97,51 +161,33 @@
 	</div>
 </div>
 <div class="related">
-	<h3><?php __('Related Defects');?></h3>
-	<?php if (!empty($test['Defect'])):?>
+	<h3><?php __('Related Seleniumservervars');?></h3>
+	<?php if (!empty($test['Seleniumservervar'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
-		<th><?php __('Id'); ?></th>
-		<th><?php __('User Id'); ?></th>
-		<th><?php __('Description'); ?></th>
-		<th><?php __('Type'); ?></th>
-		<th><?php __('Created'); ?></th>
-		<th><?php __('Updated'); ?></th>
-		<th><?php __('Status'); ?></th>
-		<th><?php __('Project Id'); ?></th>
+		<th><?php __('Session'); ?></th>
+		<th><?php __('Nodepath'); ?></th>
+		<th><?php __('Uid'); ?></th>
 		<th><?php __('Test Id'); ?></th>
-		<th><?php __('Updatedby'); ?></th>
-		<th><?php __('Name'); ?></th>
-		<th><?php __('Priority'); ?></th>
-		<th><?php __('Site Id'); ?></th>
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
 		$i = 0;
-		foreach ($test['Defect'] as $defect):
+		foreach ($test['Seleniumservervar'] as $seleniumservervar):
 			$class = null;
 			if ($i++ % 2 == 0) {
 				$class = ' class="altrow"';
 			}
 		?>
 		<tr<?php echo $class;?>>
-			<td><?php echo $defect['id'];?></td>
-			<td><?php echo $defect['user_id'];?></td>
-			<td><?php echo $defect['description'];?></td>
-			<td><?php echo $defect['type'];?></td>
-			<td><?php echo $defect['created'];?></td>
-			<td><?php echo $defect['updated'];?></td>
-			<td><?php echo $defect['status'];?></td>
-			<td><?php echo $defect['project_id'];?></td>
-			<td><?php echo $defect['test_id'];?></td>
-			<td><?php echo $defect['updatedby'];?></td>
-			<td><?php echo $defect['name'];?></td>
-			<td><?php echo $defect['priority'];?></td>
-			<td><?php echo $defect['site_id'];?></td>
+			<td><?php echo $seleniumservervar['session'];?></td>
+			<td><?php echo $seleniumservervar['nodepath'];?></td>
+			<td><?php echo $seleniumservervar['uid'];?></td>
+			<td><?php echo $seleniumservervar['test_id'];?></td>
 			<td class="actions">
-				<?php echo $html->link(__('View', true), array('controller'=> 'defects', 'action'=>'view', $defect['id'])); ?>
-				<?php echo $html->link(__('Edit', true), array('controller'=> 'defects', 'action'=>'edit', $defect['id'])); ?>
-				<?php echo $html->link(__('Delete', true), array('controller'=> 'defects', 'action'=>'delete', $defect['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $defect['id'])); ?>
+				<?php echo $html->link(__('View', true), array('controller'=> 'seleniumservervars', 'action'=>'view', $seleniumservervar['id'])); ?>
+				<?php echo $html->link(__('Edit', true), array('controller'=> 'seleniumservervars', 'action'=>'edit', $seleniumservervar['id'])); ?>
+				<?php echo $html->link(__('Delete', true), array('controller'=> 'seleniumservervars', 'action'=>'delete', $seleniumservervar['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $seleniumservervar['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -150,7 +196,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $html->link(__('New Defect', true), array('controller'=> 'defects', 'action'=>'add'));?> </li>
+			<li><?php echo $html->link(__('New Seleniumservervar', true), array('controller'=> 'seleniumservervars', 'action'=>'add'));?> </li>
 		</ul>
 	</div>
 </div>

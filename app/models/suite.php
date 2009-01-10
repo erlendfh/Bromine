@@ -2,6 +2,9 @@
 class Suite extends AppModel {
 
 	var $name = 'Suite';
+	var $pathToProjet = array(
+        'Suite'=>'Project'
+    );
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 	var $belongsTo = array(

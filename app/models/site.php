@@ -26,18 +26,6 @@ class Site extends AppModel {
 								'finderQuery' => '',
 								'counterQuery' => ''
 			),
-			'Defect' => array('className' => 'Defect',
-								'foreignKey' => 'site_id',
-								'dependent' => false,
-								'conditions' => '',
-								'fields' => '',
-								'order' => '',
-								'limit' => '',
-								'offset' => '',
-								'exclusive' => '',
-								'finderQuery' => '',
-								'counterQuery' => ''
-			),
 			'Suite' => array('className' => 'Suite',
 								'foreignKey' => 'site_id',
 								'dependent' => false,

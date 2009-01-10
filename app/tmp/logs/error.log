@@ -1118,3 +1118,118 @@ Aco: controllers/tabs/admin in [CORE\cake\libs\controller\components\acl.php, li
 2008-11-21 13:38:12 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\app\app_controller.php:75) in [CORE\cake\libs\controller\controller.php, line 587]
 2008-11-21 14:42:33 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:303) in [CORE\cake\libs\controller\controller.php, line 587]
 2008-11-21 14:44:12 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:303) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-11-29 16:01:28 Warning: Warning (2): Missing argument 2 for CommandsController::belongsToProject(), called in C:\xampp\htdocs\app\controllers\commands_controller.php on line 8 and defined in [APP\controllers\commands_controller.php, line 13]
+2008-12-20 13:50:55 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'project_id' in 'where clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-12-20 13:50:55 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\controllers\components\menu.php, line 17]
+2008-12-20 13:50:55 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:303) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-12-20 13:51:08 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'project_id' in 'where clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-12-20 13:51:08 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\controllers\components\menu.php, line 17]
+2008-12-20 13:51:08 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:303) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-12-20 14:12:33 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Project.id' in 'where clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-12-20 14:12:57 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Project.id' in 'where clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-12-20 16:18:33 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Project.id' in 'where clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-12-20 16:28:11 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Project.id' in 'where clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-12-20 16:28:17 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Project.id' in 'where clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-12-20 16:28:29 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Project.id' in 'where clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-12-20 16:28:37 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Project.id' in 'where clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-12-20 16:28:50 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Project.id' in 'where clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-12-20 16:32:34 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Project.id' in 'where clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-12-20 16:32:41 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Project.id' in 'where clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2008-12-20 16:52:19 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2008-12-20 16:53:01 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2009-01-10 17:30:22 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:303) in [CORE\cake\libs\controller\controller.php, line 587]
+2009-01-10 17:30:27 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Aro.model' in 'field list'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2009-01-10 17:30:27 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Aco.model' in 'field list'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2009-01-10 17:30:27 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/home in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:30:27 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/menuprojects in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:30:27 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/testplan in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:30:27 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/testlab in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:30:27 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/results in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:30:27 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/menuusers in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:30:27 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/adminprojects in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:30:27 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/config in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:31:01 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Aro.model' in 'field list'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2009-01-10 17:31:01 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Aco.model' in 'field list'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2009-01-10 17:31:01 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/home in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:31:01 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/menuprojects in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:31:01 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/testplan in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:31:01 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/testlab in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:31:01 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/results in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:31:01 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/menuusers in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:31:01 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/adminprojects in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:31:01 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/config in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:31:38 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Aro.model' in 'field list'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2009-01-10 17:31:38 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Aco.model' in 'field list'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2009-01-10 17:31:38 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/home in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:31:38 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/menuprojects in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:31:38 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/testplan in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:31:38 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/testlab in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:31:38 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/results in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:31:38 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/menuusers in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:31:38 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/adminprojects in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:31:38 Warning: Warning (512): DbAcl::check() - Failed ARO/ACO node lookup in permissions check.  Node references:
+Aro: Ralle
+Aco: controllers/tabs/config in [CORE\cake\libs\controller\components\acl.php, line 283]
+2009-01-10 17:43:25 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:303) in [CORE\cake\libs\controller\controller.php, line 587]
+2009-01-10 17:43:54 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:303) in [CORE\cake\libs\controller\controller.php, line 587]
+2009-01-10 17:44:13 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:303) in [CORE\cake\libs\controller\controller.php, line 587]
+2009-01-10 18:09:49 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '/commands/view/10    LIMIT 1' at line 1</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2009-01-10 18:51:58 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Array' in 'where clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2009-01-10 18:52:48 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Array' in 'where clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2009-01-10 18:53:14 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Array' in 'where clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2009-01-10 19:07:08 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'myaro.alias' in 'where clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2009-01-10 19:08:02 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'myaro.alias' in 'where clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2009-01-10 19:19:17 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:303) in [CORE\cake\libs\controller\controller.php, line 587]
+2009-01-10 19:21:20 Warning: Warning (2): Wrong parameter count for get_defined_functions() in [APP\app_controller.php, line 56]
+2009-01-10 19:21:21 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:111) in [CORE\cake\libs\controller\controller.php, line 587]
+2009-01-10 19:21:31 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:303) in [CORE\cake\libs\controller\controller.php, line 587]
+2009-01-10 19:27:52 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1052: Column 'id' in where clause is ambiguous</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2009-01-10 19:28:49 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Requirement.user_id' in 'field list'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 521]
+2009-01-10 19:28:49 Warning: Warning (2): Invalid argument supplied for foreach() in [CORE\cake\libs\model\datasources\dbo_source.php, line 906]
+2009-01-10 20:38:52 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:303) in [CORE\cake\libs\controller\controller.php, line 587]

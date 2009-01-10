@@ -1,14 +1,14 @@
 <?php
-class Attachment extends AppModel {
+class Myaco extends AppModel {
 
-	var $name = 'Attachment';
+	var $name = 'Myaco';
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 	var $hasAndBelongsToMany = array(
-			'Defect' => array('className' => 'Defect',
-						'joinTable' => 'attachments_defects',
-						'foreignKey' => 'attachment_id',
-						'associationForeignKey' => 'defect_id',
+			'Myaro' => array('className' => 'Myaro',
+						'joinTable' => 'myaros_myacos',
+						'foreignKey' => 'myaco_id',
+						'associationForeignKey' => 'myaro_id',
 						'unique' => true,
 						'conditions' => '',
 						'fields' => '',

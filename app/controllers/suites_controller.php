@@ -27,8 +27,11 @@ class SuitesController extends AppController {
 				$this->Session->setFlash(__('The Suite could not be saved. Please, try again.', true));
 			}
 		}
+		$sites = $this->Suite->Site->find('list');
+		$browsers = $this->Suite->Browser->find('list');
+		$operatingSystems = $this->Suite->OperatingSystem->find('list');
 		$projects = $this->Suite->Project->find('list');
-		$this->set(compact('projects'));
+		$this->set(compact('sites', 'browsers', 'operatingSystems', 'projects'));
 	}
 
 	function edit($id = null) {
@@ -47,8 +50,11 @@ class SuitesController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Suite->read(null, $id);
 		}
+		$sites = $this->Suite->Site->find('list');
+		$browsers = $this->Suite->Browser->find('list');
+		$operatingSystems = $this->Suite->OperatingSystem->find('list');
 		$projects = $this->Suite->Project->find('list');
-		$this->set(compact('projects'));
+		$this->set(compact('sites','browsers','operatingSystems','projects'));
 	}
 
 	function delete($id = null) {

@@ -3,7 +3,6 @@ class NodesController extends AppController {
 
 	var $name = 'Nodes';
 	var $helpers = array('Html', 'Form');
-	var $layout = "admin";
 
 	function index() {
 		$this->Node->recursive = 0;
@@ -29,7 +28,8 @@ class NodesController extends AppController {
 			}
 		}
 		$browsers = $this->Node->Browser->find('list');
-		$this->set(compact('browsers'));
+		$operatingSystems = $this->Node->OperatingSystem->find('list');
+		$this->set(compact('browsers', 'operatingSystems'));
 	}
 
 	function edit($id = null) {
@@ -49,7 +49,8 @@ class NodesController extends AppController {
 			$this->data = $this->Node->read(null, $id);
 		}
 		$browsers = $this->Node->Browser->find('list');
-		$this->set(compact('browsers'));
+		$operatingSystems = $this->Node->OperatingSystem->find('list');
+		$this->set(compact('browsers','operatingSystems'));
 	}
 
 	function delete($id = null) {

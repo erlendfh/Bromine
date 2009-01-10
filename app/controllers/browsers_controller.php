@@ -3,7 +3,6 @@ class BrowsersController extends AppController {
 
 	var $name = 'Browsers';
 	var $helpers = array('Html', 'Form');
-	var $layout = "admin";
 
 	function index() {
 		$this->Browser->recursive = 0;
@@ -28,6 +27,8 @@ class BrowsersController extends AppController {
 				$this->Session->setFlash(__('The Browser could not be saved. Please, try again.', true));
 			}
 		}
+		$nodes = $this->Browser->Node->find('list');
+		$this->set(compact('nodes'));
 	}
 
 	function edit($id = null) {
@@ -46,6 +47,8 @@ class BrowsersController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Browser->read(null, $id);
 		}
+		$nodes = $this->Browser->Node->find('list');
+		$this->set(compact('nodes'));
 	}
 
 	function delete($id = null) {

@@ -5,27 +5,9 @@ class CommandsController extends AppController {
 	var $helpers = array('Html', 'Form');
 
 	function index() {
-        //pr($this->belongsToProject($this->Command));
 		$this->Command->recursive = 0;
 		$this->set('commands', $this->paginate());
 	}
-	
-	function belongsToProject($path){
-	    $this->i++;
-        if(array_key_exists('Project', $path->belongsTo)){
-            $this->route[]=$path->belongsTo['Project'];
-            return $this->route; 
-        }
-        elseif($this->i>15){
-            return "Recursion!!";
-        }else{
-            foreach($path->belongsTo as $step){
-                $this->route[]=$step;
-                return $this->belongsToProject($path->$step['className']);
-            }
-        }
-        //return false;
-    }
 
 	function view($id = null) {
 		if (!$id) {

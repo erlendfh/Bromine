@@ -3,8 +3,7 @@ class RequirementsController extends AppController {
 
 	var $name = 'Requirements';
 	var $helpers = array('Html', 'Form');
-    var $needsproject = true;
-    
+
 	function index() {
 		$this->Requirement->recursive = 0;
 		$this->set('requirements', $this->paginate());
@@ -30,8 +29,7 @@ class RequirementsController extends AppController {
 		}
 		$testcases = $this->Requirement->Testcase->find('list');
 		$projects = $this->Requirement->Project->find('list');
-		$users = $this->Requirement->User->find('list');
-		$this->set(compact('testcases', 'projects', 'users'));
+		$this->set(compact('testcases', 'projects'));
 	}
 
 	function edit($id = null) {
@@ -52,8 +50,7 @@ class RequirementsController extends AppController {
 		}
 		$testcases = $this->Requirement->Testcase->find('list');
 		$projects = $this->Requirement->Project->find('list');
-		$users = $this->Requirement->User->find('list');
-		$this->set(compact('testcases','projects','users'));
+		$this->set(compact('testcases','projects'));
 	}
 
 	function delete($id = null) {

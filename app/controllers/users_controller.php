@@ -3,25 +3,15 @@ class UsersController extends AppController {
 
 	var $name = 'Users';
 	var $helpers = array('Html', 'Form');
-	var $layout = "admin";
-	
-	
-	function login() {
-	    $this->layout = 'select';
-        //Auth Magic
-    }
-     
-    function logout() {
-        
-        $this->Session->destroy();
-        $this->Session->setFlash('Good-Bye');
-        $this->redirect($this->Auth->logout());
-    }
-
 
 	function index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate());
+	}
+	
+
+	function login() {
+
 	}
 
 	function view($id = null) {
@@ -47,7 +37,6 @@ class UsersController extends AppController {
 	}
 
 	function edit($id = null) {
-
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid User', true));
 			$this->redirect(array('action'=>'index'));
@@ -62,9 +51,9 @@ class UsersController extends AppController {
 		}
 		if (empty($this->data)) {
 			$this->data = $this->User->read(null, $id);
-			$groups = $this->User->Group->find('list');
-		    $this->set(compact('groups'));
 		}
+		$groups = $this->User->Group->find('list');
+		$this->set(compact('groups'));
 	}
 
 	function delete($id = null) {

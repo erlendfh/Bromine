@@ -2,6 +2,10 @@
 class Site extends AppModel {
 
 	var $name = 'Site';
+	var $validate = array(
+		'name' => array('notempty'),
+		'project_id' => array('numeric')
+	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 	var $belongsTo = array(
@@ -14,18 +18,6 @@ class Site extends AppModel {
 	);
 
 	var $hasMany = array(
-			'Coresetting' => array('className' => 'Coresetting',
-								'foreignKey' => 'site_id',
-								'dependent' => false,
-								'conditions' => '',
-								'fields' => '',
-								'order' => '',
-								'limit' => '',
-								'offset' => '',
-								'exclusive' => '',
-								'finderQuery' => '',
-								'counterQuery' => ''
-			),
 			'Suite' => array('className' => 'Suite',
 								'foreignKey' => 'site_id',
 								'dependent' => false,

@@ -3,7 +3,7 @@ class Project extends AppModel {
 
 	var $name = 'Project';
 	
-	function beforeFind($queryData){
+	function beforeFind2($queryData){
         $queryData['conditions']['Project.id']=$_SESSION['project_id']; //Un-cakeli
         //pr($queryData);
         return $queryData;
@@ -37,6 +37,18 @@ class Project extends AppModel {
 								'counterQuery' => ''
 			),
 			'Testcase' => array('className' => 'Testcase',
+								'foreignKey' => 'project_id',
+								'dependent' => false,
+								'conditions' => '',
+								'fields' => '',
+								'order' => '',
+								'limit' => '',
+								'offset' => '',
+								'exclusive' => '',
+								'finderQuery' => '',
+								'counterQuery' => ''
+			),
+			'User' => array('className' => 'User',
 								'foreignKey' => 'project_id',
 								'dependent' => false,
 								'conditions' => '',

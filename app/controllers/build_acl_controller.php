@@ -4,24 +4,24 @@ class BuildAclController extends AppController {
 	var $name = 'BuildAcl';
     var $uses = null;
     
-    //function beforeFilter(){
-        //$this->Auth->allow();
-    //}
-    
 	function index() {
+        
         $log = array();
  
-        $aco =& $this->Acl->Aco;
-        $root = $aco->node('controllers');
+        $aco = $this->MyAcl->Myaco;
+
+        $aco->recursive = 0;
+        $root = $aco->find(array('alias'=>'/everything'));
+
         if (!$root) {
-            $aco->create(array('parent_id' => null, 'model' => null, 'alias' => 'controllers'));
+            $aco->create(array('parent_id' => null, 'model' => null, 'alias' => '/everything'));
             $root = $aco->save();
-            $root['Aco']['id'] = $aco->id; 
-            $log[] = 'Created Aco node for controllers';
+            $root['id'] = $aco->id; 
+            $log[] = 'Created Aco node for /everything';
         } else {
-            $root = $root[0];
+            $root = $root['Myaco'];
         }   
- 
+        
         App::import('Core', 'File');
         $Controllers = Configure::listObjects('controller');
         $appIndex = array_search('App', $Controllers);
@@ -36,18 +36,19 @@ class BuildAclController extends AppController {
             App::import('Controller', $ctrlName);
             $ctrlclass = $ctrlName . 'Controller';
             $methods = get_class_methods($ctrlclass);
- 
+            
             // find / make controller node
-            $controllerNode = $aco->node('controllers/'.$ctrlName);
+            
+            $controllerNode = $aco->find(array('alias'=>'/everything/'.$ctrlName));
             if (!$controllerNode) {
-                $aco->create(array('parent_id' => $root['Aco']['id'], 'model' => null, 'alias' => $ctrlName));
+                $aco->create(array('parent_id' => $root['id'], 'alias' => "/everything/$ctrlName"));
                 $controllerNode = $aco->save();
-                $controllerNode['Aco']['id'] = $aco->id;
-                $log[] = 'Created Aco node for '.$ctrlName;
+                $controllerNode['id'] = $aco->id;
+                $log[] = "Created Aco node for /everything/$ctrlName";
             } else {
-                $controllerNode = $controllerNode[0];
+                $controllerNode = $controllerNode['Myaco'];
             }
- 
+            
             //clean the methods. to remove those in Controller and private actions.
             foreach ($methods as $k => $method) {
                 if (strpos($method, '_', 0) === 0) {
@@ -58,15 +59,18 @@ class BuildAclController extends AppController {
                     unset($methods[$k]);
                     continue;
                 }
-                $methodNode = $aco->node('controllers/'.$ctrlName.'/'.$method);
+            }
+            foreach ($methods as $method) {
+                $methodNode = $aco->find(array('alias'=>'/everything/'.$ctrlName.'/'.$method));
                 if (!$methodNode) {
-                    $aco->create(array('parent_id' => $controllerNode['Aco']['id'], 'model' => null, 'alias' => $method));
+                    $aco->create(array('parent_id' => $controllerNode['id'], 'alias' => "/everything/$ctrlName/$method"));
                     $methodNode = $aco->save();
-                    $log[] = 'Created Aco node for '. $method;
+                    $log[] = "Created Aco node for /everything/$ctrlName/$method";
                 }
             }
+            
         }
-        debug($log);
+        $this->set('msg',$log);
     }
 
 }

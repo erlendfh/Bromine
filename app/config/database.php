@@ -89,17 +89,5 @@ class DATABASE_CONFIG {
 		'database' => 'bromine',
 		'prefix' => '',
 	);
-	
-	/*
-	var $test = array(
-		'driver' => 'mysql',
-		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'root',
-		'password' => '',
-		'database' => 'bromine_test',
-		'prefix' => '',
-	);
-	*/
 }
 ?>

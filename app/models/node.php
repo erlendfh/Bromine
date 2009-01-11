@@ -2,16 +2,11 @@
 class Node extends AppModel {
 
 	var $name = 'Node';
-	var $validate = array(
-		'nodepath' => array('notempty'),
-		'operating_system_id' => array('numeric'),
-		'network_drive' => array('notempty')
-	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
-	var $belongsTo = array(
-			'OperatingSystem' => array('className' => 'OperatingSystem',
-								'foreignKey' => 'operating_system_id',
+	var $hasOne = array(
+			'Operatingsystem' => array('className' => 'Operatingsystem',
+								'foreignKey' => 'operatingsystem_id',
 								'conditions' => '',
 								'fields' => '',
 								'order' => ''

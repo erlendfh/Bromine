@@ -3,6 +3,7 @@ class TypesController extends AppController {
 
 	var $name = 'Types';
 	var $helpers = array('Html', 'Form');
+	var $layout = "admin";
 
 	function index() {
 		$this->Type->recursive = 0;

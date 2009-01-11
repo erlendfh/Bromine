@@ -31,7 +31,7 @@ foreach ($nodes as $node):
 			<?php echo $node['Node']['nodepath']; ?>
 		</td>
 		<td>
-			<?php echo $html->link($node['OperatingSystem']['name'], array('controller'=> 'operating_systems', 'action'=>'view', $node['OperatingSystem']['id'])); ?>
+			<?php echo $node['Node']['operating_system_id']; ?>
 		</td>
 		<td>
 			<?php echo $node['Node']['description']; ?>
@@ -56,8 +56,8 @@ foreach ($nodes as $node):
 <div class="actions">
 	<ul>
 		<li><?php echo $html->link(__('New Node', true), array('action'=>'add')); ?></li>
-		<li><?php echo $html->link(__('List Operating Systems', true), array('controller'=> 'operating_systems', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Operating System', true), array('controller'=> 'operating_systems', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->link(__('List Operatingsystems', true), array('controller'=> 'operatingsystems', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->link(__('New Operatingsystem', true), array('controller'=> 'operatingsystems', 'action'=>'add')); ?> </li>
 		<li><?php echo $html->link(__('List Browsers', true), array('controller'=> 'browsers', 'action'=>'index')); ?> </li>
 		<li><?php echo $html->link(__('New Browser', true), array('controller'=> 'browsers', 'action'=>'add')); ?> </li>
 	</ul>

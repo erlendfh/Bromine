@@ -2,28 +2,17 @@
 class Project extends AppModel {
 
 	var $name = 'Project';
-	var $validate = array(
-		'outsidedefects' => array('numeric'),
-		'viewdefectsurl' => array('notempty'),
-		'adddefecturl' => array('notempty')
-	);
-
+	
+	function beforeFind2($queryData){
+        $queryData['conditions']['Project.id']=$_SESSION['project_id']; //Un-cakeli
+        //pr($queryData);
+        return $queryData;
+    }
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
+	
 	var $hasMany = array(
 			'Requirement' => array('className' => 'Requirement',
-								'foreignKey' => 'project_id',
-								'dependent' => false,
-								'conditions' => '',
-								'fields' => '',
-								'order' => '',
-								'limit' => '',
-								'offset' => '',
-								'exclusive' => '',
-								'finderQuery' => '',
-								'counterQuery' => ''
-			),
-			'Site' => array('className' => 'Site',
 								'foreignKey' => 'project_id',
 								'dependent' => false,
 								'conditions' => '',

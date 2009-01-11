@@ -11,6 +11,7 @@ class MyAclComponent{
     }
     
 	function hasAccess($aro, $aco){
+        //pr($aro);pr($aco);
         $this->Myaco->recursive = 1;
         $this->Myaro->recursive = 1;
         
@@ -21,6 +22,7 @@ class MyAclComponent{
         $aro = null;
         $aro[0] = '/'.$arofind['Group']['name'];
         $aro[1] = $aro[0] . '/' . $arofind['User']['name'];
+        //pr($aro);
         
         
         for($i=count($aco);$i>0;$i--){
@@ -28,8 +30,9 @@ class MyAclComponent{
             for($u=0;$u<$i;$u++){
                 $newaco .= '/'.$aco[$u];
             }
-
+            //pr($newaco);
             if(($list=$this->Myaco->find(array('alias'=>$newaco)))!==false && !empty($list['Myaro'])){ //The ACO exsits
+                //echo "called";pr($list);
                 foreach($list['Myaro'] as $thisaro){
                     if (in_array($thisaro['alias'], $aro)){
                         return true;

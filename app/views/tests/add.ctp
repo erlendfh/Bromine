@@ -20,7 +20,7 @@
 		<li><?php echo $html->link(__('New Suite', true), array('controller'=> 'suites', 'action'=>'add')); ?> </li>
 		<li><?php echo $html->link(__('List Commands', true), array('controller'=> 'commands', 'action'=>'index')); ?> </li>
 		<li><?php echo $html->link(__('New Command', true), array('controller'=> 'commands', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Seleniumservervars', true), array('controller'=> 'seleniumservervars', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Seleniumservervar', true), array('controller'=> 'seleniumservervars', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->link(__('List Defects', true), array('controller'=> 'defects', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->link(__('New Defect', true), array('controller'=> 'defects', 'action'=>'add')); ?> </li>
 	</ul>
 </div>

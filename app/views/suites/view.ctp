@@ -11,9 +11,9 @@
 			<?php echo $suite['Suite']['name']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Site'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Site Id'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $html->link($suite['Site']['name'], array('controller'=> 'sites', 'action'=>'view', $suite['Site']['id'])); ?>
+			<?php echo $suite['Suite']['site_id']; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Status'); ?></dt>
@@ -31,14 +31,14 @@
 			<?php echo $suite['Suite']['timetaken']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Browser'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Browser Id'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $html->link($suite['Browser']['id'], array('controller'=> 'browsers', 'action'=>'view', $suite['Browser']['id'])); ?>
+			<?php echo $suite['Suite']['browser_id']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Operating System'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Operating System Id'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $html->link($suite['OperatingSystem']['name'], array('controller'=> 'operating_systems', 'action'=>'view', $suite['OperatingSystem']['id'])); ?>
+			<?php echo $suite['Suite']['operating_system_id']; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Selenium Version'); ?></dt>
@@ -69,12 +69,6 @@
 		<li><?php echo $html->link(__('Delete Suite', true), array('action'=>'delete', $suite['Suite']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $suite['Suite']['id'])); ?> </li>
 		<li><?php echo $html->link(__('List Suites', true), array('action'=>'index')); ?> </li>
 		<li><?php echo $html->link(__('New Suite', true), array('action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Sites', true), array('controller'=> 'sites', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Site', true), array('controller'=> 'sites', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Browsers', true), array('controller'=> 'browsers', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Browser', true), array('controller'=> 'browsers', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Operating Systems', true), array('controller'=> 'operating_systems', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Operating System', true), array('controller'=> 'operating_systems', 'action'=>'add')); ?> </li>
 		<li><?php echo $html->link(__('List Projects', true), array('controller'=> 'projects', 'action'=>'index')); ?> </li>
 		<li><?php echo $html->link(__('New Project', true), array('controller'=> 'projects', 'action'=>'add')); ?> </li>
 		<li><?php echo $html->link(__('List Tests', true), array('controller'=> 'tests', 'action'=>'index')); ?> </li>

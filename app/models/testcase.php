@@ -2,9 +2,6 @@
 class Testcase extends AppModel {
 
 	var $name = 'Testcase';
-	var $validate = array(
-		'project_id' => array('numeric')
-	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 	var $belongsTo = array(
@@ -17,7 +14,7 @@ class Testcase extends AppModel {
 	);
 
 	var $hasMany = array(
-			'Testcasestep' => array('className' => 'Testcasestep',
+			'TestcaseStep' => array('className' => 'Testcasestep',
 								'foreignKey' => 'testcase_id',
 								'dependent' => false,
 								'conditions' => '',

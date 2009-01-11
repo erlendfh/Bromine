@@ -13,6 +13,7 @@ echo $paginator->counter(array(
 	<th><?php echo $paginator->sort('description');?></th>
 	<th><?php echo $paginator->sort('project_id');?></th>
 	<th><?php echo $paginator->sort('nr');?></th>
+	<th><?php echo $paginator->sort('user_id');?></th>
 	<th><?php echo $paginator->sort('priority');?></th>
 	<th class="actions"><?php __('Actions');?></th>
 </tr>
@@ -41,6 +42,9 @@ foreach ($requirements as $requirement):
 			<?php echo $requirement['Requirement']['nr']; ?>
 		</td>
 		<td>
+			<?php echo $html->link($requirement['User']['name'], array('controller'=> 'users', 'action'=>'view', $requirement['User']['id'])); ?>
+		</td>
+		<td>
 			<?php echo $requirement['Requirement']['priority']; ?>
 		</td>
 		<td class="actions">
@@ -62,6 +66,8 @@ foreach ($requirements as $requirement):
 		<li><?php echo $html->link(__('New Requirement', true), array('action'=>'add')); ?></li>
 		<li><?php echo $html->link(__('List Projects', true), array('controller'=> 'projects', 'action'=>'index')); ?> </li>
 		<li><?php echo $html->link(__('New Project', true), array('controller'=> 'projects', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->link(__('List Users', true), array('controller'=> 'users', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->link(__('New User', true), array('controller'=> 'users', 'action'=>'add')); ?> </li>
 		<li><?php echo $html->link(__('List Testcases', true), array('controller'=> 'testcases', 'action'=>'index')); ?> </li>
 		<li><?php echo $html->link(__('New Testcase', true), array('controller'=> 'testcases', 'action'=>'add')); ?> </li>
 	</ul>

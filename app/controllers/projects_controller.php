@@ -3,60 +3,73 @@ class ProjectsController extends AppController {
 
 	var $name = 'Projects';
 	var $helpers = array('Html', 'Form');
-
-	function index() {
-		$this->Project->recursive = 0;
-		$this->set('projects', $this->paginate());
+	var $layout = 'admin';
+	
+	function index(){
+        $this->StdFuncs->index();
+    }
+    
+    function view($id = null) {
+        $this->StdFuncs->view($id);
 	}
-
-	function view($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid Project.', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		$this->set('project', $this->Project->read(null, $id));
-	}
-
+	
 	function add() {
-		if (!empty($this->data)) {
-			$this->Project->create();
-			if ($this->Project->save($this->data)) {
-				$this->Session->setFlash(__('The Project has been saved', true));
-				$this->redirect(array('action'=>'index'));
-			} else {
-				$this->Session->setFlash(__('The Project could not be saved. Please, try again.', true));
-			}
-		}
+		$this->StdFuncs->add(array('User'));
 	}
-
+	
 	function edit($id = null) {
-		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid Project', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		if (!empty($this->data)) {
-			if ($this->Project->save($this->data)) {
-				$this->Session->setFlash(__('The Project has been saved', true));
-				$this->redirect(array('action'=>'index'));
-			} else {
-				$this->Session->setFlash(__('The Project could not be saved. Please, try again.', true));
-			}
-		}
-		if (empty($this->data)) {
-			$this->data = $this->Project->read(null, $id);
-		}
+		$this->StdFuncs->edit($id,array('User'));
 	}
 
-	function delete($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for Project', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		if ($this->Project->del($id)) {
-			$this->Session->setFlash(__('Project deleted', true));
-			$this->redirect(array('action'=>'index'));
-		}
+    function delete($id = null) {
+		$this->StdFuncs->delete($id);
 	}
+	
+	function select(){
+        $this->layout = "select";
+        $id = $this->data['Project']['project_id'];
+
+        if($id){
+            $project=$this->Project->find(array('id' => $id));
+            if(!empty($project)){
+                $user=$this->Auth->user('id');
+                if($this->MyAcl->hasAccess($user,'/'.$project['Project']['name'])){
+        			if ($this->Session->write('project_id',$id) && $this->Session->write('project_name',$project['Project']['name'])) {
+        				$this->redirect(array('controller'=>'tabs', 'action'=>'home'));
+        			} else {
+        				$this->Session->setFlash(__('The project session could not be set. Please, try again.', true));
+        			}
+                }else{
+                    $this->Session->setFlash(__('You do not have access to this project.', true));
+                }
+            }else{
+                $this->Session->setFlash(__('You do not have access to this project.', true)); //Unambigious error message for security
+            }
+		}
+		
+	    if(!empty($this->data)){
+            $this->Session->setFlash(__('No project selected. Please, try again.', true));
+        }
+        $user=$this->Auth->user('id');
+        $this->Project->recursive = 0;
+        $projects=$this->Project->find('all');
+        foreach($projects as $project){
+            if($this->MyAcl->hasAccess($user,'/'.$project['Project']['name'])){
+                $usersprojects[]=$project;
+            }
+        }
+        if(!empty($usersprojects)){
+            $this->set('usersprojects',$usersprojects);
+        }else{
+            $this->Session->setFlash(__('You do not have access to any projects.', true));
+            $this->redirect(array('controller'=>'users', 'action'=>'login'));
+        } 
+
+        if($this->MyAcl->hasAccess($user,"/tabs/admin")){
+            $this->set('controlPanelLink',true);  
+        }
+
+    }
 
 }
 ?>

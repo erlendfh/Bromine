@@ -5,6 +5,9 @@ class BuildAclController extends AppController {
     var $uses = null;
     
 	function index() {
+        App::import('Model','Project');
+        $this->Project = new Project();
+        $this->Project->recursive = 0;
         
         $log = array();
  
@@ -20,7 +23,19 @@ class BuildAclController extends AppController {
             $log[] = 'Created Aco node for /everything';
         } else {
             $root = $root['Myaco'];
-        }   
+        }
+        
+        $projects = $this->Project->find('all');
+        foreach($projects as $project){
+            $project = $project['Project']['name'];
+            $projectFind = $aco->find(array('alias'=>'/everything/'.$project));
+            if (!$projectFind) {
+                $aco->create(array('parent_id' => $root['id'], 'alias' => "/everything/$project"));
+                $aco->save();
+                $log[] = "Created Aco node for /everything/$project";
+            }
+        }
+        
         
         App::import('Core', 'File');
         $Controllers = Configure::listObjects('controller');

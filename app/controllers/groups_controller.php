@@ -10,11 +10,13 @@ class GroupsController extends AppController {
 	}
 
 	function view($id = null) {
+	   
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid Group.', true));
 			$this->redirect(array('action'=>'index'));
 		}
 		$this->set('group', $this->Group->read(null, $id));
+		//pr($this->Group->read(null, $id));
 	}
 
 	function add() {
@@ -52,7 +54,7 @@ class GroupsController extends AppController {
 			$this->Session->setFlash(__('Invalid id for Group', true));
 			$this->redirect(array('action'=>'index'));
 		}
-		if ($this->Group->del($id)) {
+		if ($this->Group->del($id,true)) {
 			$this->Session->setFlash(__('Group deleted', true));
 			$this->redirect(array('action'=>'index'));
 		}

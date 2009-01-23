@@ -1,3 +1,6 @@
+.manageacl.index table tr td{
+    text-align: left;
+}
 label{
 	display: block;
 	font-size: 110%;

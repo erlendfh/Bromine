@@ -49,6 +49,36 @@ class Project extends AppModel {
 								'counterQuery' => ''
 			)
 	);
+	
+	var $hasOne = array(
+        'Myaco' => array(
+            'foreignKey' => 'foreign_key',
+            'className'    => 'Myaco',
+            'conditions'   => array('Myaco.model' => 'project'),
+            'dependent'    => true
+        )
+    );
+	
+	function afterSave($created){
+        App::import('Model','Myaco');
+		$this->Myaco = new Myaco();
+		if($created===true){ //Todo: create acos for /everything/projects/edit(delete)/$project_id
+    		$acoData = array();
+            $acoData['Myaco']['parent_id'] = 1;
+            $acoData['Myaco']['foreign_key'] = $this->getLastInsertID();
+            $acoData['Myaco']['model'] = 'project';
+    		$acoData['Myaco']['alias'] = '/everything/'.$this->data['Project']['name'];
+            $this->Myaco->save($acoData);
+        }else{ //Todo: update acos for /everything/projects/edit(delete)/$project_id
+            $this->Myaco->updateAll( //Update the group Aro
+                array('alias'=>"'".mysql_real_escape_string('/everything/'.$this->data['Project']['name'])."'"),
+                array(
+                    'model'=>'project',
+                    'foreign_key'=>$this->data['Project']['id']
+                )
+            );
+        }
+    }
 
 }
 ?>

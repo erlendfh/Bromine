@@ -2,6 +2,7 @@
 class Myaco extends AppModel {
 
 	var $name = 'Myaco';
+	var $actsAs = array('Tree');
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 	var $hasAndBelongsToMany = array(

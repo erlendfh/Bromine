@@ -30,7 +30,7 @@ class ProjectsController extends AppController {
         $id = $this->data['Project']['project_id'];
 
         if($id){
-            $project=$this->Project->find(array('id' => $id));
+            $project=$this->Project->find(array('Project.id' => $id));
             if(!empty($project)){
                 $user=$this->Auth->user('id');
                 if($this->MyAcl->hasAccess($user,'/'.$project['Project']['name'])){

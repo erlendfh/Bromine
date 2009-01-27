@@ -26,31 +26,12 @@
 			<?php echo $requirement['Requirement']['nr']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('User'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $html->link($requirement['User']['name'], array('controller'=> 'users', 'action'=>'view', $requirement['User']['id'])); ?>
-			&nbsp;
-		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Priority'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $requirement['Requirement']['priority']; ?>
 			&nbsp;
 		</dd>
 	</dl>
-</div>
-<div class="actions">
-	<ul>
-		<li><?php echo $html->link(__('Edit Requirement', true), array('action'=>'edit', $requirement['Requirement']['id'])); ?> </li>
-		<li><?php echo $html->link(__('Delete Requirement', true), array('action'=>'delete', $requirement['Requirement']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $requirement['Requirement']['id'])); ?> </li>
-		<li><?php echo $html->link(__('List Requirements', true), array('action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Requirement', true), array('action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Projects', true), array('controller'=> 'projects', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Project', true), array('controller'=> 'projects', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Users', true), array('controller'=> 'users', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New User', true), array('controller'=> 'users', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Testcases', true), array('controller'=> 'testcases', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Testcase', true), array('controller'=> 'testcases', 'action'=>'add')); ?> </li>
-	</ul>
 </div>
 <div class="related">
 	<h3><?php __('Related Testcases');?></h3>
@@ -85,10 +66,4 @@
 	<?php endforeach; ?>
 	</table>
 <?php endif; ?>
-
-	<div class="actions">
-		<ul>
-			<li><?php echo $html->link(__('New Testcase', true), array('controller'=> 'testcases', 'action'=>'add'));?> </li>
-		</ul>
-	</div>
 </div>

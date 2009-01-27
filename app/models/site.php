@@ -14,18 +14,6 @@ class Site extends AppModel {
 	);
 
 	var $hasMany = array(
-			'Coresetting' => array('className' => 'Coresetting',
-								'foreignKey' => 'site_id',
-								'dependent' => false,
-								'conditions' => '',
-								'fields' => '',
-								'order' => '',
-								'limit' => '',
-								'offset' => '',
-								'exclusive' => '',
-								'finderQuery' => '',
-								'counterQuery' => ''
-			),
 			'Suite' => array('className' => 'Suite',
 								'foreignKey' => 'site_id',
 								'dependent' => false,

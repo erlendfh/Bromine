@@ -6,7 +6,7 @@ class TestcasesController extends AppController {
 
 	function index() {
 		$this->Testcase->recursive = 0;
-		$this->set('testcases', $this->paginate());
+		$this->set('testcases', $this->paginate(null, array('project.id' => $this->Session->read('project_id'))));
 	}
 
 	function view($id = null) {

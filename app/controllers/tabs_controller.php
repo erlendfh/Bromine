@@ -13,12 +13,14 @@ class TabsController extends AppController {
 	function menuprojects() {
 	   $this->Session->write('current_main_menu_id', 36);
 	   $this->set('subMenu',$this->Menu->createMenu(36));
+	   $this->redirect(array('controller' => 'projects', 'action' => 'view',$this->Session->read('project_id')));
 	}
 	
 	
 	function testplan() {
 	   $this->Session->write('current_main_menu_id', 3);
 	   $this->set('subMenu',$this->Menu->createMenu(3));
+	   $this->redirect(array('controller' => 'testcases', 'action' => 'index'));
 	}
 	
 	function testlab() {

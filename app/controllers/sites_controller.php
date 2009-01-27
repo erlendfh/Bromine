@@ -6,7 +6,7 @@ class SitesController extends AppController {
 
 	function index() {
 		$this->Site->recursive = 0;
-		$this->set('sites', $this->paginate());
+		$this->set('sites', $this->paginate(null, array('project.id' => $this->Session->read('project_id'))));
 	}
 
 	function view($id = null) {

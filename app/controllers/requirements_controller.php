@@ -4,10 +4,17 @@ class RequirementsController extends AppController {
 	var $name = 'Requirements';
 	var $helpers = array('Html', 'Form');
     var $needsproject = true;
+    var $paginate = array(
+        'limit' => 25,
+        'order' => array(
+            'Requirement.priority' => 'asc'
+        )
+    );
+
     
 	function index() {
 		$this->Requirement->recursive = 0;
-		$this->set('requirements', $this->paginate());
+		$this->set('requirements', $this->paginate(null, array('project.id' => $this->Session->read('project_id'))));
 	}
 
 	function view($id = null) {
@@ -29,9 +36,7 @@ class RequirementsController extends AppController {
 			}
 		}
 		$testcases = $this->Requirement->Testcase->find('list');
-		$projects = $this->Requirement->Project->find('list');
-		$users = $this->Requirement->User->find('list');
-		$this->set(compact('testcases', 'projects', 'users'));
+		$this->set(compact('testcases'));
 	}
 
 	function edit($id = null) {
@@ -51,9 +56,7 @@ class RequirementsController extends AppController {
 			$this->data = $this->Requirement->read(null, $id);
 		}
 		$testcases = $this->Requirement->Testcase->find('list');
-		$projects = $this->Requirement->Project->find('list');
-		$users = $this->Requirement->User->find('list');
-		$this->set(compact('testcases','projects','users'));
+		$this->set(compact('testcases'));
 	}
 
 	function delete($id = null) {

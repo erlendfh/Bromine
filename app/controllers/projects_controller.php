@@ -10,6 +10,7 @@ class ProjectsController extends AppController {
     }
     
     function view($id = null) {
+        $this->layout = 'default';
         $this->StdFuncs->view($id);
 	}
 	

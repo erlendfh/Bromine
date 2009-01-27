@@ -40,7 +40,7 @@
 class AppController extends Controller {
 
     var $components = array('Auth', 'StdFuncs','MyAcl','Menu');
-    var $helpers = array('Javascript','Html','Form');
+    var $helpers = array('Html','Ajax','Javascript');
     
     function beforeFilter() {
         $this->Auth->fields  = array(
@@ -48,11 +48,14 @@ class AppController extends Controller {
             'password' =>'password'
         );
         
+        //pr($this->Session);
+        
         $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
         $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
         $this->Auth->loginRedirect = array('controller' => 'projects', 'action' => 'select');
         
         $this->Auth->authorize = 'controller';
+        $this->username = $this->Auth->user('name');
         
         $this->set('mainMenu',$this->Menu->createMenu(-1));
         $this->set('subMenu',$this->Menu->createMenu($this->Session->read('current_main_menu_id')));
@@ -72,8 +75,28 @@ class AppController extends Controller {
     }
     
     function isAuthorized(){
+        return true;
         return $this->MyAcl->hasAccess($this->Auth->user('id'),$this->here);
     }
     
+    function beforeRender() {
+        foreach($this->modelNames as $model) {
+            foreach($this->$model->_schema as $var => $field) {
+                if(strpos($field['type'], 'enum') === FALSE)
+                continue;
+                
+                preg_match_all("/\'([^\']+)\'/", $field['type'], $strEnum);
+                
+                if(is_array($strEnum[1])) {
+                    $varName = Inflector::camelize(Inflector::pluralize($var));
+                    $varName[0] = strtolower($varName[0]);
+                    $this->set($varName, array_combine($strEnum[1], $strEnum[1]));
+                }
+            }
+        }
+    }
+
+  
+
 }
 ?>

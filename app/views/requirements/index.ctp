@@ -8,12 +8,9 @@ echo $paginator->counter(array(
 ?></p>
 <table cellpadding="0" cellspacing="0">
 <tr>
-	<th><?php echo $paginator->sort('id');?></th>
 	<th><?php echo $paginator->sort('name');?></th>
 	<th><?php echo $paginator->sort('description');?></th>
-	<th><?php echo $paginator->sort('project_id');?></th>
 	<th><?php echo $paginator->sort('nr');?></th>
-	<th><?php echo $paginator->sort('user_id');?></th>
 	<th><?php echo $paginator->sort('priority');?></th>
 	<th class="actions"><?php __('Actions');?></th>
 </tr>
@@ -27,22 +24,13 @@ foreach ($requirements as $requirement):
 ?>
 	<tr<?php echo $class;?>>
 		<td>
-			<?php echo $requirement['Requirement']['id']; ?>
-		</td>
-		<td>
-			<?php echo $requirement['Requirement']['name']; ?>
+		    <?php echo $requirement['Requirement']['name']; ?>
 		</td>
 		<td>
 			<?php echo $requirement['Requirement']['description']; ?>
 		</td>
 		<td>
-			<?php echo $html->link($requirement['Project']['name'], array('controller'=> 'projects', 'action'=>'view', $requirement['Project']['id'])); ?>
-		</td>
-		<td>
 			<?php echo $requirement['Requirement']['nr']; ?>
-		</td>
-		<td>
-			<?php echo $html->link($requirement['User']['name'], array('controller'=> 'users', 'action'=>'view', $requirement['User']['id'])); ?>
 		</td>
 		<td>
 			<?php echo $requirement['Requirement']['priority']; ?>
@@ -60,15 +48,4 @@ foreach ($requirements as $requirement):
 	<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
  | 	<?php echo $paginator->numbers();?>
 	<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?>
-</div>
-<div class="actions">
-	<ul>
-		<li><?php echo $html->link(__('New Requirement', true), array('action'=>'add')); ?></li>
-		<li><?php echo $html->link(__('List Projects', true), array('controller'=> 'projects', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Project', true), array('controller'=> 'projects', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Users', true), array('controller'=> 'users', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New User', true), array('controller'=> 'users', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Testcases', true), array('controller'=> 'testcases', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Testcase', true), array('controller'=> 'testcases', 'action'=>'add')); ?> </li>
-	</ul>
 </div>

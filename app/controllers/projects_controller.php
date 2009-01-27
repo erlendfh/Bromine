@@ -63,10 +63,6 @@ class ProjectsController extends AppController {
         }else{
             $this->Session->setFlash(__('You do not have access to any projects.', true));
             $this->redirect(array('controller'=>'users', 'action'=>'login'));
-        } 
-
-        if($this->MyAcl->hasAccess($user,"/tabs/admin")){
-            $this->set('controlPanelLink',true);  
         }
 
     }

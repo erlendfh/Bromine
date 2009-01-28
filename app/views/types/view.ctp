@@ -30,9 +30,9 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('Edit Type', true), array('action'=>'edit', $type['Type']['id'])); ?> </li>
-		<li><?php echo $html->link(__('Delete Type', true), array('action'=>'delete', $type['Type']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $type['Type']['id'])); ?> </li>
-		<li><?php echo $html->link(__('List Types', true), array('action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Type', true), array('action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('Edit Type', true), array('action'=>'edit', $type['Type']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('Delete Type', true), array('action'=>'delete', $type['Type']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $type['Type']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('List Types', true), array('action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Type', true), array('action'=>'add')); ?> </li>
 	</ul>
 </div>

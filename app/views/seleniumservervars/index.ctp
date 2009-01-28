@@ -36,9 +36,9 @@ foreach ($seleniumservervars as $seleniumservervar):
 			<?php echo $seleniumservervar['Seleniumservervar']['test_id']; ?>
 		</td>
 		<td class="actions">
-			<?php echo $html->link(__('View', true), array('action'=>'view', $seleniumservervar['Seleniumservervar']['uid'])); ?>
-			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $seleniumservervar['Seleniumservervar']['uid'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $seleniumservervar['Seleniumservervar']['uid']), null, sprintf(__('Are you sure you want to delete # %s?', true), $seleniumservervar['Seleniumservervar']['uid'])); ?>
+			<?php echo $html->aclLink(__('View', true), array('action'=>'view', $seleniumservervar['Seleniumservervar']['uid'])); ?>
+			<?php echo $html->aclLink(__('Edit', true), array('action'=>'edit', $seleniumservervar['Seleniumservervar']['uid'])); ?>
+			<?php echo $html->aclLink(__('Delete', true), array('action'=>'delete', $seleniumservervar['Seleniumservervar']['uid']), null, sprintf(__('Are you sure you want to delete # %s?', true), $seleniumservervar['Seleniumservervar']['uid'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -51,6 +51,6 @@ foreach ($seleniumservervars as $seleniumservervar):
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('New Seleniumservervar', true), array('action'=>'add')); ?></li>
+		<li><?php echo $html->aclLink(__('New Seleniumservervar', true), array('action'=>'add')); ?></li>
 	</ul>
 </div>

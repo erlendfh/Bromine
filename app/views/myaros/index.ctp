@@ -32,9 +32,9 @@ foreach ($myaros as $myaro):
 			<?php echo $myaro['Myaro']['alias']; ?>
 		</td>
 		<td class="actions">
-			<?php echo $html->link(__('View', true), array('action'=>'view', $myaro['Myaro']['id'])); ?>
-			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $myaro['Myaro']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $myaro['Myaro']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $myaro['Myaro']['id'])); ?>
+			<?php echo $html->aclLink(__('View', true), array('action'=>'view', $myaro['Myaro']['id'])); ?>
+			<?php echo $html->aclLink(__('Edit', true), array('action'=>'edit', $myaro['Myaro']['id'])); ?>
+			<?php echo $html->aclLink(__('Delete', true), array('action'=>'delete', $myaro['Myaro']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $myaro['Myaro']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -47,8 +47,8 @@ foreach ($myaros as $myaro):
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('New Myaro', true), array('action'=>'add')); ?></li>
-		<li><?php echo $html->link(__('List Myacos', true), array('controller'=> 'myacos', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Myaco', true), array('controller'=> 'myacos', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Myaro', true), array('action'=>'add')); ?></li>
+		<li><?php echo $html->aclLink(__('List Myacos', true), array('controller'=> 'myacos', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Myaco', true), array('controller'=> 'myacos', 'action'=>'add')); ?> </li>
 	</ul>
 </div>

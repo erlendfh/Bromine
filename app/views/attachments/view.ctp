@@ -15,9 +15,9 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('Edit Attachment', true), array('action'=>'edit', $attachment['Attachment']['id'])); ?> </li>
-		<li><?php echo $html->link(__('Delete Attachment', true), array('action'=>'delete', $attachment['Attachment']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $attachment['Attachment']['id'])); ?> </li>
-		<li><?php echo $html->link(__('List Attachments', true), array('action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Attachment', true), array('action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('Edit Attachment', true), array('action'=>'edit', $attachment['Attachment']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('Delete Attachment', true), array('action'=>'delete', $attachment['Attachment']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $attachment['Attachment']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('List Attachments', true), array('action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Attachment', true), array('action'=>'add')); ?> </li>
 	</ul>
 </div>

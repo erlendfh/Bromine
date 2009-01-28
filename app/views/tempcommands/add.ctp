@@ -14,6 +14,6 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('List Tempcommands', true), array('action'=>'index'));?></li>
+		<li><?php echo $html->aclLink(__('List Tempcommands', true), array('action'=>'index'));?></li>
 	</ul>
 </div>

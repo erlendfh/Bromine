@@ -12,7 +12,7 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('Delete', true), array('action'=>'delete', $form->value('Config.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $form->value('Config.id'))); ?></li>
-		<li><?php echo $html->link(__('List Configs', true), array('action'=>'index'));?></li>
+		<li><?php echo $html->aclLink(__('Delete', true), array('action'=>'delete', $form->value('Config.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $form->value('Config.id'))); ?></li>
+		<li><?php echo $html->aclLink(__('List Configs', true), array('action'=>'index'));?></li>
 	</ul>
 </div>

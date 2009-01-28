@@ -36,9 +36,9 @@ foreach ($typeofdefects as $typeofdefect):
 			<?php echo $typeofdefect['Typeofdefect']['imgpath']; ?>
 		</td>
 		<td class="actions">
-			<?php echo $html->link(__('View', true), array('action'=>'view', $typeofdefect['Typeofdefect']['id'])); ?>
-			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $typeofdefect['Typeofdefect']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $typeofdefect['Typeofdefect']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $typeofdefect['Typeofdefect']['id'])); ?>
+			<?php echo $html->aclLink(__('View', true), array('action'=>'view', $typeofdefect['Typeofdefect']['id'])); ?>
+			<?php echo $html->aclLink(__('Edit', true), array('action'=>'edit', $typeofdefect['Typeofdefect']['id'])); ?>
+			<?php echo $html->aclLink(__('Delete', true), array('action'=>'delete', $typeofdefect['Typeofdefect']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $typeofdefect['Typeofdefect']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -51,6 +51,6 @@ foreach ($typeofdefects as $typeofdefect):
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('New Typeofdefect', true), array('action'=>'add')); ?></li>
+		<li><?php echo $html->aclLink(__('New Typeofdefect', true), array('action'=>'add')); ?></li>
 	</ul>
 </div>

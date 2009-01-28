@@ -37,12 +37,12 @@ foreach ($testcasesteps as $testcasestep):
 			<?php echo $testcasestep['Testcasestep']['reaction']; ?>
 		</td>
 		<td>
-			<?php echo $html->link($testcasestep['Testcase']['name'], array('controller'=> 'testcases', 'action'=>'view', $testcasestep['Testcase']['id'])); ?>
+			<?php echo $html->aclLink($testcasestep['Testcase']['name'], array('controller'=> 'testcases', 'action'=>'view', $testcasestep['Testcase']['id'])); ?>
 		</td>
 		<td class="actions">
-			<?php echo $html->link(__('View', true), array('action'=>'view', $testcasestep['Testcasestep']['id'])); ?>
-			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $testcasestep['Testcasestep']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $testcasestep['Testcasestep']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $testcasestep['Testcasestep']['id'])); ?>
+			<?php echo $html->aclLink(__('View', true), array('action'=>'view', $testcasestep['Testcasestep']['id'])); ?>
+			<?php echo $html->aclLink(__('Edit', true), array('action'=>'edit', $testcasestep['Testcasestep']['id'])); ?>
+			<?php echo $html->aclLink(__('Delete', true), array('action'=>'delete', $testcasestep['Testcasestep']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $testcasestep['Testcasestep']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -55,8 +55,8 @@ foreach ($testcasesteps as $testcasestep):
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('New Testcasestep', true), array('action'=>'add')); ?></li>
-		<li><?php echo $html->link(__('List Testcases', true), array('controller'=> 'testcases', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Testcase', true), array('controller'=> 'testcases', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Testcasestep', true), array('action'=>'add')); ?></li>
+		<li><?php echo $html->aclLink(__('List Testcases', true), array('controller'=> 'testcases', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Testcase', true), array('controller'=> 'testcases', 'action'=>'add')); ?> </li>
 	</ul>
 </div>

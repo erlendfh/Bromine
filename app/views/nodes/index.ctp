@@ -40,9 +40,9 @@ foreach ($nodes as $node):
 			<?php echo $node['Node']['network_drive']; ?>
 		</td>
 		<td class="actions">
-			<?php echo $html->link(__('View', true), array('action'=>'view', $node['Node']['id'])); ?>
-			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $node['Node']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $node['Node']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $node['Node']['id'])); ?>
+			<?php echo $html->aclLink(__('View', true), array('action'=>'view', $node['Node']['id'])); ?>
+			<?php echo $html->aclLink(__('Edit', true), array('action'=>'edit', $node['Node']['id'])); ?>
+			<?php echo $html->aclLink(__('Delete', true), array('action'=>'delete', $node['Node']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $node['Node']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -55,10 +55,10 @@ foreach ($nodes as $node):
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('New Node', true), array('action'=>'add')); ?></li>
-		<li><?php echo $html->link(__('List Operatingsystems', true), array('controller'=> 'operatingsystems', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Operatingsystem', true), array('controller'=> 'operatingsystems', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Browsers', true), array('controller'=> 'browsers', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Browser', true), array('controller'=> 'browsers', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Node', true), array('action'=>'add')); ?></li>
+		<li><?php echo $html->aclLink(__('List Operatingsystems', true), array('controller'=> 'operatingsystems', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Operatingsystem', true), array('controller'=> 'operatingsystems', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('List Browsers', true), array('controller'=> 'browsers', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Browser', true), array('controller'=> 'browsers', 'action'=>'add')); ?> </li>
 	</ul>
 </div>

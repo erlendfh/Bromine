@@ -24,9 +24,9 @@ foreach ($sites as $site):
 			<?php echo $site['Site']['name']; ?>
 		</td>
 		<td class="actions">
-			<?php echo $html->link(__('View', true), array('action'=>'view', $site['Site']['id'])); ?>
-			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $site['Site']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $site['Site']['id']), null, sprintf(__('Are you sure you want to delete  "%s"?', true), $site['Site']['name'])); ?>
+			<?php echo $html->aclLink(__('View', true), array('action'=>'view', $site['Site']['id'])); ?>
+			<?php echo $html->aclLink(__('Edit', true), array('action'=>'edit', $site['Site']['id'])); ?>
+			<?php echo $html->aclLink(__('Delete', true), array('action'=>'delete', $site['Site']['id']), null, sprintf(__('Are you sure you want to delete  "%s"?', true), $site['Site']['name'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

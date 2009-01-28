@@ -53,7 +53,7 @@
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Project'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $html->link($suite['Project']['name'], array('controller'=> 'projects', 'action'=>'view', $suite['Project']['id'])); ?>
+			<?php echo $html->aclLink($suite['Project']['name'], array('controller'=> 'projects', 'action'=>'view', $suite['Project']['id'])); ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Analysis'); ?></dt>
@@ -65,14 +65,14 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('Edit Suite', true), array('action'=>'edit', $suite['Suite']['id'])); ?> </li>
-		<li><?php echo $html->link(__('Delete Suite', true), array('action'=>'delete', $suite['Suite']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $suite['Suite']['id'])); ?> </li>
-		<li><?php echo $html->link(__('List Suites', true), array('action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Suite', true), array('action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Projects', true), array('controller'=> 'projects', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Project', true), array('controller'=> 'projects', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Tests', true), array('controller'=> 'tests', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Test', true), array('controller'=> 'tests', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('Edit Suite', true), array('action'=>'edit', $suite['Suite']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('Delete Suite', true), array('action'=>'delete', $suite['Suite']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $suite['Suite']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('List Suites', true), array('action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Suite', true), array('action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('List Projects', true), array('controller'=> 'projects', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Project', true), array('controller'=> 'projects', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('List Tests', true), array('controller'=> 'tests', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Test', true), array('controller'=> 'tests', 'action'=>'add')); ?> </li>
 	</ul>
 </div>
 <div class="related">
@@ -106,9 +106,9 @@
 			<td><?php echo $test['manstatus'];?></td>
 			<td><?php echo $test['author'];?></td>
 			<td class="actions">
-				<?php echo $html->link(__('View', true), array('controller'=> 'tests', 'action'=>'view', $test['id'])); ?>
-				<?php echo $html->link(__('Edit', true), array('controller'=> 'tests', 'action'=>'edit', $test['id'])); ?>
-				<?php echo $html->link(__('Delete', true), array('controller'=> 'tests', 'action'=>'delete', $test['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $test['id'])); ?>
+				<?php echo $html->aclLink(__('View', true), array('controller'=> 'tests', 'action'=>'view', $test['id'])); ?>
+				<?php echo $html->aclLink(__('Edit', true), array('controller'=> 'tests', 'action'=>'edit', $test['id'])); ?>
+				<?php echo $html->aclLink(__('Delete', true), array('controller'=> 'tests', 'action'=>'delete', $test['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $test['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -117,7 +117,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $html->link(__('New Test', true), array('controller'=> 'tests', 'action'=>'add'));?> </li>
+			<li><?php echo $html->aclLink(__('New Test', true), array('controller'=> 'tests', 'action'=>'add'));?> </li>
 		</ul>
 	</div>
 </div>

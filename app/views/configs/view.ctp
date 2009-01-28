@@ -20,9 +20,9 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('Edit Config', true), array('action'=>'edit', $config['Config']['id'])); ?> </li>
-		<li><?php echo $html->link(__('Delete Config', true), array('action'=>'delete', $config['Config']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $config['Config']['id'])); ?> </li>
-		<li><?php echo $html->link(__('List Configs', true), array('action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Config', true), array('action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('Edit Config', true), array('action'=>'edit', $config['Config']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('Delete Config', true), array('action'=>'delete', $config['Config']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $config['Config']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('List Configs', true), array('action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Config', true), array('action'=>'add')); ?> </li>
 	</ul>
 </div>

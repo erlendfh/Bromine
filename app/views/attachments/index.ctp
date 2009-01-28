@@ -28,9 +28,9 @@ foreach ($attachments as $attachment):
 			<?php echo $attachment['Attachment']['path']; ?>
 		</td>
 		<td class="actions">
-			<?php echo $html->link(__('View', true), array('action'=>'view', $attachment['Attachment']['id'])); ?>
-			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $attachment['Attachment']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $attachment['Attachment']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $attachment['Attachment']['id'])); ?>
+			<?php echo $html->aclLink(__('View', true), array('action'=>'view', $attachment['Attachment']['id'])); ?>
+			<?php echo $html->aclLink(__('Edit', true), array('action'=>'edit', $attachment['Attachment']['id'])); ?>
+			<?php echo $html->aclLink(__('Delete', true), array('action'=>'delete', $attachment['Attachment']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $attachment['Attachment']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -43,6 +43,6 @@ foreach ($attachments as $attachment):
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('New Attachment', true), array('action'=>'add')); ?></li>
+		<li><?php echo $html->aclLink(__('New Attachment', true), array('action'=>'add')); ?></li>
 	</ul>
 </div>

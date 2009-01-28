@@ -28,9 +28,9 @@ foreach ($operatingsystems as $operatingsystem):
 			<?php echo $operatingsystem['Operatingsystem']['name']; ?>
 		</td>
 		<td class="actions">
-			<?php echo $html->link(__('View', true), array('action'=>'view', $operatingsystem['Operatingsystem']['id'])); ?>
-			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $operatingsystem['Operatingsystem']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $operatingsystem['Operatingsystem']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $operatingsystem['Operatingsystem']['id'])); ?>
+			<?php echo $html->aclLink(__('View', true), array('action'=>'view', $operatingsystem['Operatingsystem']['id'])); ?>
+			<?php echo $html->aclLink(__('Edit', true), array('action'=>'edit', $operatingsystem['Operatingsystem']['id'])); ?>
+			<?php echo $html->aclLink(__('Delete', true), array('action'=>'delete', $operatingsystem['Operatingsystem']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $operatingsystem['Operatingsystem']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -43,6 +43,6 @@ foreach ($operatingsystems as $operatingsystem):
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('New Operatingsystem', true), array('action'=>'add')); ?></li>
+		<li><?php echo $html->aclLink(__('New Operatingsystem', true), array('action'=>'add')); ?></li>
 	</ul>
 </div>

@@ -45,16 +45,16 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('Edit User', true), array('action'=>'edit', $user['User']['id'])); ?> </li>
-		<li><?php echo $html->link(__('Delete User', true), array('action'=>'delete', $user['User']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $user['User']['id'])); ?> </li>
-		<li><?php echo $html->link(__('List Users', true), array('action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New User', true), array('action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Defects', true), array('controller'=> 'defects', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Defect', true), array('controller'=> 'defects', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Projects', true), array('controller'=> 'projects', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Project', true), array('controller'=> 'projects', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Requirements', true), array('controller'=> 'requirements', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Requirement', true), array('controller'=> 'requirements', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('Edit User', true), array('action'=>'edit', $user['User']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('Delete User', true), array('action'=>'delete', $user['User']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $user['User']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('List Users', true), array('action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New User', true), array('action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('List Defects', true), array('controller'=> 'defects', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Defect', true), array('controller'=> 'defects', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('List Projects', true), array('controller'=> 'projects', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Project', true), array('controller'=> 'projects', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('List Requirements', true), array('controller'=> 'requirements', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Requirement', true), array('controller'=> 'requirements', 'action'=>'add')); ?> </li>
 	</ul>
 </div>
 <div class="related">
@@ -100,9 +100,9 @@
 			<td><?php echo $defect['priority'];?></td>
 			<td><?php echo $defect['site_id'];?></td>
 			<td class="actions">
-				<?php echo $html->link(__('View', true), array('controller'=> 'defects', 'action'=>'view', $defect['id'])); ?>
-				<?php echo $html->link(__('Edit', true), array('controller'=> 'defects', 'action'=>'edit', $defect['id'])); ?>
-				<?php echo $html->link(__('Delete', true), array('controller'=> 'defects', 'action'=>'delete', $defect['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $defect['id'])); ?>
+				<?php echo $html->aclLink(__('View', true), array('controller'=> 'defects', 'action'=>'view', $defect['id'])); ?>
+				<?php echo $html->aclLink(__('Edit', true), array('controller'=> 'defects', 'action'=>'edit', $defect['id'])); ?>
+				<?php echo $html->aclLink(__('Delete', true), array('controller'=> 'defects', 'action'=>'delete', $defect['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $defect['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -111,7 +111,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $html->link(__('New Defect', true), array('controller'=> 'defects', 'action'=>'add'));?> </li>
+			<li><?php echo $html->aclLink(__('New Defect', true), array('controller'=> 'defects', 'action'=>'add'));?> </li>
 		</ul>
 	</div>
 </div>
@@ -146,9 +146,9 @@
 			<td><?php echo $project['viewdefectsurl'];?></td>
 			<td><?php echo $project['adddefecturl'];?></td>
 			<td class="actions">
-				<?php echo $html->link(__('View', true), array('controller'=> 'projects', 'action'=>'view', $project['id'])); ?>
-				<?php echo $html->link(__('Edit', true), array('controller'=> 'projects', 'action'=>'edit', $project['id'])); ?>
-				<?php echo $html->link(__('Delete', true), array('controller'=> 'projects', 'action'=>'delete', $project['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $project['id'])); ?>
+				<?php echo $html->aclLink(__('View', true), array('controller'=> 'projects', 'action'=>'view', $project['id'])); ?>
+				<?php echo $html->aclLink(__('Edit', true), array('controller'=> 'projects', 'action'=>'edit', $project['id'])); ?>
+				<?php echo $html->aclLink(__('Delete', true), array('controller'=> 'projects', 'action'=>'delete', $project['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $project['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -157,7 +157,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $html->link(__('New Project', true), array('controller'=> 'projects', 'action'=>'add'));?> </li>
+			<li><?php echo $html->aclLink(__('New Project', true), array('controller'=> 'projects', 'action'=>'add'));?> </li>
 		</ul>
 	</div>
 </div>
@@ -192,9 +192,9 @@
 			<td><?php echo $requirement['user_id'];?></td>
 			<td><?php echo $requirement['priority'];?></td>
 			<td class="actions">
-				<?php echo $html->link(__('View', true), array('controller'=> 'requirements', 'action'=>'view', $requirement['id'])); ?>
-				<?php echo $html->link(__('Edit', true), array('controller'=> 'requirements', 'action'=>'edit', $requirement['id'])); ?>
-				<?php echo $html->link(__('Delete', true), array('controller'=> 'requirements', 'action'=>'delete', $requirement['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $requirement['id'])); ?>
+				<?php echo $html->aclLink(__('View', true), array('controller'=> 'requirements', 'action'=>'view', $requirement['id'])); ?>
+				<?php echo $html->aclLink(__('Edit', true), array('controller'=> 'requirements', 'action'=>'edit', $requirement['id'])); ?>
+				<?php echo $html->aclLink(__('Delete', true), array('controller'=> 'requirements', 'action'=>'delete', $requirement['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $requirement['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -203,7 +203,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $html->link(__('New Requirement', true), array('controller'=> 'requirements', 'action'=>'add'));?> </li>
+			<li><?php echo $html->aclLink(__('New Requirement', true), array('controller'=> 'requirements', 'action'=>'add'));?> </li>
 		</ul>
 	</div>
 </div>

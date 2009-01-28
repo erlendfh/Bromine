@@ -20,12 +20,12 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('Edit Myaro', true), array('action'=>'edit', $myaro['Myaro']['id'])); ?> </li>
-		<li><?php echo $html->link(__('Delete Myaro', true), array('action'=>'delete', $myaro['Myaro']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $myaro['Myaro']['id'])); ?> </li>
-		<li><?php echo $html->link(__('List Myaros', true), array('action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Myaro', true), array('action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Myacos', true), array('controller'=> 'myacos', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Myaco', true), array('controller'=> 'myacos', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('Edit Myaro', true), array('action'=>'edit', $myaro['Myaro']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('Delete Myaro', true), array('action'=>'delete', $myaro['Myaro']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $myaro['Myaro']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('List Myaros', true), array('action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Myaro', true), array('action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('List Myacos', true), array('controller'=> 'myacos', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Myaco', true), array('controller'=> 'myacos', 'action'=>'add')); ?> </li>
 	</ul>
 </div>
 <div class="related">
@@ -51,9 +51,9 @@
 			<td><?php echo $myaco['parent_id'];?></td>
 			<td><?php echo $myaco['alias'];?></td>
 			<td class="actions">
-				<?php echo $html->link(__('View', true), array('controller'=> 'myacos', 'action'=>'view', $myaco['id'])); ?>
-				<?php echo $html->link(__('Edit', true), array('controller'=> 'myacos', 'action'=>'edit', $myaco['id'])); ?>
-				<?php echo $html->link(__('Delete', true), array('controller'=> 'myacos', 'action'=>'delete', $myaco['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $myaco['id'])); ?>
+				<?php echo $html->aclLink(__('View', true), array('controller'=> 'myacos', 'action'=>'view', $myaco['id'])); ?>
+				<?php echo $html->aclLink(__('Edit', true), array('controller'=> 'myacos', 'action'=>'edit', $myaco['id'])); ?>
+				<?php echo $html->aclLink(__('Delete', true), array('controller'=> 'myacos', 'action'=>'delete', $myaco['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $myaco['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -62,7 +62,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $html->link(__('New Myaco', true), array('controller'=> 'myacos', 'action'=>'add'));?> </li>
+			<li><?php echo $html->aclLink(__('New Myaco', true), array('controller'=> 'myacos', 'action'=>'add'));?> </li>
 		</ul>
 	</div>
 </div>

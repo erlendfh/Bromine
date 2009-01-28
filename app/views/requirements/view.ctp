@@ -18,7 +18,7 @@
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Project'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $html->link($requirement['Project']['name'], array('controller'=> 'projects', 'action'=>'view', $requirement['Project']['id'])); ?>
+			<?php echo $html->aclLink($requirement['Project']['name'], array('controller'=> 'projects', 'action'=>'view', $requirement['Project']['id'])); ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Nr'); ?></dt>
@@ -58,9 +58,9 @@
 			<td><?php echo $testcase['project_id'];?></td>
 			<td><?php echo $testcase['description'];?></td>
 			<td class="actions">
-				<?php echo $html->link(__('View', true), array('controller'=> 'testcases', 'action'=>'view', $testcase['id'])); ?>
-				<?php echo $html->link(__('Edit', true), array('controller'=> 'testcases', 'action'=>'edit', $testcase['id'])); ?>
-				<?php echo $html->link(__('Delete', true), array('controller'=> 'testcases', 'action'=>'delete', $testcase['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $testcase['id'])); ?>
+				<?php echo $html->aclLink(__('View', true), array('controller'=> 'testcases', 'action'=>'view', $testcase['id'])); ?>
+				<?php echo $html->aclLink(__('Edit', true), array('controller'=> 'testcases', 'action'=>'edit', $testcase['id'])); ?>
+				<?php echo $html->aclLink(__('Delete', true), array('controller'=> 'testcases', 'action'=>'delete', $testcase['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $testcase['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>

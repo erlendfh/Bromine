@@ -28,9 +28,9 @@ foreach ($browsers as $browser):
 			<?php echo $browser['Browser']['browsername']; ?>
 		</td>
 		<td class="actions">
-			<?php echo $html->link(__('View', true), array('action'=>'view', $browser['Browser']['id'])); ?>
-			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $browser['Browser']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $browser['Browser']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $browser['Browser']['id'])); ?>
+			<?php echo $html->aclLink(__('View', true), array('action'=>'view', $browser['Browser']['id'])); ?>
+			<?php echo $html->aclLink(__('Edit', true), array('action'=>'edit', $browser['Browser']['id'])); ?>
+			<?php echo $html->aclLink(__('Delete', true), array('action'=>'delete', $browser['Browser']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $browser['Browser']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -43,6 +43,6 @@ foreach ($browsers as $browser):
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('New Browser', true), array('action'=>'add')); ?></li>
+		<li><?php echo $html->aclLink(__('New Browser', true), array('action'=>'add')); ?></li>
 	</ul>
 </div>

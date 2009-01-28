@@ -8,7 +8,7 @@
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Project'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $html->link($testcase['Project']['name'], array('controller'=> 'projects', 'action'=>'view', $testcase['Project']['id'])); ?>
+			<?php echo $html->aclLink($testcase['Project']['name'], array('controller'=> 'projects', 'action'=>'view', $testcase['Project']['id'])); ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Description'); ?></dt>

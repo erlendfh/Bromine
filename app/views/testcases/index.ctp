@@ -28,9 +28,9 @@ foreach ($testcases as $testcase):
 			<?php echo $testcase['Testcase']['description']; ?>
 		</td>
 		<td class="actions">
-			<?php echo $html->link(__('View', true), array('action'=>'view', $testcase['Testcase']['id'])); ?>
-			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $testcase['Testcase']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $testcase['Testcase']['id']), null, sprintf(__('Are you sure you want to delete "%s"?', true), $testcase['Testcase']['name'])); ?>
+			<?php echo $html->aclLink(__('View', true), array('action'=>'view', $testcase['Testcase']['id'])); ?>
+			<?php echo $html->aclLink(__('Edit', true), array('action'=>'edit', $testcase['Testcase']['id'])); ?>
+			<?php echo $html->aclLink(__('Delete', true), array('action'=>'delete', $testcase['Testcase']['id']), null, sprintf(__('Are you sure you want to delete "%s"?', true), $testcase['Testcase']['name'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

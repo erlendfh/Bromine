@@ -30,14 +30,14 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('Edit Node', true), array('action'=>'edit', $node['Node']['id'])); ?> </li>
-		<li><?php echo $html->link(__('Delete Node', true), array('action'=>'delete', $node['Node']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $node['Node']['id'])); ?> </li>
-		<li><?php echo $html->link(__('List Nodes', true), array('action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Node', true), array('action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Operatingsystems', true), array('controller'=> 'operatingsystems', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Operatingsystem', true), array('controller'=> 'operatingsystems', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Browsers', true), array('controller'=> 'browsers', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Browser', true), array('controller'=> 'browsers', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('Edit Node', true), array('action'=>'edit', $node['Node']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('Delete Node', true), array('action'=>'delete', $node['Node']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $node['Node']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('List Nodes', true), array('action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Node', true), array('action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('List Operatingsystems', true), array('controller'=> 'operatingsystems', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Operatingsystem', true), array('controller'=> 'operatingsystems', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('List Browsers', true), array('controller'=> 'browsers', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Browser', true), array('controller'=> 'browsers', 'action'=>'add')); ?> </li>
 	</ul>
 </div>
 	<div class="related">
@@ -56,7 +56,7 @@
 	<?php endif; ?>
 		<div class="actions">
 			<ul>
-				<li><?php echo $html->link(__('Edit Operatingsystem', true), array('controller'=> 'operatingsystems', 'action'=>'edit', $node['Operatingsystem']['id'])); ?></li>
+				<li><?php echo $html->aclLink(__('Edit Operatingsystem', true), array('controller'=> 'operatingsystems', 'action'=>'edit', $node['Operatingsystem']['id'])); ?></li>
 			</ul>
 		</div>
 	</div>
@@ -81,9 +81,9 @@
 			<td><?php echo $browser['id'];?></td>
 			<td><?php echo $browser['browsername'];?></td>
 			<td class="actions">
-				<?php echo $html->link(__('View', true), array('controller'=> 'browsers', 'action'=>'view', $browser['id'])); ?>
-				<?php echo $html->link(__('Edit', true), array('controller'=> 'browsers', 'action'=>'edit', $browser['id'])); ?>
-				<?php echo $html->link(__('Delete', true), array('controller'=> 'browsers', 'action'=>'delete', $browser['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $browser['id'])); ?>
+				<?php echo $html->aclLink(__('View', true), array('controller'=> 'browsers', 'action'=>'view', $browser['id'])); ?>
+				<?php echo $html->aclLink(__('Edit', true), array('controller'=> 'browsers', 'action'=>'edit', $browser['id'])); ?>
+				<?php echo $html->aclLink(__('Delete', true), array('controller'=> 'browsers', 'action'=>'delete', $browser['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $browser['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -92,7 +92,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $html->link(__('New Browser', true), array('controller'=> 'browsers', 'action'=>'add'));?> </li>
+			<li><?php echo $html->aclLink(__('New Browser', true), array('controller'=> 'browsers', 'action'=>'add'));?> </li>
 		</ul>
 	</div>
 </div>

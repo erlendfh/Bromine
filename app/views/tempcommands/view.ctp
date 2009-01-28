@@ -35,9 +35,9 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('Edit Tempcommand', true), array('action'=>'edit', $tempcommand['Tempcommand']['id'])); ?> </li>
-		<li><?php echo $html->link(__('Delete Tempcommand', true), array('action'=>'delete', $tempcommand['Tempcommand']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $tempcommand['Tempcommand']['id'])); ?> </li>
-		<li><?php echo $html->link(__('List Tempcommands', true), array('action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Tempcommand', true), array('action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('Edit Tempcommand', true), array('action'=>'edit', $tempcommand['Tempcommand']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('Delete Tempcommand', true), array('action'=>'delete', $tempcommand['Tempcommand']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $tempcommand['Tempcommand']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('List Tempcommands', true), array('action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Tempcommand', true), array('action'=>'add')); ?> </li>
 	</ul>
 </div>

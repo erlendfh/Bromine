@@ -15,9 +15,9 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('Edit Browser', true), array('action'=>'edit', $browser['Browser']['id'])); ?> </li>
-		<li><?php echo $html->link(__('Delete Browser', true), array('action'=>'delete', $browser['Browser']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $browser['Browser']['id'])); ?> </li>
-		<li><?php echo $html->link(__('List Browsers', true), array('action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Browser', true), array('action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('Edit Browser', true), array('action'=>'edit', $browser['Browser']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('Delete Browser', true), array('action'=>'delete', $browser['Browser']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $browser['Browser']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('List Browsers', true), array('action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Browser', true), array('action'=>'add')); ?> </li>
 	</ul>
 </div>

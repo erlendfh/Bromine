@@ -36,9 +36,9 @@ foreach ($requirements as $requirement):
 			<?php echo $requirement['Requirement']['priority']; ?>
 		</td>
 		<td class="actions">
-			<?php echo $html->link(__('View', true), array('action'=>'view', $requirement['Requirement']['id'])); ?>
-			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $requirement['Requirement']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $requirement['Requirement']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $requirement['Requirement']['id'])); ?>
+			<?php echo $html->aclLink(__('View', true), array('action'=>'view', $requirement['Requirement']['id'])); ?>
+			<?php echo $html->aclLink(__('Edit', true), array('action'=>'edit', $requirement['Requirement']['id'])); ?>
+			<?php echo $html->aclLink(__('Delete', true), array('action'=>'delete', $requirement['Requirement']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $requirement['Requirement']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

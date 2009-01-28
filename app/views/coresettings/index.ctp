@@ -28,10 +28,10 @@ foreach ($coresettings as $coresetting):
 			<?php echo $coresetting['Coresetting']['id']; ?>
 		</td>
 		<td>
-			<?php echo $html->link($coresetting['Site']['name'], array('controller'=> 'sites', 'action'=>'view', $coresetting['Coresetting']['site_id'])); ?>
+			<?php echo $html->aclLink($coresetting['Site']['name'], array('controller'=> 'sites', 'action'=>'view', $coresetting['Coresetting']['site_id'])); ?>
 		</td>
 		<td>
-			<?php echo $html->link($coresetting['Project']['name'], array('controller'=> 'projects', 'action'=>'view', $coresetting['Project']['id'])); ?>
+			<?php echo $html->aclLink($coresetting['Project']['name'], array('controller'=> 'projects', 'action'=>'view', $coresetting['Project']['id'])); ?>
 		</td>
 		<td>
 			<?php echo $coresetting['Coresetting']['location']; ?>
@@ -40,9 +40,9 @@ foreach ($coresettings as $coresetting):
 			<?php echo $coresetting['Coresetting']['testpath']; ?>
 		</td>
 		<td class="actions">
-			<?php echo $html->link(__('View', true), array('action'=>'view', $coresetting['Coresetting']['id'])); ?>
-			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $coresetting['Coresetting']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $coresetting['Coresetting']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $coresetting['Coresetting']['id'])); ?>
+			<?php echo $html->aclLink(__('View', true), array('action'=>'view', $coresetting['Coresetting']['id'])); ?>
+			<?php echo $html->aclLink(__('Edit', true), array('action'=>'edit', $coresetting['Coresetting']['id'])); ?>
+			<?php echo $html->aclLink(__('Delete', true), array('action'=>'delete', $coresetting['Coresetting']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $coresetting['Coresetting']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -55,10 +55,10 @@ foreach ($coresettings as $coresetting):
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('New Coresetting', true), array('action'=>'add')); ?></li>
-		<li><?php echo $html->link(__('List Sites', true), array('controller'=> 'sites', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Site', true), array('controller'=> 'sites', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Projects', true), array('controller'=> 'projects', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Project', true), array('controller'=> 'projects', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Coresetting', true), array('action'=>'add')); ?></li>
+		<li><?php echo $html->aclLink(__('List Sites', true), array('controller'=> 'sites', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Site', true), array('controller'=> 'sites', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('List Projects', true), array('controller'=> 'projects', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Project', true), array('controller'=> 'projects', 'action'=>'add')); ?> </li>
 	</ul>
 </div>

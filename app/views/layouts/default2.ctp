@@ -46,7 +46,7 @@
     		<?php $session->flash('auth'); ?>
             <?php //echo "<pre>";var_dump($authob);echo "</pre>"; ?>
             <?php 
-                echo $html->link('Log out',array('controller'=> 'users', 'action'=>'logout'));
+                echo $html->aclLink('Log out',array('controller'=> 'users', 'action'=>'logout'));
             ?>
 		</div>
 		<div id="content">

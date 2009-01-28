@@ -20,9 +20,9 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('Edit Site', true), array('action'=>'edit', $site['Site']['id'])); ?> </li>
-		<li><?php echo $html->link(__('Delete Site', true), array('action'=>'delete', $site['Site']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $site['Site']['id'])); ?> </li>
-		<li><?php echo $html->link(__('List Sites', true), array('action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Site', true), array('action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('Edit Site', true), array('action'=>'edit', $site['Site']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('Delete Site', true), array('action'=>'delete', $site['Site']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $site['Site']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('List Sites', true), array('action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Site', true), array('action'=>'add')); ?> </li>
 	</ul>
 </div>

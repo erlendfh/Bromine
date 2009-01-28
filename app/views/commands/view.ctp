@@ -28,18 +28,18 @@
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Test'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $html->link($command['Test']['name'], array('controller'=> 'tests', 'action'=>'view', $command['Test']['id'])); ?>
+			<?php echo $html->aclLink($command['Test']['name'], array('controller'=> 'tests', 'action'=>'view', $command['Test']['id'])); ?>
 			&nbsp;
 		</dd>
 	</dl>
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('Edit Command', true), array('action'=>'edit', $command['Command']['id'])); ?> </li>
-		<li><?php echo $html->link(__('Delete Command', true), array('action'=>'delete', $command['Command']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $command['Command']['id'])); ?> </li>
-		<li><?php echo $html->link(__('List Commands', true), array('action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Command', true), array('action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Tests', true), array('controller'=> 'tests', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Test', true), array('controller'=> 'tests', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('Edit Command', true), array('action'=>'edit', $command['Command']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('Delete Command', true), array('action'=>'delete', $command['Command']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $command['Command']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('List Commands', true), array('action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Command', true), array('action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('List Tests', true), array('controller'=> 'tests', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Test', true), array('controller'=> 'tests', 'action'=>'add')); ?> </li>
 	</ul>
 </div>

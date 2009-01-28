@@ -44,9 +44,9 @@ foreach ($projects as $project):
 			<?php echo $project['Project']['adddefecturl']; ?>
 		</td>
 		<td class="actions">
-			<?php echo $html->link(__('View', true), array('action'=>'view', $project['Project']['id'])); ?>
-			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $project['Project']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $project['Project']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $project['Project']['id'])); ?>
+			<?php echo $html->aclLink(__('View', true), array('action'=>'view', $project['Project']['id'])); ?>
+			<?php echo $html->aclLink(__('Edit', true), array('action'=>'edit', $project['Project']['id'])); ?>
+			<?php echo $html->aclLink(__('Delete', true), array('action'=>'delete', $project['Project']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $project['Project']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -59,20 +59,20 @@ foreach ($projects as $project):
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('New Project', true), array('action'=>'add')); ?></li>
-		<li><?php echo $html->link(__('List Users', true), array('controller'=> 'users', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New User', true), array('controller'=> 'users', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Coresettings', true), array('controller'=> 'coresettings', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Coresetting', true), array('controller'=> 'coresettings', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Coretestsuites', true), array('controller'=> 'coretestsuites', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Coretestsuite', true), array('controller'=> 'coretestsuites', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Defects', true), array('controller'=> 'defects', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Defect', true), array('controller'=> 'defects', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Requirements', true), array('controller'=> 'requirements', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Requirement', true), array('controller'=> 'requirements', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Suites', true), array('controller'=> 'suites', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Suite', true), array('controller'=> 'suites', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Testcases', true), array('controller'=> 'testcases', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Testcase', true), array('controller'=> 'testcases', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Project', true), array('action'=>'add')); ?></li>
+		<li><?php echo $html->aclLink(__('List Users', true), array('controller'=> 'users', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New User', true), array('controller'=> 'users', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('List Coresettings', true), array('controller'=> 'coresettings', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Coresetting', true), array('controller'=> 'coresettings', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('List Coretestsuites', true), array('controller'=> 'coretestsuites', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Coretestsuite', true), array('controller'=> 'coretestsuites', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('List Defects', true), array('controller'=> 'defects', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Defect', true), array('controller'=> 'defects', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('List Requirements', true), array('controller'=> 'requirements', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Requirement', true), array('controller'=> 'requirements', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('List Suites', true), array('controller'=> 'suites', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Suite', true), array('controller'=> 'suites', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('List Testcases', true), array('controller'=> 'testcases', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Testcase', true), array('controller'=> 'testcases', 'action'=>'add')); ?> </li>
 	</ul>
 </div>

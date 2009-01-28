@@ -15,9 +15,9 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('Edit Operatingsystem', true), array('action'=>'edit', $operatingsystem['Operatingsystem']['id'])); ?> </li>
-		<li><?php echo $html->link(__('Delete Operatingsystem', true), array('action'=>'delete', $operatingsystem['Operatingsystem']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $operatingsystem['Operatingsystem']['id'])); ?> </li>
-		<li><?php echo $html->link(__('List Operatingsystems', true), array('action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Operatingsystem', true), array('action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('Edit Operatingsystem', true), array('action'=>'edit', $operatingsystem['Operatingsystem']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('Delete Operatingsystem', true), array('action'=>'delete', $operatingsystem['Operatingsystem']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $operatingsystem['Operatingsystem']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('List Operatingsystems', true), array('action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Operatingsystem', true), array('action'=>'add')); ?> </li>
 	</ul>
 </div>

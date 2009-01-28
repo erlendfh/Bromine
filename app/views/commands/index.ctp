@@ -41,12 +41,12 @@ foreach ($commands as $command):
 			<?php echo $command['Command']['var2']; ?>
 		</td>
 		<td>
-			<?php echo $html->link($command['Test']['name'], array('controller'=> 'tests', 'action'=>'view', $command['Test']['id'])); ?>
+			<?php echo $html->aclLink($command['Test']['name'], array('controller'=> 'tests', 'action'=>'view', $command['Test']['id'])); ?>
 		</td>
 		<td class="actions">
-			<?php echo $html->link(__('View', true), array('action'=>'view', $command['Command']['id'])); ?>
-			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $command['Command']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $command['Command']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $command['Command']['id'])); ?>
+			<?php echo $html->aclLink(__('View', true), array('action'=>'view', $command['Command']['id'])); ?>
+			<?php echo $html->aclLink(__('Edit', true), array('action'=>'edit', $command['Command']['id'])); ?>
+			<?php echo $html->aclLink(__('Delete', true), array('action'=>'delete', $command['Command']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $command['Command']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -59,8 +59,8 @@ foreach ($commands as $command):
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('New Command', true), array('action'=>'add')); ?></li>
-		<li><?php echo $html->link(__('List Tests', true), array('controller'=> 'tests', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Test', true), array('controller'=> 'tests', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Command', true), array('action'=>'add')); ?></li>
+		<li><?php echo $html->aclLink(__('List Tests', true), array('controller'=> 'tests', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Test', true), array('controller'=> 'tests', 'action'=>'add')); ?> </li>
 	</ul>
 </div>

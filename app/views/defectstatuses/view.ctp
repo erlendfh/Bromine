@@ -25,9 +25,9 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('Edit Defectstatus', true), array('action'=>'edit', $defectstatus['Defectstatus']['id'])); ?> </li>
-		<li><?php echo $html->link(__('Delete Defectstatus', true), array('action'=>'delete', $defectstatus['Defectstatus']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $defectstatus['Defectstatus']['id'])); ?> </li>
-		<li><?php echo $html->link(__('List Defectstatuses', true), array('action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Defectstatus', true), array('action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('Edit Defectstatus', true), array('action'=>'edit', $defectstatus['Defectstatus']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('Delete Defectstatus', true), array('action'=>'delete', $defectstatus['Defectstatus']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $defectstatus['Defectstatus']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('List Defectstatuses', true), array('action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Defectstatus', true), array('action'=>'add')); ?> </li>
 	</ul>
 </div>

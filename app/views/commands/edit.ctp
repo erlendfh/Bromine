@@ -15,9 +15,9 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('Delete', true), array('action'=>'delete', $form->value('Command.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $form->value('Command.id'))); ?></li>
-		<li><?php echo $html->link(__('List Commands', true), array('action'=>'index'));?></li>
-		<li><?php echo $html->link(__('List Tests', true), array('controller'=> 'tests', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Test', true), array('controller'=> 'tests', 'action'=>'add')); ?> </li>
+		<li><?php echo $html->aclLink(__('Delete', true), array('action'=>'delete', $form->value('Command.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $form->value('Command.id'))); ?></li>
+		<li><?php echo $html->aclLink(__('List Commands', true), array('action'=>'index'));?></li>
+		<li><?php echo $html->aclLink(__('List Tests', true), array('controller'=> 'tests', 'action'=>'index')); ?> </li>
+		<li><?php echo $html->aclLink(__('New Test', true), array('controller'=> 'tests', 'action'=>'add')); ?> </li>
 	</ul>
 </div>

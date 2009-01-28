@@ -775,3 +775,15 @@
 
 
 
+2009-01-28 12:24:36 Debug: Notice (8): Undefined variable: javascript in [APP\views\layouts\default.ctp, line 39]
+2009-01-28 12:24:38 Debug: Notice (8): Undefined variable: javascript in [APP\views\layouts\default.ctp, line 39]
+2009-01-28 12:24:38 Debug: Notice (8): Undefined variable: javascript in [APP\views\layouts\default.ctp, line 39]
+2009-01-28 12:24:40 Debug: Notice (8): Undefined variable: javascript in [APP\views\layouts\default.ctp, line 39]
+2009-01-28 12:27:56 Debug: Notice (8): Undefined variable: paginator in [APP\views\users\assign.ctp, line 5]
+2009-01-28 13:04:17 Debug: Notice (8): Undefined variable: assigned_users in [APP\views\users\assign.ctp, line 34]
+2009-01-28 13:13:00 Debug: Notice (8): Undefined property: User::$Project in [APP\controllers\users_controller.php, line 12]
+2009-01-28 13:13:04 Debug: Notice (8): Undefined property: User::$Project in [APP\controllers\users_controller.php, line 12]
+2009-01-28 13:45:28 Debug: Notice (8): Undefined variable: admin_users in [APP\views\users\assign.ctp, line 39]
+2009-01-28 13:45:28 Debug: Notice (8): Undefined variable: admin_users in [APP\views\users\assign.ctp, line 36]
+2009-01-28 14:12:51 Debug: Notice (8): Undefined property: UsersController::$Myaro in [APP\controllers\users_controller.php, line 11]
+2009-01-28 14:40:27 Debug: Notice (8): Undefined property: UsersController::$data2 in [APP\controllers\users_controller.php, line 13]

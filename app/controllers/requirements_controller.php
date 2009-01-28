@@ -7,7 +7,8 @@ class RequirementsController extends AppController {
     var $paginate = array(
         'limit' => 25,
         'order' => array(
-            'Requirement.priority' => 'asc'
+            'Requirement.priority' => 'asc',
+            'Requirement.nr' => 'asc'
         )
     );
 

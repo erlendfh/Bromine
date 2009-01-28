@@ -96,7 +96,5 @@ class AppController extends Controller {
         }
     }
 
-  
-
 }
 ?>

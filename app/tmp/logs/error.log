@@ -1559,4 +1559,20 @@ Aco: controllers/tabs/config in [CORE\cake\libs\controller\components\acl.php, l
 2009-01-28 14:26:57 Warning: Warning (2): array_values() [<a href='http://php.net/function.array-values'>function.array-values</a>]: The argument should be an array in [CORE\cake\libs\model\behaviors\tree.php, line 870]
 2009-01-28 14:32:53 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:312) in [CORE\cake\libs\controller\controller.php, line 615]
 2009-01-28 14:33:03 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\cake\basics.php:312) in [CORE\cake\libs\controller\controller.php, line 615]
+<<<<<<< .mine
+2009-01-28 16:17:15 Warning: Warning (2): Missing argument 1 for RequirementsController::test(), called in C:\xampp\htdocs\cake\libs\object.php on line 115 and defined in [APP\controllers\requirements_controller.php, line 14]
+2009-01-29 10:55:59 Warning: Warning (2): Missing argument 1 for RequirementsController::test(), called in C:\xampp\htdocs\cake\libs\object.php on line 115 and defined in [APP\controllers\requirements_controller.php, line 14]
+2009-01-29 10:56:12 Warning: Warning (2): Missing argument 1 for RequirementsController::test(), called in C:\xampp\htdocs\cake\libs\object.php on line 115 and defined in [APP\controllers\requirements_controller.php, line 14]
+2009-01-29 10:56:15 Warning: Warning (2): Missing argument 1 for RequirementsController::test(), called in C:\xampp\htdocs\cake\libs\object.php on line 115 and defined in [APP\controllers\requirements_controller.php, line 14]
+2009-01-29 10:56:37 Warning: Warning (2): Missing argument 1 for RequirementsController::test(), called in C:\xampp\htdocs\cake\libs\object.php on line 115 and defined in [APP\controllers\requirements_controller.php, line 14]
+2009-01-29 10:56:39 Warning: Warning (2): Missing argument 1 for RequirementsController::test(), called in C:\xampp\htdocs\cake\libs\object.php on line 115 and defined in [APP\controllers\requirements_controller.php, line 14]
+2009-01-29 11:00:24 Warning: Warning (2): Missing argument 2 for RequirementsController::test(), called in C:\xampp\htdocs\cake\libs\object.php on line 117 and defined in [APP\controllers\requirements_controller.php, line 14]
+2009-01-29 11:00:32 Warning: Warning (2): Missing argument 2 for RequirementsController::test(), called in C:\xampp\htdocs\cake\libs\object.php on line 117 and defined in [APP\controllers\requirements_controller.php, line 14]
+2009-01-29 11:00:34 Warning: Warning (2): Missing argument 2 for RequirementsController::test(), called in C:\xampp\htdocs\cake\libs\object.php on line 117 and defined in [APP\controllers\requirements_controller.php, line 14]
+=======
 >>>>>>> .r258
+>>>>>>> .r259
+2009-01-29 12:18:35 Warning: Warning (2): Missing argument 1 for TestcasestepsController::reorder(), called in C:\xampp\htdocs\cake\libs\object.php on line 115 and defined in [APP\controllers\testcasesteps_controller.php, line 12]
+2009-01-29 12:18:35 Warning: Warning (2): Missing argument 2 for TestcasestepsController::reorder(), called in C:\xampp\htdocs\cake\libs\object.php on line 115 and defined in [APP\controllers\testcasesteps_controller.php, line 12]
+2009-01-29 12:18:40 Warning: Warning (2): Missing argument 1 for TestcasestepsController::reorder(), called in C:\xampp\htdocs\cake\libs\object.php on line 115 and defined in [APP\controllers\testcasesteps_controller.php, line 12]
+2009-01-29 12:18:40 Warning: Warning (2): Missing argument 2 for TestcasestepsController::reorder(), called in C:\xampp\htdocs\cake\libs\object.php on line 115 and defined in [APP\controllers\testcasesteps_controller.php, line 12]

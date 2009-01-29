@@ -8,6 +8,11 @@ class TestcasestepsController extends AppController {
 		$this->Testcasestep->recursive = 0;
 		$this->set('testcasesteps', $this->paginate());
 	}
+	
+	function reorder($testcase_id, $order){
+        $this->set('testcase_id',$testcase_id);
+        $this->set('order',$order);
+    }
 
 	function view($id = null) {
 		if (!$id) {
@@ -30,8 +35,6 @@ class TestcasestepsController extends AppController {
 			}
 		}
 		else{
-		  
-            //$this->set('orderby', $this->Testcasestep->);
         
         }
 		$testcases = $this->Testcasestep->Testcase->find('list');

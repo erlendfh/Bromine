@@ -11,11 +11,11 @@ class RequirementsController extends AppController {
             'Requirement.nr' => 'asc'
         )
     );
-
     
 	function index() {
 		$this->Requirement->recursive = 0;
 		$this->set('requirements', $this->paginate(null, array('project.id' => $this->Session->read('project_id'))));
+		
 	}
 
 	function view($id = null) {

@@ -880,4 +880,18 @@
 2009-01-28 13:45:28 Debug: Notice (8): Undefined variable: admin_users in [APP\views\users\assign.ctp, line 36]
 2009-01-28 14:12:51 Debug: Notice (8): Undefined property: UsersController::$Myaro in [APP\controllers\users_controller.php, line 11]
 2009-01-28 14:40:27 Debug: Notice (8): Undefined property: UsersController::$data2 in [APP\controllers\users_controller.php, line 13]
+<<<<<<< .mine
+2009-01-28 16:17:15 Debug: Notice (8): Undefined variable: one in [APP\controllers\requirements_controller.php, line 16]
+2009-01-28 16:17:34 Debug: Notice (8): Undefined variable: one in [APP\views\requirements\test.ctp, line 2]
+2009-01-29 10:55:59 Debug: Notice (8): Undefined variable: data in [APP\controllers\requirements_controller.php, line 15]
+2009-01-29 10:56:12 Debug: Notice (8): Undefined variable: data in [APP\controllers\requirements_controller.php, line 15]
+2009-01-29 10:56:15 Debug: Notice (8): Undefined variable: data in [APP\controllers\requirements_controller.php, line 15]
+2009-01-29 10:56:37 Debug: Notice (8): Undefined variable: data in [APP\controllers\requirements_controller.php, line 15]
+2009-01-29 10:56:39 Debug: Notice (8): Undefined variable: data in [APP\controllers\requirements_controller.php, line 15]
+=======
 >>>>>>> .r258
+>>>>>>> .r259
+2009-01-29 12:18:35 Debug: Notice (8): Undefined variable: testcase_id in [APP\controllers\testcasesteps_controller.php, line 13]
+2009-01-29 12:18:35 Debug: Notice (8): Undefined variable: order in [APP\controllers\testcasesteps_controller.php, line 14]
+2009-01-29 12:18:40 Debug: Notice (8): Undefined variable: testcase_id in [APP\controllers\testcasesteps_controller.php, line 13]
+2009-01-29 12:18:40 Debug: Notice (8): Undefined variable: order in [APP\controllers\testcasesteps_controller.php, line 14]

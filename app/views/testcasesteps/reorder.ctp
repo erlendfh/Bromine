@@ -1,3 +1,3 @@
 <?php
-echo __("Sequence updated");
+//pr($data);
 ?>

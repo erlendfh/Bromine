@@ -1,9 +1,20 @@
+<script type='text/javascript'>
+Ajax.Responders.register({
+	onCreate: function() {
+		if($('notification') && Ajax.activeRequestCount > 0)
+			Effect.Appear('notification',{duration: 0.25, queue: 'end'});
+	},
+	onComplete: function() {
+		if($('notification') && Ajax.activeRequestCount == 0)
+			Effect.Fade('notification',{duration: 0.25, queue: 'end'});
+	}
+});
+</script>
 <div class="testcases form">
 <?php echo $form->create('Testcase');?>
 	<fieldset>
  		<legend><?php __('Edit Testcase');?></legend>
 	<?php
-
 		echo $form->input('name');
 		echo $form->hidden('project_id',array('value' => $session->read('project_id')));
 		echo $form->input('description');
@@ -12,29 +23,37 @@
 	</fieldset>
 <?php echo $form->end('Submit');?>
 </div>
-<ol id='sort'>
+<br />
+<br />
+<div id='sort'>
 <?php foreach ($testcasesteps as $testcasestep): ?>
-	<li id='item_<?php echo $testcasestep['TestcaseStep']['id']; ?>'>
+
+	<div class='container' style='cursor: url("/img/openhand.cur"), move; clear: both; border-top: 1px solid lightgrey;' id='item_<?php echo $testcasestep['TestcaseStep']['id']; ?>'>
 		
-			<?php echo $testcasestep['TestcaseStep']['action']; ?>
-		
-			<?php echo $testcasestep['TestcaseStep']['reaction']; ?>
-		
-			<?php echo $html->link(__('View', true), array('controller' => 'Testcasesteps', 'action'=>'view', $testcasestep['TestcaseStep']['id'])); ?>
-			<?php echo $html->link(__('Edit', true), array('controller' => 'Testcasesteps', 'action'=>'edit', $testcasestep['TestcaseStep']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('controller' => 'Testcasesteps', 'action'=>'delete', $testcasestep['TestcaseStep']['id']), null, sprintf(__('Are you sure you want to delete %s?', true), $testcasestep['TestcaseStep']['id'])); ?>
+			<div style='width: 300px; float: left;'>
+                <?php echo $testcasestep['TestcaseStep']['action']; ?>
+                
+			</div>
+	        <div>	
+			 <?php echo $testcasestep['TestcaseStep']['reaction']; ?>
+			</div>
         
-	</li>
+	</div>
 <?php endforeach; ?>
-</ol>
+</div>
 <div id='output'></div>
 <script type='text/javascript'>
 Sortable.create("sort", {
+    tag: 'div',
+    only: 'container',
     onUpdate: function() {
-        new Ajax.Updater('output','/testcasesteps/reorder/'+<?php echo $testcasestep['TestcaseStep']['id'] ?>+'/'+Sortable.sequence("sort"));
-        new Effect.Highlight('output');
+        new Ajax.Updater('output','/testcasesteps/reorder/'+Sortable.sequence("sort"));
+        new Effect.Highlight('sort');
     }
 });
 </script>
 
 <?php echo $html->link(__('Add new step', true), array('controller' => 'Testcasesteps', 'action'=>'add' , $this->data['Testcase']['id'],$testcasestep['TestcaseStep']['orderby'] +1 )); ?>
+<!--
+
+-->

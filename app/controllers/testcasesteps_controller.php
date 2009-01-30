@@ -9,9 +9,15 @@ class TestcasestepsController extends AppController {
 		$this->set('testcasesteps', $this->paginate());
 	}
 	
-	function reorder($testcase_id, $order){
-        $this->set('testcase_id',$testcase_id);
-        $this->set('order',$order);
+	function reorder($order){    
+        $order = split(',',$order);
+        foreach($order as $k=>$v){
+            $this->data['Testcasestep']['id'] = $v;
+            $this->data['Testcasestep']['orderby'] = $k;
+            $this->Testcasestep->save($this->data);    
+        }
+        
+        //$this->set('data',$this->data);
     }
 
 	function view($id = null) {

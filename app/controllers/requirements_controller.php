@@ -2,7 +2,7 @@
 class RequirementsController extends AppController {
 
 	var $name = 'Requirements';
-	var $helpers = array('Html', 'Form');
+	var $helpers = array('Html', 'Form','Tree');
     var $needsproject = true;
     var $paginate = array(
         'limit' => 25,
@@ -11,10 +11,19 @@ class RequirementsController extends AppController {
             'Requirement.nr' => 'asc'
         )
     );
+    function reorder($id=null,$parent_id=null){
+        if(isset($id) && isset($parent_id)){
+            $this->data['Requirement']['id'] = $id;
+            $this->data['Requirement']['parent_id'] = $parent_id;
+            $this->Requirement->save($this->data);
+        }
+
+    }
     
 	function index() {
 		$this->Requirement->recursive = 0;
-		$this->set('requirements', $this->paginate(null, array('project.id' => $this->Session->read('project_id'))));
+		$this->set('data',$this->Requirement->find('threaded'));
+		//$this->set('requirements', $this->paginate(null, array('project.id' => $this->Session->read('project_id'))));
 		
 	}
 

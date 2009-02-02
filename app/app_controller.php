@@ -41,6 +41,7 @@ class AppController extends Controller {
 
     var $components = array('Auth', 'StdFuncs','MyAcl','Menu','RequestHandler');
     var $helpers = array('Html','Ajax','Javascript');
+    var $layout = 'green';
     
     function beforeFilter() {
         $this->Auth->fields  = array(
@@ -54,11 +55,13 @@ class AppController extends Controller {
         
         $this->Auth->authorize = 'controller';
         
-        $this->set('mainMenu',$this->Menu->createMenu(-1));
-        $this->set('subMenu',$this->Menu->createMenu($this->Session->read('current_main_menu_id')));
         
-        $this->set('adminMainMenu',$this->Menu->createMenu(-2));
-        $this->set('adminSubMenu',$this->Menu->createMenu($this->Session->read('current_admin_main_menu_id')));
+        $this->set('mainMenu',$this->Menu->createMenu($this->Session->read('main_menu_id')));
+        $this->set('subMenu',$this->Menu->createMenu($this->Session->read('sub_menu_id')));
+
+        
+        
+        
 
         if(isset($this->needsproject)){
             if((is_array($this->needsproject) && in_array($this->action, $this->needsproject)) || $this->needsproject===true){ //If the controller/action needs a project

@@ -2,32 +2,37 @@
     <h2><?php __('ACL manager');?></h2>
     <table style='width: 100%;'>
         <tr>
+            <th>Requesters</th>
+            <th>Resources</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
             <td>
                 <div id='aros'>
-                    <?php
-                        foreach($Aros as $Aro){
-                            echo $ajax->link(
-                                $Aro['Myaro']['alias'],
-                                array('controller'=>'manageAcl','action'=>'listAros',$Aro['Myaro']['id']),
-                                array( 'update' => 'aros' )
-                            );
-                            echo "<br />";
-                        }
-                    ?>
+                    <script type="text/javascript">
+                        <?php 
+                            echo $ajax->remoteFunction( 
+                            array( 
+                                'url' => array( 'controller' => 'manageAcl', 'action' => 'listAros'), 
+                                'update' => 'aros' 
+                            ) 
+                        ); ?>
+                    </script>
                 </div>
             </td>
             <td>
                 <div id='acos'>
-                <?php
-                    foreach($Acos as $Aco){
-                        echo $ajax->link(
-                            $Aco['Myaco']['alias'],
-                            array('controller'=>'manageAcl','action'=>'listAcos',$Aco['Myaco']['id']),
-                            array( 'update' => 'acos' )
-                        );
-                        echo "<br />";
-                    }
-                ?>
+                    <script type="text/javascript">
+                        <?php echo $ajax->remoteFunction( 
+                            array( 
+                                'url' => array( 'controller' => 'manageAcl', 'action' => 'listAcos'), 
+                                'update' => 'acos' 
+                            ) 
+                        ); ?>
+                    </script>
                 </div>
             </td>
         </tr>

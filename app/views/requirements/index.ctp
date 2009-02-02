@@ -1,51 +1,107 @@
-<div class="requirements index">
-<h2><?php __('Requirements');?></h2>
-<p>
-<?php
-echo $paginator->counter(array(
-'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
-));
-?></p>
-<table cellpadding="0" cellspacing="0">
-<tr>
-	<th><?php echo $paginator->sort('name');?></th>
-	<th><?php echo $paginator->sort('description');?></th>
-	<th><?php echo $paginator->sort('nr');?></th>
-	<th><?php echo $paginator->sort('priority');?></th>
-	<th class="actions"><?php __('Actions');?></th>
-</tr>
-<?php
-$i = 0;
-foreach ($requirements as $requirement):
-	$class = null;
-	if ($i++ % 2 == 0) {
-		$class = ' class="altrow"';
-	}
-?>
-	<tr<?php echo $class;?>>
-		<td>
-		    <?php echo $requirement['Requirement']['name']; ?>
-		</td>
-		<td>
-			<?php echo $requirement['Requirement']['description']; ?>
-		</td>
-		<td>
-			<?php echo $requirement['Requirement']['nr']; ?>
-		</td>
-		<td>
-			<?php echo $requirement['Requirement']['priority']; ?>
-		</td>
-		<td class="actions">
-			<?php echo $html->aclLink(__('View', true), array('action'=>'view', $requirement['Requirement']['id'])); ?>
-			<?php echo $html->aclLink(__('Edit', true), array('action'=>'edit', $requirement['Requirement']['id'])); ?>
-			<?php echo $html->aclLink(__('Delete', true), array('action'=>'delete', $requirement['Requirement']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $requirement['Requirement']['id'])); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
+<style>
+
+    #tree, #tree ul {
+        margin: 0px 0px 0px 0px;
+    	padding-left: 20px; 
+    	list-style-type: none;
+    	cursor: move;
+    	line-height: 28px;
+    }
+    #tree {
+      padding: 0px;
+	    margin: 12px;
+    	width: 200px;
+    }
+    #tree li {
+        list-style-type: none;
+        margin: 0px 0px 0px 0px;
+    	margin-top: -6px;
+    }
+    #tree li a {
+      padding: 2px 0 0 18px;
+    	background: url(/img/file.png) no-repeat left top;
+    }
+    #tree li.file {
+    	padding-left: 18px;
+    }
+    #tree li.file a {
+    	padding-left: 18px;
+    	background: url(/img/file.png) no-repeat left top;
+    }
+    #tree li span.handle {
+      display: block;
+      float: left;
+    	width: 15px;
+    	height: 12px;
+    	margin: 6px 3px 0 0;
+    	cursor: pointer;
+    }
+    #tree li span {
+    	background: url(/img/folder_open.png) no-repeat 3px 3px;
+    }
+    #tree li.closed span {
+    	background: url(/img/folder_closed.png) no-repeat 3px 3px;
+    }
+    #tree li.closed li {
+    	display: none;
+    }
+    #tree .drop_hover {
+    	background: url(/img/drag.png) no-repeat bottom left;
+    }
+    #tree .drop_top {
+    	background-position: 12px top;
+    }
+    #tree .drop_bottom {
+    	background-position: 12px bottom;
+    }
+    #tree .drop_insert {
+    	background-position: 32px 100%;
+    }
+    #log {
+      padding: 12px;
+      color: #999;
+      line-height: 12px;
+    }
+  </style>
+<table>
+    <tr style='vertical-align: top;'>
+        <td>
+            <?php echo $tree->show('Requirement/name', $data); ?>
+        </td>
+        <td>
+            <div id='lala'></div>
+        </td>
+    </tr>
 </table>
-</div>
-<div class="paging">
-	<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
- | 	<?php echo $paginator->numbers();?>
-	<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?>
-</div>
+<div id="log"></div>
+<script>
+  var tree = new SortableTree('tree', {
+    droppable: {
+      container: ':not(.2)'
+    },
+    onDrop: function(drag, drop, event){
+      //$('log').update($('log').innerHTML + "<p>" + drag.to_params() + "</p>")
+      new Ajax.Updater('log','/requirements/reorder/'+drag.id()+'/'+drag.parent.id());
+    }
+  });
+  tree.setSortable();
+
+  function log(line) {
+    $('log').update($('log').innerHTML + "<p>" + line + "</p>");
+  }
+  
+  function toggle_folder(event) {
+    var element = event.element().ancestors().first();
+    if(element.hasClassName('closed')) {
+      element.removeClassName('closed');
+    } else {
+      element.addClassName('closed');
+    }
+  }
+  
+  Event.observe(window, "load", function(){
+    $$('.handle').each(function(element){
+      Event.observe(element, 'click', toggle_folder);
+    });
+  });
+</script>

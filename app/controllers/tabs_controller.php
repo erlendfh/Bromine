@@ -55,6 +55,14 @@ class TabsController extends AppController {
 	   $this->Session->write('current_admin_main_menu_id', 34);
 	   $this->set('adminSubMenu',$this->Menu->createMenu(34));
 	}
+	
+	function menulink($id, $parent_id, $controller, $action){
+        $this->Session->write('main_menu_id', $parent_id);
+        $this->Session->write('sub_menu_id', $id);
+        $this->redirect(array('controller' => $controller, 'action' => $action));
+        
+    
+    }
 
 }
 ?>

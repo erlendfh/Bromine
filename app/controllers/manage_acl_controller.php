@@ -5,26 +5,23 @@ class ManageAclController extends AppController {
 	var $helpers = array('Html', 'Form', 'Ajax', 'Javascript');
 	var $layout = "admin";
 	var $uses = array();
-	var $components = array( 'RequestHandler' );
-	
+
 	function index(){
-            $this->listAros();
-            $this->listAcos();
     }
     
 	function listAros($parent_id = null){
         App::import('Model','Myaro');
 		$this->Myaro = new Myaro();
-		$this->Myaro->recursive = 0;
 		$this->set('CurrentAros', $this->Myaro->read(null,$parent_id));
+		$this->Myaro->recursive = 0;
 		$this->set('Aros', $this->Myaro->find('all',array('conditions'=>array('parent_id'=>$parent_id),'order'=>'alias')));
 	}
 
 	function listAcos($parent_id = null){
 		App::import('Model','Myaco');
 		$this->Myaco = new Myaco();
-		$this->Myaco->recursive = 0;
 		$this->set('CurrentAcos', $this->Myaco->read(null,$parent_id));
+		$this->Myaco->recursive = 0;
         $this->set('Acos', $this->Myaco->find('all',array('conditions'=>array('parent_id'=>$parent_id),'order'=>'alias')));
 	}
 

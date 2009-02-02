@@ -42,7 +42,7 @@ class UsersController extends AppController {
     }
 	
 	function login() {
-	    $this->layout = 'select';
+	    $this->layout = 'green_select';
         //Auth Magic
     }
      

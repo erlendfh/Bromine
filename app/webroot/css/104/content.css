@@ -1,6 +1,3 @@
-.manageacl.index table tr td{
-    text-align: left;
-}
 label{
 	display: block;
 	font-size: 110%;
@@ -12,14 +9,6 @@ fieldset {
 input[type=submit] {
 	margin-top: 6px;
 	margin-left: 20px;
-}
-
-.cake-sql-log{
-	background: #f4f4f4;
-}
-.cake-sql-log td {
-	padding: 4px 8px;
-	text-align: left;
 }
 
 table.index, table.related {
@@ -53,25 +42,17 @@ table.index, table.related {
 	background: #fff;
 	border-right: 1px solid #ccc;
 	padding: 4px;
-	text-align: center;
+	text-align: left;
 	vertical-align: top;
 }
-
 .index table tr.altrow td, .related table tr.altrow td {
 	background: #f4f4f4;
-}
-td.actions {
-	text-align: center;
-	white-space: nowrap;
-}
-td.actions a {
-	margin: 0px 6px;
 }
 
 div.paging {
 	background:#fff;
 	color: #ccc;
-	margin-bottom: 2em;
+	margin-bottom: 0em;
 }
 div.paging div.disabled {
 	color: #ddd;
@@ -105,6 +86,13 @@ dd {
 }
 
 /* Debugging */
+.cake-sql-log{
+	background: #f4f4f4;
+}
+.cake-sql-log td {
+	padding: 4px 8px;
+	text-align: left;
+}
 pre {
 	color: #000;
 	background: #f0f0f0;
@@ -206,12 +194,4 @@ div.code-coverage-results span.result-ok {
 }
 div.code-coverage-results span.result-good {
 	color: #0a0;
-}
-
-#project-name{
-    color: light-grey;
-    font-family: Tahoma, Arial, sans-serif;
-	font-size: 18px;
-	font-weight: bold;
-	text-decoration: none;
 }

@@ -38,6 +38,7 @@ class CommandsController extends AppController {
 	function add() {
 		if (!empty($this->data)) {
 			$this->Command->create();
+			pr($this->data);
 			if ($this->Command->save($this->data)) {
 				$this->Session->setFlash(__('The Command has been saved', true));
 				$this->redirect(array('action'=>'index'));

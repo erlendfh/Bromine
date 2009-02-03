@@ -35,6 +35,9 @@
  */
 	//Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
 	Router::connect ('/', array('controller'=>'users', 'action'=>'login'));
+	Router::connect ('/selenium-server/driver', array('controller'=>'seleniumserver', 'action'=>'driver'));
+	Router::connect ('/selenium-server/initiate', array('controller'=>'seleniumserver', 'action'=>'initiate'));
+	Router::connect ('/selenium-server/initiate/*/*', array('controller'=>'seleniumserver', 'action'=>'initiate'));
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */

@@ -1,0 +1,122 @@
+01.30.09 11:51:11 
+ Called with: Array
+(
+    [cmd] => testComplete
+    [sessionId] => Testing_Selenium_Exception:
+)
+ 
+ Url created:  
+ Got response:  
+ ***ERROR***: exception 'Exception' with message 'include(../../Bromine/libs/DBHandler.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory' in C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(3) : runtime-created function:1
+Stack trace:
+#0 C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(6): __lambda_func(2, 'include(../../B...', 'C:\xampp\htdocs...', 6, Array)
+#1 C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(6): include()
+#2 {main} 
+
+01.30.09 11:51:11 
+ Called with: Array
+(
+    [cmd] => open
+    [1] => /
+    [sessionId] => Testing_Selenium_Exception:
+)
+ 
+ Url created:  
+ Got response:  
+ ***ERROR***: exception 'Exception' with message 'include(../../Bromine/libs/DBHandler.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory' in C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(3) : runtime-created function:1
+Stack trace:
+#0 C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(6): __lambda_func(2, 'include(../../B...', 'C:\xampp\htdocs...', 6, Array)
+#1 C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(6): include()
+#2 {main} 
+
+01.30.09 11:51:11 
+ Called with: Array
+(
+    [cmd] => getNewBrowserSession
+    [1] => *firefox,12345
+    [2] => http://www.google.dk
+)
+ 
+ Url created:  
+ Got response:  
+ ***ERROR***: exception 'Exception' with message 'include(../../Bromine/libs/DBHandler.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory' in C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(3) : runtime-created function:1
+Stack trace:
+#0 C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(6): __lambda_func(2, 'include(../../B...', 'C:\xampp\htdocs...', 6, Array)
+#1 C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(6): include()
+#2 {main} 
+
+01.30.09 11:48:03 
+ Called with: Array
+(
+    [cmd] => testComplete
+    [sessionId] => Testing_Selenium_Exception:
+)
+ 
+ Url created:  
+ Got response:  
+ ***ERROR***: exception 'Exception' with message 'include(../../Bromine/libs/DBHandler.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory' in C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(3) : runtime-created function:1
+Stack trace:
+#0 C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(6): __lambda_func(2, 'include(../../B...', 'C:\xampp\htdocs...', 6, Array)
+#1 C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(6): include()
+#2 {main} 
+
+01.30.09 11:48:03 
+ Called with: Array
+(
+    [cmd] => open
+    [1] => /
+    [sessionId] => Testing_Selenium_Exception:
+)
+ 
+ Url created:  
+ Got response:  
+ ***ERROR***: exception 'Exception' with message 'include(../../Bromine/libs/DBHandler.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory' in C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(3) : runtime-created function:1
+Stack trace:
+#0 C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(6): __lambda_func(2, 'include(../../B...', 'C:\xampp\htdocs...', 6, Array)
+#1 C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(6): include()
+#2 {main} 
+
+01.30.09 11:48:02 
+ Called with: Array
+(
+    [cmd] => getNewBrowserSession
+    [1] => *firefox,12345
+    [2] => http://www.google.dk
+)
+ 
+ Url created:  
+ Got response:  
+ ***ERROR***: exception 'Exception' with message 'include(../../Bromine/libs/DBHandler.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory' in C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(3) : runtime-created function:1
+Stack trace:
+#0 C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(6): __lambda_func(2, 'include(../../B...', 'C:\xampp\htdocs...', 6, Array)
+#1 C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(6): include()
+#2 {main} 
+
+01.30.09 10:52:54 
+ Called with: Array
+(
+    [CAKEPHP] => 794e8e7f4be6e8b5ad9e2fad60bc9709
+)
+ 
+ Url created:  
+ Got response:  
+ ***ERROR***: exception 'Exception' with message 'include(../../Bromine/libs/DBHandler.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory' in C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(3) : runtime-created function:1
+Stack trace:
+#0 C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(6): __lambda_func(2, 'include(../../B...', 'C:\xampp\htdocs...', 6, Array)
+#1 C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(6): include()
+#2 {main} 
+
+01.30.09 10:48:01 
+ Called with: Array
+(
+    [CAKEPHP] => 0a7913caa7283c3493f6f90cabf66a62
+)
+ 
+ Url created:  
+ Got response:  
+ ***ERROR***: exception 'Exception' with message 'include(../../Bromine/libs/DBHandler.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory' in C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(3) : runtime-created function:1
+Stack trace:
+#0 C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(6): __lambda_func(2, 'include(../../B...', 'C:\xampp\htdocs...', 6, Array)
+#1 C:\xampp\htdocs\app\webroot\selenium-server\driver\index.php(6): include()
+#2 {main} 
+

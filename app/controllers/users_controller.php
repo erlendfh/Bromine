@@ -3,7 +3,6 @@ class UsersController extends AppController {
 
 	var $name = 'Users';
 	var $helpers = array('Html', 'Form');
-	var $layout = "admin";
 	
 	function assign(){ //Assigns users to projects using Myacl
         if (!empty($this->data)){ //If the user pressed submit

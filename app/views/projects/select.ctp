@@ -8,6 +8,6 @@ foreach($usersprojects as $project){
 echo $form->input('project_id',array('options' => $options));
 echo $form->end('Select');
 echo "<br />";
-echo $html->aclLink("Or go to the Control Panel",array('controller'=>'Tabs', 'action' => 'admin'));
+echo $html->link("Or go to the Control Panel",array('controller' => 'tabs','action' => 'menulink', 34, -2, 'Users', 'index'));
 
 ?>

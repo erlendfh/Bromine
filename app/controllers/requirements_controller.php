@@ -1,4 +1,6 @@
 <?php
+
+
 class RequirementsController extends AppController {
 
 	var $name = 'Requirements';
@@ -18,6 +20,171 @@ class RequirementsController extends AppController {
             $this->Requirement->save($this->data);
         }
 
+    }
+    function array_search_recursive($key, $needle, $haystack){
+        $path=array();
+        foreach($haystack as $id => $val)
+        {
+        
+         if($val === $needle && $id == $key)
+              $path[]=$id;
+         else if(is_array($val)){
+             $found=$this->array_search_recursive($key, $needle, $val);
+              if(count($found)>0){
+                  $path[$id]=$found;
+              }       
+          }
+        }
+        return $path;
+    }
+    
+    function test(){
+    
+        $tests = array(
+            'done' => false,
+            'tests' => array(
+                'lala' =>  
+                    array(
+                        array(
+                            'done' => 0,
+                            'OS' => 'XP',
+                            'browser' => 'firefox'
+                        ),
+                        array(
+                            'done' => 0,
+                            'OS' => 'XP',
+                            'browser' => 'ie7'
+                        ),
+                        array(
+                            'done' => 0,
+                            'OS' => 'OSX',
+                            'browser' => 'safari'
+                        )
+                    ),
+                'trille' =>
+                    array(
+                        array(
+                            'done' => 0,
+                            'OS' => 'XP',
+                            'browser' => 'firefox'
+                        ),
+                        array(
+                            'done' => 0,
+                            'OS' => 'XP',
+                            'browser' => 'ie7'
+                        ),
+                        array(
+                            'done' => 0,
+                            'OS' => 'OSX',
+                            'browser' => 'safari'
+                        ),
+                        array(
+                            'done' => 0,
+                            'OS' => 'OSX',
+                            'browser' => 'firefox'
+                        )
+                    )
+                )
+            );
+        $nodes = array(
+
+                0 => array(
+                    'Node' => array(
+                        'name' => 'XP node1', 
+                        'running' => 0,
+                        'OS' => 'XP',
+                        'ip' => '192.168.0.1',
+                        'browsers' => array(
+                            'firefox',
+                            'ie7'
+                        )
+                    )
+                ),
+                1 => array(
+                    'Node' => array(
+                        'name' => 'XP node2',
+                        'running' => 0,
+                        'OS' => 'XP',
+                        'ip' => '192.168.0.2',
+                        'browsers' => array(
+                            'firefox'
+                            //'ie7'
+                        )
+                    )
+                ),
+                2 => array(
+                    'Node' => array(
+                        'name' => 'Mac node',
+                        'running' => 0,
+                        'OS' => 'OSX',
+                        'ip' => '192.168.0.3',
+                        'browsers' => array(
+                            'firefox',
+                            'safari'
+                        )
+                    )
+                )
+
+        );
+        $runningLimit = 1;
+        $running = array();
+        $i=0;
+        $lala=$this->array_search_recursive('done',0,$tests);
+        while(!empty($lala)){
+            $this->log("Doing loop ".$i++);
+            foreach($tests['tests'] as $testname => $test){
+            
+                //Update the nodes
+                $this->log(print_r($running,true));
+                foreach($running as $uid => $j){
+                    if(file_exists("logs/log$uid.txt")){
+                        $nodes[$j]['Node']['running']--;
+                        $this->log($node['name']." running has been decreased");
+                        unset($running[$uid]);
+                        $this->log(" Removing ".$uid.' => '.$node['name']." from running:");
+                        //
+                    }
+                }
+                
+                foreach($test as $l=>$need){
+                    if($need['done']==0){                        
+                        $nodes = Set::sort($nodes, '{n}.Node.running', 'asc');
+                        foreach($nodes as $j=>$node){
+                            if($need['done']==0){
+                                if($node['Node']['running']<$runningLimit){ //If node is not full
+                                    if($node['Node']['OS']==$need['OS']){ //If node is the correct OS
+                                        if(in_array($need['browser'], $node['Node']['browsers'])){ //If node has the right browser
+                                            $uid = rand(0,999999999);
+                                            $this->log("Running test $testname on ".$need['OS']." / ".$need['browser']." using resource ".$node['Node']['name']." with uid = $uid");
+                                            $running[$uid] = $j;
+                                            pclose(popen("start /B php lala.php $uid",'r'));
+                                            $nodes[$j]['Node']['running']++; //Update the node
+                                            $tests[$testname][$l]['done'] = 1; //Update the need
+                                        }else{
+                                            $this->log("The need needs browser: ".$need['browser']." but the node only has: ");
+                                            $this->log(print_r($node['Node']['browsers'],true));
+                                        }
+                                    }else{
+                                        $this->log("Node with OS: ".$node['Node']['OS']." does not match the needs OS: ".$need['OS']);
+                                    }
+                                }else{
+                                    $this->log("Node ".$node['Node']['name']." is full and running ".$node['Node']['running']." test(s)");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            sleep(1);
+            $lala=$this->array_search_recursive('done',0,$tests);	
+        }
+         
+    }
+    
+    function log($msg){
+        $fp = fopen('logs/thelog.txt','a');
+        fwrite($fp, $msg."\n");
+        fclose($fp);
     }
     
 	function index() {

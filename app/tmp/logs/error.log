@@ -2809,3 +2809,5 @@ Aco: controllers/tabs/config in [CORE\cake\libs\controller\components\acl.php, l
 2009-02-03 12:26:08 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1048: Column 'test_id' cannot be null</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 514]
 2009-02-03 12:28:08 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1048: Column 'test_id' cannot be null</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 514]
 2009-02-03 12:28:09 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1048: Column 'test_id' cannot be null</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 514]
+2009-02-13 14:23:15 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Operatingsystem.operatingsystem_id' in 'on clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 514]
+2009-02-13 14:23:15 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\nodes\index.ctp, line 20]

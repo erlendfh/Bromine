@@ -1,20 +1,14 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* Type Test cases generated on: 2009-01-10 22:01:35 : 1231656635*/
+/* Type Test cases generated on: 2009-02-13 15:02:25 : 1234535365*/
 App::import('Model', 'Type');
-
-class TestType extends Type {
-	var $cacheSources = false;
-	var $useDbConfig  = 'test_suite';
-}
 
 class TypeTestCase extends CakeTestCase {
 	var $Type = null;
 	var $fixtures = array('app.type');
 
-	function start() {
-		parent::start();
-		$this->Type = new TestType();
+	function startTest() {
+		$this->Type =& ClassRegistry::init('Type');
 	}
 
 	function testTypeInstance() {

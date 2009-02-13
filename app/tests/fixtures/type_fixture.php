@@ -1,6 +1,6 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* Type Fixture generated on: 2009-01-10 22:01:35 : 1231656635*/
+/* Type Fixture generated on: 2009-02-13 15:02:25 : 1234535365*/
 
 class TypeFixture extends CakeTestFixture {
 	var $name = 'Type';

@@ -1,6 +1,6 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* BrowsersController Test cases generated on: 2009-01-10 23:01:39 : 1231657599*/
+/* BrowsersController Test cases generated on: 2009-02-13 15:02:24 : 1234534884*/
 App::import('Controller', 'Browsers');
 
 class TestBrowsers extends BrowsersController {

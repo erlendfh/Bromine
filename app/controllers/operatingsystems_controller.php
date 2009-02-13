@@ -3,7 +3,6 @@ class OperatingsystemsController extends AppController {
 
 	var $name = 'Operatingsystems';
 	var $helpers = array('Html', 'Form');
-	var $layout = "admin";
 
 	function index() {
 		$this->Operatingsystem->recursive = 0;

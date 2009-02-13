@@ -1,6 +1,6 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* Browser Fixture generated on: 2009-01-10 22:01:29 : 1231655669*/
+/* Browser Fixture generated on: 2009-02-13 14:02:59 : 1234531919*/
 
 class BrowserFixture extends CakeTestFixture {
 	var $name = 'Browser';

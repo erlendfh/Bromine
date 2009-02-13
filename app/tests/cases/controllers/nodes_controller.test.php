@@ -1,6 +1,6 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* NodesController Test cases generated on: 2009-01-10 23:01:21 : 1231657881*/
+/* NodesController Test cases generated on: 2009-02-13 15:02:06 : 1234533786*/
 App::import('Controller', 'Nodes');
 
 class TestNodes extends NodesController {

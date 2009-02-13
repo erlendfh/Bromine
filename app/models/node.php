@@ -4,7 +4,7 @@ class Node extends AppModel {
 	var $name = 'Node';
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
-	var $hasOne = array(
+	var $belongsTo = array(
 			'Operatingsystem' => array('className' => 'Operatingsystem',
 								'foreignKey' => 'operatingsystem_id',
 								'conditions' => '',

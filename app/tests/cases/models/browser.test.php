@@ -1,20 +1,14 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* Browser Test cases generated on: 2009-01-10 22:01:23 : 1231655723*/
+/* Browser Test cases generated on: 2009-02-13 14:02:01 : 1234531921*/
 App::import('Model', 'Browser');
-
-class TestBrowser extends Browser {
-	var $cacheSources = false;
-	var $useDbConfig  = 'test_suite';
-}
 
 class BrowserTestCase extends CakeTestCase {
 	var $Browser = null;
-	var $fixtures = array('app.browser', 'app.suite');
+	var $fixtures = array('app.browser');
 
-	function start() {
-		parent::start();
-		$this->Browser = new TestBrowser();
+	function startTest() {
+		$this->Browser =& ClassRegistry::init('Browser');
 	}
 
 	function testBrowserInstance() {

@@ -13,19 +13,94 @@ class RequirementsController extends AppController {
             'Requirement.nr' => 'asc'
         )
     );
-    function reorder($id=null,$parent_id=null){
-        if(isset($id) && isset($parent_id)){
-            $this->data['Requirement']['id'] = $id;
-            $this->data['Requirement']['parent_id'] = $parent_id;
-            $this->Requirement->save($this->data);
-        }
-
-    }
+    
+    var $tests = array(
+        'lala' =>  
+            array(
+                array(
+                    'done' => 0,
+                    'OS' => 'XP',
+                    'browser' => 'firefox'
+                ),
+                array(
+                    'done' => 0,
+                    'OS' => 'XP',
+                    'browser' => 'ie7'
+                ),
+                array(
+                    'done' => 0,
+                    'OS' => 'OSX',
+                    'browser' => 'safari'
+                )
+            ),
+        'trille' =>
+            array(
+                array(
+                    'done' => 0,
+                    'OS' => 'XP',
+                    'browser' => 'firefox'
+                ),
+                array(
+                    'done' => 0,
+                    'OS' => 'XP',
+                    'browser' => 'ie7'
+                ),
+                array(
+                    'done' => 0,
+                    'OS' => 'OSX',
+                    'browser' => 'safari'
+                ),
+                array(
+                    'done' => 0,
+                    'OS' => 'OSX',
+                    'browser' => 'firefox'
+                )
+            )
+        );
+    var $nodes = array(
+        4 => array(
+            'Node' => array(
+                'name' => 'XP node1', 
+                'running' => array(),
+                'OS' => 'XP',
+                'ip' => '192.168.0.1',
+                'browsers' => array(
+                    'firefox',
+                    'ie7'
+                )
+            )
+        ),
+        5 => array(
+            'Node' => array(
+                'name' => 'XP node2',
+                'running' => array(),
+                'OS' => 'XP',
+                'ip' => '192.168.0.2',
+                'browsers' => array(
+                    'firefox'
+                    //'ie7'
+                )
+            )
+        ),
+        6 => array(
+            'Node' => array(
+                'name' => 'Mac node',
+                'running' => array(),
+                'OS' => 'OSX',
+                'ip' => '192.168.0.3',
+                'browsers' => array(
+                    'firefox',
+                    'safari'
+                )
+            )
+        )
+    );
+        
+    var $runningLimit = 1;
+    
     function array_search_recursive($key, $needle, $haystack){
         $path=array();
-        foreach($haystack as $id => $val)
-        {
-        
+        foreach($haystack as $id => $val){
          if($val === $needle && $id == $key)
               $path[]=$id;
          else if(is_array($val)){
@@ -38,153 +113,103 @@ class RequirementsController extends AppController {
         return $path;
     }
     
-    function test(){
-    
-        $tests = array(
-            'done' => false,
-            'tests' => array(
-                'lala' =>  
-                    array(
-                        array(
-                            'done' => 0,
-                            'OS' => 'XP',
-                            'browser' => 'firefox'
-                        ),
-                        array(
-                            'done' => 0,
-                            'OS' => 'XP',
-                            'browser' => 'ie7'
-                        ),
-                        array(
-                            'done' => 0,
-                            'OS' => 'OSX',
-                            'browser' => 'safari'
-                        )
-                    ),
-                'trille' =>
-                    array(
-                        array(
-                            'done' => 0,
-                            'OS' => 'XP',
-                            'browser' => 'firefox'
-                        ),
-                        array(
-                            'done' => 0,
-                            'OS' => 'XP',
-                            'browser' => 'ie7'
-                        ),
-                        array(
-                            'done' => 0,
-                            'OS' => 'OSX',
-                            'browser' => 'safari'
-                        ),
-                        array(
-                            'done' => 0,
-                            'OS' => 'OSX',
-                            'browser' => 'firefox'
-                        )
-                    )
-                )
-            );
-        $nodes = array(
-
-                0 => array(
-                    'Node' => array(
-                        'name' => 'XP node1', 
-                        'running' => 0,
-                        'OS' => 'XP',
-                        'ip' => '192.168.0.1',
-                        'browsers' => array(
-                            'firefox',
-                            'ie7'
-                        )
-                    )
-                ),
-                1 => array(
-                    'Node' => array(
-                        'name' => 'XP node2',
-                        'running' => 0,
-                        'OS' => 'XP',
-                        'ip' => '192.168.0.2',
-                        'browsers' => array(
-                            'firefox'
-                            //'ie7'
-                        )
-                    )
-                ),
-                2 => array(
-                    'Node' => array(
-                        'name' => 'Mac node',
-                        'running' => 0,
-                        'OS' => 'OSX',
-                        'ip' => '192.168.0.3',
-                        'browsers' => array(
-                            'firefox',
-                            'safari'
-                        )
-                    )
-                )
-
-        );
-        $runningLimit = 1;
-        $running = array();
-        $i=0;
-        $lala=$this->array_search_recursive('done',0,$tests);
-        while(!empty($lala)){
-            $this->log("Doing loop ".$i++);
-            foreach($tests['tests'] as $testname => $test){
-            
-                //Update the nodes
-                $this->log(print_r($running,true));
-                foreach($running as $uid => $j){
-                    if(file_exists("logs/log$uid.txt")){
-                        $nodes[$j]['Node']['running']--;
-                        $this->log($node['name']." running has been decreased");
-                        unset($running[$uid]);
-                        $this->log(" Removing ".$uid.' => '.$node['name']." from running:");
-                        //
-                    }
-                }
-                
-                foreach($test as $l=>$need){
-                    if($need['done']==0){                        
-                        $nodes = Set::sort($nodes, '{n}.Node.running', 'asc');
-                        foreach($nodes as $j=>$node){
-                            if($need['done']==0){
-                                if($node['Node']['running']<$runningLimit){ //If node is not full
-                                    if($node['Node']['OS']==$need['OS']){ //If node is the correct OS
-                                        if(in_array($need['browser'], $node['Node']['browsers'])){ //If node has the right browser
-                                            $uid = rand(0,999999999);
-                                            $this->log("Running test $testname on ".$need['OS']." / ".$need['browser']." using resource ".$node['Node']['name']." with uid = $uid");
-                                            $running[$uid] = $j;
-                                            pclose(popen("start /B php lala.php $uid",'r'));
-                                            $nodes[$j]['Node']['running']++; //Update the node
-                                            $tests[$testname][$l]['done'] = 1; //Update the need
-                                        }else{
-                                            $this->log("The need needs browser: ".$need['browser']." but the node only has: ");
-                                            $this->log(print_r($node['Node']['browsers'],true));
-                                        }
-                                    }else{
-                                        $this->log("Node with OS: ".$node['Node']['OS']." does not match the needs OS: ".$need['OS']);
-                                    }
-                                }else{
-                                    $this->log("Node ".$node['Node']['name']." is full and running ".$node['Node']['running']." test(s)");
-                                }
-                            }
-                        }
-                    }
-                }
+    function cmp($a, $b){
+        $a = $a['Node'];
+        $b = $b['Node'];
+        $field_1 = 'browsers';
+        $field_2 = 'running';
+        
+        if(count($a[$field_1]) == count($b[$field_1])){
+            if(count($a[$field_2]) == count($b[$field_2])){
+                return 0;
             }
-            sleep(1);
-            $lala=$this->array_search_recursive('done',0,$tests);	
+            elseif(count($a[$field_2]) > count($b[$field_2])){
+                return 1;
+            }
+            elseif(count($a[$field_2]) < count($b[$field_2])){
+                return -1;
+            }
         }
-         
+        elseif(count($a[$field_1]) > count($b[$field_1])){
+            return 1;
+        }
+        elseif(count($a[$field_1]) < count($b[$field_1])){
+            return -1;
+        }
     }
+    
+    
     
     function log($msg){
         $fp = fopen('logs/thelog.txt','a');
         fwrite($fp, $msg."\n");
         fclose($fp);
+    }
+    
+    function getAvailableNodes($OS, $browser){
+        $availableNodes=array();
+        foreach($this->nodes as $k=>$node){
+            if(count($node['Node']['running'])<$this->runningLimit && in_array($browser, $node['Node']['browsers']) && $node['Node']['OS']==$OS){
+                $availableNodes[$k]=$node;
+            }
+        }
+        return $availableNodes;
+    }
+    
+    function findBestNode($nodes){
+        //Algorithm to be debated
+        //Current alorithm: Sort by number of browsers as first priority and number of running as second.
+        uasort($nodes,array($this,'cmp'));
+        return current(array_keys($nodes));
+    }
+    
+    function updateNodes(){
+        foreach($this->nodes as $k=>$node){
+            foreach($node['Node']['running'] as $j=>$uid){
+                if(file_exists("logs/log$uid.txt")){
+                    unset($this->nodes[$k]['Node']['running'][$j]);    
+                }
+            }
+        }
+    }
+    
+    function test(){
+        $i=0;
+        while($this->array_search_recursive('done',0,$this->tests)!==array()){
+            $this->log("Doing loop ".$i++);
+            foreach($this->tests as $testname => $test){
+                foreach($test as $k=>$need){
+                    if($need['done']==0){
+                        //Find all available nodes. (not full, right OS and brows)
+                        $availableNodes = $this->getAvailableNodes($need['OS'],$need['browser']);
+                        if(!empty($availableNodes)){
+                            //Find the best node. 
+                            $bestNodeId = $this->findBestNode($availableNodes);
+                            $bestNode = $this->nodes[$bestNodeId];
+                            
+                            //Run the test
+                            $uid = rand(0,999999999);
+                            $this->log("Running test $testname on ".$need['OS']." / ".$need['browser']." using resource ".$bestNode['Node']['name']." with uid = $uid");
+                            pclose(popen("start /B php lala.php $uid",'r'));
+                            
+                            //Update the need and the node
+                            $this->tests[$testname][$k]['done'] = 1;
+                            $this->nodes[$bestNodeId]['Node']['running'][] = $uid;
+                        }
+                    }
+                }
+            }
+            sleep(1);
+            $this->updateNodes();
+        }
+    }
+    
+     function reorder($id=null,$parent_id=null){
+        if(isset($id) && isset($parent_id)){
+            $this->data['Requirement']['id'] = $id;
+            $this->data['Requirement']['parent_id'] = $parent_id;
+            $this->Requirement->save($this->data);
+        }
     }
     
 	function index() {

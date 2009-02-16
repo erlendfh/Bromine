@@ -1,3 +1,8 @@
+<?php
+	// Set the php ini variables
+	ini_set("max_execution_time", 61000);
+
+?>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <?php
     //print_r($_SESSION);

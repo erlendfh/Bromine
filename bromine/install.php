@@ -8,8 +8,11 @@
     <h2> Testing your setup... </h2>
     <br />
         <?php
-            
-            // Setting up a few defaults, and remembering what the user wrote
+        
+        	// Set the same ini settings as in header.php
+        	ini_set("max_execution_time", 61000);
+        
+        	// Setting up a few defaults, and remembering what the user wrote
             $xampp = array_key_exists('xampp', $_GET) ? $_GET['xampp'] : '';
             if($xampp){
                 $_POST['username']='root';

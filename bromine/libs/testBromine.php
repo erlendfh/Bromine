@@ -99,7 +99,7 @@ class testBromineInstallation
         else
         
         {
-            $this->log['result'][] = "<span class='status_failed'>Error: You need to manually set your max_execution_time in php.ini to a number higher than 60000</span>";
+            $this->log['result'][] = "<span class='status_failed'>Error: Unable to set max_execution_time at runtime. You need to manually set your max_execution_time in php.ini to a number higher than 60000</span>";
             $this->failed = true;
         }
     }

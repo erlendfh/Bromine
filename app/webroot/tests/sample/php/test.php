@@ -83,5 +83,3 @@ class GoogleTest
     $t->testMyTestCase();
     $t->tearDown();
 ?>
-
-?>

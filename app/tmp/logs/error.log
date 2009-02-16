@@ -2847,3 +2847,11 @@ Aco: controllers/tabs/config in [CORE\cake\libs\controller\components\acl.php, l
 2009-02-14 18:43:09 Warning: Warning (2): current() [<a href='http://php.net/function.current'>function.current</a>]: Passed variable is not an array or object in [APP\controllers\requirements_controller.php, line 135]
 2009-02-14 22:08:01 Warning: Warning (2): usort() [<a href='http://php.net/function.usort'>function.usort</a>]: Invalid comparison function in [APP\controllers\requirements_controller.php, line 162]
 >>>>>>> .r273
+2009-02-16 10:48:15 Warning: Warning (2): opendir(C:\xampp\htdocs\app\webroot\tests\sample\rc-php\) [<a href='http://php.net/function.opendir'>function.opendir</a>]: failed to open dir: No error in [APP\controllers\runrctests_controller.php, line 100]
+2009-02-16 10:48:15 Warning: Warning (2): readdir(): supplied argument is not a valid Directory resource in [APP\controllers\runrctests_controller.php, line 102]
+2009-02-16 10:48:15 Warning: Warning (2): closedir(): supplied argument is not a valid Directory resource in [APP\controllers\runrctests_controller.php, line 112]
+2009-02-16 10:48:15 Warning: Warning (2): opendir(C:\xampp\htdocs\app\webroot\tests\sample\rc-java\) [<a href='http://php.net/function.opendir'>function.opendir</a>]: failed to open dir: No error in [APP\controllers\runrctests_controller.php, line 100]
+2009-02-16 10:48:15 Warning: Warning (2): opendir(C:\xampp\htdocs\app\webroot\tests\sample\rc-ruby\) [<a href='http://php.net/function.opendir'>function.opendir</a>]: failed to open dir: No error in [APP\controllers\runrctests_controller.php, line 100]
+2009-02-16 10:48:15 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\runrctests\index.ctp, line 4]
+2009-02-16 10:48:15 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\runrctests\index.ctp, line 8]
+2009-02-16 10:48:15 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\runrctests\index.ctp, line 12]

@@ -20,7 +20,7 @@
     <body>
   <div id="main">
     <div id="links_container">
-      <div id="logo"><h1>Bromine 3</h1><img id='notification' src='/img/indicator.gif' style='display: none;'/></div>
+      <div id="logo"><h1>Bromine 3</h1><img id='notification' src='/img/ajax-loader.gif' style='display: none;'/></div>
       <script type='text/javascript'>
     Ajax.Responders.register({
     	onCreate: function() {
@@ -46,7 +46,7 @@
         <!-- **** INSERT NAVIGATION ITEMS HERE (use id="selected" to identify the page you're on **** -->
         <?php if(isset($mainMenu)): ?>
         <?php foreach($mainMenu as $mainMenuItem): ?>
-        <li><?php echo $html->link($mainMenuItem['title'], array('controller' => 'tabs','action' => 'menulink', $mainMenuItem['id'],$mainMenuItem['p_id'],$mainMenuItem['controller'],$mainMenuItem['action'])); ?></li>    
+        <li><?php echo $html->link($mainMenuItem['title'], array('controller' => $mainMenuItem['controller'],'action' => $mainMenuItem['action'])); ?></li>    
         <?php endforeach; ?>
         <?php endif ?>
       </ul>

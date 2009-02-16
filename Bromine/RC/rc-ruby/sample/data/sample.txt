@@ -1,5 +1,0 @@
-sample data
-
-You could use xml, csv or whatever markup you'd like here.
-This files path will be sent to the test if you chose to run it as a datatest
-How you use the data from there is up to you.

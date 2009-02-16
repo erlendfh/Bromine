@@ -76,7 +76,7 @@ class testBromineInstallation
     
         $this->log['test'][] = "Testing for PEAR";
         
-        exec('pear', $output, $return);
+        exec('pear list', $output, $return);
         
         if ($return == 0)
         {

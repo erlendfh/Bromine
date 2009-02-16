@@ -20,7 +20,14 @@ class SeleniumserverController extends AppController {
         $cmd = $_REQUEST['cmd'];
         $one = $_REQUEST['1'];
         $two = $_REQUEST['2'];
-        
+
+        if (!isset($_REQUEST['1'])){
+            $one = '';
+        }
+
+        if (!isset($_REQUEST['2'])){
+            $two = '';
+        }
         if (isset($_REQUEST['sessionId'])){
             $sessionId = $_REQUEST['sessionId'];
         }else{
@@ -37,7 +44,7 @@ class SeleniumserverController extends AppController {
             $var2 = $_REQUEST['var2'];          
             $this->insertCommand($status, $cmdName, $var1, $var2, $test_id);
             echo "OK";
-            $this->log('Custom command');
+            $this->log("Custom command: cmd='$cmdName' & 1='$var1' & 2='$var2'");
             exit;      
         }
         //Else if, first command, use u_id for DB identification
@@ -52,7 +59,7 @@ class SeleniumserverController extends AppController {
         else{ 
             //$result = $dbh->sql("SELECT * FROM trm_selenium_server_vars WHERE sessionId = '$sessionId'");
             $result = $this->Seleniumserver->find("session = '$sessionId'");        
-            $this->log($cmd . ' on session' . $sessionId);
+            $this->log($cmd . ' on session ' . $sessionId);
 
         }
         
@@ -63,13 +70,12 @@ class SeleniumserverController extends AppController {
         $uid = $result['Seleniumserver']['uid'];
         $test_id = $result['Seleniumserver']['test_id'];
         //Send the command to the RC server
-        $url = "http://127.0.0.1:4444/selenium-server/driver/?cmd=$cmd&1=$one&2=$two&sessionId=$sessionId";
+        $url = "http://$nodepath:4444/selenium-server/driver/?cmd=$cmd&1=$one&2=$two&sessionId=$sessionId";
 
 
         $response = $this->executeCommand($url);
-        $fp = fopen('log.txt','a');
-        fwrite($fp,$url." Returned: $response\n");
-        fclose($fp);
+        $this->log($url . " returned: '" . $response . "'");
+
         //Determine status
         if (preg_match('/^OK/', $response) ) { 
             $status = $this->getStatus($response);
@@ -84,13 +90,13 @@ class SeleniumserverController extends AppController {
         //If first command, update DB with sessionId 
         if ($cmd == 'getNewBrowserSession'){
             $sessionId = end(split(',',$response));
-            $this->log("Updated DB with session: $sessionId on $uid");
+            
             $this->Seleniumserver->updateAll(
               array(
                 'Seleniumserver.session' => "'$sessionId'"
               ),"Seleniumserver.uid = '$uid'"
             ); 
-            
+            $this->log("Updated DB with session: '$sessionId' on uid: '$uid'");
             //$dbh->sql("UPDATE trm_selenium_server_vars SET sessionId='$sessionId' WHERE uid='$uid'");
         }
         //If NOTHING messed up, send the response
@@ -121,7 +127,7 @@ class SeleniumserverController extends AppController {
         
     }
     
-    private function insertCommand($status, $cmd, $var1, $var2, $test_id){
+    private function insertCommand($status, $cmd, $var1, $var2 = '', $test_id){
         
         
         $command = array(

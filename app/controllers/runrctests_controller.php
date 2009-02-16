@@ -1,11 +1,9 @@
 <?php
 class RunrctestsController  extends AppController {
-
 	var $name = 'Runrctests';
 	var $helpers = array('Html', 'Form');
 	var $layout = "green";
 	var $uses = array();
-
 	function index() {
         //$this->set('browsers', $this->paginate());
         App::import('Model','Type');
@@ -15,7 +13,6 @@ class RunrctestsController  extends AppController {
             $this->set($type['Type']['name'], $this->dirList(WWW_ROOT . 'tests' . DS . $this->Session->read('project_name') . DS . $type['Type']['name'] . DS , $type['Type']['extension']));
         }
 	}
-
     private function initiate($test_id, $nodepath){
         /*
         $vars = $this->params['named'];
@@ -37,7 +34,6 @@ class RunrctestsController  extends AppController {
             return false;
         } 
     }
-
     function run(){
         $vars = $this->params['named'];
         $this->set('vars', $vars);
@@ -60,6 +56,10 @@ class RunrctestsController  extends AppController {
         $type_id = $vars['type_id'];
         
         $uid = $this->initiate($test_id, $host);
+        if ($uid === false){
+            $this->Session->setFlash(__('Test_id and/or $host is not set!', true));
+            $this->redirect(array('action'=>'index'));
+        }
         
         App::import('Model','Type');
         $this->typemodel = new Type();
@@ -75,11 +75,6 @@ class RunrctestsController  extends AppController {
                 $this->Session->read('project_name') . DS . $name . DS . $testname .
                 $spacer . $host . $spacer . $port . $spacer . $browser . $spacer . 
                 $sitetotest . $spacer . $uid . $spacer . $test_id;
-        /*        
-        $cmd = $command . $spacer . 'C:\bromine\htdocs\Bromine\RC\rc-php\sample\trille.php' .
-                $spacer . $host . $spacer . $port . $spacer . $browser . $spacer . 
-                $sitetotest . $spacer . $uid . $spacer . $test_id;
-        */
         echo $cmd;        
         $this->execute ($cmd);
         
@@ -89,7 +84,7 @@ class RunrctestsController  extends AppController {
     private function execute($cmd) {
         //Windows
         if (substr(php_uname(), 0, 7) == "Windows"){
-            pclose(popen("start /B ". $cmd . " > visti.txt", "r")); 
+            pclose(popen("start /B ". $cmd . "> visti.txt", "r")); 
         }
         //Unix
         else {
@@ -99,16 +94,12 @@ class RunrctestsController  extends AppController {
     
     private function dirList ($directory,$ext) 
 {
-
     // create an array to hold directory list
     $results = array();
-
     // create a handler for the directory
     $handler = opendir($directory);
-
     // keep going until all files in directory have been read
     while ($file = readdir($handler)) {
-
         // if $file isn't this directory or its parent, 
         // add it to the results array
         if ($file != '.' && $file != '..')
@@ -117,15 +108,10 @@ class RunrctestsController  extends AppController {
                 $results[] = $file;
             }
     }
-
     // tidy up: close the handler
     closedir($handler);
-
     // done!
     return $results;
-
 }
-
-
 }
 ?>

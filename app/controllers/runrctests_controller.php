@@ -5,49 +5,6 @@ class RunrctestsController  extends AppController {
 	var $layout = "green";
 	var $uses = array();
 	
-	var $tests = array(
-        'lala' =>  
-            array(
-                array(
-                    'done' => 0,
-                    'OS' => 'XP',
-                    'browser' => 'firefox'
-                ),
-                array(
-                    'done' => 0,
-                    'OS' => 'XP',
-                    'browser' => 'ie7'
-                ),
-                array(
-                    'done' => 0,
-                    'OS' => 'OSX',
-                    'browser' => 'safari'
-                )
-            ),
-        'trille' =>
-            array(
-                array(
-                    'done' => 0,
-                    'OS' => 'XP',
-                    'browser' => 'firefox'
-                ),
-                array(
-                    'done' => 0,
-                    'OS' => 'XP',
-                    'browser' => 'ie7'
-                ),
-                array(
-                    'done' => 0,
-                    'OS' => 'OSX',
-                    'browser' => 'safari'
-                ),
-                array(
-                    'done' => 0,
-                    'OS' => 'OSX',
-                    'browser' => 'firefox'
-                )
-            )
-        );
     var $nodes = array(
         4 => array(
             'Node' => array(
@@ -89,10 +46,25 @@ class RunrctestsController  extends AppController {
         
     var $runningLimit = 1;
     
+    function index() {
+    
+        App::import('Model','Node');
+        $this->Node = new Node();
+        $this->Node->recursive = 1;
+        pr($this->Node->find('all')); 
+        //$this->set('browsers', $this->paginate());
+        App::import('Model','Type');
+        $this->typemodel = new Type();
+        $this->types = $this->typemodel->find('all',array('name'));
+        foreach ($this->types as $type){
+            $this->set($type['Type']['name'], $this->dirList(WWW_ROOT . 'tests' . DS . $this->Session->read('project_name') . DS . $type['Type']['name'] . DS , $type['Type']['extension']));
+        }
+	}
+    
     function array_search_recursive($key, $needle, $haystack){
         $path=array();
         foreach($haystack as $id => $val){
-         if($val === $needle && $id == $key)
+         if($val == $needle && $id == $key)
               $path[]=$id;
          else if(is_array($val)){
              $found=$this->array_search_recursive($key, $needle, $val);
@@ -107,7 +79,7 @@ class RunrctestsController  extends AppController {
     function cmp($a, $b){
         $a = $a['Node'];
         $b = $b['Node'];
-        $field_1 = 'browsers';
+        $field_1 = 'Browser';
         $field_2 = 'running';
         
         if(count($a[$field_1]) == count($b[$field_1])){
@@ -135,10 +107,10 @@ class RunrctestsController  extends AppController {
         fclose($fp);
     }
     
-    function getAvailableNodes($OS, $browser){
+    function getAvailableNodes($nodes, $OS_id, $browser_id){
         $availableNodes=array();
-        foreach($this->nodes as $k=>$node){
-            if(count($node['Node']['running'])<$this->runningLimit && in_array($browser, $node['Node']['browsers']) && $node['Node']['OS']==$OS){
+        foreach($nodes as $k=>$node){
+            if(count($node['Node']['running']) < $this->runningLimit && $this->array_search_recursive('id', $browser_id, $node['Browser'])!==array() && $node['Node']['operatingsystem_id']==$OS_id){
                 $availableNodes[$k]=$node;
             }
         }
@@ -152,102 +124,164 @@ class RunrctestsController  extends AppController {
         return current(array_keys($nodes));
     }
     
-    function updateNodes(){
-        foreach($this->nodes as $k=>$node){
+    function updateNodes($nodes){
+        $this->log(print_r($nodes,true));
+        foreach($nodes as $k=>$node){
+            $this->log('alla');
             foreach($node['Node']['running'] as $j=>$uid){
-                if(file_exists("logs/log$uid.txt")){
-                    unset($this->nodes[$k]['Node']['running'][$j]);    
+                $this->log("checking $uid got response $response");
+
+                $currentTime = time();
+                //todo get lastCommand and sessionid from DB
+                if ($dead == true){
+                    $handle = fopen("http://127.0.0.1/selenium-server/driver/?cmd=testComplete&sessionId=$sessionId",'r');
+                    stream_set_blocking($handle, false);
+                    $response = stream_get_contents($handle);
+                    
+                    fclose($handle);
                 }
             }
         }
     }
     
-    function test(){
+    function loadBalancer($tests, $suite_id, $siteToTest){
+        App::import('Model','Node');
+        $this->Node = new Node();
+        $nodes = $this->Node->find('all');
+        foreach($nodes as &$node){
+            $node['Node']['running'] = array();
+        }
+        
         $i=0;
-        while($this->array_search_recursive('done',0,$this->tests)!==array()){
+        //Should sort out impossible tests before entering this loop! or it's gonna be a long day at the office.
+        while($this->array_search_recursive('done',0,$tests)!==array()){
             $this->log("Doing loop ".$i++);
-            foreach($this->tests as $testname => $test){
+            foreach($tests as $testName => $test){
                 foreach($test as $k=>$need){
                     if($need['done']==0){
+                        $OS_id = $need['OS'];
+                        $browser_id = $need['browser'];
                         //Find all available nodes. (not full, right OS and brows)
-                        $availableNodes = $this->getAvailableNodes($need['OS'],$need['browser']);
+                        $this->log('Need: '.print_r($need,true));
+                        $availableNodes = $this->getAvailableNodes($nodes,$OS_id,$browser_id);
+                        $this->log("available nodes: ".serialize($availableNodes));
                         if(!empty($availableNodes)){
                             //Find the best node. 
                             $bestNodeId = $this->findBestNode($availableNodes);
-                            $bestNode = $this->nodes[$bestNodeId];
+                            $bestNode = $nodes[$bestNodeId];
                             
                             //Run the test
-                            $uid = rand(0,999999999);
-                            $this->log("Running test $testname on ".$need['OS']." / ".$need['browser']." using resource ".$bestNode['Node']['name']." with uid = $uid");
-                            pclose(popen("start /B php lala.php $uid",'r'));
+                            $uid = str_replace('.', '', microtime('U')) . rand(0, 1000);
+                            $this->log("Running test $testName on $OS_id / $browser_id using resource ".$bestNode['Node']['description']." with uid = $uid");
+                            $this->run($testName, $bestNode['Node']['nodepath'], $OS_id, 80, $browser_id, $siteToTest, 1, $suite_id, $uid);
                             
                             //Update the need and the node
-                            $this->tests[$testname][$k]['done'] = 1;
-                            $this->nodes[$bestNodeId]['Node']['running'][] = $uid;
+                            $tests[$testName][$k]['done'] = 1;
+                            $nodes[$bestNodeId]['Node']['running'][] = $uid;
                         }
                     }
                 }
             }
             sleep(1);
-            $this->updateNodes();
+            $this->updateNodes($nodes);
         }
     }
 	
-	function index() {
-        //$this->set('browsers', $this->paginate());
-        App::import('Model','Type');
-        $this->typemodel = new Type();
-        $this->types = $this->typemodel->find('all',array('name'));
-        foreach ($this->types as $type){
-            $this->set($type['Type']['name'], $this->dirList(WWW_ROOT . 'tests' . DS . $this->Session->read('project_name') . DS . $type['Type']['name'] . DS , $type['Type']['extension']));
-        }
-	}
 	
-    private function initiate($test_id, $nodepath){
-        /*
-        $vars = $this->params['named'];
-        $test_id = $vars['test_id'];
-        $nodepath = $vars['nodepath'];
-        */
+	
+	function status($tests=array()){
+        $tests = array(
+        'test' =>  
+            array(
+                array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 3
+                ),
+                array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 1
+                ),
+                array(
+                    'done' => 0,
+                    'OS' => 4,
+                    'browser' => 13
+                )
+            ),
+        'test2' =>
+            array(
+                array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 3
+                ),
+                array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 1
+                ),
+                array(
+                    'done' => 0,
+                    'OS' => 4,
+                    'browser' => 13
+                ),
+                array(
+                    'done' => 0,
+                    'OS' => 4,
+                    'browser' => 3
+                )
+            )
+        );
+        
+        $site_id = 37;
+        $siteToTest = 'http://www.google.dk';
+        $suiteName = 'alalal';
+        
+        App::import('Model','Suite');
+        $this->Suite = new Suite();
+        $this->data['Suite'] = array(
+            'name' => $suiteName,
+            'site_id' => $site_id,
+            'timedate' => null,
+            'project_id' => $this->Session->read('project_id')
+        );
+        $this->Suite->save($this->data);
+        $suite_id = $this->Suite->id;
+        $this->loadBalancer($tests,$suite_id,$siteToTest);
+    }
+	
+    private function initiate($test_id, $nodePath, $uid){
         App::import('Model','Seleniumserver');
         $this->Seleniumserver = new Seleniumserver();
-        if ($test_id != '' && $nodepath != ''){
-            $uid = str_replace('.', '', microtime('U')) . rand(0, 1000);
-            //echo $uid;
+        if ($test_id != '' && $nodePath != ''){
             $this->data['Seleniumserver']['test_id'] = $test_id;
-            $this->data['Seleniumserver']['nodepath'] = $nodepath;
+            $this->data['Seleniumserver']['nodepath'] = $nodePath;
             $this->data['Seleniumserver']['uid'] = $uid;
             
             $this->Seleniumserver->save($this->data);
-            return $uid;
+            return true;
         }else{
             return false;
         } 
     }
     
-    function run(){
-        $vars = $this->params['named'];
-        $this->set('vars', $vars);
+
+    function run($testName, $nodePath, $OS_id, $port, $browser_id, $siteToTest, $type_id, $suite_id, $uid){
+        App::import('Model','Test');
+        $this->Test = new Test();
+        //`id` ,  `status` ,  `name` ,  `suite_id` ,  `help` ,  `manstatus` ,  `author` ,  `browser_id` ,  `operatingsystem_id
+        $this->data['Test'] = array(
+            'name' => $testName,
+            'operatingsystem_id' => $OS_id,
+            'browser_id' => $browser_id,
+            'suite_id' => $suite_id
+        );
+         
+        $this->Test->save($this->data);
+        $test_id = $this->Test->id;
         
-        /*
-        $host = $argv[1];
-        $port = $argv[2];
-        $browser = $argv[3];
-        $sitetotest = $argv[4];
-        $uid = $argv[5];
-        $test_id = $argv[6];
-        
-        */
-        $testname = $vars['testname'];
-        $host = $vars['host'];
-        $port = $vars['port'];
-        $browser = $vars['browser'];
-        $sitetotest = 'http://'.$vars['sitetotest'];
-        $test_id = $vars['test_id'];
-        $type_id = $vars['type_id'];
-        
-        $uid = $this->initiate($test_id, $host);
-        if ($uid === false){
+        if ($this->initiate($test_id, $nodePath, $uid)===false){
             $this->Session->setFlash(__('Test_id and/or $host is not set!', true));
             $this->redirect(array('action'=>'index'));
         }
@@ -262,17 +296,21 @@ class RunrctestsController  extends AppController {
         $extension = $this->types['Type']['extension'];
         $command = $this->types['Type']['command'];
         
-        $cmd =  $command . $spacer . WWW_ROOT . 'tests' . DS . 
-                $this->Session->read('project_name') . DS . $name . DS . $testname .
-                $spacer . $host . $spacer . $port . $spacer . $browser . $spacer . 
-                $sitetotest . $spacer . $uid . $spacer . $test_id;
-        echo $cmd;        
-        $this->execute ($cmd);
+        App::import('Model','Browser');
+        $this->Browser = new Browser();
+        $browser = $this->Browser->find("id = $browser_id");
+        $browserPath = $browser['Browser']['path'];
         
+        $cmd =  $command . $spacer . WWW_ROOT . 'tests' . DS . 
+                $this->Session->read('project_name') . DS . $name . DS . $testName . '.' . $extension . 
+                $spacer . $nodePath . $spacer . $port . $spacer . $browserPath . $spacer . 
+                $siteToTest . $spacer . $uid . $spacer . $test_id;
+        $this->execute($cmd);
     }
     
     // Function downloaded from php.net. NEVER TESTED IN UNIX
     private function execute($cmd) {
+        $this->log("Executing: $cmd");
         //Windows
         if (substr(php_uname(), 0, 7) == "Windows"){
             pclose(popen("start /B ". $cmd . "> visti.txt", "r")); 

@@ -1,0 +1,277 @@
+123573744384: GetNewBrowserSession, 
+123573744384: http://:4444/selenium-server/driver/?cmd=getNewBrowserSession&1=&2=&sessionId= returned: ''
+123573744384: Updated DB with session: '' on uid: ''
+123573754132: GetNewBrowserSession, 122243041827819
+123573754132: http://:4444/selenium-server/driver/?cmd=getNewBrowserSession&1=*firefox&2=http://www.google.dk&sessionId= returned: ''
+123573754132: Updated DB with session: '' on uid: ''
+123573761126: GetNewBrowserSession, 123392263313146
+123573761849: http://127.0.0.1:4444/selenium-server/driver/?cmd=getNewBrowserSession&1=*firefox&2=http://www.google.dk&sessionId= returned: 'OK,07b5641f038b4ac99cc3a665d194c720'
+123573761851: Updated DB with session: '07b5641f038b4ac99cc3a665d194c720' on uid: '123392263313146'
+12357376493: getStatus on session 07b5641f038b4ac99cc3a665d194c720
+123573764933: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId=07b5641f038b4ac99cc3a665d194c720 returned: 'OK,'
+123573767884: open on session 07b5641f038b4ac99cc3a665d194c720
+12357376791: http://127.0.0.1:4444/selenium-server/driver/?cmd=open&1=/&2=&sessionId=07b5641f038b4ac99cc3a665d194c720 returned: 'OK'
+123573769068: getStatus on session 07b5641f038b4ac99cc3a665d194c720
+123573769072: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId=07b5641f038b4ac99cc3a665d194c720 returned: 'OK,Google'
+123573769523: getStatus on session 07b5641f038b4ac99cc3a665d194c7203
+123573769524: http://:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId=07b5641f038b4ac99cc3a665d194c7203 returned: ''
+123573770608: getStatus on session 07b5641f038b4ac99cc3a665d194c720
+123573770611: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId=07b5641f038b4ac99cc3a665d194c720 returned: 'OK,Google'
+123573771024: getStatus on session 07b5641f038b4ac99cc3a665d194c720--
+123573771025: http://:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId=07b5641f038b4ac99cc3a665d194c720-- returned: ''
+123573771744: getStatus on session 07b5641f038b4ac99cc3a665d194c72
+123573771744: http://:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId=07b5641f038b4ac99cc3a665d194c72 returned: ''
+123573772141: getStatus on session 07b5641f038b4ac99cc3a665d194c720
+123573772144: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId=07b5641f038b4ac99cc3a665d194c720 returned: 'OK,Google'
+123573786213: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123573812474: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123573814833: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123573817665: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+12357382698: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId=07b5641f038b4ac99cc3a665d194c720 returned: 'OK,Google'
+123573827347: http://:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId= returned: ''
+123573827724: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId=07b5641f038b4ac99cc3a665d194c720 returned: 'OK,Google'
+12357383238: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId=9a4d1e3d28d3476cbe2f3ba3a8e78d09 returned: 'ERROR Server Exception: sessionId 9a4d1e3d28d3476cbe2f3ba3a8e78d09 doesn't exist; perhaps this session was already stopped?'
+123573839861: http://:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId= returned: ''
+123573840739: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId=07b5641f038b4ac99cc3a665d194c720 returned: 'OK,Google'
+123573841077: http://:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId= returned: ''
+123573841364: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId=07b5641f038b4ac99cc3a665d194c720 returned: 'OK,Google'
+123573841895: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId=9a4d1e3d28d3476cbe2f3ba3a8e78d09 returned: 'ERROR Server Exception: sessionId 9a4d1e3d28d3476cbe2f3ba3a8e78d09 doesn't exist; perhaps this session was already stopped?'
+123574358852: GetNewBrowserSession, 
+123574358852: http://:4444/selenium-server/driver/?cmd=getNewBrowserSession&1=http://www.krak.dk&2=46&sessionId= returned: ''
+123574358853: Updated DB with session: '' on uid: ''
+12357435892: open on session Testing_Selenium_Exception:
+123574358921: http://:4444/selenium-server/driver/?cmd=open&1=/&2=&sessionId=Testing_Selenium_Exception: returned: ''
+123574358987: testComplete on session Testing_Selenium_Exception:
+123574358987: http://:4444/selenium-server/driver/?cmd=testComplete&1=&2=&sessionId=Testing_Selenium_Exception: returned: ''
+123574362586: GetNewBrowserSession, 
+123574362586: http://:4444/selenium-server/driver/?cmd=getNewBrowserSession&1=http://www.krak.dk&2=47&sessionId= returned: ''
+123574362587: Updated DB with session: '' on uid: ''
+123574362646: open on session Testing_Selenium_Exception:
+123574362647: http://:4444/selenium-server/driver/?cmd=open&1=/&2=&sessionId=Testing_Selenium_Exception: returned: ''
+123574362716: testComplete on session Testing_Selenium_Exception:
+123574362716: http://:4444/selenium-server/driver/?cmd=testComplete&1=&2=&sessionId=Testing_Selenium_Exception: returned: ''
+123574380124: GetNewBrowserSession, 123574380037308
+12357438013: http://127.0.0.1:4444/selenium-server/driver/?cmd=getNewBrowserSession&1=*firefoxproxy&2=http://www.krak.dk&sessionId= returned: ''
+12357438013: Updated DB with session: '' on uid: '123574380037308'
+123574380194: open on session Testing_Selenium_Exception:
+123574380194: http://:4444/selenium-server/driver/?cmd=open&1=/&2=&sessionId=Testing_Selenium_Exception: returned: ''
+123574380255: testComplete on session Testing_Selenium_Exception:
+123574380255: http://:4444/selenium-server/driver/?cmd=testComplete&1=&2=&sessionId=Testing_Selenium_Exception: returned: ''
+123574387949: GetNewBrowserSession, 123574387865745
+123574388441: http://127.0.0.1:4444/selenium-server/driver/?cmd=getNewBrowserSession&1=*firefox&2=http://www.krak.dk&sessionId= returned: 'OK,af8ab29730214d9eadca3b98779a6313'
+123574388441: Updated DB with session: 'af8ab29730214d9eadca3b98779a6313' on uid: '123574387865745'
+123574388506: open on session af8ab29730214d9eadca3b98779a6313
+123574388821: http://127.0.0.1:4444/selenium-server/driver/?cmd=open&1=/&2=&sessionId=af8ab29730214d9eadca3b98779a6313 returned: 'OK'
+123574388911: Custom command: cmd='This Custom Command1' & 1='true' & 2='true'
+123574388984: type on session af8ab29730214d9eadca3b98779a6313
+123574388989: http://127.0.0.1:4444/selenium-server/driver/?cmd=type&1=q&2=bromine openqa&sessionId=af8ab29730214d9eadca3b98779a6313 returned: 'ERROR: Selenium failure. Please report to the Selenium Users forum at http://forums.openqa.org, with error details from the log window.  The error message is: Permission denied to get property HTMLDocument.getElementById'
+123574389063: testComplete on session af8ab29730214d9eadca3b98779a6313
+123574389071: http://127.0.0.1:4444/selenium-server/driver/?cmd=testComplete&1=&2=&sessionId=af8ab29730214d9eadca3b98779a6313 returned: 'OK'
+123574409546: GetNewBrowserSession, 123574409461491
+123574409985: http://127.0.0.1:4444/selenium-server/driver/?cmd=getNewBrowserSession&1=*firefox&2=http://www.google.dk&sessionId= returned: 'OK,7e750bf7bd9d4d32bf7fd4354e531f21'
+123574409986: Updated DB with session: '7e750bf7bd9d4d32bf7fd4354e531f21' on uid: '123574409461491'
+123574410058: open on session 7e750bf7bd9d4d32bf7fd4354e531f21
+123574410075: http://127.0.0.1:4444/selenium-server/driver/?cmd=open&1=/&2=&sessionId=7e750bf7bd9d4d32bf7fd4354e531f21 returned: 'OK'
+12357441014: Custom command: cmd='This Custom Command1' & 1='true' & 2='true'
+123574410196: type on session 7e750bf7bd9d4d32bf7fd4354e531f21
+123574410198: http://127.0.0.1:4444/selenium-server/driver/?cmd=type&1=q&2=bromine openqa&sessionId=7e750bf7bd9d4d32bf7fd4354e531f21 returned: 'OK'
+123574410264: click on session 7e750bf7bd9d4d32bf7fd4354e531f21
+123574410268: http://127.0.0.1:4444/selenium-server/driver/?cmd=click&1=btnG&2=&sessionId=7e750bf7bd9d4d32bf7fd4354e531f21 returned: 'OK'
+123574410333: waitForPageToLoad on session 7e750bf7bd9d4d32bf7fd4354e531f21
+123574410337: http://127.0.0.1:4444/selenium-server/driver/?cmd=waitForPageToLoad&1=30000&2=&sessionId=7e750bf7bd9d4d32bf7fd4354e531f21 returned: 'OK'
+123574410397: click on session 7e750bf7bd9d4d32bf7fd4354e531f21
+123574410402: http://127.0.0.1:4444/selenium-server/driver/?cmd=click&1=link=exact:OpenQA: Bromine Blog: Bromine arrives at OpenQA&2=&sessionId=7e750bf7bd9d4d32bf7fd4354e531f21 returned: 'OK'
+123574410462: waitForPageToLoad on session 7e750bf7bd9d4d32bf7fd4354e531f21
+123574411025: http://127.0.0.1:4444/selenium-server/driver/?cmd=waitForPageToLoad&1=30000&2=&sessionId=7e750bf7bd9d4d32bf7fd4354e531f21 returned: 'Permission denied to get property Location.href'
+123574411089: testComplete on session 7e750bf7bd9d4d32bf7fd4354e531f21
+123574411094: http://127.0.0.1:4444/selenium-server/driver/?cmd=testComplete&1=&2=&sessionId=7e750bf7bd9d4d32bf7fd4354e531f21 returned: 'OK'
+123574416821: GetNewBrowserSession, 123574416744636
+12357441733: http://127.0.0.1:4444/selenium-server/driver/?cmd=getNewBrowserSession&1=*firefox&2=http://www.google.dk&sessionId= returned: 'OK,a677ff408acd452381ba028c1f7e9b0a'
+123574417331: Updated DB with session: 'a677ff408acd452381ba028c1f7e9b0a' on uid: '123574416744636'
+123574417396: open on session a677ff408acd452381ba028c1f7e9b0a
+123574417414: http://127.0.0.1:4444/selenium-server/driver/?cmd=open&1=/&2=&sessionId=a677ff408acd452381ba028c1f7e9b0a returned: 'OK'
+123574417473: Custom command: cmd='This Custom Command1' & 1='true' & 2='true'
+123574417529: type on session a677ff408acd452381ba028c1f7e9b0a
+123574417532: http://127.0.0.1:4444/selenium-server/driver/?cmd=type&1=q&2=bromine openqa&sessionId=a677ff408acd452381ba028c1f7e9b0a returned: 'OK'
+123574417592: click on session a677ff408acd452381ba028c1f7e9b0a
+123574417594: http://127.0.0.1:4444/selenium-server/driver/?cmd=click&1=btnG&2=&sessionId=a677ff408acd452381ba028c1f7e9b0a returned: 'OK'
+123574417663: waitForPageToLoad on session a677ff408acd452381ba028c1f7e9b0a
+123574417667: http://127.0.0.1:4444/selenium-server/driver/?cmd=waitForPageToLoad&1=30000&2=&sessionId=a677ff408acd452381ba028c1f7e9b0a returned: 'OK'
+123574417726: click on session a677ff408acd452381ba028c1f7e9b0a
+123574417731: http://127.0.0.1:4444/selenium-server/driver/?cmd=click&1=link=exact:OpenQA: Bromine Blog: Bromine arrives at OpenQA&2=&sessionId=a677ff408acd452381ba028c1f7e9b0a returned: 'OK'
+123574417794: waitForPageToLoad on session a677ff408acd452381ba028c1f7e9b0a
+123574418529: http://127.0.0.1:4444/selenium-server/driver/?cmd=waitForPageToLoad&1=30000&2=&sessionId=a677ff408acd452381ba028c1f7e9b0a returned: 'Permission denied to get property Location.href'
+123574418594: testComplete on session a677ff408acd452381ba028c1f7e9b0a
+123574418599: http://127.0.0.1:4444/selenium-server/driver/?cmd=testComplete&1=&2=&sessionId=a677ff408acd452381ba028c1f7e9b0a returned: 'OK'
+123574422872: GetNewBrowserSession, 123574422794935
+123574423328: http://127.0.0.1:4444/selenium-server/driver/?cmd=getNewBrowserSession&1=*chrome&2=http://www.google.dk&sessionId= returned: 'OK,8ee246e580844fecaccc26f36bcaf2de'
+123574423328: Updated DB with session: '8ee246e580844fecaccc26f36bcaf2de' on uid: '123574422794935'
+123574423391: open on session 8ee246e580844fecaccc26f36bcaf2de
+123574423429: http://127.0.0.1:4444/selenium-server/driver/?cmd=open&1=/&2=&sessionId=8ee246e580844fecaccc26f36bcaf2de returned: 'OK'
+1235744235: Custom command: cmd='This Custom Command1' & 1='true' & 2='true'
+123574423561: type on session 8ee246e580844fecaccc26f36bcaf2de
+123574423565: http://127.0.0.1:4444/selenium-server/driver/?cmd=type&1=q&2=bromine openqa&sessionId=8ee246e580844fecaccc26f36bcaf2de returned: 'OK'
+123574423625: click on session 8ee246e580844fecaccc26f36bcaf2de
+123574423631: http://127.0.0.1:4444/selenium-server/driver/?cmd=click&1=btnG&2=&sessionId=8ee246e580844fecaccc26f36bcaf2de returned: 'OK'
+123574423694: waitForPageToLoad on session 8ee246e580844fecaccc26f36bcaf2de
+123574423699: http://127.0.0.1:4444/selenium-server/driver/?cmd=waitForPageToLoad&1=30000&2=&sessionId=8ee246e580844fecaccc26f36bcaf2de returned: 'OK'
+123574423764: click on session 8ee246e580844fecaccc26f36bcaf2de
+123574423768: http://127.0.0.1:4444/selenium-server/driver/?cmd=click&1=link=exact:OpenQA: Bromine Blog: Bromine arrives at OpenQA&2=&sessionId=8ee246e580844fecaccc26f36bcaf2de returned: 'OK'
+123574423828: waitForPageToLoad on session 8ee246e580844fecaccc26f36bcaf2de
+123574424636: http://127.0.0.1:4444/selenium-server/driver/?cmd=waitForPageToLoad&1=30000&2=&sessionId=8ee246e580844fecaccc26f36bcaf2de returned: 'OK'
+123574424699: isTextPresent on session 8ee246e580844fecaccc26f36bcaf2de
+123574424708: http://127.0.0.1:4444/selenium-server/driver/?cmd=isTextPresent&1=Bromine&2=&sessionId=8ee246e580844fecaccc26f36bcaf2de returned: 'OK,true'
+123574424768: Custom command: cmd='This Custom Command2' & 1='true' & 2='true'
+123574424824: Custom command: cmd='This Custom Command3' & 1='true' & 2='true'
+123574424887: Custom command: cmd='This Custom &/ \ Command4' & 1='true' & 2='true'
+123574424944: testComplete on session 8ee246e580844fecaccc26f36bcaf2de
+12357442495: http://127.0.0.1:4444/selenium-server/driver/?cmd=testComplete&1=&2=&sessionId=8ee246e580844fecaccc26f36bcaf2de returned: 'OK'
+123574439925: GetNewBrowserSession, 123574439845832
+123574440376: http://127.0.0.1:4444/selenium-server/driver/?cmd=getNewBrowserSession&1=*chrome&2=http://www.google.dk&sessionId= returned: 'OK,7c9b901acd71430189007ad7edcde95d'
+123574440376: Updated DB with session: '7c9b901acd71430189007ad7edcde95d' on uid: '123574439845832'
+123574440449: open on session 7c9b901acd71430189007ad7edcde95d
+123574440469: http://127.0.0.1:4444/selenium-server/driver/?cmd=open&1=/&2=&sessionId=7c9b901acd71430189007ad7edcde95d returned: 'OK'
+12357444053: Custom command: cmd='This Custom Command1' & 1='true' & 2='true'
+12357444059: type on session 7c9b901acd71430189007ad7edcde95d
+123574440593: http://127.0.0.1:4444/selenium-server/driver/?cmd=type&1=q&2=bromine openqa&sessionId=7c9b901acd71430189007ad7edcde95d returned: 'OK'
+123574440663: click on session 7c9b901acd71430189007ad7edcde95d
+123574440667: http://127.0.0.1:4444/selenium-server/driver/?cmd=click&1=btnG&2=&sessionId=7c9b901acd71430189007ad7edcde95d returned: 'OK'
+123574440738: waitForPageToLoad on session 7c9b901acd71430189007ad7edcde95d
+123574440742: http://127.0.0.1:4444/selenium-server/driver/?cmd=waitForPageToLoad&1=30000&2=&sessionId=7c9b901acd71430189007ad7edcde95d returned: 'OK'
+123574440804: click on session 7c9b901acd71430189007ad7edcde95d
+123574440809: http://127.0.0.1:4444/selenium-server/driver/?cmd=click&1=link=exact:OpenQA: Bromine Blog: Bromine arrives at OpenQA&2=&sessionId=7c9b901acd71430189007ad7edcde95d returned: 'OK'
+12357444088: waitForPageToLoad on session 7c9b901acd71430189007ad7edcde95d
+12357444165: http://127.0.0.1:4444/selenium-server/driver/?cmd=waitForPageToLoad&1=30000&2=&sessionId=7c9b901acd71430189007ad7edcde95d returned: 'OK'
+123574441716: isTextPresent on session 7c9b901acd71430189007ad7edcde95d
+123574441725: http://127.0.0.1:4444/selenium-server/driver/?cmd=isTextPresent&1=Bromine&2=&sessionId=7c9b901acd71430189007ad7edcde95d returned: 'OK,true'
+123574441787: Custom command: cmd='This Custom Command2' & 1='true' & 2='true'
+123574441848: Custom command: cmd='This Custom Command3' & 1='true' & 2='true'
+123574441911: Custom command: cmd='This Custom &/ \ Command4' & 1='true' & 2='true'
+123574441971: testComplete on session 7c9b901acd71430189007ad7edcde95d
+123574441982: http://127.0.0.1:4444/selenium-server/driver/?cmd=testComplete&1=&2=&sessionId=7c9b901acd71430189007ad7edcde95d returned: 'OK'
+123574450907: GetNewBrowserSession, 123574450829283
+123574451369: http://127.0.0.1:4444/selenium-server/driver/?cmd=getNewBrowserSession&1=*chrome&2=http://www.google.dk&sessionId= returned: 'OK,2dc4a12620494db4b99c38f3ab2ec678'
+12357445137: Updated DB with session: '2dc4a12620494db4b99c38f3ab2ec678' on uid: '123574450829283'
+123574451446: open on session 2dc4a12620494db4b99c38f3ab2ec678
+123574451466: http://127.0.0.1:4444/selenium-server/driver/?cmd=open&1=/&2=&sessionId=2dc4a12620494db4b99c38f3ab2ec678 returned: 'OK'
+12357445153: Custom command: cmd='This Custom Command1' & 1='true' & 2='true'
+12357445159: type on session 2dc4a12620494db4b99c38f3ab2ec678
+123574451592: http://127.0.0.1:4444/selenium-server/driver/?cmd=type&1=q&2=bromine openqa&sessionId=2dc4a12620494db4b99c38f3ab2ec678 returned: 'OK'
+123574451654: click on session 2dc4a12620494db4b99c38f3ab2ec678
+123574451657: http://127.0.0.1:4444/selenium-server/driver/?cmd=click&1=btnG&2=&sessionId=2dc4a12620494db4b99c38f3ab2ec678 returned: 'OK'
+123574451726: waitForPageToLoad on session 2dc4a12620494db4b99c38f3ab2ec678
+123574451731: http://127.0.0.1:4444/selenium-server/driver/?cmd=waitForPageToLoad&1=30000&2=&sessionId=2dc4a12620494db4b99c38f3ab2ec678 returned: 'OK'
+123574451792: click on session 2dc4a12620494db4b99c38f3ab2ec678
+123574451796: http://127.0.0.1:4444/selenium-server/driver/?cmd=click&1=link=exact:OpenQA: Bromine Blog: Bromine arrives at OpenQA&2=&sessionId=2dc4a12620494db4b99c38f3ab2ec678 returned: 'OK'
+123574451856: waitForPageToLoad on session 2dc4a12620494db4b99c38f3ab2ec678
+123574452714: http://127.0.0.1:4444/selenium-server/driver/?cmd=waitForPageToLoad&1=30000&2=&sessionId=2dc4a12620494db4b99c38f3ab2ec678 returned: 'OK'
+123574452779: isTextPresent on session 2dc4a12620494db4b99c38f3ab2ec678
+123574452788: http://127.0.0.1:4444/selenium-server/driver/?cmd=isTextPresent&1=Bromine&2=&sessionId=2dc4a12620494db4b99c38f3ab2ec678 returned: 'OK,true'
+123574452851: Custom command: cmd='This Custom Command2' & 1='true' & 2='true'
+123574452911: Custom command: cmd='This Custom Command3' & 1='true' & 2='true'
+12357445297: Custom command: cmd='This Custom &/ \ Command4' & 1='true' & 2='true'
+123574453026: testComplete on session 2dc4a12620494db4b99c38f3ab2ec678
+123574453031: http://127.0.0.1:4444/selenium-server/driver/?cmd=testComplete&1=&2=&sessionId=2dc4a12620494db4b99c38f3ab2ec678 returned: 'OK'
+123574463886: GetNewBrowserSession, 123574463802803
+123574463987:  on session 
+123574463988: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574464156:  on session 
+123574464158: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574464334:  on session 
+123574464335: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+12357446439: http://127.0.0.1:4444/selenium-server/driver/?cmd=getNewBrowserSession&1=*chrome&2=http://www.google.dk&sessionId= returned: 'OK,c37d0c9ac075424894ab2dda9cb4c15d'
+123574464391: Updated DB with session: 'c37d0c9ac075424894ab2dda9cb4c15d' on uid: '123574463802803'
+123574464458: open on session c37d0c9ac075424894ab2dda9cb4c15d
+123574464512:  on session 
+123574464513: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574464542: http://127.0.0.1:4444/selenium-server/driver/?cmd=open&1=/&2=&sessionId=c37d0c9ac075424894ab2dda9cb4c15d returned: 'OK'
+123574464612: Custom command: cmd='This Custom Command1' & 1='true' & 2='true'
+123574464687: type on session c37d0c9ac075424894ab2dda9cb4c15d
+12357446469: http://127.0.0.1:4444/selenium-server/driver/?cmd=type&1=q&2=bromine openqa&sessionId=c37d0c9ac075424894ab2dda9cb4c15d returned: 'OK'
+123574464693:  on session 
+123574464695: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574464757: click on session c37d0c9ac075424894ab2dda9cb4c15d
+123574464761: http://127.0.0.1:4444/selenium-server/driver/?cmd=click&1=btnG&2=&sessionId=c37d0c9ac075424894ab2dda9cb4c15d returned: 'OK'
+12357446484: waitForPageToLoad on session c37d0c9ac075424894ab2dda9cb4c15d
+123574464846: http://127.0.0.1:4444/selenium-server/driver/?cmd=waitForPageToLoad&1=30000&2=&sessionId=c37d0c9ac075424894ab2dda9cb4c15d returned: 'OK'
+123574464883:  on session 
+123574464885: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574464917: click on session c37d0c9ac075424894ab2dda9cb4c15d
+123574464922: http://127.0.0.1:4444/selenium-server/driver/?cmd=click&1=link=exact:OpenQA: Bromine Blog: Bromine arrives at OpenQA&2=&sessionId=c37d0c9ac075424894ab2dda9cb4c15d returned: 'OK'
+123574464992: waitForPageToLoad on session c37d0c9ac075424894ab2dda9cb4c15d
+123574465051:  on session 
+123574465052: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574465216:  on session 
+123574465217: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574465381:  on session 
+123574465383: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574465547:  on session 
+123574465548: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+12357446571:  on session 
+123574465712: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574465877:  on session 
+123574465878: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574465979: http://127.0.0.1:4444/selenium-server/driver/?cmd=waitForPageToLoad&1=30000&2=&sessionId=c37d0c9ac075424894ab2dda9cb4c15d returned: 'OK'
+123574466053: isTextPresent on session c37d0c9ac075424894ab2dda9cb4c15d
+12357446606:  on session 
+123574466061: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574466065: http://127.0.0.1:4444/selenium-server/driver/?cmd=isTextPresent&1=Bromine&2=&sessionId=c37d0c9ac075424894ab2dda9cb4c15d returned: 'OK,true'
+123574466131: Custom command: cmd='This Custom Command2' & 1='true' & 2='true'
+123574466191: Custom command: cmd='This Custom Command3' & 1='true' & 2='true'
+123574466239:  on session 
+123574466241: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574466259: Custom command: cmd='This Custom &/ \ Command4' & 1='true' & 2='true'
+123574466319: testComplete on session c37d0c9ac075424894ab2dda9cb4c15d
+123574466325: http://127.0.0.1:4444/selenium-server/driver/?cmd=testComplete&1=&2=&sessionId=c37d0c9ac075424894ab2dda9cb4c15d returned: 'OK'
+123574466407:  on session 
+123574466407: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+12357446657:  on session 
+123574466572: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574466731:  on session 
+123574466733: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+1235744669:  on session 
+123574466901: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574467068:  on session 
+12357446707: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574467233:  on session 
+123574467439: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574467611:  on session 
+123574467612: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574467784:  on session 
+123574467785: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574467948:  on session 
+123574467949: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574468111:  on session 
+123574468112: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574468282:  on session 
+123574468283: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574468447:  on session 
+123574468448: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+12357446862:  on session 
+123574468622: http://127.0.0.1:4444/selenium-server/driver/?cmd=&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574474513: GetNewBrowserSession, 123574474438159
+123574474625: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574474806: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574474972: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId= returned: 'ERROR Server Exception: sessionId  doesn't exist; perhaps this session was already stopped?'
+123574474983: http://127.0.0.1:4444/selenium-server/driver/?cmd=getNewBrowserSession&1=*chrome&2=http://www.google.dk&sessionId= returned: 'OK,c73c2460fdca488691ef2f1f6343bdef'
+123574474983: Updated DB with session: 'c73c2460fdca488691ef2f1f6343bdef' on uid: '123574474438159'
+123574475057: open on session c73c2460fdca488691ef2f1f6343bdef
+123574475096: http://127.0.0.1:4444/selenium-server/driver/?cmd=open&1=/&2=&sessionId=c73c2460fdca488691ef2f1f6343bdef returned: 'OK'
+123574475146: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId=c73c2460fdca488691ef2f1f6343bdef returned: 'OK,Google'
+123574475169: Custom command: cmd='This Custom Command1' & 1='true' & 2='true'
+123574475226: type on session c73c2460fdca488691ef2f1f6343bdef
+123574475228: http://127.0.0.1:4444/selenium-server/driver/?cmd=type&1=q&2=bromine openqa&sessionId=c73c2460fdca488691ef2f1f6343bdef returned: 'OK'
+123574475301: click on session c73c2460fdca488691ef2f1f6343bdef
+123574475309: http://127.0.0.1:4444/selenium-server/driver/?cmd=click&1=btnG&2=&sessionId=c73c2460fdca488691ef2f1f6343bdef returned: 'OK'
+123574475339: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId=c73c2460fdca488691ef2f1f6343bdef returned: 'OK,bromine openqa - Google-søgning'
+123574475383: waitForPageToLoad on session c73c2460fdca488691ef2f1f6343bdef
+123574478385: http://127.0.0.1:4444/selenium-server/driver/?cmd=waitForPageToLoad&1=30000&2=&sessionId=c73c2460fdca488691ef2f1f6343bdef returned: 'Timed out after 30000ms'
+123574478448: testComplete on session c73c2460fdca488691ef2f1f6343bdef
+123574478453: http://127.0.0.1:4444/selenium-server/driver/?cmd=testComplete&1=&2=&sessionId=c73c2460fdca488691ef2f1f6343bdef returned: 'OK'
+123574478454: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId=c73c2460fdca488691ef2f1f6343bdef returned: 'ERROR: Got a null result'
+123574478616: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId=c73c2460fdca488691ef2f1f6343bdef returned: 'ERROR Server Exception: sessionId c73c2460fdca488691ef2f1f6343bdef doesn't exist; perhaps this session was already stopped?'
+12357447878: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId=c73c2460fdca488691ef2f1f6343bdef returned: 'ERROR Server Exception: sessionId c73c2460fdca488691ef2f1f6343bdef doesn't exist; perhaps this session was already stopped?'
+123574478942: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId=c73c2460fdca488691ef2f1f6343bdef returned: 'ERROR Server Exception: sessionId c73c2460fdca488691ef2f1f6343bdef doesn't exist; perhaps this session was already stopped?'
+123574479107: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId=c73c2460fdca488691ef2f1f6343bdef returned: 'ERROR Server Exception: sessionId c73c2460fdca488691ef2f1f6343bdef doesn't exist; perhaps this session was already stopped?'
+123574479278: http://127.0.0.1:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId=c73c2460fdca488691ef2f1f6343bdef returned: 'ERROR Server Exception: sessionId c73c2460fdca488691ef2f1f6343bdef doesn't exist; perhaps this session was already stopped?'
+123574704857: http://:4444/selenium-server/driver/?cmd=getTitle&1=&2=&sessionId= returned: ''

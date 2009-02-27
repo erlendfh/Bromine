@@ -55,6 +55,16 @@ class SeleniumserverController extends AppController {
             $result = $this->Seleniumserver->find("uid = '$uid'");
             $this->log('GetNewBrowserSession, '.$uid);
         }
+        elseif($cmd == 'getStatus'){
+            $uid = $_REQUEST['uid'];
+            $result = $this->Seleniumserver->find("uid = '$uid'");
+            if(empty($result)){
+                echo "ERROR: no uid = $uid found";
+            }
+            $sessionId = $result['Seleniumserver']['session'];
+            $oldcmd = 'getStatus';
+            $cmd = 'getTitle'; 
+        }
         //All other commands, use sessionId
         else{ 
             //$result = $dbh->sql("SELECT * FROM trm_selenium_server_vars WHERE sessionId = '$sessionId'");
@@ -62,7 +72,7 @@ class SeleniumserverController extends AppController {
             $this->log($cmd . ' on session ' . $sessionId);
 
         }
-        
+
         //Grab the data from the DB
         //pr ($result);
 
@@ -74,6 +84,7 @@ class SeleniumserverController extends AppController {
 
 
         $response = $this->executeCommand($url);
+        
         $this->log($url . " returned: '" . $response . "'");
 
         //Determine status
@@ -85,7 +96,9 @@ class SeleniumserverController extends AppController {
         }
         
         //Insert the command in Bromine
-        $this->insertCommand($status, $cmd, $one, $two, $test_id); 
+        if($oldcmd != 'getStatus'){
+            $this->insertCommand($status, $cmd, $one, $two, $test_id);
+        } 
 
         //If first command, update DB with sessionId 
         if ($cmd == 'getNewBrowserSession'){
@@ -99,6 +112,7 @@ class SeleniumserverController extends AppController {
             $this->log("Updated DB with session: '$sessionId' on uid: '$uid'");
             //$dbh->sql("UPDATE trm_selenium_server_vars SET sessionId='$sessionId' WHERE uid='$uid'");
         }
+        
         //If NOTHING messed up, send the response
         echo $response;
         //echo "OK";
@@ -144,6 +158,20 @@ class SeleniumserverController extends AppController {
         $this->Command->create();
         $this->Command->save($command);
         
+        /*$this->Seleniumserver->id = 
+        $seleniumserver = array(
+                         'Command' => array(
+                                             'status' => $status,
+                                             'action' => $cmd,
+                                             'var1' => $var1,
+                                             'var2' => $var2,
+                                             'test_id' => $test_id
+                                            )
+        
+        );
+
+        $this->Seleniumserver->save($command);
+        */
     }
 
     private function getStatus($response){ //Figures out the status of the command
@@ -158,7 +186,7 @@ class SeleniumserverController extends AppController {
         return $status;
     }
 
-    private function executeCommand($url){
+    function executeCommand($url){
 
         $handle = fopen($url, 'r');
         stream_set_blocking($handle, false);

@@ -20,16 +20,21 @@
     <body>
   <div id="main">
     <div id="links_container">
-      <div id="logo"><h1>Bromine 3</h1><img id='notification' src='/img/ajax-loader.gif' style='display: none;'/></div>
+      <div id="logo"><h1>Bromine 3</h1><img id='notification' src='/img/ajax-loader.gif' alt="" style='display: none;'/></div>
       <script type='text/javascript'>
+
     Ajax.Responders.register({
-    	onCreate: function() {
-    		if($('notification') && Ajax.activeRequestCount > 0)
-    			Effect.Appear('notification',{duration: 0.25, queue: 'end'});
+    	onCreate: function(request) {
+    		if($('notification') && Ajax.activeRequestCount > 0){
+        		    $('notification').title = request.url;
+        			Effect.Appear('notification',{duration: 0.25, queue: 'end'});
+    			}
     	},
     	onComplete: function() {
-    		if($('notification') && Ajax.activeRequestCount == 0)
+    		if($('notification') && Ajax.activeRequestCount == 0){
+                $('notification').title = '';
     			Effect.Fade('notification',{duration: 0.25, queue: 'end'});
+    		}
     	}
     });
     </script>

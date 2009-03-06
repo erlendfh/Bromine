@@ -34,36 +34,15 @@ class SeleniumserverController extends AppController {
             $sessionId = "";
         }
         
-        //If custom command, just insert in the DB and be done with it.
-        if($cmd == 'customCommand'){ 
-            $cmdName = $_REQUEST['cmdName'];
-            $status = $_REQUEST['status'];
-            $test_id = $_REQUEST['test_id'];
-            $uid = $_REQUEST['u_id'];
-            $var1 = $_REQUEST['var1'];
-            $var2 = $_REQUEST['var2'];          
-            $this->insertCommand($status, $cmdName, $var1, $var2, $test_id);
-            echo "OK";
-            $this->log("Custom command: cmd='$cmdName' & 1='$var1' & 2='$var2'");
-            exit;      
-        }
-        //Else if, first command, use u_id for DB identification
-        elseif ($cmd == 'getNewBrowserSession'){ 
+        
+        
+        //If, first command, use uid for DB identification
+        if ($cmd == 'getNewBrowserSession'){ 
             $arr = split(',',$one);
             $one = $arr[0];
             $uid = $arr[1];
             $result = $this->Seleniumserver->find("uid = '$uid'");
             $this->log('GetNewBrowserSession, '.$uid);
-        }
-        elseif($cmd == 'getStatus'){
-            $uid = $_REQUEST['uid'];
-            $result = $this->Seleniumserver->find("uid = '$uid'");
-            if(empty($result)){
-                echo "ERROR: no uid = $uid found";
-            }
-            $sessionId = $result['Seleniumserver']['session'];
-            $oldcmd = 'getStatus';
-            $cmd = 'getTitle'; 
         }
         //All other commands, use sessionId
         else{ 
@@ -71,6 +50,18 @@ class SeleniumserverController extends AppController {
             $result = $this->Seleniumserver->find("session = '$sessionId'");        
             $this->log($cmd . ' on session ' . $sessionId);
 
+        }
+        if($cmd == 'customCommand'){ //If custom command, just insert in the DB and be done with it.
+            $cmdName = $_REQUEST['cmdName'];
+            $status = $_REQUEST['status'];
+            $test_id = $_REQUEST['test_id'];
+            $uid = $_REQUEST['u_id'];
+            $var1 = $_REQUEST['var1'];
+            $var2 = $_REQUEST['var2'];          
+            $this->insertCommand($status, $cmdName, $var1, $var2, $test_id, $uid, $sessionId);
+            echo "OK";
+            $this->log("Custom command: cmd='$cmdName' & 1='$var1' & 2='$var2'");
+            exit;
         }
 
         //Grab the data from the DB
@@ -80,9 +71,8 @@ class SeleniumserverController extends AppController {
         $uid = $result['Seleniumserver']['uid'];
         $test_id = $result['Seleniumserver']['test_id'];
         //Send the command to the RC server
-        $url = "http://$nodepath:4444/selenium-server/driver/?cmd=$cmd&1=$one&2=$two&sessionId=$sessionId";
-
-
+        $url = "http://$nodepath/selenium-server/driver/?cmd=$cmd&1=$one&2=$two&sessionId=$sessionId";
+        $this->log("Executing $url");
         $response = $this->executeCommand($url);
         
         $this->log($url . " returned: '" . $response . "'");
@@ -96,9 +86,9 @@ class SeleniumserverController extends AppController {
         }
         
         //Insert the command in Bromine
-        if($oldcmd != 'getStatus'){
-            $this->insertCommand($status, $cmd, $one, $two, $test_id);
-        } 
+
+        $this->insertCommand($status, $cmd, $one, $two, $test_id, $uid, $sessionId);
+
 
         //If first command, update DB with sessionId 
         if ($cmd == 'getNewBrowserSession'){
@@ -141,37 +131,30 @@ class SeleniumserverController extends AppController {
         
     }
     
-    private function insertCommand($status, $cmd, $var1, $var2 = '', $test_id){
-        
-        
+    private function insertCommand($status, $cmd, $var1, $var2 = '', $test_id, $uid, $sessionId){
         $command = array(
-                         'Command' => array(
-                                             'status' => $status,
-                                             'action' => $cmd,
-                                             'var1' => $var1,
-                                             'var2' => $var2,
-                                             'test_id' => $test_id
-                                            )
-        
+            'Command' => array(
+                'status' => $status,
+                'action' => $cmd,
+                'var1' => $var1,
+                'var2' => $var2,
+                'test_id' => $test_id
+            )
         );
-
-        $this->Command->create();
         $this->Command->save($command);
         
-        /*$this->Seleniumserver->id = 
-        $seleniumserver = array(
-                         'Command' => array(
-                                             'status' => $status,
-                                             'action' => $cmd,
-                                             'var1' => $var1,
-                                             'var2' => $var2,
-                                             'test_id' => $test_id
-                                            )
-        
+        $conditions = array( "or" => array (
+            "Seleniumserver.session" => $sessionId,
+            "Seleniumserver.uid" => $uid
+            )
         );
-
-        $this->Seleniumserver->save($command);
-        */
+        $seleniumserver = $this->Seleniumserver->find($conditions);
+        $seleniumserver['Seleniumserver']['lastCommand'] = time();
+        if($cmd == 'testComplete'){
+            $seleniumserver['Seleniumserver']['done'] = 1;
+        }
+        $this->Seleniumserver->save($seleniumserver);
+        
     }
 
     private function getStatus($response){ //Figures out the status of the command

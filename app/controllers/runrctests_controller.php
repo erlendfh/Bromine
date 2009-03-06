@@ -45,6 +45,7 @@ class RunrctestsController  extends AppController {
     );
         
     var $runningLimit = 1;
+    var $timeout = 60;
     
     function index() {
     
@@ -102,7 +103,7 @@ class RunrctestsController  extends AppController {
     }
     
     function log($msg){
-        $fp = fopen('logs/thelog.txt','a');
+        $fp = fopen('log2.txt','a');
         fwrite($fp, $msg."\n");
         fclose($fp);
     }
@@ -125,26 +126,81 @@ class RunrctestsController  extends AppController {
     }
     
     function updateNodes($nodes){
-        $this->log(print_r($nodes,true));
+        App::import('Model','Seleniumserver');
+        $this->Seleniumserver = new Seleniumserver();
+        
         foreach($nodes as $k=>$node){
-            $this->log('alla');
             foreach($node['Node']['running'] as $j=>$uid){
-                $this->log("checking $uid got response $response");
-
                 $currentTime = time();
-                //todo get lastCommand and sessionid from DB
-                if ($dead == true){
+                $seleniumServer = $this->Seleniumserver->find("uid = '$uid'");
+                $lastCommand = $seleniumServer['Seleniumserver']['lastCommand'];
+                $sessionId = $seleniumServer['Seleniumserver']['session'];
+                $test_id = $seleniumServer['Seleniumserver']['test_id'];
+                $done = $seleniumServer['Seleniumserver']['done'];
+                if((time() - $lastCommand) > $this->timeout && $lastCommand != 0){ //The test has not run commands for timeout seconds
+                    $handle = fopen("http://127.0.0.1/selenium-server/driver/?cmd=customCommand&cmdName=Test terminated&var1=Bromine judged the test unresponsive because no commands had been run for $this->timeout seconds.&var2=The test was terminated to free up the nodes resources.&uid=$uid&test_id=$test_id&status=failed",'r');
                     $handle = fopen("http://127.0.0.1/selenium-server/driver/?cmd=testComplete&sessionId=$sessionId",'r');
-                    stream_set_blocking($handle, false);
-                    $response = stream_get_contents($handle);
-                    
                     fclose($handle);
+                    unset($nodes[$k]['Node']['running'][$j]);
+                }
+                if($done){
+                    unset($nodes[$k]['Node']['running'][$j]);
                 }
             }
         }
+        return $nodes;
     }
     
-    function loadBalancer($tests, $suite_id, $siteToTest){
+    function loadBalancer($tests=array(), $suite_id){
+        session_write_close();
+        $this->log("loadBalancer was called with tests = $tests, suite_id = $suite_id");
+        $siteToTest = "http://www.google.com";
+        $tests = array(
+        'test' =>  
+            array(
+                array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 3
+                ),
+                array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 1
+                )
+                /*,
+                array(
+                    'done' => 0,
+                    'OS' => 4,
+                    'browser' => 13
+                )*/
+            ),
+        'test2' =>
+            array(
+                array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 3
+                ),
+                array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 1
+                )
+                /*,
+                array(
+                    'done' => 0,
+                    'OS' => 4,
+                    'browser' => 13
+                ),
+                array(
+                    'done' => 0,
+                    'OS' => 4,
+                    'browser' => 3
+                )
+                */
+            )
+        );
         App::import('Model','Node');
         $this->Node = new Node();
         $nodes = $this->Node->find('all');
@@ -164,7 +220,8 @@ class RunrctestsController  extends AppController {
                         //Find all available nodes. (not full, right OS and brows)
                         $this->log('Need: '.print_r($need,true));
                         $availableNodes = $this->getAvailableNodes($nodes,$OS_id,$browser_id);
-                        $this->log("available nodes: ".serialize($availableNodes));
+                        foreach($availableNodes as $lala)
+                        $this->log("available node: ".print_r($lala['Node'],true));
                         if(!empty($availableNodes)){
                             //Find the best node. 
                             $bestNodeId = $this->findBestNode($availableNodes);
@@ -182,58 +239,20 @@ class RunrctestsController  extends AppController {
                     }
                 }
             }
-            sleep(1);
-            $this->updateNodes($nodes);
+            sleep(2);
+            $nodes = $this->updateNodes($nodes);
         }
     }
 	
+	function status($suite_id){    
+        App::import('Model','Suite');
+        $this->Suite = new Suite();
+        $this->Suite->recursive = 2;
+        $this->set('Suite',$this->Suite->find("Suite.id = $suite_id"));
+    }
 	
+	function start($tests=array()){
 	
-	function status($tests=array()){
-        $tests = array(
-        'test' =>  
-            array(
-                array(
-                    'done' => 0,
-                    'OS' => 12,
-                    'browser' => 3
-                ),
-                array(
-                    'done' => 0,
-                    'OS' => 12,
-                    'browser' => 1
-                ),
-                array(
-                    'done' => 0,
-                    'OS' => 4,
-                    'browser' => 13
-                )
-            ),
-        'test2' =>
-            array(
-                array(
-                    'done' => 0,
-                    'OS' => 12,
-                    'browser' => 3
-                ),
-                array(
-                    'done' => 0,
-                    'OS' => 12,
-                    'browser' => 1
-                ),
-                array(
-                    'done' => 0,
-                    'OS' => 4,
-                    'browser' => 13
-                ),
-                array(
-                    'done' => 0,
-                    'OS' => 4,
-                    'browser' => 3
-                )
-            )
-        );
-        
         $site_id = 37;
         $siteToTest = 'http://www.google.dk';
         $suiteName = 'alalal';
@@ -248,7 +267,9 @@ class RunrctestsController  extends AppController {
         );
         $this->Suite->save($this->data);
         $suite_id = $this->Suite->id;
-        $this->loadBalancer($tests,$suite_id,$siteToTest);
+        $this->set('suite_id',$suite_id);
+        $this->set('tests',$tests);
+        $this->set('siteToTest',$siteToTest);
     }
 	
     private function initiate($test_id, $nodePath, $uid){
@@ -303,7 +324,7 @@ class RunrctestsController  extends AppController {
         
         $cmd =  $command . $spacer . WWW_ROOT . 'tests' . DS . 
                 $this->Session->read('project_name') . DS . $name . DS . $testName . '.' . $extension . 
-                $spacer . $nodePath . $spacer . $port . $spacer . $browserPath . $spacer . 
+                $spacer . '127.0.0.1' . $spacer . $port . $spacer . $browserPath . $spacer . 
                 $siteToTest . $spacer . $uid . $spacer . $test_id;
         $this->execute($cmd);
     }
@@ -313,7 +334,7 @@ class RunrctestsController  extends AppController {
         $this->log("Executing: $cmd");
         //Windows
         if (substr(php_uname(), 0, 7) == "Windows"){
-            pclose(popen("start /B ". $cmd . "> visti.txt", "r")); 
+            pclose(popen("start /B ". $cmd, "r")); 
         }
         //Unix
         else {

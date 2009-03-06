@@ -1,6 +1,0 @@
-RUNNER:
-<?php
-
-//pr($vars);
-
-?>

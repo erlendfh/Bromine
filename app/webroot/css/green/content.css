@@ -1,3 +1,13 @@
+tr.passed td{
+    background-color: #33FF66;
+}
+tr.failed td{
+    background-color: #FF6666;
+}
+tr.done td{
+    background-color: #CCFFCC;
+}
+
 .ideas.index a{
     font-size: 160%;
 }

@@ -1989,3 +1989,6 @@
 2009-03-21 14:10:32 Debug: Notice (8): Undefined index:  outsidedefects in [APP\views\projects\index.ctp, line 38]
 2009-03-21 14:10:32 Debug: Notice (8): Undefined index:  viewdefectsurl in [APP\views\projects\index.ctp, line 41]
 2009-03-21 14:10:32 Debug: Notice (8): Undefined index:  adddefecturl in [APP\views\projects\index.ctp, line 44]
+2009-03-21 15:44:59 Debug: Notice (8): Undefined index:  outsidedefects in [APP\views\projects\index.ctp, line 38]
+2009-03-21 15:44:59 Debug: Notice (8): Undefined index:  viewdefectsurl in [APP\views\projects\index.ctp, line 41]
+2009-03-21 15:44:59 Debug: Notice (8): Undefined index:  adddefecturl in [APP\views\projects\index.ctp, line 44]

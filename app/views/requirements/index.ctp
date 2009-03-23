@@ -8,7 +8,7 @@
     	line-height: 28px;
     }
     #tree {
-      padding: 0px;
+        padding: 0px;
 	    margin: 12px;
     	width: 200px;
     }
@@ -18,28 +18,26 @@
     	margin-top: -6px;
     }
     #tree li a {
-      padding: 2px 0 0 18px;
-    	background: url(/img/file.png) no-repeat left top;
+      padding: 2px 0 0 32px;
     }
-    #tree li.file {
-    	padding-left: 18px;
+    #tree li.req a {
+      background: url(/img/tango/32x32/mimetypes/text-x-generic.png) no-repeat left top;
     }
-    #tree li.file a {
-    	padding-left: 18px;
-    	background: url(/img/file.png) no-repeat left top;
-    }
-    #tree li span.handle {
-      display: block;
-      float: left;
-    	width: 15px;
-    	height: 12px;
-    	margin: 6px 3px 0 0;
-    	cursor: pointer;
+    #tree li.tc a {
+    	background: url(/img/tango/32x32/mimetypes/application-x-executable.png) no-repeat left top;
     }
     #tree li span {
+      display: block;
+      float: left;
+      width: 15px;
+      height: 12px;
+      margin: 6px 3px 0 0;
+      cursor: pointer;
+    }
+    #tree li span.handle {
     	background: url(/img/folder_open.png) no-repeat 3px 3px;
     }
-    #tree li.closed span {
+    #tree li.closed span.handle {
     	background: url(/img/folder_closed.png) no-repeat 3px 3px;
     }
     #tree li.closed li {
@@ -57,16 +55,20 @@
     #tree .drop_insert {
     	background-position: 32px 100%;
     }
-    #log {
-      padding: 12px;
-      color: #999;
-      line-height: 12px;
-    }
   </style>
 <table>
     <tr style='vertical-align: top;'>
         <td>
-            <?php echo $tree->show('Requirement/name', $data); ?>
+            <ul id='mehe' >
+                <li>
+                    <?php echo $session->read('project_name'); ?>
+                    <ul id="tree">
+                        <?php echo $tree->show2('Requirement/name', $data); ?>
+                    </ul>
+                </li>
+            </ul>
+            
+
         </td>
         <td>
             <div id='lala'></div>

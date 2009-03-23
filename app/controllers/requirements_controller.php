@@ -23,7 +23,8 @@ class RequirementsController extends AppController {
     }
     
 	function index() {
-		$this->Requirement->recursive = 0;
+		$this->Requirement->recursive = 1;
+		//pr($this->Requirement->find('threaded'));
 		$this->set('data',$this->Requirement->find('threaded'));
 		//$this->set('requirements', $this->paginate(null, array('project.id' => $this->Session->read('project_id'))));
 		

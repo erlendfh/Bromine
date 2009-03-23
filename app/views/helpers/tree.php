@@ -19,16 +19,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 
 
-class TreeHelper extends Helper
-{
+class TreeHelper extends Helper{
   var $tab = "";
   var $helpers = array('Html','Ajax','Javascript');
-  var $level = 0;
   
   function show($name, $data)
   {
     
-
     list($modelName, $fieldName) = explode('/', $name);
     $output = $this->list_element($data, $modelName, $fieldName, 0);
     
@@ -36,59 +33,120 @@ class TreeHelper extends Helper
     
   }
   
-  function list_element($data, $modelName, $fieldName, $level)
+  function show2($name, $data)
   {
     
-    $tabs = "\n" . str_repeat($this->tab, $level * 2);
-    $li_tabs = $tabs . $this->tab;
-    $li_tabs = "";
-    if($this->level == 0){
-        $output = $tabs. "<ul id='tree'>";
+    list($modelName, $fieldName) = explode('/', $name);
+    $output = $this->list_element2($data, $modelName, $fieldName);
+    
+    return $this->output($output);
+    
+  }
+  
+  function list_element($data, $modelName, $fieldName, $level){
+    
+    if($level == 0){
+        $output = "<ul id='tree' class='req'>";
     }else{
-        $output = $tabs. "<ul>";
+        $output = "<ul class='req'>";
     }
-    foreach ($data as $key=>$val)
-    {
-      //$output .= $li_tabs . "<li>".$val[$modelName][$fieldName];
-      $class = "";
-      if(!isset($val['children'][0])){
-        $class = " class = 'file'";
-      }
-      $output .= $li_tabs . "<li id='node_".$val[$modelName]['id']."' $class>";
-                                            /*
-                                            $this->Ajax->link( 
-                                                $val[$modelName][$fieldName], 
-                                                array( 'controller' => 'requirements', 'action' => 'view', $val[$modelName]['id']), 
-                                                array( 'update' => 'lala' )
-                                            );
-                                            */ 
-    $this->level++;
-      if(isset($val['children'][0]))
-      {
+    foreach ($data as $key=>$val){
+
+      $output .= "<li id='node_".$val[$modelName]['id']."'>";
+
+      if(isset($val['children'][0])){
         $output .= "<span class='handle'></span>";
-        //$output .= "<a>".$val[$modelName][$fieldName]."</a>";
         $output .= $this->Ajax->link( 
             $val[$modelName][$fieldName], 
             array( 'controller' => 'requirements', 'action' => 'view', $val[$modelName]['id']), 
             array( 'update' => 'lala' )
         );
         $output .= $this->list_element($val['children'], $modelName, $fieldName, $level+1);
-        $output .= $li_tabs . "</li>";
+        if(!empty($val['Testcase'])){
+            $output .= "<ul class='tc'>";
+            foreach($val['Testcase'] as $testcase){
+                $output .= "<li>";
+                $output .= $this->Ajax->link( 
+                    $testcase['name'], 
+                    array( 'controller' => 'testcases', 'action' => 'view', $testcase['id']), 
+                    array( 'update' => 'lala' )
+                );
+                $output .= "</li>";
+            }
+            $output .= "</ul>";
+        }
+        $output .= "</li>";
       }
-      else
-      {
-        //$output .= "<a>".$val[$modelName][$fieldName]."</a>";
+      else{
         $output .= $this->Ajax->link( 
             $val[$modelName][$fieldName], 
             array( 'controller' => 'requirements', 'action' => 'view', $val[$modelName]['id']), 
             array( 'update' => 'lala' )
         );
+        if(!empty($val['Testcase'])){   
+            $output .= "<ul class='tc'>";
+            foreach($val['Testcase'] as $testcase){
+                $output .= "<li>";
+                $output .= $this->Ajax->link( 
+                    $testcase['name'], 
+                    array( 'controller' => 'testcases', 'action' => 'view', $testcase['id']), 
+                    array( 'update' => 'lala' )
+                );
+                $output .= "</li>";
+            }
+            $output .= "</ul>";
+        }
         $output .= "</li>";
       }
+
     }
-    $output .= $tabs . "</ul>";
+    $output .=  "</ul>";
     
     return $output;
   }
+  
+    function list_element2($data, $modelName, $fieldName){
+        if(empty($output)){$output="";}
+        foreach ($data as $key=>$val){
+            $output .= "<li id='node_req".$val[$modelName]['id']."' class='req'>";
+            $output .= $this->Ajax->link(
+                $val[$modelName][$fieldName], 
+                array( 'controller' => 'requirements', 'action' => 'view', $val[$modelName]['id']), 
+                array( 'update' => 'lala' )
+            );
+            
+            if(!empty($val['children'])  || !empty($val['Testcase'])){
+                $output .= "<span class='handle'></span>";
+            }else{
+                $output .= "<span></span>";
+            }
+            
+            if(!empty($val['children'])){
+                $output .= "<ul>";
+                $output .= $this->list_element2($val['children'], $modelName, $fieldName);
+                $output .= "</ul>";
+            }
+            
+            if(!empty($val['Testcase'])){
+                $output .= "<ul>";
+                
+                foreach($val['Testcase'] as $testcase){
+                    $output .= "<li id='node_tc".$testcase['id']."' class='tc'>";
+                    
+                    $output .= $this->Ajax->link( 
+                        $testcase['name'], 
+                        array( 'controller' => 'testcases', 'action' => 'view', $testcase['id']), 
+                        array( 'update' => 'lala' )
+                    );
+                    $output .= "<span></span>";
+                    $output .= "</li>";
+                }
+                $output .= "</ul>";
+            }
+            $output .= "</li>";
+            
+        }
+        return $output;
+    }
 }
 ?>

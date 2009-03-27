@@ -14,18 +14,23 @@ class RequirementsController extends AppController {
         )
     );
 
-     function reorder($id=null,$parent_id=null){
+     function reorder($id=null,$parent_id=null,$name){    
+        echo "id: $id p_id: $parent_id name: $name";
+
         if(isset($id) && isset($parent_id)){
             $this->data['Requirement']['id'] = $id;
             $this->data['Requirement']['parent_id'] = $parent_id;
             $this->Requirement->save($this->data);
         }
+
+        
     }
     
 	function index() {
 		$this->Requirement->recursive = 1;
 		//pr($this->Requirement->find('threaded'));
 		$this->set('data',$this->Requirement->find('threaded'));
+		//$this->set('data',$this->Requirement->find('all',array('conditions' => array('Requirement.project_id' => $this->Session->read('project_id')))));
 		//$this->set('requirements', $this->paginate(null, array('project.id' => $this->Session->read('project_id'))));
 		
 	}

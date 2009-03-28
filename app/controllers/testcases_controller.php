@@ -8,6 +8,17 @@ class TestcasesController extends AppController {
 		$this->Testcase->recursive = 0;
 		$this->set('testcases', $this->paginate(null, array('project.id' => $this->Session->read('project_id'))));
 	}
+	
+	function lilist($search=null) {
+
+        $conditions = array('project.id' => $this->Session->read('project_id'));
+        if(!empty($this->data['tcsearch'])){
+            $conditions['testcase.name  LIKE'] = $this->data['tcsearch']."%";
+        }
+
+		$this->Testcase->recursive = 0;
+		$this->set('testcases', $this->Testcase->find('all',array('conditions'=>$conditions)));
+	}
 
 	function view($id = null) {
 		if (!$id) {

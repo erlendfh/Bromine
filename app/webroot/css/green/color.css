@@ -28,10 +28,10 @@ h1
   color: #555;
 }
 
-#content{background: url(../../img/side.png) right repeat-y;}
+#content{background: url(/img/side.png) right repeat-y;}
 
 #menu
-{ background: #444 url(../../img/menu.png);
+{ background: #444 url(/img/menu.png);
   color: #FFF;
   border-color: #000;
 }

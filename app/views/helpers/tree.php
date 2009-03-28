@@ -39,19 +39,20 @@ class TreeHelper extends Helper{
         if(empty($output)){$output="";}
         foreach ($data as $key=>$val){
 
-            $output .= "<li name='req' id='node_".$val[$modelName]['id']."' style='clear: both;' id='node_req".$val[$modelName]['id']."' class='req'>";
+            $output .= "<li id='req_".$val[$modelName]['id']."' style='clear: both;' class='req'>";
             
-            if(!empty($val['children'])  || !empty($val['Testcase'])){
-                $output .= "<span class='handle'></span>";
-            }else{
-                $output .= "<span></span>";
+            if(!empty($val['children'])  || !empty($val['Testcase'])){ //output a +- handle
+                $output .= "<span class='spacer handle'></span>";
+            }else{ //output a empty span to align things correctly
+                $output .= "<span class='spacer'></span>";
             }
-            
             $output .= $this->Ajax->link(
                 $val[$modelName][$fieldName], 
                 array( 'controller' => 'requirements', 'action' => 'view', $val[$modelName]['id']), 
-                array( 'update' => 'lala' )
+                array( 'update' => 'lala', 'class'=>'reqhandle')
             );
+            
+            
             $output .= "<ul>";
             if(!empty($val['children'])){
                 $output .= $this->list_element2($val['children'], $modelName, $fieldName);
@@ -60,15 +61,16 @@ class TreeHelper extends Helper{
             if(!empty($val['Testcase'])){
                 
                 foreach($val['Testcase'] as $testcase){
-                    $output .= "<li name='tc' id='node_".$val[$modelName]['id']."' style='clear: both;' id='node_tc".$testcase['id']."' class='tc'>";
-                    $output .= "<span></span>";
-                    $output .= $this->Ajax->link( 
+                    $output .= "<div id='tc_".$testcase['id']."'style='clear: both;' class='tc'>";
+                    $output .= "<span class='spacer'></span>";
+                    $output .= $this->Ajax->link(
                         $testcase['name'], 
                         array( 'controller' => 'testcases', 'action' => 'view', $testcase['id']), 
-                        array( 'update' => 'lala' )
+                        array( 'update' => 'lala')
                     );
-                    
-                    $output .= "</li>";
+
+                    $output .= "&nbsp;<a  class='del hide' onclick='removetc(this.up(".'"div"'."), this.up(".'"li"'."));'><img src='/img/tango/16x16/places/user-trash.png'></img></a>";
+                    $output .= "</div>";
                 }
   
             }

@@ -135,14 +135,15 @@ SortableTree.Node = Class.create({
 
   onHover: function(drag, drop, overlap) {		
 		if(this.canContainChildren(drop)) {
-		  this.dropPosition = overlap < 0.33 ? 'bottom' : overlap > 0.77 ? 'top' : 'insert';
+		  //this.dropPosition = overlap < 0.33 ? 'bottom' : overlap > 0.77 ? 'top' : 'insert';
+		  this.dropPosition = 'insert';
 		} else {
-			this.dropPosition = overlap < 0.5 ? 'bottom' : 'top';
+			//this.dropPosition = overlap < 0.5 ? 'bottom' : 'top';
 		}
     this.mark(drop);
-		// $('log').update('hovering: ' + drop.tagName + ': ' + drop.id + "<br />" + 
-		//                 'classes: ' + drop.className + "<br />" + 
-		// 							  'dropPosition: ' + this.dropPosition)
+		 $('log').update('hovering: ' + drop.tagName + ': ' + drop.id + "<br />" + 
+		                 'classes: ' + drop.className + "<br />" + 
+		 							  'dropPosition: ' + this.dropPosition)
   },	
 
 	canContainChildren: function(element) {
@@ -153,6 +154,7 @@ SortableTree.Node = Class.create({
 	},
 
   onDrop: function(drag, drop, event) {
+    this.tree.unmark_all();
     drag = this.tree.find(drag);
     drop = this.tree.find(drop);
 

@@ -14,16 +14,36 @@ class RequirementsController extends AppController {
         )
     );
 
-     function reorder($id=null,$parent_id=null,$name){    
-        echo "id: $id p_id: $parent_id name: $name";
+     function reorder($id=null,$parent_id=null){    
+        echo "id: $id p_id: $parent_id";
 
         if(isset($id) && isset($parent_id)){
             $this->data['Requirement']['id'] = $id;
             $this->data['Requirement']['parent_id'] = $parent_id;
             $this->Requirement->save($this->data);
         }
+    }
+    
+    function updatetc($case,$testcase_id=null,$requirement_id=null){    
+        $testcase_id = end(explode('_', $testcase_id));
+        $requirement_id = end(explode('_', $requirement_id));
 
+        $data = $this->Requirement->read(null, $requirement_id);
+        $savedata['Requirement']['id'] =  $requirement_id;
+        foreach($data['Testcase'] as $testcase){
+            $savedata['Testcase']['Testcase'][] = $testcase['id'];
+        }
         
+        if($case == 'add'){
+            $savedata['Testcase']['Testcase'][] = $testcase_id;
+        }elseif($case == 'remove'){
+            if(($key=array_search($testcase_id, $savedata['Testcase']['Testcase']))!==false){
+                unset($savedata['Testcase']['Testcase'][$key]);
+            }else{
+                return false;
+            }
+        }
+        $this->Requirement->save($savedata);
     }
     
 	function index() {

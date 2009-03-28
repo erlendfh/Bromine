@@ -91,6 +91,12 @@
     ul .tc:hover > .del{
         display: inline;
     }
+    #tree ul{
+        border-left: 1px dashed lightgrey;
+    }
+    #tree > ul{
+        border-left: none;
+    }
 
 
   </style>
@@ -126,6 +132,7 @@
                 $$('.tc').each(Element.toggle);
                 $('enablereqlink').toggle();
                 $('disablereqlink').toggle();
+                $('enabletclink').toggle();
             }
             
             function removetc(tc, req){
@@ -153,7 +160,8 @@
                                             newCopy.setStyle({
                                                 'clear':'both'
                                             });
-                            $(drop).down('ul').appendChild(newCopy); 
+                            //$(drop).down('ul').appendChild(newCopy); 
+                            $(drop).down('ul').insert({'top':newCopy});
                             new Ajax.Updater('log','/requirements/updatetc/add/'+drag.id+'/'+drop.id);
                         
                       }
@@ -172,6 +180,7 @@
                 $$('.tctd').each(Element.toggle);
                 $('enabletclink').toggle();
                 $('disabletclink').toggle();
+                $('enablereqlink').toggle();
             }
         </script>
         <a href="#" id="enablereqlink" onclick="dragdroptoggle(tree)">Reorder requirements</a>

@@ -54,9 +54,7 @@ class TreeHelper extends Helper{
             
             
             $output .= "<ul>";
-            if(!empty($val['children'])){
-                $output .= $this->list_element2($val['children'], $modelName, $fieldName);
-            }
+            
             
             if(!empty($val['Testcase'])){
                 
@@ -73,6 +71,9 @@ class TreeHelper extends Helper{
                     $output .= "</div>";
                 }
   
+            }
+            if(!empty($val['children'])){
+                $output .= $this->list_element2($val['children'], $modelName, $fieldName);
             }
             $output .= "</ul>";
             $output .= "</li>";

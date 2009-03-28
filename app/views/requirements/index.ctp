@@ -92,6 +92,7 @@
         display: inline;
     }
 
+
   </style>
 <div class="index">
 <table>
@@ -138,7 +139,13 @@
                       accept: 'tc',
                       hoverclass: 'drop_hover',
                       onDrop: function(drag,drop) {
-                        if(!drop.down('#tc_'+drag.id)){
+
+                            if($$('#'+drop.id+' > ul > #tc_'+drag.id)!=''){
+                                $$('#'+drop.id+' > ul > #tc_'+drag.id).each(Element.highlight);
+                                return;
+                            }
+                        
+
                             var newCopy = new Element('div', { 
                                                 'id' : 'tc_'+drag.id, 
                                                 'class' : 'tc',
@@ -148,7 +155,7 @@
                                             });
                             $(drop).down('ul').appendChild(newCopy); 
                             new Ajax.Updater('log','/requirements/updatetc/add/'+drag.id+'/'+drop.id);
-                        }
+                        
                       }
                     });
                 });
@@ -192,7 +199,7 @@
         
         <td class="tctd" style='border-right: 1px solid lightgrey; display: none;'>
             
-                <input type='text' id='tcsearch' name='data[tcsearch]' value='Filter' onclick='if(this.value=="Filter"){this.value=""}'/>
+                <input type='text' id='tcsearch' name='data[tcsearch]' value='Filter...' onclick='if(this.value=="Filter..."){this.value=""}'/>
                 <br />
                 <br />
             <?php 

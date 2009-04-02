@@ -20,7 +20,7 @@
     <body>
   <div id="main">
     <div id="links_container">
-      <div id="logo"><h1>Bromine 3</h1><img id='notification' src='/img/ajax-loader.gif' alt="" style='display: none;'/></div>
+      <div id="logo"><h1>Bromine 3</h1><img id='notification' src='img/ajax-loader.gif' alt="" style='display: none;'/></div>
       <script type='text/javascript'>
 
     Ajax.Responders.register({

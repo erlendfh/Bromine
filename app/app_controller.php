@@ -43,6 +43,15 @@ class AppController extends Controller {
     var $helpers = array('Html','Ajax','Javascript');
     var $layout = 'green';
     
+    function setFlash($msg,$key){
+        $_SESSION['Message'][$key][]=$msg;
+        return true;
+    }
+    
+    function afterFilter(){
+        $_SESSION['Message'] = '';
+    }
+    
     function beforeFilter() {
         $this->Auth->fields  = array(
             'username'=>'name',
@@ -58,10 +67,6 @@ class AppController extends Controller {
         
         $this->set('mainMenu',$this->Menu->createMenu($this->Session->read('main_menu_id')));
         $this->set('subMenu',$this->Menu->createMenu($this->Session->read('sub_menu_id')));
-
-        
-        
-        
 
         if(isset($this->needsproject)){
             if((is_array($this->needsproject) && in_array($this->action, $this->needsproject)) || $this->needsproject===true){ //If the controller/action needs a project

@@ -182,6 +182,7 @@
                 $('disabletclink').toggle();
                 $('enablereqlink').toggle();
             }
+            
         </script>
         <a href="#" id="enablereqlink" onclick="dragdroptoggle(tree)">Reorder requirements</a>
         <a href="#" style='display: none;' id="disablereqlink" onclick="dragdroptoggle(tree)">Done reordering</a>

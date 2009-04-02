@@ -28,23 +28,23 @@ class TestcasestepsController extends AppController {
 		$this->set('testcasestep', $this->Testcasestep->read(null, $id));
 	}
 
-	function add($testcaseid = null, $orderby = null) {
+	function add($testcaseid = null) {
 	   $this->set('testcaseid', $testcaseid);
-	   $this->set('orderby', $orderby);
+	   $orderby = $this->Testcasestep->find('count',
+           array(
+            	'conditions' => array('Testcasestep.testcase_id' => $testcaseid), //array of conditions
+           )
+       )+1;
+       
 		if (!empty($this->data)) {
-			$this->Testcasestep->create();
+            $this->data['Testcasestep']['orderby'] = $orderby;
 			if ($this->Testcasestep->save($this->data)) {
 				$this->Session->setFlash(__('The Testcasestep has been saved', true));
-				//$this->redirect(array('controller' => 'testcases', 'action'=>'edit',$testcaseid));
+				$this->redirect("testcases/edit/$testcaseid");
 			} else {
 				$this->Session->setFlash(__('The Testcasestep could not be saved. Please, try again.', true));
 			}
 		}
-		else{
-        
-        }
-		$testcases = $this->Testcasestep->Testcase->find('list');
-		$this->set(compact('testcases'));
 	}
 
 	function edit($id = null) {

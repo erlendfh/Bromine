@@ -1,6 +1,5 @@
 <div style='float: right;'>
 <?php
-
     echo $ajax->link( 
             'Cancel', 
             array( 'controller' => 'testcases', 'action' => 'view', $this->data['Testcase']['id']), 
@@ -8,79 +7,67 @@
 ?>
 </div>
 <div class="testcases form">
-<?php echo $form->create('Testcase');?>
+<?php echo $form->create('Testcase',array('enctype' => 'multipart/form-data')); ?>
 	<fieldset>
  		<legend><?php __('Edit Testcase');?></legend>
 	<?php
 		echo $form->input('name');
 		echo $form->hidden('project_id',array('value' => $session->read('project_id')));
 		echo $form->input('description');
-		//echo $form->input('Requirement');
-	   
-        //pr($this->data);
-        
-    ?>
+		echo $form->file('testscript');
+		echo $ajax->submit("submit", array("url" => array('controller'=>'testcases','action'=>'edit',$this->data['Testcase']['id']), "update" => "Main", 'enctype' => 'multipart/form-data'));
+	?>
 	</fieldset>
-
-<?php     
-    echo $ajax->link( 
-            'Save testcase', 
-            array( 'controller' => 'testcases', 'action' => 'view', $this->data['Testcase']['id']), 
-            array( 'update' => 'Main', 'onclick' => "$('TestcaseEditForm').request();"));
-            
-?>
 </div>
 <br />
 <br />
-<div id='sort'>
-
-<?php 
-if (!empty($testcasesteps)){
-foreach ($testcasesteps as $testcasestep): ?>
-
-	<div class='container' style='cursor: url("/img/openhand.cur"), move; clear: both; border-top: 1px solid lightgrey;' id='item_<?php echo $testcasestep['TestcaseStep']['id']; ?>'>
-		
-			<div style='width: 300px; float: left;'>
-                <?php echo $testcasestep['TestcaseStep']['action']; ?>
-                
-			</div>
-	        <div>	
-			 <?php echo $testcasestep['TestcaseStep']['reaction']; ?>
-			</div>
-        
+<table>
+	<tr>
+        <th style='width: 250px; padding: 5px;'>
+            Action
+		</th>
+        <th style='width: 250px; padding: 5px;'>	
+            Reaction
+		</th>
+	</tr>
+</table>
+<div id='sort' style='width: 560px;'>
+<?php foreach($testcasesteps as $testcasestep): ?>
+	<div class='container' id='item_<?php echo $testcasestep['TestcaseStep']['id']; ?>'>
+		<table>
+    		<tr style='height: 40px; vertical-align: top;'>
+                <td style='width: 250px; border: 1px solid lightgrey; padding: 5px;'>
+                    <?php echo $testcasestep['TestcaseStep']['action']; ?>
+    			</td>
+    	        <td style='width: 250px; border: 1px solid lightgrey; padding: 5px;'>	
+                    <?php echo $testcasestep['TestcaseStep']['reaction']; ?>
+    			</td>
+    			<td class='handle' style='height: 50px; width: 20px; float: left; background: url(/img/side.png); border: 1px solid lightgrey; cursor: url("/img/openhand.cur"), move;'></td>
+    		</tr>
+        </table>
 	</div>
-<?php endforeach; }?>
+<?php endforeach; ?>
 
 </div>
-<div id='output'></div>
+<div id='add'>
+</div>
+
 <script type='text/javascript'>
 Sortable.create("sort", {
     tag: 'div',
     only: 'container',
+    handle: 'handle',
     onUpdate: function() {
-        new Ajax.Updater('output','/testcasesteps/reorder/'+Sortable.sequence("sort"));
-        new Effect.Highlight('sort');
+        new Ajax.Request('/testcasesteps/reorder/'+Sortable.sequence("sort"));
+        $('sort').highlight();
     }
 });
 </script>
 
-<?php 
-    if (!empty($testcasesteps)){
-        //echo $html->link(__('Add new step', true), array('controller' => 'Testcasesteps', 'action'=>'add' , $this->data['Testcase']['id'],$testcasestep['TestcaseStep']['orderby'] +1 ));
-        
-            echo $ajax->link( 
+<?php
+echo $ajax->link( 
             'Add step', 
-            array( 'controller' => 'Testcasesteps', 'action' => 'add', $this->data['Testcase']['id'],$testcasestep['TestcaseStep']['orderby'] +1 ), 
-            array( 'update' => 'Main'));
-    }
-    else{
-    
-            echo $ajax->link( 
-            'Add step', 
-            array( 'controller' => 'Testcasesteps', 'action' => 'add', $this->data['Testcase']['id'],1), 
-            array( 'update' => 'Main'));
-    }
-?>
-<!--
+            array( 'controller' => 'Testcasesteps', 'action' => 'add', $this->data['Testcase']['id']), 
+            array( 'update' => 'add'));
 
--->
+?>

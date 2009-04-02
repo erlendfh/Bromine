@@ -26,9 +26,9 @@ class TestcasesController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 		$this->set('testcase', $this->Testcase->read(null, $id));
-	   	$testcasesteps = $this->Testcase->TestcaseStep->findAll(array('testcase_id' => $id),null,array('order by' => 'TestcaseStep.orderby'));
-		$this->set('testcasesteps',$testcasesteps);
-    }
+		$testcasesteps = $this->Testcase->TestcaseStep->findAll(array('testcase_id' => $id),null,array('order by' => 'TestcaseStep.orderby'));
+    	$this->set('testcasesteps',$testcasesteps);
+	}
 
 	function add() {
 		if (!empty($this->data)) {
@@ -46,29 +46,46 @@ class TestcasesController extends AppController {
 	}
 
 	function edit($id = null) {
-	   $this->Testcase->recursive = 0;
+        $this->Testcase->recursive = 0;
 		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid Testcase', true));
+			$this->setFlash(__('Invalid Testcase', true),'err');
 			$this->redirect(array('action'=>'index'));
 		}
-		if (!empty($this->data)) {
-			if ($this->Testcase->save($this->data)) {
-				$this->Session->setFlash(__('The Testcase has been saved', true));
-				$this->redirect(array('action'=>'index'));
+		if (!empty($this->data)){
+            if ($this->Testcase->save($this->data)) {
+				$this->setFlash(__('The Testcase has been saved', true), 'succ');
+				
 			} else {
-				$this->Session->setFlash(__('The Testcase could not be saved. Please, try again.', true));
+				$this->setFlash(__('The Testcase could not be saved. Please, try again.', true), 'err');
 			}
+			
+			//Testscript part
+			pr($this->data);
+			if($this->data['Testcase']['testscript']['name']!=''){
+                $ext = end(explode('.', $this->data['Testcase']['testscript']['name']));
+                $uploadfile = WWW_ROOT.DS.'tests'.DS.$this->Session->read('project_name').DS.$ext.DS.$id.".$ext";
+                App::import('Model','Type');
+                $this->Type = new Type();
+                $extList = $this->Type->find('list', array('fields' => array('Type.extension')));
+                if(in_array($ext, $extList)){
+                    if (move_uploaded_file($this->data['Testcase']['testscript']['tmp_name'], $uploadfile)) {
+                        $this->setFlash(__('The Testscript has been uploaded',true), 'succ');
+        			}else{
+                        $this->setFlash(__('Script not uploaded. The file could not be uploaded. Check folder permissions', true),'err');
+                    }
+                }else{
+                    $this->setFlash(__('Script not uploaded. Filetype not accepted. The accepted filetypes are '.implode(', ', $extList), true), 'err');
+                }
+    		}
+    		
+    		//pr($this->Session);
 		}
-		if (empty($this->data)) {
-			$this->data = $this->Testcase->read(null, $id);
+        if($id){
+    		$this->data = $this->Testcase->read(null, $id);
+    		//$testcasesteps = $this->Testcase->TestcaseStep->find('list');
+    		$testcasesteps = $this->Testcase->TestcaseStep->findAll(array('testcase_id' => $id),null,array('order by' => 'TestcaseStep.orderby'));
+    		$this->set('testcasesteps',$testcasesteps);
 		}
-		//pr($this->data);
-		
-		$testcasesteps = $this->Testcase->TestcaseStep->findAll(array('testcase_id' => $id),null,array('order by' => 'TestcaseStep.orderby'));
-		$this->set('testcasesteps',$testcasesteps);
-		$requirements = $this->Testcase->Requirement->find('list');
-		$projects = $this->Testcase->Project->find('list');
-		$this->set(compact('requirements','projects'));
 	}
 
 	function delete($id = null) {

@@ -26,7 +26,9 @@ class TestcasesController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 		$this->set('testcase', $this->Testcase->read(null, $id));
-	}
+	   	$testcasesteps = $this->Testcase->TestcaseStep->findAll(array('testcase_id' => $id),null,array('order by' => 'TestcaseStep.orderby'));
+		$this->set('testcasesteps',$testcasesteps);
+    }
 
 	function add() {
 		if (!empty($this->data)) {

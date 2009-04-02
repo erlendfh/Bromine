@@ -14,15 +14,39 @@
 			<?php echo $testcase['Testcase']['name']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Project'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $html->aclLink($testcase['Project']['name'], array('controller'=> 'projects', 'action'=>'view', $testcase['Project']['id'])); ?>
-			&nbsp;
-		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Description'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $testcase['Testcase']['description']; ?>
 			&nbsp;
 		</dd>
-	</dl>
+	
+
+
+
+<dt>Steps:</dt>
+
 </div>
+<div id='sort'>
+
+<?php 
+if (!empty($testcasesteps)){
+foreach ($testcasesteps as $testcasestep): ?>
+
+	<div class='container' style='cursor: url("/img/openhand.cur"), move; clear: both; border-top: 1px solid lightgrey;' id='item_<?php echo $testcasestep['TestcaseStep']['id']; ?>'>
+		
+			<div style='width: 300px; float: left;'>
+                <?php echo $testcasestep['TestcaseStep']['action']; ?>
+                
+			</div>
+	        <div>	
+			 <?php echo $testcasestep['TestcaseStep']['reaction']; ?>
+			</div>
+        
+	</div>
+<?php endforeach; }?>
+
+</div>
+
+
+
+

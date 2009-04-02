@@ -21,12 +21,6 @@
         
     ?>
 	</fieldset>
-<script type='text/javascript'>
-function save(){
-    new Ajax.Request('/testcases/edit/<?php echo $this->data['Testcase']['id'];?>');
-}
-
-</script>
 
 <?php     
     echo $ajax->link( 
@@ -34,7 +28,7 @@ function save(){
             array( 'controller' => 'testcases', 'action' => 'view', $this->data['Testcase']['id']), 
             array( 'update' => 'Main', 'onclick' => "$('TestcaseEditForm').request();"));
             
-            ?>
+?>
 </div>
 <br />
 <br />
@@ -72,7 +66,19 @@ Sortable.create("sort", {
 
 <?php 
     if (!empty($testcasesteps)){
-        echo $html->link(__('Add new step', true), array('controller' => 'Testcasesteps', 'action'=>'add' , $this->data['Testcase']['id'],$testcasestep['TestcaseStep']['orderby'] +1 ));
+        //echo $html->link(__('Add new step', true), array('controller' => 'Testcasesteps', 'action'=>'add' , $this->data['Testcase']['id'],$testcasestep['TestcaseStep']['orderby'] +1 ));
+        
+            echo $ajax->link( 
+            'Add step', 
+            array( 'controller' => 'Testcasesteps', 'action' => 'add', $this->data['Testcase']['id'],$testcasestep['TestcaseStep']['orderby'] +1 ), 
+            array( 'update' => 'Main'));
+    }
+    else{
+    
+            echo $ajax->link( 
+            'Add step', 
+            array( 'controller' => 'Testcasesteps', 'action' => 'add', $this->data['Testcase']['id'],1), 
+            array( 'update' => 'Main'));
     }
 ?>
 <!--

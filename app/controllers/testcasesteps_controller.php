@@ -35,7 +35,7 @@ class TestcasestepsController extends AppController {
 			$this->Testcasestep->create();
 			if ($this->Testcasestep->save($this->data)) {
 				$this->Session->setFlash(__('The Testcasestep has been saved', true));
-				$this->redirect(array('controller' => 'testcases', 'action'=>'edit',$testcaseid));
+				//$this->redirect(array('controller' => 'testcases', 'action'=>'edit',$testcaseid));
 			} else {
 				$this->Session->setFlash(__('The Testcasestep could not be saved. Please, try again.', true));
 			}

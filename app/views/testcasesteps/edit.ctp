@@ -10,13 +10,9 @@
 		echo $form->input('testcase_id');
 	?>
 	</fieldset>
-<?php echo $form->end('Submit');?>
+<?php     echo $ajax->link( 
+            'Save step', 
+            array( 'controller' => 'testcase', 'action' => 'view', $this->data['Testcase']['id']), 
+            array( 'update' => 'Main', 'onclick' => "$('TestcasestepEditForm').request();"));?>
 </div>
-<div class="actions">
-	<ul>
-		<li><?php echo $html->aclLink(__('Delete', true), array('action'=>'delete', $form->value('Testcasestep.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $form->value('Testcasestep.id'))); ?></li>
-		<li><?php echo $html->aclLink(__('List Testcasesteps', true), array('action'=>'index'));?></li>
-		<li><?php echo $html->aclLink(__('List Testcases', true), array('controller'=> 'testcases', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->aclLink(__('New Testcase', true), array('controller'=> 'testcases', 'action'=>'add')); ?> </li>
-	</ul>
-</div>
+

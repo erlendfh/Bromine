@@ -5,7 +5,7 @@
         $link = $ajax->remoteFunction(
                         array(
                             'url'=>array( 'controller' => 'testcases', 'action' => 'view', $testcase['Testcase']['id']), 
-                            'update' => 'lala'
+                            'update' => 'Main'
                         )
                     );
                     

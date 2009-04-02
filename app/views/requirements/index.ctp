@@ -197,7 +197,7 @@
                         $ajax->link( 
                             $session->read('project_name'), 
                             array( 'controller' => 'projects', 'action' => 'view', $session->read('project_id')), 
-                            array( 'update' => 'lala', 'class'=>'project' ));
+                            array( 'update' => 'Main', 'class'=>'project' ));
                     ?>
                     <ul>
                         <?php echo $tree->show2('Requirement/name', $data); ?>
@@ -229,7 +229,7 @@
         </td>
         
         <td>
-            <div id='lala'></div>
+            <div id='Main'></div>
         </td>
     </tr>
     </tbody>

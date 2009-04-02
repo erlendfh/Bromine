@@ -1,4 +1,12 @@
-<div class="testcases view">
+<div style='float: right;'>
+    <?php echo 
+        $ajax->link( 
+            'Edit', 
+            array( 'controller' => 'testcases', 'action' => 'edit', $testcase['Testcase']['id']), 
+            array( 'update' => 'Main', 'class'=>'testcases view', 'id' => 'edit'));
+    ?>
+</div>
+<div id = 'testcase' class="testcases view">
 <h2><?php  __('Testcase');?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Name'); ?></dt>

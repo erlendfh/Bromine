@@ -57,11 +57,12 @@
       </ul>
     </div>
     <div id="content">
-      <div id="column1">
+        <!-- SUBMENU -->        
+      <!--div id="column1">
         <div class="sidebaritem">
           <h1>Submenu</h1>
           <div class="sbilinks">
-            <!-- **** INSERT ADDITIONAL LINKS HERE **** -->
+            
             <ul>
                 <?php if(isset($subMenu)): ?>
                 <?php foreach($subMenu as $subMenuItem): ?>
@@ -72,7 +73,7 @@
           </div>
         </div>
  
-      </div>
+      </div-->
       <div id="column2">
         <?php $session->flash('auth'); ?>
         <?php $session->flash(); ?>

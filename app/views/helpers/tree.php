@@ -49,7 +49,7 @@ class TreeHelper extends Helper{
             $output .= $this->Ajax->link(
                 $val[$modelName][$fieldName], 
                 array( 'controller' => 'requirements', 'action' => 'view', $val[$modelName]['id']), 
-                array( 'update' => 'lala', 'class'=>'reqhandle')
+                array( 'update' => 'Main', 'class'=>'reqhandle')
             );
             
             
@@ -64,7 +64,7 @@ class TreeHelper extends Helper{
                     $output .= $this->Ajax->link(
                         $testcase['name'], 
                         array( 'controller' => 'testcases', 'action' => 'view', $testcase['id']), 
-                        array( 'update' => 'lala')
+                        array( 'update' => 'Main')
                     );
 
                     $output .= "&nbsp;<a  class='del hide' onclick='removetc(this.up(".'"div"'."), this.up(".'"li"'."));'><img src='/img/tango/16x16/places/user-trash.png'></img></a>";

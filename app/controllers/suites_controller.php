@@ -6,7 +6,8 @@ class SuitesController extends AppController {
 
 	function index() {
 		$this->Suite->recursive = 0;
-		$this->set('suites', $this->paginate());
+		//$this->set('suites', $this->paginate());
+		$this->set('suites', $this->paginate(null, array('project.id' => $this->Session->read('project_id'))));
 	}
 
 	function view($id = null) {

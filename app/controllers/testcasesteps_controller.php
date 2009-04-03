@@ -77,29 +77,6 @@ class TestcasestepsController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 	}
-	
-	function move($fromid,$fromorderby,$toid,$toorderby){
-	
-	    echo "<pre>From id: $fromid<br />9";
-	    echo "from orderby: $fromorderby<br />7";
-	    echo "to id: $toid<br />6";
-	    echo "to orderby: $toorderby<br /></pre>6";
-	    
-	
-	    $this->ModelName->id = $fromid;
-        $this->Testcasestep->saveField('orderby', 99999999);
-        
-        $this->ModelName->id = $toid;
-        $this->Testcasestep->saveField('orderby', 99999998);
-        
-	    $this->ModelName->id = $fromid;
-        $this->Testcasestep->saveField('orderby', $toorderby);
-        
-        $this->ModelName->id = $toid;
-        $this->Testcasestep->saveField('orderby', $fromorderby);  
-              
-        $this->redirect(array('action'=>'index'));
-    }
 
 }
 ?>

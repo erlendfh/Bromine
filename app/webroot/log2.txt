@@ -12704,3 +12704,3655 @@ Need: Array
     [browser] => 1
 )
 
+loadBalancer was called with tests = Array, suite_id = 139
+Doing loop 0
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+available node: Array
+(
+    [id] => 15
+    [nodepath] => 127.0.0.1:4445
+    [operatingsystem_id] => 12
+    [description] => vistis
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+available node: Array
+(
+    [id] => 23
+    [nodepath] => 127.0.0.1:4444
+    [operatingsystem_id] => 12
+    [description] => Lalala
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test on 12 / 3 using resource Lalala with uid = 123693544956316
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test.php 127.0.0.1 80 *chrome http://www.google.com 123693544956316 278
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+available node: Array
+(
+    [id] => 15
+    [nodepath] => 127.0.0.1:4445
+    [operatingsystem_id] => 12
+    [description] => vistis
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test on 12 / 1 using resource vistis with uid = 123693544987379
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test.php 127.0.0.1 80 *iexplore http://www.google.com 123693544987379 279
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 1
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 2
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 3
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 4
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 5
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 6
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 7
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 8
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 9
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 10
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 11
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 12
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 13
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 14
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 15
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 16
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 17
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 18
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 19
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 20
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 21
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 22
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 23
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+available node: Array
+(
+    [id] => 23
+    [nodepath] => 127.0.0.1:4444
+    [operatingsystem_id] => 12
+    [description] => Lalala
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test2 on 12 / 3 using resource Lalala with uid = 123693549603255
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test2.php 127.0.0.1 80 *chrome http://www.google.com 123693549603255 280
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 24
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 25
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 26
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 27
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 28
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 29
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+loadBalancer was called with tests = Array, suite_id = 140
+Doing loop 0
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+available node: Array
+(
+    [id] => 15
+    [nodepath] => 127.0.0.1:4445
+    [operatingsystem_id] => 12
+    [description] => vistis
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+available node: Array
+(
+    [id] => 23
+    [nodepath] => 127.0.0.1:4444
+    [operatingsystem_id] => 12
+    [description] => Lalala
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test on 12 / 3 using resource Lalala with uid = 123693561455664
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test.php 127.0.0.1 80 *chrome http://www.google.com 123693561455664 281
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+available node: Array
+(
+    [id] => 15
+    [nodepath] => 127.0.0.1:4445
+    [operatingsystem_id] => 12
+    [description] => vistis
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test on 12 / 1 using resource vistis with uid = 123693561469731
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test.php 127.0.0.1 80 *iexplore http://www.google.com 123693561469731 282
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 1
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 2
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 3
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 4
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 5
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 6
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 7
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 8
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 9
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 10
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 11
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 12
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 13
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 14
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 15
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 16
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 17
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 18
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 19
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 20
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+available node: Array
+(
+    [id] => 23
+    [nodepath] => 127.0.0.1:4444
+    [operatingsystem_id] => 12
+    [description] => Lalala
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test2 on 12 / 3 using resource Lalala with uid = 123693565499188
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test2.php 127.0.0.1 80 *chrome http://www.google.com 123693565499188 283
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 21
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 22
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 23
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 24
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 25
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 26
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 27
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 28
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 29
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+loadBalancer was called with tests = Array, suite_id = 141
+Doing loop 0
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+available node: Array
+(
+    [id] => 15
+    [nodepath] => 127.0.0.1:4445
+    [operatingsystem_id] => 12
+    [description] => vistis
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+available node: Array
+(
+    [id] => 23
+    [nodepath] => 127.0.0.1:4444
+    [operatingsystem_id] => 12
+    [description] => Lalala
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test on 12 / 3 using resource Lalala with uid = 123693609501970
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test.php 127.0.0.1 80 *chrome http://www.google.com 123693609501970 284
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+available node: Array
+(
+    [id] => 15
+    [nodepath] => 127.0.0.1:4445
+    [operatingsystem_id] => 12
+    [description] => vistis
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test on 12 / 1 using resource vistis with uid = 12369360951641
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test.php 127.0.0.1 80 *iexplore http://www.google.com 12369360951641 285
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 1
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 2
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 3
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 4
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 5
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 6
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 7
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 8
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 9
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 10
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 11
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 12
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 13
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+loadBalancer was called with tests = Array, suite_id = 142
+Doing loop 0
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+available node: Array
+(
+    [id] => 15
+    [nodepath] => 127.0.0.1:4445
+    [operatingsystem_id] => 12
+    [description] => vistis
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+available node: Array
+(
+    [id] => 23
+    [nodepath] => 127.0.0.1:4444
+    [operatingsystem_id] => 12
+    [description] => Lalala
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test on 12 / 3 using resource Lalala with uid = 123693630084337
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test.php 127.0.0.1 80 *chrome http://www.google.com 123693630084337 286
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+available node: Array
+(
+    [id] => 15
+    [nodepath] => 127.0.0.1:4445
+    [operatingsystem_id] => 12
+    [description] => vistis
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test on 12 / 1 using resource vistis with uid = 123693630094890
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test.php 127.0.0.1 80 *iexplore http://www.google.com 123693630094890 287
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 1
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 2
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 3
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 4
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 5
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 6
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 7
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 8
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 9
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 10
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 11
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 12
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 13
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 14
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 15
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 16
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 17
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+available node: Array
+(
+    [id] => 23
+    [nodepath] => 127.0.0.1:4444
+    [operatingsystem_id] => 12
+    [description] => Lalala
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test2 on 12 / 3 using resource Lalala with uid = 123693633509496
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test2.php 127.0.0.1 80 *chrome http://www.google.com 123693633509496 288
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 18
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 19
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 20
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 21
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 22
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 23
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 24
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 25
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 26
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 27
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 28
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 29
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+loadBalancer was called with tests = Array, suite_id = 143
+Doing loop 0
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+available node: Array
+(
+    [id] => 15
+    [nodepath] => 127.0.0.1:4445
+    [operatingsystem_id] => 12
+    [description] => vistis
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+available node: Array
+(
+    [id] => 23
+    [nodepath] => 127.0.0.1:4444
+    [operatingsystem_id] => 12
+    [description] => Lalala
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test on 12 / 3 using resource Lalala with uid = 123693660836613
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test.php 127.0.0.1 80 *chrome http://www.google.com 123693660836613 289
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+available node: Array
+(
+    [id] => 15
+    [nodepath] => 127.0.0.1:4445
+    [operatingsystem_id] => 12
+    [description] => vistis
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test on 12 / 1 using resource vistis with uid = 123693660856647
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test.php 127.0.0.1 80 *iehta http://www.google.com 123693660856647 290
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 1
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 2
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 3
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 4
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 5
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 6
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 7
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+Doing loop 8
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 1
+)
+
+loadBalancer was called with tests = Array, suite_id = 144
+Doing loop 0
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+available node: Array
+(
+    [id] => 15
+    [nodepath] => 127.0.0.1:4445
+    [operatingsystem_id] => 12
+    [description] => vistis
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+available node: Array
+(
+    [id] => 23
+    [nodepath] => 127.0.0.1:4444
+    [operatingsystem_id] => 12
+    [description] => Lalala
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test on 12 / 3 using resource Lalala with uid = 123693669698849
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test.php 127.0.0.1 80 *chrome http://www.google.com 123693669698849 291
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+available node: Array
+(
+    [id] => 15
+    [nodepath] => 127.0.0.1:4445
+    [operatingsystem_id] => 12
+    [description] => vistis
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test on 12 / 3 using resource vistis with uid = 123693669708378
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test.php 127.0.0.1 80 *chrome http://www.google.com 123693669708378 292
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 1
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 2
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 3
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 4
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 5
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 6
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 7
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 8
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 9
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 10
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 11
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 12
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 13
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 14
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 15
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 16
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 17
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 18
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 19
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 20
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 21
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 22
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 23
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 24
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 25
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 26
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 27
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 28
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 29
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+loadBalancer was called with tests = Array, suite_id = 145
+Doing loop 0
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+available node: Array
+(
+    [id] => 15
+    [nodepath] => 127.0.0.1:4445
+    [operatingsystem_id] => 12
+    [description] => vistis
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+available node: Array
+(
+    [id] => 23
+    [nodepath] => 127.0.0.1:4444
+    [operatingsystem_id] => 12
+    [description] => Lalala
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test on 12 / 3 using resource Lalala with uid = 123693677955166
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test.php 127.0.0.1 80 *chrome http://www.google.com 123693677955166 293
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+available node: Array
+(
+    [id] => 15
+    [nodepath] => 127.0.0.1:4445
+    [operatingsystem_id] => 12
+    [description] => vistis
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test on 12 / 3 using resource vistis with uid = 123693677965924
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test.php 127.0.0.1 80 *chrome http://www.google.com 123693677965924 294
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 1
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 2
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 3
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 4
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 5
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 6
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 7
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 8
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 9
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 10
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 11
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 12
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 13
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 14
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 15
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 16
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 17
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 18
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 19
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 20
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 21
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+available node: Array
+(
+    [id] => 15
+    [nodepath] => 127.0.0.1:4445
+    [operatingsystem_id] => 12
+    [description] => vistis
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+available node: Array
+(
+    [id] => 23
+    [nodepath] => 127.0.0.1:4444
+    [operatingsystem_id] => 12
+    [description] => Lalala
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test2 on 12 / 3 using resource Lalala with uid = 123693682192433
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test2.php 127.0.0.1 80 *chrome http://www.google.com 123693682192433 295
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+available node: Array
+(
+    [id] => 15
+    [nodepath] => 127.0.0.1:4445
+    [operatingsystem_id] => 12
+    [description] => vistis
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test2 on 12 / 3 using resource vistis with uid = 123693682194257
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test2.php 127.0.0.1 80 *chrome http://www.google.com 123693682194257 296
+loadBalancer was called with tests = Array, suite_id = 146
+Doing loop 0
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+available node: Array
+(
+    [id] => 15
+    [nodepath] => 127.0.0.1:4445
+    [operatingsystem_id] => 12
+    [description] => vistis
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+available node: Array
+(
+    [id] => 23
+    [nodepath] => 127.0.0.1:4444
+    [operatingsystem_id] => 12
+    [description] => Lalala
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test on 12 / 3 using resource Lalala with uid = 123693688755513
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test.php 127.0.0.1 80 *chrome http://www.google.com 123693688755513 297
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+available node: Array
+(
+    [id] => 15
+    [nodepath] => 127.0.0.1:4445
+    [operatingsystem_id] => 12
+    [description] => vistis
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test on 12 / 3 using resource vistis with uid = 123693688769564
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test.php 127.0.0.1 80 *chrome http://www.google.com 123693688769564 298
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 1
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 2
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 3
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 4
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 5
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 6
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 7
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 8
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 9
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 10
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 11
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 12
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 13
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 14
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 15
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 16
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+available node: Array
+(
+    [id] => 15
+    [nodepath] => 127.0.0.1:4445
+    [operatingsystem_id] => 12
+    [description] => vistis
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test2 on 12 / 3 using resource vistis with uid = 123693691985810
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test2.php 127.0.0.1 80 *chrome http://www.google.com 123693691985810 299
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 17
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+available node: Array
+(
+    [id] => 23
+    [nodepath] => 127.0.0.1:4444
+    [operatingsystem_id] => 12
+    [description] => Lalala
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test2 on 12 / 3 using resource Lalala with uid = 123693692188698
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test2.php 127.0.0.1 80 *chrome http://www.google.com 123693692188698 300
+loadBalancer was called with tests = Array, suite_id = 147
+Doing loop 0
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+available node: Array
+(
+    [id] => 15
+    [nodepath] => 127.0.0.1:4445
+    [operatingsystem_id] => 12
+    [description] => vistis
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+available node: Array
+(
+    [id] => 23
+    [nodepath] => 127.0.0.1:4444
+    [operatingsystem_id] => 12
+    [description] => Lalala
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test on 12 / 3 using resource Lalala with uid = 123694133828556
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test.php 127.0.0.1 80 *chrome http://www.google.com 123694133828556 301
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+available node: Array
+(
+    [id] => 15
+    [nodepath] => 127.0.0.1:4445
+    [operatingsystem_id] => 12
+    [description] => vistis
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test on 12 / 3 using resource vistis with uid = 123694133874508
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test.php 127.0.0.1 80 *chrome http://www.google.com 123694133874508 302
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 1
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 2
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 3
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 4
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 5
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 6
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 7
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 8
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 9
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 10
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 11
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 12
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 13
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 14
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 15
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 16
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 17
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 18
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 19
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 20
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 21
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 22
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 23
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 24
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 25
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 26
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+Doing loop 27
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+available node: Array
+(
+    [id] => 15
+    [nodepath] => 127.0.0.1:4445
+    [operatingsystem_id] => 12
+    [description] => vistis
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+available node: Array
+(
+    [id] => 23
+    [nodepath] => 127.0.0.1:4444
+    [operatingsystem_id] => 12
+    [description] => Lalala
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test2 on 12 / 3 using resource Lalala with uid = 12369413934452
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test2.php 127.0.0.1 80 *chrome http://www.google.com 12369413934452 303
+Need: Array
+(
+    [done] => 0
+    [OS] => 12
+    [browser] => 3
+)
+
+available node: Array
+(
+    [id] => 15
+    [nodepath] => 127.0.0.1:4445
+    [operatingsystem_id] => 12
+    [description] => vistis
+    [network_drive] => 
+    [running] => Array
+        (
+        )
+
+)
+
+Running test test2 on 12 / 3 using resource vistis with uid = 123694139349258
+Executing: php C:\xampp\htdocs\app\webroot\tests\sample\php\test2.php 127.0.0.1 80 *chrome http://www.google.com 123694139349258 304

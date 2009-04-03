@@ -15,6 +15,7 @@ class BrowsersController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 		$this->set('browser', $this->Browser->read(null, $id));
+		pr($this->Browser->read(null, $id));
 	}
 
 	function add() {

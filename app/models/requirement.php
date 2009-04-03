@@ -1,5 +1,6 @@
 <?php
 class Requirement extends AppModel {
+
 	var $name = 'Requirement';
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -13,10 +14,10 @@ class Requirement extends AppModel {
 	);
 
 	var $hasAndBelongsToMany = array(
-			/*'BrowsersOperatingSystem' => array('className' => 'BrowsersOperatingSystem',
-						'joinTable' => 'browsers_operating_systems_requirements',
+			'Combination' => array('className' => 'Combination',
+						'joinTable' => 'combinations_requirements',
 						'foreignKey' => 'requirement_id',
-						'associationForeignKey' => 'browsers_operating_system_id',
+						'associationForeignKey' => 'combination_id',
 						'unique' => true,
 						'conditions' => '',
 						'fields' => '',
@@ -26,7 +27,7 @@ class Requirement extends AppModel {
 						'finderQuery' => '',
 						'deleteQuery' => '',
 						'insertQuery' => ''
-			),*/
+			),
 			'Testcase' => array('className' => 'Testcase',
 						'joinTable' => 'requirements_testcases',
 						'foreignKey' => 'requirement_id',
@@ -43,8 +44,5 @@ class Requirement extends AppModel {
 			)
 	);
 
-    //function beforeSave(){
-    
-    //}
 }
 ?>

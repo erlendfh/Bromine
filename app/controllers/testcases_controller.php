@@ -20,6 +20,72 @@ class TestcasesController extends AppController {
 		$this->set('testcases', $this->Testcase->find('all',array('conditions'=>$conditions)));
 	}
 
+	function viewresult($id = null, $browser = null, $os = null) {
+	
+	   App::import('Model','Test');
+	   $this->Test = new Test();
+	   $this->Test->recursive = 0;
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid Testcase.', true));
+			$this->redirect(array('action'=>'index'));
+		}
+		$conditions = array('Test.testcase_id' => $id);
+		if (!$os == null){
+            $conditions['Test.operatingsystem_id'] = $os;
+        }
+
+		if (!$browser == null){
+            $conditions['Test.browser_id'] = $browser;
+        }
+		
+        //pr($conditions);
+		
+		$sql = array(
+        	'conditions' => $conditions, //array of conditions
+        	//'recursive' => 1, //int
+        	//'fields' => array('Model.field1', 'Model.field2'), //array of field names
+        	'order' => array('Test.id DESC'), //string or array defining order
+        	//'group' => array('Model.field'), //fields to GROUP BY
+        	'limit' => 5 //int
+        	//'callbacks' => true //other possible values are false, 'before', 'after'
+        );
+		
+		$this->set('testresults', $this->Test->find('all', $sql));
+		//$testcasesteps = $this->Testcase->TestcaseStep->findAll(array('testcase_id' => $id),null,array('order by' => 'TestcaseStep.orderby'));
+    	//$this->set('testcasesteps',$testcasesteps);
+	}
+	
+	function showMatrix(){
+        App::import('Model','Browsers');
+        App::import('Model','Operatingsystem');
+        $browser = new Browser();
+        $os = new Operatingsystem();
+        
+        //$conditions = array('Test.testcase_id' => $id);
+        $sql = array(
+        	//'conditions' => $conditions, //array of conditions
+        	//'recursive' => 1, //int
+        	//'fields' => array('Model.field1', 'Model.field2'), //array of field names
+        	'order' => array('Test.id DESC'), //string or array defining order
+        	//'group' => array('Model.field'), //fields to GROUP BY
+        	'limit' => 5 //int
+        	//'callbacks' => true //other possible values are false, 'before', 'after'
+        );
+		
+		$allBrowsers = $browser->find('all');
+		$allOs = $os->find('all');
+        
+        //echo count($allBrowsers);
+        //pr($allOs);
+        //exit;
+        foreach ($allOs as $value1) {
+            foreach ($allBrowsers as $value2) {
+                echo $value1['Operatingsystem']['name']. " - " . $value2['Browser']['name'] . "<br />";
+            }
+        }
+
+    }
+
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid Testcase.', true));

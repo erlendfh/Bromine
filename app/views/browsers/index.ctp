@@ -21,6 +21,7 @@ foreach ($browsers as $browser):
 		$class = ' class="altrow"';
 	}
 ?>
+
 	<tr<?php echo $class;?>>
 		<td>
 			<?php echo $browser['Browser']['id']; ?>

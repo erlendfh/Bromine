@@ -14,10 +14,7 @@ echo $paginator->counter(array(
 	<th><?php echo $paginator->sort('status');?></th>
 	<th><?php echo $paginator->sort('timedate');?></th>
 	<th><?php echo $paginator->sort('timetaken');?></th>
-	<th><?php echo $paginator->sort('browser_id');?></th>
-	<th><?php echo $paginator->sort('operating_system_id');?></th>
 	<th><?php echo $paginator->sort('selenium_version');?></th>
-	<th><?php echo $paginator->sort('selenium_revision');?></th>
 	<th><?php echo $paginator->sort('project_id');?></th>
 	<th><?php echo $paginator->sort('analysis');?></th>
 	<th class="actions"><?php __('Actions');?></th>
@@ -29,6 +26,8 @@ foreach ($suites as $suite):
 	if ($i++ % 2 == 0) {
 		$class = ' class="altrow"';
 	}
+
+//pr($suite);
 ?>
 	<tr<?php echo $class;?>>
 		<td>
@@ -38,10 +37,7 @@ foreach ($suites as $suite):
 			<?php echo $suite['Suite']['name']; ?>
 		</td>
 		<td>
-			<?php echo $suite['Suite']['site_id']; ?>
-		</td>
-		<td>
-			<?php echo $suite['Suite']['status']; ?>
+			<?php echo $suite['Site']['name']; ?>
 		</td>
 		<td>
 			<?php echo $suite['Suite']['timedate']; ?>
@@ -50,16 +46,7 @@ foreach ($suites as $suite):
 			<?php echo $suite['Suite']['timetaken']; ?>
 		</td>
 		<td>
-			<?php echo $suite['Suite']['browser_id']; ?>
-		</td>
-		<td>
-			<?php echo $suite['Suite']['operating_system_id']; ?>
-		</td>
-		<td>
 			<?php echo $suite['Suite']['selenium_version']; ?>
-		</td>
-		<td>
-			<?php echo $suite['Suite']['selenium_revision']; ?>
 		</td>
 		<td>
 			<?php echo $html->aclLink($suite['Project']['name'], array('controller'=> 'projects', 'action'=>'view', $suite['Project']['id'])); ?>

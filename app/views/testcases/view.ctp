@@ -8,32 +8,39 @@
 </div>
 <div id = 'testcase' class="testcases view">
 <h2><?php  __('Testcase');?></h2>
-	<dl><?php $i = 0; $class = ' class="altrow"';?>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Name'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+	<dl>
+		<dt><?php __('Name'); ?></dt>
+		<dd>
 			<?php echo $testcase['Testcase']['name']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Description'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+		<dt><?php __('Description'); ?></dt>
+		<dd>
 			<?php echo $testcase['Testcase']['description']; ?>
 			&nbsp;
 		</dd>
-	
-
-
-
-<dt>Steps:</dt>
-
-</div>
-<div id='sort'>
-
-<?php 
-if(!empty($testcasesteps)){
-?>
-<?php foreach($testcasesteps as $testcasestep): ?>
-	<div class='container' id='item_<?php echo $testcasestep['TestcaseStep']['id']; ?>'>
-		<table>
+		<dt>Testscript</dt>
+		<dd>
+		<?php if(isset($testscript)): ?>
+            <?php echo $html->image('tango/32x32/mimetypes/application-x-executable.png'); ?>
+            <?php echo $html->link('View testscript',array('controller'=>'testcases', 'action'=>'viewscript', $testcase['Testcase']['id']),array('onclick'=>'return Popup.open({url:this.href});')); ?>
+    	<?php else: ?>
+    	   No testscript uploaded
+		<?php endif; ?>
+		</dd>
+        <dt>Steps:</dt>
+    </dl>
+    <?php if(!empty($testcasesteps)): ?>
+        <table>
+        	<tr>
+                <th style='width: 250px; padding: 5px;'>
+                    Action
+        		</th>
+                <th style='width: 250px; padding: 5px;'>	
+                    Reaction
+        		</th>
+        	</tr>
+        <?php foreach($testcasesteps as $testcasestep): ?>
     		<tr style='height: 40px; vertical-align: top;'>
                 <td style='width: 250px; border: 1px solid lightgrey; padding: 5px;'>
                     <?php echo $testcasestep['TestcaseStep']['action']; ?>
@@ -42,10 +49,10 @@ if(!empty($testcasesteps)){
                     <?php echo $testcasestep['TestcaseStep']['reaction']; ?>
     			</td>
     		</tr>
+        <?php endforeach; ?>
         </table>
-	</div>
-<?php endforeach; }?>
-
+    <?php endif ?>
+    
 </div>
 
 

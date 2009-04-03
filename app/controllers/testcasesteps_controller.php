@@ -28,19 +28,20 @@ class TestcasestepsController extends AppController {
 		$this->set('testcasestep', $this->Testcasestep->read(null, $id));
 	}
 
-	function add($testcaseid = null) {
-	   $this->set('testcaseid', $testcaseid);
+	function add($testcase_id = null) {
+	   $this->set('testcaseid', $testcase_id);
 	   $orderby = $this->Testcasestep->find('count',
            array(
-            	'conditions' => array('Testcasestep.testcase_id' => $testcaseid), //array of conditions
+            	'conditions' => array('Testcasestep.testcase_id' => $testcase_id), //array of conditions
            )
        )+1;
        
 		if (!empty($this->data)) {
             $this->data['Testcasestep']['orderby'] = $orderby;
+            $this->Testcasestep->create();
 			if ($this->Testcasestep->save($this->data)) {
 				$this->Session->setFlash(__('The Testcasestep has been saved', true));
-				$this->redirect("testcases/edit/$testcaseid");
+				$this->redirect("testcases/edit/$testcase_id");
 			} else {
 				$this->Session->setFlash(__('The Testcasestep could not be saved. Please, try again.', true));
 			}
@@ -67,14 +68,14 @@ class TestcasestepsController extends AppController {
 		$this->set(compact('testcases'));
 	}
 
-	function delete($id = null) {
+	function delete($id = null, $testcase_id=null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for Testcasestep', true));
 			$this->redirect(array('action'=>'index'));
 		}
 		if ($this->Testcasestep->del($id)) {
 			$this->Session->setFlash(__('Testcasestep deleted', true));
-			$this->redirect(array('action'=>'index'));
+			$this->redirect("testcases/edit/$testcase_id");
 		}
 	}
 

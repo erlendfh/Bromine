@@ -94,6 +94,19 @@ class TestcasesController extends AppController {
 		$this->set('testcase', $this->Testcase->read(null, $id));
 		$testcasesteps = $this->Testcase->TestcaseStep->findAll(array('testcase_id' => $id),null,array('order by' => 'TestcaseStep.orderby'));
     	$this->set('testcasesteps',$testcasesteps);
+    	if($script=$this->getTestScript($id)){
+    	   $this->set('testscript',$script);
+    	}
+	}
+	
+	function viewscript($id = null) {
+        $this->layout = 'green_blank';
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid Testcase.', true));
+			$this->redirect(array('action'=>'index'));
+		}else{
+            $this->set('testscript',$this->getTestScript($id));
+        }
 	}
 
 	function add() {
@@ -108,7 +121,6 @@ class TestcasesController extends AppController {
 		}
 		$requirements = $this->Testcase->Requirement->find('list');
 		$projects = $this->Testcase->Project->find('list');
-		$this->set(compact('requirements', 'projects'));
 	}
 
 	function edit($id = null) {
@@ -120,14 +132,38 @@ class TestcasesController extends AppController {
 		if (!empty($this->data)){
             if ($this->Testcase->save($this->data)) {
 				$this->setFlash(__('The Testcase has been saved', true), 'succ');
-				
 			} else {
 				$this->setFlash(__('The Testcase could not be saved. Please, try again.', true), 'err');
 			}
-			
-			//Testscript part
-			pr($this->data);
-			if($this->data['Testcase']['testscript']['name']!=''){
+		}
+        if($id){
+    		$this->data = $this->Testcase->read(null, $id);
+    		$testcasesteps = $this->Testcase->TestcaseStep->findAll(array('testcase_id' => $id),null,array('order by' => 'TestcaseStep.orderby'));
+    		$this->set('testcasesteps',$testcasesteps);
+        	if($script=$this->getTestScript($id)){
+        	   $this->set('testscript',$script);
+        	}
+		}
+	}
+	
+	private function getTestScript($id){
+        App::import('Model','Type');
+        $this->Type = new Type();
+        $extList = $this->Type->find('list', array('fields' => array('Type.extension')));
+        foreach($extList as $ext){
+            $file = WWW_ROOT.DS.'testscripts'.DS.$this->Session->read('project_name').DS.$ext.DS.$id.".$ext";
+            if(file_exists($file)){
+                return htmlspecialchars(file_get_contents($file));
+            }
+        }
+        return false;
+    }
+	
+	function upload($id = null){
+        $this->layout = 'green_blank';	   
+        if($id){
+            $this->set('id',$id);
+            if($this->data['Testcase']['testscript']['name']!=''){
                 $ext = end(explode('.', $this->data['Testcase']['testscript']['name']));
                 $uploadfile = WWW_ROOT.DS.'tests'.DS.$this->Session->read('project_name').DS.$ext.DS.$id.".$ext";
                 App::import('Model','Type');
@@ -136,6 +172,7 @@ class TestcasesController extends AppController {
                 if(in_array($ext, $extList)){
                     if (move_uploaded_file($this->data['Testcase']['testscript']['tmp_name'], $uploadfile)) {
                         $this->setFlash(__('The Testscript has been uploaded',true), 'succ');
+                        $this->set('uploaded',true);
         			}else{
                         $this->setFlash(__('Script not uploaded. The file could not be uploaded. Check folder permissions', true),'err');
                     }
@@ -143,16 +180,10 @@ class TestcasesController extends AppController {
                     $this->setFlash(__('Script not uploaded. Filetype not accepted. The accepted filetypes are '.implode(', ', $extList), true), 'err');
                 }
     		}
-    		
-    		//pr($this->Session);
-		}
-        if($id){
-    		$this->data = $this->Testcase->read(null, $id);
-    		//$testcasesteps = $this->Testcase->TestcaseStep->find('list');
-    		$testcasesteps = $this->Testcase->TestcaseStep->findAll(array('testcase_id' => $id),null,array('order by' => 'TestcaseStep.orderby'));
-    		$this->set('testcasesteps',$testcasesteps);
-		}
-	}
+    	}else{
+            $this->setFlash('No testcase id provided','err');
+        }
+    }
 
 	function delete($id = null) {
 		if (!$id) {

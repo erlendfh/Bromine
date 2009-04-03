@@ -11,7 +11,6 @@
             echo $html->css('green/color');
     		echo $html->css('green/content');
     		echo $html->css('green/prettify');
-    		echo $html->css('green/menu');
     		echo $scripts_for_layout;
     		echo $javascript->link('prototype');
     		echo $javascript->link('popup');
@@ -23,7 +22,7 @@
     </head>
     <body>
   <div id="main">
-    <div id="links_container">
+  <div id="links_container">
       <div id="logo"><h1>Bromine 3</h1><img id='notification' src='img/ajax-loader.gif' alt="" style='display: none;'/></div>
       <script type='text/javascript'>
 
@@ -50,13 +49,7 @@
         ?>
       </div>
     </div>
-    <div id="menu">
-        <!-- **** INSERT NAVIGATION ITEMS HERE (use id="selected" to identify the page you're on **** -->
-        
-       <?php echo $tree->menustart($Menu); ?>
-
-    </div>
-    <div id="content" style='clear: both;'>
+    <div id="content">
       <div id="column2">
         <div id='messages'>
             <?php if($session->check('Message.err')): ?>
@@ -99,8 +92,5 @@
     <?php echo $cakeDebug; ?>
     </div>
   </div>
-    
-    
-    
 </body>
 </html>

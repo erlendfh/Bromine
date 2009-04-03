@@ -22,7 +22,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 class TreeHelper extends Helper{
   var $tab = "";
   var $helpers = array('Html','Ajax','Javascript');
-  
+  var $i = 0;
   
   function show2($name, $data)
   {
@@ -81,5 +81,38 @@ class TreeHelper extends Helper{
         }
         return $output;
     }
+    
+    function menustart($list){
+    $output = "";
+    pr($list);
+        foreach($list as $menu){
+            $output .= "<ul>
+                            <li><a href='".$menu['Menu']['controller']."'>".$menu['Menu']['title']."</a>
+                                <ul>";
+            if(!empty($menu['children'])){
+                $output .= $this->menutree($menu['children']);
+            }
+            $output .= "</ul></li></ul>";
+        }
+        return $output;
+    
+    }
+        
+    function menutree($list){
+        $output='';
+        foreach ($list as $menu){   
+            $output .= "<li>
+                        <a href='".$menu['Menu']['controller']."/".$menu['Menu']['action']."'>".$menu['Menu']['title']."</a>";            
+            
+            if(!empty($menu['children'])){
+
+                $output .= '<ul>'.$this->menutree($menu['children']).'</ul>';
+            }
+            $output .= "</li>";
+            
+            
+        }
+        return $output;
+    }    
 }
 ?>

@@ -1,23 +1,21 @@
 <?php
-class MenuComponent{
+class MenuComponent extends Component{
 
     function __construct(){
         App::import('Model', 'Menu');
         $this->Menu = new Menu();
+        
     }
 
-    function createMenu($p_id=0){
-        $menu = $this->Menu->find('all', array('conditions' => array('p_id' => $p_id), 'order' => array('odr')));
-        return $this->beautifyMenuArray($menu);
-    }
-    
-    private function beautifyMenuArray($menuArray){
-        $prettyArray=array();
-        foreach($menuArray as $menuArrayItem){ //Making the array prettier
-            $prettyArray[]=$menuArrayItem['Menu'];
+    function createMenu($parent_id=null){
+           $this->Menu->Behaviors->attach('Containable');
+
+        $menus = $this->Menu->find('threaded');
+        foreach($menus as $key => $menu){
+            if($menu['Menu']['id']==$parent_id){
+                return $menu['children'];
+            }
         }
-        return $prettyArray;
     }
-
 }
 ?>

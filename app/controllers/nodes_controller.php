@@ -3,6 +3,7 @@ class NodesController extends AppController {
 
 	var $name = 'Nodes';
 	var $helpers = array('Html', 'Form');
+	var $main_menu_id = -2;
 
 	function index() {
 		$this->Node->recursive = 2;

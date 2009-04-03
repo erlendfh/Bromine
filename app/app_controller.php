@@ -40,8 +40,9 @@
 class AppController extends Controller {
 
     var $components = array('Auth', 'StdFuncs','MyAcl','Menu','RequestHandler');
-    var $helpers = array('Html','Ajax','Javascript');
+    var $helpers = array('Html','Ajax','Javascript', 'Tree');
     var $layout = 'green';
+    var $main_menu_id = -1;
     
     function setFlash($msg,$key){
         $_SESSION['Message'][$key][]=$msg;
@@ -64,9 +65,8 @@ class AppController extends Controller {
         
         $this->Auth->authorize = 'controller';
         
-        
-        $this->set('mainMenu',$this->Menu->createMenu($this->Session->read('main_menu_id')));
-        $this->set('subMenu',$this->Menu->createMenu($this->Session->read('sub_menu_id')));
+        //pr($this->Menu->createMenu($this->main_menu_id));
+        $this->set('Menu',$this->Menu->createMenu($this->main_menu_id));
 
         if(isset($this->needsproject)){
             if((is_array($this->needsproject) && in_array($this->action, $this->needsproject)) || $this->needsproject===true){ //If the controller/action needs a project

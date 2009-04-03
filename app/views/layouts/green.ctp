@@ -10,6 +10,7 @@
     		echo $html->css('green/style');
             echo $html->css('green/color');
     		echo $html->css('green/content');
+    		echo $html->css('green/menu');
     		echo $scripts_for_layout;
     		echo $javascript->link('prototype');
             echo $javascript->link('scriptaculous');
@@ -47,14 +48,12 @@
       </div>
     </div>
     <div id="menu">
-      <ul>
+
         <!-- **** INSERT NAVIGATION ITEMS HERE (use id="selected" to identify the page you're on **** -->
-        <?php if(isset($mainMenu)): ?>
-        <?php foreach($mainMenu as $mainMenuItem): ?>
-        <li><?php echo $html->link($mainMenuItem['title'], array('controller' => $mainMenuItem['controller'],'action' => $mainMenuItem['action'])); ?></li>    
-        <?php endforeach; ?>
-        <?php endif ?>
-      </ul>
+        
+       <?php echo $tree->menustart($Menu); ?>
+       
+
     </div>
     <div id="content">
         <!-- SUBMENU -->        

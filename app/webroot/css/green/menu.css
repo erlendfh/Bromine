@@ -1,7 +1,11 @@
 #menu {
 width: 100%;
-background: #eee;
 float: left;
+background: #444 url(img/menu.png);
+color: #FFF;
+height: 40px; 
+border-color: $FFF;
+border-bottom: 1px solid;
 }
 
 #menu ul {
@@ -12,34 +16,36 @@ width: 12em;
 float: left;
 }
 
-#menu a, #menu h2 {
+#menu a {
 font: bold 11px/16px arial, helvetica, sans-serif;
 display: block;
-border-width: 1px;
+border-width: 0px;
 border-style: solid;
 border-color: #ccc #888 #555 #bbb;
 margin: 0;
 padding: 2px 3px;
 }
 
-#menu h2 {
-color: #fff;
-background: #000;
-text-transform: uppercase;
-}
-
 #menu a {
-color: #000;
-background: #efefef;
+color: #E2E2E2;
+background: transparent;
 text-decoration: none;
 }
 
 #menu a:hover {
-color: #a00;
-background: #fff;
+background: #555;
+  color: #83B82E;
 }
 
-#menu li {position: relative;}
+#menu li {
+position: relative;
+background: transparent;
+color: #E2E2E2;
+border-color: #6C6C6C;
+list-style: none;
+text-transform: uppercase;
+font-size: 100%;
+}
 
 #menu ul ul {
 position: absolute;
@@ -55,7 +61,9 @@ left: 100%;
 div#menu ul ul,
 div#menu ul li:hover ul ul,
 div#menu ul ul li:hover ul ul
-{display: none;}
+{display: none;
+background: #444;
+}
 
 div#menu ul li:hover ul,
 div#menu ul ul li:hover ul,

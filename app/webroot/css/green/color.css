@@ -28,20 +28,7 @@ h1
   color: #555;
 }
 
-
-#menu
-{ background: #444 url(img/menu.png);
-  color: #FFF;
-  border-color: #000;
-}
-
-#menu li a
-{ background: transparent;
-  color: #E2E2E2;
-  border-color: #6C6C6C;
-}
-
-#menu li a:hover, #menu li a#selected, #menu li a#selected:hover, #footer a
+#footer a
 { background: #555;
   color: #83B82E;
 } 

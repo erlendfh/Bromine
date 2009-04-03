@@ -132,32 +132,6 @@ ol li
   letter-spacing: .2em;
 }
 
-/* navigation menu */
-#menu
-{ height: 40px; 
-  border-bottom: 1px solid;
-}
-
-#menu ul{margin: 0px auto;} 
-
-#menu li
-{ float: left; 
-  margin: 0px 0px 0px 0px; 
-  padding: 0px;
-  list-style: none;
-} 
-
-#menu li a 
-{ display: block; 
-  float: left; 
-  height: 27px;
-  text-decoration: none; 
-  padding: 11px 19px 2px 19px;
-  text-transform: uppercase;
-  font-size: 88%;
-  border-right: 1px solid;
-} 
-
 /* main content */
 #content
 { height: auto;

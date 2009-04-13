@@ -59,8 +59,8 @@ class RequirementsController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 		$this->set('requirement', $this->Requirement->read(null, $id));
-		$this->Requirement->recursive = 2;
-		pr($this->Requirement->read(null, $id));
+		//$this->Requirement->recursive = 2;
+		//pr($this->Requirement->read(null, $id));
 	}
 	
 	

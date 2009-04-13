@@ -50,16 +50,47 @@
 </table>
 <div id='sort' >
 <?php foreach($testcasesteps as $testcasestep): ?>
-	<div class='container' id='item_<?php echo $testcasestep['TestcaseStep']['id']; ?>'>
+    <?php $id = $testcasestep['TestcaseStep']['id']; ?>
+	<div class='container' id='item_<?php echo $id ?>'>
 		<table>
     		<tr style='height: 40px; vertical-align: top;'>
                 <td style='width: 250px; border: 1px solid lightgrey; padding: 5px;'>
-                    <?php echo $testcasestep['TestcaseStep']['action']; ?>
+                        <div id="action<?php echo $id; ?>" style='height: 40px; cursor: text;'><?php echo $testcasestep['TestcaseStep']['action']; ?></div>
     			</td>
+    			<?php
+                    echo $ajax->editor( 
+                        "action$id", //In place editor id
+                        array(  //Url
+                            'controller' => 'testcasesteps', 
+                            'action' => 'edit',
+                            $id,
+                            'action'
+                        ), 
+                        array(  //options
+                        'rows' => 2,
+                        'cols'=>28
+                        ) 
+                    );
+                ?>
     	        <td style='width: 250px; border: 1px solid lightgrey; padding: 5px;'>	
-                    <?php echo $testcasestep['TestcaseStep']['reaction']; ?>
+                    <div id="reaction<?php echo $id; ?>" style='height: 40px; cursor: text;'><?php echo $testcasestep['TestcaseStep']['reaction']; ?></div>
     			</td>
-    			<td class='handle' style='height: 50px; width: 40px; float: left; background: url(/img/side.png); border: 1px solid lightgrey; cursor: url("/img/openhand.cur"), move;'>&nbsp;</td>
+    			<?php
+                    echo $ajax->editor( 
+                        "reaction$id", //In place editor id
+                        array(  //Url
+                            'controller' => 'testcasesteps', 
+                            'action' => 'edit',
+                            $id,
+                            'reaction'
+                        ), 
+                        array(  //options
+                        'rows' => 2,
+                        'cols'=>28
+                        ) 
+                    );
+                ?>
+    			<td class='handle' style='height: 50px; width: 40px;  background: url(/img/side.png); border: 1px solid lightgrey; cursor: url("/img/openhand.cur"), move;'>&nbsp;</td>
                 <td>
                     <?php 
                         echo $ajax->link( 

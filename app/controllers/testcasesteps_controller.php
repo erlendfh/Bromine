@@ -48,7 +48,18 @@ class TestcasestepsController extends AppController {
 		}
 	}
 
-	function edit($id = null) {
+	function edit($id = null, $type=null) {
+	   $value = $_POST['value'];
+	   $this->data['Testcasestep']['id'] = $id;
+	   $this->data['Testcasestep'][$type] = $value;
+	   if ($this->Testcasestep->save($this->data)) {
+	       $this->setFlash("The $type was saved",'succ');
+	       $this->set('value',$value);
+	   }else{
+	       $this->setFlash("The $type could not be saved.",'err');
+	       $this->set('value',"The $type could not be saved.");
+	   }
+	   /*
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid Testcasestep', true));
 			$this->redirect(array('action'=>'index'));
@@ -66,6 +77,7 @@ class TestcasestepsController extends AppController {
 		}
 		$testcases = $this->Testcasestep->Testcase->find('list');
 		$this->set(compact('testcases'));
+		*/
 	}
 
 	function delete($id = null, $testcase_id=null) {

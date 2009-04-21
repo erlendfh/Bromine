@@ -1,14 +1,13 @@
 <?php
-class MenuComponent extends Component{
-
+class MenuComponent{
+    
     function __construct(){
         App::import('Model', 'Menu');
         $this->Menu = new Menu();
-        
     }
 
     function createMenu($parent_id=null){
-           $this->Menu->Behaviors->attach('Containable');
+        //$this->Menu->Behaviors->attach('Containable');
 
         $menus = $this->Menu->find('threaded');
         foreach($menus as $key => $menu){
@@ -17,5 +16,6 @@ class MenuComponent extends Component{
             }
         }
     }
+    
 }
 ?>

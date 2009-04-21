@@ -45,6 +45,7 @@ class RequirementsController extends AppController {
     }
     
 	function index() {
+	   
 		$this->Requirement->recursive = 1;
 		//pr($this->Requirement->find('threaded'));
 		$this->set('data',$this->Requirement->find('threaded'));

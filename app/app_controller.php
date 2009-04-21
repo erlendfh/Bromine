@@ -39,7 +39,7 @@
  */
 class AppController extends Controller {
 
-    var $components = array('Auth', 'StdFuncs','MyAcl','Menu','RequestHandler');
+    var $components = array('Auth', 'StdFuncs','MyAcl','RequestHandler','Menu');
     var $helpers = array('Html','Ajax','Javascript', 'Tree');
     var $layout = 'green';
     var $main_menu_id = -1;
@@ -65,7 +65,6 @@ class AppController extends Controller {
         
         $this->Auth->authorize = 'controller';
         
-        //pr($this->Menu->createMenu($this->main_menu_id));
         $this->set('Menu',$this->Menu->createMenu($this->main_menu_id));
 
         if(isset($this->needsproject)){
@@ -80,6 +79,7 @@ class AppController extends Controller {
     }
     
     function isAuthorized(){
+        //return true;
         return $this->MyAcl->hasAccess($this->Auth->user('id'),$this->here);
     }
 

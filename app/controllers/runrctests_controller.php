@@ -68,9 +68,11 @@ class RunrctestsController  extends AppController {
     }
     
     function log($msg){
-        $fp = fopen('log2.txt','a');
-        fwrite($fp, time(). ': ' . $msg."\n");
-        fclose($fp);
+        if ($this->debugmode){
+            $fp = fopen('logs/Loadbalancer_output.txt','a');
+            fwrite($fp, date('l jS \of F Y h:i:s A'). ': ' . $msg."\n");
+            fclose($fp);
+        }
     }
     
     function getAvailableNodes($nodes, $OS_id, $browser_id){
@@ -307,7 +309,7 @@ class RunrctestsController  extends AppController {
         $this->log(substr(php_uname(), 0, 7));
         
         if (substr(php_uname(), 0, 7) == "Windows"){
-            pclose(popen("start /B ". $cmd . ' > output.txt', "r")); 
+            pclose(popen("start /B ". $cmd . ' >> logs/Testscript_output.txt', "r")); 
         }
         //Unix
         else {

@@ -31,11 +31,8 @@ class SeleniumserverController extends AppController {
             $sessionId = "";
         }
         
-        
-        
         //If, first command, use uid for DB identification
         if ($cmd == 'getNewBrowserSession'){ 
-            $this->log(print_r($arr));
             $arr = split(',',$one);
             $one = $arr[0];
             $uid = $arr[1];
@@ -192,10 +189,12 @@ class SeleniumserverController extends AppController {
     }
     
     function log($text){
-        $uid = str_replace('.', '', microtime('U'));
-        $fp = fopen('log.txt','a');
-        fwrite($fp,$uid . ": " . "$text\n");
-        fclose($fp);
+        if ($this->debugmode){
+            $fp = fopen('logs/Leech_output.txt','a');
+            fwrite($fp, date('l jS \of F Y h:i:s A'). ': ' . "$text\n");
+            fclose($fp);        
+        }
+
     }
 }
 ?>

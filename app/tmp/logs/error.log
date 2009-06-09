@@ -3474,3 +3474,1472 @@ Aco: controllers/tabs/config in [CORE\cake\libs\controller\components\acl.php, l
 2009-04-13 20:57:16 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
 2009-04-13 21:08:03 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
 2009-04-13 21:18:13 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 10:50:44 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 10:50:45 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 10:50:46 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 10:51:58 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 10:52:01 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 10:52:03 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 10:52:04 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 10:52:20 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 10:52:21 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 10:52:23 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 10:53:46 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 10:53:49 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 10:53:51 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 10:53:52 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 10:54:43 Warning: Warning (2): Missing argument 1 for RunrctestsController::loadBalancer(), called in C:\xampp\htdocs\cake\libs\object.php on line 115 and defined in [APP\controllers\runrctests_controller.php, line 121]
+2009-06-09 10:54:45 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 10:54:47 Warning: Warning (2): Missing argument 1 for RunrctestsController::loadBalancer(), called in C:\xampp\htdocs\cake\libs\object.php on line 115 and defined in [APP\controllers\runrctests_controller.php, line 121]
+2009-06-09 10:54:49 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 10:54:51 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 10:54:51 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 10:54:54 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 10:54:56 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 10:54:58 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:24:28 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:24:30 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:24:31 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:26:29 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:26:31 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:26:32 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:28:01 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:28:07 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:28:10 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:28:10 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:35:02 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:35:04 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:35:05 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:46:17 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:46:19 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:46:21 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:48:25 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:48:28 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:48:30 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:49:13 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:49:16 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:49:17 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:55:00 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:55:03 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:55:05 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:55:06 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:56:18 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:56:22 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:56:22 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:58:39 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:58:41 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:59:39 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 11:59:41 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:00:22 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:00:24 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:02:43 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:02:45 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:04:17 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:04:20 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:04:22 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:04:50 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:04:53 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:04:55 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:07:45 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:07:46 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:07:47 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:09:14 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:09:16 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:09:17 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:10:06 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:10:08 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:10:09 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:10:30 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:12:07 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:12:09 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:12:10 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:12:34 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:12:37 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:12:38 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:14:10 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:14:12 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:14:13 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:15:43 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:15:45 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:15:48 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:16:53 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:16:57 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:16:57 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:18:46 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:18:48 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:18:49 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:19:43 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:19:45 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:19:46 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:23:15 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:23:18 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:23:19 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:23:40 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:33:26 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:33:30 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:33:30 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:37:46 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:37:52 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:38:01 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:38:10 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:38:24 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:38:59 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:39:07 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:40:06 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Test.testcase_id' in 'on clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 514]
+2009-06-09 12:40:06 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\tests\index.ctp, line 22]
+2009-06-09 12:40:07 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Test.testcase_id' in 'on clause'</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 514]
+2009-06-09 12:40:07 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\tests\index.ctp, line 22]
+2009-06-09 12:40:08 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:42:35 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:42:42 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:42:46 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:44:13 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:44:18 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:44:49 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:46:08 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:46:36 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:46:59 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 12:49:10 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 13:04:00 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 13:04:01 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 13:04:02 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 13:25:18 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 14:41:52 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 14:42:01 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 14:42:09 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 14:42:15 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 15:21:23 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 15:21:23 Error: <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />        <title>
+            Missing Controller        </title>
+        <link href="/bromine/favicon.ico" type="image/x-icon" rel="icon" /><link href="/bromine/favicon.ico" type="image/x-icon" rel="shortcut icon" /><link rel="stylesheet" type="text/css" href="/bromine/css/green/style.css" /><link rel="stylesheet" type="text/css" href="/bromine/css/green/color.css" /><link rel="stylesheet" type="text/css" href="/bromine/css/green/content.css" /><link rel="stylesheet" type="text/css" href="/bromine/css/green/prettify.css" /><link rel="stylesheet" type="text/css" href="/bromine/css/green/menu.css" /><script type="text/javascript" src="/bromine/js/prototype.js"></script><script type="text/javascript" src="/bromine/js/popup.js"></script><script type="text/javascript" src="/bromine/js/prettify/prettify.js"></script><script type="text/javascript" src="/bromine/js/scriptaculous.js"></script><script type="text/javascript" src="/bromine/js/sortable_tree.js"></script>
+    </head>
+    <body>
+  <div id="main">
+    <div id="links_container">
+      <div id="logo"><h1>Bromine 3</h1><img id='notification' src='img/ajax-loader.gif' alt="" style='display: none;'/></div>
+      <script type='text/javascript'>
+
+    Ajax.Responders.register({
+    	onCreate: function(request) {
+    		if($('notification') && Ajax.activeRequestCount > 0){
+        		    $('notification').title = request.url;
+        			Effect.Appear('notification',{duration: 0.25, queue: 'end'});
+    			}
+    	},
+    	onComplete: function() {
+    		if($('notification') && Ajax.activeRequestCount == 0){
+                $('notification').title = '';
+    			Effect.Fade('notification',{duration: 0.25, queue: 'end'});
+    		}
+    	}
+    });
+    </script>
+      <div id="links">
+              </div>
+    </div>
+    <div id="menu">
+        <!-- **** INSERT NAVIGATION ITEMS HERE (use id="selected" to identify the page you're on **** -->
+        
+       
+<pre class="cake-debug">
+<a href='javascript:void(0);' onclick='document.getElementById("CakeStackTrace1").style.display = (document.getElementById("CakeStackTrace1").style.display == "none" ? "" : "none")'><b>Notice</b> (8)</a>: Undefined variable: Menu [<b>APP\views\layouts\green.ctp</b>, line <b>56</b>]
+</pre>
+<div id="CakeStackTrace1" class="cake-stack-trace" style="display: none;"><a href='javascript:void(0);' onclick='document.getElementById("CakeErrorCode1").style.display = (document.getElementById("CakeErrorCode1").style.display == "none" ? "" : "none")'>Code</a> | <a href='javascript:void(0);' onclick='document.getElementById("CakeErrorContext1").style.display = (document.getElementById("CakeErrorContext1").style.display == "none" ? "" : "none")'>Context</a><pre id="CakeErrorContext1" class="cake-context" style="display: none;">$___viewFn	=	"C:\xampp\htdocs\bromine\app\views\layouts\green.ctp"
+$___dataForView	=	array(
+	"controller" => "CssController",
+	"controllerName" => "Css",
+	"title_for_layout" => "Missing Controller",
+	"content_for_layout" => "&lt;h2&gt;Missing Controller&lt;/h2&gt;
+&lt;p class=&quot;error&quot;&gt;
+	&lt;strong&gt;Error: &lt;/strong&gt;
+	&lt;em&gt;CssController&lt;/em&gt; could not be found.&lt;/p&gt;
+&lt;p class=&quot;error&quot;&gt;
+	&lt;strong&gt;Error: &lt;/strong&gt;
+	Create the class &lt;em&gt;CssController&lt;/em&gt; below in file: app\controllers\css_controller.php&lt;/p&gt;
+&lt;pre&gt;
+&amp;lt;?php
+class CssController extends AppController {
+
+	var $name = &#039;Css&#039;;
+}
+?&amp;gt;
+&lt;/pre&gt;
+&lt;p class=&quot;notice&quot;&gt;
+	&lt;strong&gt;Notice: &lt;/strong&gt;
+	If you want to customize this error message, create app\views\errors\missing_controller.ctp&lt;/p&gt;",
+	"scripts_for_layout" => "",
+	"cakeDebug" => "",
+	"html" => HtmlHelper
+HtmlHelper::$tags = array
+HtmlHelper::$base = "/bromine"
+HtmlHelper::$here = NULL
+HtmlHelper::$params = array
+HtmlHelper::$action = NULL
+HtmlHelper::$data = array
+HtmlHelper::$_crumbs = array
+HtmlHelper::$__docTypes = array
+HtmlHelper::$helpers = NULL
+HtmlHelper::$webroot = "/bromine/"
+HtmlHelper::$themeWeb = NULL
+HtmlHelper::$plugin = NULL
+HtmlHelper::$namedArgs = NULL
+HtmlHelper::$argSeparator = NULL
+HtmlHelper::$validationErrors = NULL
+HtmlHelper::$__tainted = NULL
+HtmlHelper::$__cleaned = NULL
+HtmlHelper::$_log = NULL,
+	"ajax" => AjaxHelper
+AjaxHelper::$helpers = array
+AjaxHelper::$Html = HtmlHelper object
+AjaxHelper::$Javascript = JavascriptHelper object
+AjaxHelper::$callbacks = array
+AjaxHelper::$ajaxOptions = array
+AjaxHelper::$dragOptions = array
+AjaxHelper::$dropOptions = array
+AjaxHelper::$sortOptions = array
+AjaxHelper::$sliderOptions = array
+AjaxHelper::$editorOptions = array
+AjaxHelper::$autoCompleteOptions = array
+AjaxHelper::$__ajaxBuffer = array
+AjaxHelper::$base = "/bromine"
+AjaxHelper::$webroot = "/bromine/"
+AjaxHelper::$themeWeb = NULL
+AjaxHelper::$here = NULL
+AjaxHelper::$params = array
+AjaxHelper::$action = NULL
+AjaxHelper::$plugin = NULL
+AjaxHelper::$data = array
+AjaxHelper::$namedArgs = NULL
+AjaxHelper::$argSeparator = NULL
+AjaxHelper::$validationErrors = NULL
+AjaxHelper::$tags = array
+AjaxHelper::$__tainted = NULL
+AjaxHelper::$__cleaned = NULL
+AjaxHelper::$_log = NULL
+AjaxHelper::$Form = FormHelper object,
+	"javascript" => JavascriptHelper
+JavascriptHelper::$useNative = true
+JavascriptHelper::$enabled = true
+JavascriptHelper::$safe = false
+JavascriptHelper::$tags = array
+JavascriptHelper::$_blockOptions = array
+JavascriptHelper::$_cachedEvents = array
+JavascriptHelper::$_cacheEvents = false
+JavascriptHelper::$_cacheToFile = false
+JavascriptHelper::$_cacheAll = false
+JavascriptHelper::$_rules = array
+JavascriptHelper::$__scriptBuffer = NULL
+JavascriptHelper::$helpers = NULL
+JavascriptHelper::$base = "/bromine"
+JavascriptHelper::$webroot = "/bromine/"
+JavascriptHelper::$themeWeb = NULL
+JavascriptHelper::$here = NULL
+JavascriptHelper::$params = array
+JavascriptHelper::$action = NULL
+JavascriptHelper::$plugin = NULL
+JavascriptHelper::$data = array
+JavascriptHelper::$namedArgs = NULL
+JavascriptHelper::$argSeparator = NULL
+JavascriptHelper::$validationErrors = NULL
+JavascriptHelper::$__tainted = NULL
+JavascriptHelper::$__cleaned = NULL
+JavascriptHelper::$_log = NULL,
+	"form" => FormHelper
+FormHelper::$helpers = array
+FormHelper::$fieldset = array
+FormHelper::$__options = array
+FormHelper::$fields = array
+FormHelper::$requestType = NULL
+FormHelper::$base = "/bromine"
+FormHelper::$webroot = "/bromine/"
+FormHelper::$themeWeb = NULL
+FormHelper::$here = NULL
+FormHelper::$params = array
+FormHelper::$action = NULL
+FormHelper::$plugin = NULL
+FormHelper::$data = array
+FormHelper::$namedArgs = NULL
+FormHelper::$argSeparator = NULL
+FormHelper::$validationErrors = NULL
+FormHelper::$tags = array
+FormHelper::$__tainted = NULL
+FormHelper::$__cleaned = NULL
+FormHelper::$_log = NULL
+FormHelper::$Html = HtmlHelper object,
+	"tree" => TreeHelper
+TreeHelper::$tab = ""
+TreeHelper::$helpers = array
+TreeHelper::$i = 0
+TreeHelper::$base = "/bromine"
+TreeHelper::$webroot = "/bromine/"
+TreeHelper::$themeWeb = NULL
+TreeHelper::$here = NULL
+TreeHelper::$params = array
+TreeHelper::$action = NULL
+TreeHelper::$plugin = NULL
+TreeHelper::$data = array
+TreeHelper::$namedArgs = NULL
+TreeHelper::$argSeparator = NULL
+TreeHelper::$validationErrors = NULL
+TreeHelper::$tags = array
+TreeHelper::$__tainted = NULL
+TreeHelper::$__cleaned = NULL
+TreeHelper::$_log = NULL
+TreeHelper::$Html = HtmlHelper object
+TreeHelper::$Ajax = AjaxHelper object
+TreeHelper::$Javascript = JavascriptHelper object,
+	"session" => SessionHelper
+SessionHelper::$helpers = NULL
+SessionHelper::$__active = true
+SessionHelper::$valid = false
+SessionHelper::$error = false
+SessionHelper::$_userAgent = "c941048076e1031f505f29af75f70c38"
+SessionHelper::$path = "/"
+SessionHelper::$lastError = NULL
+SessionHelper::$security = NULL
+SessionHelper::$time = 1244553683
+SessionHelper::$sessionTime = false
+SessionHelper::$watchKeys = array
+SessionHelper::$id = NULL
+SessionHelper::$_log = NULL
+SessionHelper::$base = "/bromine"
+SessionHelper::$webroot = "/bromine/"
+SessionHelper::$here = NULL
+SessionHelper::$params = array
+SessionHelper::$action = NULL
+SessionHelper::$data = array
+SessionHelper::$themeWeb = NULL
+SessionHelper::$plugin = NULL
+)
+$loadHelpers	=	false
+$cached	=	true
+$loadedHelpers	=	array()
+$controller	=	"CssController"
+$controllerName	=	"Css"
+$title_for_layout	=	"Missing Controller"
+$content_for_layout	=	"&lt;h2&gt;Missing Controller&lt;/h2&gt;
+&lt;p class=&quot;error&quot;&gt;
+	&lt;strong&gt;Error: &lt;/strong&gt;
+	&lt;em&gt;CssController&lt;/em&gt; could not be found.&lt;/p&gt;
+&lt;p class=&quot;error&quot;&gt;
+	&lt;strong&gt;Error: &lt;/strong&gt;
+	Create the class &lt;em&gt;CssController&lt;/em&gt; below in file: app\controllers\css_controller.php&lt;/p&gt;
+&lt;pre&gt;
+&amp;lt;?php
+class CssController extends AppController {
+
+	var $name = &#039;Css&#039;;
+}
+?&amp;gt;
+&lt;/pre&gt;
+&lt;p class=&quot;notice&quot;&gt;
+	&lt;strong&gt;Notice: &lt;/strong&gt;
+	If you want to customize this error message, create app\views\errors\missing_controller.ctp&lt;/p&gt;"
+$scripts_for_layout	=	""
+$cakeDebug	=	""
+$html	=	HtmlHelper
+HtmlHelper::$tags = array
+HtmlHelper::$base = "/bromine"
+HtmlHelper::$here = NULL
+HtmlHelper::$params = array
+HtmlHelper::$action = NULL
+HtmlHelper::$data = array
+HtmlHelper::$_crumbs = array
+HtmlHelper::$__docTypes = array
+HtmlHelper::$helpers = NULL
+HtmlHelper::$webroot = "/bromine/"
+HtmlHelper::$themeWeb = NULL
+HtmlHelper::$plugin = NULL
+HtmlHelper::$namedArgs = NULL
+HtmlHelper::$argSeparator = NULL
+HtmlHelper::$validationErrors = NULL
+HtmlHelper::$__tainted = NULL
+HtmlHelper::$__cleaned = NULL
+HtmlHelper::$_log = NULL
+$ajax	=	AjaxHelper
+AjaxHelper::$helpers = array
+AjaxHelper::$Html = HtmlHelper object
+AjaxHelper::$Javascript = JavascriptHelper object
+AjaxHelper::$callbacks = array
+AjaxHelper::$ajaxOptions = array
+AjaxHelper::$dragOptions = array
+AjaxHelper::$dropOptions = array
+AjaxHelper::$sortOptions = array
+AjaxHelper::$sliderOptions = array
+AjaxHelper::$editorOptions = array
+AjaxHelper::$autoCompleteOptions = array
+AjaxHelper::$__ajaxBuffer = array
+AjaxHelper::$base = "/bromine"
+AjaxHelper::$webroot = "/bromine/"
+AjaxHelper::$themeWeb = NULL
+AjaxHelper::$here = NULL
+AjaxHelper::$params = array
+AjaxHelper::$action = NULL
+AjaxHelper::$plugin = NULL
+AjaxHelper::$data = array
+AjaxHelper::$namedArgs = NULL
+AjaxHelper::$argSeparator = NULL
+AjaxHelper::$validationErrors = NULL
+AjaxHelper::$tags = array
+AjaxHelper::$__tainted = NULL
+AjaxHelper::$__cleaned = NULL
+AjaxHelper::$_log = NULL
+AjaxHelper::$Form = FormHelper object
+$javascript	=	JavascriptHelper
+JavascriptHelper::$useNative = true
+JavascriptHelper::$enabled = true
+JavascriptHelper::$safe = false
+JavascriptHelper::$tags = array
+JavascriptHelper::$_blockOptions = array
+JavascriptHelper::$_cachedEvents = array
+JavascriptHelper::$_cacheEvents = false
+JavascriptHelper::$_cacheToFile = false
+JavascriptHelper::$_cacheAll = false
+JavascriptHelper::$_rules = array
+JavascriptHelper::$__scriptBuffer = NULL
+JavascriptHelper::$helpers = NULL
+JavascriptHelper::$base = "/bromine"
+JavascriptHelper::$webroot = "/bromine/"
+JavascriptHelper::$themeWeb = NULL
+JavascriptHelper::$here = NULL
+JavascriptHelper::$params = array
+JavascriptHelper::$action = NULL
+JavascriptHelper::$plugin = NULL
+JavascriptHelper::$data = array
+JavascriptHelper::$namedArgs = NULL
+JavascriptHelper::$argSeparator = NULL
+JavascriptHelper::$validationErrors = NULL
+JavascriptHelper::$__tainted = NULL
+JavascriptHelper::$__cleaned = NULL
+JavascriptHelper::$_log = NULL
+$form	=	FormHelper
+FormHelper::$helpers = array
+FormHelper::$fieldset = array
+FormHelper::$__options = array
+FormHelper::$fields = array
+FormHelper::$requestType = NULL
+FormHelper::$base = "/bromine"
+FormHelper::$webroot = "/bromine/"
+FormHelper::$themeWeb = NULL
+FormHelper::$here = NULL
+FormHelper::$params = array
+FormHelper::$action = NULL
+FormHelper::$plugin = NULL
+FormHelper::$data = array
+FormHelper::$namedArgs = NULL
+FormHelper::$argSeparator = NULL
+FormHelper::$validationErrors = NULL
+FormHelper::$tags = array
+FormHelper::$__tainted = NULL
+FormHelper::$__cleaned = NULL
+FormHelper::$_log = NULL
+FormHelper::$Html = HtmlHelper object
+$tree	=	TreeHelper
+TreeHelper::$tab = ""
+TreeHelper::$helpers = array
+TreeHelper::$i = 0
+TreeHelper::$base = "/bromine"
+TreeHelper::$webroot = "/bromine/"
+TreeHelper::$themeWeb = NULL
+TreeHelper::$here = NULL
+TreeHelper::$params = array
+TreeHelper::$action = NULL
+TreeHelper::$plugin = NULL
+TreeHelper::$data = array
+TreeHelper::$namedArgs = NULL
+TreeHelper::$argSeparator = NULL
+TreeHelper::$validationErrors = NULL
+TreeHelper::$tags = array
+TreeHelper::$__tainted = NULL
+TreeHelper::$__cleaned = NULL
+TreeHelper::$_log = NULL
+TreeHelper::$Html = HtmlHelper object
+TreeHelper::$Ajax = AjaxHelper object
+TreeHelper::$Javascript = JavascriptHelper object
+$session	=	SessionHelper
+SessionHelper::$helpers = NULL
+SessionHelper::$__active = true
+SessionHelper::$valid = false
+SessionHelper::$error = false
+SessionHelper::$_userAgent = "c941048076e1031f505f29af75f70c38"
+SessionHelper::$path = "/"
+SessionHelper::$lastError = NULL
+SessionHelper::$security = NULL
+SessionHelper::$time = 1244553683
+SessionHelper::$sessionTime = false
+SessionHelper::$watchKeys = array
+SessionHelper::$id = NULL
+SessionHelper::$_log = NULL
+SessionHelper::$base = "/bromine"
+SessionHelper::$webroot = "/bromine/"
+SessionHelper::$here = NULL
+SessionHelper::$params = array
+SessionHelper::$action = NULL
+SessionHelper::$data = array
+SessionHelper::$themeWeb = NULL
+SessionHelper::$plugin = NULL</pre><div id="CakeErrorCode1" class="cake-code-dump" style="display: none;"><pre><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;****&nbsp;INSERT&nbsp;NAVIGATION&nbsp;ITEMS&nbsp;HERE&nbsp;(use&nbsp;id="selected"&nbsp;to&nbsp;identify&nbsp;the&nbsp;page&nbsp;you're&nbsp;on&nbsp;****&nbsp;--&gt;</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">&lt;?php&nbsp;</span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$tree</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">menustart</span><span style="color: #007700">(</span><span style="color: #0000BB">$Menu</span><span style="color: #007700">);&nbsp;</span><span style="color: #0000BB">?&gt;</span></span></code></span>
+</pre></div><pre>include - APP\views\layouts\green.ctp, line 56
+View::_render() - CORE\cake\libs\view\view.php, line 662
+View::renderLayout() - CORE\cake\libs\view\view.php, line 450
+View::render() - CORE\cake\libs\view\view.php, line 388
+Controller::render() - CORE\cake\libs\controller\controller.php, line 774
+AppError::_outputMessage() - APP\app_error.php, line 10
+ErrorHandler::missingController() - CORE\cake\libs\error.php, line 174
+Object::dispatchMethod() - CORE\cake\libs\object.php, line 117
+ErrorHandler::__construct() - CORE\cake\libs\error.php, line 118
+AppError::__construct() - APP\app_error.php, line 6
+Object::cakeError() - CORE\cake\libs\object.php, line 200
+Dispatcher::dispatch() - CORE\cake\dispatcher.php, line 146
+[main] - APP\webroot\index.php, line 90</pre></div>
+<pre class="cake-debug">
+<a href='javascript:void(0);' onclick='document.getElementById("CakeStackTrace2").style.display = (document.getElementById("CakeStackTrace2").style.display == "none" ? "" : "none")'><b>Warning</b> (2)</a>: Invalid argument supplied for foreach() [<b>APP\views\helpers\tree.php</b>, line <b>87</b>]
+</pre>
+<div id="CakeStackTrace2" class="cake-stack-trace" style="display: none;"><a href='javascript:void(0);' onclick='document.getElementById("CakeErrorCode2").style.display = (document.getElementById("CakeErrorCode2").style.display == "none" ? "" : "none")'>Code</a> | <a href='javascript:void(0);' onclick='document.getElementById("CakeErrorContext2").style.display = (document.getElementById("CakeErrorContext2").style.display == "none" ? "" : "none")'>Context</a><pre id="CakeErrorContext2" class="cake-context" style="display: none;">$list	=	null
+$output	=	""</pre><div id="CakeErrorCode2" class="cake-code-dump" style="display: none;"><pre><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;menustart($list){</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;$output&nbsp;=&nbsp;"";</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach($list&nbsp;as&nbsp;$menu){</span></code></span>
+</pre></div><pre>TreeHelper::menustart() - APP\views\helpers\tree.php, line 87
+include - APP\views\layouts\green.ctp, line 56
+View::_render() - CORE\cake\libs\view\view.php, line 662
+View::renderLayout() - CORE\cake\libs\view\view.php, line 450
+View::render() - CORE\cake\libs\view\view.php, line 388
+Controller::render() - CORE\cake\libs\controller\controller.php, line 774
+AppError::_outputMessage() - APP\app_error.php, line 10
+ErrorHandler::missingController() - CORE\cake\libs\error.php, line 174
+Object::dispatchMethod() - CORE\cake\libs\object.php, line 117
+ErrorHandler::__construct() - CORE\cake\libs\error.php, line 118
+AppError::__construct() - APP\app_error.php, line 6
+Object::cakeError() - CORE\cake\libs\object.php, line 200
+Dispatcher::dispatch() - CORE\cake\dispatcher.php, line 146
+[main] - APP\webroot\index.php, line 90</pre></div>
+    </div>
+    <div id="content" style='clear: both;'>
+      <div id="column2">
+        <div id='messages'>
+                                                                    </div>
+        <h2>Missing Controller</h2>
+<p class="error">
+	<strong>Error: </strong>
+	<em>CssController</em> could not be found.</p>
+<p class="error">
+	<strong>Error: </strong>
+	Create the class <em>CssController</em> below in file: app\controllers\css_controller.php</p>
+<pre>
+&lt;?php
+class CssController extends AppController {
+
+	var $name = 'Css';
+}
+?&gt;
+</pre>
+<p class="notice">
+	<strong>Notice: </strong>
+	If you want to customize this error message, create app\views\errors\missing_controller.ctp</p>      </div>
+    </div>
+    <div id="footer">
+      copyright &copy; 2006 your name | <a href="#">email@emailaddress</a> | <a href="http://validator.w3.org/check?uri=referer">XHTML 1.1</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://www.dcarter.co.uk">design by dcarter</a>
+    </div>
+    <div id="debug">
+        </div>
+  </div>
+    
+    
+    
+</body>
+</html>
+
+2009-06-09 15:21:43 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 15:21:43 Error: <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />        <title>
+            Missing Controller        </title>
+        <link href="/bromine/favicon.ico" type="image/x-icon" rel="icon" /><link href="/bromine/favicon.ico" type="image/x-icon" rel="shortcut icon" /><link rel="stylesheet" type="text/css" href="/bromine/css/green/style.css" /><link rel="stylesheet" type="text/css" href="/bromine/css/green/color.css" /><link rel="stylesheet" type="text/css" href="/bromine/css/green/content.css" /><link rel="stylesheet" type="text/css" href="/bromine/css/green/prettify.css" /><link rel="stylesheet" type="text/css" href="/bromine/css/green/menu.css" /><script type="text/javascript" src="/bromine/js/prototype.js"></script><script type="text/javascript" src="/bromine/js/popup.js"></script><script type="text/javascript" src="/bromine/js/prettify/prettify.js"></script><script type="text/javascript" src="/bromine/js/scriptaculous.js"></script><script type="text/javascript" src="/bromine/js/sortable_tree.js"></script>
+    </head>
+    <body>
+  <div id="main">
+    <div id="links_container">
+      <div id="logo"><h1>Bromine 3</h1><img id='notification' src='img/ajax-loader.gif' alt="" style='display: none;'/></div>
+      <script type='text/javascript'>
+
+    Ajax.Responders.register({
+    	onCreate: function(request) {
+    		if($('notification') && Ajax.activeRequestCount > 0){
+        		    $('notification').title = request.url;
+        			Effect.Appear('notification',{duration: 0.25, queue: 'end'});
+    			}
+    	},
+    	onComplete: function() {
+    		if($('notification') && Ajax.activeRequestCount == 0){
+                $('notification').title = '';
+    			Effect.Fade('notification',{duration: 0.25, queue: 'end'});
+    		}
+    	}
+    });
+    </script>
+      <div id="links">
+              </div>
+    </div>
+    <div id="menu">
+        <!-- **** INSERT NAVIGATION ITEMS HERE (use id="selected" to identify the page you're on **** -->
+        
+       
+<pre class="cake-debug">
+<a href='javascript:void(0);' onclick='document.getElementById("CakeStackTrace1").style.display = (document.getElementById("CakeStackTrace1").style.display == "none" ? "" : "none")'><b>Notice</b> (8)</a>: Undefined variable: Menu [<b>APP\views\layouts\green.ctp</b>, line <b>56</b>]
+</pre>
+<div id="CakeStackTrace1" class="cake-stack-trace" style="display: none;"><a href='javascript:void(0);' onclick='document.getElementById("CakeErrorCode1").style.display = (document.getElementById("CakeErrorCode1").style.display == "none" ? "" : "none")'>Code</a> | <a href='javascript:void(0);' onclick='document.getElementById("CakeErrorContext1").style.display = (document.getElementById("CakeErrorContext1").style.display == "none" ? "" : "none")'>Context</a><pre id="CakeErrorContext1" class="cake-context" style="display: none;">$___viewFn	=	"C:\xampp\htdocs\bromine\app\views\layouts\green.ctp"
+$___dataForView	=	array(
+	"controller" => "CssController",
+	"controllerName" => "Css",
+	"title_for_layout" => "Missing Controller",
+	"content_for_layout" => "&lt;h2&gt;Missing Controller&lt;/h2&gt;
+&lt;p class=&quot;error&quot;&gt;
+	&lt;strong&gt;Error: &lt;/strong&gt;
+	&lt;em&gt;CssController&lt;/em&gt; could not be found.&lt;/p&gt;
+&lt;p class=&quot;error&quot;&gt;
+	&lt;strong&gt;Error: &lt;/strong&gt;
+	Create the class &lt;em&gt;CssController&lt;/em&gt; below in file: app\controllers\css_controller.php&lt;/p&gt;
+&lt;pre&gt;
+&amp;lt;?php
+class CssController extends AppController {
+
+	var $name = &#039;Css&#039;;
+}
+?&amp;gt;
+&lt;/pre&gt;
+&lt;p class=&quot;notice&quot;&gt;
+	&lt;strong&gt;Notice: &lt;/strong&gt;
+	If you want to customize this error message, create app\views\errors\missing_controller.ctp&lt;/p&gt;",
+	"scripts_for_layout" => "",
+	"cakeDebug" => "",
+	"html" => HtmlHelper
+HtmlHelper::$tags = array
+HtmlHelper::$base = "/bromine"
+HtmlHelper::$here = NULL
+HtmlHelper::$params = array
+HtmlHelper::$action = NULL
+HtmlHelper::$data = array
+HtmlHelper::$_crumbs = array
+HtmlHelper::$__docTypes = array
+HtmlHelper::$helpers = NULL
+HtmlHelper::$webroot = "/bromine/"
+HtmlHelper::$themeWeb = NULL
+HtmlHelper::$plugin = NULL
+HtmlHelper::$namedArgs = NULL
+HtmlHelper::$argSeparator = NULL
+HtmlHelper::$validationErrors = NULL
+HtmlHelper::$__tainted = NULL
+HtmlHelper::$__cleaned = NULL
+HtmlHelper::$_log = NULL,
+	"ajax" => AjaxHelper
+AjaxHelper::$helpers = array
+AjaxHelper::$Html = HtmlHelper object
+AjaxHelper::$Javascript = JavascriptHelper object
+AjaxHelper::$callbacks = array
+AjaxHelper::$ajaxOptions = array
+AjaxHelper::$dragOptions = array
+AjaxHelper::$dropOptions = array
+AjaxHelper::$sortOptions = array
+AjaxHelper::$sliderOptions = array
+AjaxHelper::$editorOptions = array
+AjaxHelper::$autoCompleteOptions = array
+AjaxHelper::$__ajaxBuffer = array
+AjaxHelper::$base = "/bromine"
+AjaxHelper::$webroot = "/bromine/"
+AjaxHelper::$themeWeb = NULL
+AjaxHelper::$here = NULL
+AjaxHelper::$params = array
+AjaxHelper::$action = NULL
+AjaxHelper::$plugin = NULL
+AjaxHelper::$data = array
+AjaxHelper::$namedArgs = NULL
+AjaxHelper::$argSeparator = NULL
+AjaxHelper::$validationErrors = NULL
+AjaxHelper::$tags = array
+AjaxHelper::$__tainted = NULL
+AjaxHelper::$__cleaned = NULL
+AjaxHelper::$_log = NULL
+AjaxHelper::$Form = FormHelper object,
+	"javascript" => JavascriptHelper
+JavascriptHelper::$useNative = true
+JavascriptHelper::$enabled = true
+JavascriptHelper::$safe = false
+JavascriptHelper::$tags = array
+JavascriptHelper::$_blockOptions = array
+JavascriptHelper::$_cachedEvents = array
+JavascriptHelper::$_cacheEvents = false
+JavascriptHelper::$_cacheToFile = false
+JavascriptHelper::$_cacheAll = false
+JavascriptHelper::$_rules = array
+JavascriptHelper::$__scriptBuffer = NULL
+JavascriptHelper::$helpers = NULL
+JavascriptHelper::$base = "/bromine"
+JavascriptHelper::$webroot = "/bromine/"
+JavascriptHelper::$themeWeb = NULL
+JavascriptHelper::$here = NULL
+JavascriptHelper::$params = array
+JavascriptHelper::$action = NULL
+JavascriptHelper::$plugin = NULL
+JavascriptHelper::$data = array
+JavascriptHelper::$namedArgs = NULL
+JavascriptHelper::$argSeparator = NULL
+JavascriptHelper::$validationErrors = NULL
+JavascriptHelper::$__tainted = NULL
+JavascriptHelper::$__cleaned = NULL
+JavascriptHelper::$_log = NULL,
+	"form" => FormHelper
+FormHelper::$helpers = array
+FormHelper::$fieldset = array
+FormHelper::$__options = array
+FormHelper::$fields = array
+FormHelper::$requestType = NULL
+FormHelper::$base = "/bromine"
+FormHelper::$webroot = "/bromine/"
+FormHelper::$themeWeb = NULL
+FormHelper::$here = NULL
+FormHelper::$params = array
+FormHelper::$action = NULL
+FormHelper::$plugin = NULL
+FormHelper::$data = array
+FormHelper::$namedArgs = NULL
+FormHelper::$argSeparator = NULL
+FormHelper::$validationErrors = NULL
+FormHelper::$tags = array
+FormHelper::$__tainted = NULL
+FormHelper::$__cleaned = NULL
+FormHelper::$_log = NULL
+FormHelper::$Html = HtmlHelper object,
+	"tree" => TreeHelper
+TreeHelper::$tab = ""
+TreeHelper::$helpers = array
+TreeHelper::$i = 0
+TreeHelper::$base = "/bromine"
+TreeHelper::$webroot = "/bromine/"
+TreeHelper::$themeWeb = NULL
+TreeHelper::$here = NULL
+TreeHelper::$params = array
+TreeHelper::$action = NULL
+TreeHelper::$plugin = NULL
+TreeHelper::$data = array
+TreeHelper::$namedArgs = NULL
+TreeHelper::$argSeparator = NULL
+TreeHelper::$validationErrors = NULL
+TreeHelper::$tags = array
+TreeHelper::$__tainted = NULL
+TreeHelper::$__cleaned = NULL
+TreeHelper::$_log = NULL
+TreeHelper::$Html = HtmlHelper object
+TreeHelper::$Ajax = AjaxHelper object
+TreeHelper::$Javascript = JavascriptHelper object,
+	"session" => SessionHelper
+SessionHelper::$helpers = NULL
+SessionHelper::$__active = true
+SessionHelper::$valid = false
+SessionHelper::$error = false
+SessionHelper::$_userAgent = "c941048076e1031f505f29af75f70c38"
+SessionHelper::$path = "/"
+SessionHelper::$lastError = NULL
+SessionHelper::$security = NULL
+SessionHelper::$time = 1244553703
+SessionHelper::$sessionTime = false
+SessionHelper::$watchKeys = array
+SessionHelper::$id = NULL
+SessionHelper::$_log = NULL
+SessionHelper::$base = "/bromine"
+SessionHelper::$webroot = "/bromine/"
+SessionHelper::$here = NULL
+SessionHelper::$params = array
+SessionHelper::$action = NULL
+SessionHelper::$data = array
+SessionHelper::$themeWeb = NULL
+SessionHelper::$plugin = NULL
+)
+$loadHelpers	=	false
+$cached	=	true
+$loadedHelpers	=	array()
+$controller	=	"CssController"
+$controllerName	=	"Css"
+$title_for_layout	=	"Missing Controller"
+$content_for_layout	=	"&lt;h2&gt;Missing Controller&lt;/h2&gt;
+&lt;p class=&quot;error&quot;&gt;
+	&lt;strong&gt;Error: &lt;/strong&gt;
+	&lt;em&gt;CssController&lt;/em&gt; could not be found.&lt;/p&gt;
+&lt;p class=&quot;error&quot;&gt;
+	&lt;strong&gt;Error: &lt;/strong&gt;
+	Create the class &lt;em&gt;CssController&lt;/em&gt; below in file: app\controllers\css_controller.php&lt;/p&gt;
+&lt;pre&gt;
+&amp;lt;?php
+class CssController extends AppController {
+
+	var $name = &#039;Css&#039;;
+}
+?&amp;gt;
+&lt;/pre&gt;
+&lt;p class=&quot;notice&quot;&gt;
+	&lt;strong&gt;Notice: &lt;/strong&gt;
+	If you want to customize this error message, create app\views\errors\missing_controller.ctp&lt;/p&gt;"
+$scripts_for_layout	=	""
+$cakeDebug	=	""
+$html	=	HtmlHelper
+HtmlHelper::$tags = array
+HtmlHelper::$base = "/bromine"
+HtmlHelper::$here = NULL
+HtmlHelper::$params = array
+HtmlHelper::$action = NULL
+HtmlHelper::$data = array
+HtmlHelper::$_crumbs = array
+HtmlHelper::$__docTypes = array
+HtmlHelper::$helpers = NULL
+HtmlHelper::$webroot = "/bromine/"
+HtmlHelper::$themeWeb = NULL
+HtmlHelper::$plugin = NULL
+HtmlHelper::$namedArgs = NULL
+HtmlHelper::$argSeparator = NULL
+HtmlHelper::$validationErrors = NULL
+HtmlHelper::$__tainted = NULL
+HtmlHelper::$__cleaned = NULL
+HtmlHelper::$_log = NULL
+$ajax	=	AjaxHelper
+AjaxHelper::$helpers = array
+AjaxHelper::$Html = HtmlHelper object
+AjaxHelper::$Javascript = JavascriptHelper object
+AjaxHelper::$callbacks = array
+AjaxHelper::$ajaxOptions = array
+AjaxHelper::$dragOptions = array
+AjaxHelper::$dropOptions = array
+AjaxHelper::$sortOptions = array
+AjaxHelper::$sliderOptions = array
+AjaxHelper::$editorOptions = array
+AjaxHelper::$autoCompleteOptions = array
+AjaxHelper::$__ajaxBuffer = array
+AjaxHelper::$base = "/bromine"
+AjaxHelper::$webroot = "/bromine/"
+AjaxHelper::$themeWeb = NULL
+AjaxHelper::$here = NULL
+AjaxHelper::$params = array
+AjaxHelper::$action = NULL
+AjaxHelper::$plugin = NULL
+AjaxHelper::$data = array
+AjaxHelper::$namedArgs = NULL
+AjaxHelper::$argSeparator = NULL
+AjaxHelper::$validationErrors = NULL
+AjaxHelper::$tags = array
+AjaxHelper::$__tainted = NULL
+AjaxHelper::$__cleaned = NULL
+AjaxHelper::$_log = NULL
+AjaxHelper::$Form = FormHelper object
+$javascript	=	JavascriptHelper
+JavascriptHelper::$useNative = true
+JavascriptHelper::$enabled = true
+JavascriptHelper::$safe = false
+JavascriptHelper::$tags = array
+JavascriptHelper::$_blockOptions = array
+JavascriptHelper::$_cachedEvents = array
+JavascriptHelper::$_cacheEvents = false
+JavascriptHelper::$_cacheToFile = false
+JavascriptHelper::$_cacheAll = false
+JavascriptHelper::$_rules = array
+JavascriptHelper::$__scriptBuffer = NULL
+JavascriptHelper::$helpers = NULL
+JavascriptHelper::$base = "/bromine"
+JavascriptHelper::$webroot = "/bromine/"
+JavascriptHelper::$themeWeb = NULL
+JavascriptHelper::$here = NULL
+JavascriptHelper::$params = array
+JavascriptHelper::$action = NULL
+JavascriptHelper::$plugin = NULL
+JavascriptHelper::$data = array
+JavascriptHelper::$namedArgs = NULL
+JavascriptHelper::$argSeparator = NULL
+JavascriptHelper::$validationErrors = NULL
+JavascriptHelper::$__tainted = NULL
+JavascriptHelper::$__cleaned = NULL
+JavascriptHelper::$_log = NULL
+$form	=	FormHelper
+FormHelper::$helpers = array
+FormHelper::$fieldset = array
+FormHelper::$__options = array
+FormHelper::$fields = array
+FormHelper::$requestType = NULL
+FormHelper::$base = "/bromine"
+FormHelper::$webroot = "/bromine/"
+FormHelper::$themeWeb = NULL
+FormHelper::$here = NULL
+FormHelper::$params = array
+FormHelper::$action = NULL
+FormHelper::$plugin = NULL
+FormHelper::$data = array
+FormHelper::$namedArgs = NULL
+FormHelper::$argSeparator = NULL
+FormHelper::$validationErrors = NULL
+FormHelper::$tags = array
+FormHelper::$__tainted = NULL
+FormHelper::$__cleaned = NULL
+FormHelper::$_log = NULL
+FormHelper::$Html = HtmlHelper object
+$tree	=	TreeHelper
+TreeHelper::$tab = ""
+TreeHelper::$helpers = array
+TreeHelper::$i = 0
+TreeHelper::$base = "/bromine"
+TreeHelper::$webroot = "/bromine/"
+TreeHelper::$themeWeb = NULL
+TreeHelper::$here = NULL
+TreeHelper::$params = array
+TreeHelper::$action = NULL
+TreeHelper::$plugin = NULL
+TreeHelper::$data = array
+TreeHelper::$namedArgs = NULL
+TreeHelper::$argSeparator = NULL
+TreeHelper::$validationErrors = NULL
+TreeHelper::$tags = array
+TreeHelper::$__tainted = NULL
+TreeHelper::$__cleaned = NULL
+TreeHelper::$_log = NULL
+TreeHelper::$Html = HtmlHelper object
+TreeHelper::$Ajax = AjaxHelper object
+TreeHelper::$Javascript = JavascriptHelper object
+$session	=	SessionHelper
+SessionHelper::$helpers = NULL
+SessionHelper::$__active = true
+SessionHelper::$valid = false
+SessionHelper::$error = false
+SessionHelper::$_userAgent = "c941048076e1031f505f29af75f70c38"
+SessionHelper::$path = "/"
+SessionHelper::$lastError = NULL
+SessionHelper::$security = NULL
+SessionHelper::$time = 1244553703
+SessionHelper::$sessionTime = false
+SessionHelper::$watchKeys = array
+SessionHelper::$id = NULL
+SessionHelper::$_log = NULL
+SessionHelper::$base = "/bromine"
+SessionHelper::$webroot = "/bromine/"
+SessionHelper::$here = NULL
+SessionHelper::$params = array
+SessionHelper::$action = NULL
+SessionHelper::$data = array
+SessionHelper::$themeWeb = NULL
+SessionHelper::$plugin = NULL</pre><div id="CakeErrorCode1" class="cake-code-dump" style="display: none;"><pre><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;****&nbsp;INSERT&nbsp;NAVIGATION&nbsp;ITEMS&nbsp;HERE&nbsp;(use&nbsp;id="selected"&nbsp;to&nbsp;identify&nbsp;the&nbsp;page&nbsp;you're&nbsp;on&nbsp;****&nbsp;--&gt;</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">&lt;?php&nbsp;</span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$tree</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">menustart</span><span style="color: #007700">(</span><span style="color: #0000BB">$Menu</span><span style="color: #007700">);&nbsp;</span><span style="color: #0000BB">?&gt;</span></span></code></span>
+</pre></div><pre>include - APP\views\layouts\green.ctp, line 56
+View::_render() - CORE\cake\libs\view\view.php, line 662
+View::renderLayout() - CORE\cake\libs\view\view.php, line 450
+View::render() - CORE\cake\libs\view\view.php, line 388
+Controller::render() - CORE\cake\libs\controller\controller.php, line 774
+AppError::_outputMessage() - APP\app_error.php, line 10
+ErrorHandler::missingController() - CORE\cake\libs\error.php, line 174
+Object::dispatchMethod() - CORE\cake\libs\object.php, line 117
+ErrorHandler::__construct() - CORE\cake\libs\error.php, line 118
+AppError::__construct() - APP\app_error.php, line 6
+Object::cakeError() - CORE\cake\libs\object.php, line 200
+Dispatcher::dispatch() - CORE\cake\dispatcher.php, line 146
+[main] - APP\webroot\index.php, line 90</pre></div>
+<pre class="cake-debug">
+<a href='javascript:void(0);' onclick='document.getElementById("CakeStackTrace2").style.display = (document.getElementById("CakeStackTrace2").style.display == "none" ? "" : "none")'><b>Warning</b> (2)</a>: Invalid argument supplied for foreach() [<b>APP\views\helpers\tree.php</b>, line <b>87</b>]
+</pre>
+<div id="CakeStackTrace2" class="cake-stack-trace" style="display: none;"><a href='javascript:void(0);' onclick='document.getElementById("CakeErrorCode2").style.display = (document.getElementById("CakeErrorCode2").style.display == "none" ? "" : "none")'>Code</a> | <a href='javascript:void(0);' onclick='document.getElementById("CakeErrorContext2").style.display = (document.getElementById("CakeErrorContext2").style.display == "none" ? "" : "none")'>Context</a><pre id="CakeErrorContext2" class="cake-context" style="display: none;">$list	=	null
+$output	=	""</pre><div id="CakeErrorCode2" class="cake-code-dump" style="display: none;"><pre><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;menustart($list){</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;$output&nbsp;=&nbsp;"";</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach($list&nbsp;as&nbsp;$menu){</span></code></span>
+</pre></div><pre>TreeHelper::menustart() - APP\views\helpers\tree.php, line 87
+include - APP\views\layouts\green.ctp, line 56
+View::_render() - CORE\cake\libs\view\view.php, line 662
+View::renderLayout() - CORE\cake\libs\view\view.php, line 450
+View::render() - CORE\cake\libs\view\view.php, line 388
+Controller::render() - CORE\cake\libs\controller\controller.php, line 774
+AppError::_outputMessage() - APP\app_error.php, line 10
+ErrorHandler::missingController() - CORE\cake\libs\error.php, line 174
+Object::dispatchMethod() - CORE\cake\libs\object.php, line 117
+ErrorHandler::__construct() - CORE\cake\libs\error.php, line 118
+AppError::__construct() - APP\app_error.php, line 6
+Object::cakeError() - CORE\cake\libs\object.php, line 200
+Dispatcher::dispatch() - CORE\cake\dispatcher.php, line 146
+[main] - APP\webroot\index.php, line 90</pre></div>
+    </div>
+    <div id="content" style='clear: both;'>
+      <div id="column2">
+        <div id='messages'>
+                                                                    </div>
+        <h2>Missing Controller</h2>
+<p class="error">
+	<strong>Error: </strong>
+	<em>CssController</em> could not be found.</p>
+<p class="error">
+	<strong>Error: </strong>
+	Create the class <em>CssController</em> below in file: app\controllers\css_controller.php</p>
+<pre>
+&lt;?php
+class CssController extends AppController {
+
+	var $name = 'Css';
+}
+?&gt;
+</pre>
+<p class="notice">
+	<strong>Notice: </strong>
+	If you want to customize this error message, create app\views\errors\missing_controller.ctp</p>      </div>
+    </div>
+    <div id="footer">
+      copyright &copy; 2006 your name | <a href="#">email@emailaddress</a> | <a href="http://validator.w3.org/check?uri=referer">XHTML 1.1</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://www.dcarter.co.uk">design by dcarter</a>
+    </div>
+    <div id="debug">
+        </div>
+  </div>
+    
+    
+    
+</body>
+</html>
+
+2009-06-09 17:38:14 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\helpers\tree.php, line 87]
+2009-06-09 17:38:14 Error: <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />        <title>
+            Missing Controller        </title>
+        <link href="/favicon.ico" type="image/x-icon" rel="icon" /><link href="/favicon.ico" type="image/x-icon" rel="shortcut icon" /><link rel="stylesheet" type="text/css" href="/css/green/style.css" /><link rel="stylesheet" type="text/css" href="/css/green/color.css" /><link rel="stylesheet" type="text/css" href="/css/green/content.css" /><link rel="stylesheet" type="text/css" href="/css/green/prettify.css" /><link rel="stylesheet" type="text/css" href="/css/green/menu.css" /><script type="text/javascript" src="/js/prototype.js"></script><script type="text/javascript" src="/js/popup.js"></script><script type="text/javascript" src="/js/prettify/prettify.js"></script><script type="text/javascript" src="/js/scriptaculous.js"></script><script type="text/javascript" src="/js/sortable_tree.js"></script>
+    </head>
+    <body>
+  <div id="main">
+    <div id="links_container">
+      <div id="logo"><h1>Bromine 3</h1><img id='notification' src='img/ajax-loader.gif' alt="" style='display: none;'/></div>
+      <script type='text/javascript'>
+
+    Ajax.Responders.register({
+    	onCreate: function(request) {
+    		if($('notification') && Ajax.activeRequestCount > 0){
+        		    $('notification').title = request.url;
+        			Effect.Appear('notification',{duration: 0.25, queue: 'end'});
+    			}
+    	},
+    	onComplete: function() {
+    		if($('notification') && Ajax.activeRequestCount == 0){
+                $('notification').title = '';
+    			Effect.Fade('notification',{duration: 0.25, queue: 'end'});
+    		}
+    	}
+    });
+    </script>
+      <div id="links">
+              </div>
+    </div>
+    <div id="menu">
+        <!-- **** INSERT NAVIGATION ITEMS HERE (use id="selected" to identify the page you're on **** -->
+        
+       
+<pre class="cake-debug">
+<a href='javascript:void(0);' onclick='document.getElementById("CakeStackTrace1").style.display = (document.getElementById("CakeStackTrace1").style.display == "none" ? "" : "none")'><b>Notice</b> (8)</a>: Undefined variable: Menu [<b>APP\views\layouts\green.ctp</b>, line <b>56</b>]
+</pre>
+<div id="CakeStackTrace1" class="cake-stack-trace" style="display: none;"><a href='javascript:void(0);' onclick='document.getElementById("CakeErrorCode1").style.display = (document.getElementById("CakeErrorCode1").style.display == "none" ? "" : "none")'>Code</a> | <a href='javascript:void(0);' onclick='document.getElementById("CakeErrorContext1").style.display = (document.getElementById("CakeErrorContext1").style.display == "none" ? "" : "none")'>Context</a><pre id="CakeErrorContext1" class="cake-context" style="display: none;">$___viewFn	=	"C:\xampp\htdocs\app\views\layouts\green.ctp"
+$___dataForView	=	array(
+	"controller" => "Selenium&amp;#45;serverController",
+	"controllerName" => "Selenium&amp;#45;server",
+	"title_for_layout" => "Missing Controller",
+	"content_for_layout" => "&lt;h2&gt;Missing Controller&lt;/h2&gt;
+&lt;p class=&quot;error&quot;&gt;
+	&lt;strong&gt;Error: &lt;/strong&gt;
+	&lt;em&gt;Selenium&amp;#45;serverController&lt;/em&gt; could not be found.&lt;/p&gt;
+&lt;p class=&quot;error&quot;&gt;
+	&lt;strong&gt;Error: &lt;/strong&gt;
+	Create the class &lt;em&gt;Selenium&amp;#45;serverController&lt;/em&gt; below in file: app\controllers\selenium&amp;#45;server_controller.php&lt;/p&gt;
+&lt;pre&gt;
+&amp;lt;?php
+class Selenium&amp;#45;serverController extends AppController {
+
+	var $name = &#039;Selenium&amp;#45;server&#039;;
+}
+?&amp;gt;
+&lt;/pre&gt;
+&lt;p class=&quot;notice&quot;&gt;
+	&lt;strong&gt;Notice: &lt;/strong&gt;
+	If you want to customize this error message, create app\views\errors\missing_controller.ctp&lt;/p&gt;",
+	"scripts_for_layout" => "",
+	"cakeDebug" => "",
+	"html" => HtmlHelper
+HtmlHelper::$tags = array
+HtmlHelper::$base = ""
+HtmlHelper::$here = NULL
+HtmlHelper::$params = array
+HtmlHelper::$action = NULL
+HtmlHelper::$data = array
+HtmlHelper::$_crumbs = array
+HtmlHelper::$__docTypes = array
+HtmlHelper::$helpers = NULL
+HtmlHelper::$webroot = "/"
+HtmlHelper::$themeWeb = NULL
+HtmlHelper::$plugin = NULL
+HtmlHelper::$namedArgs = NULL
+HtmlHelper::$argSeparator = NULL
+HtmlHelper::$validationErrors = NULL
+HtmlHelper::$__tainted = NULL
+HtmlHelper::$__cleaned = NULL
+HtmlHelper::$_log = NULL,
+	"ajax" => AjaxHelper
+AjaxHelper::$helpers = array
+AjaxHelper::$Html = HtmlHelper object
+AjaxHelper::$Javascript = JavascriptHelper object
+AjaxHelper::$callbacks = array
+AjaxHelper::$ajaxOptions = array
+AjaxHelper::$dragOptions = array
+AjaxHelper::$dropOptions = array
+AjaxHelper::$sortOptions = array
+AjaxHelper::$sliderOptions = array
+AjaxHelper::$editorOptions = array
+AjaxHelper::$autoCompleteOptions = array
+AjaxHelper::$__ajaxBuffer = array
+AjaxHelper::$base = ""
+AjaxHelper::$webroot = "/"
+AjaxHelper::$themeWeb = NULL
+AjaxHelper::$here = NULL
+AjaxHelper::$params = array
+AjaxHelper::$action = NULL
+AjaxHelper::$plugin = NULL
+AjaxHelper::$data = array
+AjaxHelper::$namedArgs = NULL
+AjaxHelper::$argSeparator = NULL
+AjaxHelper::$validationErrors = NULL
+AjaxHelper::$tags = array
+AjaxHelper::$__tainted = NULL
+AjaxHelper::$__cleaned = NULL
+AjaxHelper::$_log = NULL
+AjaxHelper::$Form = FormHelper object,
+	"javascript" => JavascriptHelper
+JavascriptHelper::$useNative = true
+JavascriptHelper::$enabled = true
+JavascriptHelper::$safe = false
+JavascriptHelper::$tags = array
+JavascriptHelper::$_blockOptions = array
+JavascriptHelper::$_cachedEvents = array
+JavascriptHelper::$_cacheEvents = false
+JavascriptHelper::$_cacheToFile = false
+JavascriptHelper::$_cacheAll = false
+JavascriptHelper::$_rules = array
+JavascriptHelper::$__scriptBuffer = NULL
+JavascriptHelper::$helpers = NULL
+JavascriptHelper::$base = ""
+JavascriptHelper::$webroot = "/"
+JavascriptHelper::$themeWeb = NULL
+JavascriptHelper::$here = NULL
+JavascriptHelper::$params = array
+JavascriptHelper::$action = NULL
+JavascriptHelper::$plugin = NULL
+JavascriptHelper::$data = array
+JavascriptHelper::$namedArgs = NULL
+JavascriptHelper::$argSeparator = NULL
+JavascriptHelper::$validationErrors = NULL
+JavascriptHelper::$__tainted = NULL
+JavascriptHelper::$__cleaned = NULL
+JavascriptHelper::$_log = NULL,
+	"form" => FormHelper
+FormHelper::$helpers = array
+FormHelper::$fieldset = array
+FormHelper::$__options = array
+FormHelper::$fields = array
+FormHelper::$requestType = NULL
+FormHelper::$base = ""
+FormHelper::$webroot = "/"
+FormHelper::$themeWeb = NULL
+FormHelper::$here = NULL
+FormHelper::$params = array
+FormHelper::$action = NULL
+FormHelper::$plugin = NULL
+FormHelper::$data = array
+FormHelper::$namedArgs = NULL
+FormHelper::$argSeparator = NULL
+FormHelper::$validationErrors = NULL
+FormHelper::$tags = array
+FormHelper::$__tainted = NULL
+FormHelper::$__cleaned = NULL
+FormHelper::$_log = NULL
+FormHelper::$Html = HtmlHelper object,
+	"tree" => TreeHelper
+TreeHelper::$tab = ""
+TreeHelper::$helpers = array
+TreeHelper::$i = 0
+TreeHelper::$base = ""
+TreeHelper::$webroot = "/"
+TreeHelper::$themeWeb = NULL
+TreeHelper::$here = NULL
+TreeHelper::$params = array
+TreeHelper::$action = NULL
+TreeHelper::$plugin = NULL
+TreeHelper::$data = array
+TreeHelper::$namedArgs = NULL
+TreeHelper::$argSeparator = NULL
+TreeHelper::$validationErrors = NULL
+TreeHelper::$tags = array
+TreeHelper::$__tainted = NULL
+TreeHelper::$__cleaned = NULL
+TreeHelper::$_log = NULL
+TreeHelper::$Html = HtmlHelper object
+TreeHelper::$Ajax = AjaxHelper object
+TreeHelper::$Javascript = JavascriptHelper object,
+	"session" => SessionHelper
+SessionHelper::$helpers = NULL
+SessionHelper::$__active = true
+SessionHelper::$valid = false
+SessionHelper::$error = false
+SessionHelper::$_userAgent = ""
+SessionHelper::$path = "/"
+SessionHelper::$lastError = NULL
+SessionHelper::$security = NULL
+SessionHelper::$time = 1244561894
+SessionHelper::$sessionTime = false
+SessionHelper::$watchKeys = array
+SessionHelper::$id = NULL
+SessionHelper::$_log = NULL
+SessionHelper::$base = ""
+SessionHelper::$webroot = "/"
+SessionHelper::$here = NULL
+SessionHelper::$params = array
+SessionHelper::$action = NULL
+SessionHelper::$data = array
+SessionHelper::$themeWeb = NULL
+SessionHelper::$plugin = NULL
+)
+$loadHelpers	=	false
+$cached	=	true
+$loadedHelpers	=	array()
+$controller	=	"Selenium&amp;#45;serverController"
+$controllerName	=	"Selenium&amp;#45;server"
+$title_for_layout	=	"Missing Controller"
+$content_for_layout	=	"&lt;h2&gt;Missing Controller&lt;/h2&gt;
+&lt;p class=&quot;error&quot;&gt;
+	&lt;strong&gt;Error: &lt;/strong&gt;
+	&lt;em&gt;Selenium&amp;#45;serverController&lt;/em&gt; could not be found.&lt;/p&gt;
+&lt;p class=&quot;error&quot;&gt;
+	&lt;strong&gt;Error: &lt;/strong&gt;
+	Create the class &lt;em&gt;Selenium&amp;#45;serverController&lt;/em&gt; below in file: app\controllers\selenium&amp;#45;server_controller.php&lt;/p&gt;
+&lt;pre&gt;
+&amp;lt;?php
+class Selenium&amp;#45;serverController extends AppController {
+
+	var $name = &#039;Selenium&amp;#45;server&#039;;
+}
+?&amp;gt;
+&lt;/pre&gt;
+&lt;p class=&quot;notice&quot;&gt;
+	&lt;strong&gt;Notice: &lt;/strong&gt;
+	If you want to customize this error message, create app\views\errors\missing_controller.ctp&lt;/p&gt;"
+$scripts_for_layout	=	""
+$cakeDebug	=	""
+$html	=	HtmlHelper
+HtmlHelper::$tags = array
+HtmlHelper::$base = ""
+HtmlHelper::$here = NULL
+HtmlHelper::$params = array
+HtmlHelper::$action = NULL
+HtmlHelper::$data = array
+HtmlHelper::$_crumbs = array
+HtmlHelper::$__docTypes = array
+HtmlHelper::$helpers = NULL
+HtmlHelper::$webroot = "/"
+HtmlHelper::$themeWeb = NULL
+HtmlHelper::$plugin = NULL
+HtmlHelper::$namedArgs = NULL
+HtmlHelper::$argSeparator = NULL
+HtmlHelper::$validationErrors = NULL
+HtmlHelper::$__tainted = NULL
+HtmlHelper::$__cleaned = NULL
+HtmlHelper::$_log = NULL
+$ajax	=	AjaxHelper
+AjaxHelper::$helpers = array
+AjaxHelper::$Html = HtmlHelper object
+AjaxHelper::$Javascript = JavascriptHelper object
+AjaxHelper::$callbacks = array
+AjaxHelper::$ajaxOptions = array
+AjaxHelper::$dragOptions = array
+AjaxHelper::$dropOptions = array
+AjaxHelper::$sortOptions = array
+AjaxHelper::$sliderOptions = array
+AjaxHelper::$editorOptions = array
+AjaxHelper::$autoCompleteOptions = array
+AjaxHelper::$__ajaxBuffer = array
+AjaxHelper::$base = ""
+AjaxHelper::$webroot = "/"
+AjaxHelper::$themeWeb = NULL
+AjaxHelper::$here = NULL
+AjaxHelper::$params = array
+AjaxHelper::$action = NULL
+AjaxHelper::$plugin = NULL
+AjaxHelper::$data = array
+AjaxHelper::$namedArgs = NULL
+AjaxHelper::$argSeparator = NULL
+AjaxHelper::$validationErrors = NULL
+AjaxHelper::$tags = array
+AjaxHelper::$__tainted = NULL
+AjaxHelper::$__cleaned = NULL
+AjaxHelper::$_log = NULL
+AjaxHelper::$Form = FormHelper object
+$javascript	=	JavascriptHelper
+JavascriptHelper::$useNative = true
+JavascriptHelper::$enabled = true
+JavascriptHelper::$safe = false
+JavascriptHelper::$tags = array
+JavascriptHelper::$_blockOptions = array
+JavascriptHelper::$_cachedEvents = array
+JavascriptHelper::$_cacheEvents = false
+JavascriptHelper::$_cacheToFile = false
+JavascriptHelper::$_cacheAll = false
+JavascriptHelper::$_rules = array
+JavascriptHelper::$__scriptBuffer = NULL
+JavascriptHelper::$helpers = NULL
+JavascriptHelper::$base = ""
+JavascriptHelper::$webroot = "/"
+JavascriptHelper::$themeWeb = NULL
+JavascriptHelper::$here = NULL
+JavascriptHelper::$params = array
+JavascriptHelper::$action = NULL
+JavascriptHelper::$plugin = NULL
+JavascriptHelper::$data = array
+JavascriptHelper::$namedArgs = NULL
+JavascriptHelper::$argSeparator = NULL
+JavascriptHelper::$validationErrors = NULL
+JavascriptHelper::$__tainted = NULL
+JavascriptHelper::$__cleaned = NULL
+JavascriptHelper::$_log = NULL
+$form	=	FormHelper
+FormHelper::$helpers = array
+FormHelper::$fieldset = array
+FormHelper::$__options = array
+FormHelper::$fields = array
+FormHelper::$requestType = NULL
+FormHelper::$base = ""
+FormHelper::$webroot = "/"
+FormHelper::$themeWeb = NULL
+FormHelper::$here = NULL
+FormHelper::$params = array
+FormHelper::$action = NULL
+FormHelper::$plugin = NULL
+FormHelper::$data = array
+FormHelper::$namedArgs = NULL
+FormHelper::$argSeparator = NULL
+FormHelper::$validationErrors = NULL
+FormHelper::$tags = array
+FormHelper::$__tainted = NULL
+FormHelper::$__cleaned = NULL
+FormHelper::$_log = NULL
+FormHelper::$Html = HtmlHelper object
+$tree	=	TreeHelper
+TreeHelper::$tab = ""
+TreeHelper::$helpers = array
+TreeHelper::$i = 0
+TreeHelper::$base = ""
+TreeHelper::$webroot = "/"
+TreeHelper::$themeWeb = NULL
+TreeHelper::$here = NULL
+TreeHelper::$params = array
+TreeHelper::$action = NULL
+TreeHelper::$plugin = NULL
+TreeHelper::$data = array
+TreeHelper::$namedArgs = NULL
+TreeHelper::$argSeparator = NULL
+TreeHelper::$validationErrors = NULL
+TreeHelper::$tags = array
+TreeHelper::$__tainted = NULL
+TreeHelper::$__cleaned = NULL
+TreeHelper::$_log = NULL
+TreeHelper::$Html = HtmlHelper object
+TreeHelper::$Ajax = AjaxHelper object
+TreeHelper::$Javascript = JavascriptHelper object
+$session	=	SessionHelper
+SessionHelper::$helpers = NULL
+SessionHelper::$__active = true
+SessionHelper::$valid = false
+SessionHelper::$error = false
+SessionHelper::$_userAgent = ""
+SessionHelper::$path = "/"
+SessionHelper::$lastError = NULL
+SessionHelper::$security = NULL
+SessionHelper::$time = 1244561894
+SessionHelper::$sessionTime = false
+SessionHelper::$watchKeys = array
+SessionHelper::$id = NULL
+SessionHelper::$_log = NULL
+SessionHelper::$base = ""
+SessionHelper::$webroot = "/"
+SessionHelper::$here = NULL
+SessionHelper::$params = array
+SessionHelper::$action = NULL
+SessionHelper::$data = array
+SessionHelper::$themeWeb = NULL
+SessionHelper::$plugin = NULL</pre><div id="CakeErrorCode1" class="cake-code-dump" style="display: none;"><pre><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;****&nbsp;INSERT&nbsp;NAVIGATION&nbsp;ITEMS&nbsp;HERE&nbsp;(use&nbsp;id="selected"&nbsp;to&nbsp;identify&nbsp;the&nbsp;page&nbsp;you're&nbsp;on&nbsp;****&nbsp;--&gt;</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #0000BB">&lt;?php&nbsp;</span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$tree</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">menustart</span><span style="color: #007700">(</span><span style="color: #0000BB">$Menu</span><span style="color: #007700">);&nbsp;</span><span style="color: #0000BB">?&gt;</span></span></code></span>
+</pre></div><pre>include - APP\views\layouts\green.ctp, line 56
+View::_render() - CORE\cake\libs\view\view.php, line 662
+View::renderLayout() - CORE\cake\libs\view\view.php, line 450
+View::render() - CORE\cake\libs\view\view.php, line 388
+Controller::render() - CORE\cake\libs\controller\controller.php, line 774
+AppError::_outputMessage() - APP\app_error.php, line 10
+ErrorHandler::missingController() - CORE\cake\libs\error.php, line 174
+Object::dispatchMethod() - CORE\cake\libs\object.php, line 117
+ErrorHandler::__construct() - CORE\cake\libs\error.php, line 118
+AppError::__construct() - APP\app_error.php, line 6
+Object::cakeError() - CORE\cake\libs\object.php, line 200
+Dispatcher::dispatch() - CORE\cake\dispatcher.php, line 146
+[main] - APP\webroot\index.php, line 90</pre></div>
+<pre class="cake-debug">
+<a href='javascript:void(0);' onclick='document.getElementById("CakeStackTrace2").style.display = (document.getElementById("CakeStackTrace2").style.display == "none" ? "" : "none")'><b>Warning</b> (2)</a>: Invalid argument supplied for foreach() [<b>APP\views\helpers\tree.php</b>, line <b>87</b>]
+</pre>
+<div id="CakeStackTrace2" class="cake-stack-trace" style="display: none;"><a href='javascript:void(0);' onclick='document.getElementById("CakeErrorCode2").style.display = (document.getElementById("CakeErrorCode2").style.display == "none" ? "" : "none")'>Code</a> | <a href='javascript:void(0);' onclick='document.getElementById("CakeErrorContext2").style.display = (document.getElementById("CakeErrorContext2").style.display == "none" ? "" : "none")'>Context</a><pre id="CakeErrorContext2" class="cake-context" style="display: none;">$list	=	null
+$output	=	""</pre><div id="CakeErrorCode2" class="cake-code-dump" style="display: none;"><pre><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;menustart($list){</span></code>
+<code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;$output&nbsp;=&nbsp;"";</span></code>
+<span class="code-highlight"><code><span style="color: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach($list&nbsp;as&nbsp;$menu){</span></code></span>
+</pre></div><pre>TreeHelper::menustart() - APP\views\helpers\tree.php, line 87
+include - APP\views\layouts\green.ctp, line 56
+View::_render() - CORE\cake\libs\view\view.php, line 662
+View::renderLayout() - CORE\cake\libs\view\view.php, line 450
+View::render() - CORE\cake\libs\view\view.php, line 388
+Controller::render() - CORE\cake\libs\controller\controller.php, line 774
+AppError::_outputMessage() - APP\app_error.php, line 10
+ErrorHandler::missingController() - CORE\cake\libs\error.php, line 174
+Object::dispatchMethod() - CORE\cake\libs\object.php, line 117
+ErrorHandler::__construct() - CORE\cake\libs\error.php, line 118
+AppError::__construct() - APP\app_error.php, line 6
+Object::cakeError() - CORE\cake\libs\object.php, line 200
+Dispatcher::dispatch() - CORE\cake\dispatcher.php, line 146
+[main] - APP\webroot\index.php, line 90</pre></div>
+    </div>
+    <div id="content" style='clear: both;'>
+      <div id="column2">
+        <div id='messages'>
+                                                                    </div>
+        <h2>Missing Controller</h2>
+<p class="error">
+	<strong>Error: </strong>
+	<em>Selenium&#45;serverController</em> could not be found.</p>
+<p class="error">
+	<strong>Error: </strong>
+	Create the class <em>Selenium&#45;serverController</em> below in file: app\controllers\selenium&#45;server_controller.php</p>
+<pre>
+&lt;?php
+class Selenium&#45;serverController extends AppController {
+
+	var $name = 'Selenium&#45;server';
+}
+?&gt;
+</pre>
+<p class="notice">
+	<strong>Notice: </strong>
+	If you want to customize this error message, create app\views\errors\missing_controller.ctp</p>      </div>
+    </div>
+    <div id="footer">
+      copyright &copy; 2006 your name | <a href="#">email@emailaddress</a> | <a href="http://validator.w3.org/check?uri=referer">XHTML 1.1</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://www.dcarter.co.uk">design by dcarter</a>
+    </div>
+    <div id="debug">
+        </div>
+  </div>
+    
+    
+    
+</body>
+</html>
+

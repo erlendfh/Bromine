@@ -2,12 +2,6 @@
 class Test extends AppModel {
 
 	var $name = 'Test';
-	var $validate = array(
-		'manstatus' => array('notempty'),
-		'browser_id' => array('numeric'),
-		'operatingsystem_id' => array('numeric'),
-		'testcase_id' => array('numeric')
-	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 	var $belongsTo = array(
@@ -25,12 +19,6 @@ class Test extends AppModel {
 			),
 			'Operatingsystem' => array('className' => 'Operatingsystem',
 								'foreignKey' => 'operatingsystem_id',
-								'conditions' => '',
-								'fields' => '',
-								'order' => ''
-			),
-			'Testcase' => array('className' => 'Testcase',
-								'foreignKey' => 'testcase_id',
 								'conditions' => '',
 								'fields' => '',
 								'order' => ''

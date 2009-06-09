@@ -5,7 +5,8 @@ require_once "Testing/Selenium.php";
 
 class BromineTest 
 {
-  function setUp($host, $port, $browser, $sitetotest)
+  
+  function setUp($host, $port, $browser, $sitetotest, $u_id, $t_id)
   {
     $this->u_id = $u_id;
     $this->t_id = $t_id;
@@ -59,7 +60,7 @@ logf("brows2: " .$brows2 = $browser.",".$u_id);
 $datafile = $argv[7];
 
 $t = new BromineTest();
-$t->setUp($host, $port, $brows2, $sitetotest);
+$t->setUp($host, $port, $brows2, $sitetotest, $u_id, $t_id);
 $t->testMyTestCase();
 $t->tearDown();
 ?>

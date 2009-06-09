@@ -2,17 +2,15 @@
 class RunrctestsController  extends AppController {
 	var $name = 'Runrctests';
 	var $helpers = array('Html', 'Form');
-	var $layout = "green";
+	var $layout = "none";
 	var $uses = array();
         
     var $runningLimit = 1;
     var $timeout = 60;
     
-    /*
-     
-    
-    
-    */
+    function beforeFilter(){
+        $this->Auth->allow('*');
+    }
     
     function index() {
     
@@ -45,8 +43,8 @@ class RunrctestsController  extends AppController {
     }
     
     function cmp($a, $b){
-        $a = $a['Node'];
-        $b = $b['Node'];
+        pr($a = $a['Node']);
+        pr($b = $b['Node']);
         $field_1 = 'Browser';
         $field_2 = 'running';
         
@@ -88,7 +86,7 @@ class RunrctestsController  extends AppController {
     function findBestNode($nodes){
         //Algorithm to be debated
         //Current alorithm: Sort by number of browsers as first priority and number of running as second.
-        uasort($nodes,array($this,'cmp'));
+        //uasort($nodes,array($this,'cmp'));
         return current(array_keys($nodes));
     }
     
@@ -118,12 +116,13 @@ class RunrctestsController  extends AppController {
         return $nodes;
     }
     
-    function loadBalancer($suite_id, $tests=array()){
+    function loadBalancer($suite_id=0, $tests=array()){
+        //if($suite_id == "img") die();
         session_write_close();
         $this->log("loadBalancer was called with tests = $tests, suite_id = $suite_id");
         $siteToTest = "http://www.google.com";
         $tests = array(
-        '1' =>  
+        '7' =>  
             array(
                 array(
                     'done' => 0,
@@ -142,12 +141,12 @@ class RunrctestsController  extends AppController {
                     'browser' => 13
                 )*/
             ),
-        '3' =>
+        '7' =>
             array(
                 array(
                     'done' => 0,
                     'OS' => 12,
-                    'browser' => 2
+                    'browser' => 3
                 )/*,
                 array(
                     'done' => 0,
@@ -181,6 +180,7 @@ class RunrctestsController  extends AppController {
             $this->log("Doing loop ".$i++);
             foreach($tests as $testName => $test){
                 foreach($test as $k=>$need){
+                    //pr($test);
                     if($need['done']==0){
                         $OS_id = $need['OS'];
                         $browser_id = $need['browser'];
@@ -196,6 +196,7 @@ class RunrctestsController  extends AppController {
                             
                             //Run the test
                             $uid = str_replace('.', '', microtime('U')) . rand(0, 1000);
+                            $this->log(getcwd());
                             $this->log("Running test $testName on $OS_id / $browser_id using resource ".$bestNode['Node']['nodepath']." with uid = $uid");
                             
                             
@@ -306,7 +307,7 @@ class RunrctestsController  extends AppController {
         $this->log(substr(php_uname(), 0, 7));
         
         if (substr(php_uname(), 0, 7) == "Windows"){
-            pclose(popen("start /B ". $cmd, "r")); 
+            pclose(popen("start /B ". $cmd . ' > output.txt', "r")); 
         }
         //Unix
         else {

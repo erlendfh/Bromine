@@ -38,6 +38,7 @@ class SeleniumserverController extends AppController {
         
         //If, first command, use uid for DB identification
         if ($cmd == 'getNewBrowserSession'){ 
+            $this->log(print_r($arr));
             $arr = split(',',$one);
             $one = $arr[0];
             $uid = $arr[1];
@@ -152,6 +153,29 @@ class SeleniumserverController extends AppController {
         $seleniumserver['Seleniumserver']['lastCommand'] = time();
         if($cmd == 'testComplete'){
             $seleniumserver['Seleniumserver']['done'] = 1;
+            //$count = $this->Test->find('count', array('conditions' => array('Test.status' => 'failed', 'Test.id' => "$test_id")));
+            
+
+            $conditions = array('Test.id' => $test_id, 'Test.status' => 'failed');
+            $cmds = $this->Command->find("all", array("conditions" => $conditions));
+            if (empty($cmds)){
+                $this->log('PASSED' . $test_id);
+                $this->Test->updateAll(
+                  array(
+                    'Test.status' => 'passed'
+                  ),"Test.id = '$test_id'"
+                ); 
+            }
+            else{
+                $this->log('FAILED' . $test_id);
+                $this->Test->updateAll(
+                  array(
+                    'Test.status' => 'failed'
+                  ),"Test.id = '$test_id'"
+                ); 
+            
+            }
+            
         }
         $this->Seleniumserver->save($seleniumserver);
         

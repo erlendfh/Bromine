@@ -4,48 +4,15 @@ class RunrctestsController  extends AppController {
 	var $helpers = array('Html', 'Form');
 	var $layout = "green";
 	var $uses = array();
-	
-    var $nodes = array(
-        4 => array(
-            'Node' => array(
-                'name' => 'XP node1', 
-                'running' => array(),
-                'OS' => 'XP',
-                'ip' => '192.168.0.1',
-                'browsers' => array(
-                    'firefox',
-                    'ie7'
-                )
-            )
-        ),
-        5 => array(
-            'Node' => array(
-                'name' => 'XP node2',
-                'running' => array(),
-                'OS' => 'XP',
-                'ip' => '192.168.0.2',
-                'browsers' => array(
-                    'firefox'
-                    //'ie7'
-                )
-            )
-        ),
-        6 => array(
-            'Node' => array(
-                'name' => 'Mac node',
-                'running' => array(),
-                'OS' => 'OSX',
-                'ip' => '192.168.0.3',
-                'browsers' => array(
-                    'firefox',
-                    'safari'
-                )
-            )
-        )
-    );
         
     var $runningLimit = 1;
     var $timeout = 60;
+    
+    /*
+     
+    
+    
+    */
     
     function index() {
     
@@ -58,7 +25,7 @@ class RunrctestsController  extends AppController {
         $this->typemodel = new Type();
         $this->types = $this->typemodel->find('all',array('name'));
         foreach ($this->types as $type){
-            $this->set($type['Type']['name'], $this->dirList(WWW_ROOT . 'tests' . DS . $this->Session->read('project_name') . DS . $type['Type']['name'] . DS , $type['Type']['extension']));
+            $this->set($type['Type']['name'], $this->dirList(WWW_ROOT . 'testscripts' . DS . $this->Session->read('project_name') . DS . $type['Type']['name'] . DS , $type['Type']['extension']));
         }
 	}
     
@@ -104,7 +71,7 @@ class RunrctestsController  extends AppController {
     
     function log($msg){
         $fp = fopen('log2.txt','a');
-        fwrite($fp, $msg."\n");
+        fwrite($fp, time(). ': ' . $msg."\n");
         fclose($fp);
     }
     
@@ -151,18 +118,18 @@ class RunrctestsController  extends AppController {
         return $nodes;
     }
     
-    function loadBalancer($tests=array(), $suite_id){
+    function loadBalancer($suite_id, $tests=array()){
         session_write_close();
         $this->log("loadBalancer was called with tests = $tests, suite_id = $suite_id");
         $siteToTest = "http://www.google.com";
         $tests = array(
-        'test' =>  
+        '1' =>  
             array(
                 array(
                     'done' => 0,
                     'OS' => 12,
                     'browser' => 3
-                ),
+                )/*,
                 array(
                     'done' => 0,
                     'OS' => 12,
@@ -175,13 +142,13 @@ class RunrctestsController  extends AppController {
                     'browser' => 13
                 )*/
             ),
-        'test2' =>
+        '3' =>
             array(
                 array(
                     'done' => 0,
                     'OS' => 12,
                     'browser' => 3
-                ),
+                )/*,
                 array(
                     'done' => 0,
                     'OS' => 12,
@@ -229,7 +196,9 @@ class RunrctestsController  extends AppController {
                             
                             //Run the test
                             $uid = str_replace('.', '', microtime('U')) . rand(0, 1000);
-                            $this->log("Running test $testName on $OS_id / $browser_id using resource ".$bestNode['Node']['description']." with uid = $uid");
+                            $this->log("Running test $testName on $OS_id / $browser_id using resource ".$bestNode['Node']['nodepath']." with uid = $uid");
+                            
+                            
                             $this->run($testName, $bestNode['Node']['nodepath'], $OS_id, 80, $browser_id, $siteToTest, 1, $suite_id, $uid);
                             
                             //Update the need and the node
@@ -291,7 +260,7 @@ class RunrctestsController  extends AppController {
     function run($testName, $nodePath, $OS_id, $port, $browser_id, $siteToTest, $type_id, $suite_id, $uid){
         App::import('Model','Test');
         $this->Test = new Test();
-        //`id` ,  `status` ,  `name` ,  `suite_id` ,  `help` ,  `manstatus` ,  `author` ,  `browser_id` ,  `operatingsystem_id
+        //`id` ,  `status` ,  `name` ,  `suite_id` ,  `help` ,  `manstatus` ,  `author` ,  `browser_id` ,  `operatingsystem_i
         $this->data['Test'] = array(
             'name' => $testName,
             'operatingsystem_id' => $OS_id,
@@ -322,7 +291,7 @@ class RunrctestsController  extends AppController {
         $browser = $this->Browser->find("id = $browser_id");
         $browserPath = $browser['Browser']['path'];
         
-        $cmd =  $command . $spacer . WWW_ROOT . 'tests' . DS . 
+        $cmd =  $command . $spacer . WWW_ROOT . 'testscripts' . DS . 
                 $this->Session->read('project_name') . DS . $name . DS . $testName . '.' . $extension . 
                 $spacer . '127.0.0.1' . $spacer . $port . $spacer . $browserPath . $spacer . 
                 $siteToTest . $spacer . $uid . $spacer . $test_id;
@@ -333,6 +302,9 @@ class RunrctestsController  extends AppController {
     private function execute($cmd) {
         $this->log("Executing: $cmd");
         //Windows
+        
+        $this->log(substr(php_uname(), 0, 7));
+        
         if (substr(php_uname(), 0, 7) == "Windows"){
             pclose(popen("start /B ". $cmd, "r")); 
         }

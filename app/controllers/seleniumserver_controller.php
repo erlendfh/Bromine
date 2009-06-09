@@ -1,6 +1,5 @@
 <?php
 class SeleniumserverController extends AppController {
-
 	var $name = 'Seleniumserver';
 	var $layout = null;
 	//var $uses = array('commands','seleniumservers');
@@ -12,19 +11,17 @@ class SeleniumserverController extends AppController {
 	function driver(){
     	App::import('Model','Command');
     	$this->Command = new Command();
-	
+	    $this->Test = new Test();
+	    
 	   //$this->viewer = null;
 	   Configure::write('debug', 0);  
 	   //$this->RequestHandler->setContent('txt');
-
         $cmd = $_REQUEST['cmd'];
         $one = $_REQUEST['1'];
         $two = $_REQUEST['2'];
-
         if (!isset($_REQUEST['1'])){
             $one = '';
         }
-
         if (!isset($_REQUEST['2'])){
             $two = '';
         }
@@ -50,7 +47,6 @@ class SeleniumserverController extends AppController {
             //$result = $dbh->sql("SELECT * FROM trm_selenium_server_vars WHERE sessionId = '$sessionId'");
             $result = $this->Seleniumserver->find("session = '$sessionId'");        
             $this->log($cmd . ' on session ' . $sessionId);
-
         }
         if($cmd == 'customCommand'){ //If custom command, just insert in the DB and be done with it.
             $cmdName = $_REQUEST['cmdName'];
@@ -64,10 +60,8 @@ class SeleniumserverController extends AppController {
             $this->log("Custom command: cmd='$cmdName' & 1='$var1' & 2='$var2'");
             exit;
         }
-
         //Grab the data from the DB
         //pr ($result);
-
         $nodepath = $result['Seleniumserver']['nodepath']; //Must be an IP!!!! localhost will fuck it up
         $uid = $result['Seleniumserver']['uid'];
         $test_id = $result['Seleniumserver']['test_id'];
@@ -77,7 +71,6 @@ class SeleniumserverController extends AppController {
         $response = $this->executeCommand($url);
         
         $this->log($url . " returned: '" . $response . "'");
-
         //Determine status
         if (preg_match('/^OK/', $response) ) { 
             $status = $this->getStatus($response);
@@ -87,10 +80,7 @@ class SeleniumserverController extends AppController {
         }
         
         //Insert the command in Bromine
-
         $this->insertCommand($status, $cmd, $one, $two, $test_id, $uid, $sessionId);
-
-
         //If first command, update DB with sessionId 
         if ($cmd == 'getNewBrowserSession'){
             $sessionId = end(split(',',$response));
@@ -155,35 +145,35 @@ class SeleniumserverController extends AppController {
             $seleniumserver['Seleniumserver']['done'] = 1;
             //$count = $this->Test->find('count', array('conditions' => array('Test.status' => 'failed', 'Test.id' => "$test_id")));
             
-
-            $conditions = array('Test.id' => $test_id, 'Test.status' => 'failed');
-            $cmds = $this->Command->find("all", array("conditions" => $conditions));
-            if (empty($cmds)){
-                $this->log('PASSED' . $test_id);
-                $this->Test->updateAll(
-                  array(
-                    'Test.status' => 'passed'
-                  ),"Test.id = '$test_id'"
-                ); 
-            }
-            else{
-                $this->log('FAILED' . $test_id);
-                $this->Test->updateAll(
-                  array(
-                    'Test.status' => 'failed'
-                  ),"Test.id = '$test_id'"
-                ); 
-            
-            }
+        $conditions = array('Command.test_id' => $test_id, 'Command.status' => 'failed');
+        $cmds = $this->Command->find($conditions);
+        
+        if (empty($cmds)){
+            $test = array(
+                'Test' => array(
+                    'status' => 'passed',
+                    'id' => $test_id
+                )
+            );
+            $this->Test->save($test);
+        }
+        else{
+            $test = array(
+                'Test' => array(
+                    'status' => 'failed',
+                    'id' => $test_id
+                )
+            );
+            $this->Test->save($test);
+        }
+        
             
         }
         $this->Seleniumserver->save($seleniumserver);
         
     }
-
     private function getStatus($response){ //Figures out the status of the command
         $status = "done";
-
         if(preg_match('/true/', $response) ){
             $status = "passed";
         }
@@ -192,9 +182,7 @@ class SeleniumserverController extends AppController {
         }
         return $status;
     }
-
     function executeCommand($url){
-
         $handle = fopen($url, 'r');
         stream_set_blocking($handle, false);
         $response = stream_get_contents($handle);

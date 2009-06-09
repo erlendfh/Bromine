@@ -3,6 +3,7 @@ class BrowsersController extends AppController {
 
 	var $name = 'Browsers';
 	var $helpers = array('Html', 'Form');
+	var $main_menu_id = -2;
 
 	function index() {
 		$this->Browser->recursive = 0;

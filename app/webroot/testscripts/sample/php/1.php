@@ -41,10 +41,12 @@ class BromineTest
 }
 
 function logf($text){
+        /*
         $uid = str_replace('.', '', microtime('U'));
         $fp = fopen('C:\logs\log3.txt','a');
         fwrite($fp,$uid . ": " . "$text\n");
         fclose($fp);
+    */
     }
 $host = $argv[1];
 logf("hosTt: " . $host);

@@ -147,7 +147,7 @@ class RunrctestsController  extends AppController {
                 array(
                     'done' => 0,
                     'OS' => 12,
-                    'browser' => 3
+                    'browser' => 2
                 )/*,
                 array(
                     'done' => 0,

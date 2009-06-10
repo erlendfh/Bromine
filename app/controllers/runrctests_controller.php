@@ -2,15 +2,13 @@
 class RunrctestsController  extends AppController {
 	var $name = 'Runrctests';
 	var $helpers = array('Html', 'Form');
-	var $layout = "none";
+	var $layout = "green";
 	var $uses = array();
         
     var $runningLimit = 1;
     var $timeout = 60;
     
-    function beforeFilter(){
-        $this->Auth->allow('*');
-    }
+    
     
     function index() {
     
@@ -129,7 +127,7 @@ class RunrctestsController  extends AppController {
                 array(
                     'done' => 0,
                     'OS' => 12,
-                    'browser' => 3
+                    'browser' => 1
                 )/*,
                 array(
                     'done' => 0,
@@ -143,12 +141,12 @@ class RunrctestsController  extends AppController {
                     'browser' => 13
                 )*/
             ),
-        '7' =>
+        '8' =>
             array(
                 array(
                     'done' => 0,
                     'OS' => 12,
-                    'browser' => 3
+                    'browser' => 1
                 )/*,
                 array(
                     'done' => 0,
@@ -198,7 +196,6 @@ class RunrctestsController  extends AppController {
                             
                             //Run the test
                             $uid = str_replace('.', '', microtime('U')) . rand(0, 1000);
-                            $this->log(getcwd());
                             $this->log("Running test $testName on $OS_id / $browser_id using resource ".$bestNode['Node']['nodepath']." with uid = $uid");
                             
                             
@@ -298,6 +295,7 @@ class RunrctestsController  extends AppController {
                 $this->Session->read('project_name') . DS . $name . DS . $testName . '.' . $extension . 
                 $spacer . '127.0.0.1' . $spacer . $port . $spacer . $browserPath . $spacer . 
                 $siteToTest . $spacer . $uid . $spacer . $test_id;
+                
         $this->execute($cmd);
     }
     
@@ -309,7 +307,8 @@ class RunrctestsController  extends AppController {
         $this->log(substr(php_uname(), 0, 7));
         
         if (substr(php_uname(), 0, 7) == "Windows"){
-            pclose(popen("start /B ". $cmd . ' >> logs/Testscript_output.txt', "r")); 
+            $this->log(pclose(popen("start /B ". $cmd, "r"))); 
+            
         }
         //Unix
         else {

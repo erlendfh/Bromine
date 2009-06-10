@@ -4,6 +4,6 @@
 <?php
 
     echo "new Ajax.PeriodicalUpdater('results', '/runrctests/status/$suite_id', {method: 'get', frequency: 0.5, decay: 2});";
-    echo "new Ajax.Request('/runrctests/loadBalancer/$tests/$suite_id')";
+    echo "new Ajax.Request('/runrctests/loadBalancer/$suite_id/$tests')";
 ?>
 </script>

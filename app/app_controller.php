@@ -43,7 +43,7 @@ class AppController extends Controller {
     var $helpers = array('Html','Ajax','Javascript', 'Tree');
     var $layout = 'green';
     var $main_menu_id = -1;
-    var $debugmode = false;
+    var $debugmode = true;
     
     function setFlash($msg,$key){
         $_SESSION['Message'][$key][]=$msg;

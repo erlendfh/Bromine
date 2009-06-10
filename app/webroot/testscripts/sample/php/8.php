@@ -1,5 +1,4 @@
 <?php
-
 set_include_path(get_include_path() . PATH_SEPARATOR . "drivers/php");
 require_once "Testing/Selenium.php";
 require_once "Testing/BRUnit.php";
@@ -22,5 +21,6 @@ class BromineTest extends BRUnit{
 }
 
 startTest('BromineTest' , $argv);
+
 
 ?>

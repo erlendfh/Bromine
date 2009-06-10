@@ -30,7 +30,7 @@ class SeleniumserverController extends AppController {
         }else{
             $sessionId = "";
         }
-        
+        $this->log(print_r($_REQUEST,true));
         //If, first command, use uid for DB identification
         if ($cmd == 'getNewBrowserSession'){ 
             $arr = split(',',$one);

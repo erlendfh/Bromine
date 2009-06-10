@@ -165,6 +165,23 @@ require_once 'Testing/Selenium/Exception.php';
  * Currently the css selector locator supports all css1, css2 and css3 selectors except namespace in css3, some pseudo classes(:nth-of-type, :nth-last-of-type, :first-of-type, :last-of-type, :only-of-type, :visited, :hover, :active, :focus, :indeterminate) and pseudo elements(::first-line, ::first-letter, ::selection, ::before, ::after). 
  * </p>
  * </li>
+ * <li>
+ * <b>ui</b>=<i>uiSpecifierString</i>:
+ * Locate an element by resolving the UI specifier string to another locator, and evaluating it. See the Selenium UI-Element Reference for more details.
+ * 
+ * <ul>
+ * 
+ * <li>
+ * ui=loginPages::loginButton()
+ * </li>
+ * <li>
+ * ui=settingsPages::toggle(label=Hide Email)
+ * </li>
+ * <li>
+ * ui=forumPages::postBody(index=2)//a[2]
+ * </li>
+ * </ul>
+ * </li>
  * </ul><p>
  * 
  * Without an explicit locator prefix, Selenium uses the following default
@@ -614,7 +631,7 @@ class Testing_Selenium
 
 
     /**
-     * Simulates a user pressing the mouse button (without releasing it yet) on
+     * Simulates a user pressing the left mouse button (without releasing it yet) on
      * the specified element.
      *
      * @access public
@@ -627,7 +644,20 @@ class Testing_Selenium
 
 
     /**
-     * Simulates a user pressing the mouse button (without releasing it yet) at
+     * Simulates a user pressing the right mouse button (without releasing it yet) on
+     * the specified element.
+     *
+     * @access public
+     * @param string $locator an element locator
+     */
+    public function mouseDownRight($locator)
+    {
+        $this->doCommand("mouseDownRight", array($locator));
+    }
+
+
+    /**
+     * Simulates a user pressing the left mouse button (without releasing it yet) at
      * the specified location.
      *
      * @access public
@@ -637,6 +667,20 @@ class Testing_Selenium
     public function mouseDownAt($locator, $coordString)
     {
         $this->doCommand("mouseDownAt", array($locator, $coordString));
+    }
+
+
+    /**
+     * Simulates a user pressing the right mouse button (without releasing it yet) at
+     * the specified location.
+     *
+     * @access public
+     * @param string $locator an element locator
+     * @param string $coordString specifies the x,y position (i.e. - 10,20) of the mouse      event relative to the element returned by the locator.
+     */
+    public function mouseDownRightAt($locator, $coordString)
+    {
+        $this->doCommand("mouseDownRightAt", array($locator, $coordString));
     }
 
 
@@ -654,6 +698,19 @@ class Testing_Selenium
 
 
     /**
+     * Simulates the event that occurs when the user releases the right mouse button (i.e., stops
+     * holding the button down) on the specified element.
+     *
+     * @access public
+     * @param string $locator an element locator
+     */
+    public function mouseUpRight($locator)
+    {
+        $this->doCommand("mouseUpRight", array($locator));
+    }
+
+
+    /**
      * Simulates the event that occurs when the user releases the mouse button (i.e., stops
      * holding the button down) at the specified location.
      *
@@ -664,6 +721,20 @@ class Testing_Selenium
     public function mouseUpAt($locator, $coordString)
     {
         $this->doCommand("mouseUpAt", array($locator, $coordString));
+    }
+
+
+    /**
+     * Simulates the event that occurs when the user releases the right mouse button (i.e., stops
+     * holding the button down) at the specified location.
+     *
+     * @access public
+     * @param string $locator an element locator
+     * @param string $coordString specifies the x,y position (i.e. - 10,20) of the mouse      event relative to the element returned by the locator.
+     */
+    public function mouseUpRightAt($locator, $coordString)
+    {
+        $this->doCommand("mouseUpRightAt", array($locator, $coordString));
     }
 
 
@@ -1032,6 +1103,51 @@ class Testing_Selenium
 
 
     /**
+     * Simplifies the process of selecting a popup window (and does not offer
+     * functionality beyond what <code>selectWindow()</code> already provides).
+     * 
+     * <ul>
+     * 
+     * <li>
+     * If <code>windowID</code> is either not specified, or specified as
+     * "null", the first non-top window is selected. The top window is the one
+     * that would be selected by <code>selectWindow()</code> without providing a
+     * <code>windowID</code> . This should not be used when more than one popup
+     * window is in play.
+     * </li>
+     * <li>
+     * Otherwise, the window will be looked up considering
+     * <code>windowID</code> as the following in order: 1) the "name" of the
+     * window, as specified to <code>window.open()</code>; 2) a javascript
+     * variable which is a reference to a window; and 3) the title of the
+     * window. This is the same ordered lookup performed by
+     * <code>selectWindow</code> .
+     * </li>
+     * </ul>
+     *
+     * @access public
+     * @param string $windowID an identifier for the popup window, which can take on a                  number of different meanings
+     */
+    public function selectPopUp($windowID)
+    {
+        $this->doCommand("selectPopUp", array($windowID));
+    }
+
+
+    /**
+     * Selects the main window. Functionally equivalent to using
+     * <code>selectWindow()</code> and specifying no value for
+     * <code>windowID</code>.
+     *
+     * @access public
+     */
+    public function deselectPopUp()
+    {
+        $this->doCommand("deselectPopUp", array());
+    }
+
+
+    /**
      * Selects a frame within the current window.  (You may invoke this command
      * multiple times to select nested frames.)  To select the parent frame, use
      * "relative=parent" as a locator; to select the top frame, use "relative=top".
@@ -1100,8 +1216,8 @@ class Testing_Selenium
      * Waits for a popup window to appear and load up.
      *
      * @access public
-     * @param string $windowID the JavaScript window "name" of the window that will appear (not the text of the title bar)
-     * @param string $timeout a timeout in milliseconds, after which the action will return with an error
+     * @param string $windowID the JavaScript window "name" of the window that will appear (not the text of the title bar)                 If unspecified, or specified as "null", this command will                 wait for the first non-top window to appear (don't rely                 on this if you are working with multiple popups                 simultaneously).
+     * @param string $timeout a timeout in milliseconds, after which the action will return with an error.                If this value is not specified, the default Selenium                timeout will be used. See the setTimeout() command.
      */
     public function waitForPopUp($windowID, $timeout)
     {
@@ -1110,6 +1226,8 @@ class Testing_Selenium
 
 
     /**
+     * <p>
+     * 
      * By default, Selenium's overridden window.confirm() function will
      * return true, as if the user had manually clicked OK; after running
      * this command, the next call to confirm() will return false, as if
@@ -1117,6 +1235,14 @@ class Testing_Selenium
      * default behavior for future confirmations, automatically returning 
      * true (OK) unless/until you explicitly call this command for each
      * confirmation.
+     * 
+     * </p><p>
+     * 
+     * Take note - every time a confirmation comes up, you must
+     * consume it with a corresponding getConfirmation, or else
+     * the next selenium operation will fail.
+     * 
+     * </p>
      *
      * @access public
      */
@@ -1127,6 +1253,8 @@ class Testing_Selenium
 
 
     /**
+     * <p>
+     * 
      * Undo the effect of calling chooseCancelOnNextConfirmation.  Note
      * that Selenium's overridden window.confirm() function will normally automatically
      * return true, as if the user had manually clicked OK, so you shouldn't
@@ -1135,6 +1263,14 @@ class Testing_Selenium
      * default behavior for future confirmations, automatically returning 
      * true (OK) unless/until you explicitly call chooseCancelOnNextConfirmation for each
      * confirmation.
+     * 
+     * </p><p>
+     * 
+     * Take note - every time a confirmation comes up, you must
+     * consume it with a corresponding getConfirmation, or else
+     * the next selenium operation will fail.
+     * 
+     * </p>
      *
      * @access public
      */
@@ -1250,13 +1386,13 @@ class Testing_Selenium
      * 
      * <p>
      * Getting an alert has the same effect as manually clicking OK. If an
-     * alert is generated but you do not get/verify it, the next Selenium action
+     * alert is generated but you do not consume it with getAlert, the next Selenium action
      * will fail.
      * </p><p>
-     * NOTE: under Selenium, JavaScript alerts will NOT pop up a visible alert
+     * Under Selenium, JavaScript alerts will NOT pop up a visible alert
      * dialog.
      * </p><p>
-     * NOTE: Selenium does NOT support JavaScript alerts that are generated in a
+     * Selenium does NOT support JavaScript alerts that are generated in a
      * page's onload() event handler. In this case a visible dialog WILL be
      * generated and Selenium will hang until someone manually clicks OK.
      * </p>
@@ -1278,8 +1414,12 @@ class Testing_Selenium
      * 
      * By default, the confirm function will return true, having the same effect
      * as manually clicking OK. This can be changed by prior execution of the
-     * chooseCancelOnNextConfirmation command. If an confirmation is generated
-     * but you do not get/verify it, the next Selenium action will fail.
+     * chooseCancelOnNextConfirmation command. 
+     * 
+     * </p><p>
+     * 
+     * If an confirmation is generated but you do not consume it with getConfirmation,
+     * the next Selenium action will fail.
      * 
      * </p><p>
      * 
@@ -1711,7 +1851,7 @@ class Testing_Selenium
 
 
     /**
-     * Returns every instance of some attribute from all known windows.
+     * Returns an array of JavaScript property values from all known windows having one.
      *
      * @access public
      * @param string $attributeName name of an attribute on the windows
@@ -1817,10 +1957,10 @@ class Testing_Selenium
 
 
     /**
-     * Returns the IDs of all windows that the browser knows about.
+     * Returns the IDs of all windows that the browser knows about in an array.
      *
      * @access public
-     * @return array the IDs of all windows that the browser knows about.
+     * @return array Array of identifiers of all windows that the browser knows about.
      */
     public function getAllWindowIds()
     {
@@ -1829,10 +1969,10 @@ class Testing_Selenium
 
 
     /**
-     * Returns the names of all windows that the browser knows about.
+     * Returns the names of all windows that the browser knows about in an array.
      *
      * @access public
-     * @return array the names of all windows that the browser knows about.
+     * @return array Array of names of all windows that the browser knows about.
      */
     public function getAllWindowNames()
     {
@@ -1841,10 +1981,10 @@ class Testing_Selenium
 
 
     /**
-     * Returns the titles of all windows that the browser knows about.
+     * Returns the titles of all windows that the browser knows about in an array.
      *
      * @access public
-     * @return array the titles of all windows that the browser knows about.
+     * @return array Array of titles of all windows that the browser knows about.
      */
     public function getAllWindowTitles()
     {
@@ -2300,19 +2440,93 @@ class Testing_Selenium
 
     /**
      * Saves the entire contents of the current window canvas to a PNG file.
-     * Currently this only works in Mozilla and when running in chrome mode.
      * Contrast this with the captureScreenshot command, which captures the
      * contents of the OS viewport (i.e. whatever is currently being displayed
-     * on the monitor), and is implemented in the RC only. Implementation
-     * mostly borrowed from the Screengrab! Firefox extension. Please see
-     * http://www.screengrab.org for details.
+     * on the monitor), and is implemented in the RC only. Currently this only
+     * works in Firefox when running in chrome mode, and in IE non-HTA using
+     * the EXPERIMENTAL "Snapsie" utility. The Firefox implementation is mostly
+     * borrowed from the Screengrab! Firefox extension. Please see
+     * http://www.screengrab.org and http://snapsie.sourceforge.net/ for
+     * details.
      *
      * @access public
      * @param string $filename the path to the file to persist the screenshot as. No                  filename extension will be appended by default.                  Directories will not be created if they do not exist,                    and an exception will be thrown, possibly by native                  code.
+     * @param string $kwargs a kwargs string that modifies the way the screenshot                  is captured. Example: "background=#CCFFDD" .                  Currently valid options:                  <dl>
+<dt>background</dt>
+<dd>the background CSS for the HTML document. This                     may be useful to set for capturing screenshots of                     less-than-ideal layouts, for example where absolute                     positioning causes the calculation of the canvas                     dimension to fail and a black background is exposed                     (possibly obscuring black text).</dd>
+</dl>
      */
-    public function captureEntirePageScreenshot($filename)
+    public function captureEntirePageScreenshot($filename, $kwargs)
     {
-        $this->doCommand("captureEntirePageScreenshot", array($filename));
+        $this->doCommand("captureEntirePageScreenshot", array($filename, $kwargs));
+    }
+
+
+    /**
+     * Executes a command rollup, which is a series of commands with a unique
+     * name, and optionally arguments that control the generation of the set of
+     * commands. If any one of the rolled-up commands fails, the rollup is
+     * considered to have failed. Rollups may also contain nested rollups.
+     *
+     * @access public
+     * @param string $rollupName the name of the rollup command
+     * @param string $kwargs keyword arguments string that influences how the                    rollup expands into commands
+     */
+    public function rollup($rollupName, $kwargs)
+    {
+        $this->doCommand("rollup", array($rollupName, $kwargs));
+    }
+
+
+    /**
+     * Loads script content into a new script tag in the Selenium document. This
+     * differs from the runScript command in that runScript adds the script tag
+     * to the document of the AUT, not the Selenium document. The following
+     * entities in the script content are replaced by the characters they
+     * represent:
+     * 
+     *     &lt;
+     *     &gt;
+     *     &amp;
+     * 
+     * The corresponding remove command is removeScript.
+     *
+     * @access public
+     * @param string $scriptContent the Javascript content of the script to add
+     * @param string $scriptTagId (optional) the id of the new script tag. If                       specified, and an element with this id already                       exists, this operation will fail.
+     */
+    public function addScript($scriptContent, $scriptTagId)
+    {
+        $this->doCommand("addScript", array($scriptContent, $scriptTagId));
+    }
+
+
+    /**
+     * Removes a script tag from the Selenium document identified by the given
+     * id. Does nothing if the referenced tag doesn't exist.
+     *
+     * @access public
+     * @param string $scriptTagId the id of the script element to remove.
+     */
+    public function removeScript($scriptTagId)
+    {
+        $this->doCommand("removeScript", array($scriptTagId));
+    }
+
+
+    /**
+     * Allows choice of one of the available libraries.
+     *
+     * @access public
+     * @param string $libraryName name of the desired library Only the following three can be chosen: <ul>
+<li>"ajaxslt" - Google's library</li>
+<li>"javascript-xpath" - Cybozu Labs' faster library</li>
+<li>"default" - The default library.  Currently the default library is "ajaxslt" .</li>
+</ul> If libraryName isn't one of these three, then  no change will be made.
+     */
+    public function useXpathLibrary($libraryName)
+    {
+        $this->doCommand("useXpathLibrary", array($libraryName));
     }
 
 
@@ -2355,6 +2569,35 @@ class Testing_Selenium
 
 
     /**
+     * Capture a PNG screenshot.  It then returns the file as a base 64 encoded string.
+     *
+     * @access public
+     * @return string The base 64 encoded string of the screen shot (PNG file)
+     */
+    public function captureScreenshotToString()
+    {
+        return $this->getString("captureScreenshotToString", array());
+    }
+
+
+    /**
+     * Downloads a screenshot of the browser current window canvas to a 
+     * based 64 encoded PNG file. The <i>entire</i> windows canvas is captured,
+     * including parts rendered outside of the current view port.
+     * 
+     * Currently this only works in Mozilla and when running in chrome mode.
+     *
+     * @access public
+     * @param string $kwargs A kwargs string that modifies the way the screenshot is captured. Example: "background=#CCFFDD". This may be useful to set for capturing screenshots of less-than-ideal layouts, for example where absolute positioning causes the calculation of the canvas dimension to fail and a black background is exposed  (possibly obscuring black text).
+     * @return string The base 64 encoded string of the page screenshot (PNG file)
+     */
+    public function captureEntirePageScreenshotToString($kwargs)
+    {
+        return $this->getString("captureEntirePageScreenshotToString", array($kwargs));
+    }
+
+
+    /**
      * Kills the running Selenium Server and all browser sessions.  After you run this command, you will no longer be able to send
      * commands to the server; you can't remotely start the server once it has been stopped.  Normally
      * you should prefer to run the "stop" command, which terminates the current browser session, rather than 
@@ -2365,6 +2608,20 @@ class Testing_Selenium
     public function shutDownSeleniumServer()
     {
         $this->doCommand("shutDownSeleniumServer", array());
+    }
+
+
+    /**
+     * Retrieve the last messages logged on a specific remote control. Useful for error reports, especially
+     * when running multiple remote controls in a distributed environment. The maximum number of log messages
+     * that can be retrieve is configured on remote control startup.
+     *
+     * @access public
+     * @return string The last N log messages as a multi-line string.
+     */
+    public function retrieveLastRemoteControlLogs()
+    {
+        return $this->getString("retrieveLastRemoteControlLogs", array());
     }
 
 
@@ -2436,10 +2693,6 @@ class Testing_Selenium
         $response = stream_get_contents($handle);
         fclose($handle);
 
-        if (!preg_match('/^OK/', $response)) {
-            throw new Testing_Selenium_Exception('The Response of the Selenium RC is invalid: ' . $response);
-        }
-
         return $response;
     }
 
@@ -2453,13 +2706,9 @@ class Testing_Selenium
         return $result;
     }
 
-    private function getString($verb, $args = array())
+    protected function getString($verb, $args = array())
     {
-        try {
-            $result = $this->doCommand($verb, $args);
-        } catch (Testing_Selenium_Exception $e) {
-            return $e;
-        }
+        $result = $this->doCommand($verb, $args);
         return (strlen($result) > 3) ? substr($result, 3) : '';
     }
 

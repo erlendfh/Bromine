@@ -63,6 +63,9 @@ class SeleniumserverController extends AppController {
         $uid = $result['Seleniumserver']['uid'];
         $test_id = $result['Seleniumserver']['test_id'];
         //Send the command to the RC server
+        $cmd = urlencode($cmd);
+        $one = urlencode($one);
+        $two = urlencode($two);
         $url = "http://$nodepath/selenium-server/driver/?cmd=$cmd&1=$one&2=$two&sessionId=$sessionId";
         $this->log("Executing $url");
         $response = $this->executeCommand($url);
@@ -77,7 +80,7 @@ class SeleniumserverController extends AppController {
         }
         
         //Insert the command in Bromine
-        $this->insertCommand($status, $cmd, $one, $two, $test_id, $uid, $sessionId);
+        $this->insertCommand($status, urldecode($cmd), urldecode($one), urldecode($two), $test_id, $uid, $sessionId);
         //If first command, update DB with sessionId 
         if ($cmd == 'getNewBrowserSession'){
             $sessionId = end(split(',',$response));

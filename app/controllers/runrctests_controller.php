@@ -24,6 +24,81 @@ class RunrctestsController  extends AppController {
             $this->set($type['Type']['name'], $this->dirList(WWW_ROOT . 'testscripts' . DS . $this->Session->read('project_name') . DS . $type['Type']['name'] . DS , $type['Type']['extension']));
         }
 	}
+	
+	function gridLauncher($tests=array(), $suite_id=37){
+    //if($suite_id == "img") die();
+        session_write_close();
+        
+        $hubIP = '127.0.0.1';
+        $hubPort = '4444';
+        
+        $this->log("gridLauncher was called");
+        $siteToTest = "http://www.google.com";
+        $tests = array(
+        '7' =>  
+            array(
+                array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 1
+                ),
+                array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 1
+                ),
+                
+                array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 1
+                )
+            ),
+        '8' =>
+            array(
+                array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 3
+                ),
+                array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 3
+                )
+                ,
+                array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 3
+                ),
+                array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 3
+                )
+                
+            )
+        );
+
+        $i=0;
+            foreach($tests as $testName => $test){
+                foreach($test as $k=>$need){
+                    //pr($test);
+                        $OS_id = $need['OS'];
+                        $browser_id = $need['browser'];
+                            
+                            //Run the test
+                            $uid = str_replace('.', '', microtime('U')) . rand(0, 1000);
+                            $this->log("Running test $testName on $OS_id / $browser_id with uid = $uid");
+
+                            $this->run($testName, $hubIP . ':' . $hubPort, $OS_id, 80, $browser_id, $siteToTest, 1, $suite_id, $uid);
+                            
+
+                        }
+                    }
+                }
+
     
     function array_search_recursive($key, $needle, $haystack){
         $path=array();
@@ -146,7 +221,7 @@ class RunrctestsController  extends AppController {
                 array(
                     'done' => 0,
                     'OS' => 12,
-                    'browser' => 1
+                    'browser' => 3
                 )/*,
                 array(
                     'done' => 0,
@@ -218,6 +293,10 @@ class RunrctestsController  extends AppController {
         $this->Suite = new Suite();
         $this->Suite->recursive = 2;
         $this->set('Suite',$this->Suite->find("Suite.id = $suite_id"));
+    }
+	
+	function startGrid(){
+        $this->start();
     }
 	
 	function start($tests=array()){
@@ -307,7 +386,9 @@ class RunrctestsController  extends AppController {
         $this->log(substr(php_uname(), 0, 7));
         
         if (substr(php_uname(), 0, 7) == "Windows"){
-            $this->log(pclose(popen("start /B ". $cmd, "r"))); 
+            $u = time() . rand(0, 99999);
+            $this->log('Output printed to ' . $u);
+            $this->log(pclose(popen("start /B ". $cmd . ' > logs/output' . $u . '.txt', "r"))); 
             
         }
         //Unix

@@ -1,6 +1,6 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* Requirement Fixture generated on: 2009-04-03 12:04:21 : 1238754621*/
+/* Requirement Fixture generated on: 2009-06-12 13:06:03 : 1244806023*/
 
 class RequirementFixture extends CakeTestFixture {
 	var $name = 'Requirement';

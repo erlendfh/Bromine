@@ -82,6 +82,64 @@ class TreeHelper extends Helper{
         return $output;
     }
     
+  function testlabshow($name, $data)
+  {
+    
+    list($modelName, $fieldName) = explode('/', $name);
+    $output = $this->testlablist_element($data, $modelName, $fieldName);
+    
+    return $this->output($output);
+    
+  }
+  
+  
+    function testlablist_element($data, $modelName, $fieldName){
+        if(empty($output)){$output="";}
+        foreach ($data as $key=>$val){
+
+            $output .= "<li id='req_".$val[$modelName]['id']."' style='clear: both;' class='req'>";
+            
+            if(!empty($val['children'])  || !empty($val['Testcase'])){ //output a +- handle
+                $output .= "<span class='spacer handle'></span>";
+            }else{ //output a empty span to align things correctly
+                $output .= "<span class='spacer'></span>";
+            }
+            $output .= $this->Ajax->link(
+                $val[$modelName][$fieldName], 
+                array( 'controller' => 'requirements', 'action' => 'testlabview', $val[$modelName]['id']), 
+                array( 'update' => 'Main', 'class'=>'reqhandle')
+            );
+            
+            
+            $output .= "<ul>";
+            
+            
+            if(!empty($val['Testcase'])){
+                
+                foreach($val['Testcase'] as $testcase){
+                    $output .= "<div id='tc_".$testcase['id']."'style='clear: both;' class='tc'>";
+                    $output .= "<span class='spacer'></span>";
+                    $output .= $this->Ajax->link(
+                        $testcase['name'], 
+                        array( 'controller' => 'testcases', 'action' => 'testlabview', $testcase['id']), 
+                        array( 'update' => 'Main')
+                    );
+
+                    $output .= "&nbsp;<a  class='del hide' onclick='removetc(this.up(".'"div"'."), this.up(".'"li"'."));'><img src='/img/tango/16x16/places/user-trash.png'></img></a>";
+                    $output .= "</div>";
+                }
+  
+            }
+            if(!empty($val['children'])){
+                $output .= $this->testlablist_element($val['children'], $modelName, $fieldName);
+            }
+            $output .= "</ul>";
+            $output .= "</li>";
+            
+        }
+        return $output;
+    }
+    
     function menustart($list){
     $output = "";
         foreach($list as $menu){

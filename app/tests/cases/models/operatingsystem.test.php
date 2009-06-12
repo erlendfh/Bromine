@@ -1,20 +1,14 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* Operatingsystem Test cases generated on: 2009-01-10 22:01:55 : 1231656415*/
+/* Operatingsystem Test cases generated on: 2009-06-12 13:06:20 : 1244806220*/
 App::import('Model', 'Operatingsystem');
-
-class TestOperatingsystem extends Operatingsystem {
-	var $cacheSources = false;
-	var $useDbConfig  = 'test_suite';
-}
 
 class OperatingsystemTestCase extends CakeTestCase {
 	var $Operatingsystem = null;
-	var $fixtures = array('app.operatingsystem');
+	var $fixtures = array('app.operatingsystem', 'app.combination', 'app.node', 'app.test');
 
-	function start() {
-		parent::start();
-		$this->Operatingsystem = new TestOperatingsystem();
+	function startTest() {
+		$this->Operatingsystem =& ClassRegistry::init('Operatingsystem');
 	}
 
 	function testOperatingsystemInstance() {

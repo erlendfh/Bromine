@@ -1,11 +1,11 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* Requirement Test cases generated on: 2009-04-03 12:04:22 : 1238754622*/
+/* Requirement Test cases generated on: 2009-06-12 13:06:04 : 1244806024*/
 App::import('Model', 'Requirement');
 
 class RequirementTestCase extends CakeTestCase {
 	var $Requirement = null;
-	var $fixtures = array('app.requirement', 'app.project');
+	var $fixtures = array('app.requirement', 'app.project', 'app.parent');
 
 	function startTest() {
 		$this->Requirement =& ClassRegistry::init('Requirement');

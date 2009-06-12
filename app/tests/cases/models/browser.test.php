@@ -1,11 +1,11 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* Browser Test cases generated on: 2009-02-13 14:02:01 : 1234531921*/
+/* Browser Test cases generated on: 2009-06-12 13:06:57 : 1244806197*/
 App::import('Model', 'Browser');
 
 class BrowserTestCase extends CakeTestCase {
 	var $Browser = null;
-	var $fixtures = array('app.browser');
+	var $fixtures = array('app.browser', 'app.combination', 'app.suite', 'app.test');
 
 	function startTest() {
 		$this->Browser =& ClassRegistry::init('Browser');
@@ -22,7 +22,8 @@ class BrowserTestCase extends CakeTestCase {
 
 		$expected = array('Browser' => array(
 			'id'  => 1,
-			'browsername'  => 'Lorem ipsum dolor sit amet'
+			'name'  => 'Lorem ipsum dolor sit amet',
+			'path'  => 'Lorem ipsum dolor sit amet'
 			));
 		$this->assertEqual($results, $expected);
 	}

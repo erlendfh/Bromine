@@ -13,9 +13,8 @@ class SeleniumserverController extends AppController {
     	$this->Command = new Command();
 	    $this->Test = new Test();
 	    
-	   //$this->viewer = null;
 	   Configure::write('debug', 0);  
-	   //$this->RequestHandler->setContent('txt');
+	   
         $cmd = $_REQUEST['cmd'];
         $one = $_REQUEST['1'];
         $two = $_REQUEST['2'];
@@ -31,6 +30,7 @@ class SeleniumserverController extends AppController {
             $sessionId = "";
         }
         $this->log(print_r($_REQUEST,true));
+        
         //If, first command, use uid for DB identification
         if ($cmd == 'getNewBrowserSession'){ 
             $arr = split(',',$one);
@@ -40,8 +40,13 @@ class SeleniumserverController extends AppController {
             $this->log('GetNewBrowserSession, '.$uid);
         }
         //All other commands, use sessionId
-        else{ 
-            //$result = $dbh->sql("SELECT * FROM trm_selenium_server_vars WHERE sessionId = '$sessionId'");
+        elseif($cmd != 'customCommand'){
+            if($sessionId == '' || !isset($sessionId)){
+                $this->log('ERROR no session id. Terminating.');
+                echo "ERROR no session id. Terminating.";
+                exit;
+            } 
+            
             $result = $this->Seleniumserver->find("session = '$sessionId'");        
             $this->log($cmd . ' on session ' . $sessionId);
         }
@@ -70,7 +75,8 @@ class SeleniumserverController extends AppController {
         $this->log("Executing $url");
         $response = $this->executeCommand($url);
         
-        $this->log($url . " returned: '" . $response . "'");
+        $this->log("command returned: '" . $response . "'");
+        
         //Determine status
         if (preg_match('/^OK/', $response) ) { 
             $status = $this->getStatus($response);
@@ -81,6 +87,7 @@ class SeleniumserverController extends AppController {
         
         //Insert the command in Bromine
         $this->insertCommand($status, urldecode($cmd), urldecode($one), urldecode($two), $test_id, $uid, $sessionId);
+        
         //If first command, update DB with sessionId 
         if ($cmd == 'getNewBrowserSession'){
             $sessionId = end(split(',',$response));
@@ -91,7 +98,6 @@ class SeleniumserverController extends AppController {
               ),"Seleniumserver.uid = '$uid'"
             ); 
             $this->log("Updated DB with session: '$sessionId' on uid: '$uid'");
-            //$dbh->sql("UPDATE trm_selenium_server_vars SET sessionId='$sessionId' WHERE uid='$uid'");
         }
         
         //If NOTHING messed up, send the response
@@ -141,31 +147,32 @@ class SeleniumserverController extends AppController {
         );
         $seleniumserver = $this->Seleniumserver->find($conditions);
         $seleniumserver['Seleniumserver']['lastCommand'] = time();
+        
         if($cmd == 'testComplete'){
             $seleniumserver['Seleniumserver']['done'] = 1;
             //$count = $this->Test->find('count', array('conditions' => array('Test.status' => 'failed', 'Test.id' => "$test_id")));
             
-        $conditions = array('Command.test_id' => $test_id, 'Command.status' => 'failed');
-        $cmds = $this->Command->find($conditions);
-        
-        if (empty($cmds)){
-            $test = array(
-                'Test' => array(
-                    'status' => 'passed',
-                    'id' => $test_id
-                )
-            );
-            $this->Test->save($test);
-        }
-        else{
-            $test = array(
-                'Test' => array(
-                    'status' => 'failed',
-                    'id' => $test_id
-                )
-            );
-            $this->Test->save($test);
-        }
+            $conditions = array('Command.test_id' => $test_id, 'Command.status' => 'failed');
+            $cmds = $this->Command->find($conditions);
+            
+            if (empty($cmds)){
+                $test = array(
+                    'Test' => array(
+                        'status' => 'passed',
+                        'id' => $test_id
+                    )
+                );
+                $this->Test->save($test);
+            }
+            else{
+                $test = array(
+                    'Test' => array(
+                        'status' => 'failed',
+                        'id' => $test_id
+                    )
+                );
+                $this->Test->save($test);
+            }
         
             
         }

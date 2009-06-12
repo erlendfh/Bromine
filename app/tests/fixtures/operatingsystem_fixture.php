@@ -1,6 +1,6 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* Operatingsystem Fixture generated on: 2009-01-10 22:01:55 : 1231656415*/
+/* Operatingsystem Fixture generated on: 2009-06-12 13:06:20 : 1244806220*/
 
 class OperatingsystemFixture extends CakeTestFixture {
 	var $name = 'Operatingsystem';

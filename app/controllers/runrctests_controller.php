@@ -6,12 +6,11 @@ class RunrctestsController  extends AppController {
 	var $uses = array();
         
     var $runningLimit = 1;
-    var $timeout = 60;
-    
-    
+    var $timeout = 45;
     
     function index() {
-    
+        
+        
         App::import('Model','Node');
         $this->Node = new Node();
         $this->Node->recursive = 1;
@@ -40,18 +39,18 @@ class RunrctestsController  extends AppController {
                 array(
                     'done' => 0,
                     'OS' => 12,
-                    'browser' => 1
+                    'browser' => 3
                 ),
                 array(
                     'done' => 0,
                     'OS' => 12,
-                    'browser' => 1
+                    'browser' => 3
                 ),
                 
                 array(
                     'done' => 0,
                     'OS' => 12,
-                    'browser' => 1
+                    'browser' => 3
                 )
             ),
         '8' =>
@@ -82,22 +81,20 @@ class RunrctestsController  extends AppController {
         );
 
         $i=0;
-            foreach($tests as $testName => $test){
-                foreach($test as $k=>$need){
-                    //pr($test);
-                        $OS_id = $need['OS'];
-                        $browser_id = $need['browser'];
-                            
-                            //Run the test
-                            $uid = str_replace('.', '', microtime('U')) . rand(0, 1000);
-                            $this->log("Running test $testName on $OS_id / $browser_id with uid = $uid");
+        foreach($tests as $testName => $test){
+            foreach($test as $k=>$need){
+                //pr($test);
+                $OS_id = $need['OS'];
+                $browser_id = $need['browser'];
+                    
+                //Run the test
+                $uid = str_replace('.', '', microtime('U')) . rand(0, 1000);
+                $this->log("Running test $testName on $OS_id / $browser_id with uid = $uid");
 
-                            $this->run($testName, $hubIP . ':' . $hubPort, $OS_id, 80, $browser_id, $siteToTest, 1, $suite_id, $uid);
-                            
-
-                        }
-                    }
-                }
+                $this->run($testName, $hubIP . ':' . $hubPort, $OS_id, 80, $browser_id, $siteToTest, 1, $suite_id, $uid);
+            }
+        }
+    }
 
     
     function array_search_recursive($key, $needle, $haystack){
@@ -161,7 +158,7 @@ class RunrctestsController  extends AppController {
     function findBestNode($nodes){
         //Algorithm to be debated
         //Current alorithm: Sort by number of browsers as first priority and number of running as second.
-        //uasort($nodes,array($this,'cmp'));
+        uasort($nodes,array($this,'cmp'));
         return current(array_keys($nodes));
     }
     
@@ -178,6 +175,7 @@ class RunrctestsController  extends AppController {
                 $test_id = $seleniumServer['Seleniumserver']['test_id'];
                 $done = $seleniumServer['Seleniumserver']['done'];
                 if((time() - $lastCommand) > $this->timeout && $lastCommand != 0){ //The test has not run commands for timeout seconds
+                    $this->log("Test killed due to timeout of $timeout seconds");
                     $handle = fopen("http://127.0.0.1/selenium-server/driver/?cmd=customCommand&cmdName=Test terminated&var1=Bromine judged the test unresponsive because no commands had been run for $this->timeout seconds.&var2=The test was terminated to free up the nodes resources.&uid=$uid&test_id=$test_id&status=failed",'r');
                     $handle = fopen("http://127.0.0.1/selenium-server/driver/?cmd=testComplete&sessionId=$sessionId",'r');
                     fclose($handle);
@@ -191,60 +189,271 @@ class RunrctestsController  extends AppController {
         return $nodes;
     }
     
-    function loadBalancer($suite_id=0, $tests=array()){
-        //if($suite_id == "img") die();
-        session_write_close();
-        $this->log("loadBalancer was called with tests = $tests, suite_id = $suite_id");
-        $siteToTest = "http://www.google.com";
+	private function getTestScript($id){
+        App::import('Model','Type');
+        $this->Type = new Type();
+        $extList = $this->Type->find('list', array('fields' => array('Type.extension')));
+        foreach($extList as $ext){
+            $file = WWW_ROOT.DS.'testscripts'.DS.$this->Session->read('project_name').DS.$ext.DS.$id.".$ext";
+            if(file_exists($file)){
+                return htmlspecialchars(file_get_contents($file));
+            }
+        }
+        return false;
+    }
+
+    function runTestcase($requirement_id, $testcase_id){
+        App::import('Model','Requirement');
+        $this->Requirement = new Requirement();
+        $this->Requirement->Behaviors->attach('Containable');
+		$requirement = $this->Requirement->find('first', array(
+            'conditions'=>array(
+                'Requirement.id'=>$requirement_id
+            ),
+        	'contain'=>array(
+        	    'Testcase',
+        		'Combination' => array(
+        			'Browser',
+        			'Operatingsystem'
+        		)
+        	)
+        ));
+        
+        
+        
+        //pr($requirement);
+        //exit;
+        $tests = array();
+        //foreach ($requirement['Testcase'] as $testcase){
+            //$tests[$testcase_id] = array(); 
+            foreach ($requirement['Combination'] as $combination){
+                $tests[$testcase_id][] = array(
+                    'done' => 0,
+                    'OS' => $combination['operatingsystem_id'],
+                    'browser' => $combination['browser_id']
+                    );
+            }
+        
+        //}
+        //echo "dffd";
+        //pr($tests);
+        //exit;
+        /*
         $tests = array(
         '7' =>  
             array(
                 array(
                     'done' => 0,
                     'OS' => 12,
-                    'browser' => 1
-                )/*,
+                    'browser' => 11
+
+            )/*,
+        '8' =>
+            array(
+            
                 array(
                     'done' => 0,
                     'OS' => 12,
                     'browser' => 3
-                )
-                /*,
-                array(
-                    'done' => 0,
-                    'OS' => 4,
-                    'browser' => 13
-                )*/
+
+                
+            )
+        );*/
+        
+        $site_id = 37;
+        $siteToTest = 'http://www.google.dk';
+        $suiteName = 'alalal';
+        
+        App::import('Model','Suite');
+        $this->Suite = new Suite();
+        $this->data['Suite'] = array(
+            'name' => $suiteName,
+            'site_id' => $site_id,
+            'timedate' => null,
+            'project_id' => $this->Session->read('project_id')
+        );
+        $this->Suite->save($this->data);
+        $suite_id = $this->Suite->id;
+        $this->set('suite_id',$suite_id);
+        $this->set('tests',$tests);
+        $this->set('siteToTest',$siteToTest);
+        $this->loadBalancer($suite_id,$tests);
+    }
+
+    
+    function runRequirement($requirement_id){
+        App::import('Model','Requirement');
+        $this->Requirement = new Requirement();
+        $this->Requirement->Behaviors->attach('Containable');
+		$requirement = $this->Requirement->find('first', array(
+            'conditions'=>array(
+                'Requirement.id'=>$requirement_id
             ),
-        '8' =>
+        	'contain'=>array(
+        	    'Testcase',
+        		'Combination' => array(
+        			'Browser',
+        			'Operatingsystem'
+        		)
+        	)
+        ));
+        
+        
+        
+        //pr($requirement);
+        //exit;
+        $tests = array();
+        foreach ($requirement['Testcase'] as $testcase){
+            $tests[$testcase['id']] = array(); 
+            foreach ($requirement['Combination'] as $combination){
+                $tests[$testcase['id']][] = array(
+                    'done' => 0,
+                    'OS' => $combination['operatingsystem_id'],
+                    'browser' => $combination['browser_id']
+                    );
+            }
+        
+        }
+        //pr($tests);
+        //exit;
+        /*
+        $tests = array(
+        '7' =>  
             array(
                 array(
                     'done' => 0,
                     'OS' => 12,
+                    'browser' => 11
+
+            )/*,
+        '8' =>
+            array(
+            
+                array(
+                    'done' => 0,
+                    'OS' => 12,
                     'browser' => 3
-                )/*,
+
+                
+            )
+        );*/
+        
+        $site_id = 37;
+        $siteToTest = 'http://www.google.dk';
+        $suiteName = 'alalal';
+        
+        App::import('Model','Suite');
+        $this->Suite = new Suite();
+        $this->data['Suite'] = array(
+            'name' => $suiteName,
+            'site_id' => $site_id,
+            'timedate' => null,
+            'project_id' => $this->Session->read('project_id')
+        );
+        $this->Suite->save($this->data);
+        $suite_id = $this->Suite->id;
+        $this->set('suite_id',$suite_id);
+        $this->set('tests',$tests);
+        $this->set('siteToTest',$siteToTest);
+        $this->loadBalancer($suite_id,$tests);
+    }
+    
+    function loadBalancer($suite_id=0, $tests=array()){
+        //if($suite_id == "img") die();
+        session_write_close();
+        $this->log("loadBalancer was called with tests = $tests, suite_id = $suite_id");
+        $siteToTest = "http://www.google.com";
+        
+        $this->log(print_r($tests,true));
+        /*$tests = array(
+        '7' =>  
+            array(
+                array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 11
+                ),
+                array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 11
+                ),array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 11
+                ),array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 11
+                ),array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 11
+                )
+            )/*,
+        '8' =>
+            array(
+            
+                array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 3
+                ),
                 array(
                     'done' => 0,
                     'OS' => 12,
                     'browser' => 3
                 )
-                /*,
+                ,
                 array(
                     'done' => 0,
-                    'OS' => 4,
-                    'browser' => 13
+                    'OS' => 12,
+                    'browser' => 3
                 ),
                 array(
                     'done' => 0,
-                    'OS' => 4,
+                    'OS' => 12,
+                    'browser' => 3
+                ),
+                array(
+                    'done' => 0,
+                    'OS' => 12,
                     'browser' => 3
                 )
-                */
+                ,
+                array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 3
+                ),
+                array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 3
+                ),
+                array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 3
+                )
+                ,
+                array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 3
+                ),
+                array(
+                    'done' => 0,
+                    'OS' => 12,
+                    'browser' => 3
+                )
+                
             )
-        );
+        );*/
         App::import('Model','Node');
         $this->Node = new Node();
         $nodes = $this->Node->find('all');
+        
         foreach($nodes as &$node){
             $node['Node']['running'] = array();
         }

@@ -99,6 +99,53 @@ class TestcasesController extends AppController {
     	}
 	}
 	
+	function testlabview($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid Testcase.', true));
+			$this->redirect(array('action'=>'index'));
+		}
+		$this->set('testcase', $this->Testcase->read(null, $id));
+		$testcasesteps = $this->Testcase->TestcaseStep->findAll(array('testcase_id' => $id),null,array('order by' => 'TestcaseStep.orderby'));
+    	$this->set('testcasesteps',$testcasesteps);
+    	if($script=$this->getTestScript($id)){
+    	   $this->set('testscript',$script);
+    	}
+    	
+        App::import('Model','Requirement');
+        App::import('Model','Test');
+        $this->Requirement = new Requirement();
+        $this->Test = new Test();
+        $this->Requirement->Behaviors->attach('Containable');
+		$requirement = $this->Requirement->find('first', array(
+            'conditions'=>array(
+                'Requirement.id'=>328
+            ),
+        	'contain'=>array(
+        	    'Testcase',
+        		'Combination' => array(
+        			'Browser',
+        			'Operatingsystem'
+        		)
+        	)
+        ));
+        foreach ($requirement['Combination'] as $combination){
+            
+            $results = $this->Test->find('all', 
+                array('conditions' => 
+                    array('Test.browser_id' => $combination['Browser']['id'], 
+                          'Test.operatingsystem_id' => $combination['Operatingsystem']['id'], 
+                          'Test.testcase_id' => 1),
+                    array('order' => array('Test.id DESC')),
+                    array('limit' => 1)));
+            pr($results); 
+        }
+
+        exit;
+        $this->set('combinations',$requirement['Combination']);
+        
+        
+	}
+	
 	function viewscript($id = null) {
         $this->layout = 'green_blank';
 		if (!$id) {

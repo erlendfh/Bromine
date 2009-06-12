@@ -24,7 +24,6 @@ Class BRUnit {
      */                
     function setUp($host, $port, $browser, $sitetotest, $u_id, $t_id, $debug)
     {
-        $this->log('setUp started!');
         $this->u_id = $u_id;
         $this->t_id = $t_id;
         $this->debug = $debug;
@@ -45,6 +44,7 @@ Class BRUnit {
 
         $this->db = mysql_connect($host, $login, $password);
         mysql_select_db($database, $this->db);
+        $this->log(mysql_get_host_info($this->db));
     }
 
     /*
@@ -138,6 +138,7 @@ Class BRUnit {
         $last_id = mysql_result($r ,0);
         $sql = "UPDATE commands SET status='$status'";
         if($var2 != ''){
+            $var2 = mysql_escape_string($var2);
             $sql .= ", var2='$var2' ";
         }
         $sql .= "WHERE id = $last_id";
@@ -217,7 +218,9 @@ Class BRUnit {
      * @param $name name of the test class 
      * @param $argv arguments from bromine
      */
-function startTest($name, $args, $debug = true){
+     
+function startTest($name, $args='', $debug = true){
+/*
     $host = $args[1];
     $port = $args[2];
     $browser = $args[3];
@@ -225,12 +228,23 @@ function startTest($name, $args, $debug = true){
     $u_id = $args[5];
     $t_id = $args[6];
     $brows2 = $browser.",".$u_id;
-    $datafile = $args[7];    
+    $datafile = $args[7];
+  */  
+    // Debug
+    $host = '127.0.0.1';
+    $port = '80';
+    $browser = '*chrome';
+    $sitetotest = 'http://google.com';
+    $u_id = '60000';
+    $t_id = '60000';
+    $brows2 = $browser.",".$u_id;
+    $datafile = $args[7]; 
+    
+    
     $t = new $name();
     $t->setUp($host, $port, $brows2, $sitetotest, $u_id, $t_id, $debug);
-    try{
+    try{       
         $t->testMyTestCase();
-    
     }
     catch (Exception $e){
         var_dump($e);

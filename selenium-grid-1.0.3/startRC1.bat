@@ -1,1 +1,1 @@
-ant -Dport=5555 -Denvironment=*iehta launch-remote-control
+ant -Dport=5555 -Denvironment=*chrome launch-remote-control

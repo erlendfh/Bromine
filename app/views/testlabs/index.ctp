@@ -56,7 +56,7 @@
     	cursor: move;
     }
 
-    #tree li span.spacer, #tree div span, .pminus {
+    #tree li span.spacer, .pminus {
         display: block;
         float: left;
     	width: 15px;

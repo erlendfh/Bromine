@@ -1,3 +1,11 @@
+<div style='float: right;'>
+    <?php echo 
+        $ajax->link( 
+            'Edit', 
+            array( 'controller' => 'requirements', 'action' => 'edit', $requirement['Requirement']['id']), 
+            array( 'update' => 'Main', 'class'=>'requirements view', 'id' => 'edit'));
+    ?>
+</div>
 <div class="requirements view">
 <h2><?php  __('Requirement');?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
@@ -12,23 +20,11 @@
 			<?php echo $requirement['Requirement']['description']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Nr'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Combinations'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $requirement['Requirement']['nr']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Priority'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $requirement['Requirement']['priority']; ?>
-			&nbsp;
+    		<? echo $table->createTable($browsers, $operatingsystems, $combinations, false, $requirement['Requirement']['id']) ?>
+    		&nbsp;
 		</dd>
 	</dl>
-</div>
-<div class='requirements combinations index'>
-<?php
-
-    echo $table->createTable($browsers, $operatingsystems, $combinations, true, $requirement['Requirement']['id'])
-    
-?>
 </div>
 <div id="log"></div>

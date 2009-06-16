@@ -47,8 +47,8 @@ class TestsController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Test->read(null, $id);
 		}
-		$suites = $this->Test->Suite->find('list');
-		$this->set(compact('suites'));
+		//$suites = $this->Test->Suite->find('list');
+		//$this->set(compact('suites'));
 	}
 
 	function delete($id = null) {

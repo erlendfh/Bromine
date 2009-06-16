@@ -1,11 +1,53 @@
 <?php
 class Test extends AppModel {
 
+    function getLastInCombination($testcase_id, $os_id, $browser_id){
+        $opts = array(
+            'conditions' => array(
+                'Testcase.id' => $testcase_id,
+                'Operatingsystem.id' => $os_id,
+                'Browser.id' => $browser_id
+            ),
+            'order' => 'Test.id DESC'
+        );
+        $test = $this->find('first', $opts);
+        if(!empty($test)){
+            if($test['Test']['status']=='' && !empty($test['Command'])){ //If no status set for the test, find one by looking at commands
+                $status = 'failed'; //Assume test failed and try to prove otherwise
+                $opts = array(
+                    'conditions' => array(
+                        'Test.id' => $test['Test']['id'],
+                        'Command.status' => 'failed'
+                    )
+                ); 
+                if($this->Command->find('count',$opts)==0){ //If no failed commands, set status to passed
+                    $status = 'passed';
+                }
+                $test['Test']['status'] = $status; //Update status
+            }
+        }
+        return $test;
+    }
+    
+    function getStatus($testcase_id, $os_id, $browser_id){
+        $test = $this->getLastInCombination($testcase_id, $os_id, $browser_id);
+        if(!empty($test)){
+            return $test['Test']['status'];
+        }else{
+            return 'notdone';
+        }
+    }
+    
 	var $name = 'Test';
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 	var $belongsTo = array(
-
+            'Testcase' => array('className' => 'Testcase',
+								'foreignKey' => 'testcase_id',
+								'conditions' => '',
+								'fields' => '',
+								'order' => ''
+			),
 			'Browser' => array('className' => 'Browser',
 								'foreignKey' => 'browser_id',
 								'conditions' => '',

@@ -1,11 +1,33 @@
-tr.passed td{
+table.combinations{
+    border: 1px solid lightgrey;
+}
+
+.combinations tr td{
+    border: 1px solid lightgrey;
+    text-align: center !important;
+} 
+
+div.tc a.passed{
+    border-left: 4px solid #33FF66;
+}
+div.tc a.failed{
+    border-left: 4px solid #FF6666;
+} 
+div.tc a.notdone{
+    border-left: 4px solid lightgrey;
+}  
+
+table.combinations td.passed{
     background-color: #33FF66;
 }
-tr.failed td{
+table.combinations td.failed{
     background-color: #FF6666;
 }
-tr.done td{
+table.combinations td.done {
     background-color: #CCFFCC;
+}
+table.combinations td.notdone {
+    background-color: lightgrey;
 }
 
 .ideas.index a{
@@ -33,11 +55,6 @@ tr.done td{
   text-transform: uppercase;
   font-size: 88%;
 
-}
-
-#IdeaDescription{
-    width: 100%;
-    height: 400px;
 }
 
 label{

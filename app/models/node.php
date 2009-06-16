@@ -1,6 +1,22 @@
 <?php
 class Node extends AppModel {
 
+    function checkJavaServer($nodepath, $timeout=0.001){
+        $nodepath = explode(':',$nodepath);
+        $host = $nodepath[0];
+        $port = $nodepath[1];
+        
+        $fp = @fsockopen($host, $port, $errno, $errstr, $timeout);
+        if ($fp) {
+            fclose($fp);
+            flush();
+            return true;
+        } else {
+            flush();
+            return false;
+        }
+    }
+    
 	var $name = 'Node';
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

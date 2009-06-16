@@ -53,7 +53,11 @@
     <div id="menu">
         <!-- **** INSERT NAVIGATION ITEMS HERE (use id="selected" to identify the page you're on **** -->
         
-       <?php echo $tree->menustart($Menu); ?>
+        <?php
+            if(!empty($Menu)){
+                echo $tree->menustart($Menu);
+            } 
+        ?>
 
     </div>
     <div id="content" style='clear: both;'>

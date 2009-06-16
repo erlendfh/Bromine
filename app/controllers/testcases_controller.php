@@ -2,7 +2,7 @@
 class TestcasesController extends AppController {
 
 	var $name = 'Testcases';
-	var $helpers = array('Html', 'Form');
+	var $helpers = array('Html', 'Form', 'Table');
 
 	function index() {
 		$this->Testcase->recursive = 0;
@@ -20,71 +20,6 @@ class TestcasesController extends AppController {
 		$this->set('testcases', $this->Testcase->find('all',array('conditions'=>$conditions)));
 	}
 
-	function viewresult($id = null, $browser = null, $os = null) {
-	
-	   App::import('Model','Test');
-	   $this->Test = new Test();
-	   $this->Test->recursive = 0;
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid Testcase.', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		$conditions = array('Test.testcase_id' => $id);
-		if (!$os == null){
-            $conditions['Test.operatingsystem_id'] = $os;
-        }
-
-		if (!$browser == null){
-            $conditions['Test.browser_id'] = $browser;
-        }
-		
-        //pr($conditions);
-		
-		$sql = array(
-        	'conditions' => $conditions, //array of conditions
-        	//'recursive' => 1, //int
-        	//'fields' => array('Model.field1', 'Model.field2'), //array of field names
-        	'order' => array('Test.id DESC'), //string or array defining order
-        	//'group' => array('Model.field'), //fields to GROUP BY
-        	'limit' => 5 //int
-        	//'callbacks' => true //other possible values are false, 'before', 'after'
-        );
-		
-		$this->set('testresults', $this->Test->find('all', $sql));
-		//$testcasesteps = $this->Testcase->TestcaseStep->findAll(array('testcase_id' => $id),null,array('order by' => 'TestcaseStep.orderby'));
-    	//$this->set('testcasesteps',$testcasesteps);
-	}
-	
-	function showMatrix(){
-        App::import('Model','Browsers');
-        App::import('Model','Operatingsystem');
-        $browser = new Browser();
-        $os = new Operatingsystem();
-        
-        //$conditions = array('Test.testcase_id' => $id);
-        $sql = array(
-        	//'conditions' => $conditions, //array of conditions
-        	//'recursive' => 1, //int
-        	//'fields' => array('Model.field1', 'Model.field2'), //array of field names
-        	'order' => array('Test.id DESC'), //string or array defining order
-        	//'group' => array('Model.field'), //fields to GROUP BY
-        	'limit' => 5 //int
-        	//'callbacks' => true //other possible values are false, 'before', 'after'
-        );
-		
-		$allBrowsers = $browser->find('all');
-		$allOs = $os->find('all');
-        
-        //echo count($allBrowsers);
-        //pr($allOs);
-        //exit;
-        foreach ($allOs as $value1) {
-            foreach ($allBrowsers as $value2) {
-                echo $value1['Operatingsystem']['name']. " - " . $value2['Browser']['name'] . "<br />";
-            }
-        }
-
-    }
 
 	function view($id = null) {
 		if (!$id) {
@@ -99,7 +34,7 @@ class TestcasesController extends AppController {
     	}
 	}
 	
-	function testlabview($id = null) {
+	function testlabview($id = null, $requirement_id) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid Testcase.', true));
 			$this->redirect(array('action'=>'index'));
@@ -107,18 +42,11 @@ class TestcasesController extends AppController {
 		$this->set('testcase', $this->Testcase->read(null, $id));
 		$testcasesteps = $this->Testcase->TestcaseStep->findAll(array('testcase_id' => $id),null,array('order by' => 'TestcaseStep.orderby'));
     	$this->set('testcasesteps',$testcasesteps);
-    	if($script=$this->getTestScript($id)){
-    	   $this->set('testscript',$script);
-    	}
-    	
-        App::import('Model','Requirement');
-        App::import('Model','Test');
-        $this->Requirement = new Requirement();
-        $this->Test = new Test();
-        $this->Requirement->Behaviors->attach('Containable');
-		$requirement = $this->Requirement->find('first', array(
+
+        $this->Testcase->Requirement->Behaviors->attach('Containable');
+		$requirement = $this->Testcase->Requirement->find('first', array(
             'conditions'=>array(
-                'Requirement.id'=>328
+                'Requirement.id'=>$requirement_id
             ),
         	'contain'=>array(
         	    'Testcase',
@@ -128,22 +56,16 @@ class TestcasesController extends AppController {
         		)
         	)
         ));
-        foreach ($requirement['Combination'] as $combination){
-            
-            $results = $this->Test->find('all', 
-                array('conditions' => 
-                    array('Test.browser_id' => $combination['Browser']['id'], 
-                          'Test.operatingsystem_id' => $combination['Operatingsystem']['id'], 
-                          'Test.testcase_id' => 1),
-                    array('order' => array('Test.id DESC')),
-                    array('limit' => 1)));
-            pr($results); 
+        foreach ($requirement['Combination'] as &$combination){
+            $combination['Result'] = $this->Testcase->Test->getLastInCombination($id, $combination['Operatingsystem']['id'], $combination['Browser']['id']);
         }
-
-        exit;
+        pr($this->Testcase->getStatus($id, $requirement_id));
         $this->set('combinations',$requirement['Combination']);
-        
-        
+        $this->Testcase->Requirement->Combination->Browser->recursive = -1;
+		$this->Testcase->Requirement->Combination->Operatingsystem->recursive = -1;
+		$this->set('browsers',$this->Testcase->Requirement->Combination->Browser->find('all'));
+		$this->set('operatingsystems',$this->Testcase->Requirement->Combination->Operatingsystem->find('all'));
+		$this->set('requirement_id',$requirement_id);
 	}
 	
 	function viewscript($id = null) {

@@ -104,12 +104,13 @@ class TreeHelper extends Helper{
             }else{ //output a empty span to align things correctly
                 $output .= "<span class='spacer'></span>";
             }
+
             $output .= $this->Ajax->link(
                 $val[$modelName][$fieldName], 
                 array( 'controller' => 'requirements', 'action' => 'testlabview', $val[$modelName]['id']), 
                 array( 'update' => 'Main', 'class'=>'reqhandle')
             );
-            
+            $output .= "<img src='img/".$val[$modelName]['status'].".png' style='height: 16px; margin-top: -18px;  margin-right: -26px; float: right;'/>";
             
             $output .= "<ul>";
             
@@ -124,11 +125,11 @@ class TreeHelper extends Helper{
                     $output .= $this->Ajax->link(
                         $testcase['name'], 
                         array( 'controller' => 'testcases', 'action' => 'testlabview', $testcase['id'], $val[$modelName]['id']), 
-                        array( 'update' => 'Main', 'class' => $testcase['status'] )
+                        array( 'update' => 'Main')
                     );
 
                     $output .= "&nbsp;<a  class='del hide' onclick='removetc(this.up(".'"div"'."), this.up(".'"li"'."));'><img src='/img/tango/16x16/places/user-trash.png'></img></a>";
-                    //$output .= "<span style='display: block; float: left; height: 12px; width: 12px; background-color: green;' class='status ".$testcase['status']."'>&nbsp;</span>";
+                    $output .= "<img src='img/".$testcase['status'].".png' style='height: 16px;  margin-top: -18px; margin-right: -26px; float: right;'/>";
                     $output .= "</div>";
                 }
   

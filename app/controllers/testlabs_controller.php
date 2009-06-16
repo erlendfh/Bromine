@@ -6,27 +6,42 @@ class TestlabsController extends AppController {
     var $needsproject = true;
     var $uses = array();
 
+    private function array_search_recursive($needle, &$haystack){
+        foreach($haystack as $key => &$val){
+            if($key === $needle){
+                foreach($val as &$children){
+                    $children['Requirement']['status'] = $this->Requirement->getStatus($children['Requirement']['id']);
+                    foreach($children['Testcase'] as &$testcase){
+                        $testcase['status'] = $this->Requirement->Testcase->getStatus($testcase['id'],$children['Requirement']['id']);
+                    }
+                }
+                
+            }
+            if(is_array($val)){
+                $this->array_search_recursive($needle, $val);
+            }
+        }
+    }
   
     
 	function index() {
         App::import('Model','Requirement');
         $this->Requirement = new Requirement();
 		$this->Requirement->recursive = 1;
-		//pr($this->Requirement->find('threaded'));
-		$requirements = $this->Requirement->find('threaded');
-		//pr($data);
+        $requirements = $this->Requirement->find('threaded');
+
         foreach($requirements as &$requirement){
-            //$requirement['Requirement']['status'] = $this->Requirement->getStatus($requirement['Requirement']['id']);
+            $requirement['Requirement']['status'] = $this->Requirement->getStatus($requirement['Requirement']['id']);
             foreach($requirement['Testcase'] as &$testcase){
                 $testcase['status'] = $this->Requirement->Testcase->getStatus($testcase['id'],$requirement['Requirement']['id']);
             }
         }
+        $this->array_search_recursive('children',$requirements);
+        
         $this->set('data',$requirements);
-		//$this->set('data',$this->Requirement->find('all',array('conditions' => array('Requirement.project_id' => $this->Session->read('project_id')))));
-		//$this->set('requirements', $this->paginate(null, array('project.id' => $this->Session->read('project_id'))));
-		
+        
+        
 	}
-
 
 
 }

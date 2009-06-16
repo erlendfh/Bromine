@@ -1,5 +1,53 @@
 <?php
 class Requirement extends AppModel {
+    function getStatusRecursive($requirement_id){
+		if(empty($results)){
+            $results = array();
+        }
+		$this->Behaviors->attach('Containable');
+		$requirement = $this->find('first', array(
+            'conditions'=>array(
+                'Requirement.id'=>$requirement_id
+            )
+        ));
+        $children = $this->find('all', array(
+            'conditions'=>array(
+                'Requirement.parent_id'=>$requirement_id
+            )
+        ));
+		
+		if(!empty($children)){
+            foreach($children as $child){
+                $results[] = $this->getStatusRecursive($child['Requirement']['id']);
+            }
+        }
+        foreach($requirement['Testcase'] as $testcase){
+            $results[] = $this->Testcase->getStatus($testcase['id'], $requirement_id);
+        }
+        return $results;
+    }
+    
+    function getStatus($requirement_id){
+        $results = $this->getStatusRecursive($requirement_id);
+        $objTmp = (object) array('aFlat' => array());
+        array_walk_recursive($results, create_function('&$v, $k, &$t', '$t->aFlat[] = $v;'), $objTmp); //Crazy stuff from php.net
+        $results = $objTmp->aFlat;
+        
+        $status = 'passed';
+        
+        if(empty($results)){
+            $status = '';
+        }
+        if(in_array('notdone',$results)){
+            $status = 'notdone';
+        }
+        if(in_array('failed',$results)){
+            $status = 'failed';
+        }
+
+        return $status;
+    }
+    
 
 	var $name = 'Requirement';
 

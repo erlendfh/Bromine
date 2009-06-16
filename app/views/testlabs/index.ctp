@@ -118,7 +118,7 @@
     <tbody>
     <tr style='vertical-align: top;'>
     
-        <td style='border-right: 1px solid lightgrey;'>
+        <td style='border-right: 1px solid lightgrey; padding-right: 30px;'>
 
 
             <ul>

@@ -9,7 +9,7 @@ class MenuComponent{
     function createMenu($parent_id=null){
         //$this->Menu->Behaviors->attach('Containable');
 
-        $menus = $this->Menu->find('threaded');
+        $menus = $this->Menu->find('threaded',array('order'=>'odr'));
         foreach($menus as $key => $menu){
             if($menu['Menu']['id']==$parent_id){
                 return $menu['children'];

@@ -7,29 +7,16 @@ table.combinations{
     text-align: center !important;
 } 
 
-.reqhandle.passed, div.tc a.passed{
-    /*border-left: 4px solid #33FF66;*/
-    background-color: #33FF66 !important;
-}
-.reqhandle.failed, div.tc a.failed{
-    /*border-left: 4px solid #FF6666;*/
-    background-color: #FF6666 !important;
-} 
-.reqhandle.notdone, div.tc a.notdone{
-    /*border-left: 4px solid lightgrey;*/
-    background-color: lightgrey !important;
-}  
-
-table.combinations td.passed{
+table.combinations td.passed, tr.passed td{
     background-color: #33FF66;
 }
-table.combinations td.failed{
+table.combinations td.failed, tr.failed td{
     background-color: #FF6666;
 }
-table.combinations td.done {
+table.combinations td.done, tr.done td {
     background-color: #CCFFCC;
 }
-table.combinations td.notdone {
+table.combinations td.notdone, tr.notdone td {
     background-color: lightgrey;
 }
 

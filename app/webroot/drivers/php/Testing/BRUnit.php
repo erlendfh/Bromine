@@ -25,6 +25,7 @@ Class BRUnit {
     function setUp($host, $port, $browser, $sitetotest, $u_id, $t_id, $debug)
     {
         $path = pathinfo($_SERVER['PHP_SELF']);
+        $this->orginalPath = $path['dirname'];
         $this->modulesPath = $path['dirname'].'\\modules\\'; 
         $this->u_id = $u_id;
         $this->t_id = $t_id;

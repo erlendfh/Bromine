@@ -5,6 +5,11 @@
         var $uimap;
         var $datamap;
     
+    
+        function Dataparser($path){
+            $this->path = str_replace("\\php", '',$path);
+        }
+        
         function parseURL($url){
             // $url = 'http://www.eniro.dk';
             $url = strtolower($url);
@@ -18,7 +23,7 @@
         function getDataFromExcel($filename){
             
             $uimap = new Spreadsheet_Excel_Reader();
-            $uimap->read("data/UImap/".$filename.".xls");
+            $uimap->read($this->path."\\data\\uimap\\".$filename.".xls");
             
             $s = 0;
             foreach ($uimap->boundsheets as $ar){
@@ -28,7 +33,7 @@
                         $this->sheets[strtolower($ar['name'])][strtolower($uimap->sheets[$s]['cells'][$i][2])] = $uimap->sheets[$s]['cells'][$i][3];
                     }elseif(!empty($uimap->sheets[$s]['cells'][$i][2]) && strtolower($ar['name']) == 'datamap'){
                         $datafile = new Spreadsheet_Excel_Reader();
-                        $datafile->read($uimap->sheets[$s]['cells'][$i][3]);
+                        $datafile->read($this->path."\\".$uimap->sheets[$s]['cells'][$i][3]);
                         $j = 2;
                         while($j <= $datafile->sheets[0]['numRows']) {
                             if(!empty($datafile->sheets[0]['cells'][$j][2])){

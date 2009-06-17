@@ -24,30 +24,43 @@
     <body>
   <div id="main">
     <div id="links_container">
-      <div id="logo"><h1>Bromine 3</h1><img id='notification' src='img/ajax-loader.gif' alt="" style='display: none;'/></div>
-      <script type='text/javascript'>
-
-    Ajax.Responders.register({
-    	onCreate: function(request) {
-    		if($('notification') && Ajax.activeRequestCount > 0){
-        		    $('notification').title = request.url;
-        			Effect.Appear('notification',{duration: 0.25, queue: 'end'});
-    			}
-    	},
-    	onComplete: function() {
-    		if($('notification') && Ajax.activeRequestCount == 0){
-                $('notification').title = '';
-    			Effect.Fade('notification',{duration: 0.25, queue: 'end'});
-    		}
-    	}
-    });
-    </script>
+      <div id="logo">
+          <h1>Bromine 3</h1>
+            <img id='notification' src='img/ajax-loader.gif' style="display: none;" />
+      </div>
+        <script type='text/javascript'>
+        
+        Ajax.Responders.register({
+        	onCreate: function(request) {
+        		if($('notification') && Ajax.activeRequestCount > 0){
+            		    $('notification').title = request.url;
+            			Effect.Appear('notification',{duration: 0.25, queue: 'end'});
+        			}
+        	},
+        	onComplete: function() {
+        		if($('notification') && Ajax.activeRequestCount == 0){
+                    $('notification').title = '';
+        			Effect.Fade('notification',{duration: 0.25, queue: 'end'});
+        		}
+        	}
+        });
+        </script>
       <div id="links">
         <?php
-            if(isset($username)){
-                echo "Welcome, $username";
+            //pr($session->read('site_id'));
+            echo $form->create('Project',array('action' => 'select'));
+            foreach($usersprojects as $project){
+                $options[$project['Project']['id']] = $project['Project']['name']; 
+            }
+            echo $form->input('project_id',array('options' => $options, 'selected'=>$session->read('project_id'), 'onchange'=>'submit()'));
+            echo $form->end();
+            if(!empty($sites)){
+                echo $form->create('Site', array('action' => 'select'));
+                echo $form->input('site_id',array('selected'=>$session->read('site_id'), 'onchange'=>'submit()'));
+                echo $form->end();
             }
         ?>
+        
       </div>
     </div>
     <div id="menu">

@@ -1,7 +1,7 @@
 #menu {
 width: 100%;
 float: left;
-background: #444 url(img/menu.png);
+background: #444 url(/img/menu.png);
 color: #FFF;
 height: 40px; 
 border-color: $FFF;
@@ -13,13 +13,21 @@ list-style: none;
 margin: 0;
 padding: 0;
 width: 12em;
+border-right: 1px solid lightgrey;
+background: #444 url(/img/menu.png);
 float: left;
+
+}
+#menu > ul{
+    height: 100%;
 }
 
 #menu a {
 font: bold 11px/16px arial, helvetica, sans-serif;
 display: block;
+
 border-width: 0px;
+
 border-style: solid;
 border-color: #ccc #888 #555 #bbb;
 margin: 0;
@@ -33,7 +41,7 @@ text-decoration: none;
 }
 
 #menu a:hover {
-background: #555;
+
   color: #83B82E;
 }
 

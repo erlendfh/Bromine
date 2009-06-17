@@ -14,7 +14,7 @@ class BromineTest extends BRUnit{
     $this->selenium->click("link=Hello world program - Wikipedia, the free encyclopedia");
     $this->selenium->waitForPageToLoad("30000");
     $this->assertTrue($this->selenium->isTextPresent("Hello world program"));
-    $this->assertFalse($this->selenium->isTextPresent("Hello world program"));
+    //$this->assertFalse($this->selenium->isTextPresent("Hello world program"));
     $this->assertEquals("Hello world program", $this->selenium->getText("firstHeading"));
     $this->customCommand('TEST','passed','VAR1','VAR2');
   }

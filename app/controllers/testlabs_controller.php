@@ -28,7 +28,9 @@ class TestlabsController extends AppController {
         App::import('Model','Requirement');
         $this->Requirement = new Requirement();
 		$this->Requirement->recursive = 1;
-        $requirements = $this->Requirement->find('threaded');
+        
+		
+        $requirements = $this->Requirement->find('threaded', array('conditions' => array('Project.id'=>$this->Session->read('project_id'))));
 
         foreach($requirements as &$requirement){
             $requirement['Requirement']['status'] = $this->Requirement->getStatus($requirement['Requirement']['id']);

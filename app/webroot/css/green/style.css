@@ -94,7 +94,10 @@ ol li
 { height: 80px;  
   padding: 18px 0px 0px 0px;
   font-size: 88%;
-  text-transform: uppercase;
+  
+}
+#footer{
+    text-transform: uppercase;
 }
 
 #links

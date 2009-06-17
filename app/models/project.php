@@ -47,6 +47,18 @@ class Project extends AppModel {
 								'exclusive' => '',
 								'finderQuery' => '',
 								'counterQuery' => ''
+			),
+			'Site' => array('className' => 'Site',
+								'foreignKey' => 'project_id',
+								'dependent' => false,
+								'conditions' => '',
+								'fields' => '',
+								'order' => '',
+								'limit' => '',
+								'offset' => '',
+								'exclusive' => '',
+								'finderQuery' => '',
+								'counterQuery' => ''
 			)
 	);
 	

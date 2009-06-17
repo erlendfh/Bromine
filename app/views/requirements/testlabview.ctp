@@ -19,5 +19,6 @@
 		</dd>
 	</dl>
 </div>
-<?php echo $html->link($html->image("tango/32x32/actions/go-next.png").' Run requirement', '/runrctests/runAndViewRequirement/'.$requirement['Requirement']['id'], array('target'=>'_blank'), null, false); ?>
+
+<?php echo $html->link($html->image("tango/32x32/actions/go-next.png").' Run requirement', '/runrctests/runAndViewRequirement/'.$requirement['Requirement']['id'], array('onclick'=>'return Popup.open({url:this.href});'), null, false); ?>
 <div id="log"></div>

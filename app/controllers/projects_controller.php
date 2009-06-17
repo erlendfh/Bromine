@@ -25,8 +25,6 @@ class ProjectsController extends AppController {
 	}
 	
 	function select(){
-	   
-	   
         $this->layout = "green_select";
         $id = $this->data['Project']['project_id'];
 
@@ -36,7 +34,11 @@ class ProjectsController extends AppController {
                 $user=$this->Auth->user('id');
                 if($this->MyAcl->hasAccess($user,'/'.$project['Project']['name'])){
         			if ($this->Session->write('project_id',$id) && $this->Session->write('project_name',$project['Project']['name']) && $this->Session->write('project_aco_id',$project['Myaco']['id'])) {
-                        $this->redirect(array('controller'=>'requirements', 'action'=>'index'));
+                        if($this->referer()=='/projects/select'){
+                            $this->redirect(array('controller'=>'requirements', 'action'=>'index'));
+                        }else{
+                            $this->redirect($this->referer());
+                        }
         			} else {
         				$this->Session->setFlash(__('The project session could not be set. Please, try again.', true));
         			}

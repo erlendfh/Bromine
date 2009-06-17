@@ -3,6 +3,11 @@ class SitesController extends AppController {
 
 	var $name = 'Sites';
 	var $helpers = array('Html', 'Form');
+	
+	function select(){
+        $this->Session->write('site_id',$this->data['Site']['site_id']);
+        $this->redirect($this->referer());
+    }
 
 	function index() {
 		$this->Site->recursive = 0;

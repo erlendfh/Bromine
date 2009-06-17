@@ -187,23 +187,21 @@ class RunrctestsController  extends AppController {
     }
     
     function runAndViewRequirement($requirement_id){
+        $this->layout = "green_blank";
         $this->set('requirement_id', $requirement_id);
-        $site_id = 37;
-        $siteToTest = 'http://www.google.dk';
         $suiteName = 'alalal';
         
         App::import('Model','Suite');
         $this->Suite = new Suite();
         $this->data['Suite'] = array(
             'name' => $suiteName,
-            'site_id' => $site_id,
+            'site_id' => $this->Session->read('site_id'),
             'timedate' => null,
             'project_id' => $this->Session->read('project_id')
         );
         $this->Suite->save($this->data);
         $suite_id = $this->Suite->id;
         $this->set('suite_id',$suite_id);
-        $this->set('siteToTest',$siteToTest);
     }
 
     function runRequirement($requirement_id, $suite_id){
@@ -245,10 +243,13 @@ class RunrctestsController  extends AppController {
         //loadBalancer is BR's own grid-alike function that only sends the tests to the nodes when they are ready
         
         session_write_close(); //Needed for avoiding race conditions even when using ajax
-        $this->log("loadBalancer was called with tests = $tests, suite_id = $suite_id");
-        $siteToTest = "http://www.google.com";
-        
-        $this->log("called with tests and needs: ".print_r($tests,true));
+        $this->log("loadBalancer was called with tests = ".print_r($tests,true).", suite_id = $suite_id");
+        App::import('Model','Suite');
+        $this->Suite = new Suite();
+        $this->Suite->recursive = 1;
+        $suite = $this->Suite->read(null,$suite_id);
+        $siteToTest = $suite['Site']['name']; 
+        $this->log("siteToTest: $siteToTest");
         
         App::import('Model','Node');
         $this->Node = new Node();

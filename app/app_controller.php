@@ -55,6 +55,29 @@ class AppController extends Controller {
     }
     
     function beforeFilter() {
+        App::import('Model','Project');
+        $this->Project = new Project();
+        $user=$this->Auth->user('id');
+        $this->Project->recursive = 0;
+        $projects=$this->Project->find('all');
+        
+        foreach($projects as $project){
+            if($this->MyAcl->hasAccess($user,'/'.$project['Project']['name'])){
+                $usersprojects[]=$project;
+            }
+        }
+        if(!empty($usersprojects)){
+            $this->set('usersprojects',$usersprojects);
+        }
+        
+        $sites=$this->Project->Site->find('list', array('conditions' => array('project_id'=>$this->Session->read('project_id'))));
+        $this->set('sites',$sites);
+
+        if(!$this->Session->check('site_id')){
+            $this->Session->write('site_id',key($sites));
+        }
+        
+        
         $this->Auth->fields  = array(
             'username'=>'name',
             'password' =>'password'

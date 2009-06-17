@@ -19,6 +19,9 @@ table.combinations td.done, tr.done td {
 table.combinations td.notdone, tr.notdone td {
     background-color: lightgrey;
 }
+table.combinations td.waiting, tr.waiting td {
+    background-color: lightgrey;
+}
 
 .ideas.index a{
     font-size: 160%;

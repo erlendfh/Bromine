@@ -24,9 +24,15 @@ Class BRUnit {
      */                
     function setUp($host, $port, $browser, $sitetotest, $u_id, $t_id, $debug)
     {
+        $path = pathinfo($_SERVER['PHP_SELF']);
+        $this->modulesPath = $path['dirname'].'\\modules\\'; 
         $this->u_id = $u_id;
         $this->t_id = $t_id;
         $this->debug = $debug;
+        
+        if ($this->debug) $this->log(print_r($path,true)); 
+        
+        $this->sitetotest = $sitetotest;
         $this->selenium = new Testing_Selenium($browser, $sitetotest, $host ,$port);
         $result = $this->selenium->start();
         /*
@@ -74,10 +80,23 @@ Class BRUnit {
         $this->updateAction(__FUNCTION__);
         
     }
+    /*
+     * Makes the test fail with a custom text, that will be inserted into the database
+     * @param $text the text to be inserted into the database 
+     */
+     
+    function fail($text){
+        $this->customCommand($text,'failed','','');
+        throw new Exception($text);
+    }
+    
+    function waiting(){
+        $this->updateStatus('waiting');
+    }
 
     /*
      * Assert the param is FALSE and updates command status and action in the database
-     * @param $bool repression to verify 
+     * @param $bool expression to verify 
      */
      
     function assertFalse($bool){
@@ -202,13 +221,33 @@ Class BRUnit {
      * @return Resultset, or inserted ID.
      */    
 
-    function customCommand($cmdName, $status, $var1, $var2) 
+    function customCommand($cmdName, $status, $var1 = '', $var2 = '') 
     {
-        $url =  "http://127.0.0.1/selenium-server/driver/?cmd=customCommand&cmdName=$cmdName&status=$status&var1=$var1&var2=$var2&test_id=$this->t_id&u_id=$this->u_id";
-        $url=str_replace(" ","%20",$url);
-        if($h = fopen($url, "r")){
-          fclose($h);
-        }
+        $cmdName = mysql_real_escape_string($cmdName);
+        $status = mysql_real_escape_string($status);
+        $var1 = mysql_real_escape_string($var1);
+        $var2 = mysql_real_escape_string($var2);
+        
+        $sql = "INSERT INTO `commands` (
+            `id` ,
+            `status` ,
+            `action` ,
+            `var1` ,
+            `var2` ,
+            `test_id`
+            )
+            VALUES (
+            NULL , '$status', '$cmdName', '$var1', '$var2', '$this->t_id'
+            );";
+        $this->sql($sql);
+    }
+    
+    /*
+     * Includes a module to be used in the testcase
+     * @param filename - the file to be included
+     */                   
+    function loadModule($filename){
+        require_once($this->modulesPath . $filename);
     }
     
 }
@@ -220,7 +259,7 @@ Class BRUnit {
      */
      
 function startTest($name, $args='', $debug = true){
-/*
+
     $host = $args[1];
     $port = $args[2];
     $browser = $args[3];
@@ -229,7 +268,7 @@ function startTest($name, $args='', $debug = true){
     $t_id = $args[6];
     $brows2 = $browser.",".$u_id;
     $datafile = $args[7];
-  */  
+  /*  
     // Debug
     $host = '127.0.0.1';
     $port = '80';
@@ -239,7 +278,7 @@ function startTest($name, $args='', $debug = true){
     $t_id = '60000';
     $brows2 = $browser.",".$u_id;
     $datafile = $args[7]; 
-    
+    */
     
     $t = new $name();
     $t->setUp($host, $port, $brows2, $sitetotest, $u_id, $t_id, $debug);

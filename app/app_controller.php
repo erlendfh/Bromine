@@ -69,13 +69,7 @@ class AppController extends Controller {
         if(!empty($usersprojects)){
             $this->set('usersprojects',$usersprojects);
         }
-        
-        $sites=$this->Project->Site->find('list', array('conditions' => array('project_id'=>$this->Session->read('project_id'))));
-        $this->set('sites',$sites);
 
-        if(!$this->Session->check('site_id')){
-            $this->Session->write('site_id',key($sites));
-        }
         
         
         $this->Auth->fields  = array(

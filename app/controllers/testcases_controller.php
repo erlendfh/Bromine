@@ -56,6 +56,7 @@ class TestcasesController extends AppController {
         		)
         	)
         ));
+
         foreach ($requirement['Combination'] as &$combination){
             $combination['Result'] = $this->Testcase->Test->getLastInCombination($id, $combination['Operatingsystem']['id'], $combination['Browser']['id']);
         }

@@ -129,9 +129,23 @@ class RequirementsController extends AppController {
         		'Combination' => array(
         			'Browser',
         			'Operatingsystem'
-        		)
+        		),
+        		'Testcase'
         	)
         ));
+    
+        
+    
+        foreach ($requirements['Combination'] as $combination){
+            $results = array();
+            foreach ($requirements['Testcase'] as $testcase){
+                $results[] = $this->Requirement->Testcase->Test->getLastInCombination($testcase['id'], $combination['Operatingsystem']['id'], $combination['Browser']['id']);
+            }
+            //pr($results);
+            
+        }
+        
+
 		$this->set('requirement', $requirements);
 		$this->set('combinations',$requirements['Combination']);
 		$this->Requirement->Combination->Browser->recursive = -1;

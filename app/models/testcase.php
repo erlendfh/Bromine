@@ -20,7 +20,7 @@ class Testcase extends AppModel {
         foreach ($requirement['Combination'] as $combination){
             $results[] = $this->Test->getStatus($testcase_id, $combination['Operatingsystem']['id'], $combination['Browser']['id']);
         }
-        
+
         $status = 'passed';
         
         if(in_array('notdone',$results)){
@@ -29,7 +29,7 @@ class Testcase extends AppModel {
         if(in_array('failed',$results)){
             $status = 'failed';
         }
-
+        
         return $status;
     }
 

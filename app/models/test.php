@@ -1,10 +1,12 @@
 <?php
 class Test extends AppModel {
-
+    var $site_id;
+    
     function getLastInCombination($testcase_id, $os_id, $browser_id){
         $opts = array(
             'conditions' => array(
                 'Testcase.id' => $testcase_id,
+                'Suite.site_id' => $_SESSION['site_id'], //Not very cakely
                 'Operatingsystem.id' => $os_id,
                 'Browser.id' => $browser_id
             ),
@@ -56,6 +58,12 @@ class Test extends AppModel {
 			),
 			'Operatingsystem' => array('className' => 'Operatingsystem',
 								'foreignKey' => 'operatingsystem_id',
+								'conditions' => '',
+								'fields' => '',
+								'order' => ''
+			),
+			'Suite' => array('className' => 'Suite',
+								'foreignKey' => 'suite_id',
 								'conditions' => '',
 								'fields' => '',
 								'order' => ''

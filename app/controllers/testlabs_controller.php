@@ -29,9 +29,15 @@ class TestlabsController extends AppController {
         $this->Requirement = new Requirement();
 		$this->Requirement->recursive = 1;
         
+        $sites=$this->Project->Site->find('list', array('conditions' => array('project_id'=>$this->Session->read('project_id'))));
+        $this->set('sites',$sites);
+
+        if(!$this->Session->check('site_id')){
+            $this->Session->write('site_id',key($sites));
+        }
 		
         $requirements = $this->Requirement->find('threaded', array('conditions' => array('Project.id'=>$this->Session->read('project_id'))));
-
+        
         foreach($requirements as &$requirement){
             $requirement['Requirement']['status'] = $this->Requirement->getStatus($requirement['Requirement']['id']);
             foreach($requirement['Testcase'] as &$testcase){

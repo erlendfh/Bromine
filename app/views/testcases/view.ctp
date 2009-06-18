@@ -6,14 +6,9 @@
             array( 'update' => 'Main', 'class'=>'testcases view', 'id' => 'edit'));
     ?>
 </div>
-<div id = 'testcase' class="testcases view">
-<h2><?php  __('Testcase');?></h2>
+<div id ='testcase' class="testcases view">
+<h1><?php echo $testcase['Testcase']['name']; ?></h1>
 	<dl>
-		<dt><?php __('Name'); ?></dt>
-		<dd>
-			<?php echo $testcase['Testcase']['name']; ?>
-			&nbsp;
-		</dd>
 		<dt><?php __('Description'); ?></dt>
 		<dd>
 			<?php echo $testcase['Testcase']['description']; ?>
@@ -29,30 +24,31 @@
 		<?php endif; ?>
 		</dd>
         <dt>Steps:</dt>
+        <dd>
+            <?php if(!empty($testcasesteps)): ?>
+                <table>
+                	<tr>
+                        <th style='width: 250px; padding: 5px;'>
+                            Action
+                		</th>
+                        <th style='width: 250px; padding: 5px;'>	
+                            Reaction
+                		</th>
+                	</tr>
+                <?php foreach($testcasesteps as $testcasestep): ?>
+            		<tr style='height: 40px; vertical-align: top;'>
+                        <td style='width: 250px; border: 1px solid lightgrey; padding: 5px;'>
+                            <?php echo $testcasestep['TestcaseStep']['action']; ?>
+            			</td>
+            	        <td style='width: 250px; border: 1px solid lightgrey; padding: 5px;'>	
+                            <?php echo $testcasestep['TestcaseStep']['reaction']; ?>
+            			</td>
+            		</tr>
+                <?php endforeach; ?>
+                </table>
+            <?php endif ?>
+        </dd>
     </dl>
-    <?php if(!empty($testcasesteps)): ?>
-        <table>
-        	<tr>
-                <th style='width: 250px; padding: 5px;'>
-                    Action
-        		</th>
-                <th style='width: 250px; padding: 5px;'>	
-                    Reaction
-        		</th>
-        	</tr>
-        <?php foreach($testcasesteps as $testcasestep): ?>
-    		<tr style='height: 40px; vertical-align: top;'>
-                <td style='width: 250px; border: 1px solid lightgrey; padding: 5px;'>
-                    <?php echo $testcasestep['TestcaseStep']['action']; ?>
-    			</td>
-    	        <td style='width: 250px; border: 1px solid lightgrey; padding: 5px;'>	
-                    <?php echo $testcasestep['TestcaseStep']['reaction']; ?>
-    			</td>
-    		</tr>
-        <?php endforeach; ?>
-        </table>
-    <?php endif ?>
-    
 </div>
 
 

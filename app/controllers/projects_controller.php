@@ -7,9 +7,45 @@ class ProjectsController extends AppController {
 	function index(){
         $this->StdFuncs->index();
     }
+
     
     function view($id = null) {
         $this->StdFuncs->view($id);
+	}
+	function testlabsview($id = null) {
+        $this->StdFuncs->view($id);
+        
+        $this->Project->Requirement->Behaviors->attach('Containable');
+        $requirements = $this->Project->Requirement->find('all',array(
+            'condtions'=>array(
+                'project_id' => $id
+            ),
+            'contain'=> array(
+                'Testcase'
+            )
+        ));
+
+        $passed=0; $failed = 0; $notdone = 0;
+        foreach($requirements as $requirement){
+            foreach($requirement['Testcase'] as $testcase){
+                $status = $this->Project->Testcase->getStatus($testcase['id'],$requirement['Requirement']['id']);
+                switch ($status) {
+                case 'passed':
+                    $passed++;
+                    break;
+                case 'failed':
+                    $failed++;
+                    break;
+                case 'notdone':
+                    $notdone++;
+                	break;
+                }
+            }
+        }
+        $this->set('passed',$passed);
+        $this->set('failed',$failed);
+        $this->set('notdone',$notdone);
+
 	}
 	
 	function add() {

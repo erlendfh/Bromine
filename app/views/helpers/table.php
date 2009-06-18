@@ -18,7 +18,7 @@ class TableHelper extends Helper{
     
     function createTable($browsers, $operatingsystems, $combinations=array(), $edit=false, $id=null){
 
-        $this->output .= "<table class='combinations' cellspacing='0' cellspacing='0'>";
+        $this->output .= "<table class='combinations' cellspacing='0' cellspacing='0' style='width: 400px;'>";
         $this->output .= "<tr>";
         $this->output .= "<td></td>";
         foreach($operatingsystems as $os){
@@ -35,34 +35,20 @@ class TableHelper extends Helper{
                 $u++;
                 
                 $checked = false;
-                $status = 'none';
+                $disabled = "DISABLED='DISABLED'";
+                if($edit){
+                    $disabled = false;
+                }
                 foreach($combinations as $combination){
                     if($os['Operatingsystem']['id'] == $combination['Operatingsystem']['id'] && $browser['Browser']['id'] == $combination['Browser']['id']){
                         $checked = "CHECKED='CHECKED'";   
-                        if(!empty($combination['Result'])){
-                            $status = $combination['Result']['Test']['status'];
-                            $link = array('controller' => 'Tests', 'action'=>'view', $combination['Result']['Test']['id']);
-                        }else{
-                            $status = 'notdone';
-                        }
-                    }
-                    
-                }
-                $this->output .= "<td class='$status'>";
-                
-                if($edit){
-                    $values = $browser['Browser']['id'].'/'.$os['Operatingsystem']['id'].'/'.$id;
-                    $this->output .=  "<input type='checkbox' $checked onclick='new Ajax.Updater(".'"log",'.'"'."requirements/updateCombination/$values".'"'.")' />";
-                }else{
-                    if($checked){
-                        if($status == 'failed' || $status == 'passed'){
-                            $this->output .= $this->Ajax->link('X',$link,array('update'=>'Main'));
-                        }
-                        else{
-                            $this->output .= "X";
-                        } 
                     }
                 }
+                $this->output .= "<td>";
+
+                $values = $browser['Browser']['id'].'/'.$os['Operatingsystem']['id'].'/'.$id;
+                $this->output .=  "<input type='checkbox' $checked $disabled onclick='new Ajax.Updater(".'"log",'.'"'."requirements/updateCombination/$values".'"'.")' />";
+
                 
                 $this->output .= "</td>";
             }

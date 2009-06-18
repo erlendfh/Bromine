@@ -127,7 +127,7 @@
                     <?php echo 
                         $ajax->link( 
                             $session->read('project_name'), 
-                            array( 'controller' => 'projects', 'action' => 'view', $session->read('project_id')), 
+                            array( 'controller' => 'projects', 'action' => 'testlabsview', $session->read('project_id')), 
                             array( 'update' => 'Main', 'class'=>'project' ));
                     ?>
                     <ul>

@@ -61,11 +61,6 @@ class TestcasesController extends AppController {
             $combination['Result'] = $this->Testcase->Test->getLastInCombination($id, $combination['Operatingsystem']['id'], $combination['Browser']['id']);
         }
         $this->set('combinations',$requirement['Combination']);
-        $this->Testcase->Requirement->Combination->Browser->recursive = -1;
-		$this->Testcase->Requirement->Combination->Operatingsystem->recursive = -1;
-		$this->set('browsers',$this->Testcase->Requirement->Combination->Browser->find('all'));
-		$this->set('operatingsystems',$this->Testcase->Requirement->Combination->Operatingsystem->find('all'));
-		$this->set('requirement_id',$requirement_id);
 	}
 	
 	function viewscript($id = null) {

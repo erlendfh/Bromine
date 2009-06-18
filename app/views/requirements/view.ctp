@@ -7,14 +7,8 @@
     ?>
 </div>
 <div class="requirements view">
-<h2><?php  __('Requirement');?></h2>
+<h1><?php echo $requirement['Requirement']['name']; ?></h1>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
-
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Name'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $requirement['Requirement']['name']; ?>
-			&nbsp;
-		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Description'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $requirement['Requirement']['description']; ?>

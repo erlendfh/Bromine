@@ -1,24 +1,42 @@
 <div class="requirements view">
-    <h2><?php  __('Requirement');?></h2>
-	<dl><?php $i = 0; $class = ' class="altrow"';?>
+    <h1><?php  echo $requirement['Requirement']['name']; ?></h1>
+    
+	<dl>
 
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Name'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $requirement['Requirement']['name']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Description'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+        <dt><?php __('Description'); ?></dt>
+		<dd>
 			<?php echo $requirement['Requirement']['description']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Combinations'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-    		<? echo $table->createTable($browsers, $operatingsystems, $combinations, false, $requirement['Requirement']['id']) ?>
-    		&nbsp;
+		<dt><?php __('Run requirement'); ?></dt>
+		<dd>
+			<?php echo $html->link($html->image("tango/32x32/actions/go-next.png").'', '/runrctests/runAndViewRequirement/'.$requirement['Requirement']['id'], array('onclick'=>'return Popup.open({url:this.href});'), null, false); ?>
+			&nbsp;
+		</dd>
+		<dt><?php __('Status'); ?></dt>
+		<dd>
+			<table>
+            	<tr>
+            	   <th style='width: 33%;'>Testcase</th>
+            	   <th style='width: 33%;'>Operating system</th>
+            	   <th style='width: 33%;'>Browser</th>
+            	</tr>
+            	<?php 
+                    foreach($testcases as $testcase){
+                        foreach($combinations as $combination){
+                            echo "<tr class='".$testcase['status']."'>";
+                            echo "<td>".$testcase['name']. "</td>";
+                            echo "<td>".$combination['Operatingsystem']['name']."</td>";
+                            echo "<td>".$combination['Browser']['name']."</td>";
+                            echo "</tr>"; 
+                        }
+                    }
+                ?>
+            </table>
 		</dd>
 	</dl>
+	
 </div>
 
-<?php echo $html->link($html->image("tango/32x32/actions/go-next.png").' Run requirement', '/runrctests/runAndViewRequirement/'.$requirement['Requirement']['id'], array('onclick'=>'return Popup.open({url:this.href});'), null, false); ?>
+
 <div id="log"></div>

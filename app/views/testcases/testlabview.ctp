@@ -1,20 +1,56 @@
 <div id = 'testcase' class="testcases view">
-    <h2><?php  __('Testcase');?></h2>
-	<dl><?php $i = 0; $class = ' class="altrow"';?>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Name'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $testcase['Testcase']['name']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Description'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+    <h1><?php echo $testcase['Testcase']['name']; ?></h1>
+	<dl>
+
+		<dt><?php __('Description'); ?></dt>
+		<dd>
 			<?php echo $testcase['Testcase']['description']; ?>
 			&nbsp;
 		</dd>
-        <dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Combinations'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-    		<? echo $table->createTable($browsers, $operatingsystems, $combinations, false, $requirement_id) ?>
-    		&nbsp;
+        <dt><?php __('Status'); ?></dt>
+		<dd>
+			<table>
+            	<tr>
+            	   <th style='width: 50%;'>Operating system</th>
+            	   <th style='width: 50%;'>Browser</th>
+            	</tr>
+            	<?php
+                    //pr($combinations); 
+                    foreach($combinations as $combination){
+                        $status = $combination['Result']['Test']['status'];
+                        if(empty($status)){$status = 'notdone';} 
+                        echo "<tr class='$status'>";
+                        echo "<td>".$combination['Operatingsystem']['name']."</td>";
+                        echo "<td>".$combination['Browser']['name']."</td>";
+                        echo "</tr>"; 
+                    }
+                ?>
+            </table>
 		</dd>
+		<dt>Steps:</dt>
+        <dd>
+            <?php if(!empty($testcasesteps)): ?>
+                <table>
+                	<tr>
+                        <th style='width: 50%;'>
+                            Action
+                		</th>
+                        <th style='width: 50%;'>	
+                            Reaction
+                		</th>
+                	</tr>
+                <?php foreach($testcasesteps as $testcasestep): ?>
+            		<tr style='height: 40px; vertical-align: top;'>
+                        <td style='width: 250px; border: 1px solid lightgrey; padding: 5px;'>
+                            <?php echo $testcasestep['TestcaseStep']['action']; ?>
+            			</td>
+            	        <td style='width: 250px; border: 1px solid lightgrey; padding: 5px;'>	
+                            <?php echo $testcasestep['TestcaseStep']['reaction']; ?>
+            			</td>
+            		</tr>
+                <?php endforeach; ?>
+                </table>
+            <?php endif ?>
+        </dd>
     </dl>
 </div>

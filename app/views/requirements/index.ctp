@@ -184,7 +184,7 @@
             }
             
         </script>
-        <a href="#" id="enablereqlink" onclick="dragdroptoggle(tree)">Reorder requirements</a>
+        <a href="#" id="enablereqlink" onclick="changeUrl('asdasd'); dragdroptoggle(tree); ">Reorder requirements</a>
         <a href="#" style='display: none;' id="disablereqlink" onclick="dragdroptoggle(tree)">Done reordering</a>
         <br />
         <a href="#" id="enabletclink" onclick="tctoggle()">Assign testcases</a>
@@ -212,19 +212,21 @@
                 <input type='text' id='tcsearch' name='data[tcsearch]' value='Filter...' onclick='if(this.value=="Filter..."){this.value=""}'/>
                 <br />
                 <br />
-            <?php 
+            <?php
+                
                 echo $ajax->observeField( 'tcsearch', 
                     array(
                         'url' => array( 'controller'=>'testcases', 'action' => 'lilist' ),
                         'frequency' => 1,
                         'update' =>'testcases'
                     ) 
-                ); 
+                );
+                
                 ?>
             <div id='testcases'>
                 (Fetching testcases...)
                 <script type="text/javascript">
-                    new Ajax.Updater('testcases', '/testcases/lilist', { method: 'get', evalScripts: true});
+                    //new Ajax.Updater('testcases', '/testcases/lilist', { method: 'get', evalScripts: true});
                 </script>
             </div>
         </td>

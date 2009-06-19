@@ -1,5 +1,6 @@
 <div class="nodes index">
 <h2><?php __('Nodes');?></h2>
+<a onclick="changeUrl('asd');" >asdsa</a>
 <p>
 <?php
 echo $paginator->counter(array(

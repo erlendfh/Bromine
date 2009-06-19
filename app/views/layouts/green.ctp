@@ -18,6 +18,9 @@
     		echo $javascript->link('prettify/prettify');
             echo $javascript->link('scriptaculous');
             echo $javascript->link('sortable_tree');
+            echo $javascript->link('urlparser');
+            //echo $javascript->link('jquery.address-1.0');
+            
         ?>
 
     </head>
@@ -34,6 +37,7 @@
         	onCreate: function(request) {
         		if($('notification') && Ajax.activeRequestCount > 0){
             		    $('notification').title = request.url;
+            		    changeUrl(request.url);
             			Effect.Appear('notification',{duration: 0.25, queue: 'end'});
         			}
         	},
@@ -44,6 +48,29 @@
         		}
         	}
         });
+        
+        Event.observe(window, 'load', function() {
+            
+          //alert(window.location.toString());
+          //var anchor = getAnchor();
+          //if(anchor!=false){
+            //new Ajax.Updater('Main',anchor);
+          //}
+        });
+        observeUrl(0);
+        
+        function observeUrl(location){
+            if(location != window.location.toString()){
+                var anchor = getAnchor();
+                if(anchor!=false){
+                    new Ajax.Updater('Main',anchor);
+                }
+            }
+            oldlocation = window.location.toString();
+            window.setTimeout("observeUrl(oldlocation)",200);
+        }
+
+        
         </script>
       <div id="links">
         <?php

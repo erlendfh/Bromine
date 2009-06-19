@@ -12,23 +12,45 @@
 	   //pr($project);
         $sum = $passed+$notdone+$failed;
         //Hack around bug in phpgraphlib not handling zeros correct
+        /*
         $notdone = $notdone + 0.01;
         $passed = $passed + 0.01;
         $failed = $failed + 0.01;
-	   
+	   */
         App::import('Vendor','phpgraphlib/phpgraphlib');
         App::import('Vendor','phpgraphlib/phpgraphlib_pie');
         $graph=new PHPGraphLibPie(400,200);
         $graph->setTitle("Testcases status. $sum testcases total");
+        
+        if ($passed != 0){
+            $data['Passed'] = $passed;
+            $colors[] = 'passed';
+        }
+        
+        if ($failed != 0){
+            $data['Failed'] = $failed;
+            $colors[] = 'failed'; 
+        }
+        
+        if ($notdone != 0){
+            $data['Not done'] = $notdone;
+            $colors[] = 'notdone'; 
+        }
+        
+        /*
         $data=array(
             "Passed"=>$passed,
             "Failed"=>$failed,
             "Not done"=>$notdone
         );
-        
+        */
         
         $graph->addData($data);
-        $graph->pie_avail_colors=array('passed','failed','notdone');
+        $graph->pie_avail_colors=$colors;
+        
+        
+        
+        
         $graph->setLabelTextColor("50,50,50");
         $graph->setLegendTextColor("50,50,50");
         $fp = $graph->createGraph();

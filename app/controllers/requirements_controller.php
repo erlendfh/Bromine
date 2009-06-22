@@ -135,13 +135,24 @@ class RequirementsController extends AppController {
         ));
     
     
-        foreach ($requirements['Combination'] as $combination){
-            foreach ($requirements['Testcase'] as &$testcase){
-                $testcase['status'] = $this->Requirement->Testcase->Test->getStatus($testcase['id'], $combination['Operatingsystem']['id'], $combination['Browser']['id']);
+        foreach ($requirements['Combination'] as &$combination){
+            foreach ($requirements['Testcase'] as $testcase){
+                $combination['status'] = $this->Requirement->Testcase->Test->getStatus($testcase['id'], $combination['Operatingsystem']['id'], $combination['Browser']['id']);
             } 
         }
 
-
+        App::import('Model','Node');
+        $this->Node = new Node();
+        $nodes = $this->Node->find('all');
+        $onlineNodes = array();
+        foreach($nodes as &$node){
+            if($this->Node->checkJavaServer($node['Node']['nodepath'])){
+                $onlineNodes[] = $node;
+            }
+        }
+        
+        $this->set('nodes', $nodes);
+        $this->set('onlineNodes', $onlineNodes);
 		$this->set('requirement', $requirements);
 		$this->set('testcases',$requirements['Testcase']);
 		$this->set('combinations',$requirements['Combination']);

@@ -1,4 +1,14 @@
-
+p.warn, p.err{
+    padding-left: 40px;
+}
+p.warn{
+    background: url("/img/tango/32x32/status/dialog-warning-yellow.png") no-repeat;
+    border: 1px dashed orange;
+}
+p.err{
+    background: url("/img/tango/32x32/status/dialog-error.png") no-repeat;
+    border: 1px dashed darkred; 
+}
 table.combinations{
     border: 1px solid lightgrey;
 }

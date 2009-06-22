@@ -1,8 +1,6 @@
 <div class="requirements view">
     <h1><?php  echo $requirement['Requirement']['name']; ?></h1>
-    
 	<dl>
-
         <dt><?php __('Description'); ?></dt>
 		<dd>
 			<?php echo $requirement['Requirement']['description']; ?>
@@ -11,16 +9,55 @@
 		<dt><?php __('Run requirement'); ?></dt>
 		<dd>
 			<?php
-            if(empty($testcases)){
-                echo "There are no testcases to run. Please ".$html->link('assign','/Requirements')." some";
-            }
-            elseif(empty($combinations)){
-                echo "There are no OS/browser combinations defined. Please ".$html->link('define','/Requirements/#edit/'.$requirement['Requirement']['id'])." some";
-            }else{
-                echo $html->link($html->image("tango/32x32/actions/go-next.png").'', '/runrctests/runAndViewRequirement/'.$requirement['Requirement']['id'], array('onclick'=>'return Popup.open({url:this.href});'), null, false);
-            } 
+    			if(empty($nodes)){
+                    echo "<p class='err'>Error: There are no nodes defined. Please ".$html->link('add','/Requirements/#/Nodes/add/').' some</p>';
+                }
+    			elseif(empty($onlineNodes)){
+                    echo "<p class='err'>Error: There are no nodes online. Please start the Selenium Remote Control servers at:<br />";
+                    foreach($nodes as $node){
+                        echo $node['Node']['nodepath']."<br />";
+                    }
+                    echo "</p>";
+                }   
+                elseif(empty($testcases)){
+                    echo "<p class='err'>Error: There are no testcases to run. Please ".$html->link('assign','/Requirements')." some</p>";
+                }
+                elseif(empty($combinations)){
+                    echo "<p class='err'>Error: There are no OS/browser combinations defined. Please ".$html->link('define','/Requirements/#/Requirements/edit/'.$requirement['Requirement']['id'])." some</p>";
+                }else{
+                    echo $html->link($html->image("tango/32x32/actions/go-next.png").'', '/runrctests/runAndViewRequirement/'.$requirement['Requirement']['id'], array('onclick'=>'return Popup.open({url:this.href});'), null, false);
+                } 
+    			if(count($onlineNodes)<count($nodes) && !empty($onlineNodes) && !empty($nodes)){
+                    echo "<p class='warn'>Warning: Some nodes are defined but not running. Please start the Selenium Remote Control servers at:<br />";
+                    $onlineNodePaths = array();
+                    foreach($onlineNodes as $onlineNode){
+                        $onlineNodePaths[]=$onlineNode['Node']['nodepath'];
+                    }
+                    foreach($nodes as $node){
+                        if(!in_array($node['Node']['nodepath'],$onlineNodePaths)){
+                            echo $node['Node']['nodepath']."<br />";
+                        }
+                    }
+                    echo "</p>";
+                }
+                foreach($onlineNodes as $onlineNode){
+                    foreach($onlineNode['Browsr'] as $browser){
+                        $onlineCombinations[] = '';
+                    }
+                    $onlineNodePaths[]=$onlineNode['Br']['nodepath'];
+                }
+                if(count($onlineNodes)<count($nodes) && !empty($onlineNodes) && !empty($nodes)){
+                    echo "<p class='warn'>Warning: Some nodes are defined but not running. Please start the Selenium Remote Control servers at:<br />";
+                    $onlineNodePaths = array();
+                    
+                    foreach($nodes as $node){
+                        if(!in_array($node['Node']['nodepath'],$onlineNodePaths)){
+                            echo $node['Node']['nodepath']."<br />";
+                        }
+                    }
+                    echo "</p>";
+                }
             ?>
-			&nbsp;
 		</dd>
 		<dt><?php __('Status'); ?></dt>
 		<dd>
@@ -30,10 +67,10 @@
             	   <th style='width: 33%;'>Operating system</th>
             	   <th style='width: 33%;'>Browser</th>
             	</tr>
-            	<?php 
+            	<?php
                     foreach($testcases as $testcase){
                         foreach($combinations as $combination){
-                            echo "<tr class='".$testcase['status']."'>";
+                            echo "<tr class='".$combination['status']."'>";
                             echo "<td>".$testcase['name']. "</td>";
                             echo "<td>".$combination['Operatingsystem']['name']."</td>";
                             echo "<td>".$combination['Browser']['name']."</td>";

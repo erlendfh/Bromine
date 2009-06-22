@@ -40,23 +40,27 @@
                     }
                     echo "</p>";
                 }
+                $onlineCombinations = array();
                 foreach($onlineNodes as $onlineNode){
-                    foreach($onlineNode['Browsr'] as $browser){
-                        $onlineCombinations[] = '';
+                    foreach($onlineNode['Browser'] as $browser){
+                        $onlineCombinations[] = $onlineNode['Operatingsystem']['id'].','.$browser['id'];
                     }
-                    $onlineNodePaths[]=$onlineNode['Br']['nodepath'];
                 }
-                if(count($onlineNodes)<count($nodes) && !empty($onlineNodes) && !empty($nodes)){
-                    echo "<p class='warn'>Warning: Some nodes are defined but not running. Please start the Selenium Remote Control servers at:<br />";
-                    $onlineNodePaths = array();
-                    
-                    foreach($nodes as $node){
-                        if(!in_array($node['Node']['nodepath'],$onlineNodePaths)){
-                            echo $node['Node']['nodepath']."<br />";
-                        }
+                $offlineNeeds =  array();
+                foreach($combinations as $combination){
+                    $idCombination = $combination['Operatingsystem']['id'].','.$combination['Browser']['id'];
+                    if(!in_array($idCombination,$onlineCombinations)){
+                        $offlineNeeds[] = $combination['Browser']['name'].' on '.$combination['Operatingsystem']['name'];
+                    }
+                }
+                if(!empty($offlineNeeds)){
+                    echo "<p class='warn'>Warning: The following combinations will not be tested as there are no online nodes with that combination:<br />";
+                    foreach($offlineNeeds as $offlineNeed){
+                        echo $offlineNeed."<br />";
                     }
                     echo "</p>";
                 }
+
             ?>
 		</dd>
 		<dt><?php __('Status'); ?></dt>

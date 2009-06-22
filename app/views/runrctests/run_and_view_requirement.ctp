@@ -1,3 +1,12 @@
+<?php
+if(!empty($offlineNeeds)){
+    echo "<p class='warn'>Warning: The following combinations was not tested as there were no online nodes with that combination:<br />";
+    foreach($offlineNeeds as $offlineNeed){
+        echo $offlineNeed."<br />";
+    }
+    echo "</p>";
+}
+?>
 <h2>Your tests are being executed. You can close this window if you like.</h2>
 <p>You can track the status of your tests below</p> 
 <div id="results">

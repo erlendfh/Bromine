@@ -6,6 +6,7 @@ class RunrctestsController  extends AppController {
 	var $uses = array();
         
     var $runningLimit = 1;
+    var $loopLimit = 10000; //Set to -1 for infinite
     var $timeout = 45;
     
 	function gridLauncher($suite_id=0, $tests=array()){
@@ -186,7 +187,7 @@ class RunrctestsController  extends AppController {
         $this->set('Suite',$this->Suite->find("Suite.id = $suite_id"));
     }
     
-    function runAndViewRequirement($requirement_id){
+    function runAndViewRequirement($requirement_id){ //Sets up the suite, returns suite_id
         $this->layout = "green_blank";
         $this->set('requirement_id', $requirement_id);
         $suiteName = 'alalal';
@@ -202,6 +203,44 @@ class RunrctestsController  extends AppController {
         $this->Suite->save($this->data);
         $suite_id = $this->Suite->id;
         $this->set('suite_id',$suite_id);
+        
+        //Find out which tests can't be run. (We do this alot of places yes... maybe some if it is redundant)
+        App::import('Model','Node');
+        $this->Node = new Node();
+        $nodes = $this->Node->find('all');
+        $onlineNodes = array();
+        foreach($nodes as $node){
+            if($this->Node->checkJavaServer($node['Node']['nodepath'])){
+                foreach($node['Browser'] as $browser){
+                    $onlineCombinations[] = $node['Operatingsystem']['id'].','.$browser['id'];
+                }
+            }
+        }
+        App::import('Model','Requirement');
+        $this->Requirement = new Requirement();
+        
+        $this->Requirement->Behaviors->attach('Containable');
+		$requirement = $this->Requirement->find('first', array(
+            'conditions'=>array(
+                'Requirement.id'=>$requirement_id
+            ),
+        	'contain'=>array(
+        		'Combination' => array(
+        			'Browser',
+        			'Operatingsystem'
+        		),
+        		'Testcase'
+        	)
+        ));
+        
+        $offlineNeeds =  array();
+        foreach($requirement['Combination'] as $combination){
+            $idCombination = $combination['Operatingsystem']['id'].','.$combination['Browser']['id'];
+            if(!in_array($idCombination,$onlineCombinations)){
+                $offlineNeeds[] = $combination['Browser']['name'].' on '.$combination['Operatingsystem']['name'];
+            }
+        }
+        $this->set('offlineNeeds',$offlineNeeds);
     }
 
     function runRequirement($requirement_id, $suite_id){
@@ -221,19 +260,38 @@ class RunrctestsController  extends AppController {
         	)
         ));
         
+        App::import('Model','Node');
+        $this->Node = new Node();
+        $nodes = $this->Node->find('all');
+        $onlineNodes = array();
+        foreach($nodes as &$node){
+            if($this->Node->checkJavaServer($node['Node']['nodepath'])){
+                $onlineNodes[] = $node;
+            }
+        }
+        
+        $onlineCombinations = array();
+        foreach($onlineNodes as $onlineNode){
+            foreach($onlineNode['Browser'] as $browser){
+                $onlineCombinations[] = $onlineNode['Operatingsystem']['id'].','.$browser['id'];
+            }
+        }
+        
         $tests = array();
         foreach ($requirement['Testcase'] as $testcase){
             $tests[$testcase['id']] = array(); 
             foreach ($requirement['Combination'] as $combination){
-                $tests[$testcase['id']][] = array(
-                    'done' => 0,
-                    'OS' => $combination['operatingsystem_id'],
-                    'browser' => $combination['browser_id']
-                    );
+                $idCombination = $combination['Operatingsystem']['id'].','.$combination['Browser']['id'];
+                if(in_array($idCombination, $onlineCombinations)){ //Sort out the needs that can't be run
+                    $tests[$testcase['id']][] = array(
+                        'done' => 0,
+                        'OS' => $combination['operatingsystem_id'],
+                        'browser' => $combination['browser_id']
+                        );
+                }
             }
         
         }
-
         $this->loadBalancer($suite_id,$tests);
     }
     
@@ -260,7 +318,7 @@ class RunrctestsController  extends AppController {
         }
         
         $i=0;
-        //Should sort out impossible tests before entering this loop! or it's gonna be a long day at the office.
+        //DON'T enter this loop with combination needs you don't have the nodes to handle. You'll get an infinite loop.
         while($this->array_search_recursive('done',0,$tests)!==array()){ //While there are tests that has not been run
             $this->log("Doing loop ".$i++);
             foreach($tests as $testName => $test){ //Loop through each test 
@@ -281,7 +339,7 @@ class RunrctestsController  extends AppController {
                             $uid = str_replace('.', '', microtime('U')) . rand(0, 1000);
                             $this->log("Running test $testName on $OS_id / $browser_id using resource ".$bestNode['Node']['nodepath']." with uid = $uid");
                             
-                            $this->run($testName, $bestNode['Node']['nodepath'], $OS_id, 80, $browser_id, $siteToTest, 1, $suite_id, $uid);
+                            $this->run($testName, $bestNode['Node']['nodepath'], $OS_id, 80, $browser_id, $siteToTest, 1, $suite_id, $uid); //Run the test
                             
                             //Update the need and the node
                             $tests[$testName][$k]['done'] = 1;
@@ -292,6 +350,10 @@ class RunrctestsController  extends AppController {
             }
             sleep(2);
             $nodes = $this->updateNodes($nodes);
+            if($this->loopLimit != -1 && $i>$this->loopLimit){
+                $this->log("Exceeded loop limit of ".$this->loopLimit." loops. Breaking.");
+                break;
+            }
         }
     }
 	
@@ -344,17 +406,16 @@ class RunrctestsController  extends AppController {
                 $siteToTest . $spacer . $uid . $spacer . $test_id;
         
         //Execute it
-        $this->execute($cmd);
+        $this->execute($cmd, $uid);
     }
     
     
-    private function execute($cmd) {
+    private function execute($cmd, $uid) {
         $this->log("Executing: $cmd");
         
         if (substr(php_uname(), 0, 7) == "Windows"){ //Windows
-            $u = time() . rand(0, 99999);
-            $this->log('Output printed to ' . $u);
-            $this->log(pclose(popen("start /B ". $cmd . ' > logs/output' . $u . '.txt', "r"))); 
+            $this->log('Output printed to logs/output/'.$uid.'txt');
+            $this->log(pclose(popen("start /B ". $cmd . ' > logs/output' . $uid . '.txt', "r"))); 
             
         }
         else { //Unix. NEVER TESTED IN UNIX

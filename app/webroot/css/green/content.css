@@ -1,11 +1,16 @@
-p.warn, p.err{
+p.warning, p.error, p.notice{
     padding-left: 40px;
+    padding-right: 6px;
 }
-p.warn{
+p.warning{
     background: url("/img/tango/32x32/status/dialog-warning-yellow.png") no-repeat;
     border: 1px dashed orange;
 }
-p.err{
+p.notice{
+    background: url("/img/tango/32x32/status/dialog-information.png") no-repeat;
+    border: 1px dashed lightblue;
+}
+p.error{
     background: url("/img/tango/32x32/status/dialog-error.png") no-repeat;
     border: 1px dashed darkred; 
 }

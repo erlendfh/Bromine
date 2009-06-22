@@ -22,7 +22,9 @@ class Requirement extends AppModel {
             }
         }
         foreach($requirement['Testcase'] as $testcase){
-            $results[] = $this->Testcase->getStatus($testcase['id'], $requirement_id);
+            if(($result = $this->Testcase->getStatus($testcase['id'], $requirement_id))!=null){
+                $results[] = $result;
+            }
         }
         return $results;
     }
@@ -32,9 +34,9 @@ class Requirement extends AppModel {
         $objTmp = (object) array('aFlat' => array());
         array_walk_recursive($results, create_function('&$v, $k, &$t', '$t->aFlat[] = $v;'), $objTmp); //Crazy stuff from php.net
         $results = $objTmp->aFlat;
-        
+
         $status = 'passed';
-        
+
         if(empty($results)){
             $status = '';
         }

@@ -10,25 +10,25 @@
 		<dd>
 			<?php
     			if(empty($nodes)){
-                    echo "<p class='err'>Error: There are no nodes defined. Please ".$html->link('add','/Requirements/#/Nodes/add/').' some</p>';
+                    echo "<p class='error'>Error: There are no nodes defined. Please ".$html->link('add','/Requirements#/Nodes/add/').' some</p>';
                 }
     			elseif(empty($onlineNodes)){
-                    echo "<p class='err'>Error: There are no nodes online. Please start the Selenium Remote Control servers at:<br />";
+                    echo "<p class='error'>Error: There are no nodes online. Please start the Selenium Remote Control servers at:<br />";
                     foreach($nodes as $node){
                         echo $node['Node']['nodepath']."<br />";
                     }
                     echo "</p>";
                 }   
                 elseif(empty($testcases)){
-                    echo "<p class='err'>Error: There are no testcases assigned to this requirement. Please ".$html->link('assign','/Requirements')." some</p>";
+                    echo "<p class='error'>Error: There are no testcases assigned to this requirement. Please ".$html->link('assign','/Requirements')." some</p>";
                 }
                 elseif(empty($combinations)){
-                    echo "<p class='err'>Error: There are no OS/browser combinations defined. Please ".$html->link('define','/Requirements/#/Requirements/edit/'.$requirement['Requirement']['id'])." some</p>";
+                    echo "<p class='error'>Error: There are no OS/browser combinations defined. Please ".$html->link('define','/Requirements#/Requirements/edit/'.$requirement['Requirement']['id'])." some</p>";
                 }else{
                     echo $html->link($html->image("tango/32x32/actions/go-next.png").'', '/runrctests/runAndViewRequirement/'.$requirement['Requirement']['id'], array('onclick'=>'return Popup.open({url:this.href});'), null, false);
                 } 
     			if(count($onlineNodes)<count($nodes) && !empty($onlineNodes) && !empty($nodes)){
-                    echo "<p class='warn'>Warning: Some nodes are defined but not running. Please start the Selenium Remote Control servers at:<br />";
+                    echo "<p class='notice'>Notice: Some nodes are defined but not running. Please start the Selenium Remote Control servers at:<br />";
                     $onlineNodePaths = array();
                     foreach($onlineNodes as $onlineNode){
                         $onlineNodePaths[]=$onlineNode['Node']['nodepath'];
@@ -54,7 +54,7 @@
                     }
                 }
                 if(!empty($offlineNeeds)){
-                    echo "<p class='warn'>Warning: The following combinations will not be tested as there are no online nodes with that combination:<br />";
+                    echo "<p class='warning'>Warning: The following combinations will not be tested as there are no online nodes with that combination:<br />";
                     foreach($offlineNeeds as $offlineNeed){
                         echo $offlineNeed."<br />";
                     }

@@ -16,7 +16,9 @@ class Testcase extends AppModel {
         	)
         ));
         $results = array();
-        
+        if(empty($requirement['Combination'])){
+            return null;
+        }
         foreach ($requirement['Combination'] as $combination){
             $results[] = $this->Test->getStatus($testcase_id, $combination['Operatingsystem']['id'], $combination['Browser']['id']);
         }

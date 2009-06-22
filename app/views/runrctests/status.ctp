@@ -3,7 +3,7 @@
     if(isset($Suite)){
         foreach($Suite['Test'] as $test){
             echo "<div style='border: 1px solid black; margin-top: 10px;'>";
-            echo "<b>".$test['name']."</b>";
+            echo "<strong>".$test['name']."</strong> in ".$test['Browser']['name'].' on '.$test['Operatingsystem']['name'];
             echo "<table>";
             foreach($test['Command'] as $command){
                 echo "<tr class='".$command['status']."'>";

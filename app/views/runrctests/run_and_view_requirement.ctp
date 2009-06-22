@@ -1,6 +1,6 @@
 <?php
 if(!empty($offlineNeeds)){
-    echo "<p class='warn'>Warning: The following combinations was not tested as there were no online nodes with that combination:<br />";
+    echo "<p class='warning'>Warning: The following combinations was not tested as there were no online nodes with that combination:<br />";
     foreach($offlineNeeds as $offlineNeed){
         echo $offlineNeed."<br />";
     }

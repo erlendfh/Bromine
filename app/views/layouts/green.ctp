@@ -49,18 +49,10 @@
         	}
         });
         
-        Event.observe(window, 'load', function() {
-            
-          //alert(window.location.toString());
-          //var anchor = getAnchor();
-          //if(anchor!=false){
-            //new Ajax.Updater('Main',anchor);
-          //}
-        });
         observeUrl(0);
         
         function observeUrl(location){
-            if(location != window.location.toString()){
+            if(location != window.location.toString() && Ajax.activeRequestCount == 0){
                 var anchor = getAnchor();
                 if(anchor!=false){
                     new Ajax.Updater('Main',anchor);
@@ -75,12 +67,14 @@
       <div id="links">
         <?php
             //pr($session->read('site_id'));
-            echo $form->create('Project',array('action' => 'select'));
-            foreach($usersprojects as $project){
-                $options[$project['Project']['id']] = $project['Project']['name']; 
+            if(!empty($usersprojects)){
+                echo $form->create('Project',array('action' => 'select'));
+                foreach($usersprojects as $project){
+                    $options[$project['Project']['id']] = $project['Project']['name']; 
+                }
+                echo $form->input('project_id',array('options' => $options, 'selected'=>$session->read('project_id'), 'onchange'=>'submit()'));
+                echo $form->end();
             }
-            echo $form->input('project_id',array('options' => $options, 'selected'=>$session->read('project_id'), 'onchange'=>'submit()'));
-            echo $form->end();
             if(!empty($sites)){
                 echo $form->create('Site', array('action' => 'select'));
                 echo $form->input('site_id',array('selected'=>$session->read('site_id'), 'onchange'=>'submit()'));

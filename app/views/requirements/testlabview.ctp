@@ -10,7 +10,16 @@
 		</dd>
 		<dt><?php __('Run requirement'); ?></dt>
 		<dd>
-			<?php echo $html->link($html->image("tango/32x32/actions/go-next.png").'', '/runrctests/runAndViewRequirement/'.$requirement['Requirement']['id'], array('onclick'=>'return Popup.open({url:this.href});'), null, false); ?>
+			<?php
+            if(empty($testcases)){
+                echo "There are no testcases to run";
+            }
+            elseif(empty($combinations)){
+                echo "There are no OS/browser combinations defined. Please go to ".$html->link('Planning','/requirements/#edit/'.$requirement['Requirement']['id'])." and define some";
+            }else{
+                echo $html->link($html->image("tango/32x32/actions/go-next.png").'', '/runrctests/runAndViewRequirement/'.$requirement['Requirement']['id'], array('onclick'=>'return Popup.open({url:this.href});'), null, false);
+            } 
+            ?>
 			&nbsp;
 		</dd>
 		<dt><?php __('Status'); ?></dt>

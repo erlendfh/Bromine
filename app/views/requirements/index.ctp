@@ -226,7 +226,7 @@
             <div id='testcases'>
                 (Fetching testcases...)
                 <script type="text/javascript">
-                    //new Ajax.Updater('testcases', '/testcases/lilist', { method: 'get', evalScripts: true});
+                    new Ajax.Updater('testcases', '/testcases/lilist', { method: 'get', evalScripts: true});
                 </script>
             </div>
         </td>

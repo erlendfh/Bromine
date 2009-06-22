@@ -11,7 +11,7 @@ class ResultsController extends AppController {
 		//pr($this->Requirement->find('threaded'));
 		$this->set('data',$this->Requirement->find('threaded'));
 		//$this->set('data',$this->Requirement->find('all',array('conditions' => array('Requirement.project_id' => $this->Session->read('project_id')))));
-		//$this->set('requirements', $this->paginate(null, array('project.id' => $this->Session->read('project_id'))));
+		//$this->set('requirements', $this->paginate(null, array('Project.id' => $this->Session->read('project_id'))));
 		
 	}
 

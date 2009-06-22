@@ -6,14 +6,14 @@ class TestcasesController extends AppController {
 
 	function index() {
 		$this->Testcase->recursive = 0;
-		$this->set('testcases', $this->paginate(null, array('project.id' => $this->Session->read('project_id'))));
+		$this->set('testcases', $this->paginate(null, array('Project.id' => $this->Session->read('project_id'))));
 	}
 	
 	function lilist($search=null) {
 
-        $conditions = array('project.id' => $this->Session->read('project_id'));
+        $conditions = array('Project.id' => $this->Session->read('project_id'));
         if(!empty($this->data['tcsearch'])){
-            $conditions['testcase.name  LIKE'] = $this->data['tcsearch']."%";
+            $conditions['Testcase.name  LIKE'] = $this->data['tcsearch']."%";
         }
 
 		$this->Testcase->recursive = 0;
@@ -129,7 +129,7 @@ class TestcasesController extends AppController {
             $this->set('id',$id);
             if($this->data['Testcase']['testscript']['name']!=''){
                 $ext = end(explode('.', $this->data['Testcase']['testscript']['name']));
-                $uploadfile = WWW_ROOT.DS.'tests'.DS.$this->Session->read('project_name').DS.$ext.DS.$id.".$ext";
+                $uploadfile = WWW_ROOT.DS.'testscripts'.DS.$this->Session->read('project_name').DS.$ext.DS.$id.".$ext";
                 App::import('Model','Type');
                 $this->Type = new Type();
                 $extList = $this->Type->find('list', array('fields' => array('Type.extension')));

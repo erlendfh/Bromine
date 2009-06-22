@@ -12,10 +12,10 @@
 		<dd>
 			<?php
             if(empty($testcases)){
-                echo "There are no testcases to run";
+                echo "There are no testcases to run. Please ".$html->link('assign','/Requirements')." some";
             }
             elseif(empty($combinations)){
-                echo "There are no OS/browser combinations defined. Please go to ".$html->link('Planning','/requirements/#edit/'.$requirement['Requirement']['id'])." and define some";
+                echo "There are no OS/browser combinations defined. Please ".$html->link('define','/Requirements/#edit/'.$requirement['Requirement']['id'])." some";
             }else{
                 echo $html->link($html->image("tango/32x32/actions/go-next.png").'', '/runrctests/runAndViewRequirement/'.$requirement['Requirement']['id'], array('onclick'=>'return Popup.open({url:this.href});'), null, false);
             } 

@@ -33,11 +33,61 @@
       </div>
         <script type='text/javascript'>
         
+        const debugOutput = true;
+        function ddump(text)
+        {
+          if (debugOutput)
+            dump(text + "\n");
+        }
+        function ddumpCont(text)
+        {
+          if (debugOutput)
+            dump(text);
+        }
+        function ddumpObject(obj, name, maxDepth, curDepth)
+        {
+          if (!debugOutput)
+            return;
+          if (curDepth == undefined)
+            curDepth = 0;
+          if (maxDepth != undefined && curDepth > maxDepth)
+            return;
+        
+          var i = 0;
+          for (prop in obj)
+          {
+            i++;
+            if (typeof(obj[prop]) == "object")
+            {
+              if (obj[prop] && obj[prop].length != undefined)
+                ddump(name + "." + prop + "=[probably array, length "
+                      + obj[prop].length + "]");
+              else
+                ddump(name + "." + prop + "=[" + typeof(obj[prop]) + "]");
+              ddumpObject(obj[prop], name + "." + prop, maxDepth, curDepth+1);
+            }
+            else if (typeof(obj[prop]) == "function")
+              ddump(name + "." + prop + "=[function]");
+            else
+              ddump(name + "." + prop + "=" + obj[prop]);
+          }
+          if (!i)
+            ddump(name + " is empty");    
+        }
+        function dumpError(text)
+        {
+          dump(text + "\n");
+        }
+        
         Ajax.Responders.register({
         	onCreate: function(request) {
         		if($('notification') && Ajax.activeRequestCount > 0){
             		    $('notification').title = request.url;
-            		    changeUrl(request.url);
+                        //console.log(request);
+                        if(request.container.success == 'Main'){
+                            changeUrl(request.url);
+            		    }
+            		    
             			Effect.Appear('notification',{duration: 0.25, queue: 'end'});
         			}
         	},

@@ -137,7 +137,7 @@ class RequirementsController extends AppController {
     
         foreach ($requirements['Combination'] as &$combination){
             foreach ($requirements['Testcase'] as $testcase){
-                $combination['status'] = $this->Requirement->Testcase->Test->getStatus($testcase['id'], $combination['Operatingsystem']['id'], $combination['Browser']['id']);
+                $combination['tc'.$testcase['id']]['status'] = $this->Requirement->Testcase->Test->getStatus($testcase['id'], $combination['Operatingsystem']['id'], $combination['Browser']['id']);
             } 
         }
 

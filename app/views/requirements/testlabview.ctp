@@ -20,7 +20,7 @@
                     echo "</p>";
                 }   
                 elseif(empty($testcases)){
-                    echo "<p class='err'>Error: There are no testcases to run. Please ".$html->link('assign','/Requirements')." some</p>";
+                    echo "<p class='err'>Error: There are no testcases assigned to this requirement. Please ".$html->link('assign','/Requirements')." some</p>";
                 }
                 elseif(empty($combinations)){
                     echo "<p class='err'>Error: There are no OS/browser combinations defined. Please ".$html->link('define','/Requirements/#/Requirements/edit/'.$requirement['Requirement']['id'])." some</p>";
@@ -74,7 +74,7 @@
             	<?php
                     foreach($testcases as $testcase){
                         foreach($combinations as $combination){
-                            echo "<tr class='".$combination['status']."'>";
+                            echo "<tr class='".$combination['tc'.$testcase['id']]['status']."'>";
                             echo "<td>".$testcase['name']. "</td>";
                             echo "<td>".$combination['Operatingsystem']['name']."</td>";
                             echo "<td>".$combination['Browser']['name']."</td>";

@@ -129,7 +129,11 @@ class TestcasesController extends AppController {
             $this->set('id',$id);
             if($this->data['Testcase']['testscript']['name']!=''){
                 $ext = end(explode('.', $this->data['Testcase']['testscript']['name']));
-                $uploadfile = WWW_ROOT.DS.'testscripts'.DS.$this->Session->read('project_name').DS.$ext.DS.$id.".$ext";
+                $dir = WWW_ROOT.'testscripts'.DS.$this->Session->read('project_name').DS.$ext;                
+                if(!file_exists($dir)){
+                    mkdir($dir, 0777, true);
+                }
+                $uploadfile = $dir.DS.$id.".$ext";
                 App::import('Model','Type');
                 $this->Type = new Type();
                 $extList = $this->Type->find('list', array('fields' => array('Type.extension')));

@@ -11,7 +11,7 @@ class AddPerson extends BRUnit
   function testMyTestCase()
   {
   
-      $this->selenium->open("/");
+    /*  $this->selenium->open("/");
     $this->selenium->type("q", "hello world");
     $this->selenium->click("btnG");
     $this->selenium->waitForPageToLoad("30000");
@@ -21,7 +21,7 @@ class AddPerson extends BRUnit
     $this->assertFalse($this->selenium->isTextPresent("Hello world program"));
     $this->assertEquals("Hello world program", $this->selenium->getText("firstHeading"));
     $this->customCommand('TEST','failed','VAR1','VAR2');
-     /*
+     */
      $dp = new Dataparser();
      $strippedURL = $dp->parseURL($this->sitetotest);
      $dp->getDataFromExcel($strippedURL);
@@ -75,7 +75,7 @@ class AddPerson extends BRUnit
 
      if($this->selenium->isTextPresent($this->datamap['person name']) != true){throw new Exception('fejl 40');}
      $this->selenium->click($this->uimap['person result page']['close addressbook']);
-*/
+
   }
 }
 

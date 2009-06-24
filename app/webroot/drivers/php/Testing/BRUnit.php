@@ -248,7 +248,7 @@ Class BRUnit {
      * @param filename - the file to be included
      */                   
     function loadModule($filename){
-        require_once($this->modulesPath . $filename.".php");
+        include($this->modulesPath . $filename.".php");
     }
     
 }

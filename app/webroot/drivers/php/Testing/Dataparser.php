@@ -19,6 +19,11 @@
             //str_replace(mixed search, mixed replace, mixed subject, [int &count])
             return $url;
         }
+        
+        /*
+         * Function getDataFromExcel parses data from an excel sheet, but the excel sheet must be setuped correct
+         * Comments: It can't handle blank or empty inputs, unless it's the 1st locator en the datamap.         
+         */         
     
         function getDataFromExcel($filename){
             
@@ -37,7 +42,17 @@
                         $j = 2;
                         while($j <= $datafile->sheets[0]['numRows']) {
                             if(!empty($datafile->sheets[0]['cells'][$j][2])){
-                                $this->datamap[strtolower($datafile->sheets[0]['cells'][$j][2])] = $datafile->sheets[0]['cells'][$j][3];
+                                if (empty($datafile->sheets[0]['cells'][$j][4])){
+                                    $this->datamap[strtolower($datafile->sheets[0]['cells'][$j][2])] = $datafile->sheets[0]['cells'][$j][3];
+                                }else{
+                                    $y = 3;
+                                    while (!empty($datafile->sheets[0]['cells'][$j][$y])) {
+                                    	$this->datamap[strtolower($datafile->sheets[0]['cells'][$j][2])][] = $datafile->sheets[0]['cells'][$j][$y];
+                                    	$y++;
+                                    }
+                                    
+                                    
+                                }
                             }
                             $j++;
                         }

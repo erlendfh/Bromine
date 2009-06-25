@@ -339,7 +339,7 @@ class RunrctestsController  extends AppController {
                             $uid = str_replace('.', '', microtime('U')) . rand(0, 1000);
                             $this->log("Running test $testName on $OS_id / $browser_id using resource ".$bestNode['Node']['nodepath']." with uid = $uid");
                             
-                            $this->run($testName, $bestNode['Node']['nodepath'], $OS_id, 80, $browser_id, $siteToTest, 1, $suite_id, $uid); //Run the test
+                            $this->run($testName, $bestNode['Node']['nodepath'], $OS_id, 80, $browser_id, $siteToTest, $suite_id, $uid); //Run the test
                             
                             //Update the need and the node
                             $tests[$testName][$k]['done'] = 1;
@@ -357,7 +357,7 @@ class RunrctestsController  extends AppController {
         }
     }
 	
-    function run($testName, $nodePath, $OS_id, $port, $browser_id, $siteToTest, $type_id, $suite_id, $uid){
+    function run($testName, $nodePath, $OS_id, $port, $browser_id, $siteToTest, $suite_id, $uid){
         
         //Setup the test in the DB
         App::import('Model','Test');
@@ -382,16 +382,20 @@ class RunrctestsController  extends AppController {
         $this->data['Seleniumserver']['test_id'] = $test_id;
         $this->data['Seleniumserver']['nodepath'] = $nodePath;
         $this->data['Seleniumserver']['uid'] = $uid;
-        $this->Seleniumserver->save($this->data);
-
+        $this->Seleniumserver->save($this->data);     
+                
         //Setup type variables (extension, spacer and so on)
+        $extension = $this->getFileExt($testName);        
         App::import('Model','Type');
         $this->typemodel = new Type();
-        $this->types = $this->typemodel->find("id = $type_id");
+        $this->types = $this->typemodel->find("extension = '$extension'");
         $name = $this->types['Type']['name'];
         $spacer = $this->types['Type']['spacer'];
-        $extension = $this->types['Type']['extension'];
+        //$extension = $this->types['Type']['extension'];
         $command = $this->types['Type']['command'];
+        
+        
+        
         
         //Find the browser path
         App::import('Model','Browser');
@@ -401,10 +405,9 @@ class RunrctestsController  extends AppController {
         
         //Put together the command line string 
         $cmd =  $command . $spacer . WWW_ROOT . 'testscripts' . DS . 
-                $this->Session->read('project_name') . DS . $name . DS . $testName . '.' . $extension . 
+                $this->Session->read('project_name') . DS . $extension . DS . $testName . '.' . $extension . 
                 $spacer . '127.0.0.1' . $spacer . $port . $spacer . $browserPath . $spacer . 
                 $siteToTest . $spacer . $uid . $spacer . $test_id;
-        
         //Execute it
         $this->execute($cmd, $uid);
     }
@@ -421,6 +424,19 @@ class RunrctestsController  extends AppController {
         else { //Unix. NEVER TESTED IN UNIX
             exec($cmd . " > /dev/null &");  
         }
+    }
+    
+    private function getFileExt($id){
+        App::import('Model','Type');
+        $this->Type = new Type();
+        $extList = $this->Type->find('list', array('fields' => array('Type.extension')));
+        foreach($extList as $ext){
+            $file = WWW_ROOT.DS.'testscripts'.DS.$this->Session->read('project_name').DS.$ext.DS.$id.".$ext";
+            if(file_exists($file)){
+                return $ext;
+            }
+        }
+        return false;
     }
     
 }

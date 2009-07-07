@@ -37,7 +37,14 @@ class RunrctestsController  extends AppController {
             }
         }
     }
-
+    
+    private function nodes_running($nodes){
+        foreach($nodes as $node){
+            if(!empty($node['Node']['running']))
+                return true;
+            }
+        return false;
+    }
     
     private function array_search_recursive($key, $needle, $haystack){
         $path=array();
@@ -118,8 +125,9 @@ class RunrctestsController  extends AppController {
                 $test_id = $seleniumServer['Seleniumserver']['test_id'];
                 $done = $seleniumServer['Seleniumserver']['done'];
                 if((time() - $lastCommand) > $this->timeout && $lastCommand != 0){ //The test has not run commands for timeout seconds
-                    $this->log("Test killed due to timeout of $timeout seconds");
-                    $handle = fopen("http://127.0.0.1/selenium-server/driver/?cmd=customCommand&cmdName=Test terminated&var1=Bromine judged the test unresponsive because no commands had been run for $this->timeout seconds.&var2=The test was terminated to free up the nodes resources.&uid=$uid&test_id=$test_id&status=failed",'r');
+                    $this->log("Test killed due to timeout of $this->timeout seconds");
+                    $customCommand = urlencode("?cmd=customCommand&cmdName=Test terminated&var1=Bromine judged the test unresponsive because no commands had been run for $this->timeout seconds.&var2=The test was terminated to free up the nodes resources.&uid=$uid&test_id=$test_id&status=failed");
+                    $handle = fopen("http://127.0.0.1/selenium-server/driver/$customCommand",'r');
                     $handle = fopen("http://127.0.0.1/selenium-server/driver/?cmd=testComplete&sessionId=$sessionId",'r');
                     fclose($handle);
                     unset($nodes[$k]['Node']['running'][$j]);
@@ -208,7 +216,7 @@ class RunrctestsController  extends AppController {
         App::import('Model','Node');
         $this->Node = new Node();
         $nodes = $this->Node->find('all');
-        $onlineNodes = array();
+        $onlineCombinations = array();
         foreach($nodes as $node){
             if($this->Node->checkJavaServer($node['Node']['nodepath'])){
                 foreach($node['Browser'] as $browser){
@@ -319,7 +327,8 @@ class RunrctestsController  extends AppController {
         
         $i=0;
         //DON'T enter this loop with combination needs you don't have the nodes to handle. You'll get an infinite loop.
-        while($this->array_search_recursive('done',0,$tests)!==array()){ //While there are tests that has not been run
+        while($this->array_search_recursive('done',0,$tests)!==array() || $this->nodes_running($nodes)){ //While there are tests that has not been run, or nodes still running
+            
             $this->log("Doing loop ".$i++);
             foreach($tests as $testName => $test){ //Loop through each test 
                 foreach($test as $k=>$need){ //Loop through each need

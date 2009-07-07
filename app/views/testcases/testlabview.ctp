@@ -13,6 +13,7 @@
             	<tr>
             	   <th style='width: 50%;'>Operating system</th>
             	   <th style='width: 50%;'>Browser</th>
+            	   <th>Results</th>
             	</tr>
             	<?php
                     //pr($combinations); 
@@ -22,6 +23,11 @@
                         echo "<tr class='$status'>";
                         echo "<td>".$combination['Operatingsystem']['name']."</td>";
                         echo "<td>".$combination['Browser']['name']."</td>";
+                        echo "<td>";
+                        if(!empty($combination['Result'])){
+                            echo $html->link($html->image('tango/32x32/categories/applications-other.png'),'#/Tests/view/'.$combination['Result']['Test']['id'],null,null,false);
+                        }
+                        echo "</td>";
                         echo "</tr>"; 
                     }
                 ?>

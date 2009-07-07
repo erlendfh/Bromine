@@ -94,7 +94,8 @@ class SeleniumserverController extends AppController {
             
             $this->Seleniumserver->updateAll(
               array(
-                'Seleniumserver.session' => "'$sessionId'"
+                'Seleniumserver.session' => "'$sessionId'",
+                'Seleniumserver.lastCommand' => time()
               ),"Seleniumserver.uid = '$uid'"
             ); 
             $this->log("Updated DB with session: '$sessionId' on uid: '$uid'");

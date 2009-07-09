@@ -45,7 +45,7 @@ class NodesController extends AppController {
 		if (!empty($this->data)) {
 			if ($this->Node->save($this->data)) {
 				$this->Session->setFlash(__('The Node has been saved', true));
-				$this->redirect(array('action'=>'index'));
+				$this->redirect(array('controller'=>'requirements#/nodes', 'action'=>'index'));
 			} else {
 				$this->Session->setFlash(__('The Node could not be saved. Please, try again.', true));
 			}

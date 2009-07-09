@@ -10,7 +10,7 @@
                     );
                     
         echo $html->link($testcase['Testcase']['name'],'#',array('onclick'=>$link));
-        echo "<a href='#' class='del' onclick='removetc(this.up(".'"div"'."), this.up(".'"li"'."));'><img src='/img/tango/16x16/places/user-trash.png'></img></a>";
+        //echo "<a href='#' class='del' onclick='removetc(this.up(".'"div"'."), this.up(".'"li"'."));'><img src='/img/tango/16x16/places/user-trash.png'></img></a>";
         echo "</div>";
         ?>
 

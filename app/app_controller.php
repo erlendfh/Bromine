@@ -54,6 +54,7 @@ class AppController extends Controller {
         $_SESSION['Message'] = '';
     }
     
+    
     function beforeFilter() {
         App::import('Model','Project');
         $this->Project = new Project();
@@ -100,6 +101,7 @@ class AppController extends Controller {
         //return true;
         return $this->MyAcl->hasAccess($this->Auth->user('id'),$this->here);
     }
+    
 
 }
 ?>

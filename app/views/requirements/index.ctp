@@ -118,7 +118,7 @@
     <tbody>
     <tr style='vertical-align: top;'>
     
-        <td style='border-right: 1px solid lightgrey;'>
+        <td style='border-right: 1px solid lightgrey; padding-right: 10px;'>
         
         
         <script type="text/javascript">
@@ -126,10 +126,9 @@
                 tree.toggleSortable();
                 $$('.handle').each(function(s, index) {
                   //alert(s);
-                  
                   //s.toggle();
                 });
-                $$('.tc').each(Element.toggle);
+                //$$('.tc').each(Element.toggle);
                 $('enablereqlink').toggle();
                 $('disablereqlink').toggle();
                 $('enabletclink').toggle();
@@ -146,37 +145,51 @@
                       accept: 'tc',
                       hoverclass: 'drop_hover',
                       onDrop: function(drag,drop) {
-
-                            if($$('#'+drop.id+' > ul > #tc_'+drag.id)!=''){
-                                $$('#'+drop.id+' > ul > #tc_'+drag.id).each(Element.highlight);
+                            id = drag.id;
+                            if(drag.id.toString().search(/req/)!=-1){ //If not dragged from the testcaselist (ie, from one req to another in the tree)
+                                id = drag.id.split('_').pop();
+                            }
+                            
+                            afterDragId = drop.id+'_tc_'+id;
+                            
+                            if($(afterDragId)!=null){ //If TC already attached to REQ, highlight it and return
+                                $(afterDragId).highlight();
                                 return;
                             }
-                        
+                            //else, create a new copy
 
-                            var newCopy = new Element('div', { 
-                                                'id' : 'tc_'+drag.id, 
+                            var newCopy = new Element('div', { //create the new copy
+                                                'id' : afterDragId, 
                                                 'class' : 'tc',
                                             }).update(drag.innerHTML); 
-                                            newCopy.setStyle({
+                                            newCopy.setStyle({ //set some styles
                                                 'clear':'both'
                                             });
-                            //$(drop).down('ul').appendChild(newCopy); 
-                            $(drop).down('ul').insert({'top':newCopy});
+                                            
+                            $(drop).down('ul').insert({'top':newCopy}); //insert it into the list
+                            
+                            new Draggable(newCopy.id,{ //make it dragable
+                                onEnd: function(drag,drop){
+                                    removetc(newCopy,newCopy.up('li'));
+                                }
+                            });
+                            
                             new Ajax.Updater('log','/requirements/updatetc/add/'+drag.id+'/'+drop.id);
                         
                       }
                     });
                 });
                 
-                $$('ul .del').each(function(s, index) {
-                    if(s.hasClassName('hide')) {
-                      s.removeClassName('hide');
-                    } else {
-                      s.addClassName('hide');
-                    }
+                $$('ul .tc').each(function(s, index) { //Make all testcases in the tree dragable
+                    new Draggable(s.id,{
+                        //ghosting: true,
+                        onEnd: function(drag,drop){ //Should probably check if the recieving requirement already has this tc, before removing the old.
+                            removetc(s,s.up('li'));
+                        }
+                    });
                 });
                 
-                
+
                 $$('.tctd').each(Element.toggle);
                 $('enabletclink').toggle();
                 $('disabletclink').toggle();
@@ -184,12 +197,18 @@
             }
             
         </script>
-        <a href="#" id="enablereqlink" onclick="changeUrl('asdasd'); dragdroptoggle(tree); ">Reorder requirements</a>
-        <a href="#" style='display: none;' id="disablereqlink" onclick="dragdroptoggle(tree)">Done reordering</a>
-        <br />
-        <a href="#" id="enabletclink" onclick="tctoggle()">Assign testcases</a>
-        <a href="#" style='display: none;' id="disabletclink" onclick="tctoggle()">Done assigning</a>
-        <br />
+        <fieldset style='padding: 4px; height: 45px; width: 130px;'>
+            <legend>Options</legend>
+            <div>
+                <a href="#" id="enablereqlink" onclick="dragdroptoggle(tree); Effect.toggle('dragdropmsg');">Manage requirements</a>
+                <a href="#" id='disablereqlink' style='display: none;' onclick="dragdroptoggle(tree); $('dragdropmsg').toggle();">Done</a>
+                <a href="#" style='display: none;' id="disabletclink" onclick="tctoggle();  $('dragdropmsg').toggle();">Done</a>
+                <br />
+                <a href="#" id="enabletclink" onclick="tctoggle();  Effect.toggle('dragdropmsg');">Manage testcases</a>
+                <span id='dragdropmsg' style='display: none;'>Drag and drop</span>
+            </div>
+        </fieldset>
+        
         <br />
             <ul>
                 <li id="tree">
@@ -208,7 +227,6 @@
         </td>
         
         <td class="tctd" style='border-right: 1px solid lightgrey; display: none;'>
-            
                 <input type='text' id='tcsearch' name='data[tcsearch]' value='Filter...' onclick='if(this.value=="Filter..."){this.value=""}'/>
                 <br />
                 <br />

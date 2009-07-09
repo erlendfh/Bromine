@@ -3,8 +3,8 @@ class Node extends AppModel {
 
     function checkJavaServer($nodepath, $timeout=0.05){
         $nodepath = explode(':',$nodepath);
-        $host = $nodepath[0];
-        $port = $nodepath[1];
+        $host = @$nodepath[0];
+        $port = @$nodepath[1];
         
         $fp = @fsockopen($host, $port, $errno, $errstr, $timeout);
         if ($fp) {

@@ -28,6 +28,7 @@ class TestlabsController extends AppController {
         App::import('Model','Requirement');
         $this->Requirement = new Requirement();
 		$this->Requirement->recursive = 1;
+
         
         $sites=$this->Project->Site->find('list', array('conditions' => array('project_id'=>$this->Session->read('project_id'))));
         $this->set('sites',$sites);

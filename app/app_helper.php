@@ -37,7 +37,7 @@ App::import('Core', 'Helper');
  * @subpackage    cake.cake
  */
 class AppHelper extends Helper {
-    
+
     function aclLink($title, $url = null, $htmlAttributes = array(), $confirmMessage = false, $escapeTitle = true){
         App::import('Helper','Session');
         $session = new SessionHelper();

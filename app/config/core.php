@@ -66,7 +66,7 @@
  * 'admin' 		-> admin_index() and /admin/controller/index
  * 'superuser' -> superuser_index() and /superuser/controller/index
  */
-	Configure::write('Routing.admin', 'admin');
+	//Configure::write('Routing.admin', 'admin');
 
 /**
  * Turn off all caching application-wide.
@@ -170,8 +170,8 @@
  * The classname and database used in CakePHP's
  * access control lists.
  */
-	Configure::write('Acl.classname', 'DbAcl');
-	Configure::write('Acl.database', 'default');
+	//Configure::write('Acl.classname', 'DbAcl');
+	//Configure::write('Acl.database', 'default');
 /**
  *
  * Cache Engine Configuration

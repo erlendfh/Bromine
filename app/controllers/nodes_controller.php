@@ -6,8 +6,12 @@ class NodesController extends AppController {
 	var $main_menu_id = -2;
 
 	function index() {
-		$this->Node->recursive = 2;
-		$this->set('nodes', $this->paginate());
+		//$this->Node->recursive = 2;
+		$nodes = $this->Node->find('all');
+		foreach($nodes as &$node){
+            $node['Node']['status'] = ($this->Node->checkJavaServer($node['Node']['nodepath']) ? 'passed.png' : 'failed.png'); 
+        }
+		$this->set('nodes', $nodes);
 	}
 
 	function view($id = null) {
@@ -23,7 +27,7 @@ class NodesController extends AppController {
 			$this->Node->create();
 			if ($this->Node->save($this->data)) {
 				$this->Session->setFlash(__('The Node has been saved', true));
-				$this->redirect(array('action'=>'index'));
+				$this->redirect(array('controller'=>'requirements#/nodes', 'action'=>'index'));
 			} else {
 				$this->Session->setFlash(__('The Node could not be saved. Please, try again.', true));
 			}
@@ -57,11 +61,11 @@ class NodesController extends AppController {
 	function delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for Node', true));
-			$this->redirect(array('action'=>'index'));
+			$this->redirect(array('controller'=>'requirements#/nodes', 'action'=>'index'));
 		}
 		if ($this->Node->del($id)) {
 			$this->Session->setFlash(__('Node deleted', true));
-			$this->redirect(array('action'=>'index'));
+			$this->redirect(array('controller'=>'requirements#/nodes', 'action'=>'index'));
 		}
 	}
 

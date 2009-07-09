@@ -169,7 +169,13 @@ class RequirementsController extends AppController {
 			$this->Requirement->create();
 			if ($this->Requirement->save($this->data)) {
 				$this->Session->setFlash(__('The Requirement has been saved', true));
-				$this->redirect(array('action'=>'index'));
+				$this->redirect(
+    				array(
+    				    'controller'=>'requirements#/requirements',
+    				    'action' => 'edit',
+    				    $this->Requirement->id
+                    )
+                );
 			} else {
 				$this->Session->setFlash(__('The Requirement could not be saved. Please, try again.', true));
 			}
@@ -220,11 +226,11 @@ class RequirementsController extends AppController {
 	function delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for Requirement', true));
-			$this->redirect(array('action'=>'index'));
+			$this->redirect(array('controller'=>'requirements','action'=>'index'));
 		}
 		if ($this->Requirement->del($id)) {
 			$this->Session->setFlash(__('Requirement deleted', true));
-			$this->redirect(array('action'=>'index'));
+			$this->redirect(array('controller'=>'requirements','action'=>'index'));
 		}
 	}
 

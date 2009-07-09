@@ -1,19 +1,12 @@
 <div class="nodes index">
-<h2><?php __('Nodes');?></h2>
-<a onclick="changeUrl('asd');" >asdsa</a>
-<p>
-<?php
-echo $paginator->counter(array(
-'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
-));
-?></p>
+<h1><?php __('Nodes');?></h1>
 <table cellpadding="0" cellspacing="0">
 <tr>
-	<th><?php echo $paginator->sort('id');?></th>
-	<th><?php echo $paginator->sort('nodepath');?></th>
-	<th><?php echo $paginator->sort('operatingsystem_id');?></th>
-	<th><?php echo $paginator->sort('description');?></th>
-	<th><?php echo $paginator->sort('network_drive');?></th>
+	<th>Status</th>
+    <th>Description</th>
+    <th>Operating system</th>
+    <th>Nodepath</th>
+    
 	<th class="actions"><?php __('Actions');?></th>
 </tr>
 <?php
@@ -26,40 +19,35 @@ foreach ($nodes as $node):
 ?>
 	<tr<?php echo $class;?>>
 		<td>
-			<?php echo $node['Node']['id']; ?>
+			<?php echo $html->image($node['Node']['status'],array('height'=>'16px')); ?>
 		</td>
-		<td>
-			<?php echo $node['Node']['nodepath']; ?>
-		</td>
-		<td>
-			<?php echo $html->link($node['Operatingsystem']['name'], array('controller'=> 'operatingsystems', 'action'=>'view', $node['Operatingsystem']['id'])); ?>
-		</td>
-		<td>
+        <td>
 			<?php echo $node['Node']['description']; ?>
 		</td>
-		<td>
-			<?php echo $node['Node']['network_drive']; ?>
+        <td>
+			<?php echo $node['Operatingsystem']['name']; ?>
 		</td>
+        <td>
+			<?php echo $node['Node']['nodepath']; ?>
+		</td>
+		
+		
+		
 		<td class="actions">
-			<?php echo $html->link(__('View', true), array('action'=>'view', $node['Node']['id'])); ?>
-			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $node['Node']['id'])); ?>
+			<?php echo $ajax->link(__('View', true), array('action'=>'view', $node['Node']['id']), array('update'=>'Main')); ?>
+			<?php echo $ajax->link(__('Edit', true), array('action'=>'edit', $node['Node']['id']), array('update'=>'Main')); ?>
 			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $node['Node']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $node['Node']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
 </table>
 </div>
-<div class="paging">
-	<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
- | 	<?php echo $paginator->numbers();?>
-	<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?>
-</div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('New Node', true), array('action'=>'add')); ?></li>
-		<li><?php echo $html->link(__('List Operatingsystems', true), array('controller'=> 'operatingsystems', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Operatingsystem', true), array('controller'=> 'operatingsystems', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->link(__('List Browsers', true), array('controller'=> 'browsers', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New Browser', true), array('controller'=> 'browsers', 'action'=>'add')); ?> </li>
+		<li><?php echo $ajax->link(__('New Node', true), array('action'=>'add'), array('update'=>'Main')); ?></li>
+		<!-- Outcommented because we need to figure out how to maintain all the combinations, when adding/deleting
+        <li><?php echo $ajax->link(__('Manage Operating Systems', true), array('controller'=> 'operatingsystems', 'action'=>'index'), array('update'=>'Main')); ?> </li>
+		<li><?php echo $ajax->link(__('Manage Browsers', true), array('controller'=> 'browsers', 'action'=>'index'), array('update'=>'Main')); ?> </li>
+		-->
 	</ul>
 </div>

@@ -78,12 +78,17 @@ class TestcasesController extends AppController {
 			$this->Testcase->create();
 			if ($this->Testcase->save($this->data)) {
 				$this->Session->setFlash(__('The Testcase has been saved', true));
-				$this->redirect(array('action'=>'index'));
+				$this->redirect(
+    				array(
+    				    'controller'=>'requirements#/testcases',
+    				    'action' => 'edit',
+    				    $this->Testcase->id
+                    )
+                );
 			} else {
 				$this->Session->setFlash(__('The Testcase could not be saved. Please, try again.', true));
 			}
 		}
-		$requirements = $this->Testcase->Requirement->find('list');
 		$projects = $this->Testcase->Project->find('list');
 	}
 
@@ -156,11 +161,11 @@ class TestcasesController extends AppController {
 	function delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for Testcase', true));
-			$this->redirect(array('action'=>'index'));
+			$this->redirect(array('controller'=>'requirements','action'=>'index'));
 		}
 		if ($this->Testcase->del($id)) {
 			$this->Session->setFlash(__('Testcase deleted', true));
-			$this->redirect(array('action'=>'index'));
+			$this->redirect(array('controller'=>'requirements','action'=>'index'));
 		}
 	}
 

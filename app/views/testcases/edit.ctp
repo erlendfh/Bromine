@@ -1,9 +1,17 @@
 <div style='float: right;'>
 <?php
     echo $ajax->link( 
-            'Back', 
+            $html->image('tango/32x32/actions/go-previous.png').'<br />Back', 
             array( 'controller' => 'testcases', 'action' => 'view', $this->data['Testcase']['id']), 
-            array( 'update' => 'Main', 'class'=>'testcases view', 'id' => 'cancel'));
+            array( 'update' => 'Main', 'class'=>'testcases view', 'id' => 'cancel'), null, false);
+    echo "<br />";
+    echo "<br />";
+    echo $html->link( 
+            $html->image('tango/32x32/places/user-trash.png').'<br />Delete', 
+            array( 'controller' => 'testcases', 'action' => 'delete', $this->data['Testcase']['id']), 
+            array( 'class'=>'testcases delete', 'id' => 'delete'),
+            'Are you sure you want to delete this testcase?', false
+            );
 ?>
 </div>
 <div class="testcases form">

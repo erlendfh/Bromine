@@ -1,9 +1,17 @@
 <div style='float: right;'>
 <?php
     echo $ajax->link( 
-            'Back', 
+            $html->image('tango/32x32/actions/go-previous.png').'<br />Back', 
             array( 'controller' => 'requirements', 'action' => 'view', $requirement['Requirement']['id']), 
-            array( 'update' => 'Main', 'class'=>'requirements view', 'id' => 'cancel'));
+            array( 'update' => 'Main', 'class'=>'requirements view', 'id' => 'cancel'), null, false);
+    echo "<br />";
+    echo "<br />";
+    echo $html->link( 
+            $html->image('tango/32x32/places/user-trash.png').'<br />Delete', 
+            array( 'controller' => 'requirements', 'action' => 'delete', $requirement['Requirement']['id']), 
+            array( 'class'=>'requirements delete', 'id' => 'delete'),
+            'Are you sure you want to delete this requirement?', false
+            );
 ?>
 </div>
 <div class="requirements form">

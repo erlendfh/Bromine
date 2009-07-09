@@ -19,7 +19,6 @@
             echo $javascript->link('scriptaculous');
             echo $javascript->link('sortable_tree');
             echo $javascript->link('urlparser');
-            //echo $javascript->link('jquery.address-1.0');
             
         ?>
 
@@ -59,13 +58,12 @@
             if(location != window.location.toString() && Ajax.activeRequestCount == 0){
                 var anchor = getAnchor();
                 if(anchor!=false){
-                    new Ajax.Updater('Main',anchor);
+                    new Ajax.Updater('Main',anchor,{evalScripts: true});
                 }
             }
             oldlocation = window.location.toString();
             window.setTimeout("observeUrl(oldlocation)",200);
         }
-
         
         </script>
       <div id="links">
@@ -84,6 +82,7 @@
                 echo $form->input('site_id',array('selected'=>$session->read('site_id'), 'onchange'=>'submit()'));
                 echo $form->end();
             }
+
         ?>
         
       </div>

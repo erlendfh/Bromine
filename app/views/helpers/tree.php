@@ -59,7 +59,7 @@ class TreeHelper extends Helper{
             if(!empty($val['Testcase'])){
                 
                 foreach($val['Testcase'] as $testcase){
-                    $output .= "<div id='tc_".$testcase['id']."'style='clear: both;' class='tc'>";
+                    $output .= "<div id='req_".$val[$modelName]['id']."_tc_".$testcase['id']."'style='clear: both;' class='tc'>";
                     $output .= "<span class='spacer'></span>";
                     $output .= $this->Ajax->link(
                         $testcase['name'], 
@@ -67,7 +67,7 @@ class TreeHelper extends Helper{
                         array( 'update' => 'Main')
                     );
 
-                    $output .= "&nbsp;<a  class='del hide' onclick='removetc(this.up(".'"div"'."), this.up(".'"li"'."));'><img src='/img/tango/16x16/places/user-trash.png'></img></a>";
+                    //$output .= "&nbsp;<a  class='del hide' onclick='removetc(this.up(".'"div"'."), this.up(".'"li"'."));'><img src='/img/tango/16x16/places/user-trash.png'></img></a>";
                     $output .= "</div>";
                 }
   

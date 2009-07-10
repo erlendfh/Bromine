@@ -1,5 +1,5 @@
 /*
- * Format for Selenium Remote Control Java client.
+ * Format for Selenium Remote Control Java client using Bromine.
  */
 
 load('remoteControl.js');
@@ -159,6 +159,9 @@ this.options = {
 
 options.header =
 	"\n" +
+        "import java.io.PrintWriter;\n"+
+        "import java.io.StringWriter;\n" +
+        "import bromine.brunit.BRUnit;\n" +
     "public class TestNew extends BRUnit {\n" + 
     "\tpublic void ${methodName}() throws Exception {\n";
 
@@ -177,7 +180,12 @@ options.footer =
 	"\t\t\tt.setUp(host, port, brows2, sitetotest, uid, tid);\n" +               
         "\t\t\ttry{\n" +
         "\t\t\t\tt.testNew();\n" +
-        "\t\t\t}catch(Exception e){}\n" +
+        "\t\t\t}catch(Exception e){\n"+
+        "\t\t\t\tStringWriter sw = new StringWriter();\n" +
+        "\t\t\t\tPrintWriter pw = new PrintWriter(sw);\n" +
+        "\t\t\t\te.printStackTrace(pw);\n" +
+        '\t\t\t\tt.customCommand("An Exception occured in the test", "failed", sw.toString() , "");\n'+
+        "\t\t\t}\n" +
 	"\t\t\tt.tearDown();\n" +
 	"\t\t}\n" +
 	"\t\tcatch(Exception e){\n" +

@@ -8,8 +8,9 @@
                             'update' => 'Main'
                         )
                     );
-                    
-        echo $html->link($testcase['Testcase']['name'],'#',array('onclick'=>$link));
+        $fullname = $testcase['Testcase']['name'];
+        $name = (strlen($fullname)>20 ? substr($fullname,0,20).'...' : $fullname);
+        echo $html->link($name,'#',array('onclick'=>$link, 'title'=>$fullname));
         //echo "<a href='#' class='del' onclick='removetc(this.up(".'"div"'."), this.up(".'"li"'."));'><img src='/img/tango/16x16/places/user-trash.png'></img></a>";
         echo "</div>";
         ?>

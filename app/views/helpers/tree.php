@@ -46,10 +46,13 @@ class TreeHelper extends Helper{
             }else{ //output a empty span to align things correctly
                 $output .= "<span class='spacer'></span>";
             }
+            $fullname = $val[$modelName][$fieldName];
+            $name = (strlen($fullname)>20 ? substr($fullname,0,20).'...' : $fullname);
+            
             $output .= $this->Ajax->link(
-                $val[$modelName][$fieldName], 
+                $name, 
                 array( 'controller' => 'requirements', 'action' => 'view', $val[$modelName]['id']), 
-                array( 'update' => 'Main', 'class'=>'reqhandle')
+                array( 'update' => 'Main', 'class'=>'reqhandle', 'title'=>$fullname)
             );
             
             
@@ -61,10 +64,13 @@ class TreeHelper extends Helper{
                 foreach($val['Testcase'] as $testcase){
                     $output .= "<div id='req_".$val[$modelName]['id']."_tc_".$testcase['id']."'style='clear: both;' class='tc'>";
                     $output .= "<span class='spacer'></span>";
+                    $fullname = $testcase['name'];
+                    $name = (strlen($fullname)>20 ? substr($fullname,0,20).'...' : $fullname);
+                    
                     $output .= $this->Ajax->link(
-                        $testcase['name'], 
+                        $name, 
                         array( 'controller' => 'testcases', 'action' => 'view', $testcase['id']), 
-                        array( 'update' => 'Main')
+                        array( 'update' => 'Main', 'title'=>$fullname)
                     );
 
                     //$output .= "&nbsp;<a  class='del hide' onclick='removetc(this.up(".'"div"'."), this.up(".'"li"'."));'><img src='/img/tango/16x16/places/user-trash.png'></img></a>";

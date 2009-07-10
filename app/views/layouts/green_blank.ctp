@@ -4,6 +4,7 @@
         <?php echo $html->charset(); ?>
         <title>
             <?php echo $title_for_layout; ?>
+            
         </title>
         <?php
     		echo $html->meta('icon');

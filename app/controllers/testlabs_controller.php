@@ -32,8 +32,8 @@ class TestlabsController extends AppController {
         
         $sites=$this->Project->Site->find('list', array('conditions' => array('project_id'=>$this->Session->read('project_id'))));
         $this->set('sites',$sites);
-
-        if(!$this->Session->check('site_id')){
+        
+        if(!$this->Session->check('site_id') || ($this->Session->check('site_id') && !in_array($this->Session->read('site_id'),$sites))){
             $this->Session->write('site_id',key($sites));
         }
 		

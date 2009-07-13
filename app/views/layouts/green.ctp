@@ -69,7 +69,6 @@
         </script>
       <div id="links">
         <?php
-            //pr($session->read('site_id'));
             if(!empty($usersprojects)){
                 echo $form->create('Project',array('action' => 'select'));
                 foreach($usersprojects as $project){
@@ -141,8 +140,5 @@
     <?php echo $cakeDebug; ?>
     </div>
   </div>
-    
-    
-    
 </body>
 </html>

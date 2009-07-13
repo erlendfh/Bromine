@@ -1,1 +1,0 @@
-ant -Dport=5555 -Denvironment=*chrome launch-remote-control

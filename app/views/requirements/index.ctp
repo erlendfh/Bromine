@@ -197,7 +197,7 @@
             }
             
         </script>
-        <fieldset style='padding: 4px; height: 45px; width: 130px;'>
+        <fieldset style='padding: 4px; width: 130px;'>
             <legend>Options</legend>
             <div>
                 <a href="#" id="enablereqlink" onclick="dragdroptoggle(tree); Effect.toggle('dragdropmsg');">Manage requirements</a>

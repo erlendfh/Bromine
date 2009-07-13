@@ -13,11 +13,14 @@ class ProjectsController extends AppController {
         $this->StdFuncs->view($id);
 	}
 	function testlabsview($id = null) {
+	   if($id == null && $this->Session->check('project_id')){
+	        $id = $this->Session->read('project_id');
+       }
         $this->StdFuncs->view($id);
         
         $this->Project->Requirement->Behaviors->attach('Containable');
         $requirements = $this->Project->Requirement->find('all',array(
-            'condtions'=>array(
+            'conditions'=>array(
                 'project_id' => $id
             ),
             'contain'=> array(

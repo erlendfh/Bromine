@@ -9,29 +9,6 @@ class TestcasesController extends AppController {
 		$this->set('testcases', $this->paginate(null, array('Project.id' => $this->Session->read('project_id'))));
 	}
 	
-	function addToJira($testcase_id, $test_id, $requirement_id){
-        $this->layout = 'green_blank';
-        //pr($this->Testcase->Test->read(null,$test_id));
-        //pr($this->Testcase->Requirement->read(null,$requirement_id));
-        $lb = '';
-        
-        $data1 = $this->Testcase->Test->read(null,$test_id);
-        $data2 = $this->Testcase->Requirement->read(null,$requirement_id);  
-        $failedCommands = "";
-        $output = 'jira --action createIssue --project Bromine --summary test244 --type bug --affectsVersions "2.0" --components MyAcl --environment "Vista FF3" --priority minor --autoVersion';
-        foreach ($data1['Command'] as $command){
-            if ($command['status'] == 'failed'){
-                $failedCommands .= $command['action'] . " has failed. Params: var1 = '".$command['var1']."' and var2 = '".$command['var2']."' $lb";
-            }
-        }
-        $output .= " --description \"This is an auto-generated jira issue from Bromine $lb**************************************************************$lb 
-        Bromine project: ".$data2['Project']['name']."(id = ".$data2['Project']['id'].")$lb Requirement: ".$data2['Requirement']['name']."(id = ".$data2['Requirement']['id'].")$lb Testcase: ".$data1['Testcase']['name']." (id = ".$data1['Testcase']['id'].")$lb Testcase.description: ".$data1['Testcase']['description']."$lb Browser: ".$data1['Browser']['name']."(".$data1['Browser']['path'].")$lb Operatingsystem: ".$data1['Operatingsystem']['name']."$lb Commands that failed:$lb $failedCommands\"";
-            
-        
-        echo $output;
-            
-    }
-	
 	function lilist($search=null) {
 
         $conditions = array('Project.id' => $this->Session->read('project_id'));

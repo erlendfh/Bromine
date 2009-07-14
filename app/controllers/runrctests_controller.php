@@ -448,5 +448,27 @@ class RunrctestsController  extends AppController {
         return false;
     }
     
+    function stateOfTheSystem(){
+        
+        $state = array();
+    
+        exec('java -version', $output, $java_return);
+        $state['Java'] = $java_return;
+        
+        exec('ruby -v', $output, $ruby_return);
+        $state['Ruby'] = $ruby_return;
+        
+        exec('php --version', $output, $php_return);
+        $state['Php'] = $php_return;
+        
+        $mq_return = get_magic_quotes_gpc();
+        $state['Magic Quotes'] = $mq_return;
+        
+        $max_exec_time = ini_get('max_execution_time');
+        $state['Max execution time'] = $max_exec_time;
+        
+        $this->set('state',$state);
+    }
+    
 }
 ?>

@@ -52,7 +52,7 @@ class ProjectsController extends AppController {
 	}
 	
 	function add() {
-		$this->StdFuncs->add(array('User'));
+		$this->StdFuncs->add();
 	}
 	
 	function edit($id = null) {

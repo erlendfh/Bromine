@@ -11,8 +11,10 @@
 		<dd>
 			<table>
             	<tr>
-            	   <th style='width: 50%;'>Operating system</th>
-            	   <th style='width: 50%;'>Browser</th>
+            	   <th style='width: 10%;'>Se test run</th>
+            	   <th style='width: 10%;'>Add to jira</th>
+            	   <th style='width: 40%;'>Operating system</th>
+            	   <th style='width: 40%;'>Browser</th>
             	   <th>Results</th>
             	</tr>
             	<?php
@@ -21,6 +23,15 @@
                         $status = $combination['Result']['Test']['status'];
                         if(empty($status)){$status = 'notdone';} 
                         echo "<tr class='$status'>";
+                        if ($status != 'notdone'){
+                            echo "<td><a onclick='return Popup.open({url:this.href});' href='tests/view/".$combination['Result']['Test']['id']."'><img src='img/tango/32x32/mimetypes/x-office-spreadsheet.png' alt='Test run link icon'/></a></td>";
+                            //echo "<td><a href='tests/view/".$combination['Result']['Test']['id']."'><img src='img/tango/32x32/status/software-update-available.png' alt='Test run link icon'/></a></td>";
+                            echo "<td><a onclick='return Popup.open({url:this.href});' href='testcases/addToJira/".$combination['Result']['Test']['testcase_id']."/".$combination['Result']['Test']['id']."/".$combination['CombinationsRequirement']['requirement_id']."'><img alt='' src='img/tango/32x32/status/software-update-available.png'/></a></td>";
+                        }else{
+                            echo "<td></td>";
+                            echo "<td></td>";
+                        }
+                        
                         echo "<td>".$combination['Operatingsystem']['name']."</td>";
                         echo "<td>".$combination['Browser']['name']."</td>";
                         echo "<td>";
@@ -60,3 +71,6 @@
         </dd>
     </dl>
 </div>
+<?php
+pr($combinations);
+?>

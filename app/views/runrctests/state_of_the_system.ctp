@@ -7,6 +7,7 @@
     </tr>
 <?php
 
+
 foreach ($state as $key=>$value) {
     echo "<tr>";
     
@@ -14,6 +15,7 @@ foreach ($state as $key=>$value) {
         echo "<td>$key</td>";
         if ($value == 0){
             echo "<td>".$html->image('passed.png',array('height'=>'16px', 'alt' => 'passed'))."</td>";
+            echo "<td>".$output['Java']."</td>";
         }else{
             echo "<td>".$html->image('warning.png',array('height'=>'16px', 'alt' => 'warning'))."</td>";
             echo "<td> You are not able to run Java testscripts, add Java bin directory to your classpath variable </td>";
@@ -25,6 +27,7 @@ foreach ($state as $key=>$value) {
         if ($value == 0){
 
             echo "<td>".$html->image('passed.png',array('height'=>'16px', 'alt' => 'passed'))."</td>";
+            echo "<td>".$output['Php']."</td>";
         }else{
 
             echo "<td>".$html->image('warning.png',array('height'=>'16px', 'alt' => 'warning'))."</td>";
@@ -37,6 +40,7 @@ foreach ($state as $key=>$value) {
         if ($value == 0){
 
             echo "<td>".$html->image('passed.png',array('height'=>'16px', 'alt' => 'passed'))."</td>";
+            echo "<td>".$output['Ruby']."</td>";
         }else{
             
             echo "<td>".$html->image('warning.png',array('height'=>'16px', 'alt' => 'warning'))."</td>";

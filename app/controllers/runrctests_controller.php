@@ -451,23 +451,36 @@ class RunrctestsController  extends AppController {
     function stateOfTheSystem(){
         
         $state = array();
-    
-        exec('java -version', $output, $java_return);
+        $output = array();
+        
+        // Test for Java
+        exec('java -showversion', $java_output, $java_return);
         $state['Java'] = $java_return;
+        $output['Java'] = implode(",", $java_output);
         
-        exec('ruby -v', $output, $ruby_return);
+        // Test for Ruby
+        exec('ruby -v', $ruby_output, $ruby_return);
         $state['Ruby'] = $ruby_return;
+        $output['Ruby'] = implode(",", $ruby_output);
         
-        exec('php --version', $output, $php_return);
+        // Test for PHP
+        exec('php --version', $php_output, $php_return);
         $state['Php'] = $php_return;
+        $output['Php'] = implode(",", $php_output);
         
+        // Test for Magic Quotes
         $mq_return = get_magic_quotes_gpc();
         $state['Magic Quotes'] = $mq_return;
         
+        // Test for Max execution time
         $max_exec_time = ini_get('max_execution_time');
         $state['Max execution time'] = $max_exec_time;
         
+        // Set the arrays for the viewer
         $this->set('state',$state);
+        $this->set('output',$output);
+        
+        
     }
     
 }

@@ -50,6 +50,10 @@ class Requirement extends AppModel {
         return $status;
     }
     
+    /*function beforeDelete{
+        
+    }*/
+    
 
 	var $name = 'Requirement';
 

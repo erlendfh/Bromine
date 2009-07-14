@@ -1,3 +1,4 @@
+<h1>State of the System</h1>
 <table>
     <tr>
         <th>Condition</th>

@@ -9,6 +9,7 @@
 		<dt><?php __('Run requirement'); ?></dt>
 		<dd>
 			<?php
+			     
                 $onlineCombinations = array();
                 foreach($onlineNodes as $onlineNode){
                     foreach($onlineNode['Browser'] as $browser){

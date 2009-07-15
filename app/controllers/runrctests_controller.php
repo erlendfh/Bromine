@@ -499,6 +499,7 @@ class RunrctestsController  extends AppController {
         $this->Type = new Type();
         $extList = $this->Type->find('list', array('fields' => array('Type.extension')));
         
+        $state['Permissions'] = true;
         foreach ($extList as $value) {
         	if(!is_writeable("testscripts/".$this->Session->read('project_name')."/".$value)){
                 $state['Permissions'] = false;

@@ -38,6 +38,15 @@
  * @subpackage	cake.cake.libs.model
  */
 class AppModel extends Model {
+    var $time;
+    
+    function tic(){
+        $this->time = microtime(true);
+    }
+    
+    function toc($msg=null){
+        pr($msg.' '.(microtime(true) - $this->time));
+    }
 
     function beforeFind2($queryData){
         

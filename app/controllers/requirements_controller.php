@@ -125,12 +125,15 @@ class RequirementsController extends AppController {
 	}
 	
 	function testlabview($id = null) {
+        
+        
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid Requirement.', true));
 			$this->redirect(array('action'=>'index'));
 		}
         //$this->Requirement->recursive = 2;
 		//$requirements = $this->Requirement->find("Requirement.id=$id");
+
 		$this->Requirement->Behaviors->attach('Containable');
 		$requirements = $this->Requirement->find('first', array(
             'conditions'=>array(
@@ -144,8 +147,7 @@ class RequirementsController extends AppController {
         		'Testcase'
         	)
         ));
-    
-    
+
         foreach ($requirements['Combination'] as &$combination){
             foreach ($requirements['Testcase'] as $testcase){
                 $combination['tc'.$testcase['id']]['status'] = $this->Requirement->Testcase->Test->getStatus($testcase['id'], $combination['Operatingsystem']['id'], $combination['Browser']['id']);
@@ -154,6 +156,7 @@ class RequirementsController extends AppController {
 
         App::import('Model','Node');
         $this->Node = new Node();
+        $this->Node->recursive = -1;
         $nodes = $this->Node->find('all');
         $onlineNodes = array();
         foreach($nodes as &$node){
@@ -161,7 +164,7 @@ class RequirementsController extends AppController {
                 $onlineNodes[] = $node;
             }
         }
-        
+
         $this->set('nodes', $nodes);
         $this->set('onlineNodes', $onlineNodes);
 		$this->set('requirement', $requirements);

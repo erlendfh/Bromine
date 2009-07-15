@@ -45,6 +45,7 @@ class AppController extends Controller {
     var $main_menu_id = -1;
     var $debugmode = true;
     var $echelon = false;
+    var $time;
     
     function setFlash($msg,$key){
         $_SESSION['Message'][$key][]=$msg;
@@ -61,8 +62,17 @@ class AppController extends Controller {
         fclose($fp);
     }
     
+    function tic(){
+        $this->time = microtime(true);
+    }
+    
+    function toc($msg=null){
+        pr($msg.' '.(microtime(true) - $this->time));
+    }
+    
     
     function beforeFilter() {
+
         if($this->echelon){
             $this->echelon($this->Auth->user('name').' requested '.print_r($this->params['url']['url'],true));
         }

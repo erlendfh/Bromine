@@ -3,6 +3,7 @@ class Test extends AppModel {
     var $site_id;
     
     function getLastInCombination($testcase_id, $os_id, $browser_id){
+        $this->Behaviors->attach('Containable');
         $opts = array(
             'conditions' => array(
                 'Testcase.id' => $testcase_id,
@@ -10,24 +11,43 @@ class Test extends AppModel {
                 'Operatingsystem.id' => $os_id,
                 'Browser.id' => $browser_id
             ),
-            'order' => 'Test.id DESC'
+            'order' => 'Test.id DESC',
+            'contain'=>array(
+            		'Browser',
+            		'Operatingsystem',
+            		//'Command', takes alot of time
+            		'Testcase',
+            		'Suite'
+            	)
         );
+
         $test = $this->find('first', $opts);
+
         if(!empty($test)){
-            if($test['Test']['status']=='' && !empty($test['Command'])){ //If no status set for the test, find one by looking at commands
+            if($test['Test']['status']==''){ //If no status set for the test, find one by looking at commands
                 $status = 'failed'; //Assume test failed and try to prove otherwise
-                $opts = array(
+                $opts1 = array(
+                    'conditions' => array(
+                        'Test.id' => $test['Test']['id']
+                    )
+                );
+                $opts2 = array(
                     'conditions' => array(
                         'Test.id' => $test['Test']['id'],
                         'Command.status' => 'failed'
                     )
-                ); 
-                if($this->Command->find('count',$opts)==0){ //If no failed commands, set status to passed
-                    $status = 'passed';
+                );
+                if($this->Command->find('count',$opts1)>0){  
+                    if($this->Command->find('count',$opts2)==0){ //If no failed commands, set status to passed
+                        $status = 'passed';
+                    }
+                }else{ //If no commands
+                    $status = 'notdone';
                 }
                 $test['Test']['status'] = $status; //Update status
             }
         }
+
         return $test;
     }
     

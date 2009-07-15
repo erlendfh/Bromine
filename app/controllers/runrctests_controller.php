@@ -423,16 +423,16 @@ class RunrctestsController  extends AppController {
     }
     
     
-    private function execute($cmd, $uid) {
+    public function execute($cmd, $uid) {
         $this->log("Executing: $cmd");
         
         if (substr(php_uname(), 0, 7) == "Windows"){ //Windows
-            $this->log('Output printed to logs/output/'.$uid.'txt');
+            $this->log('Output printed to logs/output'.$uid.'txt');
             $this->log(pclose(popen("start /B ". $cmd . ' > logs/output' . $uid . '.txt', "r"))); 
             
         }
         else { //Unix. NEVER TESTED IN UNIX
-            exec($cmd . " > ".WWW_ROOT.'logs'.DS."output$uid.txt &");  
+            exec($cmd . " > logs".DS."output$uid.txt &");  
         }
     }
 

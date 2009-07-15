@@ -474,7 +474,7 @@ class RunrctestsController  extends AppController {
         
         $state = array();
         $output = array();
-        
+        $state['Permissions output'] = "";
         //pr($this->directoryToArray('testscripts/eniro/',true));
         
         // Test for Java
@@ -502,13 +502,21 @@ class RunrctestsController  extends AppController {
         
         // Test for filepermissions
         //echo getcwd();
-        $permission1 = is_writeable('testscripts');
         $permission2 = is_writeable("testscripts/".$this->Session->read('project_name'));
         $permission3 = is_writeable("logs");
         $permission4 = is_writeable("img/temp");
         
-        $state['Testscript dir'] = $permission1;
-        $state['Current project dir'] = $permission2;
+        App::import('Model','Type');
+        $this->Type = new Type();
+        $extList = $this->Type->find('list', array('fields' => array('Type.extension')));
+        
+        foreach ($extList as $value) {
+        	if(!is_writeable("testscripts/".$this->Session->read('project_name')."/".$value)){
+                $state['Permissions'] = false;
+                $state['Permissions output'] = $state['Permissions output'] . ", testscripts/".$this->Session->read('project_name')."/".$value;
+            }
+        }
+        
         $state['Logs dir'] = $permission3;
         $state['Img/temp dir'] = $permission4;
         $this->set('current_project',$this->Session->read('project_name'));

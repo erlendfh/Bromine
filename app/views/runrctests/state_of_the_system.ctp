@@ -73,30 +73,17 @@ foreach ($state as $key=>$value) {
             echo "<td> Max execution time should be larger or equal then 60000 miliseconds! Yours is set to:".ini_get('max_execution_time')."</td>";
         }
     }
-
-    if ($key == 'Testscript dir'){
+    
+    if ($key == 'Permissions'){
         echo "<td>$key</td>";
         if ($value == true){
             
             echo "<td>".$html->image('passed.png',array('height'=>'16px', 'alt' => 'passed'))."</td>";
-            echo "<td>Testscript dir is writeable</td>";
+            echo "<td>Project dirs are writeable</td>";
         }else{
             
             echo "<td>".$html->image('failed.png',array('height'=>'16px', 'alt' => 'failed'))."</td>";
-            echo "<td>Testscript dir is NOT writeable</td>";
-        }
-    }
-
-    if ($key == 'Current project dir'){
-        echo "<td>$key</td>";
-        if ($value == true){
-            
-            echo "<td>".$html->image('passed.png',array('height'=>'16px', 'alt' => 'passed'))."</td>";
-            echo "<td>Current project '$current_project' dir is writeable</td>";
-        }else{
-            
-            echo "<td>".$html->image('failed.png',array('height'=>'16px', 'alt' => 'failed'))."</td>";
-            echo "<td>Current project '$current_project' dir is NOT writeable</td>";
+            echo "<td>Project dirs are NOT writeable: ".$state['Permissions output']."</td>";
         }
     }
 

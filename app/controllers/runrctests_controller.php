@@ -448,13 +448,37 @@ class RunrctestsController  extends AppController {
         return false;
     }
     
+    function directoryToArray($directory, $recursive) {
+    	$array_items = array();
+    	if ($handle = opendir($directory)) {
+    		while (false !== ($file = readdir($handle))) {
+    			if ($file != "." && $file != ".." ) {
+    				if (is_dir($directory. "/" . $file)) {
+    					if($recursive) {
+    						$array_items = array_merge($array_items, $this->directoryToArray($directory. "/" . $file, $recursive));
+    					}
+    					$file = $directory . "/" . $file;
+    					$array_items[] = preg_replace("/\/\//si", "/", $file);
+    				} else {
+    					$file = $directory . "/" . $file;
+    					$array_items[] = preg_replace("/\/\//si", "/", $file);
+    				}
+    			}
+    		}
+    		closedir($handle);
+    	}
+    	return $array_items;
+    }
+    
     function stateOfTheSystem(){
         
         $state = array();
         $output = array();
         
+        //pr($this->directoryToArray('testscripts/eniro/',true));
+        
         // Test for Java
-        exec('java -showversion', $java_output, $java_return);
+        exec('java -version', $java_output, $java_return);
         $state['Java'] = $java_return;
         $output['Java'] = implode(",", $java_output);
         
@@ -475,6 +499,20 @@ class RunrctestsController  extends AppController {
         // Test for Max execution time
         $max_exec_time = ini_get('max_execution_time');
         $state['Max execution time'] = $max_exec_time;
+        
+        // Test for filepermissions
+        //echo getcwd();
+        $permission1 = is_writeable('testscripts');
+        $permission2 = is_writeable("testscripts/".$this->Session->read('project_name'));
+        $permission3 = is_writeable("logs");
+        $permission4 = is_writeable("img/temp");
+        
+        $state['Testscript dir'] = $permission1;
+        $state['Current project dir'] = $permission2;
+        $state['Logs dir'] = $permission3;
+        $state['Img/temp dir'] = $permission4;
+        $this->set('current_project',$this->Session->read('project_name'));
+        
         
         // Set the arrays for the viewer
         $this->set('state',$state);

@@ -156,7 +156,6 @@ class RequirementsController extends AppController {
 
         App::import('Model','Node');
         $this->Node = new Node();
-        $this->Node->recursive = -1;
         $nodes = $this->Node->find('all');
         $onlineNodes = array();
         foreach($nodes as &$node){

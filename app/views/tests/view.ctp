@@ -36,7 +36,7 @@
             <?php endif; ?>
 		</dd>
 		<?php
-            $filename = WWW_ROOT.DS.'logs'.DS.'output'.$test['Seleniumserver']['uid'].'.txt';
+            $filename = WWW_ROOT.'logs'.DS.'output'.$test['Seleniumserver']['uid'].'.txt';
             $log = file_get_contents($filename);
             if(!empty($log)){
                 echo "<dt>Notice</dt>";

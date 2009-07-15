@@ -11,7 +11,7 @@
                 echo "</tr>";
             }
             echo "</table>";
-            $filename = WWW_ROOT.DS.'logs'.DS.'output'.$test['Seleniumserver']['uid'].'.txt';
+            $filename = WWW_ROOT.'logs'.DS.'output'.$test['Seleniumserver']['uid'].'.txt';
             $log = file_get_contents($filename);
             if(!empty($log)){
                 echo "<pre><p class='notice'>Notice: $log</p></pre>";

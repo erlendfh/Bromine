@@ -432,7 +432,7 @@ class RunrctestsController  extends AppController {
             
         }
         else { //Unix. NEVER TESTED IN UNIX
-            exec($cmd . " > /dev/null &");  
+            exec($cmd . " > ".WWW_ROOT.'logs'.DS."output$uid.txt &");  
         }
     }
 

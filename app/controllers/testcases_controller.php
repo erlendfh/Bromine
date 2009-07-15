@@ -16,7 +16,7 @@ class TestcasesController extends AppController {
             $conditions['Testcase.name  LIKE'] = $this->data['tcsearch']."%";
         }
 		$this->Testcase->recursive = 0;
-		$this->set('testcases', $this->Testcase->find('all',array('conditions'=>$conditions)));
+		$this->set('testcases', $this->Testcase->find('all',array('conditions'=>$conditions,'order'=>'Testcase.name asc')));
 	}
 
 

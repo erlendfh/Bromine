@@ -15,6 +15,6 @@ if(!empty($offlineNeeds)){
 <script type="text/javascript">
 <?php
     echo "new Ajax.Request('/runrctests/runRequirement/$requirement_id/$suite_id');";
-    echo "new Ajax.PeriodicalUpdater('results', '/runrctests/status/$suite_id', {method: 'get', frequency: 0.5, decay: 2});";
+    echo "new Ajax.PeriodicalUpdater('results', '/suites/view/$suite_id', {method: 'get', frequency: 0.5, decay: 2});";
 ?>
 </script>

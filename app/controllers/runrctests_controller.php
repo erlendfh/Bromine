@@ -9,7 +9,8 @@ class RunrctestsController  extends AppController {
     var $loopLimit = 10000; //Set to -1 for infinite
     var $timeout = 45;
     
-	function gridLauncher($suite_id=0, $tests=array()){
+    /*
+	function gridLauncher($suite_id=0, $tests=array()){ //Depreceated
         //gridLauncer replaces loadBalancer. 
         //gridLauncher just executes all the tests and send them to the grid hub
         //loadBalancer is BR's own grid-alike function that only sends the tests to the nodes when they are ready
@@ -37,8 +38,9 @@ class RunrctestsController  extends AppController {
             }
         }
     }
+    */
     
-    private function nodes_running($nodes){
+    private function nodes_running($nodes){ //Used in the while loop to determine if there is still nodes running tests 
         foreach($nodes as $node){
             if(!empty($node['Node']['running']))
                 return true;
@@ -94,6 +96,19 @@ class RunrctestsController  extends AppController {
         }
     }
     
+    private function getFileExt($id){
+        App::import('Model','Type');
+        $this->Type = new Type();
+        $extList = $this->Type->find('list', array('fields' => array('Type.extension')));
+        foreach($extList as $ext){
+            $file = WWW_ROOT.DS.'testscripts'.DS.$this->Session->read('project_name').DS.$ext.DS.$id.".$ext";
+            if(file_exists($file)){
+                return $ext;
+            }
+        }
+        return false;
+    }
+    
     function getAvailableNodes($nodes, $OS_id, $browser_id){
         $availableNodes=array();
         foreach($nodes as $k=>$node){
@@ -101,7 +116,6 @@ class RunrctestsController  extends AppController {
                 $availableNodes[$k]=$node;
             }
         }
-        
         return $availableNodes;
     }
     
@@ -188,13 +202,6 @@ class RunrctestsController  extends AppController {
         $this->loadBalancer($suite_id,$tests);
     }
     
-    function status($suite_id){    
-        App::import('Model','Suite');
-        $this->Suite = new Suite();
-        $this->Suite->recursive = 2;
-        $this->set('Suite',$this->Suite->find("Suite.id = $suite_id"));
-    }
-    
     function runAndViewRequirement($requirement_id){ //Sets up the suite, returns suite_id
         $this->layout = "green_blank";
         $this->set('requirement_id', $requirement_id);
@@ -251,7 +258,7 @@ class RunrctestsController  extends AppController {
         $this->set('offlineNeeds',$offlineNeeds);
     }
 
-    function runRequirement($requirement_id, $suite_id){
+    function runRequirement($requirement_id, $suite_id){ //Sorts out offline needs, sets up tests array, calls loadBalancer
         App::import('Model','Requirement');
         $this->Requirement = new Requirement();
         $this->Requirement->Behaviors->attach('Containable');
@@ -304,9 +311,7 @@ class RunrctestsController  extends AppController {
     }
     
     function loadBalancer($suite_id=0, $tests=array()){
-        //loadBalancer replaces gridLauncer. 
-        //gridLauncher just executes all the tests and send them to the grid hub
-        //loadBalancer is BR's own grid-alike function that only sends the tests to the nodes when they are ready
+        //loadBalancer is BR's own grid-alike function that sends the tests to the nodes when they are ready
         
         session_write_close(); //Needed for avoiding race conditions even when using ajax
         $this->log("loadBalancer was called with tests = ".print_r($tests,true).", suite_id = $suite_id");
@@ -366,7 +371,7 @@ class RunrctestsController  extends AppController {
         }
     }
 	
-    function run($testName, $nodePath, $OS_id, $port, $browser_id, $siteToTest, $suite_id, $uid){
+    function run($testName, $nodePath, $OS_id, $port, $browser_id, $siteToTest, $suite_id, $uid){//Sets up the selenium-server in the DB, puts together the command line string 
         
         //Setup the test in the DB
         App::import('Model','Test');
@@ -400,11 +405,7 @@ class RunrctestsController  extends AppController {
         $this->types = $this->typemodel->find("extension = '$extension'");
         $name = $this->types['Type']['name'];
         $spacer = $this->types['Type']['spacer'];
-        //$extension = $this->types['Type']['extension'];
         $command = $this->types['Type']['command'];
-        
-        
-        
         
         //Find the browser path
         App::import('Model','Browser');
@@ -434,19 +435,7 @@ class RunrctestsController  extends AppController {
             exec($cmd . " > /dev/null &");  
         }
     }
-    
-    private function getFileExt($id){
-        App::import('Model','Type');
-        $this->Type = new Type();
-        $extList = $this->Type->find('list', array('fields' => array('Type.extension')));
-        foreach($extList as $ext){
-            $file = WWW_ROOT.DS.'testscripts'.DS.$this->Session->read('project_name').DS.$ext.DS.$id.".$ext";
-            if(file_exists($file)){
-                return $ext;
-            }
-        }
-        return false;
-    }
+
     
     function directoryToArray($directory, $recursive) {
     	$array_items = array();

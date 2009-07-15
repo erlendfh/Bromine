@@ -11,11 +11,12 @@ class SuitesController extends AppController {
 	}
 
 	function view($id = null) {
+	   $this->Suite->recursive = 2;
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid Suite.', true));
 			$this->redirect(array('action'=>'index'));
 		}
-		$this->set('suite', $this->Suite->read(null, $id));
+		$this->set('Suite', $this->Suite->read(null, $id));
 	}
 
 	function add() {

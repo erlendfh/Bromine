@@ -44,6 +44,7 @@ class AppController extends Controller {
     var $layout = 'green';
     var $main_menu_id = -1;
     var $debugmode = true;
+    var $echelon = false;
     
     function setFlash($msg,$key){
         $_SESSION['Message'][$key][]=$msg;
@@ -54,8 +55,18 @@ class AppController extends Controller {
         $_SESSION['Message'] = '';
     }
     
+    private function echelon($msg){
+        $fp = fopen('logs/echelon.txt','a');
+        fwrite($fp, date('l jS \of F Y h:i:s A'). ': ' . $msg."\n");
+        fclose($fp);
+    }
+    
     
     function beforeFilter() {
+        if($this->echelon){
+            $this->echelon($this->Auth->user('name').' requested '.print_r($this->params['url']['url'],true));
+        }
+        
         App::import('Model','Project');
         $this->Project = new Project();
         $user=$this->Auth->user('id');
@@ -71,8 +82,6 @@ class AppController extends Controller {
             $this->set('usersprojects',$usersprojects);
         }
 
-        
-        
         $this->Auth->fields  = array(
             'username'=>'name',
             'password' =>'password'

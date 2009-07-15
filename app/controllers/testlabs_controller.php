@@ -37,7 +37,18 @@ class TestlabsController extends AppController {
             $this->Session->write('site_id',key($sites));
         }
 		
-        $requirements = $this->Requirement->find('threaded', array('conditions' => array('Project.id'=>$this->Session->read('project_id'))));
+        $this->Requirement->Behaviors->attach('Containable');
+		$requirements = $this->Requirement->find('threaded', 
+            array(
+                'conditions' => array('Project.id'=>$this->Session->read('project_id')),
+                'contain'=>array(
+            		'Testcase'=>array(
+                        'order' => 'Testcase.name'
+                    ),
+            		'Project'
+            		)
+            	)
+        );
         
         foreach($requirements as &$requirement){
             $requirement['Requirement']['status'] = $this->Requirement->getStatus($requirement['Requirement']['id']);

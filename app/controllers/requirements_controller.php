@@ -79,8 +79,19 @@ class RequirementsController extends AppController {
 	function index() {
 	   
 		$this->Requirement->recursive = 1;
-		//pr($this->Requirement->find('threaded'));
-		$this->set('data',$this->Requirement->find('threaded', array('conditions' => array('Project.id'=>$this->Session->read('project_id')))));
+		$this->Requirement->Behaviors->attach('Containable');
+		$this->set('data',$this->Requirement->find('threaded', 
+            array(
+                'conditions' => array('Project.id'=>$this->Session->read('project_id')),
+                
+                'contain'=>array(
+            		'Testcase'=>array(
+                        'order' => 'Testcase.name'
+                    ),
+            		'Project'
+            		)
+            	)
+        ));
 		//$this->set('data',$this->Requirement->find('all',array('conditions' => array('Requirement.project_id' => $this->Session->read('project_id')))));
 		//$this->set('requirements', $this->paginate(null, array('project.id' => $this->Session->read('project_id'))));
 		

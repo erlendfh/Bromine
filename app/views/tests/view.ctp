@@ -8,12 +8,12 @@
 		</dd>
 		<dt><?php __('Browser'); ?></dt>
 		<dd>
-			<?php echo $html->link($test['Browser']['name'], array('controller'=> 'browsers', 'action'=>'view', $test['Browser']['id'])); ?>
+			<?php echo $test['Browser']['name']; ?>
 			&nbsp;
 		</dd>
 		<dt><?php __('Operating system'); ?></dt>
 		<dd>
-			<?php echo $html->link($test['Operatingsystem']['name'], array('controller'=> 'operatingsystems', 'action'=>'view', $test['Operatingsystem']['id'])); ?>
+			<?php echo $test['Operatingsystem']['name']; ?>
 			&nbsp;
 		</dd>
 		<dt><?php __('Commands'); ?></dt>
@@ -21,9 +21,9 @@
 			<?php if (!empty($test['Command'])):?>
             	<table cellpadding = "0" cellspacing = "0" style="width: 100%;">
                 	<tr>
-                		<th><?php __('Action'); ?></th>
-                		<th><?php __('Var1'); ?></th>
-                		<th><?php __('Var2'); ?></th>
+                		<th><?php __('Command'); ?></th>
+                		<th><?php __('Locator'); ?></th>
+                		<th><?php __('Value'); ?></th>
                 	</tr>
             	<?php foreach ($test['Command'] as $command): ?>
             		<tr class='<?php echo $command['status'];?>'>
@@ -35,5 +35,13 @@
             	</table>
             <?php endif; ?>
 		</dd>
+		<?php
+            $filename = WWW_ROOT.DS.'logs'.DS.'output'.$test['Seleniumserver']['uid'].'.txt';
+            $log = file_get_contents($filename);
+            if(!empty($log)){
+                echo "<dt>Notice</dt>";
+                echo "<dd><pre><p class='notice'>Notice: $log</p></pre></dd>";
+            }
+        ?>
 	</dl>
 </div>

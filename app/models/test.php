@@ -68,6 +68,7 @@ class Test extends AppModel {
 								'fields' => '',
 								'order' => ''
 			)
+			
 	);
 
 	var $hasMany = array(
@@ -82,20 +83,17 @@ class Test extends AppModel {
 								'exclusive' => '',
 								'finderQuery' => '',
 								'counterQuery' => ''
-			),
-			'Seleniumserver' => array('className' => 'Seleniumserver',
+			)
+	);
+	
+	var $hasOne = array(
+        'Seleniumserver' => array('className' => 'Seleniumserver',
 								'foreignKey' => 'test_id',
-								'dependent' => false,
 								'conditions' => '',
 								'fields' => '',
 								'order' => '',
-								'limit' => '',
-								'offset' => '',
-								'exclusive' => '',
-								'finderQuery' => '',
-								'counterQuery' => ''
 			)
-	);
+    );
 
 }
 ?>

@@ -139,7 +139,17 @@
                 tc.remove();
             }
             
-            function tctoggle(){
+            function tc_stop_drag(){
+                Draggables.drags.each(function(s, index) { //Make all testcases in the tree not dragable
+                   s.destroy(); 
+                });
+                $$('.tctd').each(Element.toggle);
+                $('enabletclink').toggle();
+                $('disabletclink').toggle();
+                $('enablereqlink').toggle();
+            }
+            
+            function tc_start_drag(){
                 $$('.req').each(function(s, index) {
                   Droppables.add(s.id, {
                       accept: 'tc',
@@ -180,6 +190,13 @@
                     });
                 });
                 
+                $$('#testcases div').each(function(s, index) {
+                    new Draggable(s.id, {
+                        ghosting: true,
+                        revert: true
+                    });
+                });
+                
                 $$('ul .tc').each(function(s, index) { //Make all testcases in the tree dragable
                     new Draggable(s.id,{
                         //ghosting: true,
@@ -202,9 +219,9 @@
             <div>
                 <a href="#" id="enablereqlink" onclick="dragdroptoggle(tree); Effect.toggle('dragdropmsg');">Manage requirements</a>
                 <a href="#" id='disablereqlink' style='display: none;' onclick="dragdroptoggle(tree); $('dragdropmsg').toggle();">Done</a>
-                <a href="#" style='display: none;' id="disabletclink" onclick="tctoggle();  $('dragdropmsg').toggle();">Done</a>
+                <a href="#" style='display: none;' id="disabletclink" onclick="tc_stop_drag();  $('dragdropmsg').toggle();">Done</a>
                 <br />
-                <a href="#" id="enabletclink" onclick="tctoggle();  Effect.toggle('dragdropmsg');">Manage testcases</a>
+                <a href="#" id="enabletclink" onclick="tc_start_drag();  Effect.toggle('dragdropmsg');">Manage testcases</a>
                 <span id='dragdropmsg' style='display: none;'>Drag and drop</span>
             </div>
         </fieldset>

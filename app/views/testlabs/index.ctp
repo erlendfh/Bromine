@@ -104,7 +104,7 @@
 <table>
 <thead>
     <tr>
-        <th style='width: 200px;'>
+        <th>
             Project structure
         </th>
         <th class="tctd" style="width: 100px; display: none;">

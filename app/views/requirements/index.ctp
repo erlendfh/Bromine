@@ -110,7 +110,7 @@
         <th class="tctd" style="width: 100px; display: none;">
             Testcases
         </th>
-        <th style='width: 600px'>
+        <th>
             Details
         </th>
     </tr>

@@ -55,10 +55,23 @@ class TestcasesController extends AppController {
         		)
         	)
         ));
-
+        
+        App::import('Model','Node');
+        $this->Node = new Node();
+        $nodes = $this->Node->find('all');
+        $onlineNodes = array();
+        foreach($nodes as &$node){
+            if($this->Node->checkJavaServer($node['Node']['nodepath'])){
+                $onlineNodes[] = $node;
+            }
+        }
         foreach ($requirement['Combination'] as &$combination){
             $combination['Result'] = $this->Testcase->Test->getLastInCombination($id, $combination['Operatingsystem']['id'], $combination['Browser']['id']);
         }
+        
+        $this->set('nodes', $nodes);
+        $this->set('requirement', $requirement);
+        $this->set('onlineNodes', $onlineNodes);
         $this->set('combinations',$requirement['Combination']);
 	}
 	

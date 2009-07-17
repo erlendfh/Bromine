@@ -126,7 +126,6 @@ class RequirementsController extends AppController {
 	
 	function testlabview($id = null) {
         
-        
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid Requirement.', true));
 			$this->redirect(array('action'=>'index'));

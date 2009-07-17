@@ -9,8 +9,8 @@ class RunrctestsController  extends AppController {
     var $loopLimit = 10000; //Set to -1 for infinite
     var $timeout = 45;
     
-    /*
-	function gridLauncher($suite_id=0, $tests=array()){ //Depreceated
+    /* //Depreceated
+	function gridLauncher($suite_id=0, $tests=array()){ 
         //gridLauncer replaces loadBalancer. 
         //gridLauncher just executes all the tests and send them to the grid hub
         //loadBalancer is BR's own grid-alike function that only sends the tests to the nodes when they are ready
@@ -109,7 +109,7 @@ class RunrctestsController  extends AppController {
         return false;
     }
     
-    function getAvailableNodes($nodes, $OS_id, $browser_id){
+    private function getAvailableNodes($nodes, $OS_id, $browser_id){
         $availableNodes=array();
         foreach($nodes as $k=>$node){
             if(count($node['Node']['running']) < $this->runningLimit && $this->Node->checkJavaServer($node['Node']['nodepath']) && $this->array_search_recursive('id', $browser_id, $node['Browser'])!==array() && $node['Node']['operatingsystem_id']==$OS_id){
@@ -119,14 +119,14 @@ class RunrctestsController  extends AppController {
         return $availableNodes;
     }
     
-    function findBestNode($nodes){
+    private function findBestNode($nodes){
         //Algorithm to be debated
         //Current alorithm: Sort by number of browsers as first priority and number of running as second.
         //uasort($nodes,array($this,'cmp'));
         return current(array_keys($nodes));
     }
     
-    function updateNodes($nodes){
+    private function updateNodes($nodes){
         App::import('Model','Seleniumserver');
         $this->Seleniumserver = new Seleniumserver();
         
@@ -154,55 +154,7 @@ class RunrctestsController  extends AppController {
         return $nodes;
     }
     
-    function runTestcase($requirement_id, $testcase_id){
-        App::import('Model','Requirement');
-        $this->Requirement = new Requirement();
-        $this->Requirement->Behaviors->attach('Containable');
-		$requirement = $this->Requirement->find('first', array(
-            'conditions'=>array(
-                'Requirement.id'=>$requirement_id
-            ),
-        	'contain'=>array(
-        	    'Testcase',
-        		'Combination' => array(
-        			'Browser',
-        			'Operatingsystem'
-        		)
-        	)
-        ));
-
-        $tests = array();
-
-        foreach ($requirement['Combination'] as $combination){
-            $tests[$testcase_id][] = array(
-                'done' => 0,
-                'OS' => $combination['operatingsystem_id'],
-                'browser' => $combination['browser_id']
-                );
-        }
-
-        
-        $site_id = 37;
-        $siteToTest = 'http://www.google.dk';
-        $suiteName = 'alalal';
-        
-        App::import('Model','Suite');
-        $this->Suite = new Suite();
-        $this->data['Suite'] = array(
-            'name' => $suiteName,
-            'site_id' => $site_id,
-            'timedate' => null,
-            'project_id' => $this->Session->read('project_id')
-        );
-        $this->Suite->save($this->data);
-        $suite_id = $this->Suite->id;
-        $this->set('suite_id',$suite_id);
-        $this->set('tests',$tests);
-        $this->set('siteToTest',$siteToTest);
-        $this->loadBalancer($suite_id,$tests);
-    }
-    
-    function runAndViewRequirement($requirement_id){ //Sets up the suite, returns suite_id
+    private function setupSuite($requirement_id){ //Sets up the suite, returns suite_id to viewer, viewer calls runRequirement/runTestcase
         $this->layout = "green_blank";
         $this->set('requirement_id', $requirement_id);
         $suiteName = 'alalal';
@@ -217,9 +169,10 @@ class RunrctestsController  extends AppController {
         );
         $this->Suite->save($this->data);
         $suite_id = $this->Suite->id;
-        $this->set('suite_id',$suite_id);
-        
-        //Find out which tests can't be run. (We do this alot of places yes... maybe some if it is redundant)
+        return $suite_id;
+    }
+    
+    private function getOfflineNeeds($requirement_id){ //Find out which tests can't be run.
         App::import('Model','Node');
         $this->Node = new Node();
         $nodes = $this->Node->find('all');
@@ -243,8 +196,7 @@ class RunrctestsController  extends AppController {
         		'Combination' => array(
         			'Browser',
         			'Operatingsystem'
-        		),
-        		'Testcase'
+        		)
         	)
         ));
         
@@ -255,9 +207,21 @@ class RunrctestsController  extends AppController {
                 $offlineNeeds[] = $combination['Browser']['name'].' on '.$combination['Operatingsystem']['name'];
             }
         }
-        $this->set('offlineNeeds',$offlineNeeds);
+        return $offlineNeeds;
     }
-
+    
+    
+    function runAndViewTestcase($testcase_id, $requirement_id){
+        $this->set('testcase_id', $testcase_id);
+        $this->set('suite_id', $this->setupSuite($requirement_id));
+        $this->set('offlineNeeds', $this->getOfflineNeeds($requirement_id));
+    }
+    
+    function runAndViewRequirement($requirement_id){ 
+        $this->set('suite_id',$this->setupSuite($requirement_id));
+        $this->set('offlineNeeds',$this->getOfflineNeeds($requirement_id));
+    }
+    
     function runRequirement($requirement_id, $suite_id){ //Sorts out offline needs, sets up tests array, calls loadBalancer
         App::import('Model','Requirement');
         $this->Requirement = new Requirement();
@@ -275,29 +239,14 @@ class RunrctestsController  extends AppController {
         	)
         ));
         
-        App::import('Model','Node');
-        $this->Node = new Node();
-        $nodes = $this->Node->find('all');
-        $onlineNodes = array();
-        foreach($nodes as &$node){
-            if($this->Node->checkJavaServer($node['Node']['nodepath'])){
-                $onlineNodes[] = $node;
-            }
-        }
-        
-        $onlineCombinations = array();
-        foreach($onlineNodes as $onlineNode){
-            foreach($onlineNode['Browser'] as $browser){
-                $onlineCombinations[] = $onlineNode['Operatingsystem']['id'].','.$browser['id'];
-            }
-        }
+        $offlineNeeds = $this->getOfflineNeeds($requirement_id);
         
         $tests = array();
         foreach ($requirement['Testcase'] as $testcase){
             $tests[$testcase['id']] = array(); 
             foreach ($requirement['Combination'] as $combination){
-                $idCombination = $combination['Operatingsystem']['id'].','.$combination['Browser']['id'];
-                if(in_array($idCombination, $onlineCombinations)){ //Sort out the needs that can't be run
+                $need = $combination['Browser']['name'].' on '.$combination['Operatingsystem']['name'];
+                if(!in_array($need, $offlineNeeds)){ //Sort out the needs that can't be run
                     $tests[$testcase['id']][] = array(
                         'done' => 0,
                         'OS' => $combination['operatingsystem_id'],
@@ -310,9 +259,41 @@ class RunrctestsController  extends AppController {
         $this->loadBalancer($suite_id,$tests);
     }
     
-    function loadBalancer($suite_id=0, $tests=array()){
-        //loadBalancer is BR's own grid-alike function that sends the tests to the nodes when they are ready
+    function runTestcase($testcase_id, $requirement_id, $suite_id){ //Sorts out offline needs, sets up tests array, calls loadBalancer
+        App::import('Model','Requirement');
+        $this->Requirement = new Requirement();
+        $this->Requirement->Behaviors->attach('Containable');
+		$requirement = $this->Requirement->find('first', array(
+            'conditions'=>array(
+                'Requirement.id'=>$requirement_id
+            ),
+        	'contain'=>array(
+        		'Combination' => array(
+        			'Browser',
+        			'Operatingsystem'
+        		)
+        	)
+        ));
         
+        $offlineNeeds = $this->getOfflineNeeds($requirement_id);
+        
+        $tests[$testcase_id] = array(); 
+        foreach ($requirement['Combination'] as $combination){
+            $need = $combination['Browser']['name'].' on '.$combination['Operatingsystem']['name'];
+            if(!in_array($need, $offlineNeeds)){ //Sort out the needs that can't be run
+                $tests[$testcase_id][] = array(
+                    'done' => 0,
+                    'OS' => $combination['operatingsystem_id'],
+                    'browser' => $combination['browser_id']
+                    );
+            }
+        }
+        
+
+        $this->loadBalancer($suite_id,$tests);
+    }
+    
+    private function loadBalancer($suite_id=0, $tests=array()){ //BR's own grid-alike function that sends the tests to the nodes when they are ready
         session_write_close(); //Needed for avoiding race conditions even when using ajax
         $this->log("loadBalancer was called with tests = ".print_r($tests,true).", suite_id = $suite_id");
         App::import('Model','Suite');
@@ -371,7 +352,7 @@ class RunrctestsController  extends AppController {
         }
     }
 	
-    function run($testName, $nodePath, $OS_id, $port, $browser_id, $siteToTest, $suite_id, $uid){//Sets up the selenium-server in the DB, puts together the command line string 
+    private function run($testName, $nodePath, $OS_id, $port, $browser_id, $siteToTest, $suite_id, $uid){//Sets up the selenium-server in the DB, puts together the command line string 
         
         //Setup the test in the DB
         App::import('Model','Test');
@@ -423,7 +404,7 @@ class RunrctestsController  extends AppController {
     }
     
     
-    public function execute($cmd, $uid) {
+    private function execute($cmd, $uid) {
         $this->log("Executing: $cmd");
         
         if (substr(php_uname(), 0, 7) == "Windows"){ //Windows
@@ -437,7 +418,7 @@ class RunrctestsController  extends AppController {
     }
 
     
-    function directoryToArray($directory, $recursive) {
+    private function directoryToArray($directory, $recursive) {
     	$array_items = array();
     	if ($handle = opendir($directory)) {
     		while (false !== ($file = readdir($handle))) {
@@ -460,7 +441,6 @@ class RunrctestsController  extends AppController {
     }
     
     function stateOfTheSystem(){
-        
         $state = array();
         $output = array();
         $state['Permissions output'] = "";

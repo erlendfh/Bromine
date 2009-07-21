@@ -79,7 +79,7 @@
             	   <th>Results</th>
             	</tr>
             	<?php
-                    //pr($combinations); 
+
                     foreach($combinations as $combination){
                         $status = $combination['Result']['Test']['status'];
                         if(empty($status)){$status = 'notdone';} 

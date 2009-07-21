@@ -2,7 +2,7 @@
 class RequirementsController extends AppController {
 
 	var $name = 'Requirements';
-	var $helpers = array('Html', 'Form','Tree','Table');
+	var $helpers = array('Html', 'Form','Tree','Table','Time');
     var $needsproject = true;
     var $paginate = array(
         'limit' => 25,
@@ -146,10 +146,13 @@ class RequirementsController extends AppController {
         		'Testcase'
         	)
         ));
-
+        //pr ($requirements['Testcase']);
         foreach ($requirements['Combination'] as &$combination){
             foreach ($requirements['Testcase'] as $testcase){
                 $combination['tc'.$testcase['id']]['status'] = $this->Requirement->Testcase->Test->getStatus($testcase['id'], $combination['Operatingsystem']['id'], $combination['Browser']['id']);
+                $t = $this->Requirement->Testcase->Test->getLastInCombination($testcase['id'], $combination['Operatingsystem']['id'], $combination['Browser']['id']);
+                $combination['tc'.$testcase['id']]['timestamp'] = $t['Test']['timestamp'];
+                $combination['tc'.$testcase['id']]['Test_id'] = $t['Test']['id'];
             } 
         }
 

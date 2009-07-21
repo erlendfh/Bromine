@@ -75,17 +75,26 @@
 		<dd>
 			<table>
             	<tr>
-            	   <th style='width: 33%;'>Testcase</th>
-            	   <th style='width: 33%;'>Operating system</th>
-            	   <th style='width: 33%;'>Browser</th>
+            	   
+            	   <th>Timestamp</th>
+            	   <th style='width: 25%;'>Testcase</th>
+            	   <th style='width: 25%;'>Operating system</th>
+            	   <th style='width: 25%;'>Browser</th>
+            	   <th>Results</th>
             	</tr>
             	<?php
                     foreach($testcases as $testcase){
                         foreach($combinations as $combination){
                             echo "<tr class='".$combination['tc'.$testcase['id']]['status']."'>";
+                            echo "<td>".$time->timeAgoInWords($combination['tc'.$testcase['id']]['timestamp'])."</td>";   
                             echo "<td>".$testcase['name']. "</td>";
                             echo "<td>".$combination['Operatingsystem']['name']."</td>";
                             echo "<td>".$combination['Browser']['name']."</td>";
+                            echo "<td>";
+                            if(!empty($combination['tc'.$testcase['id']]['status'])){
+                                echo $html->link($html->image('tango/32x32/categories/applications-other.png'),'#/Tests/view/'.$combination['tc'.$testcase['id']]['Test_id'],null,null,false);
+                            }
+                            echo "</td>";
                             echo "</tr>";
                         }
                     }

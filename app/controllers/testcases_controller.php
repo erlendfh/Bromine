@@ -2,7 +2,7 @@
 class TestcasesController extends AppController {
 
 	var $name = 'Testcases';
-	var $helpers = array('Html', 'Form', 'Table');
+	var $helpers = array('Html', 'Form', 'Table', 'Time');
 
 	function index() {
 		$this->Testcase->recursive = 0;
@@ -38,6 +38,7 @@ class TestcasesController extends AppController {
 			$this->Session->setFlash(__('Invalid Testcase.', true));
 			$this->redirect(array('action'=>'index'));
 		}
+		
 		$this->set('testcase', $this->Testcase->read(null, $id));
 		$testcasesteps = $this->Testcase->TestcaseStep->findAll(array('testcase_id' => $id),null,array('order by' => 'TestcaseStep.orderby'));
     	$this->set('testcasesteps',$testcasesteps);

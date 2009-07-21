@@ -73,8 +73,9 @@
 		<dd>
 			<table>
             	<tr>
-            	   <th style='width: 40%;'>Operating system</th>
-            	   <th style='width: 40%;'>Browser</th>
+            	   <th>Timestamp</th>
+            	   <th style='width: 35%;'>Operating system</th>
+            	   <th style='width: 35%;'>Browser</th>
             	   <th>Results</th>
             	</tr>
             	<?php
@@ -82,7 +83,10 @@
                     foreach($combinations as $combination){
                         $status = $combination['Result']['Test']['status'];
                         if(empty($status)){$status = 'notdone';} 
-                        echo "<tr class='$status'>";                        
+                        echo "<tr class='$status'>";
+                        
+                        echo "<td>".$time->timeAgoInWords($combination['Result']['Test']['timestamp'])."</td>";    
+                                            
                         echo "<td>".$combination['Operatingsystem']['name']."</td>";
                         echo "<td>".$combination['Browser']['name']."</td>";
                         echo "<td>";

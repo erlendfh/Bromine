@@ -84,8 +84,12 @@
                         $status = $combination['Result']['Test']['status'];
                         if(empty($status)){$status = 'notdone';} 
                         echo "<tr class='$status'>";
-                        
-                        echo "<td>".$time->timeAgoInWords($combination['Result']['Test']['timestamp'])."</td>";    
+                        if ($combination['Result']['Test']['timestamp'] == 0){
+                            echo "<td>N/A</td>"; 
+                        }else{
+                            echo "<td>".$time->timeAgoInWords($combination['Result']['Test']['timestamp'])."</td>"; 
+                        }
+                           
                                             
                         echo "<td>".$combination['Operatingsystem']['name']."</td>";
                         echo "<td>".$combination['Browser']['name']."</td>";

@@ -16,6 +16,11 @@
 			<?php echo $test['Operatingsystem']['name']; ?>
 			&nbsp;
 		</dd>
+		<dt><?php __('Timestamp'); ?></dt>
+		<dd>
+			<?php echo $test['Test']['timestamp']; ?>
+			&nbsp;
+		</dd>
 		<dt><?php __('Commands'); ?></dt>
 		<dd>
 			<?php if (!empty($test['Command'])):?>
@@ -37,10 +42,15 @@
 		</dd>
 		<?php
             $filename = WWW_ROOT.'logs'.DS.'output'.$test['Seleniumserver']['uid'].'.txt';
-            $log = file_get_contents($filename);
-            if(!empty($log)){
-                echo "<dt>Notice</dt>";
-                echo "<dd><pre><p class='notice'>Notice: $log</p></pre></dd>";
+            if(file_exists($filename)){
+                $log = file_get_contents($filename);
+                if(!empty($log)){
+                    echo "<dt>Notice</dt>";
+                    echo "<dd><pre><p class='notice'>Notice: $log</p></pre></dd>";
+                }
+            }else{
+                    echo "<dt>Notice</dt>";
+                    echo "<dd><pre><p class='notice'>Notice: $filename does not exist</p></pre></dd>";    
             }
         ?>
 	</dl>

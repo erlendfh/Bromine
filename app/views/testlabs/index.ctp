@@ -26,9 +26,15 @@
     	background: url(img/tango/16x16/mimetypes/text-html.png) no-repeat left top !important;
     }
     li.req a {
+        white-space: nowrap;
     	background: url(img/tango/16x16/mimetypes/x-office-presentation.png) no-repeat left top !important;
     }
+    div.tc{
+        white-space: nowrap;
+    }
+
     div.tc a {
+
     	background: url(img/tango/16x16/mimetypes/text-x-generic.png) no-repeat left top !important;
     	border: none;
     }

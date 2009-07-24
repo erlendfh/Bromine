@@ -21,11 +21,15 @@
     li.req a, div.tc a, div.tcs a, a.project {
         padding: 2px 0 0 18px;
     }
+    div.tc{
+        white-space: nowrap;
+    }
     
     a.project{
     	background: url(img/tango/16x16/mimetypes/text-html.png) no-repeat left top !important;
     }
     li.req a {
+        white-space: nowrap;
     	background: url(img/tango/16x16/mimetypes/x-office-presentation.png) no-repeat left top !important;
     }
     div.tc a {

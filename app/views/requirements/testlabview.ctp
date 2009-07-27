@@ -86,7 +86,11 @@
                     foreach($testcases as $testcase){
                         foreach($combinations as $combination){
                             echo "<tr class='".$combination['tc'.$testcase['id']]['status']."'>";
-                            echo "<td>".$time->timeAgoInWords($combination['tc'.$testcase['id']]['timestamp'])."</td>";   
+                            if ($combination['Result']['Test']['timestamp'] == 0){
+                                echo "<td>N/A</td>"; 
+                            }else{
+                                echo "<td>".$time->timeAgoInWords($combination['Result']['Test']['timestamp'])."</td>"; 
+                            }  
                             echo "<td>".$testcase['name']. "</td>";
                             echo "<td>".$combination['Operatingsystem']['name']."</td>";
                             echo "<td>".$combination['Browser']['name']."</td>";

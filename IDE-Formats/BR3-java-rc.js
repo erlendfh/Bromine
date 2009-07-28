@@ -163,7 +163,7 @@ options.header =
         "import java.io.StringWriter;\n" +
         "import bromine.brunit.BRUnit;\n" +
     "public class TestNew extends BRUnit {\n" + 
-    "\tpublic void ${methodName}() throws Exception {\n";
+    "\tpublic void testNew() throws Exception {\n";
 
 options.footer =
 	"\t}\n" +

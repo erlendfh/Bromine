@@ -9,14 +9,8 @@
 	</dl>
 	
 	<?php
-	   //pr($project);
         $sum = $passed+$notdone+$failed;
-        //Hack around bug in phpgraphlib not handling zeros correct
-        /*
-        $notdone = $notdone + 0.01;
-        $passed = $passed + 0.01;
-        $failed = $failed + 0.01;
-	   */
+
         App::import('Vendor','phpgraphlib/phpgraphlib');
         App::import('Vendor','phpgraphlib/phpgraphlib_pie');
         $graph=new PHPGraphLibPie(400,200);
@@ -44,7 +38,7 @@
             "Not done"=>$notdone
         );
         */
-        
+       
         $graph->addData($data);
         $graph->pie_avail_colors=$colors;
         

@@ -150,7 +150,7 @@ class PHPGraphLib
 	function initialize()
 	{
 		//HEADER MUST BE SENT BEFORE ANY HTML OR BLANK SPACE OUTPUT
-		header("Content-type: image/png");
+		//header("Content-type: image/png");  //Ralle modified
 		$this->image = @imagecreate($this->width, $this->height)
 			or die("Cannot Initialize new GD image stream - Check your PHP setup");
 		$this->data_point_array=array();
@@ -203,7 +203,7 @@ class PHPGraphLib
             }
         }
         
-		$fp = "img/temp/$time.png";
+		$fp = "img".DS."temp".DS."$time.png";
 		imagepng($this->image, $fp);
 		imagedestroy($this->image);
 		return $fp;

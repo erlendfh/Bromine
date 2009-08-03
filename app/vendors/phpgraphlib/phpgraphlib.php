@@ -203,10 +203,10 @@ class PHPGraphLib
             }
         }
         
-		$fp = "img".DS."temp".DS."$time.png";
+		$fp = "img/temp/$time.png";
 		imagepng($this->image, $fp);
 		imagedestroy($this->image);
-		return $fp;
+		return "temp/$time.png";
 	}
 	function setupData()
 	{

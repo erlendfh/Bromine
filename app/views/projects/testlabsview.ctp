@@ -9,12 +9,9 @@
 	</dl>
 	
 	<?php
+
         $sum = $passed+$notdone+$failed;
 
-        App::import('Vendor','phpgraphlib/phpgraphlib');
-        App::import('Vendor','phpgraphlib/phpgraphlib_pie');
-        $graph=new PHPGraphLibPie(400,200);
-        $graph->setTitle("Testcases status. $sum testcases total");
         
         if ($passed != 0){
             $data['Passed'] = $passed;
@@ -31,23 +28,20 @@
             $colors[] = 'notdone'; 
         }
         
-        /*
-        $data=array(
-            "Passed"=>$passed,
-            "Failed"=>$failed,
-            "Not done"=>$notdone
-        );
-        */
-       
-        $graph->addData($data);
-        $graph->pie_avail_colors=$colors;
-        
-        
-        
-        
-        $graph->setLabelTextColor("50,50,50");
-        $graph->setLegendTextColor("50,50,50");
-        $fp = $graph->createGraph();
+        if(!empty($data)){
+            App::import('Vendor','phpgraphlib/phpgraphlib');
+            App::import('Vendor','phpgraphlib/phpgraphlib_pie');
+            $graph=new PHPGraphLibPie(400,200);
+            $graph->setTitle("Testcases status. $sum testcases total");
+            
+            $graph->addData($data);
+            $graph->pie_avail_colors=$colors;
+            
+            $graph->setLabelTextColor("50,50,50");
+            $graph->setLegendTextColor("50,50,50");
+            $fp = $graph->createGraph();
+            echo "<img src='$fp' />";
+        }
     ?>
-    <img src="<?php echo $fp; ?>" />
+    
 </div>

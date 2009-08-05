@@ -77,6 +77,7 @@
             	   <th style='width: 35%;'>Operating system</th>
             	   <th style='width: 35%;'>Browser</th>
             	   <th>Results</th>
+            	   <th>Jira</th>
             	</tr>
             	<?php
 
@@ -96,6 +97,11 @@
                         echo "<td>";
                         if(!empty($combination['Result'])){
                             echo $html->link($html->image('tango/32x32/categories/applications-other.png'),'#/Tests/view/'.$combination['Result']['Test']['id'],null,null,false);
+                        }
+                        echo "</td>";
+                        echo "<td>";
+                        if($status == 'failed'){
+                            echo $html->link($html->image('tango/16x16/actions/system-log-out.png'),'/testcases/addToJira/'.$combination['Result']['Test']['id'],array('target' => '_blank'),'This will add a issue til jira, are you sure?',false);
                         }
                         echo "</td>";
                         echo "</tr>"; 

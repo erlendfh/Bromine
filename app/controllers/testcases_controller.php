@@ -181,6 +181,37 @@ class TestcasesController extends AppController {
 			$this->redirect(array('controller'=>'requirements','action'=>'index'));
 		}
 	}
+	
+	function addToJira($test_id){
+	   $this->layout = 'green_blank';	
+        $test = $this->Testcase->Test->find('first',array(
+            'conditions'=>array(
+                'Test.id'=> $test_id
+            )));
+            
+        $browserTxt = $test['Browser']['name'].'('.$test['Browser']['path'].')';
+        $operationSystemTxt = $test['Operatingsystem']['name'];
+        $nodeTxt = $test['Seleniumserver']['nodepath'];
+        $testTxt = $test['Test']['name'];
+        $timeTxt = $test['Test']['timestamp'];
+        $siteTxt = $test['Command'][0]['var2'];
+        $errors = '';
+        foreach ($test['Command'] as $command){
+            if ($command['status'] == 'failed'){
+                $errors .= $command['action']."('".$command['var1']."','".$command['var2']."','".$command['status']."'), ";
+            }
+        }
+        
+        $description = "The test '$testTxt' ran on $nodeTxt at $timeTxt and caused the following errors: $errors";
+        chdir('jiracli');
+        $exe = 'jira -v --action createIssue --assignee "someones ID in jira" --project "someproject" --summary "Automatic bug report from Bromine" --type bug --environment "'.$browserTxt.' on '. $operationSystemTxt .'" --priority minor --autoVersion --description "'.$description.'"';
+        exec($exe, $output, $return_var);
+        $txt = '';
+        foreach ($output as $o){
+            $txt .= $o . "<br />"; 
+        }
+        $this->set('output',$txt);
+    }
 
 }
 ?>

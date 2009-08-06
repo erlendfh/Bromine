@@ -89,11 +89,11 @@ RegexpNotMatch.prototype.toString = function() {
     return "(bool)preg_match(/" + this.pattern.replace(/\//g, "\\/") + "/," + this.expression + ");";
 }
 
-EqualsArray.prototype.length = function() {
+seleniumEquals.prototype.length = function() {
     return this.variableName + ".length";
 }
 
-EqualsArray.prototype.item = function(index) {
+seleniumEquals.prototype.item = function(index) {
     return this.variableName + "[" + index + "]";
 }
 

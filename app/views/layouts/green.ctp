@@ -12,13 +12,15 @@
     		echo $html->css('green/content');
     		echo $html->css('green/prettify');
     		echo $html->css('green/menu');
+    		echo $html->css('green/lightwindow');
     		echo $scripts_for_layout;
     		echo $javascript->link('prototype');
+    		echo $javascript->link('scriptaculous');
     		echo $javascript->link('popup');
     		echo $javascript->link('prettify/prettify');
-            echo $javascript->link('scriptaculous');
             echo $javascript->link('sortable_tree');
             echo $javascript->link('urlparser');
+            echo $javascript->link('lightwindow');
             
         ?>
         
@@ -95,7 +97,16 @@
                 echo $tree->menustart($Menu);
             } 
         ?>
+    
 
+    <?php
+        echo $html->link( 
+            	$html->image("tango/32x32/apps/help-browser.png"), 
+            	array('controller' => 'pages','action' => 'help_splash'), 
+            	array('escape' => false, 'class'=>'lightwindow', 'params' => 'lightwindow_type=page', 'style'=>'float: right;')
+            );
+    
+    ?>
     </div>
     <div id="content" style='clear: both;'>
       <div id="column2">

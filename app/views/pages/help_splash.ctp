@@ -1,31 +1,33 @@
+<style>
+#container{
+    line-height: normal;
+}
+</style>
 
 <div class="dashboard index">
+    <h1> To be reviewed! </h1>
     <div id='workflow'>
-        <div id='handle' style='height: 440px; float: left; background-color: lightgrey; margin-right: -2px; margin-top: 2px; padding: 2px;'>
-            <a id='hide' href="#" onclick="Effect.BlindLeft('container'); $('hide').hide(); $('show').show(); return false;"><img src='img/green_arrow_left.png' /></a>
-            <a id='show' style='display: none' href="#" onclick="Effect.BlindRight('container'); $('hide').show(); $('show').hide();return false;"><img src='img/green_arrow.png' /></a>
-        </div>
         <div id='container'>
             <table>
                 <tr style='vertical-align: top;'>
                     <td style='padding: 0px;'>
-                        <div style="background: url('img/redfront.png') no-repeat; height: 110px; width: 75px;">
-                            <p style='padding-top: 40px; text-align: center; color: white;'>Project</p>
+                        <div style="background: url('/img/redfront.png') no-repeat; height: 110px; width: 75px;">
+                            <p style='padding-top: 40px; text-align: center; color: white; width: 100%;'>Project</p>
                         </div>
                     </td>
                     <td style='padding: 0px;'>
                         <div style='border: 2px solid #c0504d; margin-left: -2px; padding-left: 4px; height: 64px; width: 600px;'>
                             <ul>
-                                <li style='font-weight: bold;'>Everything below is related to this project</li>
-                                <li>Available workflow: Assign users, edit project details</li>
+                                <li style='font-weight: bold;'>Everything belongs to a project</li>
+                                <li>Available workflow: Edit project details</li>
                             </ul>
                         </div>
                     </td>
                 </tr>
                 <tr style='vertical-align: top;'>
                     <td style='padding: 0px;'>
-                        <div style="background: url('img/greenfront.png') no-repeat; margin-top: -20px; height: 110px; width: 75px;">
-                            <p style='padding-top: 40px; text-align: center; color: white;'>Requirements</p>
+                        <div style="background: url('/img/greenfront.png') no-repeat; margin-top: -20px; height: 110px; width: 75px;">
+                            <p style='padding-top: 40px; text-align: center; color: white;  width: 100%;'>Requirements</p>
                         </div>
                     </td>
                     <td style='padding: 0px;'>
@@ -39,8 +41,8 @@
                 </tr>
                 <tr style='vertical-align: top;'>
                     <td style='padding: 0px;'>
-                        <div style="background: url('img/purplefront.png') no-repeat; margin-top: -20px; height: 110px; width: 75px;">
-                            <p style='padding-top: 40px; text-align: center; color: white;'>Testcases</p>
+                        <div style="background: url('/img/purplefront.png') no-repeat; margin-top: -20px; height: 110px; width: 75px;">
+                            <p style='padding-top: 40px; text-align: center; color: white;  width: 100%;'>Testcases</p>
                         </div>
                     </td>
                     <td style='padding: 0px;'>
@@ -54,8 +56,8 @@
                 </tr>
                 <tr style='vertical-align: top;'>
                     <td style='padding: 0px;'>
-                        <div style="background: url('img/bluefront.png') no-repeat; margin-top: -20px; height: 110px; width: 75px;">
-                            <p style='padding-top: 40px; text-align: center; color: white;'>Testscripts</p>
+                        <div style="background: url('/img/bluefront.png') no-repeat; margin-top: -20px; height: 110px; width: 75px;">
+                            <p style='padding-top: 40px; text-align: center; color: white; width: 100%;'>Testscripts</p>
                         </div>
                     </td>
                     <td style='padding: 0px;'>
@@ -69,14 +71,14 @@
                 </tr>
                 <tr style='vertical-align: top;'>
                     <td style='padding: 0px;'>
-                        <div style="background: url('img/orangefront.png') no-repeat;margin-top: -20px; height: 110px; width: 75px;">
-                            <p style='padding-top: 40px; text-align: center; color: white;'>Results</p>
+                        <div style="background: url('/img/orangefront.png') no-repeat;margin-top: -20px; height: 110px; width: 75px;">
+                            <p style='padding-top: 40px; text-align: center; color: white; width: 100%;'>Results</p>
                         </div>
                     </td>
                     <td style='padding: 0px;'>
                         <div style='border: 2px solid #f79646; margin-left: -2px; padding-left: 4px; height: 67px; margin-top: -20px; width: 600px;'>
                             <ul>
-                                <li style='font-weight: bold;'>Results belongs to testcases and affects their status. Results are the selenium command results. Raw results don't affect anything, only reviewed ones do.</li>
+                                <li style='font-weight: bold;'>Results belongs to testcases and affects their status. Results are the selenium command results.</li>
                                 <li>List raw results, list reviewed results.</li>
                             </ul>
                         </div>

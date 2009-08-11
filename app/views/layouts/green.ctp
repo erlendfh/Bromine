@@ -20,6 +20,7 @@
     		echo $javascript->link('prettify/prettify');
             echo $javascript->link('sortable_tree');
             echo $javascript->link('urlparser');
+            echo $javascript->link('resize');
             echo $javascript->link('lightwindow');
             
         ?>
@@ -109,7 +110,7 @@
     ?>
     </div>
     <div id="content" style='clear: both;'>
-      <div id="column2">
+      
         <div id='messages'>
             <?php if($session->check('Message.err')): ?>
                 <div id='err' style='color: darkred;'>
@@ -142,7 +143,7 @@
             <?php $session->flash(); ?>
         </div>
         <?php echo $content_for_layout; ?>
-      </div>
+      
     </div>
     <div id="footer">
       Copyright &copy; 2007-2009 Bromine Team | <a href="http://bromine.seleniumhq.org">Bromine</a> | <a href="http://www.dcarter.co.uk">Design by dcarter</a>

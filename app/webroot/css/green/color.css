@@ -23,7 +23,7 @@ h1
   color: #FFF;
 }
 
-#links a:hover, #logo h2, #column2, .sidebaritem, #column2 a
+#links a:hover, #logo h2, #content, .sidebaritem, #content a
 { background: transparent;
   color: #555;
 }
@@ -33,12 +33,12 @@ h1
   color: #83B82E;
 } 
 
-#column2 a
+#content a
 {
   color: #83B82E;
 }
 
-#column2 a:hover
+#content a:hover
 {
   color: #555;
 }

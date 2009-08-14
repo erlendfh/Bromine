@@ -137,20 +137,12 @@ ol li
   letter-spacing: .2em;
 }
 
-/* main content */
-
-#content
-{ 
-  padding: 20px 0px 0px 0px;
-  overflow: hidden;
-}
-
 /* column 2 - page content */
 #content
 { 
   text-align: justify;
   padding: 0px 0px 15px 0px;
-  margin: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 20px;
 }
 
 #content h1

@@ -13,6 +13,7 @@
     		echo $html->css('green/prettify');
     		echo $html->css('green/menu');
     		echo $html->css('green/lightwindow');
+    		echo $html->css('green/datepicker');
     		echo $scripts_for_layout;
     		echo $javascript->link('prototype');
     		echo $javascript->link('scriptaculous');
@@ -22,6 +23,7 @@
             echo $javascript->link('urlparser');
             echo $javascript->link('resize');
             echo $javascript->link('lightwindow');
+            echo $javascript->link('datepicker');
             
         ?>
         

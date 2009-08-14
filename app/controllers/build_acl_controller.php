@@ -53,7 +53,7 @@ class BuildAclController extends AppController {
             $methods = get_class_methods($ctrlclass);
             
             // find / make controller node
-            
+            /*
             $controllerNode = $aco->find(array('alias'=>'/everything/'.$ctrlName));
             if (!$controllerNode) {
                 $aco->create(array('parent_id' => $root['id'], 'alias' => "/everything/$ctrlName"));
@@ -63,7 +63,7 @@ class BuildAclController extends AppController {
             } else {
                 $controllerNode = $controllerNode['Myaco'];
             }
-            
+            */
             //clean the methods. to remove those in Controller and private actions.
             foreach ($methods as $k => $method) {
                 if (strpos($method, '_', 0) === 0) {
@@ -75,6 +75,8 @@ class BuildAclController extends AppController {
                     continue;
                 }
             }
+            
+            /*
             foreach ($methods as $method) {
                 $methodNode = $aco->find(array('alias'=>'/everything/'.$ctrlName.'/'.$method));
                 if (!$methodNode) {
@@ -83,6 +85,8 @@ class BuildAclController extends AppController {
                     $log[] = "Created Aco node for /everything/$ctrlName/$method";
                 }
             }
+            */
+            pr($methods);
             
         }
         $this->set('msg',$log);

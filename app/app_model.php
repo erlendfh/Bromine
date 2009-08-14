@@ -39,6 +39,7 @@
  */
 class AppModel extends Model {
     var $time;
+    var $actsAs = array('Containable');
     
     function tic(){
         $this->time = microtime(true);

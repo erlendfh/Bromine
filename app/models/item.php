@@ -1,8 +1,7 @@
 <?php
 
-class Personal extends DashboardAppModel {
-    var $useTable = 'dashboard_personals';
-    
+class Item extends AppModel {
+   
     var $belongsTo = array(
             'User' => array(
                 'className' => 'User',

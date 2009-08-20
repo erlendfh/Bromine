@@ -48,10 +48,6 @@ class AppController extends Controller {
     var $time;
     var $version = '3.0';
     
-    function afterFilter(){
-        $_SESSION['Message'] = '';
-    }
-    
     private function echelon($msg){
         $fp = fopen('logs/echelon.txt','a');
         fwrite($fp, date('l jS \of F Y h:i:s A'). ': ' . $msg."\n");
@@ -123,7 +119,6 @@ class AppController extends Controller {
         
         // Set version for the viewer
         $this->set('version',$this->version);
-        
     }
     
     function isAuthorized(){

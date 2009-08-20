@@ -48,32 +48,6 @@ class AppModel extends Model {
     function toc($msg=null){
         pr($msg.' '.(microtime(true) - $this->time));
     }
-
-    function beforeFind2($queryData){
-        
-        if(isset($this->pathToProject)){ //This variable is set in the model
-            /*var $pathToProjet = array(
-                'Command'=>'Test',
-                'Test'=>'Suite',
-                'Suite'=>'Project',
-            );*/
-            foreach($this->pathToProject as $k=>$v){
-                $queryData['conditions']["$v.id"] = "$k.".low($v)."_id";
-            }
-            //WHERE command.test_id = test.id and test.suite_id = suite.id and suite.project_id = project_id
-            
-            //$queryData['conditions']['project_id']=$this->project_id;
-            pr($queryData);
-            return $queryData;
-        }
-    }
-    
-    /*function beforeSave(){
-        if(isset($this->needsproject) && $this->needsproject===true){ //This variable is set in the AppController
-            $this->data[$this->name]['project_id']=$this->project_id;
-            return true;            
-        }
-    }*/
     
 }
 ?>

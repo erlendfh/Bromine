@@ -40,7 +40,7 @@ class Group extends AppModel {
     		$aroData['Myaro']['foreign_key'] = $this->getLastInsertID();
     		$aroData['Myaro']['alias'] = '/'.$this->data['Group']['name'];
             $this->Myaro->save($aroData);
-        }else{ //If a group has been updated. Not complete! Needs to update users as well
+        }else{ //If a group has been updated.
             $this->Myaro->updateAll( //Update the group Aro
                 array('alias'=>"'".mysql_real_escape_string("/".$this->data['Group']['name'])."'"),
                 array(

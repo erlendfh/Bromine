@@ -1,5 +1,5 @@
 <div class="browsers index">
-<h2><?php __('Browsers');?></h2>
+<h1><?php __('Browsers');?></h1>
 <p>
 <?php
 echo $paginator->counter(array(
@@ -8,7 +8,6 @@ echo $paginator->counter(array(
 ?></p>
 <table cellpadding="0" cellspacing="0">
 <tr>
-	<th><?php echo $paginator->sort('id');?></th>
 	<th><?php echo $paginator->sort('name');?></th>
 	<th><?php echo $paginator->sort('path');?></th>
 	<th class="actions"><?php __('Actions');?></th>
@@ -23,9 +22,6 @@ foreach ($browsers as $browser):
 ?>
 
 	<tr<?php echo $class;?>>
-		<td>
-			<?php echo $browser['Browser']['id']; ?>
-		</td>
 		<td>
 			<?php echo $browser['Browser']['name']; ?>
 		</td>

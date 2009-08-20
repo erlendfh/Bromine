@@ -1,5 +1,5 @@
 <div class="groups index">
-<h2><?php __('Groups');?></h2>
+<h1><?php __('Groups');?></h1>
 <p>
 <?php
 echo $paginator->counter(array(
@@ -8,7 +8,6 @@ echo $paginator->counter(array(
 ?></p>
 <table cellpadding="0" cellspacing="0">
 <tr>
-	<th><?php echo $paginator->sort('id');?></th>
 	<th><?php echo $paginator->sort('name');?></th>
 	<th class="actions"><?php __('Actions');?></th>
 </tr>
@@ -21,9 +20,6 @@ foreach ($groups as $group):
 	}
 ?>
 	<tr<?php echo $class;?>>
-		<td>
-			<?php echo $group['Group']['id']; ?>
-		</td>
 		<td>
 			<?php echo $group['Group']['name']; ?>
 		</td>
@@ -44,7 +40,5 @@ foreach ($groups as $group):
 <div class="actions">
 	<ul>
 		<li><?php echo $html->aclLink(__('New Group', true), array('action'=>'add')); ?></li>
-		<li><?php echo $html->aclLink(__('List Users', true), array('controller'=> 'users', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->aclLink(__('New User', true), array('controller'=> 'users', 'action'=>'add')); ?> </li>
 	</ul>
 </div>

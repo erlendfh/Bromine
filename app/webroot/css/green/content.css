@@ -1,19 +1,23 @@
-p.warning, p.error, p.notice{
+p.warning, p.error, p.notice, div.warning, div.notice, div.error{
     padding-left: 40px;
     padding-right: 6px;
 }
-p.warning{
+p.warning, div.warning{
     background: url("/img/tango/32x32/status/dialog-warning-yellow.png") no-repeat;
     border: 1px dashed orange;
 }
-p.notice{
+p.notice, div.notice{
     background: url("/img/tango/32x32/status/dialog-information.png") no-repeat;
     border: 1px dashed lightblue;
 }
-p.error{
+p.error, div.error{
     background: url("/img/tango/32x32/status/dialog-error.png") no-repeat;
     border: 1px dashed darkred; 
 }
+div.warning, div.notice, div.error{
+    padding-bottom:1.5em;
+}
+
 table.combinations{
     border: 1px solid lightgrey;
 }

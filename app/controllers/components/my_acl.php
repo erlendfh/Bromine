@@ -1,6 +1,6 @@
 <?php
 class MyAclComponent{
-    //var $uses = array('Aro', 'Aco');
+    
     function __construct(){
         App::import('Model', 'Myaco');
         App::import('Model', 'Myaro');
@@ -10,39 +10,70 @@ class MyAclComponent{
         $this->User = new User();
     }
     
-	function hasAccess($aro, $aco){
-        //pr($aro);pr($aco);
+	function hasAccess($user_id, $aco_alias){	
         $this->Myaco->recursive = 1;
         $this->Myaro->recursive = 1;
         
-        $aco=split('/',$aco);
-        $aco[0]='everything';
+        $user = $this->User->findById($user_id);
+        $group_alias = '/'.$user['Group']['name']; // /admin 
+        $user_alias = $group_alias . '/' . $user['User']['name']; // /admin/Ralle
         
-        $arofind = $this->User->find(array('User.id'=>$aro));
-        $aro = null;
-        $aro[0] = '/'.$arofind['Group']['name'];
-        $aro[1] = $aro[0] . '/' . $arofind['User']['name'];
-        //pr($aro);
+        $aco=split('/',$aco_alias);
+        $aco[0]='everything'; // array(everything, projects, view, 3)
         
-        
-        for($i=count($aco);$i>0;$i--){
-            $newaco='';
+        //Create the permutations. $aco_permutations: array(/everything, /everything/projects, /everything/projects/view, /everything/projects/view/3) 
+        for($i=1;$i<count($aco)+1;$i++){
+            $permutation = '';
             for($u=0;$u<$i;$u++){
-                $newaco .= '/'.$aco[$u];
+                $permutation .= '/'.$aco[$u];
             }
-            //pr($newaco);
-            if(($list=$this->Myaco->find(array('alias'=>$newaco)))!==false && !empty($list['Myaro'])){ //The ACO exsits
-                //echo "called";pr($list);
-                foreach($list['Myaro'] as $thisaro){
-                    if (in_array($thisaro['alias'], $aro)){
-                        return true;
+            $aco_permutations[] = $permutation;
+        }
+        
+        //Start with denying access
+        $access = false;
+        
+        //Find if group has access
+        //Loop through aco in following order: /everything, then /everything/projects, then /everything/projects/view, then /everything/projects/view/3
+        //Each loop set access, so latests most specific aco overwrites less specific        
+        foreach($aco_permutations as $aco_permutation){
+            if(($list=$this->Myaco->findByAlias($aco_permutation))!==false && !empty($list['Myaro'])){ //The permutation (resource) exsists and has requesters
+                foreach($list['Myaro'] as $thisaro){ //Loop through each requester related to this resource
+                    if($thisaro['alias'] == $group_alias){ //If one of them is the group
+                        if($thisaro['MyarosMyaco']['access'] == 1){
+                            $access = true;
+                            //echo "group true on $aco_permutation<br />";
+                        }elseif($thisaro['MyarosMyaco']['access'] == 0){
+                            $access = false;
+                            //echo "group false on $aco_permutation<br />";
+                        }
                     }
-                    
                 }
             }
         }
-        return false;
         
+        //Find if user has access
+        //Loop through aco in following order: /everything, then /everything/projects, then /everything/projects/view, then /everything/projects/view/3
+        //Each loop set access, so latests most specific aco overwrites less specific
+        foreach($aco_permutations as $aco_permutation){
+            if(($list=$this->Myaco->findByAlias($aco_permutation))!==false && !empty($list['Myaro'])){ //The permutation (resource) exsists and has requesters
+                foreach($list['Myaro'] as $thisaro){ //Loop through each requester related to this resource
+                    if($thisaro['alias'] == $user_alias){ //If one of them is the user
+                        if($thisaro['MyarosMyaco']['access'] == 1){
+                            $access = true;
+                            //echo "user true on $aco_permutation<br />";
+                        }elseif($thisaro['MyarosMyaco']['access'] == 0){
+                            $access = false;
+                            //echo "user false on $aco_permutation<br />";
+                        }
+                    }
+                }
+            }
+        }
+        
+        //return access (true/false)
+        return $access;
+
     }
    
 }

@@ -84,7 +84,6 @@ ol li
   margin-right: auto;
 }
 
-
 /* links / footer */
 #links_container
 { border-top: 1px solid; 
@@ -98,7 +97,6 @@ ol li
   
 }
 #footer{
-
     text-transform: uppercase;
 }
 
@@ -137,15 +135,65 @@ ol li
   letter-spacing: .2em;
 }
 
-/* column 2 - page content */
+/* main content */
 #content
-{ 
-  text-align: justify;
-  padding: 0px 0px 15px 0px;
-  margin: 0px 0px 0px 20px;
+{ height: auto;
+  padding: 20px 0px 0px 0px;
+  overflow: hidden;
 }
 
-#content h1
+/* column 1 - contains sidebar */
+
+.sidebaritem
+{ text-align: left;
+  float: left;
+  margin: 0px 0px 25px 0px;
+}
+
+.sidebaritem h1
+{ padding: 0px; 
+  margin: 0px 0px 14px 0px; 
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.sidebaritem p
+{ line-height: 16px; 
+  padding: 0px 0px 8px 0px;
+}
+
+.sbilinks{padding: 0px 0px 0px 0px;}
+
+.sbilinks ul{margin: 0px auto;} 
+
+.sbilinks li 
+{ margin: 0px; 
+  float: left; 
+  list-style: none; 
+} 
+
+.sbilinks li a , .sbilinks li a:hover
+{ float: left; 
+  height: 16px;
+  text-decoration: none; 
+  padding: 5px 0px 4px 19px;
+  width: 169px;
+  border: 0px;
+} 
+
+.sidebaritem a, .sidebaritem a:hover
+{ padding: 0px 0px 2px 19px;
+  text-decoration: none;
+}
+
+/* column 2 - page content */
+#column2
+{ text-align: justify;
+  padding: 0px 0px 15px 20px;
+  margin: 0px 0px 0px 0px;
+}
+
+#column2 h1
 { font-family: arial, sans-serif;
   margin: 0px 0px 12px 0px; 
   font-size: 150%;
@@ -153,8 +201,9 @@ ol li
   font-weight: normal;
 }
 
-#content a, #content a:hover
+#column2 a, #column2 a:hover
 {
+ 
   /*padding: 0px 0px 2px 0px;*/
   text-decoration: none;
 }

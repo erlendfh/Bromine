@@ -1,5 +1,5 @@
 <div class="users index">
-<h2><?php __('Users');?></h2>
+<h1><?php __('Users');?></h1>
 <p>
 <?php
 echo $paginator->counter(array(
@@ -8,14 +8,11 @@ echo $paginator->counter(array(
 ?></p>
 <table cellpadding="0" cellspacing="0">
 <tr>
-	<th><?php echo $paginator->sort('id');?></th>
-	<th><?php echo $paginator->sort('firstname');?></th>
-	<th><?php echo $paginator->sort('lastname');?></th>
 	<th><?php echo $paginator->sort('name');?></th>
-	<th><?php echo $paginator->sort('password');?></th>
+    <th><?php echo $paginator->sort('firstname');?></th>
+	<th><?php echo $paginator->sort('lastname');?></th>
 	<th><?php echo $paginator->sort('group_id');?></th>
 	<th><?php echo $paginator->sort('email');?></th>
-	<th><?php echo $paginator->sort('lastLogin');?></th>
 	<th class="actions"><?php __('Actions');?></th>
 </tr>
 <?php
@@ -28,28 +25,19 @@ foreach ($users as $user):
 ?>
 	<tr<?php echo $class;?>>
 		<td>
-			<?php echo $user['User']['id']; ?>
+			<?php echo $user['User']['name']; ?>
 		</td>
-		<td>
+        <td>
 			<?php echo $user['User']['firstname']; ?>
 		</td>
 		<td>
 			<?php echo $user['User']['lastname']; ?>
 		</td>
 		<td>
-			<?php echo $user['User']['name']; ?>
-		</td>
-		<td>
-			<?php echo $user['User']['password']; ?>
-		</td>
-		<td>
-			<?php echo $user['User']['group_id']; ?>
+			<?php echo $user['Group']['name']; ?>
 		</td>
 		<td>
 			<?php echo $user['User']['email']; ?>
-		</td>
-		<td>
-			<?php echo $user['User']['lastLogin']; ?>
 		</td>
 		<td class="actions">
 			<?php echo $html->aclLink(__('View', true), array('action'=>'view', $user['User']['id'])); ?>
@@ -68,11 +56,5 @@ foreach ($users as $user):
 <div class="actions">
 	<ul>
 		<li><?php echo $html->aclLink(__('New User', true), array('action'=>'add')); ?></li>
-		<li><?php echo $html->aclLink(__('List Defects', true), array('controller'=> 'defects', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->aclLink(__('New Defect', true), array('controller'=> 'defects', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->aclLink(__('List Projects', true), array('controller'=> 'projects', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->aclLink(__('New Project', true), array('controller'=> 'projects', 'action'=>'add')); ?> </li>
-		<li><?php echo $html->aclLink(__('List Requirements', true), array('controller'=> 'requirements', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->aclLink(__('New Requirement', true), array('controller'=> 'requirements', 'action'=>'add')); ?> </li>
 	</ul>
 </div>

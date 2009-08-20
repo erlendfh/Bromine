@@ -2,43 +2,8 @@
 class UsersController extends AppController {
 
 	var $name = 'Users';
-	var $helpers = array('Html', 'Form');
-	
-	function assign(){ //Assigns users to projects using Myacl
-        if (!empty($this->data)){ //If the user pressed submit
-            $this->data['Myaco'] = array('id'=>$this->Session->read('project_aco_id')); //Set aco to current project
-            App::import('Model','Myaco');
-            $this->Myaco = new Myaco();
-            if(!$this->Myaco->save($this->data)) { //Save the data
-				$this->Session->setFlash(__('The Assignees could not be saved. Please, try again.', true));
-			}
-		}
-        
-        $this->paginate = $paginate = array(
-            'order' => array(
-                'Group.id' => 'asc'
-            )
-        );
-        $this->layout = "default";
-        $this->User->recursive = 0;
-		$this->set('users', $this->paginate()); //Using the paginate to list users
-		
-		//Code below is for the checkboxes. There's probably a really clever and beatifull cake'ish way to do this. 
-        $this->User->recursive = 0;
-        $users = $this->User->find('all');
-        $admin_users = array();
-        $assigned_users = array();
-        foreach($users as $user){ //Loop through all users and generate arrays with users who have accces and admin users 
-            if($this->MyAcl->hasAccess($user['User']['id'],'/'.$this->Session->read('project_name'))){
-                $assigned_users[] = $user['User']['id'];
-            }
-            if($this->MyAcl->hasAccess($user['User']['id'],'/everything')){
-                $admin_users[] = $user['User']['id'];
-            }
-        }
-        $this->set('assigned_users',$assigned_users); //Send the arrays to the viewer
-        $this->set('admin_users',$admin_users);
-    }
+	var $helpers = array('Html', 'Form', 'Time');
+	var $main_menu_id = -2;
 	
 	function login() {
 	    $this->layout = 'green_select';
@@ -46,7 +11,6 @@ class UsersController extends AppController {
     }
      
     function logout() {
-        
         $this->Session->destroy();
         $this->Session->setFlash('Good-Bye');
         $this->redirect($this->Auth->logout());
@@ -81,7 +45,6 @@ class UsersController extends AppController {
 	}
 
 	function edit($id = null) {
-
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid User', true));
 			$this->redirect(array('action'=>'index'));
@@ -111,6 +74,5 @@ class UsersController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 	}
-
 }
 ?>

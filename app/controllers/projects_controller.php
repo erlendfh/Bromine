@@ -3,16 +3,100 @@ class ProjectsController extends AppController {
 
 	var $name = 'Projects';
 	var $helpers = array('Html', 'Form');
-	
-	function index(){
-        $this->StdFuncs->index();
-    }
+    var $main_menu_id = -2;
 
-    
-    function view($id = null) {
-        $this->StdFuncs->view($id);
+	function index() {
+		$this->Project->recursive = 0;
+		$this->set('projects', $this->paginate());
 	}
+
+	function view($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid Project.', true));
+			$this->redirect(array('action'=>'index'));
+		}
+		$this->Project->recursive = 1;
+		$project = $this->Project->find('first', array(
+			    'conditions'=>array(
+                    'Project.id' => $id    
+                ),
+                'contain'=>array(
+                    'User'=>array(
+                        'Group'
+                    ),
+                    'Site'
+                )
+            ));
+        $this->set('project', $project);
+	}
+
+	function add() {
+		if (!empty($this->data)) {
+			$this->Project->create();
+			if ($this->Project->save($this->data)) {
+				$this->Session->setFlash(__('The Project has been saved', true));
+				$this->redirect(array('action'=>'index'));
+			} else {
+				$this->Session->setFlash(__('The Project could not be saved. Please, try again.', true));
+			}
+		}
+		$users = $this->Project->User->find('list');
+		$this->set(compact('users'));
+	}
+	
+	function edit($id = null) {
+		if (!$id && empty($this->data)) {
+			$this->Session->setFlash(__('Invalid Project', true));
+			$this->redirect(array('action'=>'index'));
+		}
+		if (!empty($this->data)) {
+			if ($this->Project->save($this->data)){
+                foreach($this->data['Sites'] as $id => $site){
+                    $this->Project->Site->create();
+                    $this->Project->Site->save(array('Site'=>array('id'=>$id, 'name'=>$site)));
+                }
+                foreach($this->data['Newsites'] as $newsite){
+                    $this->Project->Site->create();
+                    $this->Project->Site->save(array('Site'=>array('name'=>$newsite, 'project_id'=>$this->data['Project']['id'])));
+                }
+				$this->Session->setFlash(__('The Project has been saved', true));
+				$this->redirect(array('action'=>'index'));
+			} else {
+				$this->Session->setFlash(__('The Project could not be saved. Please, try again.', true));
+			}
+		}
+		if (empty($this->data)) {
+		    $this->Project->recursive = 1;
+		    
+			$this->data = $this->Project->find('first', array(
+			    'conditions'=>array(
+                    'Project.id' => $id    
+                ),
+                'contain'=>array(
+                    'User'=>array(
+                        'Group'
+                    ),
+                    'Site'
+                )
+            ));
+		}
+		$users = $this->Project->User->find('list');
+		$this->set(compact('users'));
+	}
+
+	function delete($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid id for Project', true));
+			$this->redirect(array('action'=>'index'));
+		}
+		if ($this->Project->del($id)) {
+			$this->Session->setFlash(__('Project deleted', true));
+			$this->redirect(array('action'=>'index'));
+		}
+	}
+	
 	function testlabsview($id = null) {
+	   $this->main_menu_id = -2;
 	   if($id == null && $this->Session->check('project_id')){
 	        $id = $this->Session->read('project_id');
        }
@@ -49,18 +133,6 @@ class ProjectsController extends AppController {
         $this->set('failed',$failed);
         $this->set('notdone',$notdone);
 
-	}
-	
-	function add() {
-		$this->StdFuncs->add();
-	}
-	
-	function edit($id = null) {
-		$this->StdFuncs->edit($id,array('User'));
-	}
-
-    function delete($id = null) {
-		$this->StdFuncs->delete($id);
 	}
 	
 	function select(){
@@ -106,7 +178,6 @@ class ProjectsController extends AppController {
             $this->Session->setFlash(__('You do not have access to any projects.', true));
             $this->redirect(array('controller'=>'users', 'action'=>'login'));
         }
-
     }
 
 }

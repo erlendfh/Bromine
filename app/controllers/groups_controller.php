@@ -3,6 +3,7 @@ class GroupsController extends AppController {
 
 	var $name = 'Groups';
 	var $helpers = array('Html', 'Form');
+	var $main_menu_id = -2;
 	
 	function index() {
 		$this->Group->recursive = 0;

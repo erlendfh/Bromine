@@ -438,66 +438,6 @@ class RunrctestsController  extends AppController {
     		closedir($handle);
     	}
     	return $array_items;
-    }
-    
-    function stateOfTheSystem(){
-        $state = array();
-        $output = array();
-        $state['Permissions output'] = "";
-        //pr($this->directoryToArray('testscripts/eniro/',true));
-        
-        // Test for Java
-        exec('java -version', $java_output, $java_return);
-        $state['Java'] = $java_return;
-        $output['Java'] = implode(",", $java_output);
-        
-        // Test for Ruby
-        exec('ruby -v', $ruby_output, $ruby_return);
-        $state['Ruby'] = $ruby_return;
-        $output['Ruby'] = implode(",", $ruby_output);
-        
-        // Test for PHP
-        exec('php --version', $php_output, $php_return);
-        $state['Php'] = $php_return;
-        $output['Php'] = implode(",", $php_output);
-        
-        // Test for Magic Quotes
-        $mq_return = get_magic_quotes_gpc();
-        $state['Magic Quotes'] = $mq_return;
-        
-        // Test for Max execution time
-        $max_exec_time = ini_get('max_execution_time');
-        $state['Max execution time'] = $max_exec_time;
-        
-        // Test for filepermissions
-        //echo getcwd();
-        $permission2 = is_writeable("testscripts/".$this->Session->read('project_name'));
-        $permission3 = is_writeable("logs");
-        $permission4 = is_writeable("img/temp");
-        
-        App::import('Model','Type');
-        $this->Type = new Type();
-        $extList = $this->Type->find('list', array('fields' => array('Type.extension')));
-        
-        $state['Permissions'] = true;
-        foreach ($extList as $value) {
-        	if(!is_writeable("testscripts/".$this->Session->read('project_name')."/".$value)){
-                $state['Permissions'] = false;
-                $state['Permissions output'] = $state['Permissions output'] . ", testscripts/".$this->Session->read('project_name')."/".$value;
-            }
-        }
-        
-        $state['Logs dir'] = $permission3;
-        $state['Img/temp dir'] = $permission4;
-        $this->set('current_project',$this->Session->read('project_name'));
-        
-        
-        // Set the arrays for the viewer
-        $this->set('state',$state);
-        $this->set('output',$output);
-        
-        
-    }
-    
+    }    
 }
 ?>

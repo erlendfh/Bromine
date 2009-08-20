@@ -108,14 +108,14 @@ class TestcasesController extends AppController {
 	function edit($id = null) {
         $this->Testcase->recursive = 0;
 		if (!$id && empty($this->data)) {
-			$this->setFlash(__('Invalid Testcase', true),'err');
+			$this->Session->setFlash('Invalid Testcase', true, array('class'=>'error'));
 			$this->redirect(array('action'=>'index'));
 		}
 		if (!empty($this->data)){
             if ($this->Testcase->save($this->data)) {
-				$this->setFlash(__('The Testcase has been saved', true), 'succ');
+				$this->Session->setFlash(__('The Testcase has been saved', true));
 			} else {
-				$this->setFlash(__('The Testcase could not be saved. Please, try again.', true), 'err');
+				$this->Session->setFlash('The Testcase could not be saved. Please, try again.', true, array('class'=>'error'));
 			}
 		}
         if($id){
@@ -128,21 +128,33 @@ class TestcasesController extends AppController {
 		}
 	}
 	
-	private function getTestScript($id){
+	private function getTestScript($id, $asArray=false){
         App::import('Model','Type');
         $this->Type = new Type();
         $extList = $this->Type->find('list', array('fields' => array('Type.extension')));
         foreach($extList as $ext){
-            $file = WWW_ROOT.DS.'testscripts'.DS.$this->Session->read('project_name').DS.$ext.DS.$id.".$ext";
+            $file = WWW_ROOT.'testscripts'.DS.$this->Session->read('project_name').DS.$ext.DS.$id.".$ext";
             if(file_exists($file)){
-                return htmlspecialchars(file_get_contents($file));
+                if(!$asArray){
+                    return htmlspecialchars(file_get_contents($file));
+                }
+                else{
+                    $files[] = $file;
+                }               
             }
+        }
+        if($asArray){
+            return $files;
         }
         return false;
     }
 	
 	function upload($id = null){
-        $this->layout = 'green_blank';	   
+        $this->layout = 'green_blank';
+        $files = $this->getTestScript($id, true);
+        if(!empty($files)) {
+            $this->Session->setFlash("Uploading a new file will remove the old one.", true, array('class' => 'warning'));
+        }
         if($id){
             $this->set('id',$id);
             if($this->data['Testcase']['testscript']['name']!=''){
@@ -155,19 +167,27 @@ class TestcasesController extends AppController {
                 App::import('Model','Type');
                 $this->Type = new Type();
                 $extList = $this->Type->find('list', array('fields' => array('Type.extension')));
-                if(in_array($ext, $extList)){
+                if(in_array($ext, $extList)){                   
+                    if(!empty($files)){
+                        foreach($files as $file){
+                            if(!unlink($file)){
+                                $this->Session->setFlash('Could not delete file: '.$file.' please delete manually before trying to upload file again.', true, array('class' => 'error'));
+                                exit();
+                            }
+                        }
+                    }
                     if (move_uploaded_file($this->data['Testcase']['testscript']['tmp_name'], $uploadfile)) {
-                        $this->setFlash(__('The Testscript has been uploaded',true), 'succ');
+                        $this->Session->setFlash(__('The Testscript has been uploaded',true));
                         $this->set('uploaded',true);
         			}else{
-                        $this->setFlash(__('Script not uploaded. The file could not be uploaded. Check folder permissions', true),'err');
+                        $this->Session->setFlash('Script not uploaded. The file could not be uploaded. Check folder permissions', true, array('class' => 'error'));
                     }
                 }else{
-                    $this->setFlash(__('Script not uploaded. Filetype not accepted. The accepted filetypes are '.implode(', ', $extList), true), 'err');
+                    $this->Session->setFlash('Script not uploaded. Filetype not accepted. The accepted filetypes are '.implode(', ', $extList), true, array('class' => 'error'));
                 }
     		}
     	}else{
-            $this->setFlash('No testcase id provided','err');
+            $this->Session->setFlash(__('No testcase id provided',true));
         }
     }
 

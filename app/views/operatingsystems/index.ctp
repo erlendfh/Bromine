@@ -1,5 +1,5 @@
 <div class="operatingsystems index">
-<h2><?php __('Operatingsystems');?></h2>
+<h1><?php __('Operatingsystems');?></h1>
 <table cellpadding="0" cellspacing="0">
 <tr>
 	<th> Name </th>
@@ -18,8 +18,8 @@ foreach ($operatingsystems as $operatingsystem):
 			<?php echo $operatingsystem['Operatingsystem']['name']; ?>
 		</td>
 		<td class="actions">
-			<?php echo $ajax->link(__('View', true), array('action'=>'view', $operatingsystem['Operatingsystem']['id']),array('update'=>'Main')); ?>
-			<?php echo $ajax->link(__('Edit', true), array('action'=>'edit', $operatingsystem['Operatingsystem']['id']),array('update'=>'Main')); ?>
+			<?php echo $html->link(__('View', true), array('action'=>'view', $operatingsystem['Operatingsystem']['id'])); ?>
+			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $operatingsystem['Operatingsystem']['id'])); ?>
 			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $operatingsystem['Operatingsystem']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $operatingsystem['Operatingsystem']['id'])); ?>
 		</td>
 	</tr>
@@ -28,6 +28,6 @@ foreach ($operatingsystems as $operatingsystem):
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $ajax->link(__('New Operatingsystem', true), array('action'=>'add'),array('update'=>'Main')); ?></li>
+		<li><?php echo $html->link(__('New Operatingsystem', true), array('action'=>'add')); ?></li>
 	</ul>
 </div>

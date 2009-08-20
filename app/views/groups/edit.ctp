@@ -12,8 +12,5 @@
 <div class="actions">
 	<ul>
 		<li><?php echo $html->aclLink(__('Delete', true), array('action'=>'delete', $form->value('Group.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $form->value('Group.id'))); ?></li>
-		<li><?php echo $html->aclLink(__('List Groups', true), array('action'=>'index'));?></li>
-		<li><?php echo $html->aclLink(__('List Users', true), array('controller'=> 'users', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->aclLink(__('New User', true), array('controller'=> 'users', 'action'=>'add')); ?> </li>
 	</ul>
 </div>

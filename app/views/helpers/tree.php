@@ -158,7 +158,11 @@ class TreeHelper extends Helper{
     $output = "";
         foreach($list as $menu){
             $output .= "<ul><li>";
-            $output .= $this->Html->link($menu['Menu']['title'],array('controller'=>$menu['Menu']['controller']));
+            if(!empty($menu['Menu']['controller'])){
+                $output .= $this->Html->link($menu['Menu']['title'],array('controller'=>$menu['Menu']['controller'], 'action'=>$menu['Menu']['action']));
+            }else{
+                $output .= '<a style="cursor: default;">'.$menu['Menu']['title'].'</a>';               
+            }
             $output.="<ul>";
             if(!empty($menu['children'])){
                 $output .= $this->menutree($menu['children']);

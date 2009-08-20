@@ -3,16 +3,12 @@ class SitesController extends AppController {
 
 	var $name = 'Sites';
 	var $helpers = array('Html', 'Form');
+	var $main_menu_id = -2;
 	
 	function select(){
         $this->Session->write('site_id',$this->data['Site']['site_id']);
         $this->redirect($this->referer());
     }
-
-	function index() {
-		$this->Site->recursive = 0;
-		$this->set('sites', $this->paginate(null, array('Project.id' => $this->Session->read('project_id'))));
-	}
 
 	function view($id = null) {
 		if (!$id) {
@@ -63,7 +59,7 @@ class SitesController extends AppController {
 		}
 		if ($this->Site->del($id)) {
 			$this->Session->setFlash(__('Site deleted', true));
-			$this->redirect(array('action'=>'index'));
+			$this->redirect($this->referer());
 		}
 	}
 

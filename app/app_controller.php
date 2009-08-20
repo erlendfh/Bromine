@@ -39,13 +39,14 @@
  */
 class AppController extends Controller {
 
-    var $components = array('Auth', 'StdFuncs','MyAcl','RequestHandler','Menu');
+    var $components = array('Auth', 'StdFuncs','RequestHandler','Menu', 'MyAcl');
     var $helpers = array('Html','Ajax','Javascript', 'Tree');
     var $layout = 'green';
     var $main_menu_id = -1;
     var $debugmode = true;
     var $echelon = false;
     var $time;
+    var $version = '3.0';
     
     function afterFilter(){
         $_SESSION['Message'] = '';
@@ -97,8 +98,6 @@ class AppController extends Controller {
         
         $this->Auth->authorize = 'controller';
         
-        $this->set('Menu',$this->Menu->createMenu($this->main_menu_id));
-
         if(isset($this->needsproject)){
             if((is_array($this->needsproject) && in_array($this->action, $this->needsproject)) || $this->needsproject===true){ //If the controller/action needs a project
                 if($this->Session->check('project_id')===false){ //If project_id is NOT set in the session
@@ -108,6 +107,23 @@ class AppController extends Controller {
             }
         }
 
+    }
+    
+    function beforeRender(){
+        $this->set('main_menu_id', $this->main_menu_id);
+        $this->set('Menu',$this->Menu->createMenu($this->main_menu_id));
+        
+        // Check if bromine is registred
+        App::import('Model','Config');
+        $config = new Config();
+        $reg = $config->findByName('registered');
+        if ($reg['Config']['value'] == 1){
+            $this->set('register','Registered version');
+        }
+        
+        // Set version for the viewer
+        $this->set('version',$this->version);
+        
     }
     
     function isAuthorized(){

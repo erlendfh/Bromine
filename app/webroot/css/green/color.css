@@ -23,6 +23,8 @@ h1
   color: #FFF;
 }
 
+
+
 #links a:hover, #logo h2, #content, .sidebaritem, #content a
 { background: transparent;
   color: #555;
@@ -32,6 +34,14 @@ h1
 { background: #555;
   color: #83B82E;
 } 
+
+#footer a.redlink{
+    color: red;
+}
+
+#footer a.redlink:hover{
+    color: #83B82E;
+}
 
 #content a
 {

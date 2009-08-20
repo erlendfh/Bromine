@@ -1,5 +1,5 @@
 <div class="types index">
-<h2><?php __('Types');?></h2>
+<h1><?php __('Types');?></h1>
 <p>
 <?php
 echo $paginator->counter(array(
@@ -8,7 +8,6 @@ echo $paginator->counter(array(
 ?></p>
 <table cellpadding="0" cellspacing="0">
 <tr>
-	<th><?php echo $paginator->sort('id');?></th>
 	<th><?php echo $paginator->sort('name');?></th>
 	<th><?php echo $paginator->sort('command');?></th>
 	<th><?php echo $paginator->sort('spacer');?></th>
@@ -24,9 +23,6 @@ foreach ($types as $type):
 	}
 ?>
 	<tr<?php echo $class;?>>
-		<td>
-			<?php echo $type['Type']['id']; ?>
-		</td>
 		<td>
 			<?php echo $type['Type']['name']; ?>
 		</td>

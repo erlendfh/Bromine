@@ -74,7 +74,7 @@
         </script>
       <div id="links">
         <?php
-            if(!empty($usersprojects)){
+            if(!empty($usersprojects) && $main_menu_id != -2){
                 echo $form->create('Project',array('action' => 'select'));
                 foreach($usersprojects as $project){
                     $options[$project['Project']['id']] = $project['Project']['name']; 
@@ -103,52 +103,62 @@
     
 
     <?php
-        echo $html->link( 
+          
+            echo $html->link( 
+            	$html->image("tango/32x32/actions/system-log-out.png"), 
+            	array('controller' => 'users','action' => 'logout'), 
+            	array('escape' => false,'style'=>'float: right;', 'alt' => 'Logout'),
+            	"Are you sure you wan't logout?"
+            );     
+             
+            echo $html->link( 
             	$html->image("tango/32x32/apps/help-browser.png"), 
             	array('controller' => 'pages','action' => 'help_splash'), 
             	array('escape' => false, 'class'=>'lightwindow', 'params' => 'lightwindow_type=page', 'style'=>'float: right;')
-            );
+            );    
+            
     
     ?>
     </div>
     <div id="content" style='clear: both;'>
-      
-        <div id='messages'>
-            <?php if($session->check('Message.err')): ?>
-                <div id='err' style='color: darkred;'>
+        <div id="column1"></div>
+        <div id="column2">
+            <div id='messages'>
+                <?php if($session->check('Message.err')): ?>
+                    <div id='err' style='color: darkred;'>
+                        <?php 
+                        foreach($session->read('Message.err') as $error){
+                            echo "Error: $error <br />";   
+                        }
+                        ?>
+                    </div>
+                <?php endif ?>
+                <?php if($session->check('Message.warn')): ?>
+                    <div id='warn' style='color: #CC9933;'>
                     <?php 
-                    foreach($session->read('Message.err') as $error){
-                        echo "Error: $error <br />";   
-                    }
-                    ?>
-                </div>
-            <?php endif ?>
-            <?php if($session->check('Message.warn')): ?>
-                <div id='warn' style='color: #CC9933;'>
-                <?php 
-                    foreach($session->read('Message.warn') as $warning){
-                        echo "Warning: $warning <br />";   
-                    }
-                    ?>
-                </div>
-            <?php endif ?>
-            <?php if($session->check('Message.succ')): ?>
-                <div id='succ'>
-                <?php 
-                    foreach($session->read('Message.succ') as $success){
-                        echo "$success <br />";   
-                    }
-                    ?>
-                </div>
-            <?php endif ?>
-            <?php $session->flash('auth'); ?>
-            <?php $session->flash(); ?>
-        </div>
-        <?php echo $content_for_layout; ?>
-      
+                        foreach($session->read('Message.warn') as $warning){
+                            echo "Warning: $warning <br />";   
+                        }
+                        ?>
+                    </div>
+                <?php endif ?>
+                <?php if($session->check('Message.succ')): ?>
+                    <div id='succ'>
+                    <?php 
+                        foreach($session->read('Message.succ') as $success){
+                            echo "$success <br />";   
+                        }
+                        ?>
+                    </div>
+                <?php endif ?>
+                <?php $session->flash('auth'); ?>
+                <?php $session->flash(); ?>
+            </div>
+            <?php echo $content_for_layout; ?>
+       </div>
     </div>
     <div id="footer">
-      Copyright &copy; 2007-2009 Bromine Team | <a href="http://bromine.seleniumhq.org">Bromine</a> | <a href="http://www.dcarter.co.uk">Design by dcarter</a>
+      Copyright &copy; 2007-2009 Bromine Team | <a href="http://bromine.seleniumhq.org">Bromine</a> | <a href="http://www.dcarter.co.uk">Design by dcarter</a> | <?php if (!isset($register)){echo $html->link("Please Register", array('controller' => 'configs','action' => 'register'), array('class' => 'redlink'));}else{echo $register;} ?> | <?php echo "Version: " . $version; ?>
     </div>
     <div id="debug">
     <?php echo $cakeDebug; ?>

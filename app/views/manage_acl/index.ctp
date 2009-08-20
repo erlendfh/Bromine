@@ -1,39 +1,23 @@
 <div class="manageacl index">
-    <h2><?php __('ACL manager');?></h2>
-    <table style='width: 100%;'>
+    <h1><?php __('ACL manager');?></h1>
+    <table>
         <tr>
-            <th>Requesters</th>
-            <th>Resources</th>
+            <th>Requester browser</th>
+            <th>Requester permisssions</th>
         </tr>
-        <tr>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>
-                <div id='aros'>
-                    <script type="text/javascript">
-                        <?php 
-                            echo $ajax->remoteFunction( 
-                            array( 
-                                'url' => array( 'controller' => 'manageAcl', 'action' => 'listAros'), 
-                                'update' => 'aros' 
-                            ) 
-                        ); ?>
-                    </script>
-                </div>
+        <tr style='vertical-align: top;'>
+            <td id='aros' style='vertical-align: top;'>
+                <script type="text/javascript">
+                    <?php 
+                        echo $ajax->remoteFunction( 
+                        array( 
+                            'url' => array( 'controller' => 'manageAcl', 'action' => 'listAros'), 
+                            'update' => 'aros' 
+                        ) 
+                    ); ?>
+                </script>
             </td>
-            <td>
-                <div id='acos'>
-                    <script type="text/javascript">
-                        <?php echo $ajax->remoteFunction( 
-                            array( 
-                                'url' => array( 'controller' => 'manageAcl', 'action' => 'listAcos'), 
-                                'update' => 'acos' 
-                            ) 
-                        ); ?>
-                    </script>
-                </div>
+            <td id='permissions' style='vertical-align: top;'>
             </td>
         </tr>
     </table>

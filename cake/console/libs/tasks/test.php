@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: test.php 7945 2008-12-19 02:16:01Z gwoo $ */
+/* SVN FILE: $Id: test.php 8283 2009-08-03 20:49:17Z gwoo $ */
 /**
  * The TestTask handles creating and updating test files.
  *
@@ -19,9 +19,9 @@
  * @package       cake
  * @subpackage    cake.cake.console.libs.tasks
  * @since         CakePHP(tm) v 1.2
- * @version       $Revision: 7945 $
+ * @version       $Revision: 8283 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2008-12-18 20:16:01 -0600 (Thu, 18 Dec 2008) $
+ * @lastmodified  $Date: 2009-08-03 13:49:17 -0700 (Mon, 03 Aug 2009) $
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 /**
@@ -87,19 +87,19 @@ class TestTask extends Shell {
 		}
 
 		while ($class == null) {
+			$cases = array();
+			$this->hr();
+			$this->out("Select a class:");
+			$this->hr();
 
-				$this->hr();
-				$this->out("Select a class:");
-				$this->hr();
+			$keys = array();
+			foreach ($options as $key => $option) {
+				$this->out(++$key . '. ' . $option);
+				$keys[] = $key;
+			}
+			$keys[] = 'q';
 
-				$keys = array();
-				foreach ($options as $key => $option) {
-					$this->out(++$key . '. ' . $option);
-					$keys[] = $key;
-				}
-				$keys[] = 'q';
-
-				$key = $this->in(__("Enter the class to test or (q)uit", true), $keys, 'q');
+			$key = $this->in(__("Enter the class to test or (q)uit", true), $keys, 'q');
 
 			if ($key != 'q') {
 				if (isset($options[--$key])) {
@@ -143,7 +143,7 @@ class TestTask extends Shell {
 		}
 
 		if (strpos($this->path, $class) === false) {
-			$this->path .= 'cases' . DS . Inflector::tableize($class) . DS;
+			$this->filePath = $this->path . 'cases' . DS . Inflector::tableize($class) . DS;
 		}
 
 		$class = Inflector::classify($class);
@@ -175,14 +175,14 @@ class TestTask extends Shell {
 
 		$this->out("Baking unit test for $name...");
 		$this->out($out);
-		$ok = $this->in(__('Is this correct?'), array('y', 'n'), 'y');
+		$ok = $this->in(__('Is this correct?', true), array('y', 'n'), 'y');
 		if ($ok == 'n') {
 			return false;
 		}
 
 		$header = '$Id';
-		$content = "<?php \n/* SVN FILE: $header$ */\n/* ". $name ." Test cases generated on: " . date('Y-m-d H:m:s') . " : ". time() . "*/\n{$out}?>";
-		return $this->createFile($this->path . Inflector::underscore($name) . '.test.php', $content);
+		$content = "<?php \n/* SVN FILE: $header$ */\n/* " . $name . " Test cases generated on: " . date('Y-m-d H:i:s') . " : ". time() . "*/\n{$out}?>";
+		return $this->createFile($this->filePath . Inflector::underscore($name) . '.test.php', $content);
 	}
 /**
  * Handles the extra stuff needed

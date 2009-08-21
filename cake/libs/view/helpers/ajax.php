@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: ajax.php 7945 2008-12-19 02:16:01Z gwoo $ */
+/* SVN FILE: $Id: ajax.php 8283 2009-08-03 20:49:17Z gwoo $ */
 /**
  * Helper for AJAX operations.
  *
@@ -19,9 +19,9 @@
  * @package       cake
  * @subpackage    cake.cake.libs.view.helpers
  * @since         CakePHP(tm) v 0.10.0.1076
- * @version       $Revision: 7945 $
+ * @version       $Revision: 8283 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2008-12-18 20:16:01 -0600 (Thu, 18 Dec 2008) $
+ * @lastmodified  $Date: 2009-08-03 13:49:17 -0700 (Mon, 03 Aug 2009) $
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 /**
@@ -42,14 +42,14 @@ class AjaxHelper extends AppHelper {
 /**
  * HtmlHelper instance
  *
- * @var object
+ * @var HtmlHelper
  * @access public
  */
 	var $Html = null;
 /**
  * JavaScriptHelper instance
  *
- * @var object
+ * @var JavaScriptHelper
  * @access public
  */
 	var $Javascript = null;
@@ -81,7 +81,8 @@ class AjaxHelper extends AppHelper {
  */
 	var $dragOptions = array(
 		'handle', 'revert', 'snap', 'zindex', 'constraint', 'change', 'ghosting',
-		'starteffect', 'reverteffect', 'endeffect'
+		'starteffect', 'reverteffect', 'endeffect', 'scroll', 'scrollSensitivity',
+		'onStart', 'onDrag', 'onEnd'
 	);
 /**
  * Options for droppable.
@@ -303,12 +304,11 @@ class AjaxHelper extends AppHelper {
  * (all elements available in params).  The options for defining callbacks is the same
  * as AjaxHelper::link().
  *
- * @param mixed $params Either a string identifying the form target, or an array of method
- *                      parameters, including:
- *                          - 'params' => Acts as the form target
- *                          - 'type' => 'post' or 'get'
- *                          - 'options' => An array containing all HTML and script options used to
- *                             generate the form tag and Ajax request.
+ * @param mixed $params Either a string identifying the form target, or an array of method parameters, including:
+ *  - 'params' => Acts as the form target
+ *  - 'type' => 'post' or 'get'
+ *  - 'options' => An array containing all HTML and script options used to
+ *  generate the form tag and Ajax request.
  * @param array $type How form data is posted: 'get' or 'post'
  * @param array $options Callback/HTML options
  * @return string JavaScript/HTML code
@@ -902,7 +902,7 @@ class AjaxHelper extends AppHelper {
 				}
 				if (isset($options['bind'])) {
 					$bind = $options['bind'];
-					
+
 					$hasBinding = (
 						(is_array($bind) && in_array($callback, $bind)) ||
 						(is_string($bind) && strpos($bind, $callback) !== false)
@@ -958,7 +958,7 @@ class AjaxHelper extends AppHelper {
 			$keys = array_keys($this->__ajaxBuffer);
 
 			if (count($divs) == 1 && in_array($divs[0], $keys)) {
-				e($this->__ajaxBuffer[$divs[0]]);
+				echo $this->__ajaxBuffer[$divs[0]];
 			} else {
 				foreach ($this->__ajaxBuffer as $key => $val) {
 					if (in_array($key, $divs)) {
@@ -969,14 +969,13 @@ class AjaxHelper extends AppHelper {
 				$out .= 'for (n in __ajaxUpdater__) { if (typeof __ajaxUpdater__[n] == "string"';
 				$out .= ' && $(n)) Element.update($(n), unescape(decodeURIComponent(';
 				$out .= '__ajaxUpdater__[n]))); }';
-				e($this->Javascript->codeBlock($out, false));
+				echo $this->Javascript->codeBlock($out, false);
 			}
 			$scripts = $this->Javascript->getCache();
 
 			if (!empty($scripts)) {
-				e($this->Javascript->codeBlock($scripts, false));
+				echo $this->Javascript->codeBlock($scripts, false);
 			}
-
 			$this->_stop();
 		}
 	}

@@ -24,7 +24,10 @@
                         $offlineNeeds[] = $combination['Browser']['name'].' on '.$combination['Operatingsystem']['name'];
                     }
                 }
-    			if(empty($nodes)){
+                if(isset($noScript)){
+                    echo '<p class="notice">Notice: '.$noScript.'</p>'; 
+                }
+    			elseif(empty($nodes)){
                     echo "<p class='error'>Error: There are no nodes defined. Please ".$html->link('add','/Requirements#/Nodes/add/').' some</p>';
                 }
     			elseif(empty($onlineNodes)){
@@ -45,7 +48,7 @@
                     echo $html->link($html->image("tango/32x32/actions/go-next.png").'', '/runrctests/runAndViewTestcase/'.$testcase['Testcase']['id'].'/'.$requirement['Requirement']['id'], array('onclick'=>'return Popup.open({url:this.href});'), null, false);
                 }
                  
-                if(!empty($offlineNeeds) && !(count($offlineNeeds)>=count($combinations))){
+                if(!empty($offlineNeeds) && !(count($offlineNeeds)>=count($combinations)) && !isset($noScript)){
                     echo "<p class='warning'>Warning: The following combinations will not be tested as there are no online nodes with that combination:<br />";
                     foreach($offlineNeeds as $offlineNeed){
                         echo $offlineNeed."<br />";
@@ -53,7 +56,7 @@
                     echo "</p>";
                 }
                 
-                if(count($onlineNodes)<count($nodes) && !empty($onlineNodes) && !empty($nodes)){
+                if(count($onlineNodes)<count($nodes) && !empty($onlineNodes) && !empty($nodes) && !isset($noScript)){
                     echo "<p class='notice'>Notice: The following nodes are defined but not running. Starting them will increase performance:<br />";
                     $onlineNodePaths = array();
                     foreach($onlineNodes as $onlineNode){
@@ -77,7 +80,6 @@
             	   <th style='width: 35%;'>Operating system</th>
             	   <th style='width: 35%;'>Browser</th>
             	   <th>Results</th>
-            	   <th>Jira</th>
             	</tr>
             	<?php
 
@@ -97,11 +99,6 @@
                         echo "<td>";
                         if(!empty($combination['Result'])){
                             echo $html->link($html->image('tango/32x32/categories/applications-other.png'),'#/Tests/view/'.$combination['Result']['Test']['id'],null,null,false);
-                        }
-                        echo "</td>";
-                        echo "<td>";
-                        if($status == 'failed'){
-                            echo $html->link($html->image('tango/16x16/actions/system-log-out.png'),'/testcases/addToJira/'.$combination['Result']['Test']['id'],array('target' => '_blank'),'This will add a issue til jira, are you sure?',false);
                         }
                         echo "</td>";
                         echo "</tr>"; 

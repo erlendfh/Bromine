@@ -118,7 +118,7 @@ class TreeHelper extends Helper{
                 array( 'controller' => 'requirements', 'action' => 'testlabview', $val[$modelName]['id']), 
                 array( 'update' => 'Main', 'class'=>'reqhandle', 'title'=>$fullname)
             );
-            $output .= "<img src='img/".$val[$modelName]['status'].".png' style='height: 16px; margin-top: -18px;  margin-right: -26px; float: right;'/>";
+            $output .= "<img src='img/".$val[$modelName]['status'].".png' style='height: 16px;  margin-top: 3px; margin-right: -26px; float: right;'/>";
             
             $output .= "<ul>";
             
@@ -139,7 +139,7 @@ class TreeHelper extends Helper{
                     );
 
                     $output .= "&nbsp;<a  class='del hide' onclick='removetc(this.up(".'"div"'."), this.up(".'"li"'."));'><img src='/img/tango/16x16/places/user-trash.png'></img></a>";
-                    $output .= "<img src='img/".$testcase['status'].".png' style='height: 16px;  margin-top: -18px; margin-right: -26px; float: right;'/>";
+                    $output .= "<img src='img/".$testcase['status'].".png' style='height: 16px;  margin-top: 3px; margin-right: -26px; float: right;'/>";
                     $output .= "</div>";
                 }
   

@@ -23,7 +23,11 @@
                         $offlineNeeds[] = $combination['Browser']['name'].' on '.$combination['Operatingsystem']['name'];
                     }
                 }
-    			if(empty($nodes)){
+                
+                if(isset($noScriptsAll)){
+                    echo '<p class="notice">'.$noScriptsAll.'</p>';
+                }
+    			elseif(empty($nodes)){
                     echo "<p class='error'>Error: There are no nodes defined. Please ".$html->link('add','/Requirements#/Nodes/add/').' some</p>';
                 }
     			elseif(empty($onlineNodes)){
@@ -46,8 +50,15 @@
                 else{
                     echo $html->link($html->image("tango/32x32/actions/go-next.png").'', '/runrctests/runAndViewRequirement/'.$requirement['Requirement']['id'], array('onclick'=>'return Popup.open({url:this.href});'), null, false);
                 }
-                 
-                if(!empty($offlineNeeds) && !(count($offlineNeeds)>=count($combinations))){
+                if(isset($noScripts)){
+                    $scriptString = '<div class="notice">Test scripts are missing in the following test cases:<br /><ul>';
+                    foreach($noScripts as $script){
+                        $scriptString .= '<li>'.$script.'</li>';
+                    }
+                    $scriptString .= '</ul></div>';
+                    echo $scriptString;
+                }
+                if(!empty($offlineNeeds) && !(count($offlineNeeds)>=count($combinations)) && !isset($noScriptsAll)){
                     echo "<p class='warning'>Warning: The following combinations will not be tested as there are no online nodes with that combination:<br />";
                     foreach($offlineNeeds as $offlineNeed){
                         echo $offlineNeed."<br />";
@@ -55,7 +66,10 @@
                     echo "</p>";
                 }
                 
-                if(count($onlineNodes)<count($nodes) && !empty($onlineNodes) && !empty($nodes)){
+                if(count($onlineNodes)<count($nodes) 
+                && !empty($onlineNodes) 
+                && !empty($nodes) 
+                && !isset($noScriptsAll)){
                     echo "<p class='notice'>Notice: The following nodes are defined but not running. Starting them will increase performance:<br />";
                     $onlineNodePaths = array();
                     foreach($onlineNodes as $onlineNode){

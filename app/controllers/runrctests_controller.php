@@ -9,7 +9,7 @@ class RunrctestsController  extends AppController {
     var $loopLimit = 10000; //Set to -1 for infinite
     var $timeout = 45;
     
-    /* //Depreceated
+    /* //Deprecated
 	function gridLauncher($suite_id=0, $tests=array()){ 
         //gridLauncer replaces loadBalancer. 
         //gridLauncher just executes all the tests and send them to the grid hub
@@ -243,18 +243,19 @@ class RunrctestsController  extends AppController {
         
         $tests = array();
         foreach ($requirement['Testcase'] as $testcase){
-            $tests[$testcase['id']] = array(); 
-            foreach ($requirement['Combination'] as $combination){
-                $need = $combination['Browser']['name'].' on '.$combination['Operatingsystem']['name'];
-                if(!in_array($need, $offlineNeeds)){ //Sort out the needs that can't be run
-                    $tests[$testcase['id']][] = array(
-                        'done' => 0,
-                        'OS' => $combination['operatingsystem_id'],
-                        'browser' => $combination['browser_id']
-                        );
+            if($this->getFileExt($testcase['id']) != false){
+                $tests[$testcase['id']] = array();
+                foreach ($requirement['Combination'] as $combination){
+                    $need = $combination['Browser']['name'].' on '.$combination['Operatingsystem']['name'];
+                    if(!in_array($need, $offlineNeeds)){ //Sort out the needs that can't be run
+                        $tests[$testcase['id']][] = array(
+                            'done' => 0,
+                            'OS' => $combination['operatingsystem_id'],
+                            'browser' => $combination['browser_id']
+                            );
+                    }
                 }
             }
-        
         }
         $this->loadBalancer($suite_id,$tests);
     }
@@ -395,8 +396,8 @@ class RunrctestsController  extends AppController {
         $browserPath = $browser['Browser']['path'];
         
         //Put together the command line string 
-        $cmd =  $command . $spacer . WWW_ROOT . 'testscripts' . DS . 
-                $this->Session->read('project_name') . DS . $extension . DS . $testName . '.' . $extension . 
+        $cmd =  $command . $spacer . '"'.WWW_ROOT . 'testscripts' . DS . 
+                $this->Session->read('project_name') . DS . $extension . DS . $testName . '.' . $extension .'"'. 
                 $spacer . '127.0.0.1' . $spacer . $port . $spacer . $browserPath . $spacer . 
                 $siteToTest . $spacer . $uid . $spacer . $test_id;
         //Execute it
@@ -409,7 +410,7 @@ class RunrctestsController  extends AppController {
         
         if (substr(php_uname(), 0, 7) == "Windows"){ //Windows
             $this->log('Output printed to logs/output'.$uid.'txt');
-            $this->log(pclose(popen("start /B ". $cmd . ' > logs/output' . $uid . '.txt', "r"))); 
+            $this->log(pclose(popen("start /B ".$cmd .' > logs/output' . $uid . '.txt', "r"))); 
             
         }
         else { //Unix. NEVER TESTED IN UNIX

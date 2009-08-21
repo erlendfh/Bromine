@@ -33,7 +33,13 @@ class ProjectsController extends AppController {
 	function add() {
 		if (!empty($this->data)) {
 			$this->Project->create();
-			if ($this->Project->save($this->data)) {
+			if ($this->Project->save($this->data)){
+                if(!empty($this->data['Newsites'])){
+                    foreach($this->data['Newsites'] as $newsite){
+                        $this->Project->Site->create();
+                        $this->Project->Site->save(array('Site'=>array('name'=>$newsite, 'project_id'=>$this->Project->id)));
+                    }
+                }
 				$this->Session->setFlash(__('The Project has been saved', true));
 				$this->redirect(array('action'=>'index'));
 			} else {
@@ -51,13 +57,17 @@ class ProjectsController extends AppController {
 		}
 		if (!empty($this->data)) {
 			if ($this->Project->save($this->data)){
-                foreach($this->data['Sites'] as $id => $site){
-                    $this->Project->Site->create();
-                    $this->Project->Site->save(array('Site'=>array('id'=>$id, 'name'=>$site)));
+			    if(!empty($this->data['Sites'])){
+                    foreach($this->data['Sites'] as $id => $site){
+                        $this->Project->Site->create();
+                        $this->Project->Site->save(array('Site'=>array('id'=>$id, 'name'=>$site)));
+                    }
                 }
-                foreach($this->data['Newsites'] as $newsite){
-                    $this->Project->Site->create();
-                    $this->Project->Site->save(array('Site'=>array('name'=>$newsite, 'project_id'=>$this->data['Project']['id'])));
+                if(!empty($this->data['Newsites'])){
+                    foreach($this->data['Newsites'] as $newsite){
+                        $this->Project->Site->create();
+                        $this->Project->Site->save(array('Site'=>array('name'=>$newsite, 'project_id'=>$this->data['Project']['id'])));
+                    }
                 }
 				$this->Session->setFlash(__('The Project has been saved', true));
 				$this->redirect(array('action'=>'index'));
@@ -135,48 +145,36 @@ class ProjectsController extends AppController {
 
 	}
 	
-	function select(){
+	function select($project_id = null, $noredirect = false){
         $this->layout = "green_select";
-        $id = $this->data['Project']['project_id'];
+        if(empty($project_id)){
+            $project_id = $this->data['Project']['project_id'];
+        }
 
-        if($id){
-            $project=$this->Project->find(array('Project.id' => $id));
-            if(!empty($project)){
-                $user=$this->Auth->user('id');
-                if($this->MyAcl->hasAccess($user,'/'.$project['Project']['name'])){
-        			if ($this->Session->write('project_id',$id) && $this->Session->write('project_name',$project['Project']['name']) && $this->Session->write('project_aco_id',$project['Myaco']['id'])) {
+        if($project_id){
+            foreach($this->userprojects as $userproject){
+                $userprojects_list[] = $userproject['id']; 
+            }
+            if(in_array($project_id, $userprojects_list)){
+                $project = $this->Project->findById($project_id);
+    			if ($this->Session->write('project_id',$project_id) && $this->Session->write('project_name',$project['Project']['name'])) {
+                    if($noredirect === false){
                         if($this->referer()=='/projects/select'){
                             $this->redirect(array('controller'=>'requirements', 'action'=>'index'));
                         }else{
                             $this->redirect($this->referer());
                         }
-        			} else {
-        				$this->Session->setFlash(__('The project session could not be set. Please, try again.', true));
-        			}
-                }else{
-                    $this->Session->setFlash(__('You do not have access to this project.', true));
-                }
+                    }
+    			}else {
+    				$this->Session->setFlash(__('The project session could not be set. Please, try again.', true));
+    			}
             }else{
-                $this->Session->setFlash(__('You do not have access to this project.', true)); //Unambigious error message for security
+                $this->Session->setFlash(__('You do not have access to this project.', true));
             }
 		}
 		
 	    if(!empty($this->data)){
             $this->Session->setFlash(__('No project selected. Please, try again.', true));
-        }
-        $user=$this->Auth->user('id');
-        $this->Project->recursive = 0;
-        $projects=$this->Project->find('all');
-        foreach($projects as $project){
-            if($this->MyAcl->hasAccess($user,'/'.$project['Project']['name'])){
-                $usersprojects[]=$project;
-            }
-        }
-        if(!empty($usersprojects)){
-            $this->set('usersprojects',$usersprojects);
-        }else{
-            $this->Session->setFlash(__('You do not have access to any projects.', true));
-            $this->redirect(array('controller'=>'users', 'action'=>'login'));
         }
     }
 

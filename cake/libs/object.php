@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: object.php 7945 2008-12-19 02:16:01Z gwoo $ */
+/* SVN FILE: $Id: object.php 8283 2009-08-03 20:49:17Z gwoo $ */
 /**
  * Object class, allowing __construct and __destruct in PHP4.
  *
@@ -20,9 +20,9 @@
  * @package       cake
  * @subpackage    cake.cake.libs
  * @since         CakePHP(tm) v 0.2.9
- * @version       $Revision: 7945 $
+ * @version       $Revision: 8283 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2008-12-18 20:16:01 -0600 (Thu, 18 Dec 2008) $
+ * @lastmodified  $Date: 2009-08-03 13:49:17 -0700 (Mon, 03 Aug 2009) $
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 /**
@@ -38,7 +38,7 @@ class Object {
 /**
  * Log object
  *
- * @var object
+ * @var CakeLog
  * @access protected
  */
 	var $_log = null;
@@ -77,9 +77,10 @@ class Object {
 /**
  * Calls a controller's method from any location.
  *
- * @param string $url URL in the form of Cake URL ("/controller/method/parameter")
+ * @param mixed $url String or array-based url.
  * @param array $extra if array includes the key "return" it sets the AutoRender to true.
- * @return mixed Success (true/false) or contents if 'return' is set in $extra
+ * @return mixed Boolean true or false on success/failure, or contents
+ *               of rendered action if 'return' is set in $extra.
  * @access public
  */
 	function requestAction($url, $extra = array()) {
@@ -248,7 +249,11 @@ class Object {
 		$objectArray = array(&$object);
 		$data = str_replace('\\', '\\\\', serialize($objectArray));
 		$data = '<?php $' . $name . ' = \'' . str_replace('\'', '\\\'', $data) . '\' ?>';
-		cache($file, $data, '+1 day');
+		$duration = '+999 days';
+		if (Configure::read() >= 1) {
+			$duration = '+10 seconds';
+		}
+		cache($file, $data, $duration);
 	}
 /**
  * Open the persistent class file for reading
@@ -267,14 +272,16 @@ class Object {
 			case 'registry':
 				$vars = unserialize(${$name});
 				foreach ($vars['0'] as $key => $value) {
-					App::import('Model', Inflector::classify($key));
+					if (strpos($key, '_behavior') !== false) {
+						App::import('Behavior', Inflector::classify(substr($key, 0, -9)));
+					} else {
+						App::import('Model', Inflector::classify($key));
+					}
+					unset ($value);
 				}
 				unset($vars);
 				$vars = unserialize(${$name});
 				foreach ($vars['0'] as $key => $value) {
-					foreach ($vars['0'][$key]->Behaviors->_attached as $behavior) {
-						App::import('Behavior', $behavior);
-					}
 					ClassRegistry::addObject($key, $value);
 					unset ($value);
 				}

@@ -22,6 +22,23 @@ class OperatingsystemsController extends AppController {
 		if (!empty($this->data)) {
 			$this->Operatingsystem->create();
 			if ($this->Operatingsystem->save($this->data)) {
+			
+				$browser = new Browser();
+			    $combination = new Combination();
+			    
+			    $browser->recursive = 0;
+			    $all_browser = $browser->find('all');
+			    		    
+			    foreach ($all_browser as $value) {
+			    
+			        $data = array();
+			        $data['Combination']['browser_id'] = $value['Browser']['id'];
+			        $data['Combination']['operatingsystem_id'] = $this->Operatingsystem->id;
+			        $combination->create();
+			        $combination->save($data);
+			        
+                }
+			
 				$this->Session->setFlash(__('The Operatingsystem has been saved', true));
 				$this->redirect(array('action'=>'index'));
 			} else {
@@ -54,6 +71,15 @@ class OperatingsystemsController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 		if ($this->Operatingsystem->del($id)) {
+		
+                $combination = new Combination();
+			    $all_com = $combination->find('all',
+                    array('conditions' => array('Combination.operatingsystem_id'=>$id))
+                );	    
+                
+			    foreach ($all_com as $key=>$value) {
+			         $this->Operatingsystem->Combination->del($value['Combination']['id']);
+                }
 			$this->Session->setFlash(__('Operatingsystem deleted', true));
 			$this->redirect(array('action'=>'index'));
 		}

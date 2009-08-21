@@ -3,6 +3,8 @@ class TestcasesController extends AppController {
 
 	var $name = 'Testcases';
 	var $helpers = array('Html', 'Form', 'Table', 'Time');
+	var $components = array('Script');
+	
 
 	function index() {
 		$this->Testcase->recursive = 0;
@@ -28,7 +30,8 @@ class TestcasesController extends AppController {
 		$this->set('testcase', $this->Testcase->read(null, $id));
 		$testcasesteps = $this->Testcase->TestcaseStep->findAll(array('testcase_id' => $id),null,array('order by' => 'TestcaseStep.orderby'));
     	$this->set('testcasesteps',$testcasesteps);
-    	if($script=$this->getTestScript($id)){
+    	
+    	if($script=$this->Script->getTestScript($id)){
     	   $this->set('testscript',$script);
     	}
 	}
@@ -69,7 +72,7 @@ class TestcasesController extends AppController {
         foreach ($requirement['Combination'] as &$combination){
             $combination['Result'] = $this->Testcase->Test->getLastInCombination($id, $combination['Operatingsystem']['id'], $combination['Browser']['id']);
         }
-        
+        if(!$this->Script->getTestScript($id)) $this->set('noScript', "No test script uploaded.");
         $this->set('nodes', $nodes);
         $this->set('requirement', $requirement);
         $this->set('onlineNodes', $onlineNodes);
@@ -82,7 +85,7 @@ class TestcasesController extends AppController {
 			$this->Session->setFlash(__('Invalid Testcase.', true));
 			$this->redirect(array('action'=>'index'));
 		}else{
-            $this->set('testscript',$this->getTestScript($id));
+            $this->set('testscript',$this->Script->getTestScript($id));
         }
 	}
 
@@ -122,36 +125,16 @@ class TestcasesController extends AppController {
     		$this->data = $this->Testcase->read(null, $id);
     		$testcasesteps = $this->Testcase->TestcaseStep->findAll(array('testcase_id' => $id),null,array('order by' => 'TestcaseStep.orderby'));
     		$this->set('testcasesteps',$testcasesteps);
-        	if($script=$this->getTestScript($id)){
+        	if($script=$this->Script->getTestScript($id)){
         	   $this->set('testscript',$script);
         	}
 		}
 	}
 	
-	private function getTestScript($id, $asArray=false){
-        App::import('Model','Type');
-        $this->Type = new Type();
-        $extList = $this->Type->find('list', array('fields' => array('Type.extension')));
-        foreach($extList as $ext){
-            $file = WWW_ROOT.'testscripts'.DS.$this->Session->read('project_name').DS.$ext.DS.$id.".$ext";
-            if(file_exists($file)){
-                if(!$asArray){
-                    return htmlspecialchars(file_get_contents($file));
-                }
-                else{
-                    $files[] = $file;
-                }               
-            }
-        }
-        if($asArray){
-            return $files;
-        }
-        return false;
-    }
-	
 	function upload($id = null){
+	   
         $this->layout = 'green_blank';
-        $files = $this->getTestScript($id, true);
+        $files = $this->Script->getTestScript($id, true);
         if(!empty($files)) {
             $this->Session->setFlash("Uploading a new file will remove the old one.", true, array('class' => 'warning'));
         }
@@ -202,6 +185,7 @@ class TestcasesController extends AppController {
 		}
 	}
 	
+	/*
 	function addToJira($test_id){
 	   $this->layout = 'green_blank';	
         $test = $this->Testcase->Test->find('first',array(
@@ -232,6 +216,6 @@ class TestcasesController extends AppController {
         }
         $this->set('output',$txt);
     }
-
+    */
 }
 ?>

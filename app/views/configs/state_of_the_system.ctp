@@ -20,7 +20,7 @@ foreach ($state as $key=>$value) {
         echo "<td >$key</td>";
         if ($value == 0){
             echo "<td>".$html->image('passed.png',array('height'=>'16px', 'alt' => 'passed'))."</td>";
-            echo "<td>".$output['Java']."</td>";
+            echo "<td>"."Java was found ".$output['Java']."</td>";
         }else{
             echo "<td>".$html->image('warning.png',array('height'=>'16px', 'alt' => 'warning'))."</td>";
             echo "<td> You are not able to run Java testscripts, add Java bin directory to your classpath variable </td>";
@@ -40,7 +40,7 @@ foreach ($state as $key=>$value) {
         }
     }
     
-    if ($key == 'Ruby'){
+    /*if ($key == 'Ruby'){
         echo "<td>$key</td>";
         if ($value == 0){
 
@@ -51,7 +51,7 @@ foreach ($state as $key=>$value) {
             echo "<td>".$html->image('warning.png',array('height'=>'16px', 'alt' => 'warning'))."</td>";
             echo "<td> You are not able to run ruby testscripts, add ruby bin directory to your classpath variable </td>";
         }
-    }
+    }*/
     
     if ($key == 'Magic Quotes'){
         echo "<td>$key</td>";
@@ -69,13 +69,12 @@ foreach ($state as $key=>$value) {
     if ($key == 'Max execution time'){
         echo "<td>$key</td>";
         if ($value >= 60000){
-            
             echo "<td>".$html->image('passed.png',array('height'=>'16px', 'alt' => 'passed'))."</td>";
             echo "<td>Yours is set to:".ini_get('max_execution_time')."</td>";
         }else{
             
             echo "<td>".$html->image('failed.png',array('height'=>'16px', 'alt' => 'failed'))."</td>";
-            echo "<td> Max execution time should be larger or equal then 60000 miliseconds! Yours is set to:".ini_get('max_execution_time')."</td>";
+            echo "<td> Max execution time should be larger or equal to 60000 seconds. Running lots of tests can take alot of time. Yours is set to: ".ini_get('max_execution_time')." seconds </td>";
         }
     }
     
@@ -123,11 +122,11 @@ foreach ($state as $key=>$value) {
         if ($value == '1'){
             
             echo "<td>".$html->image('passed.png',array('height'=>'16px', 'alt' => 'passed'))."</td>";
-            echo "<td>You have registrated your copy of Bromine</td>";
+            echo "<td>You have registered your copy of Bromine. Thanks</td>";
         }else{
             
             echo "<td>".$html->image('warning.png',array('height'=>'16px', 'alt' => 'warning'))."</td>";
-            echo "<td>You have NOT registrated your copy of Bromine</td>";
+            echo "<td>You have NOT registered your copy of Bromine. Please do so.</td>";
         }
     }
 
@@ -136,11 +135,11 @@ foreach ($state as $key=>$value) {
         if ($value == '1'){
             
             echo "<td>".$html->image('passed.png',array('height'=>'16px', 'alt' => 'passed'))."</td>";
-            echo "<td>Your version of Bromine will send an email if any error occours</td>";
+            echo "<td>Your version of Bromine will send an email if any error occours. This helps us find and correct bugs. Thanks</td>";
         }else{
             
             echo "<td>".$html->image('warning.png',array('height'=>'16px', 'alt' => 'warning'))."</td>";
-            echo "<td>Your version of Bromine will NOT send an email if any error occours</td>";
+            echo "<td>Your version of Bromine will NOT send an email if any error occours.</td>";
         }
     }
         

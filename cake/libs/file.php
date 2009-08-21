@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: file.php 7945 2008-12-19 02:16:01Z gwoo $ */
+/* SVN FILE: $Id: file.php 8283 2009-08-03 20:49:17Z gwoo $ */
 /**
  * Convenience class for reading, writing and appending to files.
  *
@@ -17,9 +17,9 @@
  * @package       cake
  * @subpackage    cake.cake.libs
  * @since         CakePHP(tm) v 0.2.9
- * @version       $Revision: 7945 $
+ * @version       $Revision: 8283 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2008-12-18 20:16:01 -0600 (Thu, 18 Dec 2008) $
+ * @lastmodified  $Date: 2009-08-03 13:49:17 -0700 (Mon, 03 Aug 2009) $
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 /**
@@ -42,7 +42,7 @@ class File extends Object {
 /**
  * Folder object of the File
  *
- * @var object
+ * @var Folder
  * @access public
  */
 	var $Folder = null;
@@ -366,20 +366,21 @@ class File extends Object {
 	function md5($maxsize = 5) {
 		if ($maxsize === true) {
 			return md5_file($this->path);
-		} else {
-			$size = $this->size();
-			if ($size && $size < ($maxsize * 1024) * 1024) {
-				return md5_file($this->path);
-			}
 		}
+
+		$size = $this->size();
+		if ($size && $size < ($maxsize * 1024) * 1024) {
+			return md5_file($this->path);
+		}
+
 		return false;
 	}
 /**
-* Returns the full path of the File.
-*
-* @return string Full path to file
-* @access public
-*/
+ * Returns the full path of the File.
+ *
+ * @return string Full path to file
+ * @access public
+ */
 	function pwd() {
 		if (is_null($this->path)) {
 			$this->path = $this->Folder->slashTerm($this->Folder->pwd()) . $this->name;

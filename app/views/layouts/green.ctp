@@ -13,7 +13,7 @@
     		echo $html->css('green/prettify');
     		echo $html->css('green/menu');
     		echo $html->css('green/lightwindow');
-    		echo $html->css('green/datepicker');
+    		//echo $html->css('green/datepicker');
     		echo $scripts_for_layout;
     		echo $javascript->link('prototype');
     		echo $javascript->link('scriptaculous');
@@ -23,7 +23,7 @@
             echo $javascript->link('urlparser');
             echo $javascript->link('resize');
             echo $javascript->link('lightwindow');
-            echo $javascript->link('datepicker');
+            //echo $javascript->link('datepicker');
             
         ?>
         
@@ -74,10 +74,10 @@
         </script>
       <div id="links">
         <?php
-            if(!empty($usersprojects) && $main_menu_id != -2){
+            if(!empty($userprojects) && $main_menu_id != -2){
                 echo $form->create('Project',array('action' => 'select'));
-                foreach($usersprojects as $project){
-                    $options[$project['Project']['id']] = $project['Project']['name']; 
+                foreach($userprojects as $project){
+                    $options[$project['id']] = $project['name']; 
                 }
                 echo $form->input('project_id',array('options' => $options, 'selected'=>$session->read('project_id'), 'onchange'=>'submit()'));
                 echo $form->end();
@@ -105,52 +105,42 @@
     <?php
           
             echo $html->link( 
-            	$html->image("tango/32x32/actions/system-log-out.png"), 
+            	$html->image("tango/32x32/actions/system-log-out.png", array('title'=>'Log out')), 
             	array('controller' => 'users','action' => 'logout'), 
-            	array('escape' => false,'style'=>'float: right;', 'alt' => 'Logout'),
-            	"Are you sure you wan't logout?"
-            );     
-             
+            	array('escape' => false,'style'=>'float: right;'),
+            	"Are you sure you want to log out?"
+            );
+            if($main_menu_id == -1){
+                echo $html->aclLink( 
+                	$html->image("tango/32x32/categories/preferences-system.png", array('title'=>'Control panel')), 
+                	array('controller' => 'projects','action' => 'index'), 
+                	array('escape' => false,'style'=>'float: right;')
+                );
+            }elseif($main_menu_id == -2){
+                echo $html->aclLink( 
+                	$html->image("tango/32x32/places/user-desktop.png", array('title'=>'Workspace')), 
+                	array('controller' => 'requirements'), 
+                	array('escape' => false,'style'=>'float: right;')
+                );
+            }
+               
+             /*
             echo $html->link( 
             	$html->image("tango/32x32/apps/help-browser.png"), 
             	array('controller' => 'pages','action' => 'help_splash'), 
             	array('escape' => false, 'class'=>'lightwindow', 'params' => 'lightwindow_type=page', 'style'=>'float: right;')
-            );    
+            );
+            */    
             
     
     ?>
+    <a onclick="$('directlink').update('<?php echo $this->here."/user:".$session->read('Auth.User.name').'/password:'.$user_password.'/project:'.$session->read('project_id'); ?>'+(getAnchor() ? '#'+getAnchor() : ''))">direct link</a>
+    <div id='directlink'></div>
     </div>
     <div id="content" style='clear: both;'>
         <div id="column1"></div>
         <div id="column2">
             <div id='messages'>
-                <?php if($session->check('Message.err')): ?>
-                    <div id='err' style='color: darkred;'>
-                        <?php 
-                        foreach($session->read('Message.err') as $error){
-                            echo "Error: $error <br />";   
-                        }
-                        ?>
-                    </div>
-                <?php endif ?>
-                <?php if($session->check('Message.warn')): ?>
-                    <div id='warn' style='color: #CC9933;'>
-                    <?php 
-                        foreach($session->read('Message.warn') as $warning){
-                            echo "Warning: $warning <br />";   
-                        }
-                        ?>
-                    </div>
-                <?php endif ?>
-                <?php if($session->check('Message.succ')): ?>
-                    <div id='succ'>
-                    <?php 
-                        foreach($session->read('Message.succ') as $success){
-                            echo "$success <br />";   
-                        }
-                        ?>
-                    </div>
-                <?php endif ?>
                 <?php $session->flash('auth'); ?>
                 <?php $session->flash(); ?>
             </div>

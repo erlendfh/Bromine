@@ -44,14 +44,34 @@ class AppController extends Controller {
     var $layout = 'green';
     var $main_menu_id = -1;
     var $debugmode = true;
-    var $echelon = false;
+    var $echelon = true;
     var $time;
     var $version = '3.0';
+    var $user_projects;
     
-    private function echelon($msg){
+    private function echelon($url){
+        /*
         $fp = fopen('logs/echelon.txt','a');
         fwrite($fp, date('l jS \of F Y h:i:s A'). ': ' . $msg."\n");
         fclose($fp);
+        */
+        $user = "";
+        if ($this->Auth->user('id')){
+            $user = $this->Auth->user('id');
+        }
+        App::import('Model','Echelon');
+        $echelon = new Echelon();
+        $echelon->create();
+        $data['Echelon']['url'] = $url;
+        $data['Echelon']['user_id'] = $user;
+        $data['Echelon']['time'] = time();
+        $data['Echelon']['ip'] = $_SERVER["REMOTE_ADDR"];
+        
+        $echelon->save($data);
+        
+        
+        
+        
     }
     
     private function tic(){
@@ -65,35 +85,42 @@ class AppController extends Controller {
     
     function beforeFilter() {
         if($this->echelon){
-            $this->echelon($this->Auth->user('name').' requested '.print_r($this->params['url']['url'],true));
+            $this->echelon(print_r($this->params['url']['url'],true));
+            
         }
-        
-        App::import('Model','Project');
-        $this->Project = new Project();
-        $user=$this->Auth->user('id');
-        $this->Project->recursive = 0;
-        $projects=$this->Project->find('all');
-        
-        foreach($projects as $project){
-            if($this->MyAcl->hasAccess($user,'/'.$project['Project']['name'])){
-                $usersprojects[]=$project;
-            }
-        }
-        if(!empty($usersprojects)){
-            $this->set('usersprojects',$usersprojects);
-        }
-
+        //Auth stuff
         $this->Auth->fields  = array(
             'username'=>'name',
             'password' =>'password'
         );
         
+        //Remote login    
+        if(!empty($this->passedArgs['user']) && !empty($this->passedArgs['password'])){
+            $data['User']['name'] = $this->passedArgs['user'];
+            $data['User']['password'] = $this->passedArgs['password'];
+            $this->Auth->login($data);
+            if(!empty($this->passedArgs['project'])){
+                $this->requestAction('/projects/select/'.$this->passedArgs['project'].'/true');                
+            }
+            
+        }
+        
         $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
         $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
         $this->Auth->loginRedirect = array('controller' => 'projects', 'action' => 'select');
-        
         $this->Auth->authorize = 'controller';
         
+        //Set userprojects
+        App::import('Model','User');
+        $this->User = new User();
+        $this->User->recursive = 1;
+        $user = $this->User->findById($this->Auth->user('id'));
+        $this->set('user_password', $user['User']['password']);
+        $this->userprojects = $user['Project']; 
+        if(!empty($this->userprojects)){
+            $this->set('userprojects',$this->userprojects);
+        }
+        /*
         if(isset($this->needsproject)){
             if((is_array($this->needsproject) && in_array($this->action, $this->needsproject)) || $this->needsproject===true){ //If the controller/action needs a project
                 if($this->Session->check('project_id')===false){ //If project_id is NOT set in the session
@@ -102,6 +129,8 @@ class AppController extends Controller {
                 }
             }
         }
+        */
+        
 
     }
     
@@ -122,8 +151,8 @@ class AppController extends Controller {
     }
     
     function isAuthorized(){
-        //return true;
-        return $this->MyAcl->hasAccess($this->Auth->user('id'),$this->here);
+        return true;
+        //return $this->MyAcl->hasAccess($this->Auth->user('id'),$this->here);
     }
     
 

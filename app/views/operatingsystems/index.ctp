@@ -1,8 +1,14 @@
 <div class="operatingsystems index">
-<h1><?php __('Operatingsystems');?></h1>
+<h1><?php __('Operating systems');?></h1>
+<p>
+<?php
+echo $paginator->counter(array(
+'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
+));
+?></p>
 <table cellpadding="0" cellspacing="0">
 <tr>
-	<th> Name </th>
+	<th><?php echo $paginator->sort('name');?></th>
 	<th class="actions"><?php __('Actions');?></th>
 </tr>
 <?php
@@ -25,6 +31,11 @@ foreach ($operatingsystems as $operatingsystem):
 	</tr>
 <?php endforeach; ?>
 </table>
+</div>
+<div class="paging">
+	<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
+ | 	<?php echo $paginator->numbers();?>
+	<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?>
 </div>
 <div class="actions">
 	<ul>

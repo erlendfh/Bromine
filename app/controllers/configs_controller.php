@@ -4,9 +4,9 @@ class ConfigsController extends AppController {
 	var $name = 'Configs';
 	var $helpers = array('Html', 'Form');
 	var $main_menu_id = -2; 
+	var $uses = array();
 	
 	function checkForUpdates(){
-        //echo $this->version;
         $c = 0;
 
         $serverpath = 'http://192.168.0.101/app/webroot/updates/';
@@ -25,9 +25,7 @@ class ConfigsController extends AppController {
             $c++;
             echo count($updates) - $c;
             echo " new update(s)!";
-            
-            
-            //$dir = getcwd() . "\\..\\";
+        
             foreach ($updates as $key=>$value) {
                     
                     if ($handle = opendir($serverpath . "$value/")) {
@@ -111,16 +109,18 @@ class ConfigsController extends AppController {
                 $error = true;
             }
             
-            if (!eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$", $this->data['Config']['email']) && $this->data['Config']['email'] != '' ){
+            if (!eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,6})$", $this->data['Config']['email']) && $this->data['Config']['email'] != '' ){
                 $this->set('email_error' , 'You email is not valid.');
                 $error = true;
             }
-            $respons = $this->do_post_request("http://192.168.0.101/register.php", $this->data);
-            $this->Session->setFlash($respons);
+            $respons = $this->do_post_request('http://bromine.test-lab.dk/register.php', http_build_query($this->data['Config'], '', '&amp;'));
+            
+            if(!empty($respons)){
+                $error = true;
+                $this->set('regError', array('respons' => $respons, 'content' => 'There was a problem with the registration, please try again later. Please report the above error on ', 'url' => 'http://clearspace.openqa.org/community/selenium/bromine'));
+            }
             if (!$error){
                 // Save this to a external db
-                pr($this->data['Config']);
-                echo "data saved!";
                 $this->Config->updateAll(
                     array('Config.value' => '1'),
                     array('Config.name' => 'registered')
@@ -132,25 +132,25 @@ class ConfigsController extends AppController {
     }
     
     function do_post_request($url, $data, $optional_headers = null)
-{
- $params = array('http' => array(
-			  'method' => 'POST',
-			  'content' => $data
-		   ));
- if ($optional_headers !== null) {
-	$params['http']['header'] = $optional_headers;
- }
- $ctx = stream_context_create($params);
- $fp = @fopen($url, 'rb', false, $ctx);
- if (!$fp) {
-	throw new Exception("Problem with $url, $php_errormsg");
- }
- $response = @stream_get_contents($fp);
- if ($response === false) {
-	throw new Exception("Problem reading data from $url, $php_errormsg");
- }
- return $response;
-} 
+    {
+        $params = array('http' => array(
+        		  'method' => 'POST',
+        		  'content' => $data
+        	   ));
+        if ($optional_headers !== null) {
+            $params['http']['header'] = $optional_headers;
+        }
+        $ctx = stream_context_create($params);
+        $fp = @fopen($url, 'rb', false, $ctx);
+        if (!$fp) {
+            throw new Exception("Problem with $url, $php_errormsg");
+        }
+        $response = @stream_get_contents($fp);
+        if ($response === false) {
+            throw new Exception("Problem reading data from $url, $php_errormsg");
+        }
+        return $response;
+    } 
 
     
     function help(){
@@ -240,7 +240,7 @@ class ConfigsController extends AppController {
         // Send mail on error
         App::import('Model','Config');
         $config = new Config();
-        $reg = $config->findByName('registrated');
+        $reg = $config->findByName('registered');
         $mail = $config->findByName('email on error');
         $state['Registrated Bromine'] = $reg['Config']['value'];
         $state['Email developers on error'] = $mail['Config']['value'];

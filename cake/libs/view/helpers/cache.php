@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: cache.php 7945 2008-12-19 02:16:01Z gwoo $ */
+/* SVN FILE: $Id: cache.php 8283 2009-08-03 20:49:17Z gwoo $ */
 /**
  * Short description for file.
  *
@@ -19,9 +19,9 @@
  * @package       cake
  * @subpackage    cake.cake.libs.view.helpers
  * @since         CakePHP(tm) v 1.0.0.2277
- * @version       $Revision: 7945 $
+ * @version       $Revision: 8283 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2008-12-18 20:16:01 -0600 (Thu, 18 Dec 2008) $
+ * @lastmodified  $Date: 2009-08-03 13:49:17 -0700 (Mon, 03 Aug 2009) $
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 /**
@@ -52,7 +52,7 @@ class CacheHelper extends AppHelper {
 /**
  * holds the View object passed in final call to CacheHelper::cache()
  *
- * @var object
+ * @var View
  * @access public
  */
 	var $view;
@@ -264,7 +264,8 @@ class CacheHelper extends AppHelper {
 				$controller->params = $this->params = unserialize(stripslashes(\'' . addslashes(serialize($this->params)) . '\'));
 				$controller->action = $this->action = unserialize(\'' . serialize($this->action) . '\');
 				$controller->data = $this->data = unserialize(stripslashes(\'' . addslashes(serialize($this->data)) . '\'));
-				$controller->themeWeb = $this->themeWeb = \'' . $this->themeWeb . '\';';
+				$controller->themeWeb = $this->themeWeb = \'' . $this->themeWeb . '\';
+				Router::setRequestInfo(array($this->params, array(\'base\' => $this->base, \'webroot\' => $this->webroot)));';
 
 		if ($useCallbacks == true) {
 			$file .= '
@@ -275,7 +276,6 @@ class CacheHelper extends AppHelper {
 		}
 
 		$file .= '
-				Router::setRequestInfo(array($this->params, array(\'base\' => $this->base, \'webroot\' => $this->webroot)));
 				$loadedHelpers = array();
 				$loadedHelpers = $this->_loadHelpers($loadedHelpers, $this->helpers);
 				foreach (array_keys($loadedHelpers) as $helper) {

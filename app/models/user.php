@@ -11,6 +11,24 @@ class User extends AppModel {
 							'order' => ''
 		)
 	);
+	
+	var $hasAndBelongsToMany = array(
+			'Project' => array('className' => 'Project',
+						'joinTable' => 'projects_users',
+						'foreignKey' => 'user_id',
+						'associationForeignKey' => 'project_id',
+						'unique' => true,
+						'conditions' => '',
+						'fields' => '',
+						'order' => '',
+						'limit' => '',
+						'offset' => '',
+						'finderQuery' => '',
+						'deleteQuery' => '',
+						'insertQuery' => ''
+			)
+	);
+	
 	var $hasOne = array(
         'Myaro' => array(
             'foreignKey' => 'foreign_key',

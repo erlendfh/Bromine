@@ -11,6 +11,7 @@ class RequirementsController extends AppController {
             'Requirement.nr' => 'asc'
         )
     );
+    var $components = array('Script');
 
      function reorder($id=null,$parent_id=null){    
         echo "id: $id p_id: $parent_id";
@@ -147,7 +148,7 @@ class RequirementsController extends AppController {
         		'Testcase'
         	)
         ));
-        //pr ($requirements['Testcase']);
+        $noScripts = array();
         foreach ($requirements['Combination'] as &$combination){
             foreach ($requirements['Testcase'] as $testcase){
                 $combination['tc'.$testcase['id']]['status'] = $this->Requirement->Testcase->Test->getStatus($testcase['id'], $combination['Operatingsystem']['id'], $combination['Browser']['id']);
@@ -156,7 +157,18 @@ class RequirementsController extends AppController {
                 $combination['tc'.$testcase['id']]['Test_id'] = $t['Test']['id'];
             } 
         }
-
+        foreach($requirements['Testcase'] as $testcase){
+            if(!$this->Script->getTestScript($testcase['id'])){
+                        $noScripts[] = $testcase['name'];
+            }
+        }
+        if(count($requirements['Testcase']) == count($noScripts)){
+            $this->set('noScriptsAll', 'Cannot run requirement, no test scripts uploaded.');
+        }
+        elseif(count($noScripts)!= 0){
+            $this->set('noScripts', $noScripts);
+        }
+        
         App::import('Model','Node');
         $this->Node = new Node();
         $nodes = $this->Node->find('all');

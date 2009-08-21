@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: dbo_oracle.php 7945 2008-12-19 02:16:01Z gwoo $ */
+/* SVN FILE: $Id: dbo_oracle.php 8283 2009-08-03 20:49:17Z gwoo $ */
 /**
  * Oracle layer for DBO.
  *
@@ -19,9 +19,9 @@
  * @package       cake
  * @subpackage    cake.cake.libs.model.datasources.dbo
  * @since         CakePHP v 1.2.0.4041
- * @version       $Revision: 7945 $
+ * @version       $Revision: 8283 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2008-12-18 20:16:01 -0600 (Thu, 18 Dec 2008) $
+ * @lastmodified  $Date: 2009-08-03 13:49:17 -0700 (Mon, 03 Aug 2009) $
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 /**
@@ -465,11 +465,12 @@ class DboOracle extends DboSource {
  * @access public
  */
 	function describe(&$model) {
+		$table = $model->fullTableName($model, false);
 
 		if (!empty($model->sequence)) {
-			$this->_sequenceMap[$model->table] = $model->sequence;
+			$this->_sequenceMap[$table] = $model->sequence;
 		} elseif (!empty($model->table)) {
-			$this->_sequenceMap[$model->table] = $model->table . '_seq';
+			$this->_sequenceMap[$table] = $model->table . '_seq';
 		}
 
 		$cache = parent::describe($model);
@@ -477,12 +478,14 @@ class DboOracle extends DboSource {
 		if ($cache != null) {
 			return $cache;
 		}
+
 		$sql = 'SELECT COLUMN_NAME, DATA_TYPE, DATA_LENGTH FROM all_tab_columns WHERE table_name = \'';
 		$sql .= strtoupper($this->fullTableName($model)) . '\'';
 
 		if (!$this->execute($sql)) {
 			return false;
 		}
+
 		$fields = array();
 
 		for ($i = 0; $row = $this->fetchRow(); $i++) {
@@ -952,11 +955,11 @@ class DboOracle extends DboSource {
 		if ($query = $this->generateAssociationQuery($model, $linkModel, $type, $association, $assocData, $queryData, $external, $resultSet)) {
 			if (!isset($resultSet) || !is_array($resultSet)) {
 				if (Configure::read() > 0) {
-					e('<div style = "font: Verdana bold 12px; color: #FF0000">' . sprintf(__('SQL Error in model %s:', true), $model->alias) . ' ');
+					echo '<div style = "font: Verdana bold 12px; color: #FF0000">' . sprintf(__('SQL Error in model %s:', true), $model->alias) . ' ';
 					if (isset($this->error) && $this->error != null) {
-						e($this->error);
+						echo $this->error;
 					}
-					e('</div>');
+					echo '</div>';
 				}
 				return null;
 			}
@@ -975,7 +978,7 @@ class DboOracle extends DboSource {
 					$ins = array_chunk($ins, 1000);
 					foreach ($ins as $i) {
 						$q = str_replace('{$__cakeID__$}', join(', ', $i), $query);
-						$q = str_replace('=  (', 'IN (', $q);
+						$q = str_replace('= (', 'IN (', $q);
 						$res = $this->fetchAll($q, $model->cacheQueries, $model->alias);
 						$fetch = array_merge($fetch, $res);
 					}
@@ -1019,7 +1022,7 @@ class DboOracle extends DboSource {
 					$ins = array_chunk($ins, 1000);
 					foreach ($ins as $i) {
 						$q = str_replace('{$__cakeID__$}', '(' .join(', ', $i) .')', $query);
-						$q = str_replace('=  (', 'IN (', $q);
+						$q = str_replace('= (', 'IN (', $q);
 						$q = str_replace('  WHERE 1 = 1', '', $q);
 
 

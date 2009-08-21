@@ -50,6 +50,15 @@ class UsersController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 		if (!empty($this->data)) {
+            if(!empty($this->data['User']['newpw1']) && !empty($this->data['User']['newpw2'])){
+                if($this->data['User']['newpw1'] == $this->data['User']['newpw2']){
+                    App::import('Security');
+                    $this->data['User']['password'] = $this->Auth->password($this->data['User']['newpw1']); 
+                }else{
+                    $this->Session->setFlash('The new passwords provided did not match', true, array('class'=>'error'));
+                    $this->redirect(array('action'=>'edit', $id));                    
+                }
+            }
 			if ($this->User->save($this->data)) {
 				$this->Session->setFlash(__('The User has been saved', true));
 				$this->redirect(array('action'=>'index'));
@@ -61,6 +70,8 @@ class UsersController extends AppController {
 			$this->data = $this->User->read(null, $id);
 			$groups = $this->User->Group->find('list');
 		    $this->set(compact('groups'));
+		    $projects = $this->User->Project->find('list');
+            $this->set(compact('projects'));
 		}
 	}
 

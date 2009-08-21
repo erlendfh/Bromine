@@ -9,7 +9,6 @@ echo $paginator->counter(array(
 <table cellpadding="0" cellspacing="0">
 <tr>
 	<th> Online </th>
-    <th><?php echo $paginator->sort('id');?></th>
 	<th><?php echo $paginator->sort('nodepath');?></th>
 	<th><?php echo $paginator->sort('operatingsystem_id');?></th>
 	<th><?php echo $paginator->sort('description');?></th>
@@ -27,9 +26,6 @@ foreach ($nodes as $node):
 	<tr<?php echo $class;?>>
         <td>
 			<?php echo $html->image($node['Node']['status'],array('style'=>'height: 20px;')); ?>
-		</td>
-		<td>
-			<?php echo $node['Node']['id']; ?>
 		</td>
 		<td>
 			<?php echo $node['Node']['nodepath']; ?>

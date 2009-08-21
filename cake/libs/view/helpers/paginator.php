@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: paginator.php 7945 2008-12-19 02:16:01Z gwoo $ */
+/* SVN FILE: $Id: paginator.php 8283 2009-08-03 20:49:17Z gwoo $ */
 /**
  * Pagination Helper class file.
  *
@@ -17,9 +17,9 @@
  * @package       cake
  * @subpackage    cake.cake.libs.view.helpers
  * @since         CakePHP(tm) v 1.2.0
- * @version       $Revision: 7945 $
+ * @version       $Revision: 8283 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2008-12-18 20:16:01 -0600 (Thu, 18 Dec 2008) $
+ * @lastmodified  $Date: 2009-08-03 13:49:17 -0700 (Mon, 03 Aug 2009) $
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 /**
@@ -47,29 +47,30 @@ class PaginatorHelper extends AppHelper {
  * Holds the default options for pagination links
  *
  * The values that may be specified are:
- * - <i>$options['format']</i> Format of the counter. Supported formats are 'range' and 'pages'
- *                             and custom (default). In the default mode the supplied string is
- *                             parsed and constants are replaced by their actual values.
- *                             Constants: %page%, %pages%, %current%, %count%, %start%, %end% .
- * - <i>$options['separator']</i> The separator of the actual page and number of pages (default: ' of ').
- * - <i>$options['url']</i> Url of the action. See Router::url()
- * - <i>$options['url']['sort']</i>  the key that the recordset is sorted.
- * - <i>$options['url']['direction']</i> Direction of the sorting (default: 'asc').
- * - <i>$options['url']['page']</i> Page # to display.
- * - <i>$options['model']</i> The name of the model.
- * - <i>$options['escape']</i> Defines if the title field for the link should be escaped (default: true).
- * - <i>$options['update']</i> DOM id of the element updated with the results of the AJAX call.
+ *
+ *  - <i>$options['format']</i> Format of the counter. Supported formats are 'range' and 'pages'
+ *   and custom (default). In the default mode the supplied string is parsed and constants are replaced
+ *   by their actual values.
+ *   Constants: %page%, %pages%, %current%, %count%, %start%, %end% .
+ *  - <i>$options['separator']</i> The separator of the actual page and number of pages (default: ' of ').
+ *  - <i>$options['url']</i> Url of the action. See Router::url()
+ *  - <i>$options['url']['sort']</i>  the key that the recordset is sorted.
+ *  - <i>$options['url']['direction']</i> Direction of the sorting (default: 'asc').
+ *  - <i>$options['url']['page']</i> Page # to display.
+ *  - <i>$options['model']</i> The name of the model.
+ *  - <i>$options['escape']</i> Defines if the title field for the link should be escaped (default: true).
+ *  - <i>$options['update']</i> DOM id of the element updated with the results of the AJAX call.
  *                             If this key isn't specified Paginator will use plain HTML links.
- * - <i>$options['indicator']</i> DOM id of the element that will be shown when doing AJAX requests.
+ *  - <i>$options['indicator']</i> DOM id of the element that will be shown when doing AJAX requests.
  *
  * @var array
  */
 	var $options = array();
 /**
- * Gets the current page of the in the recordset for the given model
+ * Gets the current paging parameters from the resultset for the given model
  *
  * @param  string $model Optional model name.  Uses the default if none is specified.
- * @return string The current page number of the paginated resultset.
+ * @return array The array of paging parameters for the paginated resultset.
  */
 	function params($model = null) {
 		if (empty($model)) {
@@ -84,7 +85,7 @@ class PaginatorHelper extends AppHelper {
  * Sets default options for all pagination links
  *
  * @param  mixed $options Default options for pagination links. If a string is supplied - it
- *                        is used as the DOM id element to update. See #options for list of keys.
+ * is used as the DOM id element to update. See #options for list of keys.
  */
 	function options($options = array()) {
 		if (is_string($options)) {
@@ -129,7 +130,7 @@ class PaginatorHelper extends AppHelper {
  * @param  string $model Optional model name.  Uses the default if none is specified.
  * @param  mixed $options Options for pagination links. See #options for list of keys.
  * @return string The name of the key by which the recordset is being sorted, or
- *                null if the results are not currently sorted.
+ *  null if the results are not currently sorted.
  */
 	function sortKey($model = null, $options = array()) {
 		if (empty($options)) {
@@ -139,15 +140,18 @@ class PaginatorHelper extends AppHelper {
 
 		if (isset($options['sort']) && !empty($options['sort'])) {
 			if (preg_match('/(?:\w+\.)?(\w+)/', $options['sort'], $result) && isset($result[1])) {
-				return $result[1];
+				if ($result[0] == $this->defaultModel()) {
+					return $result[1];
+				}
 			}
 			return $options['sort'];
 		} elseif (isset($options['order']) && is_array($options['order'])) {
-			return preg_replace('/.*\./', '', key($options['order']));
+			return key($options['order']);
 		} elseif (isset($options['order']) && is_string($options['order'])) {
 			if (preg_match('/(?:\w+\.)?(\w+)/', $options['order'], $result) && isset($result[1])) {
 				return $result[1];
 			}
+			return $options['order'];
 		}
 		return null;
 	}
@@ -157,7 +161,7 @@ class PaginatorHelper extends AppHelper {
  * @param  string $model Optional model name.  Uses the default if none is specified.
  * @param  mixed $options Options for pagination links. See #options for list of keys.
  * @return string The direction by which the recordset is being sorted, or
- *                null if the results are not currently sorted.
+ *  null if the results are not currently sorted.
  */
 	function sortDir($model = null, $options = array()) {
 		$dir = null;
@@ -209,7 +213,7 @@ class PaginatorHelper extends AppHelper {
  * @param  string $key The name of the key that the recordset should be sorted.
  * @param  array $options Options for sorting link. See #options for list of keys.
  * @return string A link sorting default by 'asc'. If the resultset is sorted 'asc' by the specified
- *                key the returned link will sort by 'desc'.
+ *  key the returned link will sort by 'desc'.
  */
 	function sort($title, $key = null, $options = array()) {
 		$options = array_merge(array('url' => array(), 'model' => null), $options);
@@ -221,19 +225,18 @@ class PaginatorHelper extends AppHelper {
 			$title = __(Inflector::humanize(preg_replace('/_id$/', '', $title)), true);
 		}
 		$dir = 'asc';
-		$model = null;
+		$sortKey = $this->sortKey($options['model']);
+		$isSorted = ($sortKey === $key || $sortKey === $this->defaultModel() . '.' . $key);
 
-		if (strpos($key, '.') !== false) {
-			list($model, $key) = explode('.', $key);
-			$model = $model . '.';
-		}
-		if ($this->sortKey($options['model']) == $key && $this->sortDir($options['model']) == 'asc') {
+		if ($isSorted && $this->sortDir($options['model']) === 'asc') {
 			$dir = 'desc';
 		}
+
 		if (is_array($title) && array_key_exists($dir, $title)) {
 			$title = $title[$dir];
 		}
-		$url = array_merge(array('sort' => $model . $key, 'direction' => $dir), $url, array('order' => null));
+
+		$url = array_merge(array('sort' => $key, 'direction' => $dir), $url, array('order' => null));
 		return $this->link($title, $url, $options);
 	}
 /**
@@ -260,7 +263,8 @@ class PaginatorHelper extends AppHelper {
 
 		$obj = isset($options['update']) ? 'Ajax' : 'Html';
 		$url = array_merge(array('page' => $this->current($model)), $url);
-		return $this->{$obj}->link($title, Set::filter($url, true), $options);
+		$url = array_merge(Set::filter($url, true), array_intersect_key($url, array('plugin'=>true)));
+		return $this->{$obj}->link($title, $url, $options);
 	}
 /**
  * Merges passed URL options with current pagination state to generate a pagination URL.
@@ -278,12 +282,6 @@ class PaginatorHelper extends AppHelper {
 			$sort = $direction = null;
 			if (is_array($url['order'])) {
 				list($sort, $direction) = array($this->sortKey($model, $url), current($url['order']));
-				$key = array_keys($url['order']);
-
-				if (strpos($key[0], '.') !== false) {
-					list($model) = explode('.', $key[0]);
-					$sort = $model . '.' . $sort;
-				}
 			}
 			unset($url['order']);
 			$url = array_merge($url, compact('sort', 'direction'));
@@ -304,7 +302,7 @@ class PaginatorHelper extends AppHelper {
 		$options = array_merge($_defaults, (array)$options);
 		$paging = $this->params($options['model']);
 
-		if (!$this->{$check}() && (!empty($disabledTitle) || !empty($disabledOptions))) {
+		if (!$this->{$check}($options['model']) && (!empty($disabledTitle) || !empty($disabledOptions))) {
 			if (!empty($disabledTitle) && $disabledTitle !== true) {
 				$title = $disabledTitle;
 			}
@@ -452,9 +450,9 @@ class PaginatorHelper extends AppHelper {
 	function numbers($options = array()) {
 		if ($options === true) {
 			$options = array(
-						'before' => ' | ', 'after' => ' | ',
-						'first' => 'first', 'last' => 'last',
-						);
+				'before' => ' | ', 'after' => ' | ',
+				'first' => 'first', 'last' => 'last',
+			);
 		}
 
 		$options = array_merge(
@@ -493,11 +491,12 @@ class PaginatorHelper extends AppHelper {
 				$end = $params['page'] + ($modulus  - $params['page']) + 1;
 			}
 
-			if ($first && $start > (int)$first) {
-				if ($start == $first + 1) {
-					$out .= $this->first($first, array('tag' => $tag, 'after' => $separator));
+			if ($first && $start > 1) {
+				$offset = ($start <= (int)$first) ? $start - 1 : $first;
+				if ($offset < $start - 1) {
+					$out .= $this->first($offset, array('tag' => $tag, 'separator' => $separator));
 				} else {
-					$out .= $this->first($first, array('tag' => $tag));
+					$out .= $this->first($offset, array('tag' => $tag, 'after' => $separator, 'separator' => $separator));
 				}
 			}
 
@@ -523,11 +522,12 @@ class PaginatorHelper extends AppHelper {
 
 			$out .= $after;
 
-			if ($last && $end <= $params['pageCount'] - (int)$last) {
-				if ($end + 1 == $params['pageCount']) {
-					$out .= $this->last($last, array('tag' => $tag, 'before' => $separator));
+			if ($last && $end < $params['pageCount']) {
+				$offset = ($params['pageCount'] < $end + (int)$last) ? $params['pageCount'] - $end : $last;
+				if ($offset <= $last && $params['pageCount'] - $end > $offset) {
+					$out .= $this->last($offset, array('tag' => $tag, 'separator' => $separator));
 				} else {
-					$out .= $this->last($last, array('tag' => $tag));
+					$out .= $this->last($offset, array('tag' => $tag, 'before' => $separator, 'separator' => $separator));
 				}
 			}
 

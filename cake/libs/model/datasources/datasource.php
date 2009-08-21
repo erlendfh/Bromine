@@ -1,5 +1,5 @@
 <?php
-/* SVN FILE: $Id: datasource.php 7945 2008-12-19 02:16:01Z gwoo $ */
+/* SVN FILE: $Id: datasource.php 8283 2009-08-03 20:49:17Z gwoo $ */
 /**
  * DataSource base class
  *
@@ -19,9 +19,9 @@
  * @package       cake
  * @subpackage    cake.cake.libs.model.datasources
  * @since         CakePHP(tm) v 0.10.5.1790
- * @version       $Revision: 7945 $
+ * @version       $Revision: 8283 $
  * @modifiedby    $LastChangedBy: gwoo $
- * @lastmodified  $Date: 2008-12-18 20:16:01 -0600 (Thu, 18 Dec 2008) $
+ * @lastmodified  $Date: 2009-08-03 13:49:17 -0700 (Mon, 03 Aug 2009) $
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 /**
@@ -91,28 +91,28 @@ class DataSource extends Object {
  * Enter description here...
  *
  * @var array
- * @access private
+ * @access protected
  */
 	var $_result = null;
 /**
  * Queries count.
  *
  * @var int
- * @access private
+ * @access protected
  */
 	var $_queriesCnt = 0;
 /**
  * Total duration of all queries.
  *
  * @var unknown_type
- * @access private
+ * @access protected
  */
 	var $_queriesTime = null;
 /**
  * Log of queries executed by this DataSource
  *
  * @var unknown_type
- * @access private
+ * @access protected
  */
 	var $_queriesLog = array();
 /**
@@ -121,21 +121,21 @@ class DataSource extends Object {
  * >6000 queries on one system.
  *
  * @var int Maximum number of queries in the queries log.
- * @access private
+ * @access protected
  */
 	var $_queriesLogMax = 200;
 /**
  * Caches serialzed results of executed queries
  *
  * @var array Maximum number of queries in the queries log.
- * @access private
+ * @access protected
  */
 	var $_queryCache = array();
 /**
  * The default configuration of a specific DataSource
  *
  * @var array
- * @access public
+ * @access protected
  */
 	var $_baseConfig = array();
 /**
@@ -241,13 +241,14 @@ class DataSource extends Object {
 		if ($this->cacheSources === false) {
 			return null;
 		}
-		if (isset($this->__descriptions[$model->tablePrefix . $model->table])) {
-			return $this->__descriptions[$model->tablePrefix . $model->table];
+		$table = $this->fullTableName($model, false);
+		if (isset($this->__descriptions[$table])) {
+			return $this->__descriptions[$table];
 		}
-		$cache = $this->__cacheDescription($model->tablePrefix . $model->table);
+		$cache = $this->__cacheDescription($table);
 
 		if ($cache !== null) {
-			$this->__descriptions[$model->tablePrefix . $model->table] =& $cache;
+			$this->__descriptions[$table] =& $cache;
 			return $cache;
 		}
 		return null;

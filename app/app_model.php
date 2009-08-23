@@ -48,6 +48,5 @@ class AppModel extends Model {
     function toc($msg=null){
         pr($msg.' '.(microtime(true) - $this->time));
     }
-    
 }
 ?>

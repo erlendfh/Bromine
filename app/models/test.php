@@ -3,7 +3,6 @@ class Test extends AppModel {
     var $site_id;
     
     function getLastInCombination($testcase_id, $os_id, $browser_id){
-        $this->Behaviors->attach('Containable');
         $opts = array(
             'conditions' => array(
                 'Testcase.id' => $testcase_id,
@@ -21,8 +20,8 @@ class Test extends AppModel {
             	)
         );
 
-        $test = $this->find('first', $opts);
-
+        $test = $this->find('first', $opts); 
+        
         if(!empty($test)){
             if($test['Test']['status']==''){ //If no status set for the test, find one by looking at commands
                 $status = 'failed'; //Assume test failed and try to prove otherwise
@@ -52,9 +51,16 @@ class Test extends AppModel {
     }
     
     function getStatus($testcase_id, $os_id, $browser_id){
-        $test = $this->getLastInCombination($testcase_id, $os_id, $browser_id);
-        if(!empty($test)){
-            return $test['Test']['status'];
+        //$this->tic();
+        //$status = Cache::read("getStatus.$testcase_id.$os_id.$browser_id.".$_SESSION['site_id']); 
+        //if (empty($status)) {
+            $test = $this->getLastInCombination($testcase_id, $os_id, $browser_id);
+            $status = $test['Test']['status']; 
+        //    Cache::write("getStatus.$testcase_id.$os_id.$browser_id.".$_SESSION['site_id'], $status, 6000); // 1 hr cache 
+        //} 
+        //$this->toc();
+        if(!empty($status)){
+            return $status;
         }else{
             return 'notdone';
         }

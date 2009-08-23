@@ -2,6 +2,9 @@
 class User extends AppModel {
 
 	var $name = 'User';
+	var $validate = array(
+        'name' => array('notempty')
+    );
 
     var $belongsTo = array(
 		'Group' => array('className' => 'Group',

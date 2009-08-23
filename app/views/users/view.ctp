@@ -31,7 +31,7 @@
 <div class="actions">
 	<ul>
 		<li><?php echo $html->aclLink(__('Edit User', true), array('action'=>'edit', $user['User']['id'])); ?> </li>
-		<li><?php echo $html->aclLink(__('Delete User', true), array('action'=>'delete', $user['User']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $user['User']['id'])); ?> </li>
+		<li><?php echo $html->aclLink(__('Delete User', true), array('action'=>'delete', $user['User']['id']), null, sprintf(__('Are you sure you want to delete %s?', true), $user['User']['name'])); ?> </li>
 	</ul>
 </div>
 <div class="related">

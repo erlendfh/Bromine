@@ -5,7 +5,6 @@ class TestlabsController extends AppController {
 	var $helpers = array('Html', 'Form','Tree');
     var $needsproject = true;
     var $uses = array();
-
     private function array_search_recursive($needle, &$haystack){
         foreach($haystack as $key => &$val){
             if($key === $needle){
@@ -25,10 +24,11 @@ class TestlabsController extends AppController {
   
     
 	function index() {
+	
         App::import('Model','Requirement');
         $this->Requirement = new Requirement();
 		$this->Requirement->recursive = 1;
-
+    
         
         $sites = $this->Requirement->Project->Site->find('list', array('conditions' => array('project_id'=>$this->Session->read('project_id'))));
         $this->set('sites',$sites);
@@ -49,17 +49,17 @@ class TestlabsController extends AppController {
             		)
             	)
         );
-        
+
         foreach($requirements as &$requirement){
             $requirement['Requirement']['status'] = $this->Requirement->getStatus($requirement['Requirement']['id']);
             foreach($requirement['Testcase'] as &$testcase){
                 $testcase['status'] = $this->Requirement->Testcase->getStatus($testcase['id'],$requirement['Requirement']['id']);
             }
+            
         }
         $this->array_search_recursive('children',$requirements);
         
         $this->set('data',$requirements);
-        
         
 	}
 

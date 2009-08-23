@@ -1,5 +1,6 @@
 <div id = 'testcase' class="testcases view">
     <h1><?php echo $testcase['Testcase']['name']; ?></h1>
+    
 	<dl>
 
 		<dt><?php __('Description'); ?></dt>
@@ -46,6 +47,7 @@
                 }
                 else{
                     echo $html->link($html->image("tango/32x32/actions/go-next.png").'', '/runrctests/runAndViewTestcase/'.$testcase['Testcase']['id'].'/'.$requirement['Requirement']['id'], array('onclick'=>'return Popup.open({url:this.href});'), null, false);
+                    $path = 'http://'.$_SERVER['HTTP_HOST'].':'.$_SERVER['SERVER_PORT'].'/runrctests/runAndViewTestcase/'.$testcase['Testcase']['id'].'/'.$requirement['Requirement']['id']."/user:".$session->read('Auth.User.name').'/password:'.$user_password.'/project:'.$session->read('project_id').'/site_id:'.$session->read('site_id');
                 }
                  
                 if(!empty($offlineNeeds) && !(count($offlineNeeds)>=count($combinations)) && !isset($noScript)){
@@ -69,9 +71,15 @@
                     }
                     echo "</p>";
                 }
-
             ?>
 		</dd>
+		<?php if(!empty($path)): ?> 
+		<dt><?php __('Direct link'); ?></dt>
+		<dd>
+            <a onclick="Effect.toggle('directlink','blind');" style='cursor: pointer;'>Show</a>
+            <div id='directlink' style='display: none;'><?php echo $path ?></div>
+        </dd>
+        <?php endif ?>
         <dt><?php __('Status'); ?></dt>
 		<dd>
 			<table>

@@ -11,6 +11,7 @@ class RequirementsController extends AppController {
             'Requirement.nr' => 'asc'
         )
     );
+
     var $components = array('Script');
 
      function reorder($id=null,$parent_id=null){    

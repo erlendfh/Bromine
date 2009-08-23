@@ -44,7 +44,7 @@ class AppController extends Controller {
     var $layout = 'green';
     var $main_menu_id = -1;
     var $debugmode = true;
-    var $echelon = true;
+    //var $echelon = true;
     var $time;
     var $version = '3.0';
     var $user_projects;
@@ -74,16 +74,26 @@ class AppController extends Controller {
         
     }
     
-    private function tic(){
+    public function tic(){
         $this->time = microtime(true);
     }
     
-    private function toc($msg=null){
+    public function toc($msg=null){
         pr($msg.' '.(microtime(true) - $this->time));
     }
     
     
     function beforeFilter() {
+        
+        App::import('Model','Config');
+        $config = new Config();
+        $echelon = $config->findByName('echelon');
+        $this->echelon = $echelon['Config']['value'];
+        
+        $e = $this->echelon ? 'On' : 'Off';
+        
+        $this->set('echelon', $e);
+    
         if($this->echelon){
             $this->echelon(print_r($this->params['url']['url'],true));
             
@@ -100,7 +110,8 @@ class AppController extends Controller {
             $data['User']['password'] = $this->passedArgs['password'];
             $this->Auth->login($data);
             if(!empty($this->passedArgs['project'])){
-                $this->requestAction('/projects/select/'.$this->passedArgs['project'].'/true');                
+                $this->requestAction('/projects/select/'.$this->passedArgs['project'].'/true');
+                if(!empty($this->passedArgs['site_id'])) $this->Session->write('site_id',$this->passedArgs['site_id']);               
             }
             
         }
@@ -120,7 +131,7 @@ class AppController extends Controller {
         if(!empty($this->userprojects)){
             $this->set('userprojects',$this->userprojects);
         }
-        /*
+        
         if(isset($this->needsproject)){
             if((is_array($this->needsproject) && in_array($this->action, $this->needsproject)) || $this->needsproject===true){ //If the controller/action needs a project
                 if($this->Session->check('project_id')===false){ //If project_id is NOT set in the session
@@ -129,7 +140,6 @@ class AppController extends Controller {
                 }
             }
         }
-        */
         
 
     }

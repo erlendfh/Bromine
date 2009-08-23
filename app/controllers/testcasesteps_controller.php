@@ -53,7 +53,7 @@ class TestcasestepsController extends AppController {
 	   $this->data['Testcasestep']['id'] = $id;
 	   $this->data['Testcasestep'][$type] = $value;
 	   if ($this->Testcasestep->save($this->data)) {
-	       $this->setFlash("The $type was saved",'succ');
+	       $this->Session->setFlash("The $type was saved",true);
 	       $this->set('value',$value);
 	   }else{
 	       $this->setFlash("The $type could not be saved.",'err');

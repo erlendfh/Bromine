@@ -123,20 +123,25 @@
                 	array('escape' => false,'style'=>'float: right;')
                 );
             }
-               
-             /*
-            echo $html->link( 
-            	$html->image("tango/32x32/apps/help-browser.png"), 
-            	array('controller' => 'pages','action' => 'help_splash'), 
-            	array('escape' => false, 'class'=>'lightwindow', 'params' => 'lightwindow_type=page', 'style'=>'float: right;')
-            );
+            /*
+            if(count(split('/', $this->here))>2){
+                $url = $this->here;
+            }else{
+                $url = $this->here.'/'.$this->action;
+            }
+            $path = 'http://'.$_SERVER['HTTP_HOST'].':'.$_SERVER['SERVER_PORT'].$url."/user:".$session->read('Auth.User.name').'/password:'.$user_password;
+            $path .= ($session->read('project_id') ? '/project:'.$session->read('project_id') : '');
             */    
             
-    
-    ?>
-    <a onclick="$('directlink').update('<?php echo $this->here."/user:".$session->read('Auth.User.name').'/password:'.$user_password.'/project:'.$session->read('project_id'); ?>'+(getAnchor() ? '#'+getAnchor() : ''))">direct link</a>
-    <div id='directlink'></div>
+        ?>
+        
+        <!--a style='float: right; cursor: pointer;' onclick="$('directlink').update('<?php //echo $path; ?>'+(getAnchor() ? '#'+getAnchor() : '')); Effect.toggle('directlink','blind');" >
+        <?php 
+            //echo $html->image("tango/32x32/places/start-here.png", array('title'=>'Direct link'));
+        ?>
+        </a-->
     </div>
+    <!--div id='directlink' style='float: right; display: none; padding-right: 20px;'></div-->
     <div id="content" style='clear: both;'>
         <div id="column1"></div>
         <div id="column2">

@@ -3,6 +3,7 @@ class ScriptComponent extends Object
 {
     var $controller = true;
     var $components = array('Session');
+    var $cacheAction = false;
  
     function startup(&$controller)
     {

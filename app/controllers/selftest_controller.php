@@ -18,13 +18,16 @@ class SelftestController extends AppController {
             }
         }
         $baseMethods = get_class_methods('Controller');
- 
+        array_push($baseMethods, 'tic');
+        array_push($baseMethods, 'toc');
+        
         // look at each controller in app/controllers
         foreach ($controllers as &$controller) {
             App::import('Controller', $controller);
             $methods = get_class_methods($controller . 'Controller');
             
             //clean the methods. to remove those in Controller and private actions.
+            
             foreach ($methods as $k => $method) {
                 if (strpos($method, '_', 0) === 0) {
                     unset($methods[$k]);
@@ -76,6 +79,7 @@ class SelftestController extends AppController {
             foreach($methods as $method){//create testcases
                 $testcase = $this->Testcase->find('first',array('conditions'=>array('Testcase.name'=>"$controller: $method")));
                 if(empty($testcase)){
+                    $this->data = null;
                     $this->data['Testcase']['name'] = "$controller: $method";
                     $this->data['Testcase']['project_id'] = $project_id;
                     $this->data['Requirement']['Requirement'][] = $requirement_id;

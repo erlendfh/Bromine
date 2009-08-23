@@ -2,35 +2,41 @@
 class Testcase extends AppModel {
 
     function getStatus($testcase_id, $requirement_id){
-        $this->Requirement->Behaviors->attach('Containable');
-		$requirement = $this->Requirement->find('first', array(
-            'conditions'=>array(
-                'Requirement.id'=>$requirement_id
-            ),
-        	'contain'=>array(
-        	    'Testcase',
-        		'Combination' => array(
-        			'Browser',
-        			'Operatingsystem'
-        		)
-        	)
-        ));
-        $results = array();
-        if(empty($requirement['Combination'])){
-            return null;
-        }
-        foreach ($requirement['Combination'] as $combination){
-            $results[] = $this->Test->getStatus($testcase_id, $combination['Operatingsystem']['id'], $combination['Browser']['id']);
-        }
+        $status = Cache::read("getTestCaseStatus.$testcase_id.$requirement_id.".$_SESSION['site_id']);
 
-        $status = 'passed';
+        if (empty($status)){ //Get new statuses
+            //pr("getting new statuses");
+    		$requirement = $this->Requirement->find('first', array(
+                'conditions'=>array(
+                    'Requirement.id'=>$requirement_id
+                ),
+            	'contain'=>array(
+            	    'Testcase',
+            		'Combination' => array(
+            			'Browser',
+            			'Operatingsystem'
+            		)
+            	)
+            ));
+            $results = array();
+            if(empty($requirement['Combination'])){
+                return null;
+            }
+            foreach ($requirement['Combination'] as $combination){
+                $results[] = $this->Test->getStatus($testcase_id, $combination['Operatingsystem']['id'], $combination['Browser']['id']);
+            }
+    
+            $status = 'passed';
+            
+            if(in_array('notdone',$results)){
+                $status = 'notdone';
+            }
+            if(in_array('failed',$results)){
+                $status = 'failed';
+            }
+            Cache::write("getTestCaseStatus.$testcase_id.$requirement_id.".$_SESSION['site_id'], $status, 60); // 1 hr cache
+        } 
         
-        if(in_array('notdone',$results)){
-            $status = 'notdone';
-        }
-        if(in_array('failed',$results)){
-            $status = 'failed';
-        }
         
         return $status;
     }

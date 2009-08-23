@@ -48,7 +48,8 @@
                     echo "<p class='error'>Error: No online nodes meet the OS/browser combinations required. Please ".$html->link('define','/Requirements#/Nodes')." some that does</p>";
                 }
                 else{
-                    echo $html->link($html->image("tango/32x32/actions/go-next.png").'', '/runrctests/runAndViewRequirement/'.$requirement['Requirement']['id'], array('onclick'=>'return Popup.open({url:this.href});'), null, false);
+                    echo $html->link($html->image("tango/32x32/actions/go-next.png"), '/runrctests/runAndViewRequirement/'.$requirement['Requirement']['id'], array('onclick'=>'return Popup.open({url:this.href});'), null, false);
+                    $path = 'http://'.$_SERVER['HTTP_HOST'].':'.$_SERVER['SERVER_PORT'].'/runrctests/runAndViewRequirement/'.$requirement['Requirement']['id']."/user:".$session->read('Auth.User.name').'/password:'.$user_password.'/project:'.$session->read('project_id').'/site_id:'.$session->read('site_id');    
                 }
                 if(isset($noScripts)){
                     $scriptString = '<div class="notice">Test scripts are missing in the following test cases:<br /><ul>';
@@ -85,6 +86,13 @@
 
             ?>
 		</dd>
+		<?php if(!empty($path)): ?> 
+		<dt><?php __('Direct link'); ?></dt>
+		<dd>
+            <a onclick="Effect.toggle('directlink','blind');" style='cursor: pointer;'>Show</a>
+            <div id='directlink' style='display: none;'><?php echo $path ?></div>
+        </dd>
+        <?php endif ?>
 		<dt><?php __('Status'); ?></dt>
 		<dd>
 			<table>
@@ -109,7 +117,8 @@
                             echo "<td>".$combination['Operatingsystem']['name']."</td>";
                             echo "<td>".$combination['Browser']['name']."</td>";
                             echo "<td>";
-                            if(!empty($combination['tc'.$testcase['id']]['status'])){
+
+                            if($combination['tc'.$testcase['id']]['status'] != 'notdone'){
                                 echo $html->link($html->image('tango/32x32/categories/applications-other.png'),'#/Tests/view/'.$combination['tc'.$testcase['id']]['Test_id'],null,null,false);
                             }
                             echo "</td>";

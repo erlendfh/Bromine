@@ -4,9 +4,17 @@ class ConfigsController extends AppController {
 	var $name = 'Configs';
 	var $helpers = array('Html', 'Form');
 	var $main_menu_id = -2; 
-	var $uses = array();
 	
+	function setEchelon($bool = null){
+        if (isset($bool)){
+            $this->Config->updateAll(array('Config.value'=>$bool), array('Config.name'=>'echelon'));
+        }
+        $this->redirect(array('controller' => 'echelons', 'action' => 'index'));
+        
+    }
+	/*
 	function checkForUpdates(){
+        
         $c = 0;
 
         $serverpath = 'http://192.168.0.101/app/webroot/updates/';
@@ -42,7 +50,7 @@ class ConfigsController extends AppController {
         }
     
     }
-	
+	*/
     function register(){
         $employees = array('private' => 'Will not disclose',
                         'very small(1)' => 'Only me',
@@ -251,15 +259,13 @@ class ConfigsController extends AppController {
         $permission3 = is_writeable("logs");
         $permission4 = is_writeable("img/temp");
         
-        App::import('Model','Type');
-        $this->Type = new Type();
-        $extList = $this->Type->find('list', array('fields' => array('Type.extension')));
+        $files = $this->directoryToArray("testscripts", true);
         
         $state['Permissions'] = true;
-        foreach ($extList as $value) {
-        	if(!is_writeable("testscripts/".$this->Session->read('project_name')."/".$value)){
+        foreach ($files as $file) {
+        	if(!is_writeable($file)){
                 $state['Permissions'] = false;
-                $state['Permissions output'] = $state['Permissions output'] . ", testscripts/".$this->Session->read('project_name')."/".$value;
+                $state['Permissions output'] = $state['Permissions output'] . "<br />$file";
             }
         }
         
@@ -267,12 +273,35 @@ class ConfigsController extends AppController {
         $state['Img/temp dir'] = $permission4;
         $this->set('current_project',$this->Session->read('project_name'));
         
+        $state['Install dir'] = is_dir('install');
         
         // Set the arrays for the viewer
         $this->set('state',$state);
         $this->set('output',$output);
         
         
+    }
+    
+    private function directoryToArray($directory, $recursive) {
+    	$array_items = array();
+    	if ($handle = opendir($directory)) {
+    		while (false !== ($file = readdir($handle))) {
+    			if ($file != "." && $file != ".." && $file != '.svn') {
+    				if (is_dir($directory. "/" . $file)) {
+    					if($recursive) {
+    						$array_items = array_merge($array_items, $this->directoryToArray($directory. "/" . $file, $recursive));
+    					}
+    					$file = $directory . "/" . $file;
+    					$array_items[] = preg_replace("/\/\//si", "/", $file);
+    				} else {
+    					//$file = $directory . "/" . $file;
+    					//$array_items[] = preg_replace("/\/\//si", "/", $file);
+    				}
+    			}
+    		}
+    		closedir($handle);
+    	}
+    	return $array_items;
     }
 
 }

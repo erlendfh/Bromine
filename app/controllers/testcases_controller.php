@@ -4,7 +4,6 @@ class TestcasesController extends AppController {
 	var $name = 'Testcases';
 	var $helpers = array('Html', 'Form', 'Table', 'Time');
 	var $components = array('Script');
-	
 
 	function index() {
 		$this->Testcase->recursive = 0;

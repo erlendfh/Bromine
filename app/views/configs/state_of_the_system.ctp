@@ -142,7 +142,19 @@ foreach ($state as $key=>$value) {
             echo "<td>Your version of Bromine will NOT send an email if any error occours.</td>";
         }
     }
-        
+    
+    if ($key == 'Install dir'){
+        echo "<td>$key</td>";
+        if ($value == '0'){
+            
+            echo "<td>".$html->image('passed.png',array('height'=>'16px', 'alt' => 'passed'))."</td>";
+            echo "<td>You have delete the install dir.</td>";
+        }else{
+            
+            echo "<td>".$html->image('warning.png',array('height'=>'16px', 'alt' => 'warning'))."</td>";
+            echo "<td>You should delete the install dir in webroot.</td>";
+        }
+    }        
     
     echo "</tr>";
 	

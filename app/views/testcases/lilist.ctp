@@ -1,6 +1,7 @@
 <?php
     foreach($testcases as $testcase){
-        echo "<div id='".$testcase['Testcase']['id']."' style='clear: both;' class='tc'>";
+        $id = $testcase['Testcase']['id'];
+        echo "<div id='$id' style='clear: both;' class='tc'>";
         echo "<span class='spacer'></span>";
        
         $fullname = $testcase['Testcase']['name'];
@@ -11,5 +12,15 @@
                 array( 'update' => 'Main', 'title'=>$fullname)
             );
         echo "</div>";
+        ?>
+            <script type='text/javascript'>
+                new Draggable("<?php echo $id ?>",{ //make it dragable
+                        scroll: window,
+                        ghosting: true,
+                        revert: true
+                    });
+            </script>
+        <?php
+        
     }
 ?>

@@ -183,6 +183,7 @@
                             $(drop).down('ul').insert({'top':newCopy}); //insert it into the list
                             
                             new Draggable(newCopy.id,{ //make it dragable
+                                scroll: window,
                                 onEnd: function(drag,drop){
                                     removetc(newCopy,newCopy.up('li'));
                                 }
@@ -194,16 +195,19 @@
                     });
                 });
                 
+                /*
                 $$('#testcases div').each(function(s, index) {
                     new Draggable(s.id, {
                         ghosting: true,
                         revert: true
                     });
                 });
+                */                
                 
                 $$('ul .tc').each(function(s, index) { //Make all testcases in the tree dragable
                     new Draggable(s.id,{
                         //ghosting: true,
+                        scroll: window,
                         onEnd: function(drag,drop){ //Should probably check if the recieving requirement already has this tc, before removing the old.
                             removetc(s,s.up('li'));
                         }
@@ -277,7 +281,7 @@
     </tbody>
 </table>
 </div>
-<div id="log"></div>
+<div id="log" style='display: none;'></div>
 <script>
 
   var tree = new SortableTree('tree', {

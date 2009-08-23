@@ -1,5 +1,6 @@
 <div class="echelons index">
-<h2><?php __('Echelons');?></h2>
+<h1><?php __('Logs');?></h1>
+<h3>Logging is currently set to: <?php echo $echelon;?></h3>
 <p>
 <?php
 echo $paginator->counter(array(
@@ -10,7 +11,7 @@ echo $paginator->counter(array(
 <tr>
 	<th><?php echo $paginator->sort('url');?></th>
 	<th><?php echo $paginator->sort('User','user_id');?></th>
-	<th><?php echo $paginator->sort('id');?></th>
+	<th><?php echo $paginator->sort('ip');?></th>
 	<th><?php echo $paginator->sort('time');?></th>
 </tr>
 <?php

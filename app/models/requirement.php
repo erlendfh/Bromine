@@ -46,7 +46,6 @@ class Requirement extends AppModel {
         if(in_array('failed',$results)){
             $status = 'failed';
         }
-
         return $status;
     }
     

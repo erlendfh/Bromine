@@ -44,9 +44,8 @@ class AppController extends Controller {
     var $layout = 'green';
     var $main_menu_id = -1;
     var $debugmode = true;
-    //var $echelon = true;
     var $time;
-    var $version = '3.0';
+    var $version = '3.0b';
     var $user_projects;
     
     private function echelon($url){

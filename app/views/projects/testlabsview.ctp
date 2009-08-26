@@ -40,7 +40,7 @@
             $graph->setLabelTextColor("50,50,50");
             $graph->setLegendTextColor("50,50,50");
             $fp = $graph->createGraph();
-            echo "<img src='$fp' />";
+            echo $html->image($fp);
         }
     ?>
     

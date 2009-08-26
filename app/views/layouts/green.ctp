@@ -12,7 +12,7 @@
     		echo $html->css('green/content');
     		echo $html->css('green/prettify');
     		echo $html->css('green/menu');
-    		echo $html->css('green/lightwindow');
+    		//echo $html->css('green/lightwindow');
     		//echo $html->css('green/datepicker');
     		echo $scripts_for_layout;
     		echo $javascript->link('prototype');
@@ -22,7 +22,7 @@
             echo $javascript->link('sortable_tree');
             echo $javascript->link('urlparser');
             echo $javascript->link('resize');
-            echo $javascript->link('lightwindow');
+            //echo $javascript->link('lightwindow');
             //echo $javascript->link('datepicker');
             
         ?>
@@ -33,7 +33,7 @@
   <div id="main">
     <div id="links_container">
       <div id="logo">
-          <h1>Bromine 3</h1>
+          <h1>Bromine 3 beta</h1>
             <img id='notification' src='img/ajax-loader.gif' style="display: none;" />
       </div>
         <script type='text/javascript'>
@@ -153,7 +153,23 @@
        </div>
     </div>
     <div id="footer">
-      Copyright &copy; 2007-2009 Bromine Team | <a href="http://bromine.seleniumhq.org">Bromine</a> | <a href="http://www.dcarter.co.uk">Design by dcarter</a> | <?php if (!isset($register)){echo $html->link("Please Register", array('controller' => 'configs','action' => 'register'), array('class' => 'redlink'));}else{echo $register;} ?> | <?php echo "Version: " . $version; ?>
+        Copyright &copy; 2007-2009 Bromine Team
+        |
+        <a href="http://bromine.seleniumhq.org">Bromine</a>
+        | 
+        <a href="http://www.dcarter.co.uk">Design by dcarter</a>
+        | 
+        <?php 
+        if (!isset($register)){
+            echo $html->link("Please Register", array('controller' => 'configs','action' => 'register'), array('class' => 'redlink'));
+        }else{
+            echo $register;
+        } 
+        ?>
+        |
+        <?php echo "Version: " . $version; ?>
+        |
+        <?php echo $html->link("Got bugs?", "http://jira.openqa.org/browse/BR"); ?>
     </div>
     <div id="debug">
     <?php echo $cakeDebug; ?>

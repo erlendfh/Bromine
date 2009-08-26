@@ -2,9 +2,9 @@
 class Testcase extends AppModel {
 
     function getStatus($testcase_id, $requirement_id){
-        $status = Cache::read("getTestCaseStatus.$testcase_id.$requirement_id.".$_SESSION['site_id']);
+        //$status = Cache::read("getTestCaseStatus.$testcase_id.$requirement_id.".$_SESSION['site_id']);
 
-        if (empty($status)){ //Get new statuses
+        //if (empty($status)){ //Get new statuses
             //pr("getting new statuses");
     		$requirement = $this->Requirement->find('first', array(
                 'conditions'=>array(
@@ -34,8 +34,8 @@ class Testcase extends AppModel {
             if(in_array('failed',$results)){
                 $status = 'failed';
             }
-            Cache::write("getTestCaseStatus.$testcase_id.$requirement_id.".$_SESSION['site_id'], $status, 60); // 1 hr cache
-        } 
+            //Cache::write("getTestCaseStatus.$testcase_id.$requirement_id.".$_SESSION['site_id'], $status, 60); // 1 hr cache
+        //} 
         
         
         return $status;

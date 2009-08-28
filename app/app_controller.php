@@ -67,10 +67,7 @@ class AppController extends Controller {
         $data['Echelon']['ip'] = $_SERVER["REMOTE_ADDR"];
         
         $echelon->save($data);
-        
-        
-        
-        
+
     }
     
     public function tic(){

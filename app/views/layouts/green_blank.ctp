@@ -17,14 +17,14 @@
     		echo $javascript->link('popup');
     		echo $javascript->link('prettify/prettify');
             echo $javascript->link('scriptaculous');
-            echo $javascript->link('sortable_tree');
+            //echo $javascript->link('sortable_tree');
         ?>
 
     </head>
     <body>
   <div id="main">
   <div id="links_container">
-      <div id="logo"><h1>Bromine 3</h1><img id='notification' src='img/ajax-loader.gif' alt="" style='display: none;'/></div>
+      <div id="logo"><h1>Bromine 3 beta</h1><img id='notification' src='img/ajax-loader.gif' alt="" style='display: none;'/></div>
       <script type='text/javascript'>
 
         Ajax.Responders.register({
@@ -52,37 +52,8 @@
     </div>
     <div id="content">
       <div id="column2">
-        <div id='messages'>
-            <?php if($session->check('Message.err')): ?>
-                <div id='err' style='color: darkred;'>
-                    <?php 
-                    foreach($session->read('Message.err') as $error){
-                        echo "Error: $error <br />";   
-                    }
-                    ?>
-                </div>
-            <?php endif ?>
-            <?php if($session->check('Message.warn')): ?>
-                <div id='warn' style='color: #CC9933;'>
-                <?php 
-                    foreach($session->read('Message.warn') as $warning){
-                        echo "Warning: $warning <br />";   
-                    }
-                    ?>
-                </div>
-            <?php endif ?>
-            <?php if($session->check('Message.succ')): ?>
-                <div id='succ'>
-                <?php 
-                    foreach($session->read('Message.succ') as $success){
-                        echo "$success <br />";   
-                    }
-                    ?>
-                </div>
-            <?php endif ?>
             <?php $session->flash('auth'); ?>
             <?php $session->flash(); ?>
-        </div>
         <?php echo $content_for_layout; ?>
       </div>
     </div>

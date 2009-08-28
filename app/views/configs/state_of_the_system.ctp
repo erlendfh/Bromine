@@ -129,7 +129,7 @@ foreach ($state as $key=>$value) {
             echo "<td>You have NOT registered your copy of Bromine. Please do so.</td>";
         }
     }
-
+    /*
     if ($key == 'Email developers on error'){
         echo "<td>$key</td>";
         if ($value == '1'){
@@ -142,6 +142,7 @@ foreach ($state as $key=>$value) {
             echo "<td>Your version of Bromine will NOT send an email if any error occours.</td>";
         }
     }
+    */
     
     if ($key == 'Install dir'){
         echo "<td>$key</td>";

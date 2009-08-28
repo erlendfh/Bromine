@@ -12,15 +12,6 @@ class DATABASE_CONFIG {
 		'prefix' => '',
 	);
 
-	var $test = array(
-		'driver' => 'mysql',
-		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'root',
-		'password' => '',
-		'database' => '123123',
-		'prefix' => '',
-	);
 	/*
 	function __construct() {
 

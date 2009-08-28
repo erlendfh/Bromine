@@ -21,7 +21,9 @@ class MenuComponent{
                             'Menu' => array(
                                 'title' => $name,
                                 'controller' => $name,
-                                'action' => $name 
+                                'action' => $name,
+                                'target' => '_blank'
+                                 
                             )
                         ); 
                     }

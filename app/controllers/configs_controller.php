@@ -164,7 +164,7 @@ class ConfigsController extends AppController {
     function help(){
         echo (file_get_contents('http://wiki.openqa.org/display/BR/Automatic+requirement+analysis'));
     }
-    
+    /*
     function sendUsMailWhenBromineFails($bool = ''){
 
             if ($bool == 'true'){
@@ -215,6 +215,7 @@ class ConfigsController extends AppController {
                 } 
         }
     }
+    */
     
     function stateOfTheSystem(){
         $state = array();
@@ -246,12 +247,14 @@ class ConfigsController extends AppController {
         $state['Max execution time'] = $max_exec_time;
 
         // Send mail on error
+        /*
         App::import('Model','Config');
         $config = new Config();
         $reg = $config->findByName('registered');
         $mail = $config->findByName('email on error');
         $state['Registrated Bromine'] = $reg['Config']['value'];
         $state['Email developers on error'] = $mail['Config']['value'];
+        */
         
         // Test for filepermissions
         //echo getcwd();

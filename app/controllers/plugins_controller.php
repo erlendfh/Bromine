@@ -3,6 +3,7 @@ class PluginsController extends AppController {
 
 	var $name = 'Plugins';
 	var $helpers = array('Html', 'Form');
+	var $main_menu_id = -2;
 
 	function index(){
 		$this->Plugin->recursive = 0;

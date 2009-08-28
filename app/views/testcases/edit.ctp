@@ -19,6 +19,7 @@
 	<fieldset>
  		<legend><?php __('Edit Testcase');?></legend>
 	<?php
+        echo $form->hidden('id');
 		echo $form->input('name');
 		echo $form->hidden('project_id',array('value' => $session->read('project_id')));
 		echo $form->input('description');

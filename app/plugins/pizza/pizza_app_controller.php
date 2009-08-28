@@ -1,5 +1,6 @@
 <?php
-class PizzaAppController extends AppController {
+class PizzaAppController extends AppController {    
+    var $layout = 'green_blank';
      //...
 }
 ?>

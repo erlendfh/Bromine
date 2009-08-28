@@ -177,7 +177,8 @@ class TreeHelper extends Helper{
         $output='';
         foreach ($list as $menu){   
             $output .= "<li>";
-            $output .= $this->Html->link($menu['Menu']['title'],array('controller'=>$menu['Menu']['controller'], 'action'=>$menu['Menu']['action']));            
+            $opts = (empty($menu['Menu']['target']) ? array() : array('target' => $menu['Menu']['target']));
+            $output .= $this->Html->link($menu['Menu']['title'],array('controller'=>$menu['Menu']['controller'], 'action'=>$menu['Menu']['action']), $opts);            
             
             if(!empty($menu['children'])){
 

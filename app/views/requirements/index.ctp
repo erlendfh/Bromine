@@ -185,7 +185,7 @@
                             new Draggable(newCopy.id,{ //make it dragable
                                 scroll: window,
                                 onEnd: function(drag,drop){
-                                    removetc(newCopy,newCopy.up('li'));
+                                    removetc(newCopy, newCopy.up('li'));
                                 }
                             });
                             
@@ -195,14 +195,14 @@
                     });
                 });
                 
-                /*
-                $$('#testcases div').each(function(s, index) {
+                
+                $$('#testcases div').each(function(s, index) { //This shouldn't be necesary, as the lilist makes them dragable, but apparently it is!
                     new Draggable(s.id, {
                         ghosting: true,
                         revert: true
                     });
                 });
-                */                
+                                
                 
                 $$('ul .tc').each(function(s, index) { //Make all testcases in the tree dragable
                     new Draggable(s.id,{

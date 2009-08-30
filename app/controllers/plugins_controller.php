@@ -69,14 +69,13 @@ class PluginsController extends AppController {
     }
     
     function uninstall($plugin_id){
-        $plugin = $this->findById($plugin_id);
-        $plugin = $plugin['name'];
+        $plugin = $this->Plugin->findById($plugin_id);
+        $plugin = $plugin['Plugin']['name'];
         if(($output = $this->requestAction("$plugin/install/uninstall")) === true ){
-            if(!$this->Plugin->del($id)){
-                $output = 'The plugin uninstalled correctly, but Bromine couldn\'t remove the plugin from the database.';
-            }
+            if(!$this->deleteDirectory(ROOT.DS.'app'.DS.'plugins'.DS.$plugin) || !$this->Plugin->del($plugin_id)){
+                $output = 'Bromine couldn\'t remove the plugin';
+            }    
             //Remove relevant ACL entries
-            //Unlink folder
         }
         $this->set('output', $output);
     }
@@ -97,6 +96,16 @@ class PluginsController extends AppController {
             $this->Session->setFlash('There was an error, try again');
         }
         $this->redirect(array('action'=>'index'));        
+    }
+    
+    private function deleteDirectory($dir) {
+        if (!file_exists($dir)) return true;
+        if (!is_dir($dir)) return unlink($dir);
+        foreach (scandir($dir) as $item) {
+            if ($item == '.' || $item == '..') continue;
+            if (!$this->deleteDirectory($dir.DIRECTORY_SEPARATOR.$item)) return false;
+        }
+        return rmdir($dir);
     }   
 
 }

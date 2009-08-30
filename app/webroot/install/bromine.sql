@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Vært: localhost
--- Genereringstid: 22. 08 2009 kl. 02:01:40
+-- Genereringstid: 30. 08 2009 kl. 21:37:42
 -- Serverversion: 5.1.33
 -- PHP-version: 5.2.9
 
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `browsers_nodes` (
   PRIMARY KEY (`id`),
   KEY `browser_id` (`browser_id`),
   KEY `node_id` (`node_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=225 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=237 ;
 
 --
 -- Data dump for tabellen `browsers_nodes`
@@ -68,12 +68,14 @@ INSERT INTO `browsers_nodes` (`id`, `browser_id`, `node_id`) VALUES
 (224, 17, 59),
 (223, 8, 59),
 (222, 7, 59),
+(234, 7, 64),
 (221, 6, 59),
 (220, 3, 59),
 (203, 7, 57),
 (202, 1, 57),
 (219, 2, 59),
-(218, 1, 59);
+(218, 1, 59),
+(233, 1, 64);
 
 -- --------------------------------------------------------
 
@@ -165,13 +167,17 @@ CREATE TABLE IF NOT EXISTS `combinations_requirements` (
   PRIMARY KEY (`id`),
   KEY `requirement_id` (`requirement_id`),
   KEY `combination_id` (`combination_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1664 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1923 ;
 
 --
 -- Data dump for tabellen `combinations_requirements`
 --
 
 INSERT INTO `combinations_requirements` (`id`, `requirement_id`, `combination_id`) VALUES
+(1859, 357, 43),
+(1816, 355, 43),
+(1806, 354, 43),
+(1793, 353, 43),
 (1643, 342, 46),
 (1642, 342, 53),
 (1641, 342, 14),
@@ -183,10 +189,28 @@ INSERT INTO `combinations_requirements` (`id`, `requirement_id`, `combination_id
 (1637, 342, 39),
 (1636, 342, 7),
 (1635, 342, 49),
+(1781, 352, 43),
 (1644, 342, 21),
-(1662, 345, 1),
+(1768, 351, 43),
+(1876, 345, 1),
 (1650, 344, 1),
-(1663, 343, 43);
+(1663, 343, 43),
+(1826, 356, 43),
+(1751, 359, 43),
+(1845, 358, 43),
+(1888, 369, 43),
+(1730, 361, 43),
+(1713, 362, 43),
+(1700, 363, 43),
+(1690, 364, 43),
+(1893, 365, 1),
+(1892, 365, 43),
+(1878, 366, 43),
+(1922, 1, 1),
+(1889, 368, 43),
+(1921, 1, 43),
+(1919, 2, 43),
+(1918, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -204,21 +228,12 @@ CREATE TABLE IF NOT EXISTS `commands` (
   PRIMARY KEY (`id`),
   KEY `test_id` (`test_id`),
   KEY `status` (`status`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 --
 -- Data dump for tabellen `commands`
 --
 
-INSERT INTO `commands` (`id`, `status`, `action`, `var1`, `var2`, `test_id`) VALUES
-(1, 'done', 'getNewBrowserSession', '*iexplore', 'http://localhost', 79),
-(2, 'done', 'open', '/', '', 79),
-(3, 'done', 'type', 'UserName', 'ralle', 79),
-(4, 'done', 'type', 'UserPassword', 'a32', 79),
-(5, 'done', 'click', '//input[@value=''Login'']', '', 79),
-(6, 'done', 'waitForPageToLoad', '30000', '', 79),
-(7, 'passed', 'assertEquals(getTitle)', '', 'Projects', 79),
-(8, 'done', 'testComplete', '', '', 79);
 
 -- --------------------------------------------------------
 
@@ -302,9 +317,7 @@ CREATE TABLE IF NOT EXISTS `groups` (
 --
 
 INSERT INTO `groups` (`id`, `name`) VALUES
-(1, 'admin'),
-(2, 'managers'),
-(3, 'users');
+(1, 'admin');
 
 -- --------------------------------------------------------
 
@@ -348,7 +361,7 @@ CREATE TABLE IF NOT EXISTS `menus` (
   `odr` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `parent_id` (`parent_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=70 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=71 ;
 
 --
 -- Data dump for tabellen `menus`
@@ -361,7 +374,6 @@ INSERT INTO `menus` (`id`, `parent_id`, `title`, `controller`, `action`, `odr`) 
 (41, -1, 'TestLabs', 'testlabs#/projects/testlabsview', '', 1),
 (46, 40, 'Add requirement', 'requirements#/requirements', 'add', 1),
 (40, -1, 'Planning', 'requirements', 'index', 0),
-(62, -2, 'Contribute', '', '', 5),
 (49, -2, 'Help', '', '', 5),
 (50, 49, 'State of the system', 'configs', 'stateOfTheSystem', 0),
 (51, 49, 'About Bromine', 'pages', 'about', 2),
@@ -375,13 +387,10 @@ INSERT INTO `menus` (`id`, `parent_id`, `title`, `controller`, `action`, `odr`) 
 (59, -2, 'Nodes', 'nodes', '', 1),
 (60, 56, 'Access control', 'manage_acl', '', 2),
 (61, -2, 'Misc', '', '', 4),
-(63, 62, 'Register Bromine', 'configs', 'register', 1),
-(64, 62, 'Email developers on error >>', '', '', 2),
-(65, 64, 'Set to: On', 'configs', 'sendUsMailWhenBromineFails/true', 1),
-(66, 64, 'Set to: Off', 'configs', 'sendUsMailWhenBromineFails/false', 2),
 (67, 56, 'Logs >>', 'echelons', 'index', 4),
 (68, 67, 'Set to: Off', 'configs', 'setEchelon/false', 2),
-(69, 67, 'Set to: On', 'configs', 'setEchelon/true', 1);
+(69, 67, 'Set to: On', 'configs', 'setEchelon/true', 1),
+(70, -2, 'Manage plugins', 'plugins', 'index', 9);
 
 -- --------------------------------------------------------
 
@@ -577,7 +586,7 @@ CREATE TABLE IF NOT EXISTS `myaros` (
   KEY `parent_id` (`parent_id`),
   KEY `foreign_key` (`foreign_key`),
   KEY `model` (`model`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=83 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=95 ;
 
 --
 -- Data dump for tabellen `myaros`
@@ -585,11 +594,6 @@ CREATE TABLE IF NOT EXISTS `myaros` (
 
 INSERT INTO `myaros` (`id`, `model`, `foreign_key`, `parent_id`, `alias`) VALUES
 (1, 'group', 1, NULL, '/admin'),
-(2, 'group', 2, NULL, '/managers'),
-(3, 'group', 3, NULL, '/users'),
-(23, 'user', 23, 1, '/admin/Visti'),
-(24, 'user', 24, 1, '/admin/test'),
-(21, 'user', 21, 1, '/admin/Ralle'),
 (82, 'user', 50, 1, '/admin/admin');
 
 -- --------------------------------------------------------
@@ -629,13 +633,14 @@ CREATE TABLE IF NOT EXISTS `nodes` (
   `description` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`),
   KEY `operatingsystem_id` (`operatingsystem_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=60 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=66 ;
 
 --
 -- Data dump for tabellen `nodes`
 --
 
 INSERT INTO `nodes` (`id`, `nodepath`, `operatingsystem_id`, `description`) VALUES
+(64, '127.0.0.1:4445', 1, ''),
 (57, '127.0.0.1:4444', 1, 'Selenium RC server on the localhost');
 
 -- --------------------------------------------------------
@@ -667,6 +672,27 @@ INSERT INTO `operatingsystems` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur-dump for tabellen `plugins`
+--
+
+CREATE TABLE IF NOT EXISTS `plugins` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `activated` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+
+--
+-- Data dump for tabellen `plugins`
+--
+
+INSERT INTO `plugins` (`id`, `name`, `activated`) VALUES
+(19, 'pizza', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur-dump for tabellen `projects`
 --
 
@@ -675,14 +701,14 @@ CREATE TABLE IF NOT EXISTS `projects` (
   `name` varchar(255) CHARACTER SET latin1 NOT NULL,
   `description` text CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=138 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=139 ;
 
 --
 -- Data dump for tabellen `projects`
 --
 
 INSERT INTO `projects` (`id`, `name`, `description`) VALUES
-(134, 'selftest', 'The Bromine selftest project');
+(138, 'Google Sample', 'The google sample project');
 
 -- --------------------------------------------------------
 
@@ -695,14 +721,14 @@ CREATE TABLE IF NOT EXISTS `projects_users` (
   `project_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=90 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=107 ;
 
 --
 -- Data dump for tabellen `projects_users`
 --
 
 INSERT INTO `projects_users` (`id`, `project_id`, `user_id`) VALUES
-(84, 134, 21),
+(106, 138, 50),
 (89, 134, 50);
 
 -- --------------------------------------------------------
@@ -720,14 +746,15 @@ CREATE TABLE IF NOT EXISTS `requirements` (
   PRIMARY KEY (`id`),
   KEY `parent_id` (`parent_id`),
   KEY `project_id` (`project_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=351 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
 
 --
 -- Data dump for tabellen `requirements`
 --
 
 INSERT INTO `requirements` (`id`, `name`, `description`, `project_id`, `parent_id`) VALUES
-(345, 'selftest', '', 134, 0);
+(1, 'Web', 0x746865207765627061676520726573756c7473, 138, 0),
+(2, 'Image', 0x54686520696d616765736561726368, 138, 0);
 
 -- --------------------------------------------------------
 
@@ -742,125 +769,17 @@ CREATE TABLE IF NOT EXISTS `requirements_testcases` (
   PRIMARY KEY (`id`),
   KEY `requirement_id` (`requirement_id`),
   KEY `testcase_id` (`testcase_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=15023 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=27 ;
 
 --
 -- Data dump for tabellen `requirements_testcases`
 --
 
 INSERT INTO `requirements_testcases` (`id`, `testcase_id`, `requirement_id`) VALUES
-(15016, 269, 345),
-(15015, 268, 345),
-(15014, 267, 345),
-(15013, 266, 345),
-(15012, 265, 345),
-(15011, 264, 345),
-(15010, 263, 345),
-(15009, 262, 345),
-(15008, 261, 345),
-(15007, 260, 345),
-(15006, 259, 345),
-(15005, 258, 345),
-(15004, 257, 345),
-(15003, 256, 345),
-(15002, 255, 345),
-(15001, 254, 345),
-(15000, 253, 345),
-(14999, 252, 345),
-(14998, 251, 345),
-(14997, 250, 345),
-(14996, 249, 345),
-(14995, 248, 345),
-(14994, 247, 345),
-(14993, 246, 345),
-(14992, 245, 345),
-(14991, 244, 345),
-(14990, 243, 345),
-(14989, 242, 345),
-(14988, 241, 345),
-(14987, 240, 345),
-(14986, 239, 345),
-(14985, 238, 345),
-(14984, 237, 345),
-(14983, 236, 345),
-(14982, 235, 345),
-(14981, 234, 345),
-(14980, 233, 345),
-(14979, 232, 345),
-(14978, 231, 345),
-(14977, 230, 345),
-(14976, 229, 345),
-(14975, 228, 345),
-(14974, 227, 345),
-(14973, 226, 345),
-(14972, 225, 345),
-(14971, 224, 345),
-(14970, 223, 345),
-(14969, 222, 345),
-(14968, 221, 345),
-(14967, 220, 345),
-(14966, 219, 345),
-(14965, 218, 345),
-(14964, 217, 345),
-(14963, 216, 345),
-(14962, 215, 345),
-(14961, 214, 345),
-(14960, 213, 345),
-(14959, 212, 345),
-(14958, 211, 345),
-(14957, 210, 345),
-(14956, 209, 345),
-(14955, 208, 345),
-(14954, 207, 345),
-(14953, 206, 345),
-(14952, 205, 345),
-(14951, 204, 345),
-(14950, 203, 345),
-(14949, 202, 345),
-(14948, 201, 345),
-(14947, 200, 345),
-(14946, 199, 345),
-(14945, 198, 345),
-(14944, 197, 345),
-(14943, 196, 345),
-(14942, 195, 345),
-(14941, 194, 345),
-(14940, 193, 345),
-(14939, 192, 345),
-(14938, 191, 345),
-(14937, 190, 345),
-(14936, 189, 345),
-(14935, 188, 345),
-(14934, 187, 345),
-(14933, 186, 345),
-(14932, 185, 345),
-(14931, 184, 345),
-(14930, 183, 345),
-(14929, 182, 345),
-(14928, 181, 345),
-(14927, 180, 345),
-(14926, 179, 345),
-(14925, 178, 345),
-(14924, 177, 345),
-(14923, 176, 345),
-(14922, 175, 345),
-(14921, 174, 345),
-(14920, 173, 345),
-(14919, 172, 345),
-(14918, 171, 345),
-(14917, 170, 345),
-(14916, 169, 345),
-(14915, 168, 345),
-(14914, 167, 345),
-(14913, 166, 345),
-(14912, 165, 345),
-(14911, 164, 345),
-(14910, 163, 345),
-(14909, 162, 345),
-(14908, 161, 345),
-(14907, 160, 345),
-(14906, 159, 345),
-(14905, 158, 345);
+(22, 4, 2),
+(21, 3, 2),
+(26, 2, 1),
+(25, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -897,14 +816,16 @@ CREATE TABLE IF NOT EXISTS `sites` (
   `project_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `project_id` (`project_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=65 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=70 ;
 
 --
 -- Data dump for tabellen `sites`
 --
 
 INSERT INTO `sites` (`id`, `name`, `project_id`) VALUES
-(59, 'http://localhost', 134);
+(59, 'http://localhost', 134),
+(68, 'http://www.google.in', 138),
+(65, 'http://www.google.com', 138);
 
 -- --------------------------------------------------------
 
@@ -930,12 +851,71 @@ CREATE TABLE IF NOT EXISTS `suites` (
   KEY `browser_id` (`browser_id`),
   KEY `project_id` (`project_id`),
   KEY `site_id` (`site_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=101 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=59 ;
 
 --
 -- Data dump for tabellen `suites`
 --
 
+INSERT INTO `suites` (`id`, `name`, `site_id`, `timedate`, `timetaken`, `selenium_version`, `project_id`, `analysis`, `status`, `browser_id`, `operating_system_id`, `selenium_revision`) VALUES
+(1, 'alalal', 68, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(2, 'alalal', 68, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(3, 'alalal', 68, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(4, 'alalal', 68, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(5, 'alalal', 68, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(6, 'alalal', 68, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(7, 'alalal', 68, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(8, 'alalal', 68, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(9, 'alalal', 68, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(10, 'alalal', 68, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(11, 'alalal', 68, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(12, 'alalal', 68, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(13, 'alalal', 68, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(14, 'alalal', 68, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(15, 'alalal', 68, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(16, 'alalal', 68, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(17, 'alalal', 68, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(18, 'alalal', 68, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(19, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(20, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(21, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(22, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(23, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(24, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(25, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(26, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(27, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(28, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(29, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(30, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(31, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(32, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(33, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(34, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(35, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(36, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(37, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(38, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(39, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(40, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(41, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(42, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(43, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(44, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(45, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(46, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(47, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(48, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(49, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(50, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(51, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(52, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(53, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(54, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(55, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(56, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(57, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, ''),
+(58, 'alalal', 65, NULL, NULL, NULL, 138, 0, 'failed', 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -950,125 +930,17 @@ CREATE TABLE IF NOT EXISTS `testcases` (
   `description` longtext COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`),
   KEY `project_id` (`project_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=270 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5 ;
 
 --
 -- Data dump for tabellen `testcases`
 --
 
 INSERT INTO `testcases` (`id`, `name`, `project_id`, `description`) VALUES
-(248, 'Testcases: edit', 134, ''),
-(247, 'Testcases: add', 134, ''),
-(246, 'Testcases: viewscript', 134, ''),
-(245, 'Testcases: testlabview', 134, ''),
-(244, 'Testcases: view', 134, ''),
-(243, 'Testcases: lilist', 134, ''),
-(242, 'Testcases: index', 134, ''),
-(241, 'Testcasesteps: delete', 134, ''),
-(240, 'Testcasesteps: edit', 134, ''),
-(239, 'Testcasesteps: add', 134, ''),
-(238, 'Testcasesteps: view', 134, ''),
-(237, 'Testcasesteps: reorder', 134, ''),
-(236, 'Testcasesteps: index', 134, ''),
-(235, 'Suites: delete', 134, ''),
-(234, 'Suites: edit', 134, ''),
-(233, 'Suites: add', 134, ''),
-(232, 'Suites: view', 134, ''),
-(231, 'Suites: index', 134, ''),
-(230, 'Sites: delete', 134, ''),
-(229, 'Sites: edit', 134, ''),
-(228, 'Sites: add', 134, ''),
-(227, 'Sites: view', 134, ''),
-(226, 'Sites: select', 134, ''),
-(225, 'Seleniumserver: executeCommand', 134, ''),
-(224, 'Seleniumserver: driver', 134, ''),
-(223, 'Runrctests: runTestcase', 134, ''),
-(222, 'Runrctests: runRequirement', 134, ''),
-(221, 'Runrctests: runAndViewRequirement', 134, ''),
-(220, 'Runrctests: runAndViewTestcase', 134, ''),
-(219, 'Requirements: delete', 134, ''),
-(218, 'Requirements: edit', 134, ''),
-(217, 'Requirements: add', 134, ''),
-(216, 'Requirements: testlabview', 134, ''),
-(215, 'Requirements: view', 134, ''),
-(214, 'Requirements: index', 134, ''),
-(213, 'Requirements: updateCombination', 134, ''),
-(212, 'Requirements: updatetc', 134, ''),
-(211, 'Requirements: reorder', 134, ''),
-(210, 'Projects: select', 134, ''),
-(209, 'Projects: testlabsview', 134, ''),
-(208, 'Projects: delete', 134, ''),
-(207, 'Projects: edit', 134, ''),
-(206, 'Projects: add', 134, ''),
-(205, 'Projects: view', 134, ''),
-(204, 'Projects: index', 134, ''),
-(203, 'Operatingsystems: delete', 134, ''),
-(202, 'Operatingsystems: edit', 134, ''),
-(201, 'Operatingsystems: add', 134, ''),
-(200, 'Operatingsystems: view', 134, ''),
-(199, 'Operatingsystems: index', 134, ''),
-(198, 'Nodes: delete', 134, ''),
-(197, 'Nodes: edit', 134, ''),
-(196, 'Nodes: add', 134, ''),
-(195, 'Nodes: view', 134, ''),
-(194, 'Nodes: index', 134, ''),
-(193, 'Myaros: delete', 134, ''),
-(192, 'Myaros: edit', 134, ''),
-(191, 'Myaros: add', 134, ''),
-(190, 'Myaros: view', 134, ''),
-(189, 'Myaros: index', 134, ''),
-(188, 'Myacos: delete', 134, ''),
-(187, 'Myacos: edit', 134, ''),
-(186, 'Myacos: add', 134, ''),
-(185, 'Myacos: view', 134, ''),
-(184, 'Myacos: index', 134, ''),
-(183, 'ManageAcl: buildAcl', 134, ''),
-(182, 'ManageAcl: listAcos', 134, ''),
-(181, 'ManageAcl: removeACL', 134, ''),
-(180, 'ManageAcl: createACL', 134, ''),
-(179, 'ManageAcl: listAros', 134, ''),
-(178, 'ManageAcl: index', 134, ''),
-(177, 'Items: updateItemSize', 134, ''),
-(176, 'Items: updateItemPosition', 134, ''),
-(175, 'Items: edit', 134, ''),
-(174, 'Items: index', 134, ''),
-(173, 'Groups: delete', 134, ''),
-(172, 'Groups: edit', 134, ''),
-(171, 'Groups: add', 134, ''),
-(170, 'Groups: view', 134, ''),
-(169, 'Groups: index', 134, ''),
-(168, 'Configs: stateOfTheSystem', 134, ''),
-(167, 'Configs: sendUsMailWhenBromineFails', 134, ''),
-(166, 'Configs: help', 134, ''),
-(165, 'Configs: do_post_request', 134, ''),
-(164, 'Configs: register', 134, ''),
-(163, 'Configs: checkForUpdates', 134, ''),
-(162, 'Browsers: delete', 134, ''),
-(161, 'Browsers: edit', 134, ''),
-(160, 'Browsers: add', 134, ''),
-(159, 'Browsers: view', 134, ''),
-(158, 'Browsers: index', 134, ''),
-(249, 'Testcases: upload', 134, ''),
-(250, 'Testcases: delete', 134, ''),
-(251, 'Testcases: addToJira', 134, ''),
-(252, 'Testlabs: index', 134, ''),
-(253, 'Tests: index', 134, ''),
-(254, 'Tests: view', 134, ''),
-(255, 'Tests: add', 134, ''),
-(256, 'Tests: edit', 134, ''),
-(257, 'Tests: delete', 134, ''),
-(258, 'Types: index', 134, ''),
-(259, 'Types: view', 134, ''),
-(260, 'Types: add', 134, ''),
-(261, 'Types: edit', 134, ''),
-(262, 'Types: delete', 134, ''),
-(263, 'Users: login', 134, ''),
-(264, 'Users: logout', 134, ''),
-(265, 'Users: index', 134, ''),
-(266, 'Users: view', 134, ''),
-(267, 'Users: add', 134, ''),
-(268, 'Users: edit', 134, ''),
-(269, 'Users: delete', 134, '');
+(1, 'Basic web', 138, 0x626173696320736561726368),
+(2, 'Advanced web', 138, 0x616476616e6365642077656220736561726368),
+(3, 'basic image', 138, ''),
+(4, 'advanced image', 138, '');
 
 -- --------------------------------------------------------
 
@@ -1084,12 +956,17 @@ CREATE TABLE IF NOT EXISTS `testcasesteps` (
   `testcase_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `testcase_id` (`testcase_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=45 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=58 ;
 
 --
 -- Data dump for tabellen `testcasesteps`
 --
 
+INSERT INTO `testcasesteps` (`id`, `orderby`, `action`, `reaction`, `testcase_id`) VALUES
+(52, 0, 0x616374696f6e207468726565, 0x7265616374696f6e207468726565, 102),
+(53, 2, 0x616374696f6e207468726565, 0x7265616374696f6e207468726565, 102),
+(54, 1, 0x616374696f6e207365766572616c, 0x7265616374696f6e2074776f0a, 102),
+(57, 1, 0x6f70656e20656e69726f, 0x656e696f206f70656e73, 104);
 
 -- --------------------------------------------------------
 
@@ -1112,7 +989,7 @@ CREATE TABLE IF NOT EXISTS `tests` (
   KEY `operatingsystem_id` (`operatingsystem_id`),
   KEY `browser_id` (`browser_id`),
   KEY `suite_id` (`suite_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=80 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 --
 -- Data dump for tabellen `tests`
@@ -1132,7 +1009,7 @@ CREATE TABLE IF NOT EXISTS `types` (
   `spacer` varchar(255) COLLATE utf8_bin NOT NULL,
   `extension` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=12 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=27 ;
 
 --
 -- Data dump for tabellen `types`
@@ -1159,12 +1036,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   KEY `group_id` (`group_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci AUTO_INCREMENT=51 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci AUTO_INCREMENT=63 ;
 
 --
 -- Data dump for tabellen `users`
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `name`, `password`, `group_id`, `email`) VALUES
-(21, '', '', 'Ralle', '598773e99e6e49f1663c11363f16267c30862549', 1, ''),
 (50, '', '', 'admin', '6770906accd531bd8cfd4c4f5d2b469c03f447e0', 1, 'admin@localhost.com');

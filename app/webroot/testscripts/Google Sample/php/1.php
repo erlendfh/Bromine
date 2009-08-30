@@ -14,10 +14,7 @@ class Example extends BRUnit
     $this->selenium->waitForPageToLoad("30000");
     $this->selenium->click("link=Bromine: Bromine");
     $this->selenium->waitForPageToLoad("30000");
-    try {
-        $this->assertEquals("Bromine: Bromine", $this->selenium->getText("//div[@id='content']/h1"));
-    } catch (Exception $e) {}
-
+    $this->assertTrue($this->selenium->isTextPresent("Bromine"));
   }
 }
 startTest("Example" , $argv);

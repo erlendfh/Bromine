@@ -4,7 +4,9 @@ class PizzaController extends PizzaAppController {
     var $uses = null;
     
     function index(){
-        $this->set('gratz','gratz');   
+        $this->layout = null;
+        $this->view = null;
+        header("Location: http://www.google.com/search?q=pizza&btnI");   
     }
      
 }

@@ -188,7 +188,7 @@ options.footer =
         "\t\t\t}\n" +
 	"\t\t\tt.tearDown();\n" +
 	"\t\t}\n" +
-	"\t\tcatch(Exception e){\n" +
+	"\t\tcatch(Exception e){e.printStackTrace(System.out);\n" +
 	"\t\t}\n" +
 	"\t}\n" +
 	"}\n";

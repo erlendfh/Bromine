@@ -1,0 +1,26 @@
+<?php
+class AppError extends ErrorHandler {
+
+    function __construct($method, $messages) {
+       Configure::write('debug', 3);
+       parent::__construct($method, $messages);
+    }
+    
+    function _outputMessage($template) {
+       $this->controller->render($template);
+       $this->controller->afterFilter();
+    
+       App::import('Core', 'Email');
+    
+       $email = new EmailComponent;
+    
+       $email->from = 'CakePHP <cakephpapp@yourdomain.com>';
+       $email->to = 'Developer <somedeveloper@yourdomain.com>';
+       $email->sendAs = 'text';
+       $email->subject = 'Error in my CakePHP app';
+    
+       $email->send($this->controller->output);
+    }
+
+}
+?>

@@ -1,0 +1,64 @@
+blockquote{border-color: #83B82E;}
+
+h1
+{ background: transparent;
+  color: #83B82E;
+}
+
+#links_container
+{ background: #95C359;
+  color: #FFF;
+  border-top-color: #E2E2E2;
+  border-bottom-color: #6C6C6C;
+}
+
+#footer
+{ background: #555;
+  color: #FFF;
+  border-color: #83B82E;
+}
+
+#links a, #footer a:hover, #logo, #logo h1
+{ background: transparent;
+  color: #FFF;
+}
+
+
+
+#links a:hover, #logo h2, #content, .sidebaritem, #content a
+{ background: transparent;
+  color: #555;
+}
+
+#footer a
+{ background: #555;
+  color: #83B82E;
+} 
+
+#footer a.redlink{
+    color: red;
+}
+
+#footer a.redlink:hover{
+    color: #83B82E;
+}
+
+#content a
+{
+  color: #83B82E;
+}
+
+#content a:hover
+{
+  color: #555;
+}
+
+.sbilinks li a, .sidebaritem a
+{ background: transparent url(../../img/arrow.png) no-repeat left center;
+  color: #555;
+} 
+
+.sbilinks li a:hover, .sidebaritem a:hover
+{ background: transparent url(../../img/green_arrow.png) no-repeat left center;
+  color: #555;
+} 

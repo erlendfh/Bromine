@@ -1,0 +1,1 @@
+Try <a href='/install'>/install</a> for setting up the database connection!
